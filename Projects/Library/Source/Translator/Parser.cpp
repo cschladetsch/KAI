@@ -338,13 +338,14 @@ bool Parser::Factor()
 		return true;
 	}
 
-	if (Try(Token::Int) || Try(Token::Float) || Try(Token::String) || Try(Token::True) || Try(Token::False))
+	if (Try(Token::Int) || Try(Token::Float) 
+		|| Try(Token::String) || Try(Token::True) || Try(Token::False))
 	{
 		PushConsume();
 		return true;
 	}
 
-	if (Try(Token::Ident))
+	if (Try(Token::Self) || Try(Token::Ident))
 	{
 		return ParseFactorIdent();
 	}

@@ -162,16 +162,16 @@ void TestExample::TestStruct()
 	Pointer<Stack> stack;
 
 	// add general functions to the root of the tree
-	AddFunction(root, Function_A, "Function_A");
-	AddFunction(root, Function_B, "Function_B");
-	AddFunction(root, Function_C, "Function_C");
-	AddFunction(root, Function_D, "Function_D");
+	AddFunction(root, Function_A, "FunctionA");
+	AddFunction(root, Function_B, "FunctionB");
+	AddFunction(root, Function_C, "FunctionC");
+	AddFunction(root, Function_D, "FunctionD");
 
 	// invoke the functions; take copies of the resultant stacks after each function completes
-	Pointer<Stack> stack_A = console.Execute("Function_A ()").Clone();
-	Pointer<Stack> stack_B = console.Execute("42 Function_B ()").Clone();
-	Pointer<Stack> stack_C = console.Execute("123 3.0 \"bar\" Function_C ()").Clone();
-	Pointer<Stack> stack_D = console.Execute("/mystruct Function_D ()").Clone();
+	Pointer<Stack> stack_A = console.Execute("FunctionA();").Clone();
+	Pointer<Stack> stack_B = console.Execute("Function_B(42)").Clone();
+	Pointer<Stack> stack_C = console.Execute("FunctionC(123, 3.0, \"bar\");").Clone();
+	Pointer<Stack> stack_D = console.Execute("FunctionD(mystruct)").Clone();
 
 	// show results and test
 	KAI_TRACE_1(stack_A);
@@ -184,10 +184,10 @@ void TestExample::TestStruct()
 	KAI_TEST_EQUIV(ConstDeref<int>(stack_D->Pop()), 345);
 
 	// test calling methods
-	stack = console.Execute("/mystruct 'Method0 ->");
+	stack = console.Execute("mystruct.'Method0()");
 	KAI_TEST_EQUIV(Deref<int>(stack->Pop()), 42);
 	
-	stack = console.Execute("2 \"foo\" /mystruct 'Method1 ->");
+	stack = console.Execute("mystruct.'Method1(2, \"foo\");");
 	KAI_TEST_EQUIV(Deref<String>(stack->Pop()), "foofoo");
 }
 

@@ -32,7 +32,7 @@ void TestExecutor::TestConstruction()
 
 void TestExecutor::TestStringLiterals()
 {
-	continuation = compiler->Compile(registry, "'/foo/bar");
+	continuation = compiler->Compile(registry, "'foo.'bar");
 	KAI_TEST_TRUE(continuation->HasCode());
 	executor->Continue(continuation);
 
@@ -45,7 +45,7 @@ void TestExecutor::TestStringLiterals()
 
 void TestExecutor::TestContinuations()
 {
-	continuation = compiler->Compile(registry, "1 2 +");
+	continuation = compiler->Compile(registry, "1+2;");
 	executor->Continue(continuation);
 
 	Pointer<int> N = executor->Pop();
