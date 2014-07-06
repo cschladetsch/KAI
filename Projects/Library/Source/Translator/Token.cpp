@@ -1,8 +1,8 @@
-#include "Precompiled.h"
-#include "Token.h"
-#include "Lexer.h"
+#include "KAI/KAI.h"
+#include "KAI/Translator/Token.h"
+#include "KAI/Translator/Lexer.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 Token::Token(Type type, const Lexer &lexer, int ln, Slice slice) 
 	: type(type), lexer(&lexer), lineNumber(ln), slice(slice)
@@ -82,4 +82,4 @@ std::ostream &operator<<(std::ostream &out, Token const &node)
 	return out;
 }
 
-KAI_TRANS_END
+KAI_END

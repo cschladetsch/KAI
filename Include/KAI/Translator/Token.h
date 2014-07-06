@@ -2,9 +2,9 @@
 
 #include <string>
 
-#include "Slice.h"
+#include "KAI/Translator/Slice.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 struct Lexer;
 
@@ -60,5 +60,5 @@ struct Token
 	friend std::ostream &operator<<(std::ostream &out, Token const &node);
 };
 
-KAI_TRANS_END
+KAI_END
 

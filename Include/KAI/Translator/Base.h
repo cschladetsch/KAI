@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Config.h"
+#include "KAI/Translator/Config.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 struct Lexer;
 struct Parser;
 struct Translator;
 struct RhoLang;
 
-KAI_TRANS_END
+KAI_END

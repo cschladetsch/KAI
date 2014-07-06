@@ -1,16 +1,16 @@
-#include "Precompiled.h"
+#include "KAI/KAI.h"
+#include "KAI/Translator/Parser.h"
+
 #include <iostream>
 #include <algorithm>
 #include <strstream>
 #include <stdarg.h>
 
-#include "Parser.h"
-
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 using namespace std;
 
-Parser::Parser(Lexer const *lexer, Structure st)
+Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 {
 	current = 0;
 
@@ -270,7 +270,6 @@ bool Parser::Relational()
 		if (!Additive())
 		{
 			return Fail(Lexer::CreateError(Current(), "expression expected"));
-			return false;
 		}
 		node->Add(Pop());
 		Push(node);
@@ -392,6 +391,9 @@ std::string Parser::Lead(int level)
 	return s;
 }
 
+//warning C4127: conditional expression is constant
+#pragma warning (disable:4127)
+
 bool Parser::ParseFactorIdent()
 {
 	PushConsume();
@@ -503,7 +505,8 @@ void Parser::ParseIndexOp()
 
 Parser::Unexpected::Unexpected(Token::Type ty)
 {
+	KAI_UNUSED_1(ty);
 }
 
-KAI_TRANS_END
+KAI_END
 

@@ -1,14 +1,14 @@
-#include "Precompiled.h"
+#include "KAI/KAI.h"
 
 #include <iostream>
 #include <strstream>
 #include <stdarg.h>
 
-#include "Lexer.h"
+#include "KAI/Translator/Lexer.h"
 
 using namespace std;
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 Lexer::Lexer(const char *in)
 	: input(in)
@@ -206,7 +206,7 @@ bool Process::Fail(const char *fmt, ...)
 
 char Lexer::Current() const
 {
-	if (lineNumber == lines.size())
+	if (lineNumber == (int)lines.size())
 		return 0;
 	return Line()[offset];
 }
@@ -226,7 +226,7 @@ char Lexer::Next()
 	else
 		++offset;
 
-	if (lineNumber == lines.size())
+	if (lineNumber == (int)lines.size())
 		return 0;
 
 	return Line()[offset];
@@ -255,7 +255,7 @@ void Lexer::CreateLines()
 
 bool Lexer::EndOfLine() const
 {
-	return offset == Line().size() - 1;
+	return offset == (int)Line().size() - 1;
 }
 
 bool Lexer::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
@@ -307,4 +307,4 @@ void Lexer::LexError(const char *text)
 	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
 }
 
-KAI_TRANS_END
+KAI_END

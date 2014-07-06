@@ -1,7 +1,7 @@
-#include "Precompiled.h"
-#include "Node.h"
+#include "KAI/KAI.h"
+#include "KAI/Translator/Node.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 const char *Node::ToString(Type ty)
 {
@@ -27,4 +27,4 @@ const char *Node::ToString(Type ty)
 	return "???";
 }
 
-KAI_TRANS_END
+KAI_END

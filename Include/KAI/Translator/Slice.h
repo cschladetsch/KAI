@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Config.h"
+#include "KAI/Translator/Config.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 // A range
 struct Slice
@@ -25,4 +25,4 @@ struct Slice
 	}
 };
 
-KAI_TRANS_END
+KAI_END

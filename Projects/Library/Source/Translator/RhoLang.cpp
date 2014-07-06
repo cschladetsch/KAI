@@ -1,14 +1,21 @@
-#include "Precompiled.h"
+#include "KAI/KAI.h"
 #include <fstream>
 #include <iostream>
 
-#include "RhoLang.h"
-#include "Parser.h"
-#include "Translator.h"
+#include "KAI/Translator/RhoLang.h"
+#include "KAI/Translator/Parser.h"
+#include "KAI/Translator/Translator.h"
+
+#include "KAI/Executor.h"
 
 using namespace std;
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
+
+RhoLang::RhoLang(Registry &r)
+	: reg(r)
+{
+}
 
 void RhoLang::Print()
 {
@@ -24,6 +31,7 @@ void RhoLang::Print()
 	cout << "Trans--" << endl;
 	cout << trans->Result() << endl;
 }
+
 
 bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 {
@@ -42,9 +50,9 @@ bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 
 bool RhoLang::Translate(const char *text, Parser::Structure st)
 {
-	lex = new Lexer(text);
-	parse = new Parser(lex, st);
-	trans = new Translator(parse);
+	lex = std::make_shared<Lexer>(text);
+	parse = std::make_shared<Parser>(lex, st);
+	trans = std::make_shared<Translator>(parse, reg);
 	if (lex->Failed)
 		return Fail(lex->Error);
 	if (parse->Failed)
@@ -54,4 +62,4 @@ bool RhoLang::Translate(const char *text, Parser::Structure st)
 	return true;
 }
 
-KAI_TRANS_END
+KAI_END

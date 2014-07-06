@@ -3,15 +3,15 @@
 #include <vector>
 #include <map>
 
-#include "Slice.h"
-#include "Token.h"
-#include "Process.h"
+#include "KAI/Translator/Slice.h"
+#include "KAI/Translator/Token.h"
+#include "KAI/Translator/Process.h"
 
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
 #	include <boost/monotonic/monotonic.hpp>
 #endif
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 // Tokenise an input string for later parsing
 struct Lexer : Process
@@ -74,4 +74,4 @@ public:
 	bool LexString();
 };
 
-KAI_TRANS_END
+KAI_END

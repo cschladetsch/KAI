@@ -1,20 +1,12 @@
-#include "Precompiled.h"
-#include "Translator.h"
+#include "KAI/KAI.h"
+#include "KAI/Translator/Translator.h"
 #include <boost/lexical_cast.hpp>
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
-Translator::Translator(Parser const *p)
+Translator::Translator(std::shared_ptr<Parser> p, Registry &r) 
+	: reg(r)
 {
-	reg.AddClass<int>("int");
-	reg.AddClass<bool>("bool");
-	reg.AddClass<float>("float");
-	reg.AddClass<String>("string");
-	reg.AddClass<Operation>("Operation");
-	reg.AddClass<Array>("Array");
-	reg.AddClass<Continuation>("Continuation"); 
-	reg.AddClass<Label>("Label"); 
-
 	PushNew();
 
 	try
@@ -114,7 +106,7 @@ void Translator::TranslateBlock(NodePtr node)
 // 2: block
 void Translator::TranslateFunction(NodePtr node)
 {
-	Node::ChildrenType const &ch = node->Children;
+	//Node::ChildrenType const &ch = node->Children;
 
 	//// write the body
 	//result << " {";
@@ -194,5 +186,5 @@ std::string Translator::Result() const
 	return str.ToString().c_str();
 }
 
-KAI_TRANS_END
+KAI_END
 
