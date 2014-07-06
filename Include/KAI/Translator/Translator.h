@@ -57,6 +57,7 @@ private:
 		Append(reg.New<T>());
 	}
 	Pointer<Continuation> Pop();
+	void AppendNewOp(Operation::Type op);
 };
 
 KAI_END

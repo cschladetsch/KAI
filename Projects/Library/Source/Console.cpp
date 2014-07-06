@@ -1,5 +1,3 @@
-
-
 #include "KAI/KAI.h"
 #include "KAI/Operation.h"
 #include "KAI/BuiltinTypes/All.h"
@@ -63,8 +61,8 @@ void Console::Create(const nstd::vector<String> &args)
 
 		CreateTree();
 
-		if (args.size() == 1)
-			KAI_NAMESPACE_NAME::ExecuteFile(args[0].c_str(), executor, compiler, tree.GetScope());
+		//if (args.size() == 1)
+		//	KAI_NAMESPACE_NAME::ExecuteFile(args[0].c_str(), executor, compiler, tree.GetScope());
 	}
 	catch (Exception::Base &E)
 	{
@@ -115,7 +113,7 @@ void Console::CreateTree()
 	Bin::AddFunctions(bin);
 	//bin.Set("RunTests", compiler->Compile(registry, "TestOutput new Tests 'Run ->"));
 	//bin.Set("LoadContinuation", compiler->Compile(registry, "ReadFile () /Sys/Compiler 'Compile ->"));
-	bin.Set("RunFile", compiler->Compile(*registry, "LoadContinuation & !"));
+	//bin.Set("RunFile", compiler->Compile(*registry, "LoadContinuation & !"));
 
 	tree.AddSearchPath(Pathname("/Bin"));
 	tree.AddSearchPath(Pathname("/Sys"));
@@ -283,9 +281,9 @@ void Console::RegisterTypes()
 #endif
 }
 
-Pointer<Continuation> Console::Compile(const char *text)
+Pointer<Continuation> Console::Compile(const char *text, Parser::Structure st)
 {
-	return compiler->Compile(*registry, text);
+	return compiler->Compile(*registry, text, st);
 }
 
 void Console::Register(Registry &)

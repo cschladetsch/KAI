@@ -20,20 +20,18 @@ void BasicOutput::MethodEnd(const String &N)
 
 void BasicOutput::SuiteBegin(const String &N)
 {
-	if (verbose)
-		std::cout << "test>  Suite: Start " << N.c_str() << std::endl;
+		std::cout << "    Suite: " << N.c_str() << std::endl;
 }
 
 void BasicOutput::SuiteEnd(const String &N)
 {
-	if (verbose)
-		std::cout << "test>  Suite: End " << N.c_str() << std::endl;
+		//std::cout << "test>  Suite: End " << N.c_str() << std::endl;
 }
 
 void BasicOutput::ModuleBegin(const String &N)
 {
-	if (verbose)
-		std::cout << "test>Module: Start " << N.c_str() << std::endl;
+	//if (verbose)
+		std::cout << "Module: Start " << N.c_str() << std::endl;
 }
 
 void BasicOutput::ModuleEnd(const String &N)
@@ -72,10 +70,10 @@ void BasicOutput::NewResult(const Result &R)
 	if (R.outcome == Outcome::Failed)
 	{
 		summary.failures.push_back(R);
+		Write(R);
 		if (verbose)
 		{
-			std::cout << "test>      ! FAILED: ";
-			Write(R);
+			//std::cout << "test>      ! FAILED: ";
 		}
 	}
 }

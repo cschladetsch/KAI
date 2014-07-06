@@ -24,6 +24,9 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 {
 	switch (node->token.type)
 	{
+	case Token::Self:
+		AppendNewOp(Operation::This);
+		return;
 	case Token::Less:
 		TranslateBinaryOp(node, Operation::Less);
 		return;
@@ -84,7 +87,10 @@ void Translator::Translate(Parser::NodePtr node)
 		TranslateFromToken(node);
 		return;
 	case Node::Assignment:
-		TranslateBinaryOp(node, Operation::Assign);
+		// like a binary op, but argument order is reversed
+		Translate(node->Children[1]);
+		Translate(node->Children[0]);
+		AppendNew<Operation>(Operation(Operation::Store));
 		return;
 	case Node::Call:
 		TranslateCall(node);
@@ -184,6 +190,11 @@ std::string Translator::Result() const
 	for (auto ob : *stack.back()->GetCode())
 		str << ' ' << ob;
 	return str.ToString().c_str();
+}
+
+void Translator::AppendNewOp(Operation::Type op)
+{
+	AppendNew<Operation>(Operation(op));
 }
 
 KAI_END

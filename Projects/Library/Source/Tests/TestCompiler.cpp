@@ -2,6 +2,7 @@
 #include "KAI/Test/Base.h"
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Tests/TestCompiler.h"
+#	include "KAI/Console.h"
 
 KAI_TESTS_BEGIN
 
@@ -49,6 +50,16 @@ void TestCompiler::TestComments()
 	//	// this is another comment"
 	//	);
 	KAI_TEST_TRUE(K->GetCode()->Size() == 1);
+}
+
+void TestCompiler::TestFunctions()
+{
+	Memory::StandardAllocator alloc;
+	Console c(&alloc);
+	auto e = c.Compile("'f() { print(\"Hello, World!\"); }", Parser::ParseFunction);
+	KAI_TRACE_1(e);
+	c.Execute(e);
+	c.Execute("f()");
 }
 
 void TestCompiler::TestFloats()

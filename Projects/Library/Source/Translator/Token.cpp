@@ -61,6 +61,7 @@ const char * Token::ToString(Type t)
 	case CloseSquareBracket: return "CloseSquareBracket";
 	case Increment: return "++";
 	case Decrement: return "--";
+	case Self: return "Self";
 	}
 	static char b[100];
 	_itoa_s(t, b, 100, 10);

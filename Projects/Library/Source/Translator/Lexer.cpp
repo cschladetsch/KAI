@@ -26,6 +26,7 @@ void Lexer::AddKeywords()
 	keyWords["true"] = Token::True;
 	keyWords["false"] = Token::False;
 	keyWords["return"] = Token::Return;
+	keyWords["self"] = Token::Self;
 }
 
 bool Lexer::Run()
