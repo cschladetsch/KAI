@@ -1,2 +1,4 @@
-TestOutput new true over 'SetVerbose -> Tests 'Run ->
+'results = Tests.'Run(new TestOutput());
+
+results.Print();
 
