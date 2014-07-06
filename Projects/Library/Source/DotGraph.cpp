@@ -53,7 +53,7 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 
 	int object_id = object.GetHandle().GetValue();
 	StringStream label;
-	label << object.GetLabel().ToStringUnquoted() << "[" << object.GetClass()->GetName() << "]";
+	label << object.GetLabel().ToString() << "[" << object.GetClass()->GetName() << "]";
 	if (excluded)
 		label << " (excl.)";
 	if (object.IsType<Continuation>())

@@ -31,9 +31,6 @@ void Pathname::FromString(const String &text)
 	if (text.empty())
 		return;
 	const String::Char *S = text.c_str();
-	Quoted = *S == Literals::Quote;
-	if (Quoted)
-		++S;
 
 	Absolute = *S == Literals::Seperator;
 
@@ -101,8 +98,6 @@ void Pathname::AddElement(StringStream &name, Element::Type type)
 String Pathname::ToString() const
 {
 	StringStream str;
-	if (Quoted)
-		str.Append(Literals::Quote);
 	if (Absolute)
 		str.Append(Literals::Seperator);
 
@@ -166,7 +161,6 @@ void Pathname::Register(Registry &R)
 			("ToString", &Pathname::ToString)
 			("FromString", &Pathname::FromString2)
 		.Properties
-			("quoted", &Pathname::Quoted)
 			("absolute", &Pathname::Absolute)
 		;
 }

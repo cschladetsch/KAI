@@ -82,6 +82,7 @@ const char *Operation::ToString(int value)
 		CASE(LogicalNand);
 		CASE(GetProperty);
 		CASE(Index);
+		CASE(Lookup);
 
 	}
 	return "?UNKNOWN_OP?";
