@@ -67,7 +67,10 @@ void Parser::Run(Structure st)
 
 bool Parser::Program()
 {
-	return false;
+	while (!Try(Token::None))
+		Function(root);
+
+	return true;
 }
 
 void Parser::Function(NodePtr node)

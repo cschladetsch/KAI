@@ -5,7 +5,15 @@ KAI_TRANS_BEGIN
 
 Translator::Translator(Parser const *p)
 {
-	Traverse(p->root);
+	try
+	{
+		Traverse(p->root);
+	}
+	catch (Exception &)
+	{
+		if (!Failed)
+			Fail("Failed");
+	}
 	result << std::ends;
 }
 
@@ -28,8 +36,21 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Divide:
 		TranslateBinaryOp(node, "div");
 		return;
+	case Token::Or:
+		TranslateBinaryOp(node, "or");
+		return;
+	case Token::And:
+		TranslateBinaryOp(node, "and");
+		return;
+	case Token::Int:
+	case Token::String:
+	case Token::Float:
+	case Token::Ident:
+		AddText(node);
+		return;
 	}
-	result << ' ' << node->token.Text();
+	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
+	throw Unsupported();;
 }
 
 std::string Translator::ConvertOp(Parser::NodePtr node)
@@ -56,20 +77,22 @@ void Translator::Translate(Parser::NodePtr node)
 	{
 	case Node::IndexOp:
 		BinaryOp(node, "[]");
-		break;
+		return;
 	case Node::GetMember:
 		BinaryOp(node, ".");
 		return; 
 	case Node::TokenType:
 		TranslateFromToken(node);
-		break;
+		return;
 	case Node::Assignment:
 		TranslateBinaryOp(node, "#");
-		break;
+		return;
 	case Node::Call:
 		TranslateCall(node);
-		break;
+		return;
 	}
+	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
+	throw Unsupported();
 }
 
 void Translator::TranslateBlock(NodePtr node)
@@ -136,6 +159,11 @@ void Translator::BinaryOp(NodePtr node, const char *op)
 	Translate(node->Children[0]);
 	Translate(node->Children[1]);
 	result << ' ' << op;
+}
+
+void Translator::AddText(Parser::NodePtr node)
+{
+	result << ' ' << node->token.Text();
 }
 
 KAI_TRANS_END

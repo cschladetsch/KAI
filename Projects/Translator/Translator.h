@@ -12,7 +12,9 @@ KAI_TRANS_BEGIN
 
 struct Translator : Process
 {
-	//KAI_NAMESPACE_NAME::Events::Event<Translator, Token> 
+	struct Exception { };
+	struct Unsupported : Exception { };
+
 	std::strstream result;
 
 	Translator(Parser const *p);
@@ -35,6 +37,7 @@ private:
 	void TranslateCall(NodePtr node);
 	void TranslateIndex(NodePtr node);
 	void BinaryOp(NodePtr node, const char *op);
+	void AddText(Parser::NodePtr node);
 };
 
 KAI_TRANS_END

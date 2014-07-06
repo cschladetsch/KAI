@@ -27,7 +27,7 @@ void RhoLang::Print()
 
 bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 {
-	ifstream file(name);
+	ifstream file(name, ios::binary);
 	if (!file)
 		return false;
 	file.seekg(0, ios::end);

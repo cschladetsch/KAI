@@ -73,7 +73,7 @@ bool Lexer::LexAlpha()
 	bool isQuoted = Current() == '\'';
 	if (isQuoted)
 		Next();
-	Token tok(Token::Ident, *this, lineNumber, Gather(isalpha));
+	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
 
 	if (!isQuoted)
 	{
@@ -126,6 +126,7 @@ bool Lexer::NextToken()
 	case '!': return AddIfNext('=', Token::NotEquiv, Token::Not);
 	case '&': return AddIfNext('&', Token::And, Token::BitAnd);
 	case '|': return AddIfNext('|', Token::Or, Token::BitOr);
+	case '"': return LexString();
 	}
 
 	if (current == '<')
@@ -146,7 +147,7 @@ bool Lexer::NextToken()
 		return Add(Token::Greater);
 	}
 
-	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), "Unrecognised: %c", current));
+	LexError("Unrecognised %c");
 
 	return false;
 }
@@ -272,6 +273,38 @@ bool Lexer::AddTwoCharOp(Token::Type ty)
 	Add(ty, 2);
 	Next();
 	return true;
+}
+
+bool Lexer::LexString()
+{
+	int start = offset;
+	Next();
+	while (!Failed && Current() != '"')
+	{
+		if (Current() == '\\')
+		{
+			switch (Next())
+			{
+			case '"':
+			case 'n':
+			case 't':
+				break;
+
+			default:
+				LexError("Bad escape sequence %c");
+				return false;
+			}
+		}
+		Next();
+	}
+	Next();
+	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start, offset)));
+	return true;
+}
+
+void Lexer::LexError(const char *text)
+{
+	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
 }
 
 KAI_TRANS_END
