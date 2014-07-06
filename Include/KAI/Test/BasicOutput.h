@@ -16,7 +16,7 @@ protected:
 	bool verbose;
 
 public:
-	BasicOutput(bool V = true) : verbose(V) { }
+	BasicOutput(bool V = false) : verbose(V) { }
 
 	const Summary &GetSummary() const { return summary; }
 	Summary GetSummary2() const { return summary; }

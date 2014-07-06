@@ -31,7 +31,7 @@ public:
 	void Create();
 	bool Destroy();
 
-	Pointer<Continuation> Compile(Registry &, const String &, Parser::Structure = Parser::ParseExpression) const;
+	Pointer<Continuation> Compile(Registry &, const String &, Parser::Structure = Parser::ParseStatement) const;
 
 	static void Register(Registry &, const char * = "Compiler");
 
