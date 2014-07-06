@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "Lexer.h"
-#include "Node.h"
+#include "KAI/Translator/Lexer.h"
+#include "KAI/Translator/Node.h"
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 // iterate over a stream of tokens to produce an abstract syntax tree
 struct Parser : Process
@@ -25,7 +25,7 @@ struct Parser : Process
 		ParseStatement, ParseExpression, ParseFunction, ParseProgram,
 	};
 
-	Parser(Lexer const *lexer, Structure st = ParseProgram);
+	Parser(std::shared_ptr<Lexer> lexer, Structure st = ParseProgram);
 
 	void Print();
 
@@ -86,5 +86,5 @@ private:
 	void ParseIndexOp();
 };
 
-KAI_TRANS_END
+KAI_END
 

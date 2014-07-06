@@ -63,7 +63,8 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 	}
 	try
 	{
-		Pointer<Continuation> cont = compiler->Compile(*executor->Self->GetRegistry(), text.ToString());
+		Pointer<Continuation> cont = compiler->Compile
+			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
 		cont->SetScope(scope);
 		executor->Continue(cont);
 		return true;

@@ -1176,6 +1176,27 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">Prefix/Prefix.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Source\Translator\Lexer.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Node.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Parser.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\RhoLang.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Test.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Token.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Translator.cpp">
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Source\Tree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">Use</PrecompiledHeader>
@@ -2499,6 +2520,17 @@
     <ClInclude Include="..\..\Include\KAI\Threads\CriticalSection.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Thread.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Base.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Node.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Token.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h" />
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Number.h" />

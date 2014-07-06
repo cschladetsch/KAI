@@ -78,6 +78,12 @@
     <Filter Include="Include\Network">
       <UniqueIdentifier>{4453666f-d829-4a1d-ae39-6fb0567d1c68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Translator">
+      <UniqueIdentifier>{a12dc647-1106-4534-a07d-bc8ad3712db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Translator">
+      <UniqueIdentifier>{8e1c05fd-5da3-4250-8bab-10efa86b113f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
@@ -241,6 +247,27 @@
     </ClCompile>
     <ClCompile Include="Source\Property.inl">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Lexer.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Node.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Parser.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\RhoLang.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Test.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Token.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Translator.cpp">
+      <Filter>Source Files\Translator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -707,6 +734,39 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Test\Base.h">
       <Filter>Include\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
+      <Filter>Include\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
+      <Filter>Include\Translator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

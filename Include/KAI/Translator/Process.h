@@ -2,7 +2,7 @@
 
 #pragma once
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
 struct Process
 {
@@ -16,4 +16,4 @@ protected:
 	bool Fail(const std::string &);
 };
 
-KAI_TRANS_END
+KAI_END

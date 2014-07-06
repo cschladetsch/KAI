@@ -3,7 +3,7 @@
 #include <string>
 #include <strstream>
 
-#include "Parser.h"
+#include "KAI/Translator/Parser.h"
 
 #include "KAI/KAI.h"
 #include "KAI/Operation.h"
@@ -13,17 +13,17 @@
 //#define SCHLADETSCH_NAMESPACE KAI_NAMESPACE_NAME
 //#include <EventP.h>
 
-KAI_TRANS_BEGIN
+KAI_BEGIN
 
-struct Translator : Process
+struct Translator : Process, boost::noncopyable
 {
 	struct Exception { };
 	struct Unsupported : Exception { };
 
 	std::vector<Pointer<Continuation>> stack;
-	Registry reg;
+	Registry &reg;
 
-	Translator(Parser const *p);
+	Translator(std::shared_ptr<Parser> p, Registry &reg);
 
 	std::string Result() const;
 
@@ -59,4 +59,4 @@ private:
 	Pointer<Continuation> Pop();
 };
 
-KAI_TRANS_END
+KAI_END
