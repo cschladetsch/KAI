@@ -11,6 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Console", "Projects\Console
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Translator", "Projects\Translator\Translator.vcxproj", "{1BD328CC-647D-4B52-BA37-1F3C2EE9F859}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02452D81-0C48-4249-8734-CECCEFA54737} = {02452D81-0C48-4249-8734-CECCEFA54737}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
