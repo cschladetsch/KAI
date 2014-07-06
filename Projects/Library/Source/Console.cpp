@@ -49,6 +49,7 @@ Console::~Console()
 
 void Console::Create(const nstd::vector<String> &args)
 {
+	KAI_UNUSED(args);
 	try
 	{
 		RegisterTypes();

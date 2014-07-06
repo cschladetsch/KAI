@@ -24,6 +24,9 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 {
 	switch (node->token.type)
 	{
+	case Token::Lookup:
+		AppendNewOp(Operation::Lookup);
+		return;
 	case Token::Self:
 		AppendNewOp(Operation::This);
 		return;

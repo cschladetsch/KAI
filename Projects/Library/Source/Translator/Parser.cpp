@@ -234,7 +234,6 @@ bool Parser::Expression()
 		root->Add(Pop());
 		return true;
 	}
-
 	return Logical();
 }
 
@@ -345,7 +344,18 @@ bool Parser::Factor()
 		return true;
 	}
 
-	if (Try(Token::Self) || Try(Token::Ident))
+	if (Try(Token::Self))
+	{
+		PushConsume();
+		return true;
+	}
+
+	while (Try(Token::Lookup))
+	{
+		PushConsume();
+	}
+
+	if (Try(Token::Ident))
 	{
 		return ParseFactorIdent();
 	}

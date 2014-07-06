@@ -44,6 +44,7 @@ struct Token
 		BitAnd, BitOr, BitXor,
 
 		Self,
+		Lookup,
 	};
 
 	static const char *ToString(Type t);

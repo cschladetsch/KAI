@@ -25,6 +25,7 @@ void BasicOutput::SuiteBegin(const String &N)
 
 void BasicOutput::SuiteEnd(const String &N)
 {
+	KAI_UNUSED(N);
 		//std::cout << "test>  Suite: End " << N.c_str() << std::endl;
 }
 

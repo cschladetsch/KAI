@@ -25,11 +25,11 @@ Pathname GetFullname(const StorageBase &Q)
 	nstd::list<String> parentage;
 	Label const &label = Q.GetLabel();
 	if (!label.ToString().empty())
-		parentage.push_back(label.ToStringUnquoted());
+		parentage.push_back(label.ToString());
 	Object parent = Q.GetParent();
 	for (; parent.Valid(); parent = parent.GetParent())
 	{
-		parentage.push_front(GetStorageBase(parent).GetLabel().ToStringUnquoted());
+		parentage.push_front(GetStorageBase(parent).GetLabel().ToString());
 	}
 	StringStream path;
 	if (!parentage.empty())

@@ -71,24 +71,14 @@ bool Lexer::Add(Token::Type type, int len)
 
 bool Lexer::LexAlpha()
 {
-	bool isQuoted = Current() == '\'';
-	if (isQuoted)
-		Next();
 	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
 
-	if (!isQuoted)
-	{
-		auto kw = keyWords.find(tok.Text());
-		if (kw != keyWords.end())
-			tok.type = kw->second;
-	}
-	else
-	{
-		// include the quote char for quoted identifiers
-		tok.slice.Start--;
-	}
+	auto kw = keyWords.find(tok.Text());
+	if (kw != keyWords.end())
+		tok.type = kw->second;
 
 	tokens.push_back(tok);
+
 	return true;
 }
 
@@ -109,6 +99,7 @@ bool Lexer::NextToken()
 
 	switch (current)
 	{
+	case '@': return Add(Token::Lookup);
 	case '\'': return LexAlpha();
 	case '-': return Add(Token::Minus);
 	case '.': return Add(Token::Dot);

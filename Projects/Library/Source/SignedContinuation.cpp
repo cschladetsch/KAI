@@ -65,10 +65,7 @@ void SignedContinuation::Enter(Stack &stack)
 	A = params.rbegin();
 	for (; A != B; ++A)
 	{
-		if (A->label.Quoted)
-			cont->GetScope().Set(A->label, stack.Pop());
-		else
-			cont->GetScope().Set(A->label, Duplicate(stack.Pop()));
+		cont->GetScope().Set(A->label, stack.Pop());
 	}
 }
 

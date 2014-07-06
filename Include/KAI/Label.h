@@ -17,16 +17,14 @@ private:
 	Value value;
 
 public:
-	Label() : Quoted(false) { }
+	Label() { }
 	Label(const String::Char *S) { FromString(S); }
 	Label(const Value &S) { FromString(S); }
 
-	bool Quoted;
 	bool Empty() const { return value.empty(); }
 
 	void FromString(const Value &S);
 	String ToString() const;
-	String ToStringUnquoted() const;
 
 	void FromString2(Value S);
 	const Value &GetValue() const { return value; }

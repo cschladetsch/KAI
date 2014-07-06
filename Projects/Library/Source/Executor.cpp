@@ -138,16 +138,6 @@ void Executor::Push(Stack& L, Object const &Q)
 	L.Push(Q);
 }
 
-template <class T>
-void Executor::EvalIdentifier(const Object &Q)
-{
-	const T &ident = ConstDeref<T>(Q);
-	if (ident.Quoted)
-		Push(Q);
-	else
-		Push(Resolve(Q));
-}
-
 void Executor::Eval(Object const &Q)
 {
 	if (trace_level > 0)
@@ -166,10 +156,10 @@ void Executor::Eval(Object const &Q)
 		Perform(Deref<Operation>(Q).GetTypeNumber()); 
 		break;
 	case Type::Number::Pathname:
-		EvalIdentifier<Pathname>(Q);
+		Push(Q);
 		break;
 	case Type::Number::Label:
-		EvalIdentifier<Label>(Q);
+		Push(Q);
 		break;
 	default:
 		{
@@ -324,6 +314,10 @@ void Executor::Perform(Operation::Type op)
 {
 	switch (op)
 	{
+	case Operation::Lookup:
+		Push(Resolve(Pop()));
+		break;
+
 	case Operation::SetManaged:
 		{
 			Object object = Pop();
