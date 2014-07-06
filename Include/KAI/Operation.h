@@ -33,7 +33,7 @@ struct Operation
 		
 		LogicalNot, LogicalAnd, LogicalOr, LogicalXor, LogicalNand,
 		BitwiseNot, BitwiseAnd, BitwiseOr, BitwiseXor, BitwiseNand,
-		
+		Lookup,
 		TraceAll,
 		Trace,
 		This,
