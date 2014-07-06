@@ -136,11 +136,11 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	else
 		stream << "Object: handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
 
-	foreach (ClassBase::Properties::value_type const &prop, klass->GetProperties())
-	{
-		PropertyBase const& property = *prop.second;
-		stream << "<property name='" << property.GetFieldName() << "' value='" << property.GetValue(object) << "'/> ";
-	}
+	//foreach (ClassBase::Properties::value_type const &prop, klass->GetProperties())
+	//{
+	//	PropertyBase const& property = *prop.second;
+	//	stream << "<property name='" << property.GetFieldName() << "' value='" << property.GetValue(object) << "'/> ";
+	//}
 	return stream;
 }
 

@@ -1,10 +1,22 @@
 #include "Precompiled.h"
 #include "Translator.h"
+#include <boost/lexical_cast.hpp>
 
 KAI_TRANS_BEGIN
 
 Translator::Translator(Parser const *p)
 {
+	reg.AddClass<int>("int");
+	reg.AddClass<bool>("bool");
+	reg.AddClass<float>("float");
+	reg.AddClass<String>("string");
+	reg.AddClass<Operation>("Operation");
+	reg.AddClass<Array>("Array");
+	reg.AddClass<Continuation>("Continuation"); 
+	reg.AddClass<Label>("Label"); 
+
+	PushNew();
+
 	try
 	{
 		Traverse(p->root);
@@ -14,7 +26,6 @@ Translator::Translator(Parser const *p)
 		if (!Failed)
 			Fail("Failed");
 	}
-	result << std::ends;
 }
 
 void Translator::TranslateFromToken(Parser::NodePtr node)
@@ -22,53 +33,49 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	switch (node->token.type)
 	{
 	case Token::Less:
-		TranslateBinaryOp(node, "<");
+		TranslateBinaryOp(node, Operation::Less);
 		return;
 	case Token::Minus:
-		TranslateBinaryOp(node, "-");
+		TranslateBinaryOp(node, Operation::Minus);
 		return;
 	case Token::Plus:
-		TranslateBinaryOp(node, "+");
+		TranslateBinaryOp(node, Operation::Plus);
 		return;
 	case Token::Mul:
-		TranslateBinaryOp(node, "mul");
+		TranslateBinaryOp(node, Operation::Multiply);
 		return;
 	case Token::Divide:
-		TranslateBinaryOp(node, "div");
+		TranslateBinaryOp(node, Operation::Divide);
 		return;
 	case Token::Or:
-		TranslateBinaryOp(node, "or");
+		TranslateBinaryOp(node, Operation::LogicalOr);
 		return;
 	case Token::And:
-		TranslateBinaryOp(node, "and");
+		TranslateBinaryOp(node, Operation::LogicalAnd);
 		return;
 	case Token::Int:
-	case Token::String:
+		Append(reg.New<int>(boost::lexical_cast<int>(node->token.Text())));
+		return;
 	case Token::Float:
+		Append(reg.New<float>(boost::lexical_cast<float>(node->token.Text())));
+		return;
+	case Token::String:
+		Append(reg.New<String>(node->token.Text()));
+		return;
 	case Token::Ident:
-		AddText(node);
+		Append(reg.New<Label>(Label(node->token.Text())));
 		return;
 	}
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
 	throw Unsupported();;
 }
 
-std::string Translator::ConvertOp(Parser::NodePtr node)
-{
-	switch (node->token.type)
-	{
-	case Token::Mul: return "mul";
-	case Token::Divide: return "div";
-	}
-	return node->token.Text();
-}
-
-void Translator::TranslateBinaryOp(Parser::NodePtr node, std::string op)
+void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
 {
 	Translate(node->Children[0]);
 	Translate(node->Children[1]);
 
-	result << ' ' << op;
+	AppendNew<Operation>(Operation(op));
 }
 
 void Translator::Translate(Parser::NodePtr node)
@@ -76,16 +83,16 @@ void Translator::Translate(Parser::NodePtr node)
 	switch (node->type)
 	{
 	case Node::IndexOp:
-		BinaryOp(node, "[]");
+		TranslateBinaryOp(node, Operation::Index);
 		return;
 	case Node::GetMember:
-		BinaryOp(node, ".");
+		TranslateBinaryOp(node, Operation::GetProperty);
 		return; 
 	case Node::TokenType:
 		TranslateFromToken(node);
 		return;
 	case Node::Assignment:
-		TranslateBinaryOp(node, "#");
+		TranslateBinaryOp(node, Operation::Assign);
 		return;
 	case Node::Call:
 		TranslateCall(node);
@@ -109,20 +116,20 @@ void Translator::TranslateFunction(NodePtr node)
 {
 	Node::ChildrenType const &ch = node->Children;
 
-	// write the body
-	result << " {";
-	for (auto b : ch[2]->Children)
-		Traverse(b);
-	result << " }";
+	//// write the body
+	//result << " {";
+	//for (auto b : ch[2]->Children)
+	//	Traverse(b);
+	//result << " }";
 
-	// write the args
-	result << " [";
-	for (auto a : ch[1]->Children)
-		Traverse(a);
-	result << " ]";
+	//// write the args
+	//result << " [";
+	//for (auto a : ch[1]->Children)
+	//	Traverse(a);
+	//result << " ]";
 
-	// write the name and store
-	result << ' ' << ch[0]->token.Text() << " #fun";
+	//// write the name and store
+	//result << ' ' << ch[0]->token.Text() << " #fun";
 }
 
 void Translator::Traverse(NodePtr node)
@@ -151,19 +158,40 @@ void Translator::TranslateCall(NodePtr node)
 		Translate(a);
 
 	Translate(node->Children[0]);
-	result << " &";
+
+	AppendNew(Operation(Operation::Suspend));
 }
 
-void Translator::BinaryOp(NodePtr node, const char *op)
+Pointer<Continuation> Translator::Top()
 {
-	Translate(node->Children[0]);
-	Translate(node->Children[1]);
-	result << ' ' << op;
+	return stack.back();
 }
 
-void Translator::AddText(Parser::NodePtr node)
+void Translator::PushNew()
 {
-	result << ' ' << node->token.Text();
+	Pointer<Continuation> c = reg.New<Continuation>();
+	c->SetCode(reg.New<Array>());
+	stack.push_back(c);
+}
+
+void Translator::Append(Object ob)
+{
+	Top()->GetCode()->Append(ob);
+}
+
+Pointer<Continuation> Translator::Pop()
+{
+	auto top = Top();
+	stack.pop_back();
+	return top;
+}
+
+std::string Translator::Result() const
+{
+	StringStream str;
+	for (auto ob : *stack.back()->GetCode())
+		str << ' ' << ob;
+	return str.ToString().c_str();
 }
 
 KAI_TRANS_END

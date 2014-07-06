@@ -46,6 +46,17 @@ RhoLang *Statement(const char *text)
 	return Process(text, Parser::ParseStatement);
 }
 
+TEST(TestLang, TestSimple)
+{
+	ASSERT_EQ(Exp("1")->trans->Result(), string(" 1"));
+	ASSERT_EQ(Exp("foo")->trans->Result(), string(" foo"));
+	ASSERT_EQ(Exp("a+1")->trans->Result(), string(" a 1 Plus"));
+	ASSERT_EQ(Exp("2*(3+4)")->trans->Result(), string(" 2 3 4 Plus Multiply"));
+	ASSERT_EQ(Exp("2/(3+4)")->trans->Result(), string(" 2 3 4 Plus Divide"));
+
+	ASSERT_EQ(Exp("a && b || (2*(3+4) < 4)")->trans->Result(), string(" a b LogicalAnd 2 3 4 Plus Multiply 4 Less LogicalOr"));
+}
+
 TEST(TestLang, TestStringLiteral)
 {
 	string s0 = "\"\"";
@@ -55,17 +66,6 @@ TEST(TestLang, TestStringLiteral)
 	ASSERT_EQ(Exp(s0.c_str())->trans->Result(), " " + s0);
 	ASSERT_EQ(Exp(s1.c_str())->trans->Result(), " " + s1);
 	ASSERT_EQ(Exp(s2.c_str())->trans->Result(), " " + s2);
-}
-
-TEST(TestLang, TestSimple)
-{
-	ASSERT_EQ(Exp("1")->trans->Result(), string(" 1"));
-	ASSERT_EQ(Exp("foo")->trans->Result(), string(" foo"));
-	ASSERT_EQ(Exp("a+1")->trans->Result(), string(" a 1 +"));
-	ASSERT_EQ(Exp("2*(3+4)")->trans->Result(), string(" 2 3 4 + mul"));
-	ASSERT_EQ(Exp("2/(3+4)")->trans->Result(), string(" 2 3 4 + div"));
-
-	ASSERT_EQ(Exp("a && b || (2*(3+4) < 4)")->trans->Result(), string(" a b and 2 3 4 + mul 4 < or"));
 }
 
 TEST(TestLang, TestMultiLine)
@@ -103,20 +103,13 @@ TEST(TestLang, Failures)
 }
 
 
-TEST(TestLang, TestLang)
-{
-	EXPECT_EQ(Exp("1")->trans->Result(), string(" 1"));
-	EXPECT_EQ(Exp("1+2")->trans->Result(), string(" 1 2 +"));
-	EXPECT_EQ(Exp("a[1]")->trans->Result(), string(" a 1 []"));
-}
-
 TEST(TestLang, TestPrint)
 {
 	//const char *text = "'f('x,'y,'z) { a()[1]; b()().c[1+2](3,4); foo.grok(1 + bar.spam(4, 5), 2, 3 + asd).baz(1,2); }";
 	//const char *text = "b()().c[1+2](3,4)";
 	const char *text = "b(1,2).c[1]";
 	auto tr = Process(text, Parser::ParseExpression);
-	//tr->Print();
+	EXPECT_STREQ(tr->trans->Result().c_str(), " 1 2 b Suspend c GetProperty 1 Index");
 }
 
 TEST(TestLang, TestFileLoad)
