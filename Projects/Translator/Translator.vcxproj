@@ -110,6 +110,7 @@
     <ClInclude Include="Translator.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Scripts\Test0.rho" />
     <None Include="Test.rho" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

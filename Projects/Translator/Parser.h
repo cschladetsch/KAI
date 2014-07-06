@@ -71,9 +71,6 @@ private:
 	bool Try(Token::Type type);
 	NodePtr Expect(Token::Type type);
 
-	bool CreateError(Token tok, Token::Type type);
-	bool CreateError(Token tok, const char *fmt, ...);
-
 	std::string Lead(int level);
 	void Print(Node const &node, int level);
 	void Block(NodePtr block);

@@ -24,19 +24,16 @@ Parser::Parser(Lexer const *lexer, Structure st)
 	try
 	{
 		Run(st);
-		return;
 	}
 	catch (Exception &)
 	{
-		std::cout << "Failed" << std::endl;
+		if (!Failed)
+			Fail("Failed");
 	}
 	catch (std::exception &f)
 	{
-		std::cerr << f.what() << std::endl;
-		throw;
+		Fail(f.what());
 	}
-	char s;
-	std::cin >> s;
 }
 
 void Parser::Run(Structure st)
@@ -157,7 +154,7 @@ bool Parser::Statement(NodePtr block)
 		node->Add(Pop());
 		if (!Expression())
 		{
-			CreateError(Current(), "Assignment requires an expression");
+			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
 			return false;
 		}
 		node->Add(Pop());
@@ -174,7 +171,8 @@ std::shared_ptr<Node> Parser::Expect(Token::Type type)
 	Token tok = Current();
 	if (tok.type != type)
 	{
-		CreateError(tok, type);
+		Fail(Lexer::CreateError(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
+		throw Unexpected(tok.type);
 	}
 
 	Next();
@@ -248,8 +246,7 @@ bool Parser::Logical()
 		node->Add(Pop());
 		if (!Relational())
 		{
-			CreateError(Current(), "expression expected");
-			return false;
+			return Fail(Lexer::CreateError(Current(), "expression expected"));
 		}
 		node->Add(Pop());
 		Push(node);
@@ -269,7 +266,7 @@ bool Parser::Relational()
 		node->Add(Pop());
 		if (!Additive())
 		{
-			CreateError(Current(), "expression expected");
+			return Fail(Lexer::CreateError(Current(), "expression expected"));
 			return false;
 		}
 		node->Add(Pop());
@@ -288,8 +285,7 @@ bool Parser::Additive()
 		Consume();
 		if (!Term())
 		{
-			CreateError(Current(), "term expected");
-			return false;
+			return Fail(Lexer::CreateError(Current(), "term expected"));
 		}
 		auto node = new Node(ty == Token::Plus ? Node::Positive : Node::Negative);
 		node->Add(Pop());
@@ -358,7 +354,7 @@ Parser::NodePtr Parser::Pop()
 {
 	if (stack.empty())
 	{
-		CreateError(Current(), "Element expected");
+		Fail(Lexer::CreateError(Current(), "Element expected"));
 		throw StackError();
 	}
 	auto last = stack.back();
@@ -500,45 +496,6 @@ void Parser::ParseIndexOp()
 	Expect(Token::CloseSquareBracket);
 	index->Add(Pop());
 	Push(index);
-}
-
-bool Parser::CreateError(Token tok, const char *fmt, ...)
-{
-	char buff0[2000];
-	va_list ap;
-	va_start(ap, fmt);
-	vsprintf_s(buff0, fmt, ap);
-
-	const char *fmt1 = "%s(%d):[%d]: %s\n";
-	char buff[2000];
-	sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
-	int beforeContext = 1;
-	int afterContext = 0;
-
-	const Lexer &lex = *tok.lexer;
-	int start = std::max(0, tok.lineNumber - beforeContext);
-	int end = std::min((int)lex.lines.size() - 1, tok.lineNumber + afterContext);
-
-	std::strstream err;
-	for (int n = start; n <= end; ++n)
-	{
-		err << lex.lines[n];
-		if (n == tok.lineNumber)
-		{
-			for (int c = 0; c < tok.slice.Start; ++c)
-				err << ' ';
-			err << '^' << endl;
-		}
-	}
-	err << ends;
-	Fail("%s\n%s", buff, err.str());
-	throw Unexpected(tok.type);
-	return false;
-}
-
-bool Parser::CreateError(Token tok, Token::Type type)
-{
-	return CreateError(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type));
 }
 
 Parser::Unexpected::Unexpected(Token::Type ty)

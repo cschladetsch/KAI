@@ -18,7 +18,7 @@ std::string Token::Text() const
 {
 	if (lexer == 0)
 		return "";
-	return std::move(lexer->input.substr(slice.Start, slice.Length()));
+	return std::move(lexer->lines[lineNumber].substr(slice.Start, slice.Length()));
 }
 
 const char * Token::ToString(Type t)

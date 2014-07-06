@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Source Files\Scripts">
+      <UniqueIdentifier>{3ba5cc17-1fe4-46bc-9266-eaac36808ba9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -76,5 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Test.rho" />
+    <None Include="Scripts\Test0.rho">
+      <Filter>Source Files\Scripts</Filter>
+    </None>
   </ItemGroup>
 </Project>

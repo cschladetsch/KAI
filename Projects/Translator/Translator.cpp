@@ -22,6 +22,12 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Plus:
 		TranslateBinaryOp(node, "+");
 		return;
+	case Token::Mul:
+		TranslateBinaryOp(node, "mul");
+		return;
+	case Token::Divide:
+		TranslateBinaryOp(node, "div");
+		return;
 	}
 	result << ' ' << node->token.Text();
 }
@@ -93,7 +99,7 @@ void Translator::TranslateFunction(NodePtr node)
 	result << " ]";
 
 	// write the name and store
-	result << ch[0]->token.Text() << " #fun";
+	result << ' ' << ch[0]->token.Text() << " #fun";
 }
 
 void Translator::Traverse(NodePtr node)
