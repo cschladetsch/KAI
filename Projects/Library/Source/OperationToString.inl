@@ -75,6 +75,14 @@ const char *Operation::ToString(int value)
 		CASE(ToVector2);
 		CASE(ToVector3);
 		CASE(ToVector4);
+		CASE(LogicalNot); 
+		CASE(LogicalAnd); 
+		CASE(LogicalOr); 
+		CASE(LogicalXor); 
+		CASE(LogicalNand);
+		CASE(GetProperty);
+		CASE(Index);
+
 	}
 	return "?UNKNOWN_OP?";
 }

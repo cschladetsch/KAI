@@ -8,8 +8,16 @@
 #include "Parser.h"
 #include "Translator.h"
 
-using namespace std;
-using namespace KAI_TRANS_NAMESPACE_NAME;
+#pragma comment(lib, "C:/Dev/KAI/Lib/Win32/Debug/library.lib")
+
+KAI_BEGIN
+
+void DebugTrace(const char *text)
+{
+	std::cout << text;
+}
+
+KAI_END
 
 int main(int argc, char **argv)
 {
