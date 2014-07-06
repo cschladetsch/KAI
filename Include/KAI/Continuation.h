@@ -1,5 +1,3 @@
-
-
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
 #endif
@@ -23,7 +21,10 @@ private:
 public:
 	void SetCode(Code);
 	void SetCode(Code, String const &);
+
+	Code &GetCode() { return code; }
 	const Code &GetCode() const { return code; }
+
 	String const &GetSourceCode() const { return source_code; }
 	void SetSourceCode(String const &C) { source_code = C; }
 
