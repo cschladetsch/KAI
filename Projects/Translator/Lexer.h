@@ -65,6 +65,9 @@ private:
 
 	bool AddTwoCharOp(Token::Type ty);
 	bool AddIfNext(char ch, Token::Type thenType, Token::Type elseType);
+	
+public:
+	static std::string CreateError(Token tok, const char *fmt, ...);
 };
 
 KAI_TRANS_END

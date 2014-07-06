@@ -20,9 +20,18 @@ RhoLang *Process(const char *text, Parser::Structure st)
 	return rl;
 }
 
-string Fun(const char *text)
+RhoLang *ProcessFile(const char *text)
 {
-	return Process(text, Parser::ParseFunction)->trans->Result();
+	RhoLang *rl = new RhoLang();
+	rl->TranslateFile(text, Parser::ParseProgram);
+	if (rl->Failed)
+		std::cerr << rl->Error << std::endl;
+	return rl;
+}
+
+RhoLang *Fun(const char *text)
+{
+	return Process(text, Parser::ParseFunction);
 }
 
 RhoLang *Exp(const char *text)
@@ -35,17 +44,38 @@ RhoLang *Statement(const char *text)
 	return Process(text, Parser::ParseStatement);
 }
 
+TEST(TestLang, TestSimple)
+{
+	ASSERT_EQ(Exp("1")->trans->Result(), string(" 1"));
+	ASSERT_EQ(Exp("foo")->trans->Result(), string(" foo"));
+	ASSERT_EQ(Exp("a+1")->trans->Result(), string(" a 1 +"));
+	ASSERT_EQ(Exp("2*(3+4)")->trans->Result(), string(" 2 3 4 + mul"));
+	ASSERT_EQ(Exp("2/(3+4)")->trans->Result(), string(" 2 3 4 + div"));
+}
+
 TEST(TestLang, TestMultiLine)
 {
 	string text = R"QQ(
 foo()
 {
-    a=1;
-    b=;
-    c(;
+  a=1;
+  b=;
+  c(;
 }
 )QQ";
-	ASSERT_EQ(Fun(text.c_str()), string(""));
+	ASSERT_EQ(Fun(text.c_str())->Failed, true);
+
+	string text2 = R"QQ(
+foo()
+{
+   a=1;
+   b=2*(3+4);
+   c(a,b+3);
+}
+)QQ";
+	ASSERT_FALSE(Fun(text2.c_str())->Failed);
+	string text3 = "foo(){}";
+	ASSERT_FALSE(Fun(text3.c_str())->Failed);
 }
 
 TEST(TestLang, Failures)
@@ -79,6 +109,12 @@ TEST(TestLang, TestPrint)
 	const char *text = "b(1,2).c[1]";
 	auto tr = Process(text, Parser::ParseExpression);
 	//tr->Print();
+}
+
+TEST(TestLang, TestFileLoad)
+{
+	auto pr = ProcessFile("Scripts/Test0.rho");
+	pr->Print();
 }
 
 /*

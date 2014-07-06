@@ -1,9 +1,12 @@
 #include "Precompiled.h"
 
 #include <iostream>
+#include <strstream>
 #include <stdarg.h>
 
 #include "Lexer.h"
+
+using namespace std;
 
 KAI_TRANS_BEGIN
 
@@ -111,6 +114,7 @@ bool Lexer::NextToken()
 	case ',': return Add(Token::Comma);
 	case '+': return AddIfNext('+', Token::Increment, Token::Plus);
 	case '*': return Add(Token::Mul);
+	case '/': return Add(Token::Divide);
 	case ';': return Add(Token::Semi);
 	case '{': return Add(Token::OpenBrace);
 	case '}': return Add(Token::CloseBrace);
@@ -142,9 +146,43 @@ bool Lexer::NextToken()
 		return Add(Token::Greater);
 	}
 
-	Fail("Unrecognised: %c", current);
+	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), "Unrecognised: %c", current));
 
 	return false;
+}
+
+std::string Lexer::CreateError(Token tok, const char *fmt, ...)
+{
+	char buff0[2000];
+	va_list ap;
+	va_start(ap, fmt);
+	vsprintf_s(buff0, fmt, ap);
+
+	const char *fmt1 = "%s(%d):[%d]: %s\n";
+	char buff[2000];
+	sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
+	int beforeContext = 1;
+	int afterContext = 0;
+
+	const Lexer &lex = *tok.lexer;
+	int start = std::max(0, tok.lineNumber - beforeContext);
+	int end = std::min((int)lex.lines.size() - 1, tok.lineNumber + afterContext);
+
+	strstream err;
+	err << buff << endl;
+	for (int n = start; n <= end; ++n)
+	{
+		err << lex.lines[n];
+		if (n == tok.lineNumber)
+		{
+			for (int c = 0; c < tok.slice.Start; ++c)
+				err << ' ';
+			err << '^' << endl;
+		}
+	}
+	err << ends;
+
+	return err.str();
 }
 
 bool Process::Fail(const std::string &err)
