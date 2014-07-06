@@ -1,4 +1,4 @@
-'results = Tests.'Run(new TestOutput());
+results = Tests.Run(TestOutput());
 
 results.Print();
 
