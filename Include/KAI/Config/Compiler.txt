@@ -1,0 +1,3 @@
+// warning C4127: conditional expression is constant
+#pragma warning (disable:4127)
+
