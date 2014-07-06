@@ -36,10 +36,9 @@ private:
 	Elements elements;
 
 public:
-	Pathname() : Absolute(false), Quoted(true) { }
+	Pathname() : Absolute(false) { }
 	Pathname(const String &);
 
-	bool Quoted;
 	bool Absolute;
 
 	Elements GetElements() const { return elements; }

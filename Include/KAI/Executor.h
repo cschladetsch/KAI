@@ -83,8 +83,6 @@ private:
 	Pointer<Array> ForEach(C const &, Object const &);
 	template <class Cont>
 	void PushAll(const Cont &cont);
-	template <class T>
-	void EvalIdentifier(const Object &Q);
 
 	void TraceAll();
 	void Trace(const Object &);
