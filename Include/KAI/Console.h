@@ -7,6 +7,8 @@
 #ifndef KAI_CONSOLE_H
 #	define KAI_CONSOLE_H
 
+#include "KAI/Tree.h"
+
 KAI_BEGIN
 
 class Console
@@ -33,7 +35,7 @@ public:
 	Object GetRoot() const { return tree.GetRoot(); }
 	Pointer<Executor> GetExecutor() const { return executor; }
 	Pointer<Compiler> GetCompiler() const { return compiler; }
-	Pointer<Continuation> Compile(const char *);
+	Pointer<Continuation> Compile(const char *, Parser::Structure);
 	String Execute(Pointer<Continuation>);
 
 	Object Execute(String const &text);

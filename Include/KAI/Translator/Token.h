@@ -42,6 +42,8 @@ struct Token
 		OpenSquareBracket, CloseSquareBracket,
 		Increment, Decrement,
 		BitAnd, BitOr, BitXor,
+
+		Self,
 	};
 
 	static const char *ToString(Type t);

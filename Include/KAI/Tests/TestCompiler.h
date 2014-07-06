@@ -27,6 +27,7 @@ struct TestCompiler : Test::Suite<TestCompiler>
 	void TestContinuations();
 	void TestComments();
 	void TestFloats();
+	void TestFunctions();
 };
 
 KAI_TESTS_END
