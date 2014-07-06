@@ -52,6 +52,9 @@ private:
 	char Peek() const;
 
 	bool NextToken();
+
+	void LexError(const char *msg);
+
 	bool LexAlpha();
 	const std::string &Line() const;
 
@@ -68,6 +71,7 @@ private:
 	
 public:
 	static std::string CreateError(Token tok, const char *fmt, ...);
+	bool LexString();
 };
 
 KAI_TRANS_END

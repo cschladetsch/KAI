@@ -11,10 +11,12 @@ using namespace std;
 
 #pragma comment(lib, "gtestd.lib")
 
-RhoLang *Process(const char *text, Parser::Structure st)
+RhoLang *Process(const char *text, Parser::Structure st, bool print = false)
 {
 	RhoLang *rl = new RhoLang();
 	rl->Translate(text, st);
+	if (print)
+		rl->Print();
 	if (rl->Failed)
 		std::cerr << rl->Error << std::endl;
 	return rl;
@@ -34,14 +36,25 @@ RhoLang *Fun(const char *text)
 	return Process(text, Parser::ParseFunction);
 }
 
-RhoLang *Exp(const char *text)
+RhoLang *Exp(const char *text, bool print = false)
 {
-	return Process(text, Parser::ParseExpression);
+	return Process(text, Parser::ParseExpression, print);
 }
 
 RhoLang *Statement(const char *text)
 {
 	return Process(text, Parser::ParseStatement);
+}
+
+TEST(TestLang, TestStringLiteral)
+{
+	string s0 = "\"\"";
+	string s1 = "\"a\"";
+	string s2 = "\"this is \\\"a string\\\"\"";
+
+	ASSERT_EQ(Exp(s0.c_str())->trans->Result(), " " + s0);
+	ASSERT_EQ(Exp(s1.c_str())->trans->Result(), " " + s1);
+	ASSERT_EQ(Exp(s2.c_str())->trans->Result(), " " + s2);
 }
 
 TEST(TestLang, TestSimple)
@@ -51,6 +64,8 @@ TEST(TestLang, TestSimple)
 	ASSERT_EQ(Exp("a+1")->trans->Result(), string(" a 1 +"));
 	ASSERT_EQ(Exp("2*(3+4)")->trans->Result(), string(" 2 3 4 + mul"));
 	ASSERT_EQ(Exp("2/(3+4)")->trans->Result(), string(" 2 3 4 + div"));
+
+	ASSERT_EQ(Exp("a && b || (2*(3+4) < 4)")->trans->Result(), string(" a b and 2 3 4 + mul 4 < or"));
 }
 
 TEST(TestLang, TestMultiLine)
@@ -95,13 +110,6 @@ TEST(TestLang, TestLang)
 	EXPECT_EQ(Exp("a[1]")->trans->Result(), string(" a 1 []"));
 }
 
-TEST(TestLang, TestIndex)
-{
-	const char *text = "a[1]";
-	auto tr = Process(text, Parser::ParseExpression);
-	EXPECT_EQ(tr->trans->Result(), string(" a 1 []"));
-}
-
 TEST(TestLang, TestPrint)
 {
 	//const char *text = "'f('x,'y,'z) { a()[1]; b()().c[1+2](3,4); foo.grok(1 + bar.spam(4, 5), 2, 3 + asd).baz(1,2); }";
@@ -114,7 +122,7 @@ TEST(TestLang, TestPrint)
 TEST(TestLang, TestFileLoad)
 {
 	auto pr = ProcessFile("Scripts/Test0.rho");
-	pr->Print();
+	cout << pr->trans->Result();
 }
 
 /*
