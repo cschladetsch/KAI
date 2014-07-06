@@ -1,0 +1,4 @@
+
+DONE Fix the bug in TestExample.cpp
+Fix fault where a crash occurs after trying to continue a continuation compiled from a string in the console.
+
