@@ -81,43 +81,32 @@ struct Trace
 
 void Executor::Continue()
 {
-	Continuation::InstructionPointer end;
-	if (!continuation.Exists() || !continuation->HasCode())
-		goto next;
-	continuation->Enter();
-	for (;;)
+	Object const *next;
+	while (continuation.Exists())
 	{
 		Break = false;
-		continuation->Enter();
-		Continuation::InstructionPointer& ip = continuation->Ip();
-		end = continuation->End();
-		for (; ip != end; ++ip)
+		if (continuation->Next(next))
 		{
 			KAI_TRY
 			{
-				Eval(*ip);
+				Eval(*next);
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
 				KAI_TRACE_1(data);
 				if (continuation->GetSourceCode())
 					KAI_TRACE_1(*continuation->GetSourceCode());
-				Continuation::InstructionPointer ip2 = continuation->GetCode()->Begin();
-				for (; ip2 != ip && ip2 != end; ++ip2)
-				{
-					KAI_TRACE_1(*ip2);
-				}
+
 				KAI_TRACE_1(E);
 				(void)E;
 				throw;
 			}
-			if (Break)
-				break;
 		}
-next:
-		NextContinuation();
-		if (!continuation.Exists())
-			break;
+		else
+			Break = true;
+
+		if (Break)
+			NextContinuation();
 	}
 }
 
@@ -276,7 +265,7 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 	switch (op)
 	{
 	case Operation::Suspend:
-		continuation->Ip()++;
+		continuation->Next();
 		context->Push(continuation);
 	case Operation::Replace:
 		context->Push(NewContinuation(Pop()));
@@ -491,7 +480,7 @@ void Executor::Perform(Operation::Type op)
 			case Type::Number::Continuation:
 				break;
 			}
-			continuation->Ip()++;
+			continuation->Next();
 			context->Push(continuation);
 			context->Push(where_to_go);
 			// TODO: FIXME: This is temporary to test bug in starting a duplicated continuation!!!
@@ -575,35 +564,35 @@ void Executor::Perform(Operation::Type op)
 				Push(F);
 		}
 		break;
-	case Operation::IfThenSuspend:
-		{
-			Object then = Pop();
-			if (ConstDeref<bool>(Pop()))
-			{
-				continuation->Ip()++;
-				context->Push(continuation);
-				context->Push(NewContinuation(then));
-				Break = true;
-			}
-		}
-		break;
-	case Operation::IfThenSuspendElseSuspend:
-		{
-			Pointer<Continuation> else_ = Pop();
-			Pointer<Continuation> then = Pop();
-			continuation->Ip()++;
-			context->Push(continuation);
-			if (ConstDeref<bool>(Pop()))
-			{
-				context->Push(NewContinuation(then));
-			}
-			else
-			{
-				context->Push(NewContinuation(else_));
-			}
-			Break = true;
-		}
-		break;
+	//case Operation::IfThenSuspend:
+	//	{
+	//		Object then = Pop();
+	//		if (ConstDeref<bool>(Pop()))
+	//		{
+	//			continuation->Ip()++;
+	//			context->Push(continuation);
+	//			context->Push(NewContinuation(then));
+	//			Break = true;
+	//		}
+	//	}
+	//	break;
+	//case Operation::IfThenSuspendElseSuspend:
+	//	{
+	//		Pointer<Continuation> else_ = Pop();
+	//		Pointer<Continuation> then = Pop();
+	//		continuation->Ip()++;
+	//		context->Push(continuation);
+	//		if (ConstDeref<bool>(Pop()))
+	//		{
+	//			context->Push(NewContinuation(then));
+	//		}
+	//		else
+	//		{
+	//			context->Push(NewContinuation(else_));
+	//		}
+	//		Break = true;
+	//	}
+	//	break;
 	case Operation::IfThenReplace:
 		ConditionalContextSwitch(Operation::Replace);
 		break;
@@ -823,8 +812,8 @@ void Executor::Perform(Operation::Type op)
 
 	case Operation::Plus:
 		{
-			Object B = Pop(*data);
-			Object A = Pop(*data);
+			Object B = Resolve(Pop(*data));
+			Object A = Resolve(Pop(*data));
 			Push(*A.GetClass()->Plus(GetStorageBase(A), GetStorageBase(B)));
 		}
 		break;
@@ -986,7 +975,9 @@ Object Executor::Resolve(Object ident) const
 {
 	if (ident.IsType<Label>())
 		return Resolve(ConstDeref<Label>(ident));
-	return Resolve(ConstDeref<Pathname>(ident));
+	if (ident.IsType<Pathname>())
+		return Resolve(ConstDeref<Pathname>(ident));
+	return ident;
 }
 
 Object Executor::Resolve(Label const &label) const
