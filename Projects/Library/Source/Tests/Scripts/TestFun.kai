@@ -4,18 +4,18 @@
 	this 
 */
 
-num = 42						// a number
+num = 42				// a number
 msg = "Hello, \"world\""		// a string
 
 fun hello()
-    Print(msg)
-	Print(/*sneaky*/num)
+	Print(msg)
+		Print(/*sneaky*/num)
 
 fun mul(a, b)
 	return a*b
 
 fun fact(n)
-    if n == 0 || n == 1
+	if n == 0 || n == 1
 		return 1
 	return mul(n, fact(n - 1))
 
