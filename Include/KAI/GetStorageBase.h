@@ -98,7 +98,9 @@ StorageBase &GetStorageBase(Object const &Q);
 template <class T>
 Storage<T> *Clone(StorageBase const &Q)
 {
-	return Q.GetRegistry()->NewStorage<T>();
+	auto dup = Q.GetRegistry()->NewStorage<T>();
+	dup->GetClass()->Clone(*dup, Q);
+	return dup;
 }
 
 KAI_END
