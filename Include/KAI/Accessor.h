@@ -52,7 +52,11 @@ namespace property_detail
 			{
 				K.RemovedFromContainer(Q);
 			}
-			(K = V).AddedToContainer(Q);
+
+			if (!V.Valid())
+				K = Object();
+			else
+				(K = V).AddedToContainer(Q);
 		}
 		void SetMarked(Object &Q, bool B)
 		{

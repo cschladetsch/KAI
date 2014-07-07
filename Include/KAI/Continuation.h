@@ -16,12 +16,12 @@ private:
 	InstructionPointer ip;
 	Object scope;
 	Pointer<Array> code;
-	String source_code;
+	String const *source_code;
 	std::vector<Label> args;
 
 public:
 	void SetCode(Code);
-	void SetCode(Code, String const &);
+	void SetCode(Code, String const *);
 
 	std::vector<Label> const &GetArgs() const { return args; }
 	void AddArg(Label const &arg) { args.push_back(arg); }
@@ -29,8 +29,8 @@ public:
 	Code &GetCode() { return code; }
 	const Code &GetCode() const { return code; }
 
-	String const &GetSourceCode() const { return source_code; }
-	void SetSourceCode(String const &C) { source_code = C; }
+	String const *GetSourceCode() const { return source_code; }
+	void SetSourceCode(String const *C) { source_code = C; }
 
 	void SetScope(Object const &Q) { scope = Q; }
 	Object GetScope() const { return scope; }
