@@ -58,6 +58,7 @@ public:
 	
 	void DropN();
 
+	Object ResolvePop();
 	Object Resolve(Object) const;
 	Object Resolve(const Label &) const;
 	Object Resolve(const Pathname &) const;
@@ -73,6 +74,7 @@ protected:
 
 	void Push(Stack& L, Object const &Q);
 	Object Pop(Stack &stack);
+	Object ResolvePop(Stack &stack);
 	void NextContinuation();
 	
 	static void DumpStack(Stack const &);

@@ -1,4 +1,4 @@
-
+// (C) 2014 christian.schladetsch@gmail.com
 
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
@@ -13,6 +13,7 @@ KAI_BEGIN
 __forceinline
 #endif
 StorageBase &GetStorageBase(Object const &Q);
+
 Type::Number GetTypeNumber(Object const &Q);
 
 template <class T>
@@ -106,5 +107,3 @@ Storage<T> *Clone(StorageBase const &Q)
 KAI_END
 
 #endif // KAI_GET_OBJECT_BASE_H
-
-//EOF
