@@ -275,6 +275,13 @@ void Console::Register(Registry &)
 {
 }
 
+Object Console::ExecFile(const char *fileName)
+{
+	auto c = compiler->CompileFile(*registry, fileName, Parser::ParseProgram);
+	Execute(c);
+	return Object();
+}
+
 KAI_END
 
 //EOF
