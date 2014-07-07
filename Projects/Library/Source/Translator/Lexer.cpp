@@ -27,6 +27,7 @@ void Lexer::AddKeywords()
 	keyWords["false"] = Token::False;
 	keyWords["return"] = Token::Return;
 	keyWords["self"] = Token::Self;
+	keyWords["fun"] = Token::Fun;
 }
 
 bool Lexer::Run()
@@ -82,14 +83,16 @@ bool Lexer::LexAlpha()
 	return true;
 }
 
+int IsSpaceChar(int ch)
+{
+	return ch == ' ';
+}
+
 bool Lexer::NextToken()
 {
 	auto current = Current();
 	if (current == 0)
 		return false;
-
-	if (isspace(current))
-		return Add(Token::Whitespace, Gather(isspace));
 
 	if (isalpha(current))
 		return LexAlpha();	
@@ -99,6 +102,9 @@ bool Lexer::NextToken()
 
 	switch (current)
 	{
+	case '\t': return Add(Token::Tab);
+	case '\n': return Add(Token::NewLine);
+	case ' ': return Add(Token::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Token::Lookup);
 	case '\'': return LexAlpha();
 	case '-': return Add(Token::Minus);

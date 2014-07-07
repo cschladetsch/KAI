@@ -13,6 +13,7 @@ using namespace std;
 Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 {
 	current = 0;
+	indent = 0;
 
 	// strip whitespace
 	for (auto tok : lexer->tokens)
@@ -75,6 +76,10 @@ bool Parser::Program()
 
 void Parser::Function(NodePtr node)
 {
+	while (Try(Token::NewLine))
+		Consume();
+
+	Expect(Token::Fun);
 	Expect(Token::Ident);
 	auto name = Last();
 	Expect(Token::OpenParan);
@@ -94,6 +99,7 @@ void Parser::Function(NodePtr node)
 		}
 	}
 	Expect(Token::CloseParan);
+	Expect(Token::NewLine);
 	
 	auto block = NewNode(Node::Block);
 	Block(block);
@@ -110,16 +116,39 @@ Parser::NodePtr Parser::NewNode(Token const &t)
 {
 	return std::make_shared<Node>(t);
 }
+
+
 void Parser::Block(NodePtr node)
 {
-	Expect(Token::OpenBrace);
+	++indent;
 	while (!Failed)
 	{
-		if (Try(Token::CloseBrace))
+		int level = 0;
+		while (Try(Token::Tab))
 		{
+			++level;
 			Consume();
-			break;
 		}
+
+		// close current block
+		if (level < indent)
+		{
+			--indent;
+
+			// rewind to start of tab sequence to determine next block
+			--current;
+			while (Try(Token::Tab))
+				--current;
+			++current;
+			return;
+		}
+
+		if (level != indent)
+		{
+			Fail(Lexer::CreateError(Current(), "Mismatch block indent"));
+			continue;
+		}
+
 		Statement(node);
 	}
 }
@@ -135,14 +164,19 @@ bool Parser::Statement(NodePtr block)
 			{
 				ret->Add(Pop());
 			}
-			Expect(Token::Semi);
 			block->Add(ret);
-			return true;
+			goto finis;
 		}
 
 		case Token::If:
 		{
 			IfCondition(block);
+			return true;
+		}
+		
+		case Token::Fun:
+		{
+			Function(block);
 			return true;
 		}
 	}
@@ -164,8 +198,18 @@ bool Parser::Statement(NodePtr block)
 		Push(node);
 	}
 
-	Expect(Token::Semi);
 	block->Add(Pop());
+
+	finis:
+	// statements can end with an optional semi followed by a new line
+	if (Try(Token::NewLine))
+		Consume();
+	else
+	{
+		Expect(Token::Semi);
+		Expect(Token::NewLine);
+	}
+
 	return true;
 }
 

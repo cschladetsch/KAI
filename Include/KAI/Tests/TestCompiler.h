@@ -7,14 +7,23 @@
 #if defined(KAI_UNIT_TESTS) && !defined(KAI_TESTS_COMPILER_H)
 #	define KAI_TESTS_COMPILER_H
 
+KAI_BEGIN
+class Console;
+KAI_END
+
 KAI_TESTS_BEGIN
 
 struct TestCompiler : Test::Suite<TestCompiler>
 {
+	Console *con;
+
 	TestCompiler()
 	{
 		Builder(this, "TestCompiler")
 			("TestConstruction", &TestCompiler::TestConstruction)
+			("TestFunctions", &TestCompiler::TestFunctions)
+			("TestExpressions", &TestCompiler::TestExpressions)
+			("TestStatements", &TestCompiler::TestStatements)
 			("TestComments", &TestCompiler::TestComments)
 			("TestFloats", &TestCompiler::TestFloats)
 			;
@@ -26,6 +35,8 @@ struct TestCompiler : Test::Suite<TestCompiler>
 	void TestStringLiterals();
 	void TestContinuations();
 	void TestComments();
+	void TestExpressions();
+	void TestStatements();
 	void TestFloats();
 	void TestFunctions();
 };

@@ -6,12 +6,12 @@ fun hello()
     print(msg)
 
 fun mul(a, b)
-	a*b
+	return a*b
 
 fun fact(n)
     if n == 0 || n == 1
 		return 1
-	mul(n, fact(n - 1))
+	return mul(n, fact(n - 1))
 
 fun outer()
 	fun inner(a)
@@ -19,7 +19,7 @@ fun outer()
 	s = [1,2,3]
 	t = []
 	foreach e in s
-		t += inner(s)
+		t = t + inner(s)
 	return t
 
 fun useGen()
@@ -28,7 +28,7 @@ fun useGen()
 			yield --n
 	r = []
 	foreach g in gen(3)
-		r += g
+		r = r + g
 	assert r == [2,1,0]
 	
 	

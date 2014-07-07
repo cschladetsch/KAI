@@ -63,6 +63,9 @@ const char * Token::ToString(Type t)
 	case Decrement: return "--";
 	case Self: return "Self";
 	case Lookup: return "Lookup";
+	case Fun: return "Fun";
+	case Tab: return "Tab";
+	case NewLine: return "NewLine";
 	}
 	static char b[100];
 	_itoa_s(t, b, 100, 10);
