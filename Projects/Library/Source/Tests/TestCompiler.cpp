@@ -67,7 +67,7 @@ void TestCompiler::TestFunctions()
 	Memory::StandardAllocator alloc;
 	Console c(&alloc);
 
-	auto e1 = c.ExecFile("Scripts/TestFun.kai");
+	//auto e1 = c.ExecFile("Scripts/TestFun.kai");
 
 	auto e = c.Compile(
 R"Q(
@@ -86,8 +86,8 @@ fun f()
 
 	c.Execute(e);
 
-	c.GetExecutor()->SetTraceLevel(100);
-	c.Execute("f()");
+	//c.GetExecutor()->SetTraceLevel(100);
+	//c.Execute("f()");
 }
 
 void TestCompiler::TestFloats()

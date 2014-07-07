@@ -20,6 +20,8 @@ private:
 	std::vector<Label> args;
 
 public:
+	Continuation();
+
 	void SetCode(Code);
 	void SetCode(Code, String const *);
 
