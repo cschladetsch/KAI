@@ -1,4 +1,14 @@
 
 DONE Fix the bug in TestExample.cpp
 Fix fault where a crash occurs after trying to continue a continuation compiled from a string in the console.
+	- this seems to be because the Ip isn't set after a Duplicate operation
+	- grep for FIXME
 
+Re-assert ConstNess
+	- Get IsConst working again
+	- Use this to make Duplicate operation fast, by not duplicating cost objects
+
+Cache results of IsValid and GetConstStorage between gc cycles
+	- each object caches results, with a number called the GcNumber stored in the registry
+	- when a registry does a GC, it increments the GcNumber
+	- cached results are invalidated when the GcNumbers do not match

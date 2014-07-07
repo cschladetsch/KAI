@@ -1,9 +1,15 @@
+// this is a comment
+/*	
+	so is 
+	this 
+*/
 
-a = 10
-msg = "Hello, world"
+num = 42						// a number
+msg = "Hello, \"world\""		// a string
 
 fun hello()
-    print(msg)
+    Print(msg)
+	Print(/*sneaky*/num)
 
 fun mul(a, b)
 	return a*b
@@ -19,8 +25,8 @@ fun outer()
 	s = [1,2,3]
 	t = []
 	foreach e in s
-		t = t + inner(s)
-	return t
+		t += inner(e)
+	Assert(t == [3,4,5])
 
 fun useGen()
 	fun gen(n)
@@ -28,7 +34,22 @@ fun useGen()
 			yield --n
 	r = []
 	foreach g in gen(3)
-		r = r + g
+		r += g
 	assert r == [2,1,0]
 	
-	
+fun a(n)
+	Print(n)
+	if n-- > 0
+		b(n-1)...
+
+fun b(n)
+	a(n)...
+	Print("Never reached")
+
+fun main()
+	hello()
+	Assert(fact(3) == 3*2*1)
+	useGen()
+	b(3)		
+
+

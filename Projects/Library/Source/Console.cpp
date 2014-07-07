@@ -136,48 +136,32 @@ void Console::ExecuteFile(const char *filename)
 
 String Console::Execute(Pointer<Continuation> cont)
 {
-	StringStream result;
 	KAI_TRY
 	{
+		if (!cont->HasScope())
+			cont->SetScope(tree.GetRoot());
 		executor->Continue(cont);
 		return WriteStack();
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
-		result << "Exception: " << E.ToString() << "\n";
+		KAI_TRACE_ERROR_1(E);
 	}
 	KAI_CATCH(std::exception, E)
 	{
-		result << "StdException: " << E.what() << "\n";
+		KAI_TRACE_ERROR_2("StdException: ", E.what());
 	}
 	KAI_CATCH_ALL()
 	{
-		result << "UnknownException: " << "\n";
+		KAI_TRACE_ERROR_1("UnknownException");
 	}
-	return result.ToString();
+	return "";
 }
 
 Object Console::Execute(String const &text)
 {
-	StringStream result;
-	KAI_TRY
-	{
-		Pointer<Continuation> continuation = compiler->Compile(*registry, text.c_str());
-		continuation->SetScope(tree.GetScope());
-		executor->Continue(continuation);
-	}
-	KAI_CATCH(Exception::Base, E)
-	{
-		result << "Exception: " << E.ToString() << "\n";
-	}
-	KAI_CATCH(std::exception, E)
-	{
-		result << "StdException: " << E.what() << "\n";
-	}
-	KAI_CATCH_ALL()
-	{
-		result << "UnknownException: " << "\n";
-	}
+	Execute(compiler->Compile(*registry, text.c_str()));
+
 	return executor->GetDataStack();
 }
 

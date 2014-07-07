@@ -6,10 +6,17 @@
 
 KAI_BEGIN
 
+void Continuation::SetCode(Code C)
+{
+	code = C;
+	Enter();
+}
+
 void Continuation::Enter()
 {
 	if (code.Exists())
 		ip = code->Begin();
+	KAI_TRACE_1(ip == code->End());
 }
 
 Continuation::InstructionPointer &Continuation::Ip() 
