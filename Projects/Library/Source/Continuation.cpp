@@ -9,31 +9,47 @@ KAI_BEGIN
 Continuation::Continuation()
 {
 	source_code = 0;
+	Entered = false;
 }
 
 void Continuation::SetCode(Code C)
 {
 	code = C;
+	Entered = false;
 	Enter();
 }
 
-void Continuation::Enter()
+void Continuation::Enter() const
 {
-	if (code.Exists())
+	if (code.Exists() && !code->Empty())
+	{
+		Entered = true;
 		ip = code->Begin();
-	KAI_TRACE_1(ip == code->End());
+	}
 }
 
-Continuation::InstructionPointer &Continuation::Ip() 
-{ 
-	return ip; 
+bool Continuation::Next() const
+{
+	if (!HasCode())
+		return false;
+	if (!Entered)
+		Enter();
+	if (ip == code->end())
+		return false;
+	++ip;
+	return true;
 }
 
-Continuation::InstructionPointer Continuation::End() const 
+bool Continuation::Next(Object const *&next) const
 { 
-	//auto c = *code;
-	//return c.End(); 
-	return code->End();
+	if (!code)
+		return false;
+	if (!Entered)
+		Enter();
+	if (ip == code->end())
+		return false;
+	next = &*ip++;
+	return true;
 }
 
 StringStream &operator<<(StringStream &S, const Continuation &C)

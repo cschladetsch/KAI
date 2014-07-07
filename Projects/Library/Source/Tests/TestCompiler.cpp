@@ -74,20 +74,18 @@ R"Q(
 
 fun f()
 	Print("Hello, World!")
-	a = 1*(2+3)
-	fun g(a)
-		return a + 1
-	Assert(g(2) == 3)
-	b = end()
+	a = 1+2*(3+4)
+
 
 )Q"
 , Parser::ParseFunction);
 	KAI_TRACE_1(e);
 
+	c.GetExecutor()->SetTraceLevel(100);
 	c.Execute(e);
-
-	//c.GetExecutor()->SetTraceLevel(100);
-	//c.Execute("f()");
+	c.Execute("f()");
+	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Top()), 15);
+	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetTree().Resolve("a")), 15);
 }
 
 void TestCompiler::TestFloats()
