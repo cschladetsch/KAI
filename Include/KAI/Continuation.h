@@ -13,7 +13,7 @@ struct Continuation
 	typedef Pointer</*const*/ Array> Code;
 
 private:
-	InstructionPointer ip;
+	mutable InstructionPointer ip;
 	Object scope;
 	Pointer<Array> code;
 	String const *source_code;
@@ -21,6 +21,8 @@ private:
 
 public:
 	Continuation();
+
+	mutable bool Entered;
 
 	void SetCode(Code);
 	void SetCode(Code, String const *);
@@ -42,10 +44,11 @@ public:
 
 	int InitialStackDepth;
 
-	void Enter();
+	void Enter() const;
 
-	InstructionPointer &Ip();
-	InstructionPointer End() const;
+	// get next object in the continuation
+	bool Next() const;
+	bool Next(Object const *&) const;
 
 	static void Register(Registry &);
 };
