@@ -36,6 +36,7 @@ public:
 	Pointer<Executor> GetExecutor() const { return executor; }
 	Pointer<Compiler> GetCompiler() const { return compiler; }
 	Pointer<Continuation> Compile(const char *, Parser::Structure);
+	Object ExecFile(const char *fileName);
 	String Execute(Pointer<Continuation>);
 
 	Object Execute(String const &text);
