@@ -66,6 +66,9 @@ void TestCompiler::TestFunctions()
 {
 	Memory::StandardAllocator alloc;
 	Console c(&alloc);
+
+	auto e1 = c.ExecFile("Scripts/TestFun.kai");
+
 	auto e = c.Compile(
 R"Q(
 

@@ -37,11 +37,8 @@ void Compiler::AddOperation(int N, const String &S)
 Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser::Structure st) const
 {
 	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
-
 	p->Translate(text.c_str(), st);
-
-	p->Print();
-	
+	//p->Print();
 	if (p->Failed)
 	{
 		KAI_TRACE_ERROR_1(p->Error);
@@ -51,6 +48,22 @@ Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser:
 
 	return p->trans->stack.back();
 }
+
+Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName, Parser::Structure st) const
+{
+	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
+	p->TranslateFile(fileName.c_str(), st);
+	if (p->Failed)
+	{
+		KAI_TRACE_ERROR_1(p->Error);
+		std::cerr << p->Error;
+		return 0;
+	}
+
+	return p->trans->stack.back();
+}
+
+
 
 //Object Compiler::Compile(String const &text, Parser::Structure st) const
 //{
@@ -111,4 +124,3 @@ void Operation::Register(Registry &R)
 
 KAI_END
 
-//EOF
