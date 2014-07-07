@@ -75,7 +75,7 @@ R"Q(
 fun f()
 	Print("Hello, World!")
 	a = 1+2*(3+4)
-
+	Assert(a == 15)
 
 )Q"
 , Parser::ParseFunction);

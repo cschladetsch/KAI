@@ -63,7 +63,6 @@ int main(int argc, char **argv)
 		
 		module.Run(out);
 
-	console.Execute("");
 	Run(console);
 }
 

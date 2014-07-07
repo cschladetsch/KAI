@@ -48,6 +48,11 @@ void Executor::Push(const nstd::pair<Object, Object> &P)
 	Push(New(Pair(P.first, P.second)));
 }
 
+Object Executor::ResolvePop()
+{
+	return Resolve(Pop(*data));
+}
+
 Object Executor::Pop()
 {
 	return Pop(*data);
@@ -135,7 +140,7 @@ void Executor::Eval(Object const &Q)
 	{
 		if (trace_level > 1)
 		{
-			std::cout << "Data Stack:\n";
+			std::cout << "Stack:\n";
 			DumpStack(*data);
 		}
 		std::cout << "\nEval: " << Q.ToString().c_str() << "\n";//std::endl;
@@ -866,8 +871,8 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::Equiv:
 		{
-			Object B = Pop();
-			Object A = Pop();
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(New(A.GetClass()->Equiv2(A,B)));
 		}
 		break;
