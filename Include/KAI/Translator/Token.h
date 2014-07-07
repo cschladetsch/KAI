@@ -45,6 +45,10 @@ struct Token
 
 		Self,
 		Lookup,
+
+		// added because we want whitespace to matter for formatting, as in python
+		Tab, NewLine,
+		Fun,
 	};
 
 	static const char *ToString(Type t);
