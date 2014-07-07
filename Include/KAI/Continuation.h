@@ -17,10 +17,14 @@ private:
 	Object scope;
 	Pointer<Array> code;
 	String source_code;
+	std::vector<Label> args;
 
 public:
 	void SetCode(Code);
 	void SetCode(Code, String const &);
+
+	std::vector<Label> const &GetArgs() const { return args; }
+	void AddArg(Label const &arg) { args.push_back(arg); }
 
 	Code &GetCode() { return code; }
 	const Code &GetCode() const { return code; }

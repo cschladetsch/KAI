@@ -14,6 +14,13 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
+#include "KAI/Test/Base.h"
+#include "KAI/Test/Module.h"
+#include "KAI/StringStream.h"
+#include "KAI/Debug.h"
+
+#include "KAI/Tests/TestCompiler.h"
+
 #pragma comment(lib, "C:/Dev/KAI/Lib/Win32/Debug/library.lib")
 
 KAI_BEGIN
@@ -48,6 +55,15 @@ int main(int argc, char **argv)
 	Memory::StandardAllocator alloc;
 	Console console(args, &alloc);
 	std::cout << console.WriteStack().c_str();
+
+		Test::Module module;
+		module.AddSuite<Tests::TestCompiler>("TesCompiler");
+	
+		Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
+		
+		module.Run(out);
+
+	console.Execute("");
 	Run(console);
 }
 

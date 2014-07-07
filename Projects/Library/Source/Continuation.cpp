@@ -34,6 +34,10 @@ StringStream &operator<<(StringStream &S, const Continuation &C)
 			S << *A << " ";
 	}
 	S << "}";
+	S << "args(";
+	for (auto a : C.GetArgs())
+		S << a << ' ';
+	S << ")";
 	return S;
 }
 

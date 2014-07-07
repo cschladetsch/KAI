@@ -30,6 +30,12 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Self:
 		AppendNewOp(Operation::This);
 		return;
+	case Token::NotEquiv:
+		TranslateBinaryOp(node, Operation::NotEquiv);
+		return;
+	case Token::Equiv:
+		TranslateBinaryOp(node, Operation::Equiv);
+		return;
 	case Token::Less:
 		TranslateBinaryOp(node, Operation::Less);
 		return;
@@ -63,9 +69,13 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Ident:
 		Append(reg.New<Label>(Label(node->token.Text())));
 		return;
+	case Token::Return:
+		if (!node->Children.empty())
+			Translate(node->Children[0]);
+		AppendNewOp(Operation::Resume);
+		return;
 	}
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
-	throw Unsupported();;
 }
 
 void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
@@ -105,7 +115,6 @@ void Translator::Translate(Parser::NodePtr node)
 
 void Translator::TranslateBlock(NodePtr node)
 {
-	// TODO: scoping
 	for (auto st : node->Children)
 		Translate(st);
 }
@@ -115,22 +124,22 @@ void Translator::TranslateBlock(NodePtr node)
 // 2: block
 void Translator::TranslateFunction(NodePtr node)
 {
-	//Node::ChildrenType const &ch = node->Children;
+	Node::ChildrenType const &ch = node->Children;
 
-	//// write the body
-	//result << " {";
-	//for (auto b : ch[2]->Children)
-	//	Traverse(b);
-	//result << " }";
+	// write the body
+	PushNew();
+	for (auto b : ch[2]->Children)
+		Traverse(b);
+	auto cont = Pop();
 
-	//// write the args
-	//result << " [";
-	//for (auto a : ch[1]->Children)
-	//	Traverse(a);
-	//result << " ]";
+	// add the args
+	for (auto a : ch[1]->Children)
+		cont->AddArg(Label(a->token.Text()));
 
-	//// write the name and store
-	//result << ' ' << ch[0]->token.Text() << " #fun";
+	// write the name and store
+	Append(cont);
+	AppendNew(Label(ch[0]->token.Text()));
+	AppendNewOp(Operation::Store);
 }
 
 void Translator::Traverse(NodePtr node)
@@ -159,7 +168,6 @@ void Translator::TranslateCall(NodePtr node)
 		Translate(a);
 
 	Translate(node->Children[0]);
-
 	AppendNew(Operation(Operation::Suspend));
 }
 

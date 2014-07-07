@@ -84,6 +84,9 @@
     <Filter Include="Include\Translator">
       <UniqueIdentifier>{8e1c05fd-5da3-4250-8bab-10efa86b113f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Tests\Scripts">
+      <UniqueIdentifier>{05f7fda3-66db-4667-abd2-13cede01adf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
@@ -288,6 +291,9 @@
     </None>
     <None Include="Source\String.inl">
       <Filter>Source Files\BuiltinTypes</Filter>
+    </None>
+    <None Include="Source\Tests\Scripts\TestFun.kai">
+      <Filter>Source Files\Tests\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
