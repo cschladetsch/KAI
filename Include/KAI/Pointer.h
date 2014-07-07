@@ -142,7 +142,6 @@ struct Pointer : PointerBase<T>, Object
 		return *this;
 	}
 
-	bool Empty() const { return !Exists(); }
 	Reference operator*() { return GetReference(); }
 	PointerType operator->() { return &**this; }
 	
