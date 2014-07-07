@@ -40,7 +40,7 @@ fun useGen()
 fun a(n)
 	Print(n)
 	if n-- > 0
-		b(n-1)...
+		b(n-1)...	// the ... syntax means to not push current context before calling new
 
 fun b(n)
 	a(n)...
