@@ -1,13 +1,7 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_ALGORITHM_H
-#	define KAI_ALGORITHM_H
-
-#	include "KAI/StorageBase.h"
-#	include "KAI/Pointer.h"
+#include "KAI/StorageBase.h"
+#include "KAI/Pointer.h"
 
 KAI_BEGIN
 
@@ -175,8 +169,3 @@ struct Deleter// : Function<void (*)(T *)
 	};
 
 KAI_END
-
-#endif // KAI_ALGORITHM_H
-
-//EOF
-

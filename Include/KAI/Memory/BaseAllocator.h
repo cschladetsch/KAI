@@ -1,11 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_MEMORY_BASE_ALLOCATOR_H
-#	define KAI_MEMORY_BASE_ALLOCATOR_H
+#pragma once
 
 KAI_BEGIN
 
@@ -57,7 +50,3 @@ namespace Memory
 }
 
 KAI_END
-
-#endif // KAI_MEMORY_BASE_ALLOCATOR_H
-
-//EOF
