@@ -1,9 +1,4 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_ARRAY_H
-#	define KAI_ARRAY_H
+#pragma once
 
 KAI_BEGIN
 
@@ -76,7 +71,3 @@ BinaryPacket &operator>>(BinaryPacket &, Array &);
 HashValue GetHash(const Array &A);
 
 KAI_END
-
-#endif // KAI_ARRAY_H
-
-//EOF

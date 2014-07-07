@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_ACCESSOR_BASE_H
-#	define KAI_ACCESSOR_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -24,7 +18,3 @@ struct MutatorBase : AccessorBase
 };
 
 KAI_END
-
-#endif // KAI_ACCESSOR_BASE_H
-
-//EOF

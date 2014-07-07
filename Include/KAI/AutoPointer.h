@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_AUTO_POINTER_H
-#	define KAI_AUTO_POINTER_H
+#pragma once
 
 KAI_BEGIN
 
@@ -27,7 +21,3 @@ private:
 };
 
 KAI_END
-
-#endif // KAI_AUTO_POINTER_H
-
-//EOF

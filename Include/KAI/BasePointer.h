@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BASE_POINTER_H
-#	define KAI_BASE_POINTER_H
+#pragma once
 
 KAI_BEGIN
 
@@ -43,8 +37,3 @@ KAI_TYPE_TRAITS(BasePointerBase, Type::Number::BasePointer, Type::Properties::St
 KAI_END
 
 #include KAI_TEST(X)
-
-#endif // KAI_BASE_POINTER_H
-
-//EOF
-

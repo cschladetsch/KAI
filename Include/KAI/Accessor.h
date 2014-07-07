@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_ACCESSOR_H
-#	define KAI_ACCESSOR_H
+#pragma once
 
 KAI_BEGIN
 
@@ -169,7 +163,3 @@ PropertyBase *MakeProperty(T (C::*F), Label const &N, CreateParams::Params creat
 }
 
 KAI_END
-
-#endif // KAI_ACCESSOR_H
-
-//EOF
