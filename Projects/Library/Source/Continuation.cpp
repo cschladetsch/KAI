@@ -6,6 +6,11 @@
 
 KAI_BEGIN
 
+Continuation::Continuation()
+{
+	source_code = 0;
+}
+
 void Continuation::SetCode(Code C)
 {
 	code = C;

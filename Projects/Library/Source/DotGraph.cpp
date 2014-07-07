@@ -56,10 +56,10 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 	label << object.GetLabel().ToString() << "[" << object.GetClass()->GetName() << "]";
 	if (excluded)
 		label << " (excl.)";
-	if (object.IsType<Continuation>())
-	{
-		label << " '" << ConstDeref<Continuation>(object).GetSourceCode() << "'";
-	}
+	//if (object.IsType<Continuation>())
+	//{
+	//	label << " '" << ConstDeref<Continuation>(object).GetSourceCode() << "'";
+	//}
 	graph << object_id << " [shape=box label=\"" << label << "\"";
 	graph << " color=";
 	switch (object.GetColor())
