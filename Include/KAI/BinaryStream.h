@@ -10,6 +10,7 @@
 KAI_BEGIN
 
 /// A Binary-packet is a fixed-size sequence of bytes which allows only extraction
+/// this allows it to be used to extract data from network packets without copying.
 struct BinaryPacket
 {
 	typedef char Byte;

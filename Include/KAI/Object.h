@@ -1,13 +1,13 @@
-
+#pragma once
 
 #ifndef KAI_OBJECT_H
-#	define KAI_OBJECT_H
+#define KAI_OBJECT_H
 
-#	include "KAI/BuiltinTypes/Dictionary.h"
+#include "KAI/BuiltinTypes/Dictionary.h"
 
 KAI_BEGIN
 
-#	undef GetObject
+#undef GetObject
 
 template <class T>
 struct Pointer;
@@ -18,6 +18,13 @@ private:
 	const ClassBase *class_base;
 	Registry *registry;
 	Handle handle;
+
+#ifdef KAI_CACHE_OBJECT_LOOKUPS
+	// these fields are used to cache results for speed
+	int gcindex;
+	bool valid;
+	void *value;
+#endif
 
 public:
 	enum Switch 
