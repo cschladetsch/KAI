@@ -67,6 +67,7 @@ private:
 	Token const &Peek() const;
 	bool PeekIs(Token::Type ty) const;
 	Token const &Consume();
+	int indent;
 
 	bool Try(Token::Type type);
 	NodePtr Expect(Token::Type type);
