@@ -27,6 +27,9 @@
 #		define KAI_TEST(T) "KAI/Tests/DummyTestHeader.h"
 #	endif
 
+// use gc-count based caching system for object validity and value lookups
+#define KAI_CACHE_OBJECT_LOOKUPS
+
 //#	define KAI_PLATFORM_INCLUDE(Header) \
 //		KAI_PP_CONCAT( \
 //			KAI_PP_CONCAT("KAI/Platform", KAI_PP_STRINGISE(KAI_PLATFORM_LABEL)) \

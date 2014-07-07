@@ -70,17 +70,20 @@ void TestCompiler::TestFunctions()
 R"Q(
 
 fun f()
-	print("Hello, World!")
+	Print("Hello, World!")
 	a = 1*(2+3)
 	fun g(a)
 		return a + 1
-	assert(g(2) == 3)
+	Assert(g(2) == 3)
 	b = end()
 
 )Q"
 , Parser::ParseFunction);
 	KAI_TRACE_1(e);
+
 	c.Execute(e);
+
+	c.GetExecutor()->SetTraceLevel(100);
 	c.Execute("f()");
 }
 

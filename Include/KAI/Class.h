@@ -116,7 +116,13 @@ struct Class : ClassBase
 			PropertyBase const &prop = *property.second;
 			// if it is a system-type property, clone it, else just store the value
 			if (prop.IsSystemType())
-				prop.SetObject(*result, prop.GetObject(parent).Clone());
+			{
+				auto ch = prop.GetObject(parent);
+				if (ch.Exists())
+					prop.SetObject(*result, ch.Clone());
+				else
+					prop.SetObject(*result, Object());
+			}
 			else
 				prop.SetValue(*result, prop.GetValue(parent));
 		}

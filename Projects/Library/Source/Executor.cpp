@@ -88,6 +88,7 @@ void Executor::Continue()
 	for (;;)
 	{
 		Break = false;
+		continuation->Enter();
 		Continuation::InstructionPointer& ip = continuation->Ip();
 		end = continuation->End();
 		for (; ip != end; ++ip)
@@ -99,7 +100,8 @@ void Executor::Continue()
 			KAI_CATCH(Exception::Base, E)
 			{
 				KAI_TRACE_1(data);
-				KAI_TRACE_1(continuation->GetSourceCode());
+				if (continuation->GetSourceCode())
+					KAI_TRACE_1(*continuation->GetSourceCode());
 				Continuation::InstructionPointer ip2 = continuation->GetCode()->Begin();
 				for (; ip2 != ip && ip2 != end; ++ip2)
 				{
@@ -471,24 +473,9 @@ void Executor::Perform(Operation::Type op)
 			Q.GetClass()->GetProperty(L).SetValue(Q, Pop());
 		}
 		break;
-/* 
-	this is a thing of beauty:
-
-	case Operation::Suspend:
-		continuation->Ip()++;
-		context->Push(continuation);
-	case Operation::Replace:
-		context->Push(NewContinuation(Pop()));
-	case Operation::Resume:
-		Break = true;
-		break;
-
-	however, I have finally, finally decided to allow the same syntax for C++ function calls and continuations...
-*/
-
 	case Operation::Suspend:
 		{
-			Object where_to_go = Pop();
+			Object where_to_go = Resolve(Pop());
 			switch (where_to_go.GetTypeNumber().GetValue())
 			{
 			case Type::Number::Function:
@@ -507,6 +494,12 @@ void Executor::Perform(Operation::Type op)
 			continuation->Ip()++;
 			context->Push(continuation);
 			context->Push(where_to_go);
+			// TODO: FIXME: This is temporary to test bug in starting a duplicated continuation!!!
+			if (where_to_go.IsType<Continuation>())
+			{
+				auto c = Deref<Continuation>(where_to_go);
+				c.Enter();
+			}
 			Break = true;
 		}
 		break;
@@ -1052,13 +1045,6 @@ Object Executor::Resolve(Pathname const &path) const
 	if (!Q.Valid())
 		KAI_THROW_1(CannotResolve, path);
 	return Q;
-}
-
-void Continuation::SetCode(Code C)
-{
-	code = C;
-	if (code.Exists())
-		ip = code->Begin();
 }
 
 void Executor::Trace(const Label &, const StorageBase &Q, StringStream &S)
