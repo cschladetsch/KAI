@@ -76,7 +76,6 @@ protected:
 
 	void Push(Stack& L, Object const &Q);
 	Object Pop(Stack &stack);
-	Object ResolvePop(Stack &stack);
 	void NextContinuation();
 	
 	static void DumpStack(Stack const &);
