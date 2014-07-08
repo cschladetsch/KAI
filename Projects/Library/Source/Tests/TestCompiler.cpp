@@ -96,9 +96,14 @@ void TestCompiler::TestFunctions()
 	}
 	c.Execute("mul(3,2)"); 
 	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
+	KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
 
-	c.Execute("fact(3)");
+
+	c.Execute("r(4)");
+
+	c.Execute("fact(4)");
 	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
+	KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
 
 }
 

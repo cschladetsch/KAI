@@ -87,6 +87,7 @@ const char *Operation::ToString(int value)
 		CASE(If);
 		CASE(IfElse);
 		CASE(ForEachContained);
+		CASE(SuspendNew);
 
 	}
 	return "?UNKNOWN_OP?";

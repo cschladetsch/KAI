@@ -75,7 +75,16 @@ StringStream &operator<<(StringStream &S, const Continuation &C)
 		for (; A != B; ++A)
 			S << *A << " ";
 	}
-	S << "}";
+	S << "}" << "@" << *C.index;
+	if (C.code->Size() > 0)
+	{
+		S << ":: ";
+		int n = *C.index;
+		if (n < C.code->Size())
+			S << C.code->At(n);
+		else
+			S << "[end]";
+	}
 	//S << "args(";
 	//for (auto a : C.GetArgs())
 	//	S << a << ' ';
