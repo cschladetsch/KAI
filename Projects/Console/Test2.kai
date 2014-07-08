@@ -29,16 +29,17 @@ fun useGen()
 	r = []
 	for g in gen(3)
 		r += g
-	assert r == [2,1,0]
+	Assert(r == [2,1,0])
 	
 fun a(n)
-	Print(n)
+	out << n
 	if n-- > 0
 		b(n-1)...	// the ... syntax means to not push current context before calling new
 
 fun b(n)
+	out << "In b, n=" << n
 	a(n)...
-	Print("Never reached")
+	out << "Never get here!"
 
 fun main()
 	hello()

@@ -314,13 +314,14 @@ bool Parser::Expression()
 	if (Try(Token::Assign) || Try(Token::PlusAssign) || Try(Token::MinusAssign) || Try(Token::MulAssign) || Try(Token::DivAssign))
 	{
 		auto node = NewNode(Consume());
-		node->Add(Pop());
+		auto ident = Pop();
 		if (!Logical())
 		{
 			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
 			return false;
 		}
 		node->Add(Pop());
+		node->Add(ident);
 		Push(node);
 	}
 

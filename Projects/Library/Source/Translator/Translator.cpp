@@ -253,12 +253,11 @@ void Translator::TranslateIf(Parser::NodePtr node)
 {
 	Node::ChildrenType const &ch = node->Children;
 	bool hasElse = ch.size() > 2;
+	Translate(ch[0]);
 	if (hasElse)
 		Translate(ch[2]);
 	Translate(ch[1]);
-	Translate(ch[0]);
-	AppendNewOp(hasElse ? Operation::If : Operation::IfElse);
-	AppendNewOp(Operation::Suspend);
+	AppendNewOp(hasElse ? Operation::IfThenSuspendElseSuspend : Operation::IfThenSuspend);
 }
 
 void Translator::TranslateFor(Parser::NodePtr node)

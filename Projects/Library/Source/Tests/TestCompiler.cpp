@@ -89,6 +89,10 @@ void TestCompiler::TestFunctions()
 //	c.Execute("f()");
 //
 	c.ExecuteFile("TestFun.kai");
+	c.GetExecutor()->SetTraceLevel(100);
+	c.Execute("fact(3)");
+	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3 * 2);
+
 }
 
 void TestCompiler::TestFloats()

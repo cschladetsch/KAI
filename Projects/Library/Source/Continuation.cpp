@@ -9,7 +9,7 @@ KAI_BEGIN
 
 void Continuation::Create()
 {
-	entered = New<bool>(false);
+	entered = false;
 	args = New<Array>();
 	index = New<int>(0);
 }
