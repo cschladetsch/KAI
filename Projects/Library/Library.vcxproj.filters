@@ -245,12 +245,6 @@
     <ClCompile Include="Source\Test\XmlOutput.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Class.inl">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Property.inl">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Lexer.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
@@ -552,9 +546,6 @@
     <ClInclude Include="..\..\Include\KAI\Pointer.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Prefix.h">
-      <Filter>Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Preprocessor.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -771,15 +762,12 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
       <Filter>Include\Translator</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\KAI.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Root\AutoExec.txt">
       <Filter>Root</Filter>
     </Text>
-    <Text Include="TODO.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="Types.xml" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Source\CompilerTokens.inl">
