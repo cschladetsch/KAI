@@ -7,34 +7,34 @@
 
 KAI_BEGIN
 
-struct Continuation
+class Executor;
+
+struct Continuation : public Reflected<Continuation>
 {
-	typedef Array::const_iterator InstructionPointer;
 	typedef Pointer</*const*/ Array> Code;
 
-private:
-	mutable InstructionPointer ip;
+///private:
 	Object scope;
 	Pointer<Array> code;
-	String const *source_code;
-	std::vector<Label> args;
+	Pointer<Array> args;
+	Pointer<String> source_code;
+	Pointer<int> index;
+	Pointer<bool> entered;
 
 public:
-	Continuation();
-
-	mutable bool Entered;
+	void Create();
+	bool Destroy();
 
 	void SetCode(Code);
-	void SetCode(Code, String const *);
+	void SetCode(Code, String const *source);
 
-	std::vector<Label> const &GetArgs() const { return args; }
-	void AddArg(Label const &arg) { args.push_back(arg); }
+	void AddArg(Label const &arg) { args->Append(New(arg)); }
 
 	Code &GetCode() { return code; }
 	const Code &GetCode() const { return code; }
 
-	String const *GetSourceCode() const { return source_code; }
-	void SetSourceCode(String const *C) { source_code = C; }
+	Pointer<String> GetSourceCode() const { return source_code; }
+	void SetSourceCode(const char *C) { source_code = New<String>(C); }
 
 	void SetScope(Object const &Q) { scope = Q; }
 	Object GetScope() const { return scope; }
@@ -44,11 +44,11 @@ public:
 
 	int InitialStackDepth;
 
-	void Enter() const;
+	void Enter(Executor *exec);
 
 	// get next object in the continuation
 	bool Next() const;
-	bool Next(Object const *&) const;
+	bool Next(Object &) const;
 
 	static void Register(Registry &);
 };
@@ -58,7 +58,7 @@ StringStream &operator>>(StringStream &, Continuation &);
 BinaryStream &operator<<(BinaryStream &, const Continuation &);
 BinaryPacket &operator>>(BinaryPacket &, Continuation &);
 
-KAI_TYPE_TRAITS(Continuation, Type::Number::Continuation, Type::Properties::Streaming);
+KAI_TYPE_TRAITS(Continuation, Type::Number::Continuation, Type::Properties::Streaming | Type::Properties::Reflected);
 
 KAI_END
 

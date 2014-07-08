@@ -39,7 +39,7 @@ public:
 	Object ExecFile(const char *fileName);
 	String Execute(Pointer<Continuation>);
 
-	Object Execute(String const &text);
+	Pointer<Continuation> Execute(String const &text);
 	void ExecuteFile(const char *);
 	String WriteStack() const;
 	void ControlC();

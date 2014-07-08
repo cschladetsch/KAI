@@ -45,7 +45,9 @@ public:
 	void Push(const nstd::pair<Object, Object> &);
 	Object Pop();
 	Object Top() const;
-	Pointer<const Stack> GetDataStack() const;
+
+	Pointer<Stack> GetDataStack();
+	Pointer<const Stack> GetDataStack() const { return data; }
 	Pointer<const Stack> GetContextStack() const;
 	void ClearStacks() { data->Clear(); context->Clear(); }
 
@@ -78,7 +80,7 @@ protected:
 	void NextContinuation();
 	
 	static void DumpStack(Stack const &);
-	static void DumpContinuation(Continuation const &, Continuation::InstructionPointer);
+	static void DumpContinuation(Continuation const &, int);
 
 private:
 	template <class C>
@@ -91,6 +93,7 @@ private:
 	void Trace(const Label &, const StorageBase&, StringStream &);
 	void Trace(const Object&, StringStream &);
 	void ConditionalContextSwitch(Operation::Type);
+	Pointer<Continuation> NewContinuation(Pointer<Continuation> P);
 };
 
 StringStream &operator<<(StringStream &, Executor const &);
