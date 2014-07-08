@@ -13,6 +13,7 @@ struct Operation
 {
 	enum Type
 	{
+		SuspendNew,
 		None,
 		True, False,
 		Equiv, NotEquiv, Less, Greater, LessOrEquiv, GreaterOrEquiv,

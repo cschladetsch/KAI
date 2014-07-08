@@ -78,7 +78,7 @@ protected:
 	Object Pop(Stack &stack);
 	void NextContinuation();
 	
-	static void DumpStack(Stack const &);
+	void DumpStack(Stack const &);
 	static void DumpContinuation(Continuation const &, int);
 
 private:
@@ -93,6 +93,7 @@ private:
 	void Trace(const Object&, StringStream &);
 	void ConditionalContextSwitch(Operation::Type);
 	Pointer<Continuation> NewContinuation(Pointer<Continuation> P);
+	Object TryResolve(Label const &label) const;
 };
 
 StringStream &operator<<(StringStream &, Executor const &);
