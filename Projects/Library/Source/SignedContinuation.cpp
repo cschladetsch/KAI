@@ -40,33 +40,35 @@ void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Poin
 
 void SignedContinuation::Enter(Stack &stack)
 {
-	// reset the continuation
-	cont->Enter();
+	KAI_UNUSED_1(stack);
 
-	// ensure we have enough args
-	if (stack.Size() < (int)params.size())
-		KAI_THROW_0(EmptyStack);
-
-	// check argument types
-	FormalParameters::const_reverse_iterator A = params.rbegin(), B = params.rend();
-	for (int N = 0; A != B; ++A, ++N)
-	{
-		Object param = stack.At(N);
-		//if (!param.IsTypeNumber(A->type))
-		//	KAI_THROW_2(TypeMismatch, (int)param.GetTypeNumber().GetValue(), (int)A->type.GetValue());
-	}
-
-	// make a new scope
-	cont->SetScope(cont.New<void>());
-	
-//	std::cout << "set cont scope=" << cont->GetScope().GetHandle().GetValue() << std::endl;
-
-	// store the arguments
-	A = params.rbegin();
-	for (; A != B; ++A)
-	{
-		cont->GetScope().Set(A->label, stack.Pop());
-	}
+//	// reset the continuation
+//	cont->Enter();
+//
+//	// ensure we have enough args
+//	if (stack.Size() < (int)params.size())
+//		KAI_THROW_0(EmptyStack);
+//
+//	// check argument types
+//	FormalParameters::const_reverse_iterator A = params.rbegin(), B = params.rend();
+//	for (int N = 0; A != B; ++A, ++N)
+//	{
+//		Object param = stack.At(N);
+//		//if (!param.IsTypeNumber(A->type))
+//		//	KAI_THROW_2(TypeMismatch, (int)param.GetTypeNumber().GetValue(), (int)A->type.GetValue());
+//	}
+//
+//	// make a new scope
+//	cont->SetScope(cont.New<void>());
+//	
+////	std::cout << "set cont scope=" << cont->GetScope().GetHandle().GetValue() << std::endl;
+//
+//	// store the arguments
+//	A = params.rbegin();
+//	for (; A != B; ++A)
+//	{
+//		cont->GetScope().Set(A->label, stack.Pop());
+//	}
 }
 
 void SignedContinuation::Leave(Stack &)

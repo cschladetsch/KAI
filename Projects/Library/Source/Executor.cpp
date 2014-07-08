@@ -58,7 +58,7 @@ Object Executor::Pop()
 	return Pop(*data);
 }
 
-Pointer<const Stack> Executor::GetDataStack() const
+Pointer<Stack> Executor::GetDataStack()
 {
 	return data;
 }
@@ -73,7 +73,10 @@ void Executor::SetContinuation(Pointer<Continuation> C)
 {
 	continuation = C;
 	if (continuation.Exists())
+	{
+		continuation->Enter(this);
 		continuation->InitialStackDepth = data->Size();
+	}
 }
 
 struct Trace
@@ -86,7 +89,7 @@ struct Trace
 
 void Executor::Continue()
 {
-	Object const *next;
+	Object next;
 	while (continuation.Exists())
 	{
 		Break = false;
@@ -94,7 +97,7 @@ void Executor::Continue()
 		{
 			KAI_TRY
 			{
-				Eval(*next);
+				Eval(next);
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
@@ -176,12 +179,12 @@ void Executor::PushAll(const Cont &cont)
 	Push(New(cont.Size()));
 }
 
-Pointer<Continuation> NewContinuation(Pointer<Continuation> P)
+Pointer<Continuation> Executor::NewContinuation(Pointer<Continuation> P)
 {
 	Pointer<Continuation> R = P.New<Continuation>();
 	R->SetCode(P->GetCode());
 	R->SetScope(P->GetScope());
-	R->Enter();
+	R->Enter(this);
 	return R;
 }
 
@@ -485,14 +488,12 @@ void Executor::Perform(Operation::Type op)
 			case Type::Number::Continuation:
 				break;
 			}
-			continuation->Next();
+			//continuation->Next();
 			context->Push(continuation);
 			context->Push(where_to_go);
-			// TODO: FIXME: This is temporary to test bug in starting a duplicated continuation!!!
 			if (where_to_go.IsType<Continuation>())
 			{
-				auto c = Deref<Continuation>(where_to_go);
-				c.Enter();
+				Deref<Continuation>(where_to_go).Enter(this);
 			}
 			Break = true;
 		}
@@ -1127,26 +1128,27 @@ void Executor::DumpStack(Stack const &stack)
 	Write2Log(result.ToString().c_str());
 }
 
-void Executor::DumpContinuation(Continuation const &C, Continuation::InstructionPointer ip)
+void Executor::DumpContinuation(Continuation const &C, int ip)
 {
-	StringStream S;
-	S << "<< ";
-	if (C.GetCode().Exists())
-	{
-		Array::const_iterator A = C.GetCode()->Begin(), B = C.GetCode()->End();
-		for (; A != B; ++A)
-		{
-			if (A == ip)
-				S << "[[[";
-			S << *A;
-			if (A == ip)
-				S << "]]]";
-			S << " ";
-		}
-	}
-	S << ">>\n";
-	Trace::Debug() << S.ToString().c_str();
-	Write2Log(S.ToString().c_str());
+	KAI_UNUSED_2(C, ip);
+	//StringStream S;
+	//S << "<< ";
+	//if (C.GetCode().Exists())
+	//{
+	//	Array::const_iterator A = C.GetCode()->Begin(), B = C.GetCode()->End();
+	//	for (; A != B; ++A)
+	//	{
+	//		if (A == ip)
+	//			S << "[[[";
+	//		S << *A;
+	//		if (A == ip)
+	//			S << "]]]";
+	//		S << " ";
+	//	}
+	//}
+	//S << ">>\n";
+	//Trace::Debug() << S.ToString().c_str();
+	//Write2Log(S.ToString().c_str());
 }
 
 void Executor::SetTraceLevel(int N)

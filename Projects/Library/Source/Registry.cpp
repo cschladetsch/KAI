@@ -394,7 +394,7 @@ void Registry::Delete(Object const &object)
 Pointer<ClassBase const *> Registry::AddClass(Type::Number N, ClassBase const *K)
 {
 	classes[N.ToInt()] = K;
-	return 0;
+	return Pointer<ClassBase const *>();
 }
 
 Object Registry::GetObjectFoo(Handle H) const

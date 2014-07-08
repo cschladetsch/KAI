@@ -43,7 +43,7 @@ Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser:
 	{
 		KAI_TRACE_ERROR_1(p->Error);
 		std::cerr << p->Error;
-		return 0;
+		return Object();
 	}
 
 	return p->trans->stack.back();
@@ -57,7 +57,7 @@ Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName,
 	{
 		KAI_TRACE_ERROR_1(p->Error);
 		std::cerr << p->Error;
-		return 0;
+		return Object();
 	}
 
 	return p->trans->stack.back();
