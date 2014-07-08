@@ -472,6 +472,10 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::Suspend:
 		{
+			if (data->Size() < 1)
+			{
+				KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
+			}
 			Object where_to_go = Resolve(Pop());
 			switch (where_to_go.GetTypeNumber().GetValue())
 			{
@@ -577,6 +581,10 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::IfElse:
 		{
+			if (data->Size() < 3)
+			{
+				KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
+			}
 			Object C = Pop();
 			Object F = Pop();
 			Object T = Pop();
@@ -586,35 +594,29 @@ void Executor::Perform(Operation::Type op)
 				Push(F);
 		}
 		break;
-	//case Operation::IfThenSuspend:
-	//	{
-	//		Object then = Pop();
-	//		if (ConstDeref<bool>(Pop()))
-	//		{
-	//			continuation->Ip()++;
-	//			context->Push(continuation);
-	//			context->Push(NewContinuation(then));
-	//			Break = true;
-	//		}
-	//	}
-	//	break;
-	//case Operation::IfThenSuspendElseSuspend:
-	//	{
-	//		Pointer<Continuation> else_ = Pop();
-	//		Pointer<Continuation> then = Pop();
-	//		continuation->Ip()++;
-	//		context->Push(continuation);
-	//		if (ConstDeref<bool>(Pop()))
-	//		{
-	//			context->Push(NewContinuation(then));
-	//		}
-	//		else
-	//		{
-	//			context->Push(NewContinuation(else_));
-	//		}
-	//		Break = true;
-	//	}
-	//	break;
+	case Operation::IfThenSuspend:
+		{
+			Object then = Pop();
+			if (ConstDeref<bool>(Pop()))
+			{
+				context->Push(continuation);
+				context->Push(NewContinuation(then));
+				Break = true;
+			}
+		}
+		break;
+	case Operation::IfThenSuspendElseSuspend:
+		{
+			Pointer<Continuation> else_ = Pop();
+			Pointer<Continuation> then = Pop();
+			context->Push(continuation);
+			if (ConstDeref<bool>(Pop()))
+				context->Push(NewContinuation(then));
+			else
+				context->Push(NewContinuation(else_));
+			Break = true;
+		}
+		break;
 	case Operation::IfThenReplace:
 		ConditionalContextSwitch(Operation::Replace);
 		break;
@@ -834,36 +836,36 @@ void Executor::Perform(Operation::Type op)
 
 	case Operation::Plus:
 		{
-			Object B = Resolve(Pop(*data));
-			Object A = Resolve(Pop(*data));
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(*A.GetClass()->Plus(GetStorageBase(A), GetStorageBase(B)));
 		}
 		break;
 	case Operation::Minus:
 		{
-			Object B = Pop(*data);
-			Object A = Pop(*data);
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(*A.GetClass()->Minus(GetStorageBase(A), GetStorageBase(B)));
 		}
 		break;
 	case Operation::Multiply:
 		{
-			Object B = Pop(*data);
-			Object A = Pop(*data);
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(*A.GetClass()->Multiply(GetStorageBase(A), GetStorageBase(B)));
 		}
 		break;
 	case Operation::Divide:
 		{
-			Object B = Pop(*data);
-			Object A = Pop(*data);
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(*A.GetClass()->Divide(GetStorageBase(A), GetStorageBase(B)));
 		}
 		break;
 	case Operation::Store:
 		{
 			Object ident = Pop();
-			Object value = Pop();
+			Object value = ResolvePop();
 			if (!continuation->HasScope())
 				continuation->SetScope(New<void>());
 			Set(tree->GetRoot(), continuation->GetScope(), ident, value);
@@ -874,15 +876,15 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::Less:
 		{
-			Object B = Pop();
-			Object A = Pop();
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(New(A.GetClass()->Less2(A,B)));
 		}
 		break;
 	case Operation::NotEquiv:
 		{
-			Object B = Pop();
-			Object A = Pop();
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(New(!A.GetClass()->Equiv2(A,B)));
 		}
 		break;
@@ -895,8 +897,8 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::Greater:
 		{
-			Object B = Pop();
-			Object A = Pop();
+			Object B = ResolvePop();
+			Object A = ResolvePop();
 			Push(New(A.GetClass()->Greater2(A,B)));
 		}
 		break;
@@ -915,27 +917,27 @@ void Executor::Perform(Operation::Type op)
 		break;
 	case Operation::LogicalNot:
 		{
-			Push(New(!ConstDeref<bool>(Pop())));
+			Push(New(!ConstDeref<bool>(ResolvePop())));
 		}
 		break;
 	case Operation::LogicalAnd:
 		{
-			bool A = ConstDeref<bool>(Pop());
-			bool B = ConstDeref<bool>(Pop());
+			bool A = ConstDeref<bool>(ResolvePop());
+			bool B = ConstDeref<bool>(ResolvePop());
 			Push(New(A && B));
 		}
 		break;
 	case Operation::LogicalOr:
 		{
-			bool A = ConstDeref<bool>(Pop());
-			bool B = ConstDeref<bool>(Pop());
+			bool A = ConstDeref<bool>(ResolvePop());
+			bool B = ConstDeref<bool>(ResolvePop());
 			Push(New(A || B));
 		}
 		break;
 	case Operation::LogicalXor:
 		{
-			bool A = ConstDeref<bool>(Pop());
-			bool B = ConstDeref<bool>(Pop());
+			bool A = ConstDeref<bool>(ResolvePop());
+			bool B = ConstDeref<bool>(ResolvePop());
 			Push(New(A ^ B));
 		}
 		break;
@@ -967,6 +969,11 @@ void Executor::Perform(Operation::Type op)
 	OPERATION_NOT_IMPLEMENTED(BitwiseNand);
 	}
 }
+
+//Object Executor::ResolvePop()
+//{
+//	return Resolve(Pop());
+//}
 
 template <class D>
 Pointer<Array> Executor::ForEach(D const &C, Object const &F)

@@ -1,44 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Tests">
-      <UniqueIdentifier>{37a1a4e6-dcfb-4152-ba86-06229198bce5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\BuiltinTypes">
-      <UniqueIdentifier>{19ebf371-9271-4b35-af26-882535281794}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network">
-      <UniqueIdentifier>{fee3ea0c-b390-467a-adad-3e40c86e46c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network\Platform">
-      <UniqueIdentifier>{29a86f1b-40ec-48ca-888e-df7516fbfa57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network\Platform\PC">
-      <UniqueIdentifier>{d646e33d-581a-4914-8621-1de70bbc9de3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network\Platform\PC\Network">
-      <UniqueIdentifier>{eced009a-99ed-4c18-a96a-5186e54c7b77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Platform">
-      <UniqueIdentifier>{2dab56ac-4b1b-47d7-9dcf-75b0f3eadc55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Platform\PC">
-      <UniqueIdentifier>{c95c0252-70dd-4ac1-b246-a16206481063}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Platform\PC\Network">
-      <UniqueIdentifier>{0f1fb503-ff98-4aaa-8368-4876f63acc5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Test">
-      <UniqueIdentifier>{945ec437-1fab-4935-a5b0-cd8b74f4eeb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
     <Filter Include="Root">
       <UniqueIdentifier>{db077763-d854-40f6-b50c-cedd2bddf14c}</UniqueIdentifier>
     </Filter>
@@ -78,213 +40,251 @@
     <Filter Include="Include\Network">
       <UniqueIdentifier>{4453666f-d829-4a1d-ae39-6fb0567d1c68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Translator">
-      <UniqueIdentifier>{a12dc647-1106-4534-a07d-bc8ad3712db1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Include\Translator">
       <UniqueIdentifier>{8e1c05fd-5da3-4250-8bab-10efa86b113f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Tests\Scripts">
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\Tests">
+      <UniqueIdentifier>{37a1a4e6-dcfb-4152-ba86-06229198bce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tests\Scripts">
       <UniqueIdentifier>{05f7fda3-66db-4667-abd2-13cede01adf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\BuiltinTypes">
+      <UniqueIdentifier>{19ebf371-9271-4b35-af26-882535281794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Network">
+      <UniqueIdentifier>{fee3ea0c-b390-467a-adad-3e40c86e46c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Network\Platform">
+      <UniqueIdentifier>{29a86f1b-40ec-48ca-888e-df7516fbfa57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Network\Platform\PC">
+      <UniqueIdentifier>{d646e33d-581a-4914-8621-1de70bbc9de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Network\Platform\PC\Network">
+      <UniqueIdentifier>{eced009a-99ed-4c18-a96a-5186e54c7b77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform">
+      <UniqueIdentifier>{2dab56ac-4b1b-47d7-9dcf-75b0f3eadc55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform\PC">
+      <UniqueIdentifier>{c95c0252-70dd-4ac1-b246-a16206481063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform\PC\Network">
+      <UniqueIdentifier>{0f1fb503-ff98-4aaa-8368-4876f63acc5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Test">
+      <UniqueIdentifier>{945ec437-1fab-4935-a5b0-cd8b74f4eeb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Translator">
+      <UniqueIdentifier>{a12dc647-1106-4534-a07d-bc8ad3712db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\BinaryPacket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Compiler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Continuation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\DotGraph.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Example.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Exception.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Executor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="InstanceMap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\LibrarySource.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pathname.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Probes.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Registry.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\SignedContinuation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\StorageBase.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\StringStream.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tree.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utility.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestBinaryStream.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestClosure.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestCompiler.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestDerivation.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestDotGraph.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestEvents.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestExample.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestExecutor.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestFunction.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestMap.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestMethod.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestObject.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestObjectIndexing.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestPathname.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestProperties.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestRegistry.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestsPrecompiled.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestStringStream.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTemplate.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTest.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTree.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTriColor.cpp">
-      <Filter>Source Files\Tests</Filter>
+      <Filter>Source\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\Map.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </ClCompile>
     <ClCompile Include="Source\Network\Tcp.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source\Network</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
-      <Filter>Source Files\Network\Platform\PC\Network</Filter>
+      <Filter>Source\Network\Platform\PC\Network</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\BasicOutput.cpp">
-      <Filter>Source Files\Test</Filter>
+      <Filter>Source\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\Module.cpp">
-      <Filter>Source Files\Test</Filter>
+      <Filter>Source\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\TestSuite.cpp">
-      <Filter>Source Files\Test</Filter>
+      <Filter>Source\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\XmlOutput.cpp">
-      <Filter>Source Files\Test</Filter>
+      <Filter>Source\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Lexer.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Node.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\RhoLang.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Test.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Token.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Translator.cpp">
-      <Filter>Source Files\Translator</Filter>
+      <Filter>Source\Translator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Array.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
     <None Include="Source\BuiltinTypes\Label.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
     <None Include="Source\List.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
     <None Include="Source\BuiltinTypes\Set.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
     <None Include="Source\Stack.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
     <None Include="Source\String.inl">
-      <Filter>Source Files\BuiltinTypes</Filter>
+      <Filter>Source\BuiltinTypes</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -771,10 +771,10 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Source\CompilerTokens.inl">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\OperationToString.inl">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
