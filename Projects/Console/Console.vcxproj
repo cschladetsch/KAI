@@ -133,9 +133,10 @@
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\sdk\boost;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)/Bin/$(Platform)/$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\sdk\boost\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
