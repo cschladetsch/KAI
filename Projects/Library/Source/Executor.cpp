@@ -18,6 +18,8 @@
 
 void Write2Log(const char *) { }
 
+using namespace std;
+
 KAI_BEGIN
 
 const ClassBase *GetClass(Object const &Q);
@@ -90,7 +92,7 @@ struct Trace
 void Executor::Continue()
 {
 	Object next;
-	while (continuation.Exists())
+	for (;;)
 	{
 		Break = false;
 		if (continuation->Next(next))
@@ -101,10 +103,7 @@ void Executor::Continue()
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
-				KAI_TRACE_1(data);
-				if (continuation->GetSourceCode())
-					KAI_TRACE_1(*continuation->GetSourceCode());
-
+				KAI_TRACE_3(data, context, continuation);
 				KAI_TRACE_1(E);
 				(void)E;
 				throw;
@@ -114,7 +113,11 @@ void Executor::Continue()
 			Break = true;
 
 		if (Break)
+		{
 			NextContinuation();
+			if (!continuation.Exists())
+				return;
+		}
 	}
 }
 
@@ -146,7 +149,17 @@ void Executor::Eval(Object const &Q)
 			std::cout << "Stack:\n";
 			DumpStack(*data);
 		}
-		std::cout << "\nEval: " << Q.ToString().c_str() << "\n";//std::endl;
+		if (trace_level > 2)
+		{
+			std::cout << "Context:\n";
+			for (auto c : *context)
+			{
+				StringStream str;
+				str << c;
+				cout << str.ToString().c_str() << endl;
+			}
+		}
+		std::cout << "\nEval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
 	}
 
 	switch (GetTypeNumber(Q).value)
@@ -313,6 +326,16 @@ void Executor::Perform(Operation::Type op)
 {
 	switch (op)
 	{
+	case Operation::SuspendNew:
+	{
+		Continuation &c = Deref<Continuation>(ResolvePop().Clone());
+		*c.index = 0;
+		*c.entered = false;
+		c.scope = Object();
+		context->Push(*c.Self);
+		Break = true;
+		break;
+	}
 	case Operation::Lookup:
 		Push(Resolve(Pop()));
 		break;
@@ -1009,7 +1032,7 @@ Object Executor::Resolve(Object ident) const
 	return ident;
 }
 
-Object Executor::Resolve(Label const &label) const
+Object Executor::TryResolve(Label const &label) const
 {
 	// search in current scope
 	if (continuation)
@@ -1032,7 +1055,12 @@ Object Executor::Resolve(Label const &label) const
 	}
 
 	// finally, search the tree
-	Object object = tree->Resolve(label);
+	return tree->Resolve(label);
+}
+
+Object Executor::Resolve(Label const &label) const
+{
+	auto object = TryResolve(label);
 	if (!object.Valid())
 		KAI_THROW_1(CannotResolve, label);
 	return object;
@@ -1145,6 +1173,10 @@ void Executor::DumpStack(Stack const &stack)
 		result << *A;
 		if (is_string)
 			result << "\"";
+
+		if (A->GetTypeNumber() == Type::Number::Label)
+			result << " = " << TryResolve(ConstDeref<Label>(*A));
+
 		result << "\n";
 	}
 	Trace::Debug() << result.ToString().c_str();
