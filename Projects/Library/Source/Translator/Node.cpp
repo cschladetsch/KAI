@@ -23,6 +23,9 @@ const char *Node::ToString(Type ty)
 	case Conditional: return "If";
 	case ArgList: return "ArgList";
 	case IndexOp: return "Index";
+	case List: return "List";
+	case ForEach: return "ForEach";
+	case For: return "For";
 	}
 	return "???";
 }

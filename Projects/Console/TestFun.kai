@@ -1,0 +1,51 @@
+fun outer()
+	t = []
+
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	return mul(n, fact(n - 1))
+
+num = 42
+msg = "Hello, world"
+
+fun hello()
+	Print(msg)
+	Print(num)
+
+fun mul(a, b)
+	return a*b
+
+fun testFor()
+	for n = 0; n < 10; n+=1
+		Print(n)
+
+	s = "Hello"
+	for ch in s
+		Print(ch)
+
+	for n in 10
+		Print(n)
+		
+fun outer()
+	fun inner(a)
+		return a + 2
+
+	s = [1,2,3]
+	t = []
+	for e in s
+		t += inner(e)
+	Assert(t == [3,4,5])
+
+fun useGen()
+	fun gen(n)
+		while n > 0
+			n -= 1
+			yield n
+	r = []
+	for g in gen(3)
+		r += g
+	Assert(r == [2,1,0])
+
+
+

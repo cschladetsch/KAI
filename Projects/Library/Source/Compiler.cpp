@@ -38,9 +38,11 @@ Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser:
 {
 	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
 	p->Translate(text.c_str(), st);
-	//p->Print();
+	p->Print();
 	if (p->Failed)
 	{
+		KAI_TRACE_1(p->trans->Result());
+
 		KAI_TRACE_ERROR_1(p->Error);
 		std::cerr << p->Error;
 		return Object();

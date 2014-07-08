@@ -58,9 +58,7 @@ int main(int argc, char **argv)
 
 		Test::Module module;
 		module.AddSuite<Tests::TestCompiler>("TesCompiler");
-	
 		Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
-		
 		module.Run(out);
 
 	Run(console);

@@ -53,13 +53,15 @@ bool RhoLang::Translate(const char *text, Parser::Structure st)
 	lex = std::make_shared<Lexer>(text);
 	parse = std::make_shared<Parser>(lex, st);
 	trans = std::make_shared<Translator>(parse, reg);
+
 	if (lex->Failed)
-		return Fail(lex->Error);
+		Fail(lex->Error);
 	if (parse->Failed)
-		return Fail(parse->Error);
+		Fail(parse->Error);
 	if (trans->Failed)
-		return Fail(trans->Error);
-	return true;
+		Fail(trans->Error);
+
+	return !Failed;
 }
 
 KAI_END

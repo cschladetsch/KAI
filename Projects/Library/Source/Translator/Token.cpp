@@ -66,6 +66,12 @@ const char * Token::ToString(Type t)
 	case Fun: return "Fun";
 	case Tab: return "Tab";
 	case NewLine: return "NewLine";
+	case Comment: return "Comment";
+	case PlusAssign: return "PlusAssign";
+	case MinusAssign: return "MinusAssign";
+	case MulAssign: return "MulAssign";
+	case DivAssign: return "DivAssign";
+	case Yield: return "Yield";
 	}
 	static char b[100];
 	_itoa_s(t, b, 100, 10);
