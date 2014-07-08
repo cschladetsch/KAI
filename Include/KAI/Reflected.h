@@ -1,3 +1,4 @@
+// (C) 2014 christian.schladetsch@gmal.com
 
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
@@ -10,27 +11,38 @@ KAI_BEGIN
 
 /// A Reflected type has a Self pointer. This is semantically same as C++'s 'this' pointer,
 /// but using the Object Model of the system
+///
+/// TODO: there doesn't seem to be any point to passing through the reflected type
 template <class T>
 struct Reflected : ReflectedBase
 {
-	T *This;
+	Registry &Reg() const
+	{
+		return *Self->GetRegistry();
+	}
 
 	template <class U>
 	Pointer<U> New() const
 	{
-		return Self->GetRegistry()->New<U>();
+		return Reg().New<U>();
 	}
 
 	template <class U>
 	Pointer<U> NewRetained() const
 	{
-		return Self->GetRegistry()->NewRetained<U>();
+		return Reg().NewRetained<U>();
 	}
 
 	template <class U>
 	Pointer<U> New(const U &X) const
 	{
-		return Self->GetRegistry()->New<U>(X);
+		return Reg().New<U>(X);
+	}
+
+	template <class U>
+	Storage<U> *NewStorage() const
+	{
+		return Reg().NewStorage<U>();
 	}
 
 	Object NewFromTypeNumber(Type::Number type_number)
@@ -41,12 +53,6 @@ struct Reflected : ReflectedBase
 	Object NewFromClassName(String const &type_name) const
 	{
 		return Self->NewFromClassName(type_name.c_str());
-	}
-
-	template <class U>
-	Storage<U> *NewStorage() const
-	{
-		return Self->GetRegistry()->NewStorage<U>();
 	}
 };
 

@@ -1,10 +1,7 @@
-fun mul(a, b)
-	return a*b
 
-fun fact(n)
-	if n == 0 || n == 1
-		return 1
-	return mul(n, fact(n - 1))
+fun fail()
+	if a == 0
+		Print)
 
 fun r(n)
 	return r(n - 1)

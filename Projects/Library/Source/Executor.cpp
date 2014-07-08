@@ -142,25 +142,7 @@ void Executor::Push(Stack& L, Object const &Q)
 
 void Executor::Eval(Object const &Q)
 {
-	if (trace_level > 0)
-	{
-		if (trace_level > 1)
-		{
-			std::cout << "Stack:\n";
-			DumpStack(*data);
-		}
-		if (trace_level > 2)
-		{
-			std::cout << "Context:\n";
-			for (auto c : *context)
-			{
-				StringStream str;
-				str << c;
-				cout << str.ToString().c_str() << endl;
-			}
-		}
-		std::cout << "\nEval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
-	}
+	Dump(Q);
 
 	switch (GetTypeNumber(Q).value)
 	{
@@ -181,6 +163,8 @@ void Executor::Eval(Object const &Q)
 			Push(Q.Clone());
 		}
 	}
+	cout << "AFTER --" << endl;
+	Dump(Q);
 }
 
 template <class Cont>
@@ -332,6 +316,7 @@ void Executor::Perform(Operation::Type op)
 		*c.index = 0;
 		*c.entered = false;
 		c.scope = Object();
+		c.Enter(this);
 		context->Push(*c.Self);
 		Break = true;
 		break;
@@ -1227,6 +1212,29 @@ void Executor::Register(Registry &R, const char * N)
 			("Context", &Executor::context)
 			("Data", &Executor::data)
 		;
+}
+
+void Executor::Dump(Object const &Q)
+{
+	if (trace_level > 0)
+	{
+		if (trace_level > 1)
+		{
+			std::cout << "Stack:\n";
+			DumpStack(*data);
+		}
+		if (trace_level > 2)
+		{
+			std::cout << "Context:\n";
+			for (auto c : *context)
+			{
+				StringStream str;
+				str << c;
+				cout << str.ToString().c_str() << endl;
+			}
+		}
+		std::cout << "\nEval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
+	}
 }
 
 KAI_END

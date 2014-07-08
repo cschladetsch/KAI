@@ -1,3 +1,5 @@
+// (C) 2014 christian.schladetsch@gmail.com
+
 #include "KAI/KAI.h"
 #include "KAI/Translator/Parser.h"
 
@@ -15,7 +17,7 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	current = 0;
 	indent = 0;
 
-	// strip whitespace
+	// strip whitespace and comments
 	for (auto tok : lexer->tokens)
 		if (tok.type != Token::Whitespace && tok.type != Token::Comment)
 			tokens.push_back(tok);
@@ -48,7 +50,11 @@ void Parser::Run(Structure st)
 			Statement(root);
 			break;
 		case ParseExpression:
-			Expression();
+			if (!Expression())
+			{
+				CreateError("Express yourself");
+				return;
+			}
 			root->Add(Pop());
 			break;
 		case ParseFunction:
@@ -108,13 +114,11 @@ void Parser::Function(NodePtr node)
 			args->Add(Expect(Token::Ident));
 		}
 	}
+
 	Expect(Token::CloseParan);
 	Expect(Token::NewLine);
 	
-	auto block = NewNode(Node::Block);
-	Block(block);
-	fun->Add(block);
-	node->Add(fun);
+	AddBlock(fun);
 }
 
 Parser::NodePtr Parser::NewNode(Node::Type t)
@@ -337,7 +341,7 @@ bool Parser::Logical()
 		node->Add(Pop());
 		if (!Relational())
 		{
-			return Fail(Lexer::CreateError(Current(), "expression expected"));
+			return Fail(Lexer::CreateError(Current(), "Relational expected"));
 		}
 		node->Add(Pop());
 		Push(node);
@@ -351,13 +355,14 @@ bool Parser::Relational()
 	if (!Additive())
 		return false;
 
-	while (Try(Token::Less) || Try(Token::Greater) || Try(Token::Equiv) || Try(Token::NotEquiv) || Try(Token::LessEquiv) || Try(Token::GreaterEqiv))
+	while (Try(Token::Less) || Try(Token::Greater) || Try(Token::Equiv) || Try(Token::NotEquiv)
+		|| Try(Token::LessEquiv) || Try(Token::GreaterEqiv))
 	{
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Additive())
 		{
-			return Fail(Lexer::CreateError(Current(), "expression expected"));
+			return CreateError("Additive expected");
 		}
 		node->Add(Pop());
 		Push(node);
@@ -375,7 +380,7 @@ bool Parser::Additive()
 		Consume();
 		if (!Term())
 		{
-			return Fail(Lexer::CreateError(Current(), "term expected"));
+			return CreateError("Term expected");
 		}
 		auto node = new Node(ty == Token::Plus ? Node::Positive : Node::Negative);
 		node->Add(Pop());
@@ -391,8 +396,7 @@ bool Parser::Additive()
 		node->Add(Pop());
 		if (!Term())
 		{
-			Fail(Lexer::CreateError(Current(), "Term needed"));
-			return false;
+			return CreateError("Term expected");
 		}
 		node->Add(Pop());
 		Push(node);
@@ -408,9 +412,12 @@ bool Parser::Term()
 
 	while (Try(Token::Mul) || Try(Token::Divide))
 	{
-		auto node = NewNode(Consume());;
+		auto node = NewNode(Consume());
 		node->Add(Pop());
-		Factor();
+		if (!Factor())
+		{
+			return CreateError("Factor expected");
+		}
 		node->Add(Pop());
 		Push(node);
 	}
@@ -424,7 +431,11 @@ bool Parser::Factor()
 	if (paran)
 	{
 		Consume();
-		Expression();
+		if (!Expression())
+		{
+			CreateError("You can do better");
+			return false;
+		}
 		Expect(Token::CloseParan);
 		return true;
 	}
@@ -474,7 +485,7 @@ Parser::NodePtr Parser::Pop()
 {
 	if (stack.empty())
 	{
-		Fail(Lexer::CreateError(Current(), "Element expected"));
+		CreateError("Internal Error: Parse stack empty");
 		throw StackError();
 	}
 	auto last = stack.back();
@@ -581,11 +592,14 @@ void Parser::IfCondition(NodePtr block)
 	if (!Try(Token::If))
 		return;
 
-	Consume(); 
+	Consume();
 
 	// get the test expression
-	//Expect(Token::OpenParan);
-	Expression();
+	if (!Expression())
+	{
+		CreateError("If what?");
+		return;
+	}
 	NodePtr condition = Pop();
 	//Expect(Token::CloseParan);
 
@@ -615,7 +629,11 @@ void Parser::ParseIndexOp()
 	Consume();
 	auto index = NewNode(Node::IndexOp);
 	index->Add(Pop());
-	Expression();
+	if (!Expression())
+	{
+		CreateError("Index what?");
+		return;
+	}
 	Expect(Token::CloseSquareBracket);
 	index->Add(Pop());
 	Push(index);
@@ -628,13 +646,22 @@ void Parser::For(NodePtr block)
 	Consume();
 
 	auto f = NewNode(Node::For);
-	Expression();
+	if (!Expression())
+	{
+		CreateError("For what?");
+		return;
+	}
+
 	if (Try(Token::In))
 	{
 		Consume();
 		f->Add(Pop());
 
-		Expression();
+		if (!Expression())
+		{
+			CreateError("For each in what?");
+			return;
+		}
 		f->Add(Pop());
 	}
 	else
@@ -642,19 +669,24 @@ void Parser::For(NodePtr block)
 		Expect(Token::Semi);
 		f->Add(Pop());
 
-		Expression();
+		if (!Expression())
+		{
+			CreateError("When does the for statement stop?");
+			return;
+		}
 		f->Add(Pop());
 		Expect(Token::Semi);
 
-		Expression();
+		if (!Expression())
+		{
+			CreateError("What happens when a for statement ends?");
+			return;
+		}
 		f->Add(Pop());
 	}
 
 	Expect(Token::NewLine);
-	auto body = NewNode(Node::Block);
-	Block(body);
-	f->Add(body);
-	block->Add(f);
+	AddBlock(f);
 }
 
 void Parser::While(NodePtr block)
@@ -662,15 +694,23 @@ void Parser::While(NodePtr block)
 	auto w = NewNode(Consume());
 	if (!Expression())
 	{
-		Fail(Lexer::CreateError(Current(), "While requires an expression"));
+		CreateError("While what?");
 		return;
 	}
 	w->Add(Pop());
+	AddBlock(w);
+}
 
-	auto body = NewNode(Node::Block);
-	Block(body);
-	w->Add(body);
-	block->Add(w);
+bool Parser::CreateError(const char *text)
+{
+	return Fail(Lexer::CreateError(Current(), text));
+}
+
+void Parser::AddBlock(NodePtr fun)
+{
+	auto block = NewNode(Node::Block);
+	Block(block);
+	fun->Add(block);
 }
 
 Parser::Unexpected::Unexpected(Token::Type ty)
