@@ -84,7 +84,7 @@ void TestCompiler::TestFunctions()
 //, Parser::ParseFunction);
 //	KAI_TRACE_1(f);
 //
-//	//c.GetExecutor()->SetTraceLevel(100);
+	c.GetExecutor()->SetTraceLevel(100);
 //	c.Execute(f);
 //	c.Execute("f()");
 //

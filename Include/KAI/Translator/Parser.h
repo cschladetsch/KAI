@@ -81,6 +81,9 @@ private:
 
 	void ParseMethodCall();
 	void Function(NodePtr);
+
+	void AddBlock(Parser::NodePtr fun);
+
 	Parser::NodePtr NewNode(Node::Type t);
 	Parser::NodePtr NewNode(Token const &);
 	void IfCondition(NodePtr block);
@@ -88,6 +91,7 @@ private:
 	void Assignment(NodePtr);
 	void For(NodePtr block);
 	void While(NodePtr block);
+	bool CreateError(const char *text);
 };
 
 KAI_END

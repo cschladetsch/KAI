@@ -231,17 +231,26 @@ std::string Lexer::CreateError(Token tok, const char *fmt, ...)
 	err << buff << endl;
 	for (int n = start; n <= end; ++n)
 	{
-		err << lex.lines[n];
+		for (auto ch : lex.lines[n])
+		{
+			if (ch == '\t')
+				err << "    ";
+			else
+				err << ch;
+		}
 		if (n == tok.lineNumber)
 		{
-			for (int c = 0; c < tok.slice.Start; ++c)
+			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
 			{
-				if (c == '\t')
+				if (lex.lines[tok.lineNumber][ch] == '\t')
 					err << "    ";
-				else
-					err << ' ';
+				else if (ch == tok.slice.Start)
+				{
+					err << '^';
+					break;
+				}
 			}
-			err << '^' << endl;
+			err << endl;
 		}
 	}
 	err << ends;
