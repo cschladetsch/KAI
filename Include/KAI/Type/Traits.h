@@ -35,9 +35,9 @@ struct ReflectedBase
 
 	virtual ~ReflectedBase() { }
 	
-	virtual void Create() { }				//< called after object constructed, but before first use
-	virtual bool Destroy() { return true; }				//< called when object moved to deathrow, but before deleted
-	virtual void Delete() { }				//< called immediately before resources are released
+	virtual void Create() { }				// called after object constructed, but before first use
+	virtual bool Destroy() { return true; }	// called when object moved to deathrow, but before deleted
+	virtual void Delete() { }				// called immediately before resources are released
 };
 
 typedef nstd::size_t HashValue;

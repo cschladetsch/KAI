@@ -34,7 +34,10 @@ public:
 	void Continue();
 
 	void Eval(Object const &Q);
-	
+
+	void Dump(Object const &Q);
+
+
 	void SetTree(Tree *T) { tree = T; }
 	Tree *GetTree() const { return tree; }
 
