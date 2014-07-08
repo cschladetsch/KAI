@@ -1,3 +1,9 @@
+fun mul(a, b)
+	return a*b
+
+fun tm()
+	assert mul(2,3) == 6
+
 
 fun fact(n)
 	if n == 0 || n == 1
@@ -10,9 +16,6 @@ msg = "Hello, world"
 fun hello()
 	Print(msg)
 	Print(num)
-
-fun mul(a, b)
-	return a*b
 
 fun testFor()
 	for n = 0; n < 10; n+=1

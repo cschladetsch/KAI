@@ -57,6 +57,7 @@ struct Token
 		Suspend, Replace, Resume,
 		PlusAssign, MinusAssign, MulAssign, DivAssign,
 		In, Colon,
+		Assert,
 
 	};
 
