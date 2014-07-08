@@ -1,0 +1,4 @@
+
+Continuations shouldn't copy everything when they are duplicated
+	- otherwise, the next time they are entered they will not be at the start
+
