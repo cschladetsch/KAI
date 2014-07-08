@@ -292,9 +292,6 @@
     <None Include="Source\String.inl">
       <Filter>Source Files\BuiltinTypes</Filter>
     </None>
-    <None Include="Source\Tests\Scripts\TestFun.kai">
-      <Filter>Source Files\Tests\Scripts</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Accessor.h">

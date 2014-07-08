@@ -85,6 +85,9 @@ private:
 	Parser::NodePtr NewNode(Token const &);
 	void IfCondition(NodePtr block);
 	void ParseIndexOp();
+	void Assignment(NodePtr);
+	void For(NodePtr block);
+	void While(NodePtr block);
 };
 
 KAI_END

@@ -84,6 +84,10 @@ const char *Operation::ToString(int value)
 		CASE(Index);
 		CASE(Lookup);
 
+		CASE(If);
+		CASE(IfElse);
+		CASE(ForEachContained);
+
 	}
 	return "?UNKNOWN_OP?";
 }

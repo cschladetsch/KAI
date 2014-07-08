@@ -17,7 +17,7 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 
 	// strip whitespace
 	for (auto tok : lexer->tokens)
-		if (tok.type != Token::Whitespace)
+		if (tok.type != Token::Whitespace && tok.type != Token::Comment)
 			tokens.push_back(tok);
 
 	root = std::make_shared<Node>(Node::Program);
@@ -63,15 +63,38 @@ void Parser::Run(Structure st)
 	}
 	catch (Exception &)
 	{
+		//cerr << Error << endl;
 	}
 }
 
 bool Parser::Program()
 {
-	while (!Try(Token::None))
-		Function(root);
+	while (!Try(Token::None) && !Failed)
+	{
+		while (Try(Token::NewLine))
+			Next();
+
+		if (Try(Token::Fun))
+			Function(root);
+		else
+			Statement(root);
+	}
 
 	return true;
+}
+
+void Parser::Assignment(NodePtr node)
+{
+	Expression();
+	Expect(Token::Assign);
+	auto a = NewNode(Node::Assignment);
+	a->Add(Pop());
+	Expression();
+	if (Try(Token::NewLine))
+		return;
+	Expect(Token::Semi);
+	a->Add(Pop());
+	node->Add(a);
 }
 
 void Parser::Function(NodePtr node)
@@ -120,6 +143,9 @@ Parser::NodePtr Parser::NewNode(Token const &t)
 
 void Parser::Block(NodePtr node)
 {
+	while (Try(Token::NewLine))
+		Consume();
+
 	++indent;
 	while (!Failed)
 	{
@@ -128,6 +154,12 @@ void Parser::Block(NodePtr node)
 		{
 			++level;
 			Consume();
+		}
+
+		if (Try(Token::NewLine))
+		{
+			Consume();
+			continue;
 		}
 
 		// close current block
@@ -158,6 +190,7 @@ bool Parser::Statement(NodePtr block)
 	switch (Current().type)
 	{
 		case Token::Return:
+		case Token::Yield:
 		{
 			auto ret = NewNode(Consume());
 			if (Expression())
@@ -167,7 +200,17 @@ bool Parser::Statement(NodePtr block)
 			block->Add(ret);
 			goto finis;
 		}
-
+		
+		case Token::While:
+		{
+			While(block);
+			return true;
+		}
+		case Token::For:
+		{
+			For(block);
+			return true;
+		}
 		case Token::If:
 		{
 			IfCondition(block);
@@ -183,20 +226,6 @@ bool Parser::Statement(NodePtr block)
 
 	if (!Expression())
 		return false;
-
-	if (Try(Token::Assign))
-	{
-		Consume();
-		auto node = NewNode(Node::Assignment);
-		node->Add(Pop());
-		if (!Expression())
-		{
-			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
-			return false;
-		}
-		node->Add(Pop());
-		Push(node);
-	}
 
 	block->Add(Pop());
 
@@ -278,7 +307,24 @@ bool Parser::Expression()
 		root->Add(Pop());
 		return true;
 	}
-	return Logical();
+
+	if (!Logical())
+		return false;
+
+	if (Try(Token::Assign) || Try(Token::PlusAssign) || Try(Token::MinusAssign) || Try(Token::MulAssign) || Try(Token::DivAssign))
+	{
+		auto node = NewNode(Consume());
+		node->Add(Pop());
+		if (!Logical())
+		{
+			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
+			return false;
+		}
+		node->Add(Pop());
+		Push(node);
+	}
+
+	return true;
 }
 
 bool Parser::Logical()
@@ -345,7 +391,10 @@ bool Parser::Additive()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Term())
-			Fail("Term needed");
+		{
+			Fail(Lexer::CreateError(Current(), "Term needed"));
+			return false;
+		}
 		node->Add(Pop());
 		Push(node);
 	}
@@ -378,6 +427,21 @@ bool Parser::Factor()
 		Consume();
 		Expression();
 		Expect(Token::CloseParan);
+		return true;
+	}
+
+	if (Try(Token::OpenSquareBracket))
+	{
+		NodePtr list = NewNode(Node::List);
+		do
+		{
+			Consume();
+			if (Expression())
+				list->Add(Pop());
+		} while (Try(Token::Comma));
+
+		Expect(Token::CloseSquareBracket);
+		Push(list);
 		return true;
 	}
 
@@ -556,6 +620,58 @@ void Parser::ParseIndexOp()
 	Expect(Token::CloseSquareBracket);
 	index->Add(Pop());
 	Push(index);
+}
+
+void Parser::For(NodePtr block)
+{
+	if (!Try(Token::For))
+		return;
+	Consume();
+
+	auto f = NewNode(Node::For);
+	Expression();
+	if (Try(Token::In))
+	{
+		Consume();
+		f->Add(Pop());
+
+		Expression();
+		f->Add(Pop());
+	}
+	else
+	{
+		Expect(Token::Semi);
+		f->Add(Pop());
+
+		Expression();
+		f->Add(Pop());
+		Expect(Token::Semi);
+
+		Expression();
+		f->Add(Pop());
+	}
+
+	Expect(Token::NewLine);
+	auto body = NewNode(Node::Block);
+	Block(body);
+	f->Add(body);
+	block->Add(f);
+}
+
+void Parser::While(NodePtr block)
+{
+	auto w = NewNode(Consume());
+	if (!Expression())
+	{
+		Fail(Lexer::CreateError(Current(), "While requires an expression"));
+		return;
+	}
+	w->Add(Pop());
+
+	auto body = NewNode(Node::Block);
+	Block(body);
+	w->Add(body);
+	block->Add(w);
 }
 
 Parser::Unexpected::Unexpected(Token::Type ty)

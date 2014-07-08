@@ -24,6 +24,24 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 {
 	switch (node->token.type)
 	{
+	case Token::While:
+		TranslateWhile(node);
+		return;
+	case Token::DivAssign:
+		TranslateBinaryOp(node, Operation::DivEquals);
+		return;
+	case Token::MulAssign:
+		TranslateBinaryOp(node, Operation::MulEquals);
+		return;
+	case Token::MinusAssign:
+		TranslateBinaryOp(node, Operation::MinusEquals);
+		return;
+	case Token::PlusAssign:
+		TranslateBinaryOp(node, Operation::PlusEquals);
+		return;
+	case Token::Assign:
+		TranslateBinaryOp(node, Operation::Store);
+		return;
 	case Token::Lookup:
 		AppendNewOp(Operation::Lookup);
 		return;
@@ -76,6 +94,7 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 		return;
 	}
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
+	throw Unsupported();
 }
 
 void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
@@ -108,7 +127,29 @@ void Translator::Translate(Parser::NodePtr node)
 	case Node::Call:
 		TranslateCall(node);
 		return;
+	case Node::Conditional:
+		TranslateIf(node);
+		return;
+	case Node::Block:
+		PushNew();
+		for (auto st : node->Children)
+			Translate(st);
+		Append(Pop());
+		return;
+	case Node::List:
+		for (auto ch : node->Children)
+			Translate(ch);
+		AppendNew<int>(node->Children.size());
+		AppendNewOp(Operation::ToArray);
+		return;
+	case Node::For:
+		TranslateFor(node);
+		return;
+	case Node::Function:
+		TranslateFunction(node);
+		return;
 	}
+
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
 	throw Unsupported();
 }
@@ -147,8 +188,8 @@ void Translator::Traverse(NodePtr node)
 	switch (node->type)
 	{
 	case Node::Program:
-		if (!node->Children.empty())
-			Traverse(node->Children[0]);
+		for (auto ch : node->Children)
+			Translate(ch);
 		break;
 	case Node::Function:
 		TranslateFunction(node);
@@ -206,6 +247,37 @@ std::string Translator::Result() const
 void Translator::AppendNewOp(Operation::Type op)
 {
 	AppendNew<Operation>(Operation(op));
+}
+
+void Translator::TranslateIf(Parser::NodePtr node)
+{
+	Node::ChildrenType const &ch = node->Children;
+	bool hasElse = ch.size() > 2;
+	if (hasElse)
+		Translate(ch[2]);
+	Translate(ch[1]);
+	Translate(ch[0]);
+	AppendNewOp(hasElse ? Operation::If : Operation::IfElse);
+	AppendNewOp(Operation::Suspend);
+}
+
+void Translator::TranslateFor(Parser::NodePtr node)
+{
+	// TODO
+	//Node::ChildrenType &ch = node->Children;
+	//Translate(ch[0]);
+	//if (ch.size() == 2)
+	//{
+	//	AppendNewOp(Operation::ForEachContained);
+	//}
+
+	AppendNewOp(Operation::None);
+}
+
+void Translator::TranslateWhile(Parser::NodePtr node)
+{
+	AppendNewOp(Operation::None);
+	//throw std::logic_error("The method or operation is not implemented.");
 }
 
 KAI_END

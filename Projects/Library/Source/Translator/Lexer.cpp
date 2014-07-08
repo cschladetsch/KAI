@@ -28,6 +28,9 @@ void Lexer::AddKeywords()
 	keyWords["return"] = Token::Return;
 	keyWords["self"] = Token::Self;
 	keyWords["fun"] = Token::Fun;
+	keyWords["yield"] = Token::Yield;
+	keyWords["in"] = Token::In;
+	keyWords["while"] = Token::While;
 }
 
 bool Lexer::Run()
@@ -102,17 +105,73 @@ bool Lexer::NextToken()
 
 	switch (current)
 	{
+	case ':': return Add(Token::Colon);
 	case '\t': return Add(Token::Tab);
 	case '\n': return Add(Token::NewLine);
 	case ' ': return Add(Token::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Token::Lookup);
 	case '\'': return LexAlpha();
-	case '-': return Add(Token::Minus);
-	case '.': return Add(Token::Dot);
+	case '-':
+	{
+		if (Peek() == '-')
+		{
+			Next();
+			return Add(Token::Decrement);
+		}
+		if (Peek() == '=')
+		{
+			Next();
+			return Add(Token::MinusAssign);
+		}
+		return Add(Token::Minus);
+	}
+	
+	case '.':
+	{
+		if (Peek() == '.')
+		{
+			Next();
+			if (Peek() == '.')
+			{
+				Next();
+				return Add(Token::Replace, 3);
+			}
+			else
+			{
+				return Fail("Two dots");
+			}
+		}
+		return Add(Token::Dot);
+	}
+
 	case ',': return Add(Token::Comma);
-	case '+': return AddIfNext('+', Token::Increment, Token::Plus);
+	case '+': 
+	{
+		if (Peek() == '+')
+		{
+			Next();
+			return Add(Token::Increment);
+		}
+		if (Peek() == '=')
+		{
+			Next();
+			return Add(Token::PlusAssign);
+		}
+		return Add(Token::Plus);
+	}
 	case '*': return Add(Token::Mul);
-	case '/': return Add(Token::Divide);
+	case '/':
+	{
+		if (Peek() == '/')
+		{
+			Next();
+			int start = offset;
+			while (Next() != '\n')
+				;
+			return Add(Token::Comment, offset - start);
+		}
+		return Add(Token::Divide);
+	}
 	case ';': return Add(Token::Semi);
 	case '{': return Add(Token::OpenBrace);
 	case '}': return Add(Token::CloseBrace);
@@ -175,7 +234,12 @@ std::string Lexer::CreateError(Token tok, const char *fmt, ...)
 		if (n == tok.lineNumber)
 		{
 			for (int c = 0; c < tok.slice.Start; ++c)
-				err << ' ';
+			{
+				if (c == '\t')
+					err << "    ";
+				else
+					err << ' ';
+			}
 			err << '^' << endl;
 		}
 	}

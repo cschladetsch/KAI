@@ -553,6 +553,22 @@ void Executor::Perform(Operation::Type op)
 	case Operation::Executor:
 		Push(*Self);
 		break;
+	case Operation::ForEachContained:
+	{
+		Object gen = Pop();
+		//Label const &name = ConstDeref<Label>(Pop());
+		switch (gen.GetTypeNumber().ToInt())
+		{
+		case Type::Number::Set:
+		case Type::Number::Map:
+		case Type::Number::Array:
+		case Type::Number::String:
+			break;
+		}
+		KAI_NOT_IMPLEMENTED();
+		break;
+	}
+
 	case Operation::If:
 		{
 			if (!ConstDeref<bool>(Pop()))

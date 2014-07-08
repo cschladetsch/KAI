@@ -12,9 +12,6 @@ void Continuation::Create()
 	entered = New<bool>(false);
 	args = New<Array>();
 	index = New<int>(0);
-
-	KAI_TRACE() << "Create: " << Self->GetHandle() << ": @" << (long)Self << ": " << (long)this << " " << (long)&entered;
-
 }
 
 bool Continuation::Destroy()
@@ -30,8 +27,6 @@ void Continuation::SetCode(Code C)
 
 void Continuation::Enter(Executor *exec)
 {
-	KAI_TRACE() << "Enter: " << Self->GetHandle() << ": @" << (long)Self << ": " << (long)this << " " << (long)&entered;
-
 	if (*entered)
 		return;
 

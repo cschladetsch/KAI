@@ -1,0 +1,256 @@
+Module: Start 
+    Suite: TestCompiler
+Input--
+fun outer()
+	t = []
+
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	return mul(n, fact(n - 1))
+
+num = 42
+msg = "Hello, world"
+
+fun hello()
+	Print(msg)
+	Print(num)
+
+fun mul(a, b)
+	return a*b
+
+fun testFor()
+	for n = 0; n < 10; n+=1
+		Print(n)
+
+	s = "Hello"
+	for ch in s
+		Print(ch)
+
+	for n in 10
+		Print(n)
+		
+fun outer()
+	fun inner(a)
+		return a + 2
+
+	s = [1,2,3]
+	t = []
+	for e in s
+		t += inner(e)
+	Assert(t == [3,4,5])
+
+fun useGen()
+	fun gen(n)
+		while n > 0
+			n -= 1
+			yield n
+	r = []
+	for g in gen(3)
+		r += g
+	assert r == [2,1,0]
+	
+
+
+
+
+
+Lexer--
+Fun  Ident=outer OpenParan CloseParan NewLine Tab Ident=t  Assign  OpenSquareBracket CloseSquareBracket NewLine NewLine Fun  Ident=fact OpenParan Ident=n CloseParan NewLine Tab If  Ident=n  Equiv Int=0  Or Ident=n  Equiv Int=1 NewLine Tab Tab Return  Int=1 NewLine Tab Return  Ident=mul OpenParan Ident=n Comma  Ident=fact OpenParan Ident=n  Minus  Int=1 CloseParan CloseParan NewLine NewLine Ident=num  Assign  Int=42 NewLine Ident=msg  Assign  String="Hello, world" NewLine NewLine Fun  Ident=hello OpenParan CloseParan NewLine Tab Ident=Print OpenParan Ident=msg CloseParan NewLine Tab Ident=Print OpenParan Ident=num CloseParan NewLine NewLine Fun  Ident=mul OpenParan Ident=a Comma  Ident=b CloseParan NewLine Tab Return  Ident=a Mul Ident=b NewLine NewLine Fun  Ident=testFor OpenParan CloseParan NewLine Tab For  Ident=n  Assign  Int=0 Semi  Ident=n  Less  Int=10 Semi  Ident=n PlusAssign Int=1 NewLine Tab Tab Ident=Print OpenParan Ident=n CloseParan NewLine NewLine Tab Ident=s  Assign  String="Hello" NewLine Tab For  Ident=ch  56  Ident=s NewLine Tab Tab Ident=Print OpenParan Ident=ch CloseParan NewLine NewLine Tab For  Ident=n  56  Int=10 NewLine Tab Tab Ident=Print OpenParan Ident=n CloseParan NewLine Tab Tab NewLine Fun  Ident=outer OpenParan CloseParan NewLine Tab Fun  Ident=inner OpenParan Ident=a CloseParan NewLine Tab Tab Return  Ident=a  Plus  Int=2 NewLine NewLine Tab Ident=s  Assign  OpenSquareBracket Int=1 Comma Int=2 Comma Int=3 CloseSquareBracket NewLine Tab Ident=t  Assign  OpenSquareBracket CloseSquareBracket NewLine Tab For  Ident=e  56  Ident=s NewLine Tab Tab Ident=t  PlusAssign  Ident=inner OpenParan Ident=e CloseParan NewLine Tab Ident=Assert OpenParan Ident=t  Equiv OpenSquareBracket Int=3 Comma Int=4 Comma Int=5 CloseSquareBracket CloseParan NewLine NewLine Fun  Ident=useGen OpenParan CloseParan NewLine Tab Fun  Ident=gen OpenParan Ident=n CloseParan NewLine Tab Tab While  Ident=n  Greater  Int=0 NewLine Tab Tab Tab Ident=n  Minus Assign  Int=1 NewLine Tab Tab Tab Yield  Ident=n NewLine Tab Ident=r  Assign  OpenSquareBracket CloseSquareBracket NewLine Tab For  Ident=g  56  Ident=gen OpenParan Int=3 CloseParan NewLine Tab Tab Ident=r  PlusAssign  Ident=g NewLine Tab Ident=assert  Ident=r  Equiv OpenSquareBracket Int=2 Comma Int=1 Comma Int=0 CloseSquareBracket NewLine Tab NewLine NewLine NewLine NewLine NewLine  
+Parser--
+Program: 
+    Function: 
+        ->: Ident=outer
+        None: 
+        Block: 
+            ->: Assign
+                ->: Ident=t
+                ???: 
+    Function: 
+        ->: Ident=fact
+        None: 
+            ->: Ident=n
+        Block: 
+            If: 
+                ->: Or
+                    ->: Equiv
+                        ->: Ident=n
+                        ->: Int=0
+                    ->: Equiv
+                        ->: Ident=n
+                        ->: Int=1
+                Block: 
+                    ->: Return
+                        ->: Int=1
+            ->: Return
+                Call: 
+                    ->: Ident=mul
+                    ArgList: 
+                        ->: Ident=n
+                        Call: 
+                            ->: Ident=fact
+                            ArgList: 
+                                ->: Minus
+                                    ->: Ident=n
+                                    ->: Int=1
+    ->: Assign
+        ->: Ident=num
+        ->: Int=42
+    ->: Assign
+        ->: Ident=msg
+        ->: String="Hello, world"
+    Function: 
+        ->: Ident=hello
+        None: 
+        Block: 
+            Call: 
+                ->: Ident=Print
+                ArgList: 
+                    ->: Ident=msg
+            Call: 
+                ->: Ident=Print
+                ArgList: 
+                    ->: Ident=num
+    Function: 
+        ->: Ident=mul
+        None: 
+            ->: Ident=a
+            ->: Ident=b
+        Block: 
+            ->: Return
+                ->: Mul
+                    ->: Ident=a
+                    ->: Ident=b
+    Function: 
+        ->: Ident=testFor
+        None: 
+        Block: 
+            ???: 
+                ->: Assign
+                    ->: Ident=n
+                    ->: Int=0
+                ->: Less
+                    ->: Ident=n
+                    ->: Int=10
+                ->: PlusAssign
+                    ->: Ident=n
+                    ->: Int=1
+                Block: 
+                    Call: 
+                        ->: Ident=Print
+                        ArgList: 
+                            ->: Ident=n
+            ->: Assign
+                ->: Ident=s
+                ->: String="Hello"
+            ???: 
+                ->: Ident=s
+                Block: 
+                    Call: 
+                        ->: Ident=Print
+                        ArgList: 
+                            ->: Ident=ch
+            ???: 
+                ->: Int=10
+                Block: 
+                    Call: 
+                        ->: Ident=Print
+                        ArgList: 
+                            ->: Ident=n
+    Function: 
+        ->: Ident=outer
+        None: 
+        Block: 
+            Function: 
+                ->: Ident=inner
+                None: 
+                    ->: Ident=a
+                Block: 
+                    ->: Return
+                        ->: Plus
+                            ->: Ident=a
+                            ->: Int=2
+            ->: Assign
+                ->: Ident=s
+                ???: 
+                    ->: Int=1
+                    ->: Int=2
+                    ->: Int=3
+            ->: Assign
+                ->: Ident=t
+                ???: 
+            ???: 
+                ->: Ident=s
+                Block: 
+                    ->: PlusAssign
+                        ->: Ident=t
+                        Call: 
+                            ->: Ident=inner
+                            ArgList: 
+                                ->: Ident=e
+            Call: 
+                ->: Ident=Assert
+                ArgList: 
+                    ->: Equiv
+                        ->: Ident=t
+                        ???: 
+                            ->: Int=3
+                            ->: Int=4
+                            ->: Int=5
+    Function: 
+        ->: Ident=useGen
+        None: 
+        Block: 
+            Function: 
+                ->: Ident=gen
+                None: 
+                    ->: Ident=n
+                Block: 
+                    ->: While
+                        ->: Greater
+                            ->: Ident=n
+                            ->: Int=0
+                        Block: 
+                            ->: Assign
+                                ->: Minus
+                                    ->: Ident=n
+                                    ???: 
+                                        ->: Ident=s
+                                        Block: 
+                                            ->: PlusAssign
+                                                ->: Ident=t
+                                                Call: 
+                                                    ->: Ident=inner
+                                                    ArgList: 
+                                                        ->: Ident=e
+                                ->: Int=1
+Trans--
+ { t 0 ToArray Store Lookup } outer Store
+206; /Home> Input--
+
+
+Lexer--
+NewLine  
+Parser--
+Program: 
+Trans--
+
+211; /Home> Input--
+
+
+Lexer--
+NewLine  
+Parser--
+Program: 
+Trans--
+
+216; /Home> Input--
+
+
+Lexer--
+NewLine  
+Parser--
+Program: 
+Trans--
+
+221; /Home> 

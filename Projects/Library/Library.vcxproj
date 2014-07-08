@@ -2377,7 +2377,6 @@
     <None Include="Source\BuiltinTypes\Set.inl" />
     <None Include="Source\Stack.inl" />
     <None Include="Source\String.inl" />
-    <None Include="Source\Tests\Scripts\TestFun.kai" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Accessor.h" />
