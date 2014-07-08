@@ -3,52 +3,71 @@
 #include "KAI/Operation.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
+#include "KAI/Executor.h"
 
 KAI_BEGIN
 
-Continuation::Continuation()
+void Continuation::Create()
 {
-	source_code = 0;
-	Entered = false;
+	entered = New<bool>(false);
+	args = New<Array>();
+	index = New<int>(0);
+
+	KAI_TRACE() << "Create: " << Self->GetHandle() << ": @" << (long)Self << ": " << (long)this << " " << (long)&entered;
+
+}
+
+bool Continuation::Destroy()
+{
+	return true;
 }
 
 void Continuation::SetCode(Code C)
 {
 	code = C;
-	Entered = false;
-	Enter();
+	*entered = false;
 }
 
-void Continuation::Enter() const
+void Continuation::Enter(Executor *exec)
 {
+	KAI_TRACE() << "Enter: " << Self->GetHandle() << ": @" << (long)Self << ": " << (long)this << " " << (long)&entered;
+
+	if (*entered)
+		return;
+
 	if (code.Exists() && !code->Empty())
 	{
-		Entered = true;
-		ip = code->Begin();
+		if (!scope.Exists())
+			scope = exec->New<void>();
+
+		for (auto arg : *args)
+		{
+			scope.Set(ConstDeref<Label>(arg), exec->GetDataStack()->Pop());
+		}
+
+		*index = 0;
+		*entered = true;
 	}
 }
 
 bool Continuation::Next() const
 {
-	if (!HasCode())
-		return false;
-	if (!Entered)
-		Enter();
-	if (ip == code->end())
-		return false;
-	++ip;
-	return true;
+	Object unused;
+	return Next(unused);
 }
 
-bool Continuation::Next(Object const *&next) const
+bool Continuation::Next(Object &next) const
 { 
 	if (!code)
 		return false;
-	if (!Entered)
-		Enter();
-	if (ip == code->end())
+	if (!entered)
+		KAI_THROW_1(LogicError, "Continuation not Entered");
+
+	int &n = Deref<int>(index);
+	if (n == code->Size())
 		return false;
-	next = &*ip++;
+
+	next = code->At(n++);
 	return true;
 }
 
@@ -62,10 +81,10 @@ StringStream &operator<<(StringStream &S, const Continuation &C)
 			S << *A << " ";
 	}
 	S << "}";
-	S << "args(";
-	for (auto a : C.GetArgs())
-		S << a << ' ';
-	S << ")";
+	//S << "args(";
+	//for (auto a : C.GetArgs())
+	//	S << a << ' ';
+	//S << ")";
 	return S;
 }
 
@@ -95,7 +114,10 @@ void Continuation::Register(Registry &R)
 		.Methods
 		.Properties
 		("code", &Continuation::code)
+		("args", &Continuation::args)
 		("scope", &Continuation::scope)
+		("source_code", &Continuation::source_code)
+		("entered", &Continuation::entered)
 		;
 }
 

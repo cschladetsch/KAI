@@ -122,7 +122,7 @@ struct Pointer : PointerBase<T>, Object
 		Assign(Q);
 	}
 
-	Pointer(StorageBase *Q) 
+	explicit Pointer(StorageBase *Q) 
 	{
 		if (Q == 0)
 			return;

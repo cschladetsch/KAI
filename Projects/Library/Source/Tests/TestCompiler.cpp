@@ -69,22 +69,25 @@ void TestCompiler::TestFunctions()
 
 	//auto e1 = c.ExecFile("Scripts/TestFun.kai");
 
-	auto e = c.Compile(
-R"Q(
+	auto f = c.Compile(
+		R"Q(
 
 fun f()
 	Print("Hello, World!")
 	a = 1+2*(3+4)
 	Assert(a == 15)
+	fun g(b)
+		return b+a
+	Assert(g(1) == 16)
 
 )Q"
 , Parser::ParseFunction);
-	KAI_TRACE_1(e);
+	KAI_TRACE_1(f);
 
-	c.GetExecutor()->SetTraceLevel(100);
-	c.Execute(e);
+	//c.GetExecutor()->SetTraceLevel(100);
+	c.Execute(f);
 	c.Execute("f()");
-	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Top()), 15);
+
 	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetTree().Resolve("a")), 15);
 }
 

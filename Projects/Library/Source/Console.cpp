@@ -146,25 +146,27 @@ String Console::Execute(Pointer<Continuation> cont)
 	KAI_CATCH(Exception::Base, E)
 	{
 		KAI_TRACE_ERROR_1(E);
+		std::cerr << "Error: " << E.ToString() << std::endl;
 	}
 	KAI_CATCH(std::exception, E)
 	{
 		KAI_TRACE_ERROR_2("StdException: ", E.what());
+		std::cerr << "Error: " << E.what() << std::endl;
 	}
 	KAI_CATCH_ALL()
 	{
 		KAI_TRACE_ERROR_1("UnknownException");
+		std::cerr << "Error" << std::endl;
 	}
 	return "";
 }
 
-Object Console::Execute(String const &text)
+Pointer<Continuation> Console::Execute(String const &text)
 {
-	Execute(compiler->Compile(*registry, text.c_str()));
-
-	return executor->GetDataStack();
+	auto cont = compiler->Compile(*registry, text.c_str());
+	Execute(cont);
+	return cont;
 }
-
 
 String Console::Process(const String& text)
 {
