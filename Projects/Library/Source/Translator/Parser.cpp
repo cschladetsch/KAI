@@ -176,14 +176,25 @@ bool Parser::Statement(NodePtr block)
 {
 	switch (Current().type)
 	{
+		case Token::Assert:
+		{
+			Consume();
+			if (!Expression())
+			{
+				Fail(Lexer::CreateError(Current(), "Assert needs an expression to test"));
+				return false;
+			}
+			auto ass = NewNode(Consume());
+			ass->Add(Pop());
+			Push(ass);
+			goto finis;
+		}
 		case Token::Return:
 		case Token::Yield:
 		{
 			auto ret = NewNode(Consume());
 			if (Expression())
-			{
 				ret->Add(Pop());
-			}
 			block->Add(ret);
 			goto finis;
 		}
@@ -216,7 +227,7 @@ bool Parser::Statement(NodePtr block)
 
 	block->Add(Pop());
 
-	finis:
+finis:
 	// statements can end with an optional semi followed by a new line
 	if (Try(Token::NewLine))
 		Consume();

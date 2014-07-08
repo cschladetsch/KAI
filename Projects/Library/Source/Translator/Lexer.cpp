@@ -31,6 +31,7 @@ void Lexer::AddKeywords()
 	keyWords["yield"] = Token::Yield;
 	keyWords["in"] = Token::In;
 	keyWords["while"] = Token::While;
+	keyWords["assert"] = Token::Assert;
 }
 
 bool Lexer::Run()

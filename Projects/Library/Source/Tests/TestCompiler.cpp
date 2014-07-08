@@ -90,8 +90,15 @@ void TestCompiler::TestFunctions()
 //
 	c.ExecuteFile("TestFun.kai");
 	c.GetExecutor()->SetTraceLevel(100);
+	for (auto ch : c.GetTree().GetScope().GetDictionary())
+	{
+		KAI_TRACE_2(ch.first, ch.second);
+	}
+	c.Execute("mul(3,2)"); 
+	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
+
 	c.Execute("fact(3)");
-	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3 * 2);
+	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
 
 }
 

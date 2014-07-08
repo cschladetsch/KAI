@@ -87,10 +87,18 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Ident:
 		Append(reg.New<Label>(Label(node->token.Text())));
 		return;
+	case Token::Yield:
+		//for (auto ch : node->Children)
+		//	Translate(ch);
+		//AppendNewOp(Operation::PushContext);
+		//AppendNewOp(Operation::Replace);
+		KAI_NOT_IMPLEMENTED();
+		return;
+
 	case Token::Return:
-		if (!node->Children.empty())
-			Translate(node->Children[0]);
-		AppendNewOp(Operation::Resume);
+		for (auto ch : node->Children)
+			Translate(ch);
+		AppendNewOp(Operation::Replace);
 		return;
 	}
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
