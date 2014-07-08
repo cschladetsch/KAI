@@ -768,6 +768,7 @@
     <Text Include="..\..\Root\AutoExec.txt">
       <Filter>Root</Filter>
     </Text>
+    <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Source\CompilerTokens.inl">

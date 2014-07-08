@@ -33,7 +33,8 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	}
 	catch (std::exception &f)
 	{
-		Fail(f.what());
+		if (!Failed)
+			Fail(f.what());
 	}
 }
 
@@ -81,20 +82,6 @@ bool Parser::Program()
 	}
 
 	return true;
-}
-
-void Parser::Assignment(NodePtr node)
-{
-	Expression();
-	Expect(Token::Assign);
-	auto a = NewNode(Node::Assignment);
-	a->Add(Pop());
-	Expression();
-	if (Try(Token::NewLine))
-		return;
-	Expect(Token::Semi);
-	a->Add(Pop());
-	node->Add(a);
 }
 
 void Parser::Function(NodePtr node)
