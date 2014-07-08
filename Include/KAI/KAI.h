@@ -1,4 +1,4 @@
-
+// (C) 2014 christian.schladetsch@gmail.com
 
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
@@ -59,4 +59,3 @@
 
 #endif // KAI_KAI_H
 
-//EOF
