@@ -21,6 +21,12 @@ namespace Exception
 		nstd::string ToString() const;
 		virtual void WriteExtendedInformation(StringStream &) const { }
 	};
+
+	struct LogicError : Base
+	{
+		LogicError(const FileLocation &loc, const char *text) : Base(loc, text) { }
+	};
+
 	struct TypeMismatch : Base
 	{
 		int first, second;

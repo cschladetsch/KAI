@@ -34,6 +34,7 @@ public:
 	iterator End() { return objects.end(); }
 	const_iterator Begin() const { return objects.begin(); }
 	const_iterator End() const { return objects.end(); }
+
 	Object At(int pos) const { return objects.at(pos); }
 	int Size() const { return (int)objects.size(); }
 	bool Empty() const { return objects.empty(); }
