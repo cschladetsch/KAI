@@ -30,7 +30,7 @@ struct Operation
 		Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
 		ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, Expand,
 		Name, Fullname,
-		
+
 		LogicalNot, LogicalAnd, LogicalOr, LogicalXor, LogicalNand,
 		BitwiseNot, BitwiseAnd, BitwiseOr, BitwiseXor, BitwiseNand,
 		Lookup,
@@ -43,13 +43,14 @@ struct Operation
 		Exists,
 		Pin,
 		Unpin,
-		ContinuationBegin, ContinuationEnd, 
+		ContinuationBegin, ContinuationEnd,
 		MarkAndSweep,
 		ThisContext,
 		ThisContinuation,
 
 		If,
 		IfElse,
+		ForEachContained,
 
 		IfThenSuspend,
 		IfThenReplace,

@@ -29,6 +29,12 @@ struct Node
 		Negative,
 		ArgList,
 		IndexOp,
+
+		ForEach,
+		For,
+
+		List,
+		Map,
 	};
 
 	static const char *ToString(Node::Type ty);

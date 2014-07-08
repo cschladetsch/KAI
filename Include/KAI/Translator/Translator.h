@@ -58,6 +58,9 @@ private:
 	}
 	Pointer<Continuation> Pop();
 	void AppendNewOp(Operation::Type op);
+	void TranslateIf(Parser::NodePtr node);
+	void TranslateFor(Parser::NodePtr node);
+	void TranslateWhile(Parser::NodePtr node);
 };
 
 KAI_END

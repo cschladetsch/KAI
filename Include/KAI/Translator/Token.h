@@ -49,6 +49,15 @@ struct Token
 		// added because we want whitespace to matter for formatting, as in python
 		Tab, NewLine,
 		Fun,
+
+		Comment,
+
+		Yield,
+		
+		Suspend, Replace, Resume,
+		PlusAssign, MinusAssign, MulAssign, DivAssign,
+		In, Colon,
+
 	};
 
 	static const char *ToString(Type t);
