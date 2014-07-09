@@ -1,7 +1,50 @@
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	return mul(n, fact(n - 1))
 
-fun fail()
-	if a == 0
-		Print)
+num = 42
+msg = "Hello, world"
 
-fun r(n)
-	return r(n - 1)
+fun hello()
+	Print(msg)
+	Print(num)
+
+fun mul(a, b)
+	return a*b
+
+fun outer()
+	fun inner(a)
+		return a + 2
+	s = [1,2,3]
+	t = []
+	for e in s
+		t += inner(e)
+	Assert(t == [3,4,5])
+
+fun useGen()
+	fun gen(n)
+		while n > 0
+			yield --n
+	r = []
+	for g in gen(3)
+		r += g
+	Assert(r == [2,1,0])
+	
+fun a(n)
+	out << n
+	if n-- > 0
+		b(n-1)...	// the ... syntax means to not push current context before calling new
+
+fun b(n)
+	out << "In b, n=" << n
+	a(n)...
+	out << "Never get here!"
+
+fun main()
+	hello()
+	Assert(fact(3) == 3*2*1)
+	useGen()
+	b(3)		
+
+
