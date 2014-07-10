@@ -40,8 +40,6 @@ Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser:
 	p->Translate(text.c_str(), st);
 	if (p->Failed)
 	{
-		KAI_TRACE_1(p->trans->Result());
-		KAI_TRACE_ERROR_1(p->Error);
 		std::cerr << p->Error;
 		return Object();
 	}

@@ -174,8 +174,12 @@ String Console::Process(const String& text)
 	KAI_TRY
 	{
 		Pointer<Continuation> continuation = compiler->Compile(*registry, text.c_str());
-		continuation->SetScope(tree.GetScope());
-		return Execute(continuation);
+		if (continuation)
+		{
+			continuation->SetScope(tree.GetScope());
+			return Execute(continuation);
+		}
+		return "";
 	}
 	KAI_CATCH(Exception::Base, E)
 	{

@@ -33,7 +33,7 @@ void BasicOutput::SuiteEnd(const String &N)
 void BasicOutput::ModuleBegin(const String &N)
 {
 	//if (verbose)
-		std::cout << "Module: Start " << N.c_str() << std::endl;
+		std::cout << "TestModule: " << N.c_str() << std::endl;
 }
 
 void BasicOutput::ModuleEnd(const String &N)
