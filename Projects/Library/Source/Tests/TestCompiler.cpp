@@ -66,50 +66,17 @@ void TestCompiler::TestFunctions()
 {
 	Memory::StandardAllocator alloc;
 	Console c(&alloc);
-//
-//	//auto e1 = c.ExecFile("Scripts/TestFun.kai");
-//
-//	auto f = c.Compile(
-//		R"Q(
-//
-//fun f()
-//	Print("Hello, World!")
-//	a = 1+2*(3+4)
-//	Assert(a == 15)
-//	fun g(b)
-//		return b+a
-//	Assert(g(1) == 16)
-//
-//)Q"
-//, Parser::ParseFunction);
-//	KAI_TRACE_1(f);
-//
 
-	//c.GetExecutor()->SetTraceLevel(100);
-//	c.Execute(f);
-//	c.Execute("f()");
-//
-	c.ExecuteFile("Test2.kai");
-
-	//for (auto ch : c.GetTree().GetScope().GetDictionary())
-	//{
-	//	KAI_TRACE_2(ch.first, ch.second);
-	//}
-	//c.Execute("mul(3,2)"); 
-	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
-	//KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
-
-	//c.GetExecutor()->SetTraceLevel(100);
+	c.ExecuteFile("Test3.kai");
 	c.Execute("r(4)");
+
 	c.Execute("mul(3,4)");
 	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3 * 4);
 	KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
-	c.GetExecutor()->SetTraceLevel(100);
+
 	c.Execute("fact(4)");
-	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);
+	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 24);
 	KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
-
-
 }
 
 void TestCompiler::TestFloats()

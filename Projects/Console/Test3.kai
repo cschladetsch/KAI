@@ -1,0 +1,17 @@
+fun p(a)
+	Print(a)
+	
+fun r(a)
+	Print(a)
+	if a > 0
+		r(a - 1)
+	
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	return mul(n, fact(n - 1))
+
+fun mul(a,b)
+	return a*b
+
+
