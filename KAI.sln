@@ -75,6 +75,7 @@ Global
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.Release|Mixed Platforms.ActiveCfg = Retail|Win32
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.Release|Mixed Platforms.Build.0 = Retail|Win32
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.Release|Win32.ActiveCfg = Retail|Win32
+		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.Release|Win32.Build.0 = Retail|Win32
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.ReleaseLN|Any CPU.ActiveCfg = ReleaseLN|Win32
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.ReleaseLN|Mixed Platforms.ActiveCfg = ReleaseLN|Win32
 		{44CB8ABE-5ED0-4B0D-A840-CDD3A01C85B8}.ReleaseLN|Mixed Platforms.Build.0 = ReleaseLN|Win32
@@ -90,5 +91,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
