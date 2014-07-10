@@ -7,7 +7,15 @@
 #ifndef KAI_CONSOLE_H
 #	define KAI_CONSOLE_H
 
+#include "KAI/KAI.h"
 #include "KAI/Tree.h"
+#include "KAI/BuiltinTypes/Array.h"
+#include "KAI/Continuation.h"
+#include "KAI/Value.h"
+#include "KAI/Operation.h"
+#include "KAI/Executor.h"
+#include "KAI/Compiler.h"
+#include "KAI/Memory.h"
 
 KAI_BEGIN
 
