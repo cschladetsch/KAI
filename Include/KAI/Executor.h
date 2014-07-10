@@ -21,7 +21,8 @@ class Executor : public Reflected<Executor>
 	Pointer<Stack> data;
 	bool Break;
 	Tree *tree;
-	int trace_level;
+	int traceLevel;
+	int stepNumber;
 
 public:
 	void Create();
