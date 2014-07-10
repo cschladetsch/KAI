@@ -84,11 +84,12 @@ void TestCompiler::TestFunctions()
 //, Parser::ParseFunction);
 //	KAI_TRACE_1(f);
 //
-	c.GetExecutor()->SetTraceLevel(100);
+
+	//c.GetExecutor()->SetTraceLevel(100);
 //	c.Execute(f);
 //	c.Execute("f()");
 //
-	c.ExecuteFile("TestFun.kai");
+	c.ExecuteFile("Test2.kai");
 
 	//for (auto ch : c.GetTree().GetScope().GetDictionary())
 	//{
@@ -99,7 +100,7 @@ void TestCompiler::TestFunctions()
 	//KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
 
 
-	//c.Execute("r(4)");
+	c.Execute("r(4)");
 
 	//c.Execute("fact(4)");
 	//KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3*2);

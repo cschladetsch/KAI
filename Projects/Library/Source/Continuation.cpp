@@ -35,9 +35,18 @@ void Continuation::Enter(Executor *exec)
 		if (!scope.Exists())
 			scope = exec->New<void>();
 
+		Stack &data = *exec->GetDataStack();
+		if (data.Size() < args->Size())
+		{
+			KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
+			KAI_THROW_0(EmptyStack);
+		}
+
 		for (auto arg : *args)
 		{
-			scope.Set(ConstDeref<Label>(arg), exec->GetDataStack()->Pop());
+			Object a = data.Pop();
+			scope.Set(ConstDeref<Label>(arg), a);
+			//KAI_TRACE_2(ConstDeref<Label>(arg), a);
 		}
 
 		*index = 0;

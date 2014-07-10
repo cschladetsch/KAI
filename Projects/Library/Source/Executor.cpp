@@ -29,7 +29,8 @@ void Executor::Create()
 	data = New<Stack>();
 	context = New<Stack>();
 	Break = false;
-	trace_level = 0;
+	traceLevel = 0;
+	stepNumber = 0;
 }
 
 bool Executor::Destroy()
@@ -132,7 +133,13 @@ void Executor::NextContinuation()
 	if (context->Empty())
 		SetContinuation(Object());
 	else
+	{
+		if (context->Empty())
+		{
+			KAI_TRACE_ERROR() << "Context stack is empty";
+		}
 		SetContinuation(context->Pop());
+	}
 }
 
 void Executor::Push(Stack& L, Object const &Q)
@@ -143,6 +150,7 @@ void Executor::Push(Stack& L, Object const &Q)
 void Executor::Eval(Object const &Q)
 {
 	Dump(Q);
+	stepNumber++;
 
 	switch (GetTypeNumber(Q).value)
 	{
@@ -163,8 +171,8 @@ void Executor::Eval(Object const &Q)
 			Push(Q.Clone());
 		}
 	}
-	cout << "AFTER --" << endl;
-	Dump(Q);
+	//cout << "AFTER --" << endl;
+	//Dump(Q);
 }
 
 template <class Cont>
@@ -176,13 +184,12 @@ void Executor::PushAll(const Cont &cont)
 	Push(New(cont.Size()));
 }
 
-Pointer<Continuation> Executor::NewContinuation(Pointer<Continuation> P)
+Pointer<Continuation> Executor::NewContinuation(Pointer<Continuation> orig)
 {
-	Pointer<Continuation> R = P.New<Continuation>();
-	R->SetCode(P->GetCode());
-	R->SetScope(P->GetScope());
-	R->Enter(this);
-	return R;
+	Pointer<Continuation> cont = New<Continuation>();
+	cont->SetCode(orig->GetCode());
+	cont->args = orig->args;
+	return cont;
 }
 
 void Executor::MarkAndSweep()
@@ -312,13 +319,18 @@ void Executor::Perform(Operation::Type op)
 	{
 	case Operation::SuspendNew:
 	{
-		Continuation &c = Deref<Continuation>(ResolvePop().Clone());
-		*c.index = 0;
-		*c.entered = false;
-		c.scope = Object();
-		c.Enter(this);
-		context->Push(*c.Self);
-		Break = true;
+		Object what = ResolvePop();
+		switch (what.GetTypeNumber().GetValue())
+		{
+		case Type::Number::Function:
+			ConstDeref<BasePointer<FunctionBase> >(what)->Invoke(*what.GetRegistry(), *data);
+			return;
+		case Type::Number::Continuation:
+			context->Push(continuation);
+			context->Push(NewContinuation(what));
+			Break = true;
+			return;
+		}
 		break;
 	}
 	case Operation::Lookup:
@@ -1193,12 +1205,12 @@ void Executor::DumpContinuation(Continuation const &C, int ip)
 
 void Executor::SetTraceLevel(int N)
 {
-	trace_level = N;
+	traceLevel = N;
 }
 
 int Executor::GetTraceLevel() const
 {
-	return trace_level;
+	return traceLevel;
 }
 
 void Executor::Register(Registry &R, const char * N)
@@ -1216,14 +1228,14 @@ void Executor::Register(Registry &R, const char * N)
 
 void Executor::Dump(Object const &Q)
 {
-	if (trace_level > 0)
+	if (traceLevel > 0)
 	{
-		if (trace_level > 1)
+		if (traceLevel > 1)
 		{
 			std::cout << "Stack:\n";
 			DumpStack(*data);
 		}
-		if (trace_level > 2)
+		if (traceLevel > 2)
 		{
 			std::cout << "Context:\n";
 			for (auto c : *context)
@@ -1233,7 +1245,7 @@ void Executor::Dump(Object const &Q)
 				cout << str.ToString().c_str() << endl;
 			}
 		}
-		std::cout << "\nEval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
+		std::cout << "\n[" << stepNumber << "]: Eval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
 	}
 }
 

@@ -13,8 +13,13 @@ KAI_BEGIN
 class ClassBase
 {
 public:
+#ifndef DEBUG
 	typedef boost::unordered_map<Label, MethodBase *> Methods;
 	typedef boost::unordered_map<Label, PropertyBase *> Properties;
+#else
+	typedef std::map<Label, MethodBase *> Methods;
+	typedef std::map<Label, PropertyBase *> Properties;
+#endif
 
 protected:
 	Type::Number type_number;

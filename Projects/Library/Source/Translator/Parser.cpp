@@ -28,10 +28,10 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	{
 		Run(st);
 	}
-	catch (Exception &)
+	catch (Exception::Base &e)
 	{
 		if (!Failed)
-			Fail("Failed");
+			Fail("Failed: %s", e.ToString());
 	}
 	catch (std::exception &f)
 	{
@@ -68,9 +68,14 @@ void Parser::Run(Structure st)
 		if (!stack.empty())
 			Fail("Stack not empty");
 	}
-	catch (Exception &)
+	catch (Exception::Base &e)
 	{
-		//cerr << Error << endl;
+		KAI_TRACE_ERROR_1(e);
+		if (Failed)
+			KAI_TRACE_ERROR() << Error;
+		else
+			Fail(e.ToString());
+		throw;
 	}
 }
 
@@ -119,6 +124,7 @@ void Parser::Function(NodePtr node)
 	Expect(Token::NewLine);
 	
 	AddBlock(fun);
+	node->Add(fun);
 }
 
 Parser::NodePtr Parser::NewNode(Node::Type t)
@@ -250,7 +256,7 @@ std::shared_ptr<Node> Parser::Expect(Token::Type type)
 	if (tok.type != type)
 	{
 		Fail(Lexer::CreateError(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
-		throw Unexpected(tok.type);
+		KAI_THROW_1(LogicError, "Unexpected token");
 	}
 
 	Next();
@@ -306,7 +312,6 @@ bool Parser::Expression()
 		if (!Expression())
 			return false;
 		Expect(Token::CloseParan);
-		root->Add(Pop());
 		return true;
 	}
 
@@ -486,7 +491,7 @@ Parser::NodePtr Parser::Pop()
 	if (stack.empty())
 	{
 		CreateError("Internal Error: Parse stack empty");
-		throw StackError();
+		KAI_THROW_0(EmptyStack);
 	}
 	auto last = stack.back();
 	stack.pop_back();
@@ -687,6 +692,7 @@ void Parser::For(NodePtr block)
 
 	Expect(Token::NewLine);
 	AddBlock(f);
+	block->Add(f);
 }
 
 void Parser::While(NodePtr block)
@@ -698,7 +704,7 @@ void Parser::While(NodePtr block)
 		return;
 	}
 	w->Add(Pop());
-	AddBlock(w);
+	block->Add(w);
 }
 
 bool Parser::CreateError(const char *text)
@@ -713,10 +719,10 @@ void Parser::AddBlock(NodePtr fun)
 	fun->Add(block);
 }
 
-Parser::Unexpected::Unexpected(Token::Type ty)
-{
-	KAI_UNUSED_1(ty);
-}
+//Parser::Unexpected::Unexpected(Token::Type ty)
+//{
+//	KAI_UNUSED_1(ty);
+//}
 
 KAI_END
 
