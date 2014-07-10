@@ -68,6 +68,7 @@ void RunTests(Console &console)
 	ADD_TEST(TestCompiler);
 	ADD_TEST(TestEvents);
 	ADD_TEST(TestFunction);
+	ADD_TEST(TestRegistry);
 	//ADD_TEST(TestObject);
 
 	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
