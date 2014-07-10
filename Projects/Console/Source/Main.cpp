@@ -59,15 +59,19 @@ int main(int argc, char **argv)
 	Console console(args, &alloc);
 	std::cout << console.WriteStack().c_str();
 
+#if PROFILE
+	for (int n = 0; n < 10; ++n)
+		RunTests(console);
+#else
 	RunTests(console);
-
 	Run(console);
+#endif
 }
 
 void RunTests(Console &console)
 {
-	Test::Module module("AutoRun Tests");
-	module.AddSuite<Tests::TestCompiler>("TesCompiler");
+	Test::Module module("AutoRun");
+	module.AddSuite<Tests::TestCompiler>("TestCompiler");
 	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
 	module.Run(out);
 	std::cout << out->GetSummary().ToString().c_str() << std::endl;

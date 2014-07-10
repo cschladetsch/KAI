@@ -271,9 +271,7 @@ bool Process::Fail(const char *fmt, ...)
 	va_start(ap, fmt);
 	char buffer[1000];
 	vsprintf_s(buffer, fmt, ap);
-	Failed = true;
-	Error = buffer;
-	return false;
+	return Fail(std::string(buffer));
 }
 
 char Lexer::Current() const

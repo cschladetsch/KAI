@@ -47,13 +47,12 @@ Object Module::Run(Object output)
 void Module::Run(IOutput *output)
 {
 	output->ModuleBegin(Name);
-	Suites::Types::const_iterator A = suites.GetTypes().begin(), B = suites.GetTypes().end();
-	for (; A != B; ++A)
+	for (auto s : suites.GetTypes())
 	{
 		SuiteBase *suite = 0;
 		try
 		{
-			suite = (SuiteBase *)suites.Create(A->first);
+			suite = (SuiteBase *)suites.Create(s.first);
 			output->SuiteBegin(suite->Name);
 			suite->Run(output);
 		}

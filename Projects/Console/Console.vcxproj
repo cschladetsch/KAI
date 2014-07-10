@@ -125,6 +125,7 @@
     <OutDir>$(SolutionDir)/Bin/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\sdk\boost\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
@@ -180,12 +181,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)/Include;../../Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);USE_STATIC_LIBS=1</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level4</WarningLevel>
@@ -339,8 +341,11 @@
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
-  <ItemGroup> 
-	  <None Include="Scripts\Test2.kai" />
+  <ItemGroup>
+    <None Include="Scripts\Test2.kai" />
+    <None Include="Scripts\Test3.kai" />
+    <None Include="Scripts\TestClass.kai" />
+    <None Include="Scripts\TestFun.kai" />
     <None Include="Test2.kai" />
     <None Include="Test3.kai" />
     <None Include="TestFun.kai" />
