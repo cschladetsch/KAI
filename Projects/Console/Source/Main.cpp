@@ -47,6 +47,8 @@ void Run(Console &console)
 	}
 }
 
+void RunTests(Console &console);
+
 int main(int argc, char **argv)
 {
 	nstd::vector<String> args;
@@ -57,12 +59,18 @@ int main(int argc, char **argv)
 	Console console(args, &alloc);
 	std::cout << console.WriteStack().c_str();
 
-		Test::Module module;
-		module.AddSuite<Tests::TestCompiler>("TesCompiler");
-		Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
-		module.Run(out);
+	RunTests(console);
 
 	Run(console);
+}
+
+void RunTests(Console &console)
+{
+	Test::Module module("AutoRun Tests");
+	module.AddSuite<Tests::TestCompiler>("TesCompiler");
+	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
+	module.Run(out);
+	std::cout << out->GetSummary().ToString().c_str() << std::endl;
 }
 
 //EOF

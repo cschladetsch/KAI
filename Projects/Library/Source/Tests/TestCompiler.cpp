@@ -67,7 +67,9 @@ void TestCompiler::TestFunctions()
 	Memory::StandardAllocator alloc;
 	Console c(&alloc);
 
-	c.ExecuteFile("Test3.kai");
+	c.ExecuteFile("Scripts/Test3.kai");
+	c.Execute("p(42)");
+
 	c.Execute("r(4)");
 
 	c.Execute("mul(3,4)");
