@@ -19,7 +19,7 @@ void DebugTrace(const char *text)
 {
 	OutputDebugStringA(text);
 	OutputDebugStringA("\n");
-	std::cerr << text << std::endl;
+	//std::cerr << text << std::endl;
 }
 
 KAI_END
