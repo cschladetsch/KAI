@@ -61,6 +61,10 @@ void RunTests(Console &console)
 		module.AddSuite<Tests::Name>(#Name);
 
 	Test::Module module("AutoRun");
+	ADD_TEST(TestTest);
+	ADD_TEST(TestRegistry);
+	ADD_TEST(TestTree);
+	ADD_TEST(TestTriColor);
 	ADD_TEST(TestCompiler);
 	ADD_TEST(TestEvents);
 	//ADD_TEST(TestObject);

@@ -20,6 +20,7 @@ void BasicOutput::MethodEnd(const String &N)
 
 void BasicOutput::SuiteBegin(const String &N)
 {
+	if (verbose)
 		std::cout << "    Suite: " << N.c_str() << std::endl;
 }
 
@@ -37,11 +38,11 @@ void BasicOutput::ModuleBegin(const String &N)
 
 void BasicOutput::ModuleEnd(const String &N)
 {
-	Summary::Failures::const_iterator A = summary.failures.begin(), B = summary.failures.end();
-	for (; A != B; ++A)
-	{
-		Write(*A);
-	}
+	//Summary::Failures::const_iterator A = summary.failures.begin(), B = summary.failures.end();
+	//for (; A != B; ++A)
+	//{
+	//	Write(*A);
+	//}
 	if (verbose)
 		std::cout << "test>Module: End " << N.c_str() << std::endl;
 }
