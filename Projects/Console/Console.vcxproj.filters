@@ -29,5 +29,8 @@
     <None Include="Test2.kai">
       <Filter>Scripts</Filter>
     </None>
+    <None Include="Test3.kai">
+      <Filter>Scripts</Filter>
+    </None>
   </ItemGroup>
 </Project>

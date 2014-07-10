@@ -161,8 +161,14 @@ void Executor::Eval(Object const &Q)
 		Push(Q);
 		break;
 	case Type::Number::Label:
-		Push(Q);
+	{
+		auto found = TryResolve(ConstDeref<Label>(Q));
+		if (found)
+			Push(found);
+		else
+			Push(Q);
 		break;
+	}
 	default:
 		{
 //			Object K = Q.Clone();
