@@ -32,5 +32,8 @@
     <None Include="Test3.kai">
       <Filter>Scripts</Filter>
     </None>
+    <None Include="TestClass.kai">
+      <Filter>Scripts</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -100,6 +100,20 @@ namespace Bin
 		file.close();
 		return text.ToString();
 	}
+	void Printf(String fmt, Array items)
+	{
+		for (int n = 0; n < fmt.size(); ++n)
+		{
+			char ch = fmt[n];
+			if (ch == '#')
+			{
+				int num = fmt[++n] - '0';
+				std::cout << items.At(num);
+				continue;
+			}
+			std::cout << ch;
+		}
+	}
 
 	void Print(Object Q)
 	{
@@ -263,7 +277,8 @@ namespace Bin
 		ADD_FUN(ToString, "Returns a human-readable String reprentation of an Object");
 		ADD_FUN(ToXmlString, "Returns an XML String reprentation of an Object");
 		ADD_FUN(UpCast, "Returns a Pointer to the Base of an Object");
-		ADD_FUN(Print, "Print's an Object to stdout");
+		ADD_FUN(Print, "Prints an Object to stdout");
+		ADD_FUN(Printf, "Print a list of items");
 		ADD_FUN(PrintXml, "Print's an Object to stdout in XML");
 		ADD_FUN(WriteToFile, "Writes an Object to a text file");
 		ADD_FUN(ReadFile, "Reads a text file");

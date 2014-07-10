@@ -342,6 +342,7 @@
   <ItemGroup>
     <None Include="Test2.kai" />
     <None Include="Test3.kai" />
+    <None Include="TestClass.kai" />
     <None Include="TestFun.kai" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
