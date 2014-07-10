@@ -12,6 +12,8 @@ This library will be useful to those that want to expose their C++ types and ins
 
 A REPL console application is also supplied.
 
+To test, run the Console application.
+
 Examples
 --------
 To see what the language looks like, see https://github.com/cschladetsch/KAI/blob/master/Projects/Console/Scripts.
