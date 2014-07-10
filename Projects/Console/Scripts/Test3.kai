@@ -1,5 +1,5 @@
 fun p(a)
-	Print(a)
+	Printf("a=#0", [a])
 	
 fun r(a)
 	Print(a)
@@ -9,7 +9,8 @@ fun r(a)
 fun fact(n)
 	if n == 0 || n == 1
 		return 1
-	return mul(n, fact(n - 1))
+	res = mul(n, fact(n - 1))
+	Printf("fact(#0) = #1", [n, res])
 
 fun mul(a,b)
 	return a*b
