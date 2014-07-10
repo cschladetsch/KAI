@@ -13,6 +13,7 @@ struct Operation
 {
 	enum Type
 	{
+		Return,
 		SuspendNew,
 		None,
 		True, False,
