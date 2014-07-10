@@ -23,13 +23,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestFun.kai">
+    <None Include="Scripts\Test2.kai">
       <Filter>Scripts</Filter>
     </None>
-    <None Include="Test2.kai">
+    <None Include="Scripts\Test3.kai">
       <Filter>Scripts</Filter>
     </None>
-    <None Include="Test3.kai">
+    <None Include="Scripts\TestClass.kai">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="Scripts\TestFun.kai">
       <Filter>Scripts</Filter>
     </None>
     <None Include="TestClass.kai">
