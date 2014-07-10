@@ -13,7 +13,7 @@ This library will be useful to those that want to expose their C++ types and ins
 
 A REPL console application is also supplied.
 
-To see what the language looks like, see https://github.com/cschladetsch/KAI/blob/master/Projects/Console/TestFun.kai.
+To see what the language looks like, see https://github.com/cschladetsch/KAI/blob/master/Projects/Console/Scripts.
 
 For a quick intro, see unit tests at https://github.com/cschladetsch/KAI/tree/master/Projects/Library/Source/Tests.
 
