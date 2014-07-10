@@ -339,10 +339,10 @@
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup> 
+	  <None Include="Scripts\Test2.kai" />
     <None Include="Test2.kai" />
     <None Include="Test3.kai" />
-    <None Include="TestClass.kai" />
     <None Include="TestFun.kai" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
