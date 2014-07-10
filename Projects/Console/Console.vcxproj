@@ -346,9 +346,6 @@
     <None Include="Scripts\Test3.kai" />
     <None Include="Scripts\TestClass.kai" />
     <None Include="Scripts\TestFun.kai" />
-    <None Include="Test2.kai" />
-    <None Include="Test3.kai" />
-    <None Include="TestFun.kai" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
