@@ -22,7 +22,7 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 		if (tok.type != Token::Whitespace && tok.type != Token::Comment)
 			tokens.push_back(tok);
 
-	root = std::make_shared<Node>(Node::Program);
+	root = NewNode(Node::Program);
 
 	try
 	{
@@ -31,52 +31,49 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	catch (Exception::Base &e)
 	{
 		if (!Failed)
-			Fail("Failed: %s", e.ToString());
+			Fail(Lexer::CreateError(Current(), "%s", e.ToString()));
 	}
 	catch (std::exception &f)
 	{
 		if (!Failed)
-			Fail(f.what());
+			Fail(Lexer::CreateError(Current(), "%s", f.what()));
+	}
+	catch (...)
+	{
+		if (!Failed)
+			Fail(Lexer::CreateError(Current(), "internal error"));
 	}
 }
 
 void Parser::Run(Structure st)
 {
-	try
+	switch (st)
 	{
-		switch (st)
+	case ParseStatement:
+		if (!Statement(root))
 		{
-		case ParseStatement:
-			Statement(root);
-			break;
-		case ParseExpression:
-			if (!Expression())
-			{
-				CreateError("Express yourself");
-				return;
-			}
-			root->Add(Pop());
-			break;
-		case ParseFunction:
-			Function(root);
-			break;
-		case ParseProgram:
-			Program();
-			break;
+			CreateError("Statement expected");
+			return;
 		}
+		break;
+	case ParseExpression:
+		if (!Expression())
+		{
+			CreateError("Expression expected");
+			return;
+		}
+		root->Add(Pop());
+		break;
+	case ParseFunction:
+		Function(root);
+		break;
+	case ParseProgram:
+		Program();
+		break;
+	}
 
-		if (!stack.empty())
-			Fail("Stack not empty");
-	}
-	catch (Exception::Base &e)
-	{
-		KAI_TRACE_ERROR_1(e);
-		if (Failed)
-			KAI_TRACE_ERROR() << Error;
-		else
-			Fail(e.ToString());
-		throw;
-	}
+	if (!stack.empty())
+		Fail("Internal error: Stack not empty after parsing");
 }
 
 bool Parser::Program()
@@ -86,10 +83,7 @@ bool Parser::Program()
 		while (Try(Token::NewLine))
 			Next();
 
-		if (Try(Token::Fun))
-			Function(root);
-		else
-			Statement(root);
+		Statement(root);
 	}
 
 	return true;
@@ -447,7 +441,7 @@ bool Parser::Factor()
 
 	if (Try(Token::OpenSquareBracket))
 	{
-		NodePtr list = NewNode(Node::List);
+		auto list = NewNode(Node::List);
 		do
 		{
 			Consume();
