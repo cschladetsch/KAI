@@ -1,3 +1,4 @@
+// (C) 2014 christian.schladetsch@gmail.com
 
 #include "KAI/KAI.h"
 #include "KAI/Algorithm.h"
@@ -6,16 +7,16 @@
 #include "KAI/BuiltinTypes/Stack.h"
 
 #ifdef WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
-#undef GetObject
+#	define WIN32_LEAN_AND_MEAN
+#	include <windows.h>
+#	undef GetObject
 #endif
 
 #include <iostream>
 #include <fstream>
 #include <assert.h>
 
+// use tri-color generational gc.
 #define KAI_USE_TRICOLOR
 
 KAI_BEGIN
@@ -58,25 +59,24 @@ void Registry::Clear()
 
 void Registry::ClearInstances()
 {
-	Instances::const_iterator instance = instances.begin(), end = instances.end();
+	// create a set of handles to destroy, then destroy them
+	// this can't be done in one pass, as otherwise we would be mutating the
+	// container as we traverse it
 	nstd::vector<Handle> handles;
-	for (; instance != end; ++instance)
-	{
-		handles.push_back(instance->first);
-	}
-	foreach (Handle handle, handles)
-	{
+	for (auto const &instance : instances)
+		handles.push_back(instance.first);
+
+	for (auto const &handle : handles)
 		DestroyObject(handle, true);
-	}
+
 	instances.clear();
 }
 
 void Registry::NominateAll()
 {
 	deathrow.clear();
-	Instances::const_iterator A = instances.begin(), B = instances.end();
-	for (; A != B; ++A)
-		deathrow.insert(A->first);
+	for (auto const &ins : instances)
+		deathrow.insert(ins.first);
 }
 
 Object Registry::NewFromTypeNumber(Type::Number type_number)
@@ -112,10 +112,9 @@ void Registry::DestroyNominated()
 	// objects, they may release other objects.
 	std::vector<Handle> dr(deathrow.begin(), deathrow.end());
 	deathrow.clear();
-	std::vector<Handle>::const_iterator A = dr.begin(), B = dr.end();
-	for (; A != B; ++A)
+	for (auto const &ob : dr)
 	{
-		DestroyObject(*A);
+		DestroyObject(ob);
 	}
 }
 
@@ -230,24 +229,24 @@ StorageBase *Registry::GetStorageBase(Handle handle) const
 {
 	if (handle == 0)
 		return 0;
-	Instances::const_iterator A = instances.find(handle);
-	if (A == instances.end())
+	auto obj = instances.find(handle);
+	if (obj == instances.end())
 		return 0;
-	return A->second;
+	return obj->second;
 }
 
-bool Registry::OnDeathRow(Handle H) const
+bool Registry::OnDeathRow(Handle handle) const
 {
-	return deathrow.find(H) != deathrow.end();
+	return deathrow.find(handle) != deathrow.end();
 }
 
-void Registry::AddClass(const ClassBase *K)
+void Registry::AddClass(const ClassBase *klass)
 {
-	if (K == 0)
+	if (klass == 0)
 		KAI_THROW_0(NullObject);
-	if (GetClass(K->GetTypeNumber()))
+	if (GetClass(klass->GetTypeNumber()))
 		KAI_THROW_1(Base, "Duplicate Class");
-	classes[K->GetTypeNumber().ToInt()] = K;
+	classes[klass->GetTypeNumber().ToInt()] = klass;
 }
 
 Object Registry::GetObject(Handle handle) const
@@ -367,7 +366,7 @@ void Registry::Delete(Handle handle)
 	}
 
 	// remove from list of retained objects
-	RetainedObjects::iterator retained = retained_objects.find(handle);
+	auto etained = retained_objects.find(handle);
 	if (retained != retained_objects.end())
 	{
 		retained_objects.erase(retained);
@@ -548,17 +547,10 @@ static void RemoveFromSet(Registry::ColoredSet &handles, Handle handle)
 
 bool Registry::SetColor(StorageBase &base, ObjectColor::Color color)
 {
-	// managed objects are always black
-	//if (base.IsManaged() && color != ObjectColor::Black)
-	//	return ;
-
 	// when using TriColor, if an object is marked it means it has been forced deleted
 	if (base.IsMarked() && color != ObjectColor::White)
 		return false;
 	
-	//KAI: TODO: ensure this optimisation is valid
-	//if (base.GetColor() == color)
-	//	return true;
 #ifdef KAI_DEBUG_REGISTRY
 	if (IsWatching(base) && gc_trace_level > 0)
 	{
@@ -566,23 +558,17 @@ bool Registry::SetColor(StorageBase &base, ObjectColor::Color color)
 	}
 #endif
 	Handle handle = base.GetHandle();
-//	ObjectColor::Color current = base.GetColor();
 	switch (color)
 	{
 	case ObjectColor::White: 
-//		if (current == ObjectColor::Grey)
-			RemoveFromSet(grey, handle);
+		RemoveFromSet(grey, handle);
 		white.insert(handle); 
 		break;
 	case ObjectColor::Grey: 
-//		if (current == ObjectColor::White)
-			RemoveFromSet(white, handle);
+		RemoveFromSet(white, handle);
 		grey.insert(handle); 
 		break;
 	case ObjectColor::Black:
-		break;
-	default:
-		KAI_THROW_1(InternalError, "Invalid object color");
 		break;
 	}
 	return true;

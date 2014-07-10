@@ -173,11 +173,11 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		Pointer<Continuation> continuation = compiler->Compile(*registry, text.c_str());
-		if (continuation)
+		Pointer<Continuation> cont = compiler->Compile(*registry, text.c_str());
+		if (cont)
 		{
-			continuation->SetScope(tree.GetScope());
-			return Execute(continuation);
+			cont->SetScope(tree.GetScope());
+			return Execute(cont);
 		}
 		return "";
 	}
@@ -212,7 +212,6 @@ String Console::WriteStack() const
 	StringStream result;
 	for (int N = data->Size() - 1; A != B; ++A, --N)
 	{
-		//S << "[" << N << "]:" << A->GetHandle().GetValue() << ":" << A->GetParentHandle().GetValue() << "= " << *A << "\n" << Ends;
 		result << "[" << N << "] ";
 		bool is_string = A->GetTypeNumber() == Type::Number::String;
 		if (is_string)

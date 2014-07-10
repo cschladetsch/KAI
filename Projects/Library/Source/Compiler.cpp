@@ -17,9 +17,14 @@ KAI_BEGIN
 
 bool Compiler::Destroy()
 {
-	StringToOperation::iterator A = string_to_op.begin(), B = string_to_op.end();
-	for (; A != B; ++A)
-		A->second.SetManaged(true);
+	// these are unmanaged while the compiler is alive, to avoid them being part
+	// of the GC process. probably an overkill for performance. in any case,
+	// when the compiler goes out of scope, we want to ensure the operation objects
+	// are returned to the pool for GC.
+	// again, all this work and text describing it is probably more cost than just
+	// letting op's be managed from the start.
+	for (auto op : string_to_op)
+		op.second.SetManaged(true);
 	return true;
 }
 
@@ -31,8 +36,6 @@ void Compiler::AddOperation(int N, const String &S)
 	string_to_op[S] = Q;
 	op_to_string[T] = S;
 }
-
-
 
 Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser::Structure st) const
 {
@@ -61,18 +64,6 @@ Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName,
 	return p->trans->stack.back();
 }
 
-
-
-//Object Compiler::Compile(String const &text, Parser::Structure st) const
-//{
-//	return Compile(*Self->GetRegistry(), text, st);
-//}
-//
-//Object Compiler::Compile2(String text) const
-//{
-//	return Compile(*Self->GetRegistry(), text, Parser::ParseExpression);
-//}
-
 void Compiler::Register(Registry &R, const char *name)
 {
 	//Object (Compiler::*Compile)(String) const = &Compiler::Compile2;
@@ -91,8 +82,6 @@ StringStream &operator>>(StringStream &, Operation &)
 {
 	KAI_NOT_IMPLEMENTED();
 }
-
-// TODO: use char for operation::value
 
 BinaryStream &operator<<(BinaryStream &S, Operation const &P)
 {

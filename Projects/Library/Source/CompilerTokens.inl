@@ -148,4 +148,3 @@ void Compiler::Create()
 	ADD_OP("%=", ModEquals);
 }
 
-//EOF
