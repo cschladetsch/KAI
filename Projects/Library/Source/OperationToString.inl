@@ -5,6 +5,7 @@ const char *Operation::ToString(int value)
 	switch (value)
 	{
 		#define CASE(N) case N: return #N;
+		CASE(Return);
 		CASE(None);
 		CASE(True);
 		CASE(False);

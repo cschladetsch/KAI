@@ -107,7 +107,7 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::Return:
 		for (auto ch : node->Children)
 			Translate(ch);
-		AppendNewOp(Operation::Resume);
+		AppendNewOp(Operation::Return);
 		return;
 	}
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
