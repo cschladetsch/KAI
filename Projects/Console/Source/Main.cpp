@@ -1,9 +1,11 @@
+// (C) 2014 christian.schladetsch@gmail.com
+
 #include <iostream>
 
 #include "KAI/Console.h"
 
 #ifdef KAI_UNIT_TESTS
-#include "KAI/Tests/TestAll.h"
+#	include "KAI/Tests/TestAll.h"
 #endif
 
 #define WIN32_LEAN_AND_MEAN
@@ -46,17 +48,20 @@ int main(int argc, char **argv)
 	Memory::StandardAllocator alloc;
 	Console console(args, &alloc);
 
-#ifdef PROFILE
+#if defined(PROFILE)
 	for (int n = 0; n < 10; ++n)
-		RunTests(console);
 #else
-	RunTests(console);
+		RunTests(console);
+#endif
+
+#if !defined(PROFILE)
 	Run(console);
 #endif
 }
 
 void RunTests(Console &console)
 {
+#if defined(KAI_UNIT_TESTS)
 	#define ADD_TEST(Name) \
 		module.AddSuite<Tests::Name>(#Name);
 
@@ -74,6 +79,7 @@ void RunTests(Console &console)
 	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
 	module.Run(out);
 	std::cout << out->GetSummary().ToString().c_str() << std::endl;
+#endif
 }
 
 //EOF
