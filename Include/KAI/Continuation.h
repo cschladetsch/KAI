@@ -21,6 +21,10 @@ struct Continuation : public Reflected<Continuation>
 	Pointer<int> index;
 	Pointer<bool> entered;
 
+	// if true, this is a 'top-level' continuation, so
+	// name resolution should stop here
+	Pointer<bool> scopeBreak;
+
 public:
 	void Create();
 	bool Destroy();

@@ -10,6 +10,7 @@ KAI_BEGIN
 void Continuation::Create()
 {
 	entered = New<bool>(false);
+	scopeBreak = New<bool>(false);
 	args = New<Array>();
 	index = New<int>(0);
 }

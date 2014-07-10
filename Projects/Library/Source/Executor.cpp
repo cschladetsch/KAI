@@ -327,7 +327,9 @@ void Executor::Perform(Operation::Type op)
 			return;
 		case Type::Number::Continuation:
 			context->Push(continuation);
-			context->Push(NewContinuation(what));
+			auto next = NewContinuation(what);
+			*next->scopeBreak = true;
+			context->Push(next);
 			Break = true;
 			return;
 		}
@@ -523,6 +525,19 @@ void Executor::Perform(Operation::Type op)
 		}
 		break;
 
+	case Operation::Return:
+	{
+		int n = 0;
+		for (auto sc : *context)
+		{
+			if (*Deref<Continuation>(sc).scopeBreak)
+				break;
+			++n;
+		}
+		for (; n > 0; --n)
+			context->Pop();
+		break;
+	}
 	case Operation::Replace:
 		context->Push(NewContinuation(Pop()));
 	case Operation::Resume:
