@@ -1,25 +1,13 @@
+#include <iostream>
 
-#include "KAI/KAI.h"
-#include "KAI/Tree.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/Continuation.h"
-#include "KAI/Value.h"
-#include "KAI/Operation.h"
-#include "KAI/Executor.h"
-#include "KAI/Compiler.h"
-#include "KAI/Memory.h"
 #include "KAI/Console.h"
 
-#include <iostream>
+#ifdef KAI_UNIT_TESTS
+#include "KAI/Tests/TestAll.h"
+#endif
+
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-
-#include "KAI/Test/Base.h"
-#include "KAI/Test/Module.h"
-#include "KAI/StringStream.h"
-#include "KAI/Debug.h"
-
-#include "KAI/Tests/TestCompiler.h"
 
 #pragma comment(lib, "C:/Dev/KAI/Lib/Win32/Debug/library.lib")
 
@@ -57,9 +45,8 @@ int main(int argc, char **argv)
 	
 	Memory::StandardAllocator alloc;
 	Console console(args, &alloc);
-	std::cout << console.WriteStack().c_str();
 
-#if PROFILE
+#ifdef PROFILE
 	for (int n = 0; n < 10; ++n)
 		RunTests(console);
 #else
@@ -70,8 +57,14 @@ int main(int argc, char **argv)
 
 void RunTests(Console &console)
 {
+	#define ADD_TEST(Name) \
+		module.AddSuite<Tests::Name>(#Name);
+
 	Test::Module module("AutoRun");
-	module.AddSuite<Tests::TestCompiler>("TestCompiler");
+	ADD_TEST(TestCompiler);
+	ADD_TEST(TestEvents);
+	//ADD_TEST(TestObject);
+
 	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
 	module.Run(out);
 	std::cout << out->GetSummary().ToString().c_str() << std::endl;

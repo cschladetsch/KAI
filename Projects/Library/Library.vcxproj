@@ -2473,6 +2473,7 @@
     <ClInclude Include="..\..\Include\KAI\StringStream.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\Number.h" />
+    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h" />

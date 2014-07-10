@@ -763,6 +763,9 @@
       <Filter>Include\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\KAI.h" />
+    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h">
+      <Filter>Include\Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Root\AutoExec.txt">
