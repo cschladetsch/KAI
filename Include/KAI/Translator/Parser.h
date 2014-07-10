@@ -10,12 +10,12 @@ KAI_BEGIN
 // iterate over a stream of tokens to produce an abstract syntax tree
 struct Parser : Process
 {
-	struct Exception { };
-	struct StackError : Exception { };
-	struct Unexpected : Exception
-	{
-		Unexpected(Token::Type ty);
-	};
+	//struct Exception { };
+	//struct StackError : Exception { };
+	//struct Unexpected : Exception
+	//{
+	//	Unexpected(Token::Type ty);
+	//};
 
 	typedef std::shared_ptr<Node> NodePtr;
 
@@ -82,10 +82,10 @@ private:
 	void ParseMethodCall();
 	void Function(NodePtr);
 
-	void AddBlock(Parser::NodePtr fun);
+	void AddBlock(NodePtr fun);
 
-	Parser::NodePtr NewNode(Node::Type t);
-	Parser::NodePtr NewNode(Token const &);
+	NodePtr NewNode(Node::Type t);
+	NodePtr NewNode(Token const &);
 	void IfCondition(NodePtr block);
 	void ParseIndexOp();
 	void Assignment(NodePtr);
