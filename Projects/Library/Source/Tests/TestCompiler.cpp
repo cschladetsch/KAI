@@ -68,9 +68,9 @@ void TestCompiler::TestFunctions()
 	Console c(&alloc);
 
 	c.ExecuteFile("Scripts/Test3.kai");
-	c.Execute("p(42)");
 
 	c.Execute("r(4)");
+	KAI_TEST_TRUE(c.GetExecutor()->GetDataStack()->Empty());
 
 	c.Execute("mul(3,4)");
 	KAI_TEST_EQUIV(ConstDeref<int>(c.GetExecutor()->GetDataStack()->Pop()), 3 * 4);
