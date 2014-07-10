@@ -41,8 +41,7 @@ void XmlOutput::SuiteEnd(const String &)
 
 void XmlOutput::ModuleBegin(const String &name)
 {
-	// KAI HACK: hard-code times and developer, machine name for test run for now
-	xml << "<TestRun time_started=\"2007-12-12_10-20\" time_finished=\"2007-12-12_10-25\" developer=\"christian\" host=\"bruticus\">";
+	xml << "<TestRun>";
 
 	summary = Summary();
 	summary.module_name = name;
