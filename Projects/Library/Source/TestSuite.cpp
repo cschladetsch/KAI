@@ -1,7 +1,9 @@
+// (C) 2014 christian.schladetsch@gmail.com
 
 #include "KAI/KAI.h"
-#include "KAI/Test/Base.h"
+
 #ifdef KAI_UNIT_TESTS
+#	include "KAI/Test/Base.h"
 #	include <iostream>
 
 KAI_TEST_BEGIN
