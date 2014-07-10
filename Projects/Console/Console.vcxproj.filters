@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{151ad27d-b14d-486b-afb6-43ec3965232d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{f168bbe0-369c-4033-8f15-b5d4080e9738}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -16,16 +16,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\Test2.kai">
-      <Filter>Scripts</Filter>
+      <Filter>Script</Filter>
     </None>
     <None Include="Scripts\Test3.kai">
-      <Filter>Scripts</Filter>
+      <Filter>Script</Filter>
     </None>
     <None Include="Scripts\TestClass.kai">
-      <Filter>Scripts</Filter>
+      <Filter>Script</Filter>
     </None>
     <None Include="Scripts\TestFun.kai">
-      <Filter>Scripts</Filter>
+      <Filter>Script</Filter>
     </None>
   </ItemGroup>
 </Project>
