@@ -353,6 +353,7 @@ bool Lexer::LexString()
 	{
 		if (Current() == '\\')
 		{
+
 			switch (Next())
 			{
 			case '"':
@@ -364,6 +365,11 @@ bool Lexer::LexString()
 				LexError("Bad escape sequence %c");
 				return false;
 			}
+		}
+		if (Peek() == 0)
+		{
+			Fail("Bad string literal");
+			return false;
 		}
 		Next();
 	}
