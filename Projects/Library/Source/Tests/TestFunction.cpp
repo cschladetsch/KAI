@@ -12,25 +12,22 @@ namespace
 
 	void VF0()
 	{
-		//std::cout << "VF0" << std::endl;
+		std::cout << "VF0" << std::endl;
 		called[0] = true;
 	}
 
-	void VF1(int N)
+	void VF1(int)
 	{
-		KAI_TRACE_1(N);
 		called[1] = true;
 	}
 
-	void VF2(int N, int M)
+	void VF2(int , int )
 	{
-		KAI_TRACE_2(N,M);
 		called[2] = true;
 	}
 
-	void VF3(int N, int M, int O)
+	void VF3(int , int , int )
 	{
-		KAI_TRACE_3(N,M,O);
 		called[3] = true;
 	}
 
@@ -40,35 +37,30 @@ namespace
 		return 0;
 	}
 
-	int F1(int N)
+	int F1(int )
 	{
-		KAI_TRACE_1(N);
 		called[5] = true;
 		return 1;
 	}
 
-	int F2(int N, int M)
+	int F2(int , int )
 	{
-		KAI_TRACE_2(N,M);
 		called[6] = true;
 		return 2;
 	}
 
-	int F3(int N, int M, int O)
+	int F3(int , int , int)
 	{
-		KAI_TRACE_3(N,M,O);
 		called[7] = true;
 		return 3;
 	}
 
-	void G0(Pointer<int> P)
+	void G0(Pointer<int> )
 	{
-		KAI_TRACE_1(P);
 	}
 
-	/*Pointer<String> */Object G1(Pointer<int> P)
+	/*Pointer<String> */Object G1(Pointer<int> )
 	{
-		KAI_TRACE_1(P);
 		return Object();
 	}
 }
