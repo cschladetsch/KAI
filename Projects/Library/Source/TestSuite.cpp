@@ -71,7 +71,7 @@ KAI_BEGIN
 
 StringStream &operator<<(StringStream &S, const Test::Summary &C)
 {
-	S << "Module '" << C.module_name << "': " 
+	S << "Module " << C.module_name << ": " 
 		<< C.num_passed << " passed, " 
 		<< C.num_failed << " failed, " 
 		<< C.num_not_implemented << " not implemented, " 
