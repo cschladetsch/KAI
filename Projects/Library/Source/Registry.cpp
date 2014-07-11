@@ -415,17 +415,6 @@ Object Registry::NewFromClass(const ClassBase *klass)
 	Handle handle = next_handle.NextValue();
 	StorageBase *base = 0;
 	base = klass->NewStorage(this, handle);
-	//nstd::vector<StorageBase *> &pool = pools[klass->GetTypeNumber()];
-	//if (pool.empty())
-	//{
-	//	base = klass->NewStorage(this, handle);
-	//}
-	//else
-	//{
-	//	base->handle = handle;
-	//	base = pool.back();
-	//	pool.pop_back();
-	//}
 
 #ifdef KAI_DEBUG_REGISTRY
 	if (IsWatchingType(klass->GetTypeNumber()))

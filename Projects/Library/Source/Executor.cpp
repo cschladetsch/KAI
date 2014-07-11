@@ -171,14 +171,9 @@ void Executor::Eval(Object const &Q)
 	}
 	default:
 		{
-//			Object K = Q.Clone();
-			//KAI_TRACE_2(K.GetHandle(), K);
-			//K.GetRegistry()->WatchObject(K);
 			Push(Q.Clone());
 		}
 	}
-	//cout << "AFTER --" << endl;
-	//Dump(Q);
 }
 
 template <class Cont>
@@ -208,11 +203,6 @@ void Executor::MarkAndSweep(Object &root)
 {
 	Registry &R = *root.GetRegistry();
 	R.GarbageCollect();
-
-	//R.Mark(root);
-	//MarkObject(*Self);
-	//R.Sweep();
-	//R.DestroyNominated();
 }
 
 void Executor::Expand()
@@ -478,9 +468,7 @@ void Executor::Perform(Operation::Type op)
 	case Operation::ThisContinuation:
 		Push(continuation);
 		break;
-	//case Operation::Detach:
-	//	Pop().Detach();
-	//	break;
+
 	case Operation::Delete:
 		Pop().Delete();
 		break;
@@ -520,7 +508,6 @@ void Executor::Perform(Operation::Type op)
 			case Type::Number::Continuation:
 				break;
 			}
-			//continuation->Next();
 			context->Push(continuation);
 			context->Push(where_to_go);
 			if (where_to_go.IsType<Continuation>())
@@ -1011,11 +998,6 @@ void Executor::Perform(Operation::Type op)
 	}
 }
 
-//Object Executor::ResolvePop()
-//{
-//	return Resolve(Pop());
-//}
-
 template <class D>
 Pointer<Array> Executor::ForEach(D const &C, Object const &F)
 {
@@ -1204,24 +1186,6 @@ void Executor::DumpStack(Stack const &stack)
 void Executor::DumpContinuation(Continuation const &C, int ip)
 {
 	KAI_UNUSED_2(C, ip);
-	//StringStream S;
-	//S << "<< ";
-	//if (C.GetCode().Exists())
-	//{
-	//	Array::const_iterator A = C.GetCode()->Begin(), B = C.GetCode()->End();
-	//	for (; A != B; ++A)
-	//	{
-	//		if (A == ip)
-	//			S << "[[[";
-	//		S << *A;
-	//		if (A == ip)
-	//			S << "]]]";
-	//		S << " ";
-	//	}
-	//}
-	//S << ">>\n";
-	//Trace::Debug() << S.ToString().c_str();
-	//Write2Log(S.ToString().c_str());
 }
 
 void Executor::SetTraceLevel(int N)

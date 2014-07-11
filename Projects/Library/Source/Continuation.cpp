@@ -47,7 +47,6 @@ void Continuation::Enter(Executor *exec)
 		{
 			Object a = data.Pop();
 			scope.Set(ConstDeref<Label>(arg), a);
-			//KAI_TRACE_2(ConstDeref<Label>(arg), a);
 		}
 
 		*index = 0;
@@ -95,10 +94,7 @@ StringStream &operator<<(StringStream &S, const Continuation &C)
 		else
 			S << "[end]";
 	}
-	//S << "args(";
-	//for (auto a : C.GetArgs())
-	//	S << a << ' ';
-	//S << ")";
+
 	return S;
 }
 

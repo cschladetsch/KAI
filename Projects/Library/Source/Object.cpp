@@ -184,13 +184,6 @@ StorageBase &Object::GetStorageBase() const
 	return KAI_NAMESPACE(GetStorageBase(*this));
 }
 
-//StorageBase &Object::GetStorageBase()
-//{
-//	if (!Valid())
-//		KAI_THROW_0(NullObject);
-//	return KAI_NAMESPACE(GetStorageBase(*this));
-//}
-
 Object GetParent(const Object &Q)
 {
 	if (!Q.Valid())
@@ -277,10 +270,6 @@ void Object::SetSwitch(int S, bool M) const
 		return;
 	StorageBase &base = GetStorageBase();
 	GetClass()->SetSwitch(base, S, M);
-	
-	//Dictionary::iterator child = GetDictionary().begin(), end = GetDictionary().end();
-	//for (; child != end; ++child)
-	//	child->second.SetSwitch(S, M);
 }
 
 Object Object::NewFromTypeNumber(Type::Number type_number) const

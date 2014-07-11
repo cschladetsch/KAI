@@ -251,10 +251,6 @@ public:
 	Object NewFromTypeNumber(Type::Number type_number) const;
 	Object NewFromClassName(String const &type_name) const;
 
-	//friend bool operator<(const Object&, const Object&);
-	//friend bool operator==(const Object&, const Object&);
-	//friend bool operator!=(const Object& A, const Object& B) { return !(A == B); }
-
 	void SetPropertyValue(Label const &, Object const &) const;
 	Object GetPropertyValue(Label const &) const;
 
@@ -413,6 +409,5 @@ namespace boost
 	}
 }
 
-#endif // KAI_OBJECT_H
+#endif 
 
-//EOF

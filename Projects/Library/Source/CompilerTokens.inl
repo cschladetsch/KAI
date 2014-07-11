@@ -67,9 +67,7 @@ void Compiler::Create()
 	ADD_OP("gr", Greater);
 	ADD_OP(">", Greater);
 	ADD_OP("less_or_equiv", LessOrEquiv);
-	//ADD_OP("less", LessOrEquiv);
 	ADD_OP("gr_or_equiv", GreaterOrEquiv);
-	//ADD_OP(">=", GreaterOrEquiv);
 	ADD_OP("exists", Exists);
 	ADD_OP("over", Over);
 	ADD_OP("gc", MarkAndSweep);

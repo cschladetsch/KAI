@@ -98,12 +98,6 @@ bool StringStream::Extract(Char &C)
 	C = stream[read_offset++];
 	return true;
 }
-//
-//StringStream &operator<<(StringStream &S, const String &Q)
-//{
-//	S.Append(Q);
-//	return S;
-//}
 
 StringStream &operator<<(StringStream &S, void (*)(EndsArgument))
 {
@@ -136,11 +130,6 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	else
 		stream << "Object: handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
 
-	//foreach (ClassBase::Properties::value_type const &prop, klass->GetProperties())
-	//{
-	//	PropertyBase const& property = *prop.second;
-	//	stream << "<property name='" << property.GetFieldName() << "' value='" << property.GetValue(object) << "'/> ";
-	//}
 	return stream;
 }
 

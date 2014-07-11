@@ -205,7 +205,6 @@ void StorageBase::RemovedFromContainer(Object const &container)
 		StorageBase *base = GetRegistry()->GetStorageBase(*iter);
 		if (!base)
 		{
-			//KAI_THROW_1(InternalError, "Null container");
 			iter = containers.erase(iter);
 			continue;
 		}

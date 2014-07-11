@@ -151,26 +151,6 @@ namespace Type
 		template <int N>
 		struct HasProperties { enum { Value = (Properties & N) == N }; };
 
-		// KAI TODO
-		//template <bool>
-		//struct Updater
-		//{
-		//	static void Update(Reference, float)
-		//	{
-		//		KAI_THROW_2(NoProperty, Number, Properties::Process);
-		//	}
-		//};
-		//template <>
-		//struct Updater<true>
-		//{
-		//	static void Update(Reference process, float delta)
-		//	{
-		//		ProcessBase &proc = static_cast<ProcessBase &>(process);
-		//		proc.Update(delta):
-		//	}
-		//};
-		//typedef Update<HasProperty<Properties::Process>::Value> Updater;
-
 		template <bool>
 		struct ContainerOperations
 		{

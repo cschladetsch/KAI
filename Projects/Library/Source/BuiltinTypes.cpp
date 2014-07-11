@@ -1,5 +1,3 @@
-
-
 #include "KAI/KAI.h"
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/BuiltinTypes/List.h"
@@ -106,13 +104,8 @@ String FunctionBase::ToString() const
 void FunctionBase::Register(Registry &R)
 {
 	ClassBuilder<BasePointer<FunctionBase> >(R, "Function")
-		//("GetName", &FunctionBase::GetName)
 		;
-	//	("GetArgumentTypes", &FunctionBase::GetArgumentTypesArray)
-	//	;
-	//	("GetArgumentTypes", &FunctionBase::GetArgumentTypesArray)
-	//	("GetReturnType", &FunctionBase::GetReturnType)
-	//	;
+
 }
 
 StringStream &operator<<(StringStream &S, int N)
@@ -154,16 +147,6 @@ StringStream &operator<<(StringStream &S, float N)
 	char buffer[1000];
 	sprintf(buffer, "%f", N);
 	return S << buffer;
-	//char buf[_CVTBUFSIZE];
-	//int decimal;
-	//int sign;
-	//int num_decimal_places = 2;
-	//_fcvt_s(buf, _CVTBUFSIZE, (double)N, num_decimal_places, &decimal, &sign);
-	//if (decimal >= 0)
-	//	buf[decimal] = '.';
-	//if (sign != 0)
-	//	S << "-";
-	//return S << buf;
 }
 
 namespace Type

@@ -61,9 +61,6 @@ void Console::Create(const nstd::vector<String> &args)
 		compiler.SetManaged(false);
 
 		CreateTree();
-
-		//if (args.size() == 1)
-		//	KAI_NAMESPACE_NAME::ExecuteFile(args[0].c_str(), executor, compiler, tree.GetScope());
 	}
 	catch (Exception::Base &E)
 	{
