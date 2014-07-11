@@ -39,6 +39,8 @@
 
 KAI_BEGIN
 
+using namespace std;
+
 bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope);
 
 namespace Bin
@@ -55,6 +57,11 @@ namespace Bin
 			methods->Append(Q.New<BasePointer<MethodBase> >(A->second));
 		}
 		return methods.GetObject();
+	}
+
+	void Help()
+	{
+		cout << "There is no help" << endl;
 	}
 
 	Object GetProperties(Object Q)
@@ -196,7 +203,6 @@ namespace Bin
 		module.AddSuite<Tests::TestExample>("TestExample");
 	
 		Pointer<Test::BasicOutput> out = object.New<Test::BasicOutput>();
-		//Pointer<Test::XmlOutput> out = object.New<Test::XmlOutput>();
 		
 		module.Run(out);
 
@@ -284,6 +290,7 @@ namespace Bin
 		ADD_FUN(ReadFile, "Reads a text file");
 		ADD_FUN(ScaleVector3, "Multiply a vector by a float");
 		ADD_FUN(AddVector3, "Adds two Vector3s together.")
+		ADD_FUN(Help, "LOL");
 		
 #ifdef KAI_UNIT_TESTS
 		AddFunction(Q, RunAllTests, "tests", "run all tests");
@@ -291,16 +298,7 @@ namespace Bin
 #endif
 	}
 }
-//Pointer<BinaryStream> Freeze(Object Q)
-//{
-//	return Q;
-//}
-//
-//Object  Thaw(Pointer<BinaryStream>  Q)
-//{
-//	return Q;
-//}
-//
+
 KAI_END
 
 //EOF

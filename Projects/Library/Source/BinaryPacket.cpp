@@ -1,5 +1,3 @@
-
-
 #include "KAI/KAI.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/BuiltinTypes/Bool.h"
@@ -48,7 +46,6 @@ void BinaryStream::Clear()
 
 bool BinaryStream::Write(int len, const Byte *src)
 {
-//#pragma KAI_STATIC_MESSAGE("TODO: avoid re-alloc")
 	// TODO: this is just temporary; production will of course avoid re-allocation on every write!
 	std::size_t cursor = current - first;
 	std::size_t cur_size = last - first;

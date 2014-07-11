@@ -45,23 +45,14 @@ InstanceMapInfinite::const_iterator InstanceMapInfinite::find(Handle const &hand
 	for (; object != end; ++object)
 	{
 		if (object->first == handle)
-			return const_iterator();//object->second;
+			return const_iterator();
 	}
 	return this->end();
 }
 
 void InstanceMapInfinite::erase(const_iterator const &iter)
 {
-	//Bucket &bucket = GetBucket(handle);
-	//Bucket::iterator object = bucket.begin(), end = bucket.end();
-	//for (; object != end; ++object)
-	//{
-	//	if (object->first == handle)
-	//	{
-	//		bucket.eraes(object);
-	//		return;
-	//	}
-	//}
+
 }
 
 //-------------------------------------------------------------------------

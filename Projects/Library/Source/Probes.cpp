@@ -87,13 +87,7 @@ public:
 		Probes::iterator A = probes.begin(), B = probes.end();
 		for (; A != B; ++A)
 		{
-			//ProbeBase
-			//if (!probe->IsDirty())
-			//	continue;
 
-			//// TOD: send update
-
-			//probe->SetClean();
 		}
 	}
 };

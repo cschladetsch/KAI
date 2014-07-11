@@ -279,21 +279,12 @@ void Translator::TranslateIf(Parser::NodePtr node)
 
 void Translator::TranslateFor(Parser::NodePtr node)
 {
-	// TODO
-	//Node::ChildrenType &ch = node->Children;
-	//Translate(ch[0]);
-	//if (ch.size() == 2)
-	//{
-	//	AppendNewOp(Operation::ForEachContained);
-	//}
-
 	AppendNewOp(Operation::None);
 }
 
 void Translator::TranslateWhile(Parser::NodePtr node)
 {
 	AppendNewOp(Operation::None);
-	//throw std::logic_error("The method or operation is not implemented.");
 }
 
 KAI_END

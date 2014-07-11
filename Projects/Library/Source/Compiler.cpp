@@ -66,10 +66,8 @@ Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName,
 
 void Compiler::Register(Registry &R, const char *name)
 {
-	//Object (Compiler::*Compile)(String) const = &Compiler::Compile2;
 	ClassBuilder<Compiler>(R, name)
 		.Methods
-		//("Compile", Compile)
 		;
 }
 

@@ -26,18 +26,6 @@ struct Creator : CreatorBase<Base>
 	}
 };
 
-/// A Factory is used to create types given a typename as a string.
-/// Example usage:
-/// struct Base;
-/// struct Foo : Base;
-/// struct Bar : Base;
-///
-/// Factory<Base> factory;
-/// factory.Register<Foo>("Foo");
-/// factory.Register<Bar>("Bar");
-///
-/// Bar *bar = dynamic_cast<Bar *>(factory.Create("Bar"));
-/// Foo *foo = dynamic_cast<Foo *>(factory.Create("Foo"));
 template <class Base>
 class Factory
 {
