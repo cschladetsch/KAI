@@ -311,7 +311,9 @@ char Lexer::Peek() const
 
 void Lexer::CreateLines()
 {
+	// ensure we end with a newline.
 	input.push_back('\n');
+
 	size_t lineStart = 0;
 	for (size_t n = 0; n < input.size(); ++n)
 	{
@@ -374,7 +376,8 @@ bool Lexer::LexString()
 		Next();
 	}
 	Next();
-	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start, offset)));
+	// the +1 and -1 to remove the start and end double quote characters
+	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start + 1, offset - 1)));
 	return true;
 }
 
@@ -384,3 +387,4 @@ void Lexer::LexError(const char *text)
 }
 
 KAI_END
+
