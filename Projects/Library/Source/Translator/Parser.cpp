@@ -24,6 +24,8 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 
 	root = NewNode(Node::Program);
 
+	if (lexer->Failed)
+		return;
 	try
 	{
 		Run(st);

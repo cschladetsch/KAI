@@ -477,7 +477,15 @@ void Registry::GarbageCollect(Object root)
 
 void Registry::TriColor()
 {
-	const int max_cycles = 9999;
+	// this is a magic number. the higher it is, the more objects may be deleted in this call
+	// the cost has to be paid at some point, so this number really means "how much do I want
+	// to spread out cost of GC over time versus memory use".
+	//
+	// if you have lots of memory, set max_cycles to 1. (or zero!). if not, set it highter
+	// until you can fit memory usage into a sequence of frames.
+	//
+	// see also https://github.com/cschladetsch/Monotonic 
+	const int max_cycles = 17;
 	int N = 0;
 	if (gc_trace_level >= 1)
 	{
