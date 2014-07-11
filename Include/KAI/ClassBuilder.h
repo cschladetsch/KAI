@@ -52,12 +52,12 @@ public:
 	};
 	MethodsCollector Methods;
 
-	ClassBuilder(Registry &R, String const &N) : registry(&R), klass(new Class<T>(N.c_str()))// : Properties(Methods.Properties)
+	ClassBuilder(Registry &R, String const &N) : registry(&R), klass(new Class<T>(N.c_str()))
 	{ 
 		Methods.builder = this;
 		Methods.Properties.builder = this;
 	}
-	ClassBuilder(Registry &R, const Label &N, Object const &Q, const Pathname &P) : registry(&R), root(Q), path(P), klass(new Class<T>(N))// : Properties(Methods.Properties)
+	ClassBuilder(Registry &R, const Label &N, Object const &Q, const Pathname &P) : registry(&R), root(Q), path(P), klass(new Class<T>(N))
 	{ 
 		Methods.builder = this;
 		Methods.Properties.builder = this;
@@ -73,6 +73,4 @@ public:
 
 KAI_END
 
-#endif // KAI_CLASS_BUILDER_H
-
-//EOF
+#endif 

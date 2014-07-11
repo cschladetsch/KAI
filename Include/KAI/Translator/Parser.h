@@ -10,13 +10,6 @@ KAI_BEGIN
 // iterate over a stream of tokens to produce an abstract syntax tree
 struct Parser : Process
 {
-	//struct Exception { };
-	//struct StackError : Exception { };
-	//struct Unexpected : Exception
-	//{
-	//	Unexpected(Token::Type ty);
-	//};
-
 	typedef std::shared_ptr<Node> NodePtr;
 
 	// what type of thing to parse
@@ -57,9 +50,6 @@ private:
 	bool Factor();
 
 	void PushConsume();
-	//bool Error(const char *fmt, ...);
-	//bool Error(const char *fmt, Token tok);
-	//void Fail(const char *fmt);
 
 	Token const &Next();
 	Token const &Last();

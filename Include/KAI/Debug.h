@@ -72,16 +72,6 @@ namespace debug
 	struct EmptySink
 	{
 		EmptySink() { }
-		//EmptySink(int) { }
-
-		//template <class T0>
-		//EmptySink(int, typename Argument<T0>::Type) { }
-
-		//template <class T0, class T1>
-		//EmptySink(int,typename Argument<T0>::Type, typename Argument<T1>::Type) { }
-
-		//template <class T0, class T1, class T2>
-		//EmptySink(int,typename Argument<T0>::Type, typename Argument<T1>::Type,typename Argument<T2>::Type) { }
 
 		template <class T>
 		EmptySink &operator<<(const T&)
