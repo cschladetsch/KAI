@@ -259,13 +259,7 @@ struct Class : ClassBase
 		Traits::BinaryPacketExtract::Extract(S, Q->GetReference());
 		return Q;
 	}
-	//void Insert(XmlStream &, const StorageBase &)
-	//{
-	//}
-	//StorageBase *Extract(Registry &, XmlStream &)
-	//{
-	//	return 0;
-	//}
+
 };
 
 #	pragma warning(pop)

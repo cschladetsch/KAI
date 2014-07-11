@@ -182,8 +182,6 @@ protected:
 private:
 	// do *not* define these
 	Pointer(const Pointer<const T>&);
-//	Pointer<T> &operator=(const Pointer<const T> &);
-
 };
 
 /// Special case to allow const pointers to be defined by type
@@ -278,7 +276,7 @@ struct ArgType<Pointer<T> >
 
 namespace Type
 {
-	/// treat any use of Type::Traits<Pointer<T> > like Type::Traits<Object>
+	// treat any use of Type::Traits<Pointer<T> > like Type::Traits<Object>
 	template <class T>
 	struct Traits<Pointer<T> > : Traits<Object> { };
 }

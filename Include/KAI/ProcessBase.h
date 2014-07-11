@@ -8,11 +8,7 @@
 
 KAI_BEGIN
 
-/// \class ProcessBase.
-///
-/// \brief Base class for all timer objects that receive an Update() call.
-///
-/// \author Christian Schladetsch.
+/// Base class for all timer objects that receive an Update() call.
 class ProcessBase
 {
 	bool paused;

@@ -2,7 +2,6 @@
 #ifndef KAI_CONFIG_BASE_H
 #	define KAI_CONFIG_BASE_H
 
-//#	include "boost/config.hpp"
 #	include "KAI/Config/Options.h"
 #	include "KAI/Config/Compiler.h"
 
