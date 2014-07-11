@@ -1,17 +1,21 @@
 #include "KAI/KAI.h"
 #include "KAI/Translator/Translator.h"
 #include <boost/lexical_cast.hpp>
+#include <boost/range/adaptor/reversed.hpp>
 
 KAI_BEGIN
 
 Translator::Translator(std::shared_ptr<Parser> p, Registry &r) 
 	: reg(r)
 {
+	if (p->Failed)
+		return;
+
 	PushNew();
 
 	try
 	{
-		Traverse(p->root);
+		Translate(p->root);
 	}
 	catch (Exception &)
 	{
@@ -131,7 +135,7 @@ void Translator::Translate(Parser::NodePtr node)
 		return;
 	case Node::GetMember:
 		TranslateBinaryOp(node, Operation::GetProperty);
-		return; 
+		return;
 	case Node::TokenType:
 		TranslateFromToken(node);
 		return;
@@ -154,7 +158,7 @@ void Translator::Translate(Parser::NodePtr node)
 		Append(Pop());
 		return;
 	case Node::List:
-		for (auto ch : node->Children)
+		for (auto ch : boost::adaptors::reverse(node->Children))
 			Translate(ch);
 		AppendNew<int>(node->Children.size());
 		AppendNewOp(Operation::ToArray);
@@ -165,6 +169,12 @@ void Translator::Translate(Parser::NodePtr node)
 	case Node::Function:
 		TranslateFunction(node);
 		return;
+	case Node::Program:
+		{
+			for (auto e : node->Children)
+				Translate(e);
+			return;
+		}
 	}
 
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
@@ -187,7 +197,7 @@ void Translator::TranslateFunction(NodePtr node)
 	// write the body
 	PushNew();
 	for (auto b : ch[2]->Children)
-		Traverse(b);
+		Translate(b);
 	auto cont = Pop();
 
 	// add the args
@@ -200,25 +210,25 @@ void Translator::TranslateFunction(NodePtr node)
 	AppendNewOp(Operation::Store);
 }
 
-void Translator::Traverse(NodePtr node)
-{
-	switch (node->type)
-	{
-	case Node::Program:
-		for (auto ch : node->Children)
-			Translate(ch);
-		break;
-	case Node::Function:
-		TranslateFunction(node);
-		break;
-	case Node::Block:
-		TranslateBlock(node);
-		break;
-	default:
-		Translate(node);
-		break;
-	}
-}
+//void Translator::Traverse(NodePtr node)
+//{
+//	switch (node->type)
+//	{
+//	case Node::Program:
+//		for (auto ch : node->Children)
+//			Translate(ch);
+//		break;
+//	case Node::Function:
+//		TranslateFunction(node);
+//		break;
+//	case Node::Block:
+//		TranslateBlock(node);
+//		break;
+//	default:
+//		Translate(node);
+//		break;
+//	}
+//}
 
 void Translator::TranslateCall(NodePtr node)
 {
