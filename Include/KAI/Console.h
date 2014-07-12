@@ -52,6 +52,8 @@ public:
 	String WriteStack() const;
 	void ControlC();
 	static void Register(Registry &);
+	
+	void Run();
 
 protected:
 	void CreateTree();
