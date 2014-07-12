@@ -17,8 +17,9 @@
 
 #include <iostream>
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#ifdef WIN32
+#	define WIN32_LEAN_AND_MEAN
+#	include <windows.h>
 
 struct C
 {
@@ -32,8 +33,8 @@ struct C
 		Last
 	};
 	static WORD colors[Last];
-	static HANDLE hstdin, hstdout;
-	static CONSOLE_SCREEN_BUFFER_INFO csbi;
+	static HANDLE hstdout;
+	static CONSOLE_SCREEN_BUFFER_INFO orig;
 
 	C()
 	{
@@ -43,17 +44,15 @@ struct C
 		colors[Error] = FOREGROUND_RED;
 		colors[Warning] = FOREGROUND_GREEN | FOREGROUND_RED;
 
-		hstdin = GetStdHandle(STD_INPUT_HANDLE);
 		hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		// Remember how things were when we started
-		GetConsoleScreenBufferInfo(hstdout, &csbi);
+		GetConsoleScreenBufferInfo(hstdout, &orig);
 	}
 
 	~C()
 	{
-		FlushConsoleInputBuffer(hstdin);
-		SetConsoleTextAttribute(hstdout, csbi.wAttributes);
+		SetConsoleTextAttribute(hstdout, orig.wAttributes);
 	}
 
 	static void SetColor(What c)
@@ -63,18 +62,16 @@ struct C
 
 	void operator()(What c) const { SetColor(c); }
 };
+#endif
 
 WORD C::colors[C::Last];
-HANDLE C::hstdin, C::hstdout;
-CONSOLE_SCREEN_BUFFER_INFO C::csbi;
+HANDLE C::hstdout;
+CONSOLE_SCREEN_BUFFER_INFO C::orig;
 
 struct color
 {
 	C::What col;
-	color(C::What c)
-	{
-		col = c;
-	}
+	color(C::What c) : col(c) { }
 
 	friend std::ostream& operator<<(std::ostream& out, color const &c)
 	{
@@ -242,9 +239,9 @@ String Console::Process(const String& text)
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
+			std::cout << color(C::Trace);
 			return Execute(cont);
 		}
-		std::cout << color(C::Trace);
 		return "";
 	}
 	KAI_CATCH(Exception::Base, E)
