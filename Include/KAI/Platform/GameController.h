@@ -4,6 +4,6 @@
 
 #include KAI_PLATFORM_INCLUDE(GameController.h)
 
-#endif // SHATTER_PLATFORM_GAME_CONTROLLER_H
+#endif
 
 //EOF
