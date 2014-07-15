@@ -16,8 +16,6 @@
 
 #include <iostream>
 
-void Write2Log(const char *) { }
-
 using namespace std;
 
 KAI_BEGIN
@@ -1180,7 +1178,6 @@ void Executor::DumpStack(Stack const &stack)
 		result << "\n";
 	}
 	Trace::Debug() << result.ToString().c_str();
-	Write2Log(result.ToString().c_str());
 }
 
 void Executor::DumpContinuation(Continuation const &C, int ip)

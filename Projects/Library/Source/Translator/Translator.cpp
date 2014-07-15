@@ -104,7 +104,6 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 		//for (auto ch : node->Children)
 		//	Translate(ch);
 		//AppendNewOp(Operation::PushContext);
-		//AppendNewOp(Operation::Replace);
 		KAI_NOT_IMPLEMENTED();
 		return;
 
@@ -232,11 +231,15 @@ void Translator::TranslateFunction(NodePtr node)
 
 void Translator::TranslateCall(NodePtr node)
 {
-	for (auto a : node->Children[1]->Children)
+	Node::ChildrenType &children = node->Children;
+	for (auto a : children[1]->Children)
 		Translate(a);
 
-	Translate(node->Children[0]);
-	AppendNew(Operation(Operation::SuspendNew));
+	Translate(children[0]);
+	if (children.size() > 2 && children[2]->token.type == Token::Replace)
+		AppendNew(Operation(Operation::Replace));
+	else
+		AppendNew(Operation(Operation::SuspendNew));
 }
 
 Pointer<Continuation> Translator::Top()
