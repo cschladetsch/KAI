@@ -577,6 +577,8 @@ void Parser::ParseMethodCall()
 
 	Push(call);
 	Expect(Token::CloseParan);
+	if (Try(Token::Replace))
+		call->Add(Consume());
 }
 
 void Parser::ParseGetMember()
