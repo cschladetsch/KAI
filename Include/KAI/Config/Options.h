@@ -4,7 +4,10 @@
 #define KAI_OPTION_USE_NAMESPACES
 
 /// if KAI_OPTION_USE_NAMESPACES is defined, this is the namespace name to use
-#define KAI_NAMESPACE_NAME kai
+//#define KAI_NAMESPACE_NAME kai
+#ifndef KAI_NAMESPACE_NAME
+#error please define KAI_NAMESPACE_NAME
+#endif
 
 #define KAI_UNIT_TESTS
 
