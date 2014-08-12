@@ -31,141 +31,141 @@ struct Deleter// : Function<void (*)(T *)
 		return true;
 	}
 	template <class A, class B>
-	bool operator()(const std::pair<A,B *> &pair)
+	bool operator()(const std::pair<A, B *> &pair)
 	{
 		delete pair.second;
 		return true;
 	}
 };
 
-	template <class T>
-	struct IteratedFunctionBase
-	{
-		// return false to cease the iteration
-		virtual bool Invoke(Object const &Q) = 0;
+template <class T>
+struct IteratedFunctionBase
+{
+	// return false to cease the iteration
+	virtual bool Invoke(Object const &Q) = 0;
 
-		bool operator()(Object const &Q)
-		{
-			if (!Q.Exists())
-				return true;
-			return Invoke(Q);
-		}
-		bool operator()(Object &Q)
-		{
-			if (!Q.Exists())
-				return true;
-			return Invoke(Q);
-		}
-		bool operator()(nstd::pair<Object, Object> &M)
-		{
-			return Invoke(M.first) 
-				&& Invoke(M.second);
-		}
-		bool operator()(nstd::pair<const Object, Object> &M)
-		{
-			return Invoke(const_cast<Object &>(M.first)) 
-				&& Invoke(M.second);
-		}
-		bool operator()(nstd::pair<const String, Object> &M)
-		{
-			return Invoke(M.second);
-		}
-		template <class T>
-		bool operator()(nstd::pair<const String, Pointer<T> > &M)
-		{
-			return Invoke(M.second);
-		}
-	};
-
-	template <class T>
-	struct SetSwitch : IteratedFunctionBase<T>
+	bool operator()(Object const &Q)
 	{
-		int val;
-		bool on;
-		SetSwitch(int V, bool Q) : val(V), on(Q) { }
-		bool Invoke(Object const &object)
-		{
-			object.SetSwitch(val, on);
+		if (!Q.Exists())
 			return true;
-		}
-	};
-
-	template <class T>
-	struct SetMarked : IteratedFunctionBase<T>
+		return Invoke(Q);
+	}
+	bool operator()(Object &Q)
 	{
-		bool mark;
-		SetMarked(bool Q) : mark(Q) { }
-		bool Invoke(Object const &M)
-		{
-			MarkObjectAndChildren(M, mark);
+		if (!Q.Exists())
 			return true;
-		}
-	};
-
+		return Invoke(Q);
+	}
+	bool operator()(nstd::pair<Object, Object> &M)
+	{
+		return Invoke(M.first)
+			&& Invoke(M.second);
+	}
+	bool operator()(nstd::pair<const Object, Object> &M)
+	{
+		return Invoke(const_cast<Object &>(M.first))
+			&& Invoke(M.second);
+	}
+	bool operator()(nstd::pair<const String, Object> &M)
+	{
+		return Invoke(M.second);
+	}
 	template <class T>
-	struct CanBlackenFun : IteratedFunctionBase<T>
+	bool operator()(nstd::pair<const String, Pointer<T> > &M)
 	{
-		bool can_make_black;
-		CanBlackenFun() : can_make_black(true) { }
-		bool Invoke(Object const &Q)
-		{
-			StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
-			return can_make_black = can_make_black && base && !base->IsWhite();
-		}
-	};
+		return Invoke(M.second);
+	}
+};
 
-	template <class T>
-	struct SetObjectColor : IteratedFunctionBase<T>
+template <class T>
+struct SetSwitch : IteratedFunctionBase < T >
+{
+	int val;
+	bool on;
+	SetSwitch(int V, bool Q) : val(V), on(Q) { }
+	bool Invoke(Object const &object)
 	{
-		ObjectColor::Color color;
-		SetObjectColor(ObjectColor::Color C) : color(C) { }
-		bool Invoke(Object const &Q)
-		{
-			Object(Q).SetColor(color);
-			return true;
-		}
-	};
+		object.SetSwitch(val, on);
+		return true;
+	}
+};
 
-	template <class T>
-	struct SetObjectColorRecursive : IteratedFunctionBase<T>
+template <class T>
+struct SetMarked : IteratedFunctionBase < T >
+{
+	bool mark;
+	SetMarked(bool Q) : mark(Q) { }
+	bool Invoke(Object const &M)
 	{
-		ObjectColor::Color color;
-		StorageBase::Handles *handles;
-		SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Handles &H) : color(C), handles(&H) { }
-		bool Invoke(Object const &Q)
-		{
-			Object(Q).SetColorRecursive(color, *handles);
-			return true;
-		}
-	};
+		MarkObjectAndChildren(M, mark);
+		return true;
+	}
+};
 
-	template <class T>
-	struct MakeReachableGreyFun : IteratedFunctionBase<T>
+template <class T>
+struct CanBlackenFun : IteratedFunctionBase < T >
+{
+	bool can_make_black;
+	CanBlackenFun() : can_make_black(true) { }
+	bool Invoke(Object const &Q)
 	{
-		bool Invoke(Object const &Q)
-		{
-			StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
-			if (base != 0 && base->IsWhite())
-				base->SetColor(ObjectColor::Grey);
-			return true;
-		}
-	};
-	
-	template <class T, class C>
-	struct AddContainedFun : IteratedFunctionBase<T>
+		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		return can_make_black = can_make_black && base && !base->IsWhite();
+	}
+};
+
+template <class T>
+struct SetObjectColor : IteratedFunctionBase < T >
+{
+	ObjectColor::Color color;
+	SetObjectColor(ObjectColor::Color C) : color(C) { }
+	bool Invoke(Object const &Q)
 	{
-		typedef C OutputContainer;
-		OutputContainer *output;
-		AddContainedFun(OutputContainer &L) : output(&L) { }
-		bool Invoke(Object const &Q)
-		{
-			if (!Q.Valid())
-				return true;
-			StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
-			if (base != 0)
-				output->push_back(*base);
+		Object(Q).SetColor(color);
+		return true;
+	}
+};
+
+template <class T>
+struct SetObjectColorRecursive : IteratedFunctionBase < T >
+{
+	ObjectColor::Color color;
+	StorageBase::Handles *handles;
+	SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Handles &H) : color(C), handles(&H) { }
+	bool Invoke(Object const &Q)
+	{
+		Object(Q).SetColorRecursive(color, *handles);
+		return true;
+	}
+};
+
+template <class T>
+struct MakeReachableGreyFun : IteratedFunctionBase < T >
+{
+	bool Invoke(Object const &Q)
+	{
+		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		if (base != 0 && base->IsWhite())
+			base->SetColor(ObjectColor::Grey);
+		return true;
+	}
+};
+
+template <class T, class C>
+struct AddContainedFun : IteratedFunctionBase < T >
+{
+	typedef C OutputContainer;
+	OutputContainer *output;
+	AddContainedFun(OutputContainer &L) : output(&L) { }
+	bool Invoke(Object const &Q)
+	{
+		if (!Q.Valid())
 			return true;
-		}
-	};
+		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		if (base != 0)
+			output->push_back(*base);
+		return true;
+	}
+};
 
 KAI_END
