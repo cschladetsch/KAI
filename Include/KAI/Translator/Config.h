@@ -5,6 +5,6 @@
 #include "KAI/Config/Base.h"
 
 #ifndef KAI_TRANS_NAMESPACE_NAME
-#	define KAI_TRANS_NAMESPACE_NAME trans
+#	define KAI_TRANS_NAMESPACE_NAME kai
 #endif
 
