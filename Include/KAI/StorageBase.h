@@ -1,16 +1,9 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_OBJECT_BASE_H
-#	define KAI_OBJECT_BASE_H
+#pragma once
 
 KAI_BEGIN
 
-/// Base for all object instances. The value stored with an object is placed
-/// contiguously in memory with the object.
+// Base for all object instances. The value stored with an object is placed
+// contiguously in memory with the object.
 struct StorageBase : public Object
 {
 	typedef int Switches;
@@ -93,7 +86,5 @@ public:
 };
 
 KAI_END
-
-#endif // KAI_OBJECT_BASE_H
 
 //EOF

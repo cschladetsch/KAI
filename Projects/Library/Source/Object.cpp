@@ -324,7 +324,7 @@ bool Object::HasProperty(Label const &name) const
 
 Object Object::GetPropertyObject(Label const &L) const
 {
-	return KAI_NAMESPACE_NAME::GetPropertyObject(*this, L);
+	return KAI_NAMESPACE(GetPropertyObject)(*this, L);
 }
 
 Label Object::GetLabel() const
@@ -334,7 +334,7 @@ Label Object::GetLabel() const
 
 Object Object::Duplicate() const
 {
-	return KAI_NAMESPACE_NAME::Duplicate(*this);
+	return KAI_NAMESPACE(Duplicate)(*this);
 }
 
 Object Duplicate(Object const &Q)

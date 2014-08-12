@@ -106,6 +106,12 @@ Console::Console(const nstd::vector<String> &args, Memory::IAllocator *alloc)
 	this->alloc = alloc;
 }
 
+Console::Console()
+{
+	registry = alloc->Allocate<Registry>();
+	Create(nstd::vector<String>());
+}
+
 Console::~Console()
 {
 	alloc->DeAllocate(registry);
@@ -192,7 +198,7 @@ void Console::CreateTree()
 
 void Console::ExecuteFile(const char *filename)
 {
-	KAI_NAMESPACE_NAME::ExecuteFile(filename, executor, compiler, tree.GetScope());
+	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
 }
 
 String Console::Execute(Pointer<Continuation> cont)

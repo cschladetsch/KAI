@@ -156,11 +156,12 @@ namespace Type
 		{
 			static void SetMarked(Reference R, bool M)
 			{
-				ForEach(R, KAI_NAMESPACE_NAME::SetMarked<T>(M));
+				//ForEach(R, KAI_NAMESPACE_NAME::SetMarked<T>(M));
+				ForEach(R, KAI_NAMESPACE(SetMarked)<T>(M));
 			}
 			static void SetSwitch(Reference R, int S, bool M)
 			{
-				ForEach(R, KAI_NAMESPACE_NAME::SetSwitch<T>(S, M));
+				ForEach(R, KAI_NAMESPACE(SetSwitch)<T>(S, M));
 			}
 			static void SetColor(Reference R, ObjectColor::Color C)
 			{

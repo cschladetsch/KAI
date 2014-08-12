@@ -14,6 +14,8 @@
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/BuiltinTypes/List.h"
 
+#undef GetObject
+
 #include <iostream>
 
 using namespace std;
@@ -223,6 +225,7 @@ void Executor::Expand()
 		break;
 	}
 }
+
 
 void Executor::GetChildren()
 {

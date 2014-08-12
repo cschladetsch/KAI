@@ -29,6 +29,7 @@ class Console
 
 public:
 	~Console();
+	Console();
 	Console(Memory::IAllocator *);
 	Console(const nstd::vector<String> &args, Memory::IAllocator *);
 

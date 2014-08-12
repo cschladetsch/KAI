@@ -1,768 +1,791 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Include">
-      <UniqueIdentifier>{19552736-67d3-449d-9b44-f3fea7e621c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Bin">
-      <UniqueIdentifier>{eabd1108-5962-4460-9eca-d781c15b33f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\BuiltinTypes">
-      <UniqueIdentifier>{923222f3-6bfa-4601-97fd-bbee1f0671b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Config">
-      <UniqueIdentifier>{7f7e55e6-102f-48b7-a128-e57df43a0617}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Detail">
-      <UniqueIdentifier>{678c1c57-da3c-44e3-9e01-b6b3bd9a009b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Exception">
-      <UniqueIdentifier>{019d0f97-1fc4-4901-9fbc-983734394e68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Memory">
-      <UniqueIdentifier>{6327cb09-6a71-4608-a231-87beab143e2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Test">
-      <UniqueIdentifier>{f70e6014-3b9e-41a5-bbea-38b6e0ae8176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Tests">
-      <UniqueIdentifier>{08a92f05-dab6-499c-a21a-b017c0a7be59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Type">
-      <UniqueIdentifier>{81ffb35f-9f4f-41ca-9194-04fe2320de8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Meta">
-      <UniqueIdentifier>{bc1600bd-c08e-448b-a5e2-4a7310b0e332}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Network">
-      <UniqueIdentifier>{4453666f-d829-4a1d-ae39-6fb0567d1c68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Include\Translator">
-      <UniqueIdentifier>{8e1c05fd-5da3-4250-8bab-10efa86b113f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source\Tests">
-      <UniqueIdentifier>{37a1a4e6-dcfb-4152-ba86-06229198bce5}</UniqueIdentifier>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{12793f8d-477c-458e-bbd1-e34f8e7b2c04}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Tests\Scripts">
-      <UniqueIdentifier>{05f7fda3-66db-4667-abd2-13cede01adf3}</UniqueIdentifier>
+    <Filter Include="Source Files\BuiltinTypes">
+      <UniqueIdentifier>{95738db8-d8eb-4fe3-ac89-f505bf276ad0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\BuiltinTypes">
-      <UniqueIdentifier>{19ebf371-9271-4b35-af26-882535281794}</UniqueIdentifier>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{24959221-bfd9-43bf-8e5e-dbb427b86007}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Network">
-      <UniqueIdentifier>{fee3ea0c-b390-467a-adad-3e40c86e46c7}</UniqueIdentifier>
+    <Filter Include="Source Files\Network\Platform">
+      <UniqueIdentifier>{a8bfcbc0-bce0-437e-a116-69eac18597a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Network\Platform">
-      <UniqueIdentifier>{29a86f1b-40ec-48ca-888e-df7516fbfa57}</UniqueIdentifier>
+    <Filter Include="Source Files\Network\Platform\PC">
+      <UniqueIdentifier>{74199ec2-016c-4a64-b915-6b67dbf1e9fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Network\Platform\PC">
-      <UniqueIdentifier>{d646e33d-581a-4914-8621-1de70bbc9de3}</UniqueIdentifier>
+    <Filter Include="Source Files\Network\Platform\PC\Network">
+      <UniqueIdentifier>{f19a62c6-8ad8-40be-a71d-40798c9526a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Network\Platform\PC\Network">
-      <UniqueIdentifier>{eced009a-99ed-4c18-a96a-5186e54c7b77}</UniqueIdentifier>
+    <Filter Include="Source Files\Platform">
+      <UniqueIdentifier>{813bb48a-710a-4254-9ef7-432ad2d0d82a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Platform">
-      <UniqueIdentifier>{2dab56ac-4b1b-47d7-9dcf-75b0f3eadc55}</UniqueIdentifier>
+    <Filter Include="Source Files\Platform\PC">
+      <UniqueIdentifier>{7a749fea-34b2-43c7-a469-57546baf22a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Platform\PC">
-      <UniqueIdentifier>{c95c0252-70dd-4ac1-b246-a16206481063}</UniqueIdentifier>
+    <Filter Include="Source Files\Platform\PC\Network">
+      <UniqueIdentifier>{ead09092-f0f2-439e-8d95-ac84723920a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Platform\PC\Network">
-      <UniqueIdentifier>{0f1fb503-ff98-4aaa-8368-4876f63acc5a}</UniqueIdentifier>
+    <Filter Include="Source Files\Test">
+      <UniqueIdentifier>{b4fd8c5e-6ecc-4c16-9f4d-84569015259a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Test">
-      <UniqueIdentifier>{945ec437-1fab-4935-a5b0-cd8b74f4eeb1}</UniqueIdentifier>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Source\Translator">
-      <UniqueIdentifier>{a12dc647-1106-4534-a07d-bc8ad3712db1}</UniqueIdentifier>
+    <Filter Include="Header Files\Type">
+      <UniqueIdentifier>{6413d38e-5e98-48c1-9d6f-14df4052119a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Include\Platform">
-      <UniqueIdentifier>{e23f2e74-471a-4b1a-bbf0-806ba8ffa277}</UniqueIdentifier>
+    <Filter Include="Header Files\Exception">
+      <UniqueIdentifier>{f4925229-f963-4607-8a98-4c91306b3d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Meta">
+      <UniqueIdentifier>{e9e334a2-1da0-42ce-bc67-6d00f19dfff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Config">
+      <UniqueIdentifier>{2bad49c4-b89b-44e7-86c3-52b2d3344436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BuiltinTypes">
+      <UniqueIdentifier>{965dec8d-444a-4cf6-837e-672d79cec26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\BuiltinTypes\Containers">
+      <UniqueIdentifier>{b14b248c-c16a-4e8b-91e8-b3ea3143f77f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tests">
+      <UniqueIdentifier>{90a81116-c287-4e44-8f08-89fecec12a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Test">
+      <UniqueIdentifier>{5dc04057-32f7-4346-a1c0-7e434392478c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{5ea6bce6-08e9-4e65-acf3-a84d5261e72b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Platform">
+      <UniqueIdentifier>{5ff44387-2a27-4bd2-9b66-f9c2578a60fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Platform\PC">
+      <UniqueIdentifier>{273892a1-1c03-4d9b-a953-117492125ab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Platform\PC\Network">
+      <UniqueIdentifier>{62d166a0-4679-4425-a46a-3e7e036d9874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Detail">
+      <UniqueIdentifier>{200c90ec-b7eb-4c48-b092-585300b590e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Memory">
+      <UniqueIdentifier>{aad44329-51a9-4d12-ba7b-551384eb87ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Root">
+      <UniqueIdentifier>{a941ffab-6f43-4a05-8b64-7db6507c23cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Inline">
+      <UniqueIdentifier>{01704b90-8bed-4efa-9dcb-535ba003f310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Header">
+      <UniqueIdentifier>{992963ff-384e-4b50-bd7c-7058d0335863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BuiltinTypes\Inline">
+      <UniqueIdentifier>{eea51e9a-ebde-46b3-9af9-c35414ee5213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Translator">
+      <UniqueIdentifier>{a1539637-fa9a-40f8-978f-8550ec6c2f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bin">
+      <UniqueIdentifier>{411b9cde-ad18-4244-a69d-266d32c02696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Translator">
+      <UniqueIdentifier>{0c274238-e2e7-40c8-99a7-ab1af241ddbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BinaryPacket.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Compiler.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Console.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Continuation.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\DotGraph.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Example.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Exception.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Executor.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InstanceMap.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\LibrarySource.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Pathname.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Probes.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Registry.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SignedContinuation.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\StorageBase.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\StringStream.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tree.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utility.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestBinaryStream.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestClosure.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestCompiler.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestDerivation.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestDotGraph.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestEvents.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestExample.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestExecutor.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestFunction.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestMap.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestMethod.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestObject.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestObjectIndexing.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestPathname.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestProperties.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestRegistry.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestsPrecompiled.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestStringStream.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTemplate.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTest.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTree.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\Tests\TestTriColor.cpp">
-      <Filter>Source\Tests</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\Map.cpp">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
     <ClCompile Include="Source\Network\Tcp.cpp">
-      <Filter>Source\Network</Filter>
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
-      <Filter>Source\Network\Platform\PC\Network</Filter>
+      <Filter>Source Files\Network\Platform\PC\Network</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\BasicOutput.cpp">
-      <Filter>Source\Test</Filter>
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\Module.cpp">
-      <Filter>Source\Test</Filter>
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\TestSuite.cpp">
-      <Filter>Source\Test</Filter>
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Test\XmlOutput.cpp">
-      <Filter>Source\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Lexer.cpp">
-      <Filter>Source\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Node.cpp">
-      <Filter>Source\Translator</Filter>
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\RhoLang.cpp">
-      <Filter>Source\Translator</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Test.cpp">
-      <Filter>Source\Translator</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Node.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Lexer.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\RhoLang.cpp">
+      <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Token.cpp">
-      <Filter>Source\Translator</Filter>
+      <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Translator.cpp">
-      <Filter>Source\Translator</Filter>
+      <Filter>Source Files\Translator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Array.inl">
-      <Filter>Source\BuiltinTypes</Filter>
-    </None>
     <None Include="Source\BuiltinTypes\Label.inl">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
     <None Include="Source\List.inl">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
     <None Include="Source\BuiltinTypes\Set.inl">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
     <None Include="Source\Stack.inl">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
     <None Include="Source\String.inl">
-      <Filter>Source\BuiltinTypes</Filter>
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
+    </None>
+    <None Include="Source\Array.inl">
+      <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Accessor.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\AccessorBase.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Algorithm.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\AutoPointer.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Base.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BasePointer.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BinaryPacket.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BinaryStream.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Boost.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\All.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Pair.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\TypeNumber.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\CallableBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Class.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ClassBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ClassBuilder.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Compiler.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\IntegralTypes.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Options.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Platform.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Console.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Constness.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ConstObject.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Continuation.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Debug.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Detail\SystemEvent.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\DotGraph.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Event.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Executor.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Factory.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\filelocation.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Function.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\FunctionBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\FwdDeclarations.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\GetStorageBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\GuardStart.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Handle.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\InstanceMap.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\IObject.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Label.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Memory\IAllocator.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Memory\Memory.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Memory.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Meta\StaticAssert.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Method.cpp0x.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Method.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\MethodBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Network\Tcp.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Network\Template.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Node.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\NonCopyable.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\None.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Object.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ObjectConstructParams.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Operation.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Pathname.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Network\TcpClientImpl.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\CriticalSection.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Mutex.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Pointer.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Preprocessor.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ProcessBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\PropertyBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Reflected.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Registry.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\StdContainers.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Storage.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\StorageBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\StringStream.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Component.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Macros.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Module.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Suite.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Summary.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\Number.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Threads\CriticalSection.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Threads\Thread.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tree.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Type\Number.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\TypeInfo.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Utility.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Value.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\XmlScopedElement.h">
-      <Filter>Include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Bin\Base.h">
-      <Filter>Include\Bin</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Base.h">
-      <Filter>Include\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Base.h">
-      <Filter>Include\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Meta\Base.h">
-      <Filter>Include\Meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Network\Base.h">
-      <Filter>Include\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Base.h">
-      <Filter>Include\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
-      <Filter>Include\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Detail\Event.h">
-      <Filter>Include\Detail</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
-      <Filter>Include\BuiltinTypes</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Array.h">
-      <Filter>Include\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Memory\BaseAllocator.h">
-      <Filter>Include\Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h">
-      <Filter>Include\Test</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Bool.h">
-      <Filter>Include\BuiltinTypes</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
-      <Filter>Include\Config</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Float.h">
-      <Filter>Include\BuiltinTypes</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h">
-      <Filter>Include\BuiltinTypes</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h">
-      <Filter>Include\Tests</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h">
-      <Filter>Include\Tests</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h">
-      <Filter>Include\Tests</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestCompiler.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDerivation.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDotGraph.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestEvents.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExample.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExecutor.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestFunction.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMap.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMethod.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObject.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObjectIndexing.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestPathname.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestProperties.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestRegistry.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestSignedContinuation.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestStringStream.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTemplate.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTest.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h">
-      <Filter>Include\Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h">
-      <Filter>Include\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h">
-      <Filter>Include\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\WideString.h">
-      <Filter>Include\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Vector4.h">
-      <Filter>Include\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h">
-      <Filter>Include\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Signed32.h">
-      <Filter>Include\BuiltinTypes</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Pair.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Set.h">
-      <Filter>Include\BuiltinTypes</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
-      <Filter>Include\Exception</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Signed32.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\GameController.h">
-      <Filter>Include\Platform</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\GameController.h">
-      <Filter>Include\Platform</Filter>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Traits.h">
-      <Filter>Include\BuiltinTypes</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\TypeNumber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Vector4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\WideString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\CallableBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ClassBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ClassBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\IntegralTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Options.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Constness.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ConstObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Continuation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Detail\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Detail\SystemEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\DotGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Executor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\filelocation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Function.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\FunctionBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\FwdDeclarations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\GetStorageBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\GuardStart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\InstanceMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\IObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Memory\BaseAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Memory\IAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Memory\Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Meta\StaticAssert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Method.cpp0x.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Method.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\MethodBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Network\Tcp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Network\Template.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\NonCopyable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\None.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ObjectConstructParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Pathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\GameController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\GameController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Network\TcpClientImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\CriticalSection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Mutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Pointer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\KAI.h">
-      <Filter>Include</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Preprocessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ProcessBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\PropertyBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Reflected.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\StdContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\StorageBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\StringStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\Number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestCompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestDerivation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestDotGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestExample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestExecutor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestObjectIndexing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestPathname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestSignedContinuation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestStringStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTemplate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Suite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Summary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Threads\CriticalSection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Threads\Thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\TypeInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\XmlScopedElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Network\Base.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Bin\Base.h">
+      <Filter>Header Files\Bin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Meta\Base.h">
+      <Filter>Header Files\Meta</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Base.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\Base.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Base.h">
+      <Filter>Header Files\Config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -770,10 +793,10 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Source\CompilerTokens.inl">
-      <Filter>Source</Filter>
+      <Filter>Source Files\Inline</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\OperationToString.inl">
-      <Filter>Source</Filter>
+      <Filter>Source Files\Inline</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
