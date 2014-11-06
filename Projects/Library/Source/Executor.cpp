@@ -131,15 +131,15 @@ void Executor::Continue(Pointer<Continuation> C)
 void Executor::NextContinuation()
 {
 	if (context->Empty())
-		SetContinuation(Object());
-	else
 	{
-		if (context->Empty())
-		{
-			KAI_TRACE_ERROR() << "Context stack is empty";
-		}
-		SetContinuation(context->Pop());
+		SetContinuation(Object());
+		return;
 	}
+
+	if (context->Empty())
+		KAI_TRACE_ERROR() << "Context stack is empty";
+
+	SetContinuation(context->Pop());
 }
 
 void Executor::Push(Stack& L, Object const &Q)
@@ -182,6 +182,7 @@ void Executor::PushAll(const Cont &cont)
 	typename Cont::const_iterator A = cont.Begin(), B = cont.End();
 	for (; A != B; ++A)
 		Push(*A);
+
 	Push(New(cont.Size()));
 }
 
@@ -229,17 +230,14 @@ void Executor::Expand()
 
 void Executor::GetChildren()
 {
-	{
-		Value<Array> children = New<Array>();
-		const StorageBase &Q = GetStorageBase(Pop());
-		const Dictionary &D = Q.GetDictionary();
-		Dictionary::const_iterator A = D.begin(), B = D.end();
-		for (; A != B; ++A)
-		{
-			children->Append(New(A->first.ToString()));
-		}
-		Push(children.GetObject());
-	}
+	Value<Array> children = New<Array>();
+	const StorageBase &Q = GetStorageBase(Pop());
+	const Dictionary &D = Q.GetDictionary();
+	Dictionary::const_iterator A = D.begin(), B = D.end();
+	for (; A != B; ++A)
+		children->Append(New(A->first.ToString()));
+
+	Push(children.GetObject());
 }
 
 void Executor::ToArray()
@@ -247,11 +245,11 @@ void Executor::ToArray()
 	int len = ConstDeref<int>(Pop());
 	if (len < 0)
 		KAI_THROW_1(BadIndex, len);
+
 	Value<Array> A = New<Array>();
 	while (len-- > 0)
-	{
 		A->Append(Pop());
-	}
+
 	Push(A.GetObject());
 }
 
@@ -260,6 +258,7 @@ void Executor::DropN()
 	int N = Deref<int>(Pop());
 	if (N < 0)
 		KAI_THROW_1(BadIndex, N);
+
 	while (N-- > 0)
 		Pop();
 }
@@ -271,6 +270,7 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 		Pop();
 		return;
 	}
+
 	switch (op)
 	{
 	case Operation::Suspend:
@@ -509,12 +509,12 @@ void Executor::Perform(Operation::Type op)
 			case Type::Number::Continuation:
 				break;
 			}
+
 			context->Push(continuation);
 			context->Push(where_to_go);
 			if (where_to_go.IsType<Continuation>())
-			{
 				Deref<Continuation>(where_to_go).Enter(this);
-			}
+
 			Break = true;
 		}
 		break;
@@ -528,8 +528,10 @@ void Executor::Perform(Operation::Type op)
 				break;
 			++n;
 		}
+
 		for (; n > 0; --n)
 			context->Pop();
+
 		break;
 	}
 	case Operation::Replace:
