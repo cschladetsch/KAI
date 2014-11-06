@@ -11,7 +11,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#pragma comment(lib, "C:/Dev/KAI/Lib/Win32/Debug/library.lib")
+#pragma comment(lib, "../../Lib/Win32/Debug/library.lib")
 
 KAI_BEGIN
 
@@ -24,10 +24,7 @@ void DebugTrace(const char *text)
 
 KAI_END
 
-USING_NAMESPACE_KAI;
-
-
-
+USING_NAMESPACE_KAI
 
 void RunTests(Console &console);
 
@@ -42,9 +39,8 @@ int main(int argc, char **argv)
 
 #if defined(PROFILE)
 	for (int n = 0; n < 10; ++n)
-#else
-		RunTests(console);
 #endif
+		RunTests(console);
 
 #if !defined(PROFILE)
 	console.Run();
