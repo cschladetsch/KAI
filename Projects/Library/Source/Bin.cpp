@@ -1,6 +1,6 @@
 
 #include "KAI/KAI.h"
-#include "KAI/Bin/Base.h"
+#include "KAI/BinBase.h"
 #include "KAI/Pathname.h"
 #include "KAI/Continuation.h"
 #include "KAI/Operation.h"
@@ -107,6 +107,7 @@ namespace Bin
 		file.close();
 		return text.ToString();
 	}
+
 	void Printf(String fmt, Array items)
 	{
 		for (int n = 0; n < fmt.size(); ++n)
