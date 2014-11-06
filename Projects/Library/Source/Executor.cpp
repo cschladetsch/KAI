@@ -1116,6 +1116,7 @@ void Executor::Trace(const Object& Q, StringStream &S)
 		S << "INVALID_OBJECT";
 		return;
 	}
+
 	Trace(GetName(Q), Q.GetStorageBase(), S);
 }
 
@@ -1160,6 +1161,7 @@ void Executor::TraceAll()
 			debug << "TraceError unknown :( ";
 		}
 	}
+
 	Push(New(debug.ToString()));
 }
 
@@ -1173,6 +1175,7 @@ void Executor::DumpStack(Stack const &stack)
 		bool is_string = A->GetTypeNumber() == Type::Number::String;
 		if (is_string)
 			result << "\"";
+
 		result << *A;
 		if (is_string)
 			result << "\"";
@@ -1182,6 +1185,7 @@ void Executor::DumpStack(Stack const &stack)
 
 		result << "\n";
 	}
+
 	Trace::Debug() << result.ToString().c_str();
 }
 
@@ -1222,6 +1226,7 @@ void Executor::Dump(Object const &Q)
 			std::cout << "Stack:\n";
 			DumpStack(*data);
 		}
+
 		if (traceLevel > 2)
 		{
 			std::cout << "Context:\n";
@@ -1232,6 +1237,7 @@ void Executor::Dump(Object const &Q)
 				cout << str.ToString().c_str() << endl;
 			}
 		}
+
 		std::cout << "\n[" << stepNumber << "]: Eval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
 	}
 }

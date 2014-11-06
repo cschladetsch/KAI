@@ -95,6 +95,7 @@ bool StringStream::Extract(Char &C)
 {
 	if (read_offset > (int)stream.size() - 1)
 		return false;
+
 	C = stream[read_offset++];
 	return true;
 }
@@ -121,6 +122,7 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 {
 	if (!object.Exists())
 		return stream << "Null";
+
 	const ClassBase *klass = object.GetClass();
 	if (klass == 0)
 		return stream << "Classless";
@@ -142,6 +144,7 @@ StringStream &operator<<(StringStream &S, const ClassBase *C)
 {
 	if (C == 0)
 		return S << "NullClass";
+
 	return S << "Class: " << C->GetName();
 }
 
@@ -157,12 +160,14 @@ StringStream &operator>>(StringStream &S, String &T)
 			break;
 		}
 	}
+
 	while (S.Extract(C))
 	{
 		if (isspace(C))
 			break;
 		T += C;
 	}
+
 	return S;
 }
 

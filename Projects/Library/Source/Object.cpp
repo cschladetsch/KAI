@@ -41,6 +41,7 @@ Object &Object::operator=(Object const &Q)
 			base->DetermineNewColor();
 		}
 	}
+
 	class_base = Q.class_base;
 	registry = Q.registry;
 	handle = Q.handle;
@@ -51,11 +52,14 @@ void Object::Delete() const
 {
 	if (!Valid())
 		return;
+
 	StorageBase *base = GetBasePtr();
 	if (base == 0)
 		return;
+
 	if (!base->IsManaged())
 		base->SetManaged(true);
+
 	base->Delete();
 }
 
@@ -80,6 +84,7 @@ int Object::GetSwitches() const
 {
 	if (!Exists())
 		return 0;
+
 	return GetStorageBase().GetSwitches();
 }
 
@@ -87,6 +92,7 @@ bool Object::IsManaged() const
 {
 	if (!Exists())
 		return true;
+
 	return GetStorageBase().IsManaged();
 }
 
@@ -94,6 +100,7 @@ bool Object::IsMarked() const
 {
 	if (!Exists())
 		return false;
+
 	return GetStorageBase().IsMarked();
 }
 
@@ -101,6 +108,7 @@ bool Object::IsClean() const
 {
 	if (!Exists())
 		return true;
+
 	return GetStorageBase().IsClean();
 }
 
@@ -151,6 +159,7 @@ Type::Number Object::GetTypeNumber() const
 {
 	if (!Valid())
 		return Type::Number::None;
+
 	return GetClass()->GetTypeNumber();
 }
 
@@ -158,18 +167,19 @@ bool Object::Valid() const
 {
 	if (registry == 0)
 		return false;
+
 	if (handle.GetValue() == 0)
 		return false;
+
 	if (class_base == 0)
 		return false;
+
 	return true;
 }
 
 bool Object::Exists() const
 {
-	if (!Valid())
-		return false;
-	return registry->GetStorageBase(handle) != 0;
+	return Valid() && registry->GetStorageBase(handle) != 0;
 }
 
 bool Object::OnDeathRow() const
@@ -181,6 +191,7 @@ StorageBase &Object::GetStorageBase() const
 {
 	if (!Valid())
 		KAI_THROW_0(NullObject);
+
 	return KAI_NAMESPACE(GetStorageBase(*this));
 }
 
@@ -188,9 +199,11 @@ Object GetParent(const Object &Q)
 {
 	if (!Q.Valid())
 		return Object();
+
 	Handle handle = Q.GetParentHandle();
 	if (handle == Handle())
 		return Object();
+
 	return Q.GetRegistry()->GetObject(handle);
 }
 
@@ -203,9 +216,11 @@ Type::Number GetTypeNumber(Object const &Q)
 {
 	if (Q.GetHandle() == 0)
 		return Type::Number::None;
+
 	const ClassBase *klass = Q.GetClass();
 	if (klass == 0)
 		return Type::Number::None;
+
 	return klass->GetTypeNumber();
 }
 
@@ -217,6 +232,7 @@ StorageBase &GetStorageBase_(Object const &Q)
 	StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
 	if (base == 0)
 		KAI_THROW_0(NullObject);
+
 	return *base;
 }
 
@@ -227,6 +243,7 @@ StorageBase &GetStorageBase(Object const &Q)
 {
 	if (!Q.Valid())
 		KAI_THROW_0(NullObject);
+
 	return GetStorageBase_(Q);
 }
 
@@ -234,7 +251,9 @@ StringStream &operator>>(StringStream &S, Object &Q)
 {
 	if (Q.GetRegistry() == 0)
 		KAI_THROW_1(Base, "NullRegistry");
+
 	Q.GetClass()->ExtractValue(Q, S);
+
 	return S;
 }
 
@@ -268,6 +287,7 @@ void Object::SetSwitch(int S, bool M) const
 {
 	if (!Exists())
 		return;
+
 	StorageBase &base = GetStorageBase();
 	GetClass()->SetSwitch(base, S, M);
 }
@@ -286,6 +306,7 @@ Dictionary const &Object::GetDictionary() const
 {
 	if (!Exists())
 		KAI_THROW_0(NullObject);
+
 	return GetStorageBase().GetDictionary();
 }
 
@@ -293,6 +314,7 @@ Dictionary &Object::GetDictionaryRef()
 {
 	if (!Exists())
 		KAI_THROW_0(NullObject);
+
 	return GetStorageBase().GetDictionary();
 }
 
@@ -341,6 +363,7 @@ Object Duplicate(Object const &Q)
 {
 	if (!Q.Exists())
 		return Object();
+
 	return Q.GetClass()->Duplicate(Q.GetStorageBase());
 }
 
@@ -362,9 +385,7 @@ void Object::SetColorRecursive(ObjectColor::Color C) const
 void Object::SetColorRecursive(ObjectColor::Color C, boost::unordered_set/*nstd::vector*/<Handle> &H) const
 {
 	if (Exists()) 
-	{
 		GetStorageBase().SetColorRecursive(C, H); 
-	}
 }
 
 ObjectColor::Color Object::GetColor() const
@@ -386,6 +407,7 @@ StorageBase *Object::GetBasePtr() const
 {
 	if (!Valid())
 		return 0;
+
 	return GetRegistry()->GetStorageBase(GetHandle());
 }
 
@@ -393,9 +415,11 @@ StorageBase *Object::GetParentBasePtr() const
 {
 	if (!Valid())
 		return 0;
+
 	StorageBase *base = GetBasePtr();
 	if (!base)
 		return 0;
+
 	return GetRegistry()->GetStorageBase(base->GetParentHandle());
 }
 
@@ -403,6 +427,7 @@ void Object::GetPropertyObjects(ObjectList &contained) const
 {
 	if (!*this)
 		return;
+
 	GetClass()->GetPropertyObjects(GetStorageBase(), contained);
 }
 
@@ -410,6 +435,7 @@ void Object::GetContainedObjects(ObjectList &contained) const
 {
 	if (!*this)
 		return;
+
 	GetClass()->GetContainedObjects(GetStorageBase(), contained);
 }
 
@@ -417,6 +443,7 @@ void Object::GetChildObjects(ObjectList &contained) const
 {
 	if (!*this)
 		return;
+
 	foreach (Dictionary::value_type child, GetDictionary())
 	{
 		contained.push_back(child.second);
@@ -434,18 +461,19 @@ HashValue GetHash(Object const &Q)
 {
 	if (!Q.Valid())
 		return Type::Number::None;
+
 	ClassBase const *K = Q.GetClass();
 	if (!K->HasTraitsProperty(Type::Properties::NoHashValue))
 		return K->GetHashValue(Q.GetStorageBase());
+
 	return 13;
 }
 
 BinaryStream &operator<<(BinaryStream &stream, const Object &object)
 {
 	if (!object)
-	{
 		return stream << 0;
-	}
+
 	const StorageBase &base = GetStorageBase(object);
 	stream << base.GetTypeNumber().ToInt();
 	
@@ -514,6 +542,7 @@ BinaryPacket &operator>>(BinaryPacket &packet, Object &extracted)
 		packet >> label >> child;
 		extracted.Set(label, child);
 	}
+
 	return packet;
 }
 
@@ -529,9 +558,11 @@ Object Object::ChildProxy::GetObject() const
 {
 	if (!registry)
 		KAI_THROW_1(UnknownObject, 0);
+
 	StorageBase *base = registry->GetStorageBase(handle);
 	if (!base)
 		KAI_THROW_1(UnknownObject, handle);
+
 	return *base;
 }
 
@@ -542,6 +573,7 @@ Object Absolute(Object const &A)
 {
 	if (!A)
 		return A;
+
 	return A.GetClass()->Absolute(A);
 }
 
@@ -550,18 +582,15 @@ Object operator*(Object const &/*A*/)
 	KAI_NOT_IMPLEMENTED();
 }
 
-// an object is less-than another if it doesnt exist and the other does,
+// an object is less-than another if it doesn't exist and the other does,
 // or if the first object's class compares them as less
 bool operator<(Object const &A, Object const &B)
 {
 	if (!A)
-	{
 		return B;
-	}
+
 	if (!B)
-	{
 		return false;
-	}
 
 	// test value
 	ClassBase const &klass_a = *A.GetClass();
@@ -570,6 +599,7 @@ bool operator<(Object const &A, Object const &B)
 	{
 		if (klass_a.Less(A,B))
 			return true;
+
 		if (klass_b.HasOperation(Type::Properties::Less) && klass_b.Less(B,A))
 			return false;
 	}
@@ -579,8 +609,10 @@ bool operator<(Object const &A, Object const &B)
 	{
 		Object prop_a = prop.second->GetValue(A);
 		Object prop_b = B.Get(prop.second->GetFieldName());
+
 		if (prop_a < prop_b)
 			return true;
+
 		if (prop_b < prop_a)
 			return false;
 	}
@@ -590,8 +622,10 @@ bool operator<(Object const &A, Object const &B)
 	{
 		Object child_a = child_a_entry.second;
 		Object child_b = B.Get(child_a_entry.first);
+
 		if (child_a < child_b)
 			return true;
+
 		if (child_b < child_a)
 			return false;
 	}
@@ -606,13 +640,10 @@ bool operator<(Object const &A, Object const &B)
 bool operator==(Object const &A, Object const &B)
 {
 	if (!A)
-	{
 		return !B;
-	}
+
 	if (!B)
-	{
 		return false;
-	}
 
 	// test value
 	ClassBase const &klass = *A.GetClass();
@@ -649,17 +680,14 @@ bool operator==(Object const &A, Object const &B)
 bool operator>(Object const &A, Object const &B)
 {
 	if (!A)
-	{
 		return false;
-	}
+
 	if (!B)
-	{
 		return A;
-	}
+	
 	if (A.GetClass()->HasOperation(Type::Properties::Greater))
-	{
 		return A.GetClass()->Greater(A,B);
-	}
+	
 	return A.GetClass()->Less(B,A);
 }
 
@@ -667,6 +695,7 @@ Object operator+(Object const &A, Object const &B)
 {
 	if (!A || !B)
 		KAI_THROW_0(NullObject);
+
 	return A.GetClass()->Plus(A,B);
 }
 
@@ -674,6 +703,7 @@ Object operator-(Object const &A, Object const &B)
 {
 	if (!A || !B)
 		KAI_THROW_0(NullObject);
+
 	return A.GetClass()->Minus(A,B);
 }
 
@@ -681,6 +711,7 @@ Object operator*(Object const &A, Object const &B)
 {
 	if (!A || !B)
 		KAI_THROW_0(NullObject);
+
 	return A.GetClass()->Multiply(A,B);
 }
 
@@ -688,6 +719,7 @@ Object operator/(Object const &A, Object const &B)
 {
 	if (!A || !B)
 		KAI_THROW_0(NullObject);
+
 	return A.GetClass()->Divide(A,B);
 }
 
