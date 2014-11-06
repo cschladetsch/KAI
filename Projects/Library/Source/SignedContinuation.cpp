@@ -18,6 +18,7 @@ void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Poin
 	{
 		if ((args->Size() & 1) != 0)
 			KAI_THROW_1(Base, "SignedContinuation argument list must be a list of (type, label)");
+
 		cont = C;
 
 		// add the formal params
@@ -59,8 +60,8 @@ StringStream &operator<<(StringStream &S, SignedContinuation const &Q)
 		S << sep << A->type << " " << A->label;
 		sep = ", ";
 	}
-	S << " -> ";
 
+	S << " -> ";
 	sep = "";
 	SignedContinuation::ReturnTuple::const_iterator C = Q.return_tuple.begin(), D = Q.return_tuple.end();
 	for (; C != D; ++C)
@@ -68,6 +69,7 @@ StringStream &operator<<(StringStream &S, SignedContinuation const &Q)
 		S << sep << C->GetValue();
 		sep = ", ";
 	}
+
 	return S << "\nContinuation: " << Q.cont;
 }
 

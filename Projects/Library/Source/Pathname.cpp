@@ -30,12 +30,14 @@ void Pathname::FromString(const String &text)
 	elements.clear();
 	if (text.empty())
 		return;
+
 	const String::Char *S = text.c_str();
 
 	Absolute = *S == Literals::Seperator;
 
 	if (Absolute)
 		++S;
+
 	StringStream name;
 	for (; *S; ++S)
 	{
@@ -61,6 +63,7 @@ void Pathname::FromString(const String &text)
 			break;
 		}
 	}
+
 	name << Ends;
 	String s = name.ToString();
 	if (!s.Empty())
@@ -74,6 +77,7 @@ void Pathname::FromString(const String &text)
 		Absolute = true;
 		elements.pop_front();
 	}
+
 	if (elements.back().type == Element::Seperator)
 		elements.pop_back();
 
@@ -91,6 +95,7 @@ void Pathname::AddElement(StringStream &name, Element::Type type)
 		name << Ends;
 		elements.push_back(Element(name.ToString()));
 	}
+
 	elements.push_back(type);
 	name.Clear();
 }
@@ -111,6 +116,7 @@ String Pathname::ToString() const
 		case Element::Name: str << element.name.ToString(); break;
 		}
 	}
+
 	str << Ends;
 	return str.ToString();
 }

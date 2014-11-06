@@ -38,18 +38,18 @@ Object StorageBase::Get(const Label &L) const
 {
 	if (GetClass()->HasProperty(L))
 		return GetClass()->GetProperty(L).GetValue(*this);
+
 	Dictionary::const_iterator A = dictionary.find(L);
 	if (A == dictionary.end())
 		return Object();
+
 	return A->second;
 }
 
 void StorageBase::Set(const Label &L, Object const &Q)
 {
 	if (Q.GetHandle() == GetHandle())
-	{
 		KAI_THROW_1(InternalError, "Recursion");
-	}
 
 	// mark the object as being altered
 	SetDirty();
@@ -73,6 +73,7 @@ void StorageBase::Set(const Label &L, Object const &Q)
 			dictionary.erase(child);
 		return;
 	}
+
 	StorageBase &base = KAI_NAMESPACE(GetStorageBase(Q));
 	base.SetLabel(L);
 	base.SetParentHandle(GetHandle());
@@ -81,12 +82,15 @@ void StorageBase::Set(const Label &L, Object const &Q)
 	bool konst = base.IsConst();
 	bool managed = base.IsManaged();
 	base.switches = switches;				// inherit properties of parent...
+
 	if (clean)								// ...but preserve cleanliness
 		base.switches |= IObject::Clean;
 	else
 		base.switches &= ~IObject::Clean;
+
 	if (konst)								// ...and constness
 		base.switches |= IObject::Const;
+
 	if (managed)							// ...and managed
 		base.switches |= IObject::Managed;
 
@@ -106,9 +110,11 @@ void StorageBase::Remove(const Label &label)
 	Dictionary::iterator iter = dictionary.find(label);
 	if (iter == dictionary.end())
 		return;
+
 	SetDirty();
 	StorageBase *child = iter->second.GetBasePtr();
 	dictionary.erase(iter);
+
 	if (child)
 	{
 		child->SetParentHandle(Handle());
@@ -134,18 +140,22 @@ void StorageBase::SetColorRecursive(ObjectColor::Color color, Handles& handles)
 	Handle handle = GetHandle();
 	if (handles.find(handle) != handles.end())
 		return;
+
 	handles.insert(handle);
 
 	if (!SetColor(color))
 		return;
+
 	GetClass()->SetReferencedObjectsColor(*this, color, handles);
 	if (dictionary.empty())
 		return;
+
 	foreach (Dictionary::value_type const &child, dictionary)
 	{
 		StorageBase *sub = GetRegistry()->GetStorageBase(child.second.GetHandle());
 		if (!sub)
 			continue;
+
 		sub->SetColorRecursive(color, handles);
 	}
 }
@@ -154,6 +164,7 @@ bool StorageBase::SetColor(ObjectColor::Color color)
 {
 	if (!GetRegistry()->SetColor(*this, color))
 		return false;
+
 	this->color = color;
 	if (color == ObjectColor::White)
 	{
@@ -162,11 +173,10 @@ bool StorageBase::SetColor(ObjectColor::Color color)
 		{
 			StorageBase *cont = GetRegistry()->GetStorageBase(*container);
 			if (cont && cont->IsBlack())
-			{
 				cont->SetColor(ObjectColor::Grey);
-			}
 		}
 	}
+
 	return true;
 }
 
@@ -178,9 +188,11 @@ void StorageBase::MakeReachableGrey()
 		StorageBase *sub = GetRegistry()->GetStorageBase(child->second.GetHandle());
 		if (!sub)
 			continue;
+
 		if (sub->IsWhite())
 			sub->SetColor(ObjectColor::Grey);
 	}
+
 	GetClass()->MakeReachableGrey(*this);
 }
 
@@ -195,11 +207,10 @@ void StorageBase::RemovedFromContainer(Object const &container)
 	StorageBase *parent = GetRegistry()->GetStorageBase(GetParentHandle());
 	bool parent_is_black = parent && parent->IsBlack();
 	if (parent_is_black)
-	{
 		color = ObjectColor::Grey;
-	}
+	
 	bool removed = false;
-	Containers::iterator iter = containers.begin(), end = containers.end();
+	auto iter = containers.begin(), end = containers.end();
 	for (; iter != end; )
 	{
 		StorageBase *base = GetRegistry()->GetStorageBase(*iter);
@@ -208,6 +219,7 @@ void StorageBase::RemovedFromContainer(Object const &container)
 			iter = containers.erase(iter);
 			continue;
 		}
+
 		if (!removed && *iter == container.GetHandle())
 		{
 			iter = containers.erase(iter);
@@ -223,6 +235,7 @@ void StorageBase::RemovedFromContainer(Object const &container)
 				continue;
 			}
 		}
+
 		if (base->IsBlack())
 		{
 			color = ObjectColor::Grey;
@@ -230,12 +243,12 @@ void StorageBase::RemovedFromContainer(Object const &container)
 			// if any parent container is black, and we have already removed from the
 			// given container, we can early out
 			if (removed)
-			{
 				break;
-			}
 		}
+
 		++iter;
 	}
+
 	SetColorRecursive(color);
 }
 
@@ -249,29 +262,25 @@ void StorageBase::DetermineNewColor()
 void StorageBase::AddedToContainer(Object const &container)
 {
 	if (container.GetHandle() == GetHandle())
-	{
 		KAI_THROW_1(InternalError, "Can't add a container to itself");
-	}
+
 	containers.push_back(container.GetHandle());
 	if (IsWhite())
-	{
 		SetGrey();
-	}
 }
 
 void StorageBase::SetClean(bool clean)
 {
 	SetSwitch(Clean, clean);
 	if (!clean && IsBlack())
-	{
 		SetColor(ObjectColor::Grey);
-	}
 }
 
 void StorageBase::DetachFromContainers()
 {
 	if (containers.empty())
 		return;
+
 	Containers tmp = containers;
 	Containers::const_iterator iter = tmp.begin(), end = tmp.end();
 	for (; iter != end; ++iter)
@@ -307,9 +316,8 @@ void StorageBase::Delete()
 void StorageBase::SetManaged(bool managed) 
 { 
 	if (!managed)
-	{
 		SetColor(ObjectColor::Black);
-	}
+
 	SetSwitch(Managed, managed); 
 }
 

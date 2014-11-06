@@ -26,6 +26,7 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 
 	if (lexer->Failed)
 		return;
+
 	try
 	{
 		Run(st);
@@ -323,6 +324,7 @@ bool Parser::Expression()
 			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
 			return false;
 		}
+
 		node->Add(Pop());
 		node->Add(ident);
 		Push(node);
@@ -341,9 +343,8 @@ bool Parser::Logical()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Relational())
-		{
 			return Fail(Lexer::CreateError(Current(), "Relational expected"));
-		}
+
 		node->Add(Pop());
 		Push(node);
 	}
@@ -362,9 +363,8 @@ bool Parser::Relational()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Additive())
-		{
 			return CreateError("Additive expected");
-		}
+
 		node->Add(Pop());
 		Push(node);
 	}
@@ -380,9 +380,8 @@ bool Parser::Additive()
 		auto ty = Consume().type;
 		Consume();
 		if (!Term())
-		{
 			return CreateError("Term expected");
-		}
+
 		auto node = new Node(ty == Token::Plus ? Node::Positive : Node::Negative);
 		node->Add(Pop());
 		return true;
@@ -396,9 +395,8 @@ bool Parser::Additive()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Term())
-		{
 			return CreateError("Term expected");
-		}
+
 		node->Add(Pop());
 		Push(node);
 	}
@@ -416,9 +414,8 @@ bool Parser::Term()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Factor())
-		{
 			return CreateError("Factor expected");
-		}
+
 		node->Add(Pop());
 		Push(node);
 	}
@@ -437,6 +434,7 @@ bool Parser::Factor()
 			CreateError("You can do better");
 			return false;
 		}
+
 		Expect(Token::CloseParan);
 		return true;
 	}
@@ -449,15 +447,15 @@ bool Parser::Factor()
 			Consume();
 			if (Expression())
 				list->Add(Pop());
-		} while (Try(Token::Comma));
+		}
+		while (Try(Token::Comma));
 
 		Expect(Token::CloseSquareBracket);
 		Push(list);
 		return true;
 	}
 
-	if (Try(Token::Int) || Try(Token::Float) 
-		|| Try(Token::String) || Try(Token::True) || Try(Token::False))
+	if (Try(Token::Int) || Try(Token::Float) || Try(Token::String) || Try(Token::True) || Try(Token::False))
 	{
 		PushConsume();
 		return true;
@@ -489,6 +487,7 @@ Parser::NodePtr Parser::Pop()
 		CreateError("Internal Error: Parse stack empty");
 		KAI_THROW_0(EmptyStack);
 	}
+
 	auto last = stack.back();
 	stack.pop_back();
 	return last;
@@ -518,6 +517,7 @@ std::string Parser::Lead(int level)
 	std::string s = "";
 	for (int n = 0; n < level; ++n)
 		s += "  ";
+
 	return s;
 }
 
@@ -568,15 +568,15 @@ void Parser::ParseMethodCall()
 		{
 			Consume();
 			if (!Expression())
-			{
 				Fail("Expression expected after comma");
-			}
+
 			args->Add(Pop());
 		}
 	}
 
 	Push(call);
 	Expect(Token::CloseParan);
+
 	if (Try(Token::Replace))
 		call->Add(Consume());
 }
@@ -603,6 +603,7 @@ void Parser::IfCondition(NodePtr block)
 		CreateError("If what?");
 		return;
 	}
+
 	NodePtr condition = Pop();
 	//Expect(Token::CloseParan);
 
@@ -637,6 +638,7 @@ void Parser::ParseIndexOp()
 		CreateError("Index what?");
 		return;
 	}
+
 	Expect(Token::CloseSquareBracket);
 	index->Add(Pop());
 	Push(index);
@@ -646,6 +648,7 @@ void Parser::For(NodePtr block)
 {
 	if (!Try(Token::For))
 		return;
+
 	Consume();
 
 	auto f = NewNode(Node::For);
@@ -665,6 +668,7 @@ void Parser::For(NodePtr block)
 			CreateError("For each in what?");
 			return;
 		}
+
 		f->Add(Pop());
 	}
 	else
@@ -685,6 +689,7 @@ void Parser::For(NodePtr block)
 			CreateError("What happens when a for statement ends?");
 			return;
 		}
+
 		f->Add(Pop());
 	}
 
@@ -701,6 +706,7 @@ void Parser::While(NodePtr block)
 		CreateError("While what?");
 		return;
 	}
+
 	w->Add(Pop());
 	block->Add(w);
 }

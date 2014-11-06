@@ -47,6 +47,7 @@ void Registry::Construct()
 Registry::~Registry()
 {
 	Clear();
+
 	if (owns_allocator)
 		delete allocator;
 }
@@ -84,6 +85,7 @@ Object Registry::NewFromTypeNumber(Type::Number type_number)
 	ClassBase const *klass = classes[type_number.ToInt()];
 	if (!klass)
 		KAI_THROW_1(UnknownTypeNumber, type_number.ToInt());
+
 	return NewFromClass(klass);
 }
 
@@ -93,16 +95,16 @@ Object Registry::NewFromClassName(const char *classname_str)
 	const ClassBase *klass = GetClass(classname);
 	if (klass == 0)
 		KAI_THROW_1(UnknownClass<>, String(classname_str));
+
 	return NewFromClass(klass);
 }
 
 const ClassBase *Registry::GetClass(const Label &name)
 {
 	foreach (ClassBase const *klass, classes)
-	{
 		if (klass && klass->GetName() == name)
 			return klass;
-	}
+
 	return 0;
 }
 
@@ -113,9 +115,7 @@ void Registry::DestroyNominated()
 	std::vector<Handle> dr(deathrow.begin(), deathrow.end());
 	deathrow.clear();
 	for (auto const &ob : dr)
-	{
 		DestroyObject(ob);
-	}
 }
 
 void Registry::DestroyObject(Handle handle, bool force)
@@ -140,9 +140,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 		{
 #ifdef KAI_DEBUG
 			if (IsWatching(handle))
-			{
 				KAI_TRACE() << handle << ": " << base << " is not managed, not deleted";
-			}
 #endif
 			return;
 		}
@@ -229,9 +227,11 @@ StorageBase *Registry::GetStorageBase(Handle handle) const
 {
 	if (handle == 0)
 		return 0;
+
 	auto obj = instances.find(handle);
 	if (obj == instances.end())
 		return 0;
+
 	return obj->second;
 }
 
@@ -244,8 +244,10 @@ void Registry::AddClass(const ClassBase *klass)
 {
 	if (klass == 0)
 		KAI_THROW_0(NullObject);
+
 	if (GetClass(klass->GetTypeNumber()))
 		KAI_THROW_1(Base, "Duplicate Class");
+
 	classes[klass->GetTypeNumber().ToInt()] = klass;
 }
 
@@ -253,15 +255,15 @@ Object Registry::GetObject(Handle handle) const
 {
 #ifdef KAI_DEBUG
 	if (IsWatching(handle) && gc_trace_level > 1)
-	{
 		KAI_TRACE() << handle;
-	}
 #endif
 	if (handle == 0)
 		return Object();
+
 	Instances::const_iterator A = instances.find(handle);
 	if (A == instances.end())
 		return Object();
+
 	return *A->second;
 }
 
@@ -304,10 +306,13 @@ void Registry::MarkAll(StorageBase &root, bool marked)
 		StorageBase *base = GetStorageBase(child.GetHandle());
 		if (base == 0)
 			continue;
+
 		if (base->IsManaged())
 			MarkObject(*base, marked);
+
 		if (base->GetSwitches() & IObject::NoRecurse)
 			continue;
+
 		MarkAll(*base, marked);
 	}
 }
@@ -316,6 +321,7 @@ void Registry::Sweep()
 {
 	if (instances.empty())
 		return;
+
 	Instances::iterator A = instances.begin(), B = instances.end();
 	// the handle of the next object created
 	Handle last = next_handle.GetValue();
@@ -325,8 +331,10 @@ void Registry::Sweep()
 		// do not consider objects that were created during this loop!
 		if (last < base->GetHandle())
 			continue;
+
 		if (!base->IsManaged())
 			continue;
+
 		if (!base->IsMarked())
 			Delete(A->first);
 		else 
@@ -351,9 +359,7 @@ void Registry::Delete(Handle handle)
 	// if unknown handle, do nothing
 	Instances::const_iterator instance = instances.find(handle);
 	if (instance == instances.end())
-	{
 		return;		
-	}
 
 	// detach from parent
 	if (instance->second)
@@ -368,9 +374,7 @@ void Registry::Delete(Handle handle)
 	// remove from list of retained objects
 	auto etained = retained_objects.find(handle);
 	if (retained != retained_objects.end())
-	{
 		retained_objects.erase(retained);
-	}
 
 	// mark for pending collection
 #ifndef KAI_USE_TRICOLOR
@@ -383,9 +387,7 @@ void Registry::Delete(Object const &object)
 {
 #ifdef KAI_DEBUG
 	if (IsWatching(object))
-	{
 		KAI_TRACE() << object.GetHandle();
-	}
 #endif
 	Delete(object.GetHandle());
 }
@@ -412,6 +414,7 @@ Object Registry::NewFromClass(const ClassBase *klass)
 {
 	if (klass == 0)
 		KAI_THROW_1(UnknownClass<>, "NULL Class");
+
 	Handle handle = next_handle.NextValue();
 	StorageBase *base = 0;
 	base = klass->NewStorage(this, handle);
@@ -434,6 +437,7 @@ void MarkObject(Object const &Q, bool M)
 {
 	if (!Q.Exists())
 		return;
+
 	MarkObject(Q.GetStorageBase(), M);
 }
 
@@ -441,6 +445,7 @@ void MarkObject(StorageBase &Q, bool M)
 {
 	if (M == Q.IsMarked())
 		return;
+
 	Q.SetMarked(M);
 	Q.GetClass()->SetMarked(Q, M);
 }
@@ -449,6 +454,7 @@ void MarkObjectAndChildren(Object const &Q, bool M)
 {
 	if (!Q.Exists())
 		return;
+
 	MarkObjectAndChildren(Q.GetStorageBase(), M);
 }
 
@@ -461,6 +467,7 @@ void MarkObjectAndChildren(StorageBase &Q, bool M)
 		Object &child = const_cast<Object &>(A->second);
 		if (child.GetHandle() == Q.GetHandle())	// HACK to sorta/kinda avoid cycles :/
 			continue;
+
 		MarkObjectAndChildren(child, M);
 	}
 }
@@ -491,32 +498,33 @@ void Registry::TriColor()
 	{
 		KAI_TRACE_3(instances.size(), grey.size(), white.size());
 	}
+
 	for (; N < max_cycles; ++N)
 	{
 #ifdef KAI_DEBUG_REGISTRY
 		if (gc_trace_level > 2) 
 			TraceTriColor();
 #endif
+
 		if (grey.empty())
 		{
 			ReleaseWhite();
 			break;
 		}
+
 		ColoredSet::iterator iter = grey.begin();
 		Handle handle = *iter;
 		grey.erase(iter);
 		StorageBase *base = GetStorageBase(handle);
 		if (base == 0)
-		{
 			continue;
-		}
+
 		base->MakeReachableGrey();
 		base->SetColor(ObjectColor::Black);
 	}
+
 	if (gc_trace_level >= 1)
-	{
 		KAI_TRACE() << "TriColor: " << N << " passes";
-	}
 }
 
 void Registry::ReleaseWhite()

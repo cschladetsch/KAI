@@ -23,6 +23,7 @@ namespace debug
 		case Error: type_str = "Error: "; break;
 		case Fatal: type_str = "Fatal: "; break;
 		}
+
 		String text = (file_location.ToString(false) + type_str + ToString());
 		text.RemoveAll("sif::sh::");
 		DebugTrace(text.c_str());
@@ -54,6 +55,7 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 	std::fstream file(filename, std::ios::in);
 	if (!file)
 		return false;
+
 	char line[2000];
 	StringStream text;
 	while (file.getline(line, 2000))
@@ -61,14 +63,18 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 		text.Append(line);
 		text.Append('\n');
 	}
+
 	try
 	{
 		Pointer<Continuation> cont = compiler->Compile
 			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
+
 		if (!cont)
 			return false;
+
 		cont->SetScope(scope);
 		executor->Continue(cont);
+
 		return true;
 	}
 	catch (Exception::Base &E)
@@ -83,6 +89,7 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 	{
 		std::cerr << "Exception running file '" << filename << "'" << std::endl;
 	}
+
 	return false;
 }
 
@@ -105,19 +112,16 @@ void ToStringStream(const Object &Q, StringStream &S, int level)
 	const StorageBase &base = Q.GetStorageBase();
 	bool write_header = false;
 	if (write_header)
-	{
 		S << base.GetLabel().ToString() << ": ";
-	}
+	
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
-	{
 		Q.GetClass()->Insert(S, base);
-	}
+	
 	S << "\n";
 
 	foreach (Dictionary::value_type const &child, base.GetDictionary())
-	{
 		ToStringStream(child.second, S, level + 1);
-	}
+
 	return;
 }
 
@@ -131,10 +135,8 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 	}
 
 	if (!Q.Valid())
-	{
-		//S << "<!!INVALID!!>\n";
 		return;
-	}
+
 	StorageBase const &base = Q.GetStorageBase();
 	ClassBase const &klass = *Q.GetClass();
 	S << indent.ToString() << "<Object type='" << klass.GetName() 
@@ -163,7 +165,9 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 	{
 		ToXmlStream(child.second, S, level + 1);
 	}
+
 	S << indent.ToString() << "</Object>\n";
+
 	return;
 }
 
