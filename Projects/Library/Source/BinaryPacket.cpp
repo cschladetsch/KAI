@@ -19,6 +19,7 @@ bool BinaryPacket::Read(int len, Byte *dest)
 {
 	if (!CanRead(len))
 		return false;
+
 	memcpy(dest, current, len);
 	current += len;
 	return true;
@@ -76,6 +77,7 @@ BinaryPacket &operator>>(BinaryPacket &S, int &N)
 {
 	if (!S.Read(N))
 		KAI_THROW_0(PacketExtraction);
+
 	return S;
 }
 
@@ -83,6 +85,7 @@ BinaryPacket &operator>>(BinaryPacket &S, double &N)
 {
 	if (!S.Read(N))
 		KAI_THROW_0(PacketExtraction);
+
 	return S;
 }
 
@@ -90,6 +93,7 @@ BinaryPacket &operator>>(BinaryPacket &S, float &N)
 {
 	if (!S.Read(N))
 		KAI_THROW_0(PacketExtraction);
+
 	return S;
 }
 
@@ -97,6 +101,7 @@ BinaryPacket &operator>>(BinaryPacket &S, bool &N)
 {
 	if (!S.Read(N))
 		KAI_THROW_0(PacketExtraction);
+
 	return S;
 }
 
@@ -116,6 +121,7 @@ BinaryStream &operator<<(BinaryStream &S, double N)
 {
 	if (!S.Write(N))
 		KAI_THROW_0(PacketInsertion);
+
 	return S;
 }
 
@@ -123,6 +129,7 @@ BinaryStream &operator<<(BinaryStream &S, float N)
 {
 	if (!S.Write(N))
 		KAI_THROW_0(PacketInsertion);
+
 	return S;
 }
 
@@ -130,6 +137,7 @@ BinaryStream &operator<<(BinaryStream &S, bool N)
 {
 	if (!S.Write(N))
 		KAI_THROW_0(PacketInsertion);
+
 	return S;
 }
 
@@ -137,6 +145,7 @@ BinaryStream &operator<<(BinaryStream &S, int N)
 {
 	if (!S.Write(N))
 		KAI_THROW_0(PacketInsertion);
+
 	return S;
 }
 

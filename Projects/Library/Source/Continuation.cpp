@@ -64,6 +64,7 @@ bool Continuation::Next(Object &next) const
 { 
 	if (!code)
 		return false;
+
 	if (!entered)
 		KAI_THROW_1(LogicError, "Continuation not Entered");
 
@@ -84,11 +85,14 @@ StringStream &operator<<(StringStream &S, const Continuation &C)
 		for (; A != B; ++A)
 			S << *A << " ";
 	}
+
 	S << "}" << "@" << *C.index;
+
 	if (C.code->Size() > 0)
 	{
 		S << ":: ";
 		int n = *C.index;
+
 		if (n < C.code->Size())
 			S << C.code->At(n);
 		else

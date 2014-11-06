@@ -54,11 +54,15 @@ String FileLocation::ToString(bool strip_path) const
 		loc = loc.substr(loc.find_last_of('/') + 1);
 		loc = loc.substr(loc.find_last_of('\\') + 1);
 	}
+
 	if (!loc.empty())
 		S << loc.c_str() << "(" << line << "): ";
+
 	if (!function.Empty())
 		S << function << ": ";
+
 	S << Ends;
+
 	return S.ToString();
 }
  
@@ -73,6 +77,7 @@ void WriteArgumentList(StringStream &S, const typename Callable::ArgumentTypes &
 		S << sep << A->ToString();
 		sep = ", ";
 	}
+
 	S << ")";
 }
 
@@ -81,12 +86,15 @@ String MethodBase::ToString() const
 	StringStream S;
 	S << return_type.ToString() << " " << class_type.ToString() << "::" << name;
 	WriteArgumentList<MethodBase>(S, arguments);
+
 	if (constness == Constness::Const)
 		S << " const;";
 	else
 		S << ";";
+
 	if (!Description.Empty())
 		S << " /* " << Description << " */";
+
 	return S.ToString();
 }
 
@@ -96,8 +104,10 @@ String FunctionBase::ToString() const
 	S << return_type.ToString() << " " << name;
 	WriteArgumentList<FunctionBase>(S, arguments);
 	S << ";";
+
 	if (!Description.Empty())
 		S << " /* " << Description << " */";
+
 	return S.ToString();
 }
 
@@ -130,6 +140,7 @@ StringStream &operator<<(StringStream &S, bool B)
 		S << "true";
 	else
 		S << "false";
+
 	return S;
 }
 

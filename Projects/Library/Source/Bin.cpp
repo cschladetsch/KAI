@@ -49,6 +49,7 @@ namespace Bin
 	{
 		if (!Q.Exists())
 			return Object();
+
 		Value<Array> methods = Q.New<Array>();
 		const ClassBase *K = Q.GetClass();
 		ClassBase::Methods::const_iterator A = K->GetMethods().begin(), B = K->GetMethods().end();
@@ -56,6 +57,7 @@ namespace Bin
 		{
 			methods->Append(Q.New<BasePointer<MethodBase> >(A->second));
 		}
+
 		return methods.GetObject();
 	}
 
@@ -68,11 +70,13 @@ namespace Bin
 	{
 		if (!Q.Exists())
 			return Object();
+
 		Value<Array> properties = Q.New<Array>();
 		for (auto prop : Q.GetClass()->GetProperties())
 		{
 			properties->Append(Q.New<BasePointer<PropertyBase>>(prop.second));
 		}
+
 		return properties.GetObject();
 	}
 
@@ -97,6 +101,7 @@ namespace Bin
 		std::fstream file(filename.c_str(), std::ios::in);
 		if (!file)
 			KAI_THROW_1(FileNotFound, filename);
+
 		char line[2000];
 		StringStream text;
 		while (file.getline(line, 2000))
@@ -104,6 +109,7 @@ namespace Bin
 			text.Append(line);
 			text.Append('\n');
 		}
+
 		file.close();
 		return text.ToString();
 	}
@@ -119,6 +125,7 @@ namespace Bin
 				std::cout << items.At(num);
 				continue;
 			}
+
 			std::cout << ch;
 		}
 	}
@@ -262,6 +269,7 @@ namespace Bin
 		text << "Properties:\n";
 		foreach (Object const &property, ConstDeref<Array>(GetProperties(object)))
 			text << "\t" << property.ToString() << "\n";
+
 		return text.ToString();
 	}
 

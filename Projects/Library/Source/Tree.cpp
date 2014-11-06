@@ -8,15 +8,11 @@
 
 KAI_BEGIN
 
-// ICE ICE BABY TOO COLD
-//template <class, bool> struct C { };
-//struct D { };
-//template <class A> struct C<A, false> : C<A, false>, D { };
-
 Pathname GetFullname(const Object &Q)
 {
 	if (!Q.Valid())
 		return Pathname();
+
 	return GetFullname(GetStorageBase(Q));
 }
 
@@ -26,21 +22,23 @@ Pathname GetFullname(const StorageBase &Q)
 	Label const &label = Q.GetLabel();
 	if (!label.ToString().empty())
 		parentage.push_back(label.ToString());
+
 	Object parent = Q.GetParent();
 	for (; parent.Valid(); parent = parent.GetParent())
-	{
 		parentage.push_front(GetStorageBase(parent).GetLabel().ToString());
-	}
+
 	StringStream path;
 	if (!parentage.empty())
 		;//path << "[anon]";
 	else
 		path.Append('/');
+
 	foreach (String const &name, parentage)
 	{
 		path.Append(name);
 		path.Append('/');
 	}
+
 	return path.ToString();
 }
 
@@ -48,9 +46,12 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 {
 	if (path.Empty())
 		return;
+
 	Pathname::Elements::const_iterator A = path.begin(), B = --path.end();
+
 	if (B->type != Pathname::Element::Name)
 		KAI_THROW_1(InvalidPathname, path.ToString());
+
 	for (; A != B; ++A)
 	{
 		switch (A->type)
@@ -83,6 +84,7 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 			break;
 		}
 	}
+
 	GetStorageBase(scope).Set(A->name, Q);
 }
 
@@ -114,8 +116,10 @@ Object Get(Object const &root, Object const &scope, const Pathname &path)
 {
 	if (path.Empty())
 		return path.Absolute ? root : Object();
+
 	if (path.Absolute)
 		return Get(root, path);
+
 	return Get(scope, path);
 }
 
@@ -174,6 +178,7 @@ void Remove(Object scope, const Pathname &path)
 {
 	if (path.Empty())
 		KAI_THROW_0(Base);
+
 	const Pathname::Elements &elements = path.GetElements();
 	if (elements.back().type != Pathname::Element::Name)
 		KAI_THROW_0(Base);
@@ -193,6 +198,7 @@ void Remove(Object scope, const Pathname &path)
 			break;
 		}
 	}
+
 	scope.Remove(A->name);
 }
 
@@ -212,6 +218,7 @@ void Remove(Object const &root, Object const &scope, Object const &ident)
 		scope.Remove(ConstDeref<Label>(id));
 		return;
 	}
+
 	Remove(root, scope, ConstDeref<Pathname>(id));
 }
 
@@ -219,6 +226,7 @@ Label GetName(const Object &object)
 {
 	if (!object)
 		return Label();
+
 	return object.GetLabel();
 }
 
@@ -228,6 +236,7 @@ void Tree::SetScope(const Object &Q)
 	Pathname path = GetFullname(Q);
 	if (!Exists(root, scope, path))
 		KAI_THROW_1(Base, "ObjectNotInTree");
+
 	scope = Q;
 }
 
@@ -235,6 +244,7 @@ void Tree::SetScope(const Pathname &path)
 {
 	if (!Exists(root, scope, path))
 		KAI_THROW_0(ObjectNotFound);
+
 	scope = Get(root, scope, path);
 }
 
@@ -263,14 +273,17 @@ Object Tree::Resolve(const Label &label) const
 		if (found)
 			return found;
 	}
+
 	foreach (Object const &object, path)
 	{
 		if (!object)
 			continue;
+
 		Object found = object.Get(label);
 		if (found)
 			return found;
 	}
+
 	return Object();
 }
 
@@ -279,8 +292,10 @@ Object Tree::Resolve(const Pathname &P) const
 	Object found = Get(root, scope, P);
 	if (found.Exists())
 		return found;
+
 	if (P.Absolute)
 		return Object();
+	
 	SearchPath::const_iterator A = path.begin(), B = path.end();
 	for (; A != B; ++A)
 	{
@@ -288,6 +303,7 @@ Object Tree::Resolve(const Pathname &P) const
 		if (found.Exists())
 			return found;
 	}
+	
 	return Object();
 }
 

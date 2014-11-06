@@ -25,6 +25,7 @@ bool Compiler::Destroy()
 	// letting op's be managed from the start.
 	for (auto op : string_to_op)
 		op.second.SetManaged(true);
+
 	return true;
 }
 
