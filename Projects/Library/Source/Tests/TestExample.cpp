@@ -4,7 +4,7 @@
 #	include "KAI/Test/Base.h"
 #	include "KAI/Tests/TestExample.h"
 #	include "KAI/BuiltinTypes/All.h"
-#	include "KAI/Bin/Base.h"
+#	include "KAI/BinBase.h"
 #	include "KAI/Tree.h"
 #	include "KAI/Console.h"
 

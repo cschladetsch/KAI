@@ -2404,6 +2404,7 @@
     <ClInclude Include="..\..\Include\KAI\BasePointer.h" />
     <ClInclude Include="..\..\Include\KAI\BinaryPacket.h" />
     <ClInclude Include="..\..\Include\KAI\BinaryStream.h" />
+    <ClInclude Include="..\..\Include\KAI\BinBase.h" />
     <ClInclude Include="..\..\Include\KAI\Bin\Base.h" />
     <ClInclude Include="..\..\Include\KAI\Boost.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\All.h" />

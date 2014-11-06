@@ -11,7 +11,7 @@
 #include "KAI/Pathname.h"
 #include "KAI/Tree.h"
 #include "KAI/Test/Base.h"
-#include "KAI/Bin/Base.h"
+#include "KAI/BinBase.h"
 #include "KAI/Console.h"
 #include "KAI/BuiltinTypes/List.h"
 
