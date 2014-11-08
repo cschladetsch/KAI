@@ -200,9 +200,6 @@ namespace Bin
 		exit(N);
 	}
 
-	#define ADD_TEST(Name) \
-		module.AddSuite<Tests::Name>(#Name);
-
 	Object RunOne(Object object)
 	{
 		Test::Module module;
@@ -214,6 +211,9 @@ namespace Bin
 
 		return object.New(out->GetSummary());
 	}
+
+	#define ADD_TEST(Name) \
+		module.AddSuite<Tests::Name>(#Name);
 
 	Object RunAllTests(Object object)
 	{
