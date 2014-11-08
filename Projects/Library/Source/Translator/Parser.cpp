@@ -446,6 +446,8 @@ bool Parser::Factor()
 			Consume();
 			if (Expression())
 				list->Add(Pop());
+			else
+				list->Add(0);
 		}
 		while (Try(Token::Comma));
 
@@ -500,16 +502,12 @@ void Parser::Print(Node const &node, int level)
 	std::cout << Lead(level) << node << std::endl;
 
 	for (auto ch : node.Children)
-		Print(*ch, level + 2);
+		Print(*ch, level + 1);
 }
 
 std::string Parser::Lead(int level)
 {
-	std::string s = "";
-	for (int n = 0; n < level; ++n)
-		s += "  ";
-
-	return s;
+	return std::move(std::string(level*4, ' '));
 }
 
 //warning C4127: conditional expression is constant
