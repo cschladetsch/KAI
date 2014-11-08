@@ -18,6 +18,22 @@ Lexer::Lexer(const char *in)
 	Run();
 }
 
+void Lexer::CreateLines()
+{
+	if (input.back() != '\n')
+		input.push_back('\n');
+
+	size_t lineStart = 0;
+	for (size_t n = 0; n < input.size(); ++n)
+	{
+		if (input[n] == '\n')
+		{
+			lines.push_back(input.substr(lineStart, n - lineStart + 1));
+			lineStart = n + 1;
+		}
+	}
+}
+
 void Lexer::AddKeywords()
 {
 	keyWords["if"] = Token::If;
@@ -45,57 +61,6 @@ bool Lexer::Run()
 	return Add(Token::None, 0);
 }
 
-void Lexer::Print() const
-{
-	//std::copy(tokens.begin(), tokens.end(), ostream_iterator<Token>(std::cout, " "));
-	for (auto tok : tokens)
-		std::cout << tok << " ";
-
-	std::cout << std::endl;
-}
-
-Slice Lexer::Gather(int (*filt)(int)) 
-{
-	int start = offset;
-	while (filt(Next()))
-		;
-
-	return Slice(start, offset);
-}
-
-bool Lexer::Add(Token::Type type, Slice slice)
-{
-	tokens.push_back(Token(type, *this, lineNumber, slice));
-	return true;
-}
-
-bool Lexer::Add(Token::Type type, int len)
-{
-	Add(type, Slice(offset, offset + len));
-	while (len--) 
-		Next();
-
-	return true;
-}
-
-bool Lexer::LexAlpha()
-{
-	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
-
-	auto kw = keyWords.find(tok.Text());
-	if (kw != keyWords.end())
-		tok.type = kw->second;
-
-	tokens.push_back(tok);
-
-	return true;
-}
-
-int IsSpaceChar(int ch)
-{
-	return ch == ' ';
-}
-
 bool Lexer::NextToken()
 {
 	auto current = Current();
@@ -103,8 +68,8 @@ bool Lexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return LexAlpha();	
-	
+		return LexAlpha();
+
 	if (isdigit(current))
 		return Add(Token::Int, Gather(isdigit));
 
@@ -130,7 +95,7 @@ bool Lexer::NextToken()
 	case '|': return AddIfNext('|', Token::Or, Token::BitOr);
 	case '<': return AddIfNext('=', Token::LessEquiv, Token::Less);
 	case '>': return AddIfNext('=', Token::GreaterEquiv, Token::Greater);
-	case '"': return LexString(); 
+	case '"': return LexString();
 	case '\'': return LexAlpha();
 	case '-':
 		if (Peek() == '-')
@@ -174,6 +139,48 @@ bool Lexer::NextToken()
 	LexError("Unrecognised %c");
 
 	return false;
+}
+
+Slice Lexer::Gather(int (*filt)(int)) 
+{
+	int start = offset;
+	while (filt(Next()))
+		;
+
+	return Slice(start, offset);
+}
+
+bool Lexer::Add(Token::Type type, Slice slice)
+{
+	tokens.push_back(Token(type, *this, lineNumber, slice));
+	return true;
+}
+
+bool Lexer::Add(Token::Type type, int len)
+{
+	Add(type, Slice(offset, offset + len));
+	while (len--) 
+		Next();
+
+	return true;
+}
+
+bool Lexer::LexAlpha()
+{
+	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
+
+	auto kw = keyWords.find(tok.Text());
+	if (kw != keyWords.end())
+		tok.type = kw->second;
+
+	tokens.push_back(tok);
+
+	return true;
+}
+
+int IsSpaceChar(int ch)
+{
+	return ch == ' ';
 }
 
 bool Process::Fail(const std::string &err)
@@ -229,22 +236,6 @@ char Lexer::Peek() const
 		return 0;
 
 	return Line()[offset + 1];
-}
-
-void Lexer::CreateLines()
-{
-	// ensure we end with a newline.
-	input.push_back('\n');
-
-	size_t lineStart = 0;
-	for (size_t n = 0; n < input.size(); ++n)
-	{
-		if (input[n] == '\n')
-		{
-			lines.push_back(input.substr(lineStart, n - lineStart + 1));
-			lineStart = n + 1;
-		}
-	}
 }
 
 bool Lexer::EndOfLine() const
@@ -362,6 +353,14 @@ std::string Lexer::CreateError(Token tok, const char *fmt, ...)
 	err << ends;
 
 	return err.str();
+}
+
+void Lexer::Print() const
+{
+	for (auto tok : tokens)
+		std::cout << tok << " ";
+
+	std::cout << std::endl;
 }
 
 KAI_END
