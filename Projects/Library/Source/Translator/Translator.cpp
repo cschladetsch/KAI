@@ -76,7 +76,7 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 		TranslateBinaryOp(node, Operation::Greater);
 		return;
 
-	case Token::GreaterEqiv:
+	case Token::GreaterEquiv:
 		TranslateBinaryOp(node, Operation::GreaterOrEquiv);
 		return;
 

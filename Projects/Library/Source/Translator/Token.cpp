@@ -49,7 +49,7 @@ const char * Token::ToString(Type t)
 	case Equiv:  return "Equiv";
 	case Greater:  return "Greater";
 	case LessEquiv:  return "LessEquiv";
-	case GreaterEqiv: return "GreaterEqiv";
+	case GreaterEquiv: return "GreaterEqiv";
 	case Return: return "Return";
 	case OpenBrace: return "OpenBrace";
 	case CloseBrace: return "CloseBrace";

@@ -359,7 +359,7 @@ bool Parser::Relational()
 		return false;
 
 	while (Try(Token::Less) || Try(Token::Greater) || Try(Token::Equiv) || Try(Token::NotEquiv)
-		|| Try(Token::LessEquiv) || Try(Token::GreaterEqiv))
+		|| Try(Token::LessEquiv) || Try(Token::GreaterEquiv))
 	{
 		auto node = NewNode(Consume());
 		node->Add(Pop());
