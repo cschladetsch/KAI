@@ -70,7 +70,7 @@ private:
 	bool AddIfNext(char ch, Token::Type thenType, Token::Type elseType);
 	
 public:
-	static std::string CreateError(Token tok, const char *fmt, ...);
+	static std::string CreateErrorMessage(Token tok, const char *fmt, ...);
 	bool LexString();
 };
 

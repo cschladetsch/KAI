@@ -13,6 +13,9 @@ KAI_BEGIN
 Lexer::Lexer(const char *in)
 	: input(in)
 {
+	if (input.empty())
+		return;
+
 	CreateLines();
 	AddKeywords();
 	Run();
@@ -80,8 +83,6 @@ bool Lexer::NextToken()
 
 	switch (current)
 	{
-	case '\t': return Add(Token::Tab);
-	case '\n': return Add(Token::NewLine);
 	case ';': return Add(Token::Semi);
 	case '{': return Add(Token::OpenBrace);
 	case '}': return Add(Token::CloseBrace);
@@ -102,6 +103,8 @@ bool Lexer::NextToken()
 	case '>': return AddIfNext('=', Token::GreaterEquiv, Token::Greater);
 	case '"': return LexString();
 	case '\'': return LexAlpha();
+	case '\t': return Add(Token::Tab);
+	case '\n': return Add(Token::NewLine);
 	case '-':
 		if (Peek() == '-')
 			return AddTwoCharOp(Token::Decrement);
@@ -301,10 +304,10 @@ bool Lexer::LexString()
 
 void Lexer::LexError(const char *text)
 {
-	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
+	Fail(CreateErrorMessage(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
 }
 
-std::string Lexer::CreateError(Token tok, const char *fmt, ...)
+std::string Lexer::CreateErrorMessage(Token tok, const char *fmt, ...)
 {
 	char buff0[2000];
 	va_list ap;
@@ -364,4 +367,3 @@ void Lexer::Print() const
 }
 
 KAI_END
-

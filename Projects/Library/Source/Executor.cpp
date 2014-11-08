@@ -729,15 +729,11 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::True:
-		{
-			Push(New(true));
-		}
+		Push(New(true));
 		break;
 
 	case Operation::False:
-		{
-			Push(New(false));
-		}
+		Push(New(false));
 		break;
 
 	case Operation::CppFunctionCall:
@@ -756,21 +752,15 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::TraceAll:
-		{
-			TraceAll();
-		}
+		TraceAll();
 		break;
 
 	case Operation::Name:
-		{
-			Push(New(GetName(Pop())));
-		}
+		Push(New(GetName(Pop())));
 		break;
 
 	case Operation::Fullname:
-		{
-			Push(New(GetFullname(Pop())));
-		}
+		Push(New(GetFullname(Pop())));
 		break;
 
 	case Operation::New:

@@ -84,9 +84,6 @@
     <Filter Include="Source Files\Inline">
       <UniqueIdentifier>{01704b90-8bed-4efa-9dcb-535ba003f310}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Header">
-      <UniqueIdentifier>{992963ff-384e-4b50-bd7c-7058d0335863}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\BuiltinTypes\Inline">
       <UniqueIdentifier>{eea51e9a-ebde-46b3-9af9-c35414ee5213}</UniqueIdentifier>
     </Filter>

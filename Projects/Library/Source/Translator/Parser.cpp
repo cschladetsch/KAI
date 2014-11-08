@@ -1,5 +1,3 @@
-// (C) 2014 christian.schladetsch@gmail.com
-
 #include "KAI/KAI.h"
 #include "KAI/Translator/Parser.h"
 
@@ -17,15 +15,15 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	current = 0;
 	indent = 0;
 
+	if (lexer->Failed)
+		return;
+
 	// strip whitespace and comments
 	for (auto tok : lexer->tokens)
 		if (tok.type != Token::Whitespace && tok.type != Token::Comment)
 			tokens.push_back(tok);
 
 	root = NewNode(Node::Program);
-
-	if (lexer->Failed)
-		return;
 
 	try
 	{
@@ -34,17 +32,17 @@ Parser::Parser(std::shared_ptr<Lexer> lexer, Structure st)
 	catch (Exception::Base &e)
 	{
 		if (!Failed)
-			Fail(Lexer::CreateError(Current(), "%s", e.ToString()));
+			Fail(Lexer::CreateErrorMessage(Current(), "%s", e.ToString()));
 	}
 	catch (std::exception &f)
 	{
 		if (!Failed)
-			Fail(Lexer::CreateError(Current(), "%s", f.what()));
+			Fail(Lexer::CreateErrorMessage(Current(), "%s", f.what()));
 	}
 	catch (...)
 	{
 		if (!Failed)
-			Fail(Lexer::CreateError(Current(), "internal error"));
+			Fail(Lexer::CreateErrorMessage(Current(), "internal error"));
 	}
 }
 
@@ -59,6 +57,7 @@ void Parser::Run(Structure st)
 			return;
 		}
 		break;
+
 	case ParseExpression:
 		if (!Expression())
 		{
@@ -67,9 +66,11 @@ void Parser::Run(Structure st)
 		}
 		root->Add(Pop());
 		break;
+
 	case ParseFunction:
 		Function(root);
 		break;
+
 	case ParseProgram:
 		Program();
 		break;
@@ -100,10 +101,9 @@ void Parser::Function(NodePtr node)
 	Expect(Token::Fun);
 	Expect(Token::Ident);
 	auto name = Last();
-	Expect(Token::OpenParan);
-
 	auto fun = NewNode(Node::Function);
 	fun->Add(name);
+	Expect(Token::OpenParan);
 	auto args = NewNode(Node::None);
 	fun->Add(args);
 
@@ -172,7 +172,7 @@ void Parser::Block(NodePtr node)
 
 		if (level != indent)
 		{
-			Fail(Lexer::CreateError(Current(), "Mismatch block indent"));
+			Fail(Lexer::CreateErrorMessage(Current(), "Mismatch block indent"));
 			return;
 		}
 
@@ -189,14 +189,16 @@ bool Parser::Statement(NodePtr block)
 			Consume();
 			if (!Expression())
 			{
-				Fail(Lexer::CreateError(Current(), "Assert needs an expression to test"));
+				Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
 				return false;
 			}
+
 			auto ass = NewNode(Consume());
 			ass->Add(Pop());
 			Push(ass);
 			goto finis;
 		}
+
 		case Token::Return:
 		case Token::Yield:
 		{
@@ -212,11 +214,13 @@ bool Parser::Statement(NodePtr block)
 			While(block);
 			return true;
 		}
+
 		case Token::For:
 		{
 			For(block);
 			return true;
 		}
+
 		case Token::If:
 		{
 			IfCondition(block);
@@ -253,7 +257,7 @@ std::shared_ptr<Node> Parser::Expect(Token::Type type)
 	Token tok = Current();
 	if (tok.type != type)
 	{
-		Fail(Lexer::CreateError(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
+		Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
 		KAI_THROW_1(LogicError, "Unexpected token");
 	}
 
@@ -309,6 +313,7 @@ bool Parser::Expression()
 		Consume();
 		if (!Expression())
 			return false;
+
 		Expect(Token::CloseParan);
 		return true;
 	}
@@ -322,7 +327,7 @@ bool Parser::Expression()
 		auto ident = Pop();
 		if (!Logical())
 		{
-			Fail(Lexer::CreateError(Current(), "Assignment requires an expression"));
+			Fail(Lexer::CreateErrorMessage(Current(), "Assignment requires an expression"));
 			return false;
 		}
 
@@ -344,7 +349,7 @@ bool Parser::Logical()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Relational())
-			return Fail(Lexer::CreateError(Current(), "Relational expected"));
+			return Fail(Lexer::CreateErrorMessage(Current(), "Relational expected"));
 
 		node->Add(Pop());
 		Push(node);
@@ -453,6 +458,7 @@ bool Parser::Factor()
 
 		Expect(Token::CloseSquareBracket);
 		Push(list);
+
 		return true;
 	}
 
@@ -491,6 +497,7 @@ Parser::NodePtr Parser::Pop()
 
 	auto last = stack.back();
 	stack.pop_back();
+
 	return last;
 }
 
@@ -714,7 +721,7 @@ void Parser::While(NodePtr block)
 
 bool Parser::CreateError(const char *text)
 {
-	return Fail(Lexer::CreateError(Current(), text));
+	return Fail(Lexer::CreateErrorMessage(Current(), text));
 }
 
 void Parser::AddBlock(NodePtr fun)
@@ -724,10 +731,4 @@ void Parser::AddBlock(NodePtr fun)
 	fun->Add(block);
 }
 
-//Parser::Unexpected::Unexpected(Token::Type ty)
-//{
-//	KAI_UNUSED_1(ty);
-//}
-
 KAI_END
-
