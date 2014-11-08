@@ -54,9 +54,7 @@ namespace Bin
 		const ClassBase *K = Q.GetClass();
 		ClassBase::Methods::const_iterator A = K->GetMethods().begin(), B = K->GetMethods().end();
 		for (; A != B; ++A)
-		{
 			methods->Append(Q.New<BasePointer<MethodBase> >(A->second));
-		}
 
 		return methods.GetObject();
 	}
@@ -73,9 +71,7 @@ namespace Bin
 
 		Value<Array> properties = Q.New<Array>();
 		for (auto prop : Q.GetClass()->GetProperties())
-		{
 			properties->Append(Q.New<BasePointer<PropertyBase>>(prop.second));
-		}
 
 		return properties.GetObject();
 	}
@@ -84,6 +80,7 @@ namespace Bin
 	{
 		return Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
 	}
+
 	Vector3 AddVector3(Vector3 vec, Vector3 addition)
 	{
 		return Vector3(vec.x + addition.x, vec.y + addition.y, vec.z + addition.z);
@@ -144,6 +141,7 @@ namespace Bin
 	{
 		if (!Q.Exists())
 			return Object();
+
 		return Q.GetClass()->UpCast(Q.GetStorageBase());
 	}
 

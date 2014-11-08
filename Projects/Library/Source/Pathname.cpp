@@ -1,5 +1,3 @@
-
-
 #include "KAI/KAI.h"
 #include "KAI/Pathname.h"
 #include "KAI/BuiltinTypes/Bool.h"
@@ -46,13 +44,16 @@ void Pathname::FromString(const String &text)
 		case Literals::Parent:
 			AddElement(name, Element::Parent);
 			break;
+
 		case Literals::Seperator:
 			if (S[1] != 0)
 				AddElement(name, Element::Seperator);
 			break;
+
 		case Literals::This:
 			AddElement(name, Element::This);
 			break;
+
 		default:
 			if (!isalnum(*S) && *S != '_')
 			{
@@ -110,10 +111,17 @@ String Pathname::ToString() const
 	{
 		switch (element.type)
 		{
-		case Element::Seperator: str.Append(Literals::Seperator); break;
-		case Element::Parent: str.Append(Literals::Parent); break;
-		case Element::This: str.Append(Literals::This); break;
-		case Element::Name: str << element.name.ToString(); break;
+		case Element::Seperator: str.Append(Literals::Seperator);
+			break;
+		
+		case Element::Parent: str.Append(Literals::Parent); 
+			break;
+
+		case Element::This: str.Append(Literals::This); 
+			break;
+
+		case Element::Name: str << element.name.ToString(); 
+			break;
 		}
 	}
 

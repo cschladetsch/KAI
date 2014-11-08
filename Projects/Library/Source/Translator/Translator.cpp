@@ -31,75 +31,99 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 	case Token::While:
 		TranslateWhile(node);
 		return;
+
 	case Token::DivAssign:
 		TranslateBinaryOp(node, Operation::DivEquals);
 		return;
+
 	case Token::MulAssign:
 		TranslateBinaryOp(node, Operation::MulEquals);
 		return;
+
 	case Token::MinusAssign:
 		TranslateBinaryOp(node, Operation::MinusEquals);
 		return;
+
 	case Token::PlusAssign:
 		TranslateBinaryOp(node, Operation::PlusEquals);
 		return;
+
 	case Token::Assign:
 		TranslateBinaryOp(node, Operation::Store);
 		return;
+
 	case Token::Lookup:
 		AppendNewOp(Operation::Lookup);
 		return;
+
 	case Token::Self:
 		AppendNewOp(Operation::This);
 		return;
+
 	case Token::NotEquiv:
 		TranslateBinaryOp(node, Operation::NotEquiv);
 		return;
+
 	case Token::Equiv:
 		TranslateBinaryOp(node, Operation::Equiv);
 		return;
+
 	case Token::Less:
 		TranslateBinaryOp(node, Operation::Less);
 		return;
+
 	case Token::Greater:
 		TranslateBinaryOp(node, Operation::Greater);
 		return;
+
 	case Token::GreaterEqiv:
 		TranslateBinaryOp(node, Operation::GreaterOrEquiv);
 		return;
+
 	case Token::LessEquiv:
 		TranslateBinaryOp(node, Operation::LessOrEquiv);
 		return;
+
 	case Token::Minus:
 		TranslateBinaryOp(node, Operation::Minus);
 		return;
+
 	case Token::Plus:
 		TranslateBinaryOp(node, Operation::Plus);
 		return;
+
 	case Token::Mul:
 		TranslateBinaryOp(node, Operation::Multiply);
 		return;
+
 	case Token::Divide:
 		TranslateBinaryOp(node, Operation::Divide);
 		return;
+
 	case Token::Or:
 		TranslateBinaryOp(node, Operation::LogicalOr);
 		return;
+
 	case Token::And:
 		TranslateBinaryOp(node, Operation::LogicalAnd);
 		return;
+
 	case Token::Int:
 		Append(reg.New<int>(boost::lexical_cast<int>(node->token.Text())));
 		return;
+
 	case Token::Float:
 		Append(reg.New<float>(boost::lexical_cast<float>(node->token.Text())));
 		return;
+
 	case Token::String:
 		Append(reg.New<String>(node->token.Text()));
 		return;
+
 	case Token::Ident:
 		Append(reg.New<Label>(Label(node->token.Text())));
 		return;
+
 	case Token::Yield:
 		//for (auto ch : node->Children)
 		//	Translate(ch);
@@ -113,6 +137,7 @@ void Translator::TranslateFromToken(Parser::NodePtr node)
 		AppendNewOp(Operation::Return);
 		return;
 	}
+
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
 	throw Unsupported();
 }
@@ -132,48 +157,56 @@ void Translator::Translate(Parser::NodePtr node)
 	case Node::IndexOp:
 		TranslateBinaryOp(node, Operation::Index);
 		return;
+
 	case Node::GetMember:
 		TranslateBinaryOp(node, Operation::GetProperty);
 		return;
+
 	case Node::TokenType:
 		TranslateFromToken(node);
 		return;
+
 	case Node::Assignment:
 		// like a binary op, but argument order is reversed
 		Translate(node->Children[1]);
 		Translate(node->Children[0]);
 		AppendNew<Operation>(Operation(Operation::Store));
 		return;
+
 	case Node::Call:
 		TranslateCall(node);
 		return;
+
 	case Node::Conditional:
 		TranslateIf(node);
 		return;
+
 	case Node::Block:
 		PushNew();
 		for (auto st : node->Children)
 			Translate(st);
 		Append(Pop());
 		return;
+
 	case Node::List:
 		for (auto ch : boost::adaptors::reverse(node->Children))
 			Translate(ch);
 		AppendNew<int>(node->Children.size());
 		AppendNewOp(Operation::ToArray);
 		return;
+
 	case Node::For:
 		TranslateFor(node);
 		return;
+
 	case Node::Function:
 		TranslateFunction(node);
 		return;
+
 	case Node::Program:
-		{
-			for (auto e : node->Children)
-				Translate(e);
-			return;
-		}
+		for (auto e : node->Children)
+			Translate(e);
+		return;
 	}
 
 	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
@@ -186,20 +219,20 @@ void Translator::TranslateBlock(NodePtr node)
 		Translate(st);
 }
 
-// 0: ident
-// 1: args
-// 2: block
 void Translator::TranslateFunction(NodePtr node)
 {
+	// child 0: ident
+	// child 1: args
+	// child 2: block
 	Node::ChildrenType const &ch = node->Children;
 
 	// write the body
 	PushNew();
 	for (auto b : ch[2]->Children)
 		Translate(b);
-	auto cont = Pop();
 
 	// add the args
+	auto cont = Pop();
 	for (auto a : ch[1]->Children)
 		cont->AddArg(Label(a->token.Text()));
 
@@ -208,26 +241,6 @@ void Translator::TranslateFunction(NodePtr node)
 	AppendNew(Label(ch[0]->token.Text()));
 	AppendNewOp(Operation::Store);
 }
-
-//void Translator::Traverse(NodePtr node)
-//{
-//	switch (node->type)
-//	{
-//	case Node::Program:
-//		for (auto ch : node->Children)
-//			Translate(ch);
-//		break;
-//	case Node::Function:
-//		TranslateFunction(node);
-//		break;
-//	case Node::Block:
-//		TranslateBlock(node);
-//		break;
-//	default:
-//		Translate(node);
-//		break;
-//	}
-//}
 
 void Translator::TranslateCall(NodePtr node)
 {
@@ -271,6 +284,7 @@ std::string Translator::Result() const
 	StringStream str;
 	for (auto ob : *stack.back()->GetCode())
 		str << ' ' << ob;
+
 	return str.ToString().c_str();
 }
 
@@ -286,6 +300,7 @@ void Translator::TranslateIf(Parser::NodePtr node)
 	Translate(ch[0]);
 	if (hasElse)
 		Translate(ch[2]);
+
 	Translate(ch[1]);
 	AppendNewOp(hasElse ? Operation::IfThenSuspendElseSuspend : Operation::IfThenSuspend);
 }

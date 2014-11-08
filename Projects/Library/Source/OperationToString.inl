@@ -1,5 +1,3 @@
-
-
 const char *Operation::ToString(int value)
 {
 	switch (value)
@@ -84,14 +82,12 @@ const char *Operation::ToString(int value)
 		CASE(GetProperty);
 		CASE(Index);
 		CASE(Lookup);
-
 		CASE(If);
 		CASE(IfElse);
 		CASE(ForEachContained);
 		CASE(SuspendNew);
-
 	}
+
 	return "?UNKNOWN_OP?";
 }
 
-//EOF

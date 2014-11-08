@@ -1,10 +1,9 @@
+#include <iostream>
 
 #include "KAI/KAI.h"
 #include "KAI/Pathname.h"
 #include "KAI/Tree.h"
 #include "KAI/BuiltinTypes/Void.h"
-
-#include <iostream>
 
 KAI_BEGIN
 
@@ -56,29 +55,34 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::Seperator: break;
-		case Pathname::Element::This: break;
-		case Pathname::Element::Parent: scope = scope.GetParent(); break;
+		case Pathname::Element::Seperator: 
+			break;
+
+		case Pathname::Element::This: 
+			break;
+
+		case Pathname::Element::Parent: scope = scope.GetParent(); 
+			break;
+
 		case Pathname::Element::Name: 
 			{
 				const Label &name = A->name;
 				if (A == --path.end())
 				{
 					GetStorageBase(scope).Set(name, Q);
+					break;
+				}
+
+				StorageBase &base = GetStorageBase(scope);
+				if (!base.Has(name))
+				{
+					Object added = scope.New<void>();
+					base.Set(name, added);
+					scope = added;
 				}
 				else
 				{
-					StorageBase &base = GetStorageBase(scope);
-					if (!base.Has(name))
-					{
-						Object added = scope.New<void>();
-						base.Set(name, added);
-						scope = added;
-					}
-					else
-					{
-						scope = base.Get(name);
-					}
+					scope = base.Get(name);
 				}
 			}
 			break;
@@ -135,7 +139,9 @@ Object Get(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::Seperator: break;
+		case Pathname::Element::Seperator: 
+			break;
+
 		case Pathname::Element::Name: 
 			{
 				scope = scope.Get(A->name);
@@ -143,8 +149,12 @@ Object Get(Object scope, const Pathname &path)
 					return scope;
 			}
 			break;
-		case Pathname::Element::This: break;
-		case Pathname::Element::Parent: scope = scope.GetParent(); break;
+
+		case Pathname::Element::This: 
+			break;
+
+		case Pathname::Element::Parent: scope = scope.GetParent(); 
+			break;
 		}
 	}
 	return scope;
@@ -188,11 +198,16 @@ void Remove(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::Seperator: break;
+		case Pathname::Element::Seperator:
+			break;
+		
 		case Pathname::Element::Name: 
 			scope = scope.Get(A->name);
 			break;
-		case Pathname::Element::This: break;
+		
+		case Pathname::Element::This: 
+			break;
+		
 		case Pathname::Element::Parent: 
 			scope = scope.GetParent();
 			break;
@@ -230,7 +245,6 @@ Label GetName(const Object &object)
 	return object.GetLabel();
 }
 
-//---------------------------------------------------------------
 void Tree::SetScope(const Object &Q)
 {
 	Pathname path = GetFullname(Q);

@@ -1,4 +1,3 @@
-
 #include "KAI/KAI.h"
 #include <algorithm>
 
@@ -46,9 +45,9 @@ Object StorageBase::Get(const Label &L) const
 	return A->second;
 }
 
-void StorageBase::Set(const Label &L, Object const &Q)
+void StorageBase::Set(const Label &name, Object const &child)
 {
-	if (Q.GetHandle() == GetHandle())
+	if (child.GetHandle() == GetHandle())
 		KAI_THROW_1(InternalError, "Recursion");
 
 	// mark the object as being altered
@@ -56,26 +55,26 @@ void StorageBase::Set(const Label &L, Object const &Q)
 	
 	// set a property if it exists
 	ClassBase const *klass = GetClass();
-	if (klass->HasProperty(L))
+	if (klass->HasProperty(name))
 	{
-		klass->GetProperty(L).SetValue(*this, Q);
+		klass->GetProperty(name).SetValue(*this, child);
 		return;
 	}
 
 	// otherwise this is a child object. remove any existing child
-	Remove(L);
+	Remove(name);
 
 	// update the child object
-	if (!Q)
+	if (!child)
 	{
-		Dictionary::iterator child = dictionary.find(L);
+		Dictionary::iterator child = dictionary.find(name);
 		if (child != dictionary.end())
 			dictionary.erase(child);
 		return;
 	}
 
-	StorageBase &base = KAI_NAMESPACE(GetStorageBase(Q));
-	base.SetLabel(L);
+	StorageBase &base = KAI_NAMESPACE(GetStorageBase(child));
+	base.SetLabel(name);
 	base.SetParentHandle(GetHandle());
 	
 	bool clean = base.IsClean();
@@ -95,7 +94,7 @@ void StorageBase::Set(const Label &L, Object const &Q)
 		base.switches |= IObject::Managed;
 
 	// add it to this dictionary, inform it of being added to a container
-	dictionary[L] = Q;
+	dictionary[name] = child;
 	base.AddedToContainer(*this);
 }
 
@@ -124,8 +123,6 @@ void StorageBase::Remove(const Label &label)
 
 void StorageBase::SetColorRecursive(ObjectColor::Color color)
 {
-	//if (IsManaged())
-	//	return;
 	Handles handles;
 	SetColorRecursive(color, handles);
 }
@@ -133,10 +130,6 @@ void StorageBase::SetColorRecursive(ObjectColor::Color color)
 // avoid loops by passing history of objects traversed via handles argument
 void StorageBase::SetColorRecursive(ObjectColor::Color color, Handles& handles)
 {
-//	if (nstd::find(handles.begin(), handles.end(), GetHandle()) != handles.end())
-//		return;
-//	handles.push_back(GetHandle());
-
 	Handle handle = GetHandle();
 	if (handles.find(handle) != handles.end())
 		return;
@@ -288,6 +281,7 @@ void StorageBase::DetachFromContainers()
 		StorageBase *cont = GetRegistry()->GetStorageBase(*iter);
 		if (!cont)
 			continue;
+
 		cont->GetClass()->DetachFromContainer(*cont, *this);
 	}
 }

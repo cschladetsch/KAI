@@ -71,15 +71,20 @@ public:
 	{ 
 		if (!Exists())
 			return N == Type::Number::None;
+
 		return GetTypeNumber() == N;
 	}
+
 	Handle GetParentHandle() const;
 	void SetParentHandle(Handle);
 	Handle GetHandle() const { return handle; }
 	Object GetParent() const;
 
 	template <class T>
-	bool IsType() const { return Exists() && GetClass()->GetTypeNumber() == Type::Traits<T>::Number; }
+	bool IsType() const 
+	{
+		return Exists() && GetClass()->GetTypeNumber() == Type::Traits<T>::Number; 
+	}
 
 	void Delete() const;
 	bool Valid() const;
@@ -115,54 +120,43 @@ public:
 	{
 		if (!Valid())
 			KAI_THROW_0(NullObject);
+
 		if (HasProperty(L))
-		{
 			SetProperty<T>(L, V);
-		}
 		else if (HasChild(L))
-		{
 			Deref<T>(GetChild(L)) = V;
-		}
 		else
-		{
 			SetChild(L, New<T>(V));
-		}
 	}
+
 	template <class T>
 	T const &GetValue(const Label &L) const
 	{
 		if (!Valid())
 			KAI_THROW_0(NullObject);
+
 		if (HasProperty(L))
-		{
 			return GetProperty<T>(L);
-		}
-		else if (HasChild(L))
-		{
+
+		if (HasChild(L))
 			return ConstDeref<T>(GetChild(L));
-		}
-		else
-		{
-			KAI_THROW_1(UnknownProperty, L);
-		}
+
+		KAI_THROW_1(UnknownProperty, L);
 	}
+
 	template <class T>
 	T &GetValue(const Label &L)
 	{
 		if (!Valid())
 			KAI_THROW_0(NullObject);
+
 		if (HasProperty(L))
-		{
 			return GetProperty<T>(L);
-		}
-		else if (HasChild(L))
-		{
+
+		if (HasChild(L))
 			return Deref<T>(GetChild(L));
-		}
-		else
-		{
-			KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
-		}
+
+		KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
 	}
 
 	void Detach(const Label &L) const { Remove(L); }

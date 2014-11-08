@@ -134,6 +134,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 #endif
 			return;
 		}
+
 		StorageBase &base = *iter->second;
 		assert(base.GetHandle() == handle);
 		if (!base.IsManaged() && !force)
@@ -190,6 +191,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 	KAI_CATCH_ALL()
 	{
 	}
+
 	if (!succeeded)
 	{
 		KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
@@ -257,6 +259,7 @@ Object Registry::GetObject(Handle handle) const
 	if (IsWatching(handle) && gc_trace_level > 1)
 		KAI_TRACE() << handle;
 #endif
+
 	if (handle == 0)
 		return Object();
 
@@ -488,18 +491,18 @@ void Registry::TriColor()
 	// the cost has to be paid at some point, so this number really means "how much do I want
 	// to spread out cost of GC over time versus memory use".
 	//
-	// if you have lots of memory, set max_cycles to 1. (or zero!). if not, set it highter
+	// if you have lots of memory, set max_cycles to 1. (or zero!). if not, set it higher
 	// until you can fit memory usage into a sequence of frames.
 	//
 	// see also https://github.com/cschladetsch/Monotonic 
 	const int max_cycles = 17;
-	int N = 0;
 	if (gc_trace_level >= 1)
 	{
 		KAI_TRACE_3(instances.size(), grey.size(), white.size());
 	}
 
-	for (; N < max_cycles; ++N)
+	int cycle = 0;
+	for (; cycle < max_cycles; ++cycle)
 	{
 #ifdef KAI_DEBUG_REGISTRY
 		if (gc_trace_level > 2) 
@@ -524,7 +527,7 @@ void Registry::TriColor()
 	}
 
 	if (gc_trace_level >= 1)
-		KAI_TRACE() << "TriColor: " << N << " passes";
+		KAI_TRACE() << "TriColor: " << cycle << " passes";
 }
 
 void Registry::ReleaseWhite()
@@ -569,13 +572,16 @@ bool Registry::SetColor(StorageBase &base, ObjectColor::Color color)
 		RemoveFromSet(grey, handle);
 		white.insert(handle); 
 		break;
+
 	case ObjectColor::Grey: 
 		RemoveFromSet(white, handle);
 		grey.insert(handle); 
 		break;
+
 	case ObjectColor::Black:
 		break;
 	}
+
 	return true;
 }
 
@@ -593,6 +599,7 @@ II find(II A, II B, T X, Pred P)
 		if (P(X, *A))
 			break;
 	}
+
 	return A;
 }
 
@@ -605,8 +612,10 @@ void Registry::AddRoot(Object const &root)
 {
 	if (!root)
 		return;
+
 	if (find(roots.begin(), roots.end(), root, SameHandle) == roots.end())
 		roots.push_back(root);
+
 	SetColor(root.GetStorageBase(), ObjectColor::Grey);
 }
 
@@ -621,13 +630,12 @@ void Registry::WatchObject(Handle handle, bool watch)
 	if (watch)
 	{
 		observed.insert(handle);
+		return;
 	}
-	else
-	{
-		Observed::iterator A = observed.find(handle);
-		if (A != observed.end())
-			observed.erase(A);
-	}
+
+	Observed::iterator A = observed.find(handle);
+	if (A != observed.end())
+		observed.erase(A);
 }
 
 bool Registry::IsWatching(Handle handle) const
@@ -653,13 +661,12 @@ void Registry::WatchType(Type::Number N, bool watch)
 	if (watch)
 	{
 		observed_types.insert(N);
+		return;
 	}
-	else
-	{
-		ObservedTypes::iterator A = observed_types.find(N);
-		if (A != observed_types.end())
-			observed_types.erase(A);
-	}
+
+	ObservedTypes::iterator A = observed_types.find(N);
+	if (A != observed_types.end())
+		observed_types.erase(A);
 }
 
 void Registry::TraceSet(Registry::ColoredSet const &set, const char *name) const
@@ -682,6 +689,7 @@ void Registry::TraceTriColor() const
 	TraceGCCounts();
 	if (gc_trace_level > 1)
 		TraceWhite();
+
 	if (gc_trace_level > 1)
 		TraceGrey();
 }

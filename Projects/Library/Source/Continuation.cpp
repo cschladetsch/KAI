@@ -65,7 +65,7 @@ bool Continuation::Next(Object &next) const
 	if (!code)
 		return false;
 
-	if (!entered)
+	if (!*entered)
 		KAI_THROW_1(LogicError, "Continuation not Entered");
 
 	int &n = Deref<int>(index);
