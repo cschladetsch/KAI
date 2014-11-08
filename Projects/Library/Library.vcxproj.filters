@@ -264,9 +264,6 @@
     <ClCompile Include="Source\Test\XmlOutput.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -283,6 +280,9 @@
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Translator.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Parser.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
   </ItemGroup>

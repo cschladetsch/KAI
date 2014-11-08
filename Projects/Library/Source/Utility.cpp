@@ -19,9 +19,14 @@ namespace debug
 		const char *type_str = "";
 		switch (type)
 		{
-		case Warn: type_str = "Warning: "; break;
-		case Error: type_str = "Error: "; break;
-		case Fatal: type_str = "Fatal: "; break;
+		case Warn: type_str = "Warning: ";
+			break;
+		
+		case Error: type_str = "Error: "; 
+			break;
+		
+		case Fatal: type_str = "Fatal: "; 
+			break;
 		}
 
 		String text = (file_location.ToString(false) + type_str + ToString());
@@ -42,11 +47,14 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 	{
 	case ObjectColor::White:
 		return S << "White";
+
 	case ObjectColor::Grey:
 		return S << "Grey";
+
 	case ObjectColor::Black:
 		return S << "Black";
 	}
+
 	return S << "UnknownColor";
 }
 
@@ -143,6 +151,7 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 		<< "' name='" << base.GetLabel().ToString() 
 		//<< "' handle='" << (int)Q.GetHandle().GetValue() 
 		<< "'>\n";
+
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
 	{
 		S << indent.ToString() << "  <Value>";
@@ -162,9 +171,7 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 
 	const Dictionary &dict = base.GetDictionary();
 	foreach (Dictionary::value_type const &child, dict)
-	{
 		ToXmlStream(child.second, S, level + 1);
-	}
 
 	S << indent.ToString() << "</Object>\n";
 

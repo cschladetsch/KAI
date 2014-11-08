@@ -17,7 +17,6 @@ int ObjectSet::Size() const
 	return numeric_cast<int>(objects.size());
 }
 
-
 bool ObjectSet::Destroy()
 {
 	Clear();
@@ -38,17 +37,14 @@ void ObjectSet::Append(Object const &Q)
 void ObjectSet::Clear() 
 { 
 	while (!Empty())
-	{
 		Erase(begin());
-	}
 }
 
 ObjectSet::iterator ObjectSet::Erase(iterator iter)
 {
 	if (iter->Exists())
-	{
 		Detach(*iter);
-	}
+
 	return objects.erase(iter);
 }
 
@@ -57,6 +53,7 @@ ObjectSet::iterator ObjectSet::Erase(Object const &Q)
 	iterator A = objects.find(Q);
 	if (A != end())
 		return Erase(A);
+
 	KAI_THROW_1(UnknownObject, Q.GetHandle());
 }
 

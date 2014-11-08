@@ -18,6 +18,7 @@ std::string Token::Text() const
 {
 	if (lexer == 0)
 		return "";
+
 	return std::move(lexer->lines[lineNumber].substr(slice.Start, slice.Length()));
 }
 
@@ -73,6 +74,7 @@ const char * Token::ToString(Type t)
 	case DivAssign: return "DivAssign";
 	case Yield: return "Yield";
 	}
+
 	static char b[100];
 	_itoa_s(t, b, 100, 10);
 	return b;
@@ -82,6 +84,7 @@ std::ostream &operator<<(std::ostream &out, Token const &node)
 {
 	if (node.type == Token::None)
 		return out;
+
 	out << Token::ToString(node.type);
 	switch (node.type)
 	{
@@ -90,6 +93,7 @@ std::ostream &operator<<(std::ostream &out, Token const &node)
 	case Token::Ident:
 		out << "=" << node.Text();
 	}
+
 	return out;
 }
 

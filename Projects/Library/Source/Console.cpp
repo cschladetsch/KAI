@@ -207,6 +207,7 @@ String Console::Execute(Pointer<Continuation> cont)
 	{
 		if (!cont->HasScope())
 			cont->SetScope(tree.GetRoot());
+
 		executor->Continue(cont);
 		return WriteStack();
 	}
@@ -248,6 +249,7 @@ String Console::Process(const String& text)
 			std::cout << color(C::Trace);
 			return Execute(cont);
 		}
+
 		return "";
 	}
 	KAI_CATCH(Exception::Base, E)
@@ -271,6 +273,7 @@ String Console::GetPrompt() const
 	prompt
 		<< int(GetRegistry().GetInstances().size()) << "; " 
 		<< GetFullname(GetTree().GetScope()).ToString().c_str() << "> ";
+
 	return prompt.ToString();
 }
 
@@ -285,9 +288,11 @@ String Console::WriteStack() const
 		bool is_string = A->GetTypeNumber() == Type::Number::String;
 		if (is_string)
 			result << "\"";
+
 		result << *A;
 		if (is_string)
 			result << "\"";
+
 		result << "\n";
 	}
 
@@ -307,7 +312,7 @@ void Console::Run()
 
 void Console::RegisterTypes()
 {
-	// builtins
+	// built-ins
 	registry->AddClass<const ClassBase *>("Class");		// TODO: add methods
 	registry->AddClass<void>("Void");
 	registry->AddClass<bool>("Bool");
@@ -339,7 +344,7 @@ void Console::RegisterTypes()
 	List::Register(*registry);
 	Map::Register(*registry, "Map");
 	
-	// CJS TODO: remove less-than comparable trait for hash maps: 
+	// TODO: remove less-than comparable trait for hash maps: 
 	//HashMap::Register(*registry, "HashMap");
 
 #ifdef KAI_UNIT_TESTS

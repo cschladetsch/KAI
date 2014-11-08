@@ -52,8 +52,6 @@ void XmlOutput::ModuleBegin(const String &name)
 void XmlOutput::ModuleEnd(const String &)
 {
 	xml << "</Module>";
-
-	// KAI HACK: hard-code times and developer, machine name for test run for now
 	xml << "</TestRun>";
 }
 

@@ -18,6 +18,7 @@ String String::Capitalise() const
 {
 	if (string.empty())
 		return String();
+
 	String result = string;
 	result[0] = (String::Char)::toupper(result[0]);
 	return result;
@@ -62,6 +63,7 @@ BinaryStream &operator<<(BinaryStream &S, const String &T)
 	S << length;
 	if (length > 0)
 		S.Write(length, &*T.Begin());
+
 	return S;
 }
 

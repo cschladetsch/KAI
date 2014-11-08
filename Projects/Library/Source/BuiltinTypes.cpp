@@ -115,7 +115,6 @@ void FunctionBase::Register(Registry &R)
 {
 	ClassBuilder<BasePointer<FunctionBase> >(R, "Function")
 		;
-
 }
 
 StringStream &operator<<(StringStream &S, int N)
@@ -225,6 +224,7 @@ namespace Type
 			Case(Browser);
 			Case(SignedContinuation);
 		}
+
 		KAI_NAMESPACE(StringStream) S;
 		S << "TypeNumber=" << (int)value << Ends;
 		return S.ToString().c_str();
