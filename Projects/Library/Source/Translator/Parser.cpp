@@ -84,9 +84,7 @@ bool Parser::Program()
 {
 	while (!Try(Token::None) && !Failed)
 	{
-		while (Try(Token::NewLine))
-			Next();
-
+		ConsumeNewLines();
 		Statement(root);
 	}
 
@@ -95,8 +93,7 @@ bool Parser::Program()
 
 void Parser::Function(NodePtr node)
 {
-	while (Try(Token::NewLine))
-		Consume();
+	ConsumeNewLines();
 
 	Expect(Token::Fun);
 	Expect(Token::Ident);
@@ -136,8 +133,7 @@ Parser::NodePtr Parser::NewNode(Token const &t)
 
 void Parser::Block(NodePtr node)
 {
-	while (Try(Token::NewLine))
-		Consume();
+	ConsumeNewLines();
 
 	++indent;
 	while (!Failed)
@@ -716,6 +712,12 @@ void Parser::AddBlock(NodePtr fun)
 	auto block = NewNode(Node::Block);
 	Block(block);
 	fun->Add(block);
+}
+
+void Parser::ConsumeNewLines()
+{
+	while (Try(Token::NewLine))
+		Consume();
 }
 
 KAI_END
