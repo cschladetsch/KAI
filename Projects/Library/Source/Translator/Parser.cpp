@@ -165,6 +165,7 @@ void Parser::Block(NodePtr node)
 			--current;
 			while (Try(Token::Tab))
 				--current;
+
 			++current;
 			return;
 		}
@@ -172,7 +173,7 @@ void Parser::Block(NodePtr node)
 		if (level != indent)
 		{
 			Fail(Lexer::CreateError(Current(), "Mismatch block indent"));
-			continue;
+			return;
 		}
 
 		Statement(node);
