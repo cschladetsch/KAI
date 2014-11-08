@@ -413,7 +413,7 @@ bool Parser::Term()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Factor())
-			return CreateError("Factor expected");
+			return CreateError("Factor expected with a term");
 
 		node->Add(Pop());
 		Push(node);
@@ -424,13 +424,13 @@ bool Parser::Term()
 
 bool Parser::Factor()
 {
-	bool paran = Try(Token::OpenParan);
-	if (paran)
+	if (Try(Token::OpenParan))
 	{
 		Consume();
 		if (!Expression())
 		{
-			CreateError("You can do better");
+			CreateError("Expected an expression for a factor in parenthesis");
+
 			return false;
 		}
 
@@ -536,6 +536,7 @@ bool Parser::ParseFactorIdent()
 			ParseIndexOp();
 			continue;
 		}
+
 		break;
 	}
 
@@ -557,7 +558,10 @@ void Parser::ParseMethodCall()
 		{
 			Consume();
 			if (!Expression())
-				Fail("Expression expected after comma");
+			{
+				Fail("What is the next argument?");
+				return;
+			}
 
 			args->Add(Pop());
 		}
@@ -670,6 +674,7 @@ void Parser::For(NodePtr block)
 			CreateError("When does the for statement stop?");
 			return;
 		}
+
 		f->Add(Pop());
 		Expect(Token::Semi);
 
