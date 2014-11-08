@@ -82,6 +82,7 @@ private:
 	void For(NodePtr block);
 	void While(NodePtr block);
 	bool CreateError(const char *text);
+	void ConsumeNewLines();
 };
 
 KAI_END
