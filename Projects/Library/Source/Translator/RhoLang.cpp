@@ -38,6 +38,7 @@ bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 	ifstream file(name, ios::binary);
 	if (!file)
 		return false;
+
 	file.seekg(0, ios::end);
 	int len = (int)file.tellg();
 	char *text = new char[len + 1];
@@ -56,8 +57,10 @@ bool RhoLang::Translate(const char *text, Parser::Structure st)
 
 	if (lex->Failed)
 		Fail(lex->Error);
+
 	if (parse->Failed)
 		Fail(parse->Error);
+
 	if (trans->Failed)
 		Fail(trans->Error);
 

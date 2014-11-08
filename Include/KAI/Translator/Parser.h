@@ -49,7 +49,7 @@ private:
 	bool Term();
 	bool Factor();
 
-	void PushConsume();
+	bool PushConsume();
 
 	Token const &Next();
 	Token const &Last();
