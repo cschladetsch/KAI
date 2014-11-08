@@ -40,6 +40,9 @@ void Compiler::AddOperation(int N, const String &S)
 
 Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser::Structure st) const
 {
+	if (text.empty())
+		return Object();
+
 	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
 	p->Translate(text.c_str(), st);
 	if (p->Failed)

@@ -152,6 +152,12 @@ void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
 
 void Translator::Translate(Parser::NodePtr node)
 {
+	if (!node)
+	{
+		Failed = true;
+		return;
+	}
+
 	switch (node->type)
 	{
 	case Node::IndexOp:
