@@ -1,9 +1,8 @@
-#include "KAI/KAI.h"
-
 #include <iostream>
 #include <strstream>
 #include <stdarg.h>
 
+#include "KAI/KAI.h"
 #include "KAI/Translator/Lexer.h"
 
 using namespace std;
@@ -47,6 +46,7 @@ bool Lexer::Run()
 
 void Lexer::Print() const
 {
+	//std::copy(tokens.begin(), tokens.end(), ostream_iterator<Token>(std::cout, " "));
 	for (auto tok : tokens)
 		std::cout << tok << " ";
 
