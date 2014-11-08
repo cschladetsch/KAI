@@ -49,6 +49,7 @@ void Lexer::Print() const
 {
 	for (auto tok : tokens)
 		std::cout << tok << " ";
+
 	std::cout << std::endl;
 }
 
@@ -57,6 +58,7 @@ Slice Lexer::Gather(int (*filt)(int))
 	int start = offset;
 	while (filt(Next()))
 		;
+
 	return Slice(start, offset);
 }
 
@@ -71,6 +73,7 @@ bool Lexer::Add(Token::Type type, int len)
 	Add(type, Slice(offset, offset + len));
 	while (len--) 
 		Next();
+
 	return true;
 }
 
@@ -106,14 +109,29 @@ bool Lexer::NextToken()
 
 	switch (current)
 	{
-	case ':': return Add(Token::Colon);
 	case '\t': return Add(Token::Tab);
 	case '\n': return Add(Token::NewLine);
+	case ';': return Add(Token::Semi);
+	case '{': return Add(Token::OpenBrace);
+	case '}': return Add(Token::CloseBrace);
+	case '(': return Add(Token::OpenParan);
+	case ')': return Add(Token::CloseParan);
+	case ':': return Add(Token::Colon);
 	case ' ': return Add(Token::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Token::Lookup);
+	case ',': return Add(Token::Comma);
+	case '*': return Add(Token::Mul);
+	case '[': return Add(Token::OpenSquareBracket);
+	case ']': return Add(Token::CloseSquareBracket);
+	case '=': return AddIfNext('=', Token::Equiv, Token::Assign);
+	case '!': return AddIfNext('=', Token::NotEquiv, Token::Not);
+	case '&': return AddIfNext('&', Token::And, Token::BitAnd);
+	case '|': return AddIfNext('|', Token::Or, Token::BitOr);
+	case '<': return AddIfNext('=', Token::LessEquiv, Token::Less);
+	case '>': return AddIfNext('=', Token::GreaterEquiv, Token::Greater);
+	case '"': return LexString(); 
 	case '\'': return LexAlpha();
 	case '-':
-	{
 		if (Peek() == '-')
 		{
 			Next();
@@ -125,10 +143,8 @@ bool Lexer::NextToken()
 			return Add(Token::MinusAssign);
 		}
 		return Add(Token::Minus);
-	}
-	
+
 	case '.':
-	{
 		if (Peek() == '.')
 		{
 			Next();
@@ -137,17 +153,11 @@ bool Lexer::NextToken()
 				Next();
 				return Add(Token::Replace, 3);
 			}
-			else
-			{
-				return Fail("Two dots");
-			}
+			return Fail("Two dots");
 		}
 		return Add(Token::Dot);
-	}
 
-	case ',': return Add(Token::Comma);
-	case '+': 
-	{
+	case '+':
 		if (Peek() == '+')
 		{
 			Next();
@@ -159,10 +169,8 @@ bool Lexer::NextToken()
 			return Add(Token::PlusAssign);
 		}
 		return Add(Token::Plus);
-	}
-	case '*': return Add(Token::Mul);
+
 	case '/':
-	{
 		if (Peek() == '/')
 		{
 			Next();
@@ -172,37 +180,6 @@ bool Lexer::NextToken()
 			return Add(Token::Comment, offset - start);
 		}
 		return Add(Token::Divide);
-	}
-	case ';': return Add(Token::Semi);
-	case '{': return Add(Token::OpenBrace);
-	case '}': return Add(Token::CloseBrace);
-	case '(': return Add(Token::OpenParan);
-	case ')': return Add(Token::CloseParan);
-	case '=': return AddIfNext('=', Token::Equiv, Token::Assign);
-	case '[': return Add(Token::OpenSquareBracket);
-	case ']': return Add(Token::CloseSquareBracket);
-	case '!': return AddIfNext('=', Token::NotEquiv, Token::Not);
-	case '&': return AddIfNext('&', Token::And, Token::BitAnd);
-	case '|': return AddIfNext('|', Token::Or, Token::BitOr);
-	case '"': return LexString();
-	}
-
-	if (current == '<')
-	{
-		if (Peek() == '=')
-		{
-			return AddTwoCharOp(Token::LessEquiv);
-		}
-		return Add(Token::Less);
-	}
-
-	if (current == '>')
-	{
-		if (Peek() == '=')
-		{
-			return AddTwoCharOp(Token::GreaterEqiv);
-		}
-		return Add(Token::Greater);
 	}
 
 	LexError("Unrecognised %c");
@@ -238,6 +215,7 @@ std::string Lexer::CreateError(Token tok, const char *fmt, ...)
 			else
 				err << ch;
 		}
+
 		if (n == tok.lineNumber)
 		{
 			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
@@ -250,9 +228,11 @@ std::string Lexer::CreateError(Token tok, const char *fmt, ...)
 					break;
 				}
 			}
+
 			err << endl;
 		}
 	}
+
 	err << ends;
 
 	return err.str();
@@ -262,6 +242,7 @@ bool Process::Fail(const std::string &err)
 {
 	Failed = true;
 	Error = err;
+
 	return false;
 }
 
@@ -278,6 +259,7 @@ char Lexer::Current() const
 {
 	if (lineNumber == (int)lines.size())
 		return 0;
+
 	return Line()[offset];
 }
 
@@ -306,6 +288,7 @@ char Lexer::Peek() const
 {
 	if (EndOfLine())
 		return 0;
+
 	return Line()[offset + 1];
 }
 
@@ -337,6 +320,7 @@ bool Lexer::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
 		Next();
 		return Add(thenType, 2);
 	}
+
 	return Add(elseType, 1);
 }
 
@@ -344,6 +328,7 @@ bool Lexer::AddTwoCharOp(Token::Type ty)
 {
 	Add(ty, 2);
 	Next();
+
 	return true;
 }
 
@@ -355,7 +340,6 @@ bool Lexer::LexString()
 	{
 		if (Current() == '\\')
 		{
-
 			switch (Next())
 			{
 			case '"':
@@ -368,14 +352,18 @@ bool Lexer::LexString()
 				return false;
 			}
 		}
+
 		if (Peek() == 0)
 		{
 			Fail("Bad string literal");
 			return false;
 		}
+
 		Next();
 	}
+
 	Next();
+
 	// the +1 and -1 to remove the start and end double quote characters
 	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start + 1, offset - 1)));
 	return true;
