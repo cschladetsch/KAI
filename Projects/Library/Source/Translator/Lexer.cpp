@@ -61,6 +61,11 @@ bool Lexer::Run()
 	return Add(Token::None, 0);
 }
 
+int IsSpaceChar(int ch)
+{
+	return ch == ' ';
+}
+
 bool Lexer::NextToken()
 {
 	auto current = Current();
@@ -176,11 +181,6 @@ bool Lexer::LexAlpha()
 	tokens.push_back(tok);
 
 	return true;
-}
-
-int IsSpaceChar(int ch)
-{
-	return ch == ' ';
 }
 
 bool Process::Fail(const std::string &err)
