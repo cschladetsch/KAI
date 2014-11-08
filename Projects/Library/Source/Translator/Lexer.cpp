@@ -297,8 +297,9 @@ bool Lexer::LexString()
 
 	Next();
 
-	// the +1 and -1 to remove the start and end double quote characters
+	// the +1 and -1 to remove the start and end double quote " characters
 	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start + 1, offset - 1)));
+
 	return true;
 }
 
@@ -340,13 +341,17 @@ std::string Lexer::CreateErrorMessage(Token tok, const char *fmt, ...)
 		{
 			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
 			{
-				if (lex.lines[tok.lineNumber][ch] == '\t')
-					err << "    ";
-				else if (ch == tok.slice.Start)
+				if (ch == tok.slice.Start)
 				{
 					err << '^';
 					break;
 				}
+
+				auto c = lex.lines[tok.lineNumber][ch];
+				if (c == '\t')
+					err << "    ";
+				else
+					err << c;
 			}
 
 			err << endl;
