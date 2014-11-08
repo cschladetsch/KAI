@@ -134,7 +134,6 @@ Parser::NodePtr Parser::NewNode(Token const &t)
 	return std::make_shared<Node>(t);
 }
 
-
 void Parser::Block(NodePtr node)
 {
 	while (Try(Token::NewLine))
@@ -241,13 +240,10 @@ bool Parser::Statement(NodePtr block)
 
 finis:
 	// statements can end with an optional semi followed by a new line
-	if (Try(Token::NewLine))
+	if (Try(Token::Semi))
 		Consume();
-	else
-	{
-		Expect(Token::Semi);
-		Expect(Token::NewLine);
-	}
+
+	Expect(Token::NewLine);
 
 	return true;
 }
