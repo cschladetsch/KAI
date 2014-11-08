@@ -1,8 +1,9 @@
+#include "KAI/KAI.h"
+
 #include <iostream>
 #include <strstream>
 #include <stdarg.h>
 
-#include "KAI/KAI.h"
 #include "KAI/Translator/Lexer.h"
 
 using namespace std;
@@ -133,15 +134,9 @@ bool Lexer::NextToken()
 	case '\'': return LexAlpha();
 	case '-':
 		if (Peek() == '-')
-		{
-			Next();
-			return Add(Token::Decrement);
-		}
+			return AddTwoCharOp(Token::Decrement);
 		if (Peek() == '=')
-		{
-			Next();
-			return Add(Token::MinusAssign);
-		}
+			return AddTwoCharOp(Token::MinusAssign);
 		return Add(Token::Minus);
 
 	case '.':
@@ -153,21 +148,15 @@ bool Lexer::NextToken()
 				Next();
 				return Add(Token::Replace, 3);
 			}
-			return Fail("Two dots");
+			return Fail("Two dots doesn't work");
 		}
 		return Add(Token::Dot);
 
 	case '+':
 		if (Peek() == '+')
-		{
-			Next();
-			return Add(Token::Increment);
-		}
+			return AddTwoCharOp(Token::Increment);
 		if (Peek() == '=')
-		{
-			Next();
-			return Add(Token::PlusAssign);
-		}
+			return AddTwoCharOp(Token::PlusAssign);
 		return Add(Token::Plus);
 
 	case '/':
@@ -187,57 +176,6 @@ bool Lexer::NextToken()
 	return false;
 }
 
-std::string Lexer::CreateError(Token tok, const char *fmt, ...)
-{
-	char buff0[2000];
-	va_list ap;
-	va_start(ap, fmt);
-	vsprintf_s(buff0, fmt, ap);
-
-	const char *fmt1 = "%s(%d):[%d]: %s\n";
-	char buff[2000];
-	sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
-	int beforeContext = 1;
-	int afterContext = 0;
-
-	const Lexer &lex = *tok.lexer;
-	int start = std::max(0, tok.lineNumber - beforeContext);
-	int end = std::min((int)lex.lines.size() - 1, tok.lineNumber + afterContext);
-
-	strstream err;
-	err << buff << endl;
-	for (int n = start; n <= end; ++n)
-	{
-		for (auto ch : lex.lines[n])
-		{
-			if (ch == '\t')
-				err << "    ";
-			else
-				err << ch;
-		}
-
-		if (n == tok.lineNumber)
-		{
-			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
-			{
-				if (lex.lines[tok.lineNumber][ch] == '\t')
-					err << "    ";
-				else if (ch == tok.slice.Start)
-				{
-					err << '^';
-					break;
-				}
-			}
-
-			err << endl;
-		}
-	}
-
-	err << ends;
-
-	return err.str();
-}
-
 bool Process::Fail(const std::string &err)
 {
 	Failed = true;
@@ -252,6 +190,7 @@ bool Process::Fail(const char *fmt, ...)
 	va_start(ap, fmt);
 	char buffer[1000];
 	vsprintf_s(buffer, fmt, ap);
+
 	return Fail(std::string(buffer));
 }
 
@@ -372,6 +311,57 @@ bool Lexer::LexString()
 void Lexer::LexError(const char *text)
 {
 	Fail(CreateError(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
+}
+
+std::string Lexer::CreateError(Token tok, const char *fmt, ...)
+{
+	char buff0[2000];
+	va_list ap;
+	va_start(ap, fmt);
+	vsprintf_s(buff0, fmt, ap);
+
+	const char *fmt1 = "%s(%d):[%d]: %s\n";
+	char buff[2000];
+	sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
+	int beforeContext = 1;
+	int afterContext = 0;
+
+	const Lexer &lex = *tok.lexer;
+	int start = std::max(0, tok.lineNumber - beforeContext);
+	int end = std::min((int)lex.lines.size() - 1, tok.lineNumber + afterContext);
+
+	strstream err;
+	err << buff << endl;
+	for (int n = start; n <= end; ++n)
+	{
+		for (auto ch : lex.lines[n])
+		{
+			if (ch == '\t')
+				err << "    ";
+			else
+				err << ch;
+		}
+
+		if (n == tok.lineNumber)
+		{
+			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
+			{
+				if (lex.lines[tok.lineNumber][ch] == '\t')
+					err << "    ";
+				else if (ch == tok.slice.Start)
+				{
+					err << '^';
+					break;
+				}
+			}
+
+			err << endl;
+		}
+	}
+
+	err << ends;
+
+	return err.str();
 }
 
 KAI_END
