@@ -334,67 +334,16 @@
     <ClInclude Include="..\..\Include\KAI\Boost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\All.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Array.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Bool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Float.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Pair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Set.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Signed32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Traits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\TypeNumber.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Vector4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\WideString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\CallableBase.h">
@@ -412,19 +361,10 @@
     <ClInclude Include="..\..\Include\KAI\Compiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\IntegralTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\Options.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Platform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Console.h">
@@ -442,9 +382,6 @@
     <ClInclude Include="..\..\Include\KAI\Debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Detail\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Detail\SystemEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -452,9 +389,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Executor.h">
@@ -502,9 +436,6 @@
     <ClInclude Include="..\..\Include\KAI\Memory\IAllocator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Memory\Memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Meta\StaticAssert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -544,22 +475,10 @@
     <ClInclude Include="..\..\Include\KAI\Pathname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\GameController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\GameController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Network\TcpClientImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\CriticalSection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Mutex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Pointer.h">
@@ -598,133 +517,16 @@
     <ClInclude Include="..\..\Include\KAI\StringStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tests\Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestCompiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDerivation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDotGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExample.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExecutor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMethod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObjectIndexing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestPathname.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestProperties.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestRegistry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestSignedContinuation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestStringStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTemplate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Test\Macros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Module.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Suite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Summary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Threads\CriticalSection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Threads\Thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h">
@@ -742,16 +544,10 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Type\Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
@@ -789,6 +585,207 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BinBase.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestCompiler.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestDerivation.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestDotGraph.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestEvents.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestExample.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestExecutor.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestFunction.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestMap.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestMethod.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestObject.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestObjectIndexing.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestPathname.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestProperties.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestRegistry.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestSignedContinuation.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestStringStream.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTemplate.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTest.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\All.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Array.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Bool.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Component.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\CriticalSection.h">
+      <Filter>Header Files\Platform\PC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Float.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\GameController.h">
+      <Filter>Header Files\Platform\PC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Set.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Signed32.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\Options.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Vector4.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\WideString.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Detail\Event.h">
+      <Filter>Header Files\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\GameController.h">
+      <Filter>Header Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Memory\Memory.h">
+      <Filter>Header Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Module.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Number.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Traits.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
+      <Filter>Header Files\Platform\PC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Suite.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Test\Summary.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

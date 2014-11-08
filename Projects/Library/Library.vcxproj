@@ -2536,7 +2536,6 @@
     <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Summary.h" />
     <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h" />
-    <ClInclude Include="..\..\Include\KAI\Threads\CriticalSection.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Thread.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Base.h" />
