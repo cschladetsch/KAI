@@ -35,7 +35,7 @@ struct Token
 		CloseParan,
 		Plus, Minus, Mul, Divide,
 		Assign,
-		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEqiv,
+		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEquiv,
 
 		Not, And, Or, Xor,
 
