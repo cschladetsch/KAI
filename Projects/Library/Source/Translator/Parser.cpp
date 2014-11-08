@@ -296,9 +296,10 @@ Token const &Parser::Next()
 	return tokens[++current];
 }
 
-void Parser::PushConsume()
+bool Parser::PushConsume()
 {
 	Push(NewNode(Consume()));
+	return true;
 }
 
 bool Parser::Expression()
@@ -459,26 +460,16 @@ bool Parser::Factor()
 	}
 
 	if (Try(Token::Int) || Try(Token::Float) || Try(Token::String) || Try(Token::True) || Try(Token::False))
-	{
-		PushConsume();
-		return true;
-	}
+		return PushConsume();
 
 	if (Try(Token::Self))
-	{
-		PushConsume();
-		return true;
-	}
+		return PushConsume();
 
 	while (Try(Token::Lookup))
-	{
 		PushConsume();
-	}
 
 	if (Try(Token::Ident))
-	{
 		return ParseFactorIdent();
-	}
 
 	return false;
 }
@@ -612,24 +603,24 @@ void Parser::IfCondition(NodePtr block)
 	//Expect(Token::CloseParan);
 
 	// get the true-clause
-	NodePtr true_clause = NewNode(Node::Block);
-	Block(true_clause);
+	NodePtr trueClause = NewNode(Node::Block);
+	Block(trueClause);
 
 	// make the conditional node in AST
-	NodePtr ifCond = NewNode(Node::Conditional);
-	ifCond->Add(condition);
-	ifCond->Add(true_clause);
+	NodePtr cond = NewNode(Node::Conditional);
+	cond->Add(condition);
+	cond->Add(trueClause);
 
 	// if there's an else, add it as well
 	if (Try(Token::Else))
 	{
 		Consume();
-		NodePtr false_clause = NewNode(Node::Block);
-		Block(false_clause);
-		ifCond->Add(false_clause);
+		NodePtr falseClause = NewNode(Node::Block);
+		Block(falseClause);
+		cond->Add(falseClause);
 	}
 
-	block->Add(ifCond);
+	block->Add(cond);
 }
 
 void Parser::ParseIndexOp()
