@@ -51,6 +51,9 @@ bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 
 bool RhoLang::Translate(const char *text, Parser::Structure st)
 {
+	if (text == 0 || text[0] == 0)
+		return true;
+
 	lex = std::make_shared<Lexer>(text);
 	parse = std::make_shared<Parser>(lex, st);
 	trans = std::make_shared<Translator>(parse, reg);

@@ -351,7 +351,7 @@ std::string Lexer::CreateErrorMessage(Token tok, const char *fmt, ...)
 				if (c == '\t')
 					err << "    ";
 				else
-					err << c;
+					err << ' ';
 			}
 
 			err << endl;
