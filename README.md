@@ -8,7 +8,7 @@ The library also offers two scripting languages: Pi, which is based on RPN notat
 
 Continuations (also known as co-routines or fibres) are natively supported in both Pi and Rho languages.
 
-This library will be useful to those that want to expose their C++ types and instances to the runtime. It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to your class is required. After that you can script with your type and instances as you wish.
+This library will be useful to those that want to expose C++ types and instances to the runtime. It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
 
 This means you can expose and script other classes as well, including those in a library that you do not have the source code to. 
 
