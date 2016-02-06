@@ -139,7 +139,7 @@ void TestBinaryStream::TestList()
 	Pointer<List> list = R.New<List>();
 	list->Append(R.New(123));
 	list->Append(R.New(456));
-	list->Append(R.New("Hello"));
+	list->Append(R.New(String("Hello")));
 	BinaryStream stream(R);
 	stream << list;
 	Object result;

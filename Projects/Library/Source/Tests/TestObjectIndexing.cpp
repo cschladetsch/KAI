@@ -29,7 +29,7 @@ void TestObjectIndexing::Test()
 
 	N["int"] = 32;
 	N["float"] = 2.13f;
-	N["string"] = "hello";
+	N["string"] = String("hello");
 
 	KAI_TEST_TRUE(N.HasChild("int"));
 	KAI_TEST_TRUE(N.HasChild("float"));
@@ -70,7 +70,7 @@ void TestObjectIndexing::Test()
 	bool caught = false;
 	KAI_TRY
 	{
-		toit["num"] = "fail";
+		toit["num"] = String("fail");
 	}
 	KAI_CATCH(Exception::TypeMismatch, E)
 	{

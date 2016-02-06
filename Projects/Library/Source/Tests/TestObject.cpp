@@ -32,14 +32,14 @@ void TestObject::TestDictionary()
 	KAI_TEST_EQUIV(object.GetValue<int>("num"), 42);
 
 	// set another child with name `str` and a String value of "hello"
-	object.SetValue("str", "hello");
+	object.SetValue("str", String("hello"));
 
 	KAI_TEST_TRUE(object.Has("str"));
 	KAI_TEST_TRUE(object.Get("str").IsType<String>());
 	KAI_TEST_EQUIV(object.GetValue<String>("str"), "hello");
 
 	// make a new object of type String. note that we type it to be a string
-	Pointer<String> sub_object = R.New("world");
+	Pointer<String> sub_object = R.New(String("world"));
 
 	// Pointer<T> looks a lot like a T *
 	*sub_object = "foo";
@@ -50,7 +50,7 @@ void TestObject::TestDictionary()
 
 	// use syntactic sugar to set and get properties: object[label] = value is an abbreviation of object.SetValue(label, value)
 	object["some_number"] = 123;
-	object["some_string"] = "some string or other";
+	object["some_string"] = String("some string or other");
 
 	// test that we can also get the values safely
 	KAI_TEST_EQUIV(ConstDeref<int>(object["some_number"]), 123);
@@ -64,10 +64,10 @@ void TestObject::TestDictionary()
 	KAI_TRACE_1(object.ToString());
 	KAI_TRACE_1(object.ToXmlString());
 
-	sub_object["another_string"] = "this is another string. woot";
+	sub_object["another_string"] = String("this is another string. woot");
 	sub_object["number"] = 1234;
 
-	Object sub_sub_object = R.New("spam");
+	Object sub_sub_object = R.New(String("spam"));
 	sub_object["spam"] = sub_sub_object;
 	sub_sub_object["grok"] = 456;
 	KAI_TRACE_1(object.ToXmlString());
@@ -85,11 +85,11 @@ void TestObject::TestDictionary()
 	KAI_TEST_EQUIV(result, object);
 
 	// change it, and test that they are now different
-	result["str"] = "not the same";
+	result["str"] = String("not the same");
 	KAI_TEST_NOT_EQUIV(result, object);
 
 	// set it back and test that they are now the same
-	result["str"] = "hello";
+	result["str"] = String("hello");
 	KAI_TEST_EQUIV(result, object);
 
 	// objects can also be tested for ordering (including all properties and sub-objects)

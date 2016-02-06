@@ -7,6 +7,10 @@
 #	endif
 #
 #	undef KAI_HAVE_PRAGMA_ONCE
+
+#pragma warning (disable: 4458 4456)
+
+
 #
 #	ifdef KAI_COMPILER_MSVC
 #		ifndef KAI_HAVE_PRAGMA_ONCE
