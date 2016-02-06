@@ -1,5 +1,8 @@
 KAI
 ===
+
+KAI is .NET for C++, without the overhead or runtime cost.
+
 KAI provides an Object Model for C++ with full reflection, persistence, and incremental garbage collection.
 
 The garbage collection is an important point - because it is incremental, there are no spikes in cost for the GC over time. It is smooth, and allows for a constant 60fps with tens of thousands of objects, with hundreds of objects being created each frame on a last-gen console.
@@ -13,6 +16,8 @@ This library will be useful to those that want to expose C++ types and instances
 This means you can expose and script other classes as well, including those in a library that you do not have the source code to. 
 
 To be clear: you do not have to change the source code of a class in order to access and use it at runtime with KAI.
+
+Think .NET for C++.
 
 A REPL console application is also supplied.
 
