@@ -142,7 +142,7 @@ void TestExample::TestStruct()
 	mystruct->list = reg.New<List>();
 	mystruct->list->Append(reg.New(42));
 	mystruct->list->Append(reg.New(123));
-	mystruct->list->Append(reg.New("foobar"));
+	mystruct->list->Append(reg.New(String("foobar")));
 
 	// see what it looks like
 	KAI_TRACE_1(mystruct.ToXmlString());
