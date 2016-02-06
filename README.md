@@ -20,6 +20,11 @@ To test, run the Console application.
 
 Examples
 --------
+
+It's hard to give examples of an engine without applications. This is an 'engine' that attempts to make C++ more dynamic and scriptable. It is also the basis for a new network model that uses Proxies and Agents to make networking as simple as async method calls.
+
+There are also two underlying scripting languages, that take advantage of the KAI Object Model.
+
 To see what the language looks like, see https://github.com/cschladetsch/KAI/blob/master/Projects/Console/Scripts.
 
 For a quick intro, see unit tests at https://github.com/cschladetsch/KAI/tree/master/Projects/Library/Source/Tests.
