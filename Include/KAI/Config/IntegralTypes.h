@@ -1,4 +1,3 @@
-
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
 #endif
@@ -6,27 +5,19 @@
 #ifndef KAI_CONFIG_INTEGRAL_TYPES_H
 #	define KAI_CONFIG_INTEGRAL_TYPES_H
 
-#define KAI_COMPILER_MSVC
+#include <boost/integer.hpp>
 
 KAI_BEGIN
 
-#	ifdef KAI_COMPILER_MSVC
+typedef boost::int_t<8> int8;
+typedef boost::int_t<16> int16;
+typedef boost::int_t<32> int32;
+typedef boost::int_t<64> int64;
 
-KAI_BEGIN
-typedef __int8 int8;
-typedef __int16 int16;
-typedef __int32 int32;
-typedef __int64 int64;
-
-typedef __int8 uint8;
-typedef __int16 uint16;
-typedef __int32 uint32;
-typedef __int64 uint64;
-KAI_END
-
-#	else
-#		error "Add your compiler"
-#	endif
+typedef boost::uint_t<8> uint8;
+typedef boost::uint_t<16> uint16;
+typedef boost::uint_t<32> uint32;
+typedef boost::uint_t<64> uint64;
 
 KAI_END
 
