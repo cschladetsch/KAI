@@ -7,6 +7,8 @@
 #ifndef KAI_DEBUG_H
 #	define KAI_DEBUG_H
 
+#include <KAI/StringStream.h>
+
 KAI_BEGIN
 
 extern void DebugTrace(const char *);
@@ -36,8 +38,7 @@ struct Argument<const T&>
 	typedef const T &Type;
 };
 
-namespace debug
-{
+//namespace debug {
 	struct Trace : StringStream
 	{
 		enum Type
@@ -79,7 +80,7 @@ namespace debug
 			return *this;
 		}
 	};
-}
+//}
 
 #	ifdef KAI_DEBUG_TRACE
 #		define KAI_TRACE() \
