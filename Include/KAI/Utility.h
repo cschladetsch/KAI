@@ -12,7 +12,8 @@ KAI_BEGIN
 template <class T>
 int PointerToInt(T const *ptr)
 {
-	return numeric_cast<int>(reinterpret_cast<int64>(ptr));
+	// TODO: wtf
+	return (int)reinterpret_cast<int64>(ptr);
 }
 
 KAI_END

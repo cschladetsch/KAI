@@ -9,9 +9,9 @@
 #	include "KAI/Config/Options.h"
 #	include <string>
 #	include <map>
-#	include <hash_map>
+#	include <unordered_map>
 #	include <set>
-#	include <hash_set>
+#	include <unordered_set>
 #	include <vector>
 #	include <list>
 #	include <algorithm>
@@ -26,8 +26,8 @@ namespace nstd
 	using std::make_pair;
 	using std::auto_ptr;
 
-	using stdext::hash_map;
-	using stdext::hash_set;
+	using std::unordered_map;
+	using std::unordered_set;
 
 	using std::string;
 	using std::vector;
