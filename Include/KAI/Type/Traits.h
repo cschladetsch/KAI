@@ -125,11 +125,262 @@ namespace Type
 		typedef T Type;
 	};
 
+
+		template <typename Reference, bool IsContainer = true>
+		struct ContainerOperations
+		{
+			struct ColorSetter
+			{
+				ObjectColor::Color _c;
+
+				ColorSetter(ObjectColor::Color c) : _c(c) { }
+				template <class T>
+				void operator()(T &obj)
+				{
+					obj.SetColor(_c);
+				}
+			};
+
+			static void SetMarked(Reference R, bool M)
+			{
+				ForEach(R, SetMarked(M));
+			}
+			static void SetSwitch(Reference R, int S, bool M)
+			{
+				ForEach(R, SetSwitch(S, M));
+			}
+			static void SetColor(Reference R, ObjectColor::Color C)
+			{
+				ForEach(R, ColorSetter(C));
+			}
+			static void Erase(Reference R, Object const &Q)
+			{
+				R.Erase(Q);
+			}
+			template <class Fun>
+			static Fun ForEachContained(Reference R, Fun F)
+			{
+				return ForEach(R, F);
+			}
+		};
+
+		template <typename Reference>
+		struct ContainerOperations<Reference, false>
+		{
+			static void SetMarked(Reference, bool) { }
+			static void SetSwitch(Reference, int, bool) { }
+			static void SetColor(Reference, ObjectColor::Color) { }
+			static void Erase(Reference, Object const &) { }
+			template <class Fun>
+			static Fun ForEachContained(Reference, Fun const &F) { return F; }
+		};
+
 	//template <class T>
 	//struct StorageType<FwdBasePointer<T> >
 	//{
 	//	typedef T Type;
 	//};
+
+		template <typename Reference, typename Parent>
+		struct UpCast
+		{
+			static Storage<Parent *> *Cast(Registry &R, Reference Q)
+			{
+				Storage<Parent *> *parent = NewStorage<Parent *>(R);
+				**parent = &Q;
+				return parent;
+			}
+		};
+		template <typename Reference>
+		struct UpCast<Reference, None>
+		{
+			static Storage<None> *Cast(Registry &, Reference)
+			{
+				return 0;
+			}
+		};
+
+		// Assignment
+		template <typename Reference, typename ConstReference, int Number, bool>
+		struct AssignOp
+		{
+			static void Perform(Reference A, ConstReference B)
+			{
+				A = B;
+			}
+		};
+		template <typename Reference, typename ConstReference, int Number>
+		struct AssignOp<Reference, ConstReference, Number, false>
+		{
+			static void Perform(Reference, ConstReference)
+			{
+				KAI_THROW_2(NoProperty, Number, Properties::Assign);
+			}
+		};
+
+		// absolute
+		template <typename Reference, typename ConstReference, int Number, bool>
+		struct AbsoluteOp
+		{
+			static void Perform(Reference value)
+			{
+				SetAbsoluteValue(value);
+			}
+		};
+		template <typename Reference, typename ConstReference, int Number>
+		struct AbsoluteOp<Reference, ConstReference, Number, false>
+		{
+			static void Perform(Reference)
+			{
+				KAI_THROW_2(NoProperty, Number, Properties::Absolute);
+			}
+		};
+
+		// Less
+		template <typename C, int N, bool>
+		struct LessOp
+		{
+			static bool Perform(C A, C B)
+			{
+				return A < B;
+			}
+		};
+		template <typename C, int N>
+		struct LessOp<C, N, false>
+		{
+			static bool Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Less);
+			}
+		};
+
+		/// Equiv
+		template <typename C, int N, bool>
+		struct EquivOp
+		{
+			static bool Perform(C A, C B)
+			{
+				return A == B;
+			}
+		};
+		template <typename C, int N>
+		struct EquivOp<C, N, false>
+		{
+			static bool Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Equiv);
+			}
+		};
+		/// Greater
+		template <typename C, int N, bool>
+		struct GreaterOp
+		{
+			static bool Perform(C A, C B)
+			{
+				return A > B;
+			}
+		};
+		template <typename C, int N>
+		struct GreaterOp<C, N, false>
+		{
+			static bool Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Greater);
+			}
+		};
+
+
+		// TODO: implement arithmetic using += etc
+		template <typename Store, typename C, int N, bool = true>
+		struct PlusOp
+		{
+			static Store Perform(C A, C B)
+			{
+				return A + B;
+			}
+		};
+		template <typename Store, typename C, int N>
+		struct PlusOp<Store, C, N, false>
+		{
+			static Store Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Plus);
+			}
+		};
+
+		// minus
+		template <typename Store, typename C, int N, bool = true>
+		struct MinusOp
+		{
+			static Store Perform(C A, C B)
+			{
+				return A - B;
+			}
+		};
+		template <typename Store, typename C, int N>
+		struct MinusOp<Store, C, N, false>
+		{
+			static Store Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Minus);
+			}
+		};
+
+
+		template <typename Store, typename C, int N, bool = true>
+		struct MultiplyOp
+		{
+			static Store Perform(C A, C B)
+			{
+				return A * B;
+			}
+		};
+		template <typename Store, typename C, int N>
+		struct MultiplyOp<Store, C, N, false>
+		{
+			static Store Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Multiply);
+			}
+		};
+
+		template <typename Store, typename C, int N, bool = true>
+		struct DivideOp
+		{
+			static Store Perform(C A, C B)
+			{
+				return A / B;
+			}
+		};
+		template <typename Store, typename C, int N>
+		struct DivideOp<Store, C, N, false>
+		{
+			static Store Perform(C, C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::Divide);
+			}
+		};
+
+		template <typename C, int N, bool = true>
+		struct HashOp
+		{
+			static HashValue Calc(C A)
+			{
+#pragma warning (push)
+				// warning: unreachable code. NFI why...
+#pragma warning (disable:4702)
+				return GetHash(A);
+#pragma warning (push)
+			}
+		};
+		template <typename C, int N>
+		struct HashOp<C, N, false>
+		{
+			static HashValue Calc(C)
+			{
+				KAI_THROW_2(NoProperty, N, Properties::CalcHashValue);
+			}
+		};
 
 	template <class T, int N, int Ops = 0, class P = None, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 	struct TraitsBase
@@ -146,68 +397,14 @@ namespace Type
 		typedef ConstRef ConstReference;
 		static const char *Name;
 
-		template <int N>
-		struct HasProperty { enum { Value = (Properties & N) != 0 }; };
-		template <int N>
-		struct HasProperties { enum { Value = (Properties & N) == N }; };
+		template <int N2>
+		struct HasProperty { enum { Value = (Properties & N2) != 0 }; };
 
-		template <bool>
-		struct ContainerOperations
-		{
-			static void SetMarked(Reference R, bool M)
-			{
-				//ForEach(R, KAI_NAMESPACE_NAME::SetMarked<T>(M));
-				ForEach(R, KAI_NAMESPACE(SetMarked)<T>(M));
-			}
-			static void SetSwitch(Reference R, int S, bool M)
-			{
-				ForEach(R, KAI_NAMESPACE(SetSwitch)<T>(S, M));
-			}
-			static void SetColor(Reference R, ObjectColor::Color C)
-			{
-				ForEach(R, KAI_NAMESPACE(ColorSetter<T>(C)));
-			}
-			static void Erase(Reference R, Object const &Q)
-			{
-				R.Erase(Q);
-			}
-			template <class Fun>
-			static Fun ForEachContained(Reference R, Fun F)
-			{
-				return ForEach(R, F);
-			}
-		};
-		template <>
-		struct ContainerOperations<false>
-		{
-			static void SetMarked(Reference, bool) { }
-			static void SetSwitch(Reference, int, bool) { }
-			static void SetColor(Reference, ObjectColor::Color) { }
-			static void Erase(Reference, Object const &) { }
-			template <class Fun>
-			static Fun ForEachContained(Reference, Fun const &F) { return F; }
-		};
-		typedef ContainerOperations<HasProperty<Properties::Container>::Value> ContainerOps;
+		template <int N2>
+		struct HasProperties { enum { Value = (Properties & N2) == N2 }; };
+		typedef ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
 
-		template <class>
-		struct UpCast
-		{
-			static Storage<Parent *> *Cast(Registry &R, Reference Q)
-			{
-				Storage<Parent *> *parent = NewStorage<Parent *>(R);
-				**parent = &Q;
-				return parent;
-			}
-		};
-		template <>
-		struct UpCast<None>
-		{
-			static Storage<None> *Cast(Registry &, Reference)
-			{
-				return 0;
-			}
-		};
-		typedef UpCast<Parent> UpCaster;
+		typedef UpCast<Reference, Parent> UpCaster;
 		
 		struct UnReflectedLifetimeManagement
 		{
@@ -255,168 +452,18 @@ namespace Type
 			, UnReflectedLifetimeManagement>::Type 
 			LifetimeManager;
 
-		// Assignment
-		template <bool>
-		struct AssignOp
-		{
-			static void Perform(Reference A, ConstReference B)
-			{
-				A = B;
-			}
-		};
-		template <>
-		struct AssignOp<false>
-		{
-			static void Perform(Reference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Assign);
-			}
-		};
-		typedef AssignOp<HasProperty<Properties::Assign>::Value> Assign;
+		typedef AssignOp<Reference, ConstReference, Number, HasProperty<Properties::Assign>::Value> Assign;
+		typedef AbsoluteOp<Reference, ConstReference, Number, HasProperty<Properties::Absolute>::Value> Absolute;
 
-		// absolute
-		template <bool>
-		struct AbsoluteOp
-		{
-			static void Perform(Reference value)
-			{
-				SetAbsoluteValue(value);
-			}
-		};
-		template <>
-		struct AbsoluteOp<false>
-		{
-			static void Perform(Reference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Absolute);
-			}
-		};
-		typedef typename AbsoluteOp<HasProperty<Properties::Absolute>::Value> Absolute;
 
-		// Less
-		template <bool>
-		struct LessOp
-		{
-			static bool Perform(ConstReference A, ConstReference B)
-			{
-				return A < B;
-			}
-		};
-		template <>
-		struct LessOp<false>
-		{
-			static bool Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Less);
-			}
-		};
-		/// Equiv
-		template <bool>
-		struct EquivOp
-		{
-			static bool Perform(ConstReference A, ConstReference B)
-			{
-				return A == B;
-			}
-		};
-		template <>
-		struct EquivOp<false>
-		{
-			static bool Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Equiv);
-			}
-		};
-		/// Greater
-		template <bool>
-		struct GreaterOp
-		{
-			static bool Perform(ConstReference A, ConstReference B)
-			{
-				return A > B;
-			}
-		};
-		template <>
-		struct GreaterOp<false>
-		{
-			static bool Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Greater);
-			}
-		};
-		typedef typename LessOp<HasProperty<Properties::Less>::Value> Less;
-		typedef typename EquivOp<HasProperty<Properties::Equiv>::Value> Equiv;
-		typedef typename GreaterOp<HasProperty<Properties::Greater>::Value> Greater;
+		typedef LessOp<ConstReference, Number, HasProperty<Properties::Less>::Value> Less;
+		typedef EquivOp<ConstReference, Number, HasProperty<Properties::Equiv>::Value> Equiv;
+		typedef GreaterOp<ConstReference, Number, HasProperty<Properties::Greater>::Value> Greater;
 
-		// TODO: implement arithmetic using += etc
-		template <bool>
-		struct PlusOp
-		{
-			static Store Perform(ConstReference A, ConstReference B)
-			{
-				return A + B;
-			}
-		};
-		template <>
-		struct PlusOp<false>
-		{
-			static Store Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Plus);
-			}
-		};
-		template <bool>
-		struct MinusOp
-		{
-			static Store Perform(ConstReference A, ConstReference B)
-			{
-				return A - B;
-			}
-		};
-		template <>
-		struct MinusOp<false>
-		{
-			static Store Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Minus);
-			}
-		};
-		template <bool>
-		struct MultiplyOp
-		{
-			static Store Perform(ConstReference A, ConstReference B)
-			{
-				return A * B;
-			}
-		};
-		template <>
-		struct MultiplyOp<false>
-		{
-			static Store Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Multiply);
-			}
-		};
-		template <bool>
-		struct DivideOp
-		{
-			static Store Perform(ConstReference A, ConstReference B)
-			{
-				return A / B;
-			}
-		};
-		template <>
-		struct DivideOp<false>
-		{
-			static Store Perform(ConstReference, ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::Divide);
-			}
-		};
-		typedef typename PlusOp<HasProperty<Properties::Plus>::Value> Plus;
-		typedef typename MinusOp<HasProperty<Properties::Minus>::Value> Minus;
-		typedef typename DivideOp<HasProperty<Properties::Divide>::Value> Divide;
-		typedef typename MultiplyOp<HasProperty<Properties::Multiply>::Value> Multiply;
+		typedef PlusOp<St, ConstReference, HasProperty<Properties::Plus>::Value> Plus;
+		typedef MinusOp<St, ConstReference, HasProperty<Properties::Minus>::Value> Minus;
+		typedef DivideOp<St, ConstReference, HasProperty<Properties::Divide>::Value> Divide;
+		typedef MultiplyOp<St, ConstReference, HasProperty<Properties::Multiply>::Value> Multiply;
 
 		template <bool, class Stream>
 		struct StreamInsert
@@ -450,33 +497,13 @@ namespace Type
 				KAI_THROW_2(NoProperty, Number, Properties::StreamExtract);
 			}
 		};
-		typedef typename StreamInsert<HasProperty<Properties::StringStreamInsert>::Value, StringStream> StringStreamInsert;
-		typedef typename StreamExtract<HasProperty<Properties::StringStreamExtract>::Value, StringStream> StringStreamExtract;
-		typedef typename StreamInsert<HasProperty<Properties::BinaryStreamInsert>::Value, BinaryStream> BinaryStreamInsert;
-		typedef typename StreamExtract<HasProperty<Properties::BinaryStreamExtract>::Value, BinaryPacket> BinaryPacketExtract;
+		typedef StreamInsert<HasProperty<Properties::StringStreamInsert>::Value, StringStream> StringStreamInsert;
+		typedef StreamExtract<HasProperty<Properties::StringStreamExtract>::Value, StringStream> StringStreamExtract;
+		typedef StreamInsert<HasProperty<Properties::BinaryStreamInsert>::Value, BinaryStream> BinaryStreamInsert;
+		typedef StreamExtract<HasProperty<Properties::BinaryStreamExtract>::Value, BinaryPacket> BinaryPacketExtract;
 		//typedef typename StreamInsert<HasProperty<Properties::XmlStreamInsert>::Value, XmlStream> XmlStreamInsert;
 
-		template <bool>
-		struct HashOp
-		{
-			static HashValue Calc(ConstReference A)
-			{
-#pragma warning (push)
-				// warning: unreachable code. NFI why...
-#pragma warning (disable:4702)
-				return GetHash(A);
-#pragma warning (push)
-			}
-		};
-		template <>
-		struct HashOp<false>
-		{
-			static HashValue Calc(ConstReference)
-			{
-				KAI_THROW_2(NoProperty, Number, Properties::CalcHashValue);
-			}
-		};
-		typedef HashOp<!HasProperty<Properties::NoHashValue>::Value> HashFunction;
+		typedef HashOp<ConstReference, Number, !HasProperty<Properties::NoHashValue>::Value> HashFunction;
 	};
 }
 
@@ -484,17 +511,17 @@ namespace Type
 	namespace Type \
 	{ \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, Ops> { }; \
+		struct Traits<T> : TraitsBase<T, N, Ops> { }; // OSX \
 		const char *Traits<T>::Name = #T; \
 	}
 
 #define KAI_TYPE_TRAITS_NAMED(T, N, M, Ops) \
 	namespace Type \
 	{ \
+		//template <> \
+		//const char *Traits<T>::Name = M; \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, Ops> { }; \
-		template <> \
-		const char *Traits<T>::Name = M; \
+		struct Traits<T> : TraitsBase<T, N, Ops> { }; // OSX \
 	}
 
 #define KAI_TYPE_TRAITS(T, N, Ops) \
@@ -526,6 +553,7 @@ HashValue GetHash(const String &);
 KAI_TYPE_TRAITS(String, Type::Number::String
 	, Type::Properties::Streaming | Type::Properties::Plus | Type::Properties::Equiv | Type::Properties::Relational);
 
+/* OSX
 namespace Type
 {
 	template <>
@@ -533,11 +561,11 @@ namespace Type
 	template <int N>
 	struct Traits<const char [N]> : Traits<String> { };
 };
-
-KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
+*/
 
 KAI_END
 
+KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
 
 namespace boost
 {

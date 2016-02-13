@@ -7,7 +7,11 @@
 #ifndef KAI_STRING_STREAM_H
 #	define KAI_STRING_STREAM_H
 
+#include "KAI/KAI.h"
+
 KAI_BEGIN
+
+struct Trace;
 
 struct StringStream
 {
@@ -55,6 +59,8 @@ inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { ret
 KAI_TYPE_TRAITS_BASIC(StringStream, Type::Number::StringStream);
 
 KAI_END
+
+
 
 #endif // KAI_STRING_STREAM_H
 
