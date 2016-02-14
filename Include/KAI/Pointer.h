@@ -284,6 +284,9 @@ struct DerefType<Pointer<T> > : DerefType<T>
 {
 };
 
+template <class T>
+typename DerefType<T>::Reference CleanDeref(StorageBase &base);
+
 namespace Type
 {
 	// treat any use of Type::Traits<Pointer<T> > like Type::Traits<Object>
