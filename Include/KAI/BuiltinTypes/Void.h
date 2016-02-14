@@ -22,7 +22,7 @@ inline HashValue GetHash(Void) { return 0; }
 
 namespace Type
 {
-	template <> struct Traits<void> : TraitsBase<void, Number::Void, Properties::Streaming, None, Void , Void &, const Void&> { };
+	template <> struct Traits<void> : TraitsBase<void, Number::Void, Properties::Streaming, None, Void , Void &, const Void&> { static const char *Name; };
 	template <> struct Traits<meta::Null> : Traits<void> { };
 	template <> struct Traits<Void> : Traits<void> { };
 
