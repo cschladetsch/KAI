@@ -181,21 +181,27 @@ public:
 	String ToXmlString() const;
 
 	template <class T>
-	Object New() const;
+	Object New() const
+	{
+		return NewFromTypeNumber(Type::Traits<T>::Number);
+	}
+
+	// deref's Registry so must be in source file
+	Object NewFromTypeNumber(Type::Number N) const;
+	Object NewFromClassName(String const &type_name) const;
 
 	template <class T>
-	Object New(const T &X) const;
+	Object New(const T &X) const
+	{
+		auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
+		Deref<T>(Q) = X;
+		return Q;
+	}
 
 	void Assign(StorageBase &, StorageBase const &);
 
-	StorageBase *GetStorageBase(Handle) const;
-
-	// KAI TODO delete the abomination that is 'retained object'
-	template <class T>
-	Object NewRetained() const;
-
-	template <class T>
-	Object NewRetained(const T &X) const;
+	/// return the storage of the given other object within the registry that made this object
+	StorageBase *GetStorageBase(Handle other) const;
 
 	template <class T>
 	T const &GetAttribute(Label const &label) const
@@ -232,8 +238,6 @@ public:
 		Deref<T>(GetChild(label)) = value;
 	}
 
-	Object NewFromTypeNumber(Type::Number type_number) const;
-	Object NewFromClassName(String const &type_name) const;
 
 	void SetPropertyValue(Label const &, Object const &) const;
 	Object GetPropertyValue(Label const &) const;
