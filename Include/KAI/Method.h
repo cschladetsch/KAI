@@ -39,6 +39,11 @@ namespace method_detail
 	template <class M, class T, class R, bool C, class A0 = meta::Null, class A1 = meta::Null, class A2 = meta::Null>
 	struct SignedMethodBase : ConstMethodBase<M>
 	{
+		using MethodBase::return_type;
+		using MethodBase::class_type;
+		using MethodBase::constness;
+		using MethodBase::arguments;
+
 		SignedMethodBase(M N, const Label &O) : ConstMethodBase<M>(N, O)
 		{
 			return_type = Type::Traits<R>::Number;
@@ -58,6 +63,10 @@ namespace method_detail
 	template <class M, class T, class R, class A0, class A1, class A2>
 	struct SignedMethodBase<M,T,R,false,A0,A1,A2> : MutatingMethodBase<M>
 	{
+		using MethodBase::return_type;
+		using MethodBase::class_type;
+		using MethodBase::constness;
+		using MethodBase::arguments;
 		SignedMethodBase(M N, const Label &O) : MutatingMethodBase<M>(N, O)
 		{
 			return_type = Type::Traits<R>::Number;

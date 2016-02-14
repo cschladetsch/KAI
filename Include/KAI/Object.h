@@ -186,6 +186,8 @@ public:
 	template <class T>
 	Object New(const T &X) const;
 
+	void Assign(StorageBase &, StorageBase const &);
+
 	StorageBase *GetStorageBase(Handle) const;
 
 	// KAI TODO delete the abomination that is 'retained object'

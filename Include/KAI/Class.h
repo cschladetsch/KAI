@@ -36,8 +36,10 @@ struct Class : ClassBase
 	// Lifetime management
 	StorageBase *NewStorage(Registry *registry, Handle handle) const 
 	{
-		return registry->GetMemorySystem().Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
+		//return registry->GetMemorySystem().Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
+		return Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
 	}
+
 	void Create(StorageBase &storage) const
 	{
 		CreateProperties(storage);
@@ -79,7 +81,7 @@ struct Class : ClassBase
 				continue;
 			if (!prop.CreateDefaultValue())
 				continue;
-			Object value = object.GetRegistry()->NewFromTypeNumber(prop.GetFieldTypeNumber());
+			Object value = NewFromTypeNumber(prop.GetFieldTypeNumber());
 			prop.SetObject(object, value);
 		}
 	}
@@ -90,7 +92,7 @@ struct Class : ClassBase
 	}
 	Object Duplicate(StorageBase const &parent) const
 	{
-		Storage<T> *result = parent.GetRegistry()->NewStorage<T>();
+		Storage<T> *result = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(result->GetReference(), ConstDeref<T>(parent));
 		foreach (Properties::value_type const &property, properties)
 		{
@@ -190,25 +192,25 @@ struct Class : ClassBase
 	}
 	StorageBase *Plus(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Storage<T> *R = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Plus::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Minus(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Storage<T> *R = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Minus::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Multiply(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Storage<T> *R = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Divide(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Storage<T> *R = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Divide::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
@@ -220,7 +222,7 @@ struct Class : ClassBase
 
 	StorageBase *Extract(Registry &R, StringStream &S) const
 	{
-		Storage<T> *Q = R.NewStorage<T>();
+		Storage<T> *Q = ClassBase::NewStorage<T>(R);
 		Traits::StringStreamExtract::Extract(S, Q->GetReference());
 		return Q;
 	}
@@ -236,7 +238,7 @@ struct Class : ClassBase
 	}
 	StorageBase *Extract(Registry &R, BinaryPacket &S) const
 	{
-		Storage<T> *Q = R.NewStorage<T>();
+		Storage<T> *Q = ClassBase::NewStorage<T>(R);
 		Traits::BinaryPacketExtract::Extract(S, Q->GetReference());
 		return Q;
 	}

@@ -57,6 +57,17 @@ public:
 		}
 	}
 
+		template <class T, class U>
+		T *Allocate(Registry *, U const &val) const;
+
+		template <class T>
+		Storage<T> *NewStorage() const;
+
+		template <class T>
+		Storage<T> *NewStorage(Registry &) const;
+
+		Object NewFromTypeNumber(Type::Number) const;
+
 	virtual void MakeReachableGrey(StorageBase &base) const = 0;
 
 	typedef nstd::list<Object> ObjectList;
@@ -154,19 +165,19 @@ public:
 	}
 	Object Plus(Object A, Object B) const
 	{
-		return Plus(A.GetStorageBase(), B.GetStorageBase());
+		return *Plus(A.GetStorageBase(), B.GetStorageBase());
 	}
 	Object Minus(Object A, Object B) const
 	{
-		return Minus(A.GetStorageBase(), B.GetStorageBase());
+		return *Minus(A.GetStorageBase(), B.GetStorageBase());
 	}
 	Object Multiply(Object A, Object B) const
 	{
-		return Multiply(A.GetStorageBase(), B.GetStorageBase());
+		return *Multiply(A.GetStorageBase(), B.GetStorageBase());
 	}
 	Object Divide(Object A, Object B) const
 	{
-		return Divide(A.GetStorageBase(), B.GetStorageBase());
+		return *Divide(A.GetStorageBase(), B.GetStorageBase());
 	}
 
 	virtual StorageBase *Plus(StorageBase const &, StorageBase const &) const = 0;
@@ -190,7 +201,7 @@ public:
 
 StringStream &operator<<(StringStream &, const ClassBase *);
 
-KAI_TYPE_TRAITS_NAMED(const ClassBase *, Type::Number::Class, "Class", Type::Properties::StringStreamInsert);
+KAI_TYPE_TRAITS_NAMED(const ClassBase *, Type::Number::Class, "Class", Type::Properties::StringStreamInsert)
 
 KAI_END
 
