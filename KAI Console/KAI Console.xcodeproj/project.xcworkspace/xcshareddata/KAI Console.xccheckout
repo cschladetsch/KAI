@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EDF95DA0-F762-4ADF-B0BB-BD16A781EB8D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>527F6AD50725526923A7DF8AD18F923368DFA8EA</key>
+		<string>https://github.com/cschladetsch/KAI.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KAI Console/KAI Console.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>527F6AD50725526923A7DF8AD18F923368DFA8EA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cschladetsch/KAI.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>527F6AD50725526923A7DF8AD18F923368DFA8EA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>527F6AD50725526923A7DF8AD18F923368DFA8EA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KAI</string>
+		</dict>
+	</array>
+</dict>
+</plist>
