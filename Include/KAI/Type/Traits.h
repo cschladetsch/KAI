@@ -395,7 +395,7 @@ namespace Type
 		typedef Store const *ConstPointer;
 		typedef Ref Reference;
 		typedef ConstRef ConstReference;
-		static const char *Name;
+		//static const char *Name;
 
 		template <int N2>
 		struct HasProperty { enum { Value = (Properties & N2) != 0 }; };
@@ -511,17 +511,16 @@ namespace Type
 	namespace Type \
 	{ \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, Ops> { }; // OSX \
+		struct Traits<T> : TraitsBase<T, N, Ops> { static const char *Name; }; \
 		const char *Traits<T>::Name = #T; \
 	}
 
 #define KAI_TYPE_TRAITS_NAMED(T, N, M, Ops) \
 	namespace Type \
 	{ \
-		//template <> \
-		//const char *Traits<T>::Name = M; \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, Ops> { }; // OSX \
+		struct Traits<T> : TraitsBase<T, N, Ops> { static const char *Name; }; \
+		const char *Traits<T>::Name = M; \
 	}
 
 #define KAI_TYPE_TRAITS(T, N, Ops) \
@@ -553,19 +552,11 @@ HashValue GetHash(const String &);
 KAI_TYPE_TRAITS(String, Type::Number::String
 	, Type::Properties::Streaming | Type::Properties::Plus | Type::Properties::Equiv | Type::Properties::Relational);
 
-/* OSX
-namespace Type
-{
-	template <>
-	struct Traits<const char *> : Traits<String> { };
-	template <int N>
-	struct Traits<const char [N]> : Traits<String> { };
-};
-*/
-
-KAI_END
+KAI_TYPE_TRAITS(StringStream, Type::Number::StringStream, 0);
 
 KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
+
+KAI_END
 
 namespace boost
 {
