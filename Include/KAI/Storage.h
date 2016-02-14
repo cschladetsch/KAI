@@ -49,10 +49,12 @@ struct Storage : ConstStorage<T>//, IStorage<T>
 public:
 	Storage(const ObjectConstructParams &P) : ConstStorage<T>(P) { }
 
+	typedef typename ConstStorage<T>::Traits Traits;
+
 	typename Traits::Reference GetReference() 
 	{ 
-		SetDirty();
-		return stored;
+		StorageBase::SetDirty();
+		return ConstStorage<T>::stored;
 	}
 
 	typename Traits::Reference operator*() /*const*/ { return GetReference(); }
@@ -60,7 +62,7 @@ public:
 
 	typename Traits::Reference GetCleanReference()
 	{
-		return stored;
+		return ConstStorage<T>::stored;
 	}
 };
 
@@ -69,6 +71,7 @@ struct Storage<const T> : ConstStorage<T>
 {
 	Storage() { }
 	Storage(const ObjectConstructParams &P) : ConstStorage<T>(P) { }
+	typedef typename ConstStorage<T>::Traits Traits;
 
 	typename Traits::Reference GetReference() 
 	{ 

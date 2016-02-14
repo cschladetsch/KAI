@@ -288,7 +288,7 @@ namespace event_detail
 		template <class T0 = Null, class T1 = Null, class T2 = Null>
 		struct SinksType
 		{
-			typedef typename Delegate<N> DelRoot;
+			typedef Delegate<N> DelRoot;
 			typedef typename DelRoot::template Given<T0, T1, T2> *Del;
 			typedef std::pair<DelegateType, Del> item;
 			typedef std::list < item> Type;
@@ -325,7 +325,7 @@ namespace event_detail
 			Sinks sinks;
 			void operator()(T0 t0)
 			{
-				Sinks::const_iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::const_iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; ++A)
 					A->second->Invoke(t0);
 			}
@@ -342,7 +342,7 @@ namespace event_detail
 			Sinks sinks;
 			void operator()(T0 t0, T1 t1)
 			{
-				Sinks::const_iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::const_iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; ++A)
 					A->second->Invoke(t0, t1);
 			}
@@ -359,12 +359,21 @@ namespace event_detail
 			Sinks sinks;
 			void operator()(T0 t0, T1 t1, T2 t2)
 			{
-				Sinks::const_iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::const_iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; ++A)
 					A->second->Invoke(t0, t1, t2);
 			}
 		};
 	};
+
+		template <class C, bool> struct MethodObjectBaseType { typedef C *Type; };
+		template <class C> struct MethodObjectBaseType<C, true> { typedef Object Type; };
+
+			template <class T>
+			struct IsStorageType { enum { Value = false }; };
+			template <>
+			struct IsStorageType<StorageBase> { enum { Value = true }; };
+
 
 	/// Helper structure to create an event type.
 	/// This is specialised over the arity of the event signature
@@ -380,14 +389,18 @@ namespace event_detail
 			{
 				Clear();
 			}
+
+			typedef typename AddInvoker<N>::template Given<T0,T1,T2> Parent;
+
+			typedef typename Parent::Sinks Sinks;
 			
 			/// Remove all delegates
 			void Clear()
 			{
-				Sinks::const_iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::const_iterator A = Parent::sinks.begin(), B = Parent::sinks.end();
 				for (; A != B; ++A)
 					delete A->second;
-				sinks.clear();	
+				Parent::sinks.clear();	
 			}
 			
 			/// Create the function delegate type
@@ -401,22 +414,20 @@ namespace event_detail
 			{
 				typedef typename CreateMethod<N>::template Given<T0,T1,T2>::template Type<system_type,C> Parent;
 				typedef typename Parent::Method Method;
-				template <bool> struct BaseType { typedef C *Type; };
-				template <> struct BaseType<true> { typedef Object Type; };
 
-				MethodObject(typename BaseType<system_type>::Type Q, Method M) : Parent(Q, M) { }
+				MethodObject(typename MethodObjectBaseType<C, system_type>::Type Q, Method M) : Parent(Q, M) { }
 			};
 
 			/// Add a new function delegate
 			void Add(Function fun)
 			{
-				sinks.push_back(std::make_pair(DelegateType::Function, new FunctionDelegate(fun)));
+				Parent::sinks.push_back(std::make_pair(DelegateType::Function, new FunctionDelegate(fun)));
 			}
 
 			/// Remove an existing function delegate
 			void Remove(Function fun)
 			{
-				Sinks::iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::iterator A = Parent::sinks.begin(), B = Parent::sinks.end();
 				for (; A != B; ++A)
 				{
 					if (A->first != DelegateType::Function)
@@ -425,7 +436,7 @@ namespace event_detail
 					if (F->fun != fun)
 						continue;
 					delete A->second;
-					sinks.erase(A);
+					Parent::sinks.erase(A);
 					return;
 				}			
 			}
@@ -437,25 +448,20 @@ namespace event_detail
 			//	return MethodObject<B,C>(Q,M);
 			//}
 
-			template <class T>
-			struct IsStorageType { enum { Value = false }; };
-			template <>
-			struct IsStorageType<StorageBase> { enum { Value = true }; };
-
 			template <class C>
 			void AddMethod(C *base, typename MethodObject<C>::Method method)
 			{
-				sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
+				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
 			}
 			template <class C>
 			void AddMethod(Object object, typename MethodObject<C>::Method method)
 			{
-				sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C,true>(object, method)));
+				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C,true>(object, method)));
 			}
 			template <class C>
 			void AddMethod(nstd::pair<C *, typename MethodObject<C>::Method> bound)
 			{
-				sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(bound.first, bound.second)));
+				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(bound.first, bound.second)));
 			}
 
 			//template <class C>
@@ -475,7 +481,7 @@ namespace event_detail
 			template <class C, bool S>
 			void Remove(MethodObject<C,S> bound)
 			{
-				Sinks::iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::iterator A = Parent::sinks.begin(), B = Parent::sinks.end();
 				for (; A != B; ++A)
 				{
 					if (A->first != DelegateType::Method)
@@ -484,7 +490,7 @@ namespace event_detail
 					if (M->object != bound.object || M->method != bound.method)
 						continue;
 					delete A->second;
-					sinks.erase(A);
+					Parent::sinks.erase(A);
 					return;
 				}
 			}

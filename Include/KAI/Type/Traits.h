@@ -556,6 +556,23 @@ KAI_TYPE_TRAITS(StringStream, Type::Number::StringStream, 0);
 
 KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
 
+template <class T>
+struct DerefType
+{
+	typedef T Value;
+	typedef typename Type::Traits<T>::Reference Reference;
+	typedef typename Type::Traits<T>::ConstReference ConstReference;
+};
+
+template <class T>
+Storage<T> *Clone(StorageBase const &);
+
+template <class T>
+typename DerefType<T>::Reference Deref(StorageBase &);
+
+template <class T>
+typename DerefType<T>::ConstReference ConstDeref(StorageBase const &);
+
 KAI_END
 
 namespace boost
