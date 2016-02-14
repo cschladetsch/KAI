@@ -8,6 +8,11 @@
 
 KAI_BEGIN
 
+struct MethodBase;
+//struct PropertyBase;
+
+typedef boost::unordered_set<Handle> StorageBaseHandles;
+
 /// Base for all Class<T> types. ClassBase defines the type-independent 
 /// interface that all Class<T>s must define
 class ClassBase
@@ -37,7 +42,7 @@ public:
 	Type::Number GetTypeNumber() const { return type_number; }
 
 	/// tri-color marking: set reference objects color
-	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, StorageBase::Handles& handles) const
+	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, StorageBaseHandles& handles) const
 	{
 		if (properties.empty())
 			return;
