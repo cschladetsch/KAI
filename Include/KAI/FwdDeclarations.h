@@ -20,6 +20,10 @@ struct BinaryPacket;
 struct Stack;
 struct Registry;
 
+struct Handle;
+
+typedef boost::unordered_set<Handle> StorageBaseHandles;
+
 KAI_END
 
 #endif // KAI_FWD_DECLARATIONS_H

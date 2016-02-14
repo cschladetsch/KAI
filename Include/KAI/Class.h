@@ -8,25 +8,6 @@
 
 KAI_BEGIN
 
-template <class T>
-struct DerefType
-{
-	typedef T Value;
-	typedef typename Type::Traits<T>::Reference Reference;
-	typedef typename Type::Traits<T>::ConstReference ConstReference;
-};
-
-template <class T>
-struct DerefType<Pointer<T> > : DerefType<T>
-{
-};
-
-template <class T>
-Storage<T> *Clone(StorageBase const &);
-
-template <class T>
-typename DerefType<T>::ConstReference ConstDeref(StorageBase const &);
-
 #pragma warning(push)
 
 // warning C4702: unreachable code

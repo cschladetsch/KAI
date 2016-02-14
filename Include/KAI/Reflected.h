@@ -13,9 +13,28 @@ KAI_BEGIN
 /// but using the Object Model of the system
 ///
 /// TODO: there doesn't seem to be any point to passing through the reflected type
-template <class T>
+//template <class T>
 struct Reflected : ReflectedBase
 {
+	Registry &Reg() const;
+
+	template <class U>
+	Pointer<U> New() const;
+	
+	template <class U>
+	Pointer<U> NewRetained() const;
+
+	template <class U>
+	Pointer<U> New(const U &X) const;
+
+	template <class U>
+	Storage<U> *NewStorage() const;
+
+	Object NewFromTypeNumber(Type::Number type_number);
+
+	Object NewFromClassName(String const &type_name) const;
+
+	/*
 	Registry &Reg() const
 	{
 		return *Self->GetRegistry();
@@ -54,6 +73,7 @@ struct Reflected : ReflectedBase
 	{
 		return Self->NewFromClassName(type_name.c_str());
 	}
+	*/
 };
 
 KAI_END

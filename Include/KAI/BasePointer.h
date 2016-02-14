@@ -2,7 +2,7 @@
 
 KAI_BEGIN
 
-struct BasePointerBase : Reflected<BasePointerBase>
+struct BasePointerBase : Reflected
 {
 	void Create() {}
 	bool Destroy() { return true; }
@@ -27,8 +27,10 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 
 	static void Register(Registry &R)
 	{
+		/* MUSTFIX
 		ClassBuilder<BasePointer<T> >(R, String("BasePointer"))
 			;
+			*/
 	}
 };
 
