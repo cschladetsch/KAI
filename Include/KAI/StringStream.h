@@ -56,11 +56,7 @@ inline StringStream &operator<<(StringStream &S, const StringStream &T) { return
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
 
-KAI_TYPE_TRAITS_BASIC(StringStream, Type::Number::StringStream);
-
 KAI_END
-
-
 
 #endif // KAI_STRING_STREAM_H
 
