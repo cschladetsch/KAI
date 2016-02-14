@@ -36,6 +36,7 @@
 #	include "KAI/TypeInfo.h"
 #	include "KAI/Event.h"
 #	include "KAI/BasePointer.h"
+#	include "KAI/BuiltinTypes/Array.h"
 #	include "KAI/CallableBase.h"
 #	include "KAI/MethodBase.h"
 #	include "KAI/PropertyBase.h"
