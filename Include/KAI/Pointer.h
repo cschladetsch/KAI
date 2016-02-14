@@ -66,7 +66,8 @@ struct ConstPointer : PointerBase<T>, Object
 {
 	typedef typename PointerBase<T>::ConstReference ConstReference;
 	typedef typename PointerBase<T>::ConstPointerType ConstPointerType;
-	
+    using PointerBase<T>::pointer;
+    
 protected:
 	ConstPointer() { }
 
@@ -111,6 +112,8 @@ public:
 template <class T>
 struct Pointer : PointerBase<T>, Object
 {
+    using PointerBase<T>::pointer;
+    
 	Pointer() 
 	{ 
 #	ifdef KAI_POINTER_HAS_STORAGEBASE
