@@ -8,7 +8,7 @@ INCLUDE_DIRS := /Users/christian/Dev/KAI/Include /Users/christian/Dev/External/
 LIBRARY_DIRS :=
 LIBRARIES :=
 
-CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=KAI -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE
+CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=KAI -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -Wno-c++11-extensions
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 

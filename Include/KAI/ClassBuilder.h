@@ -8,6 +8,15 @@
 
 KAI_BEGIN
 
+void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path);
+/*
+{
+	r.AddClass(klass);
+	if (root.Exists() && !path.Empty())
+		Set(root, path, registry->NewFromClass(klass));
+}
+*/
+
 template <class T>
 class ClassBuilder
 {
@@ -65,9 +74,7 @@ public:
 
 	~ClassBuilder()
 	{
-		registry->AddClass(klass);
-		if (root.Exists() && !path.Empty())
-			Set(root, path, registry->NewFromClass(klass));
+		RegisterClass(*registry, *klass, root, path);
 	}
 };
 
