@@ -72,7 +72,7 @@ protected:
 
 	ConstPointer(const Object &Q)
 	{
-		if (CanAssign(Q))
+		if (Pointer<T>::CanAssign(Q))
 			Object::operator=(Q);
 	}
 
@@ -80,7 +80,7 @@ protected:
 	{
 		if (Q == 0)
 			return;
-		if (CanAssign(*Q))
+		if (Pointer<T>::CanAssign(*Q))
 			Object::operator=(*Q);
 	}
 
@@ -119,7 +119,7 @@ struct Pointer : PointerBase<T>, Object
 	}
 	Pointer(const Object &Q)
 	{ 
-		Assign(Q);
+		PointerBase<T>::Assign(Q);
 	}
 
 	explicit Pointer(StorageBase *Q) 
@@ -128,7 +128,7 @@ struct Pointer : PointerBase<T>, Object
 			return;
 		if (Q->IsConst())
 			KAI_THROW_0(ConstError);
-		if (CanAssign(*Q))
+		if (PointerBase<T>::CanAssign(*Q))
 			Assign(*Q);
 	}
 	Pointer<T> &operator=(const Pointer<T> &P)
@@ -141,6 +141,11 @@ struct Pointer : PointerBase<T>, Object
 #	endif
 		return *this;
 	}
+
+	typedef typename PointerBase<T>::Reference Reference;
+	typedef typename PointerBase<T>::ConstReference ConstReference;
+	typedef typename PointerBase<T>::PointerType PointerType;
+	typedef typename PointerBase<T>::ConstPointerType ConstPointerType;
 
 	Reference operator*() { return GetReference(); }
 	PointerType operator->() { return &**this; }
@@ -168,7 +173,7 @@ struct Pointer : PointerBase<T>, Object
 protected:
 	void Assign(const Object &Q)
 	{
-		if (!CanAssign(Q))
+		if (!PointerBase<T>::CanAssign(Q))
 			return;
 		if (Q.GetHandle() != 0 && Q.Exists() && Q.IsConst())
 			KAI_THROW_0(ConstError);
@@ -272,6 +277,11 @@ struct ArgType<Pointer<T> >
 	{
 		return P;
 	}
+};
+
+template <class T>
+struct DerefType<Pointer<T> > : DerefType<T>
+{
 };
 
 namespace Type

@@ -224,6 +224,39 @@ Type::Number GetTypeNumber(Object const &Q)
 	return klass->GetTypeNumber();
 }
 
+
+template <class T>
+Object Object<T>::New() const
+{
+		if (!registry)
+			return Object();
+		return registry->New<T>();
+}
+template <class T>
+Object Object<T>::New(const T &X) const
+{
+		if (!registry)
+			return Object();
+		return registry->New<T>(X);
+}
+
+// KAI TODO delete the abomination that is 'retained object'
+template <class T>
+Object Object<T>::NewRetained() const
+{
+		if (!registry)
+			return Object();
+		return registry->NewRetained<T>();
+}
+
+template <class T>
+Object Object<T>::NewRetained(const T &X) const
+{
+		if (!registry)
+			return Object();
+		return registry->NewRetained<T>(X);
+}
+
 #ifndef _DEBUG
 __forceinline
 #endif

@@ -345,11 +345,16 @@ namespace event_detail_sys
 			{
 				Clear();
 			}
+
+			typedef typename AddInvoker<N>::template Given<T0,T1,T2> Parent;
+			using Parent::sinks;
+			typedef typename Parent::Sinks Sinks;
+			typedef typename Parent::Entry Entry;
 			
 			/// Remove all delegates
 			void Clear()
 			{
-				sinks.clear();	
+				Parent::sinks.clear();	
 			}
 			
 			/// Create the function delegate type
@@ -377,7 +382,7 @@ namespace event_detail_sys
 			/// Remove an existing function delegate
 			void Remove(Function fun)
 			{
-				Sinks::iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; ++A)
 				{
 					Entry const &entry = *A;
@@ -430,7 +435,7 @@ namespace event_detail_sys
 			template <class C>
 			void Remove(MethodObject<C> bound)
 			{
-				Sinks::iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; ++A)
 				{
 					Entry const &entry = *A;
@@ -447,7 +452,7 @@ namespace event_detail_sys
 			/// remove all callbacks that refer to the given object
 			void Remove(Object const &object)
 			{
-				Sinks::iterator A = sinks.begin(), B = sinks.end();
+				typename Sinks::iterator A = sinks.begin(), B = sinks.end();
 				for (; A != B; )
 				{
 					Entry const &entry = *A;

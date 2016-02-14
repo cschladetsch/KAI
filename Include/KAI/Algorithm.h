@@ -1,14 +1,11 @@
 #pragma once
 
-#include "KAI/StorageBase.h"
-#include "KAI/Pointer.h"
-
 KAI_BEGIN
 
 template <class Cont, class Fun>
 Fun ForEach(Cont &container, Fun fun)
 {
-	Cont::iterator A = container.begin(), B = container.end();
+	typename Cont::iterator A = container.begin(), B = container.end();
 	for (; A != B; ++A)
 	{
 		if (!fun(*A))
@@ -70,8 +67,8 @@ struct IteratedFunctionBase
 	{
 		return Invoke(M.second);
 	}
-	template <class T>
-	bool operator()(nstd::pair<const String, Pointer<T> > &M)
+	template <class T2>
+	bool operator()(nstd::pair<const String, Pointer<T2> > &M)
 	{
 		return Invoke(M.second);
 	}
@@ -109,7 +106,7 @@ struct CanBlackenFun : IteratedFunctionBase < T >
 	CanBlackenFun() : can_make_black(true) { }
 	bool Invoke(Object const &Q)
 	{
-		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		StorageBase *base = Q.GetStorageBase(Q.GetHandle());
 		return can_make_black = can_make_black && base && !base->IsWhite();
 	}
 };
@@ -144,7 +141,7 @@ struct MakeReachableGreyFun : IteratedFunctionBase < T >
 {
 	bool Invoke(Object const &Q)
 	{
-		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		StorageBase *base = Q.GetStorageBase(Q.GetHandle());
 		if (base != 0 && base->IsWhite())
 			base->SetColor(ObjectColor::Grey);
 		return true;
@@ -161,7 +158,7 @@ struct AddContainedFun : IteratedFunctionBase < T >
 	{
 		if (!Q.Valid())
 			return true;
-		StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
+		StorageBase *base = Q.GetStorageBase(Q.GetHandle());
 		if (base != 0)
 			output->push_back(*base);
 		return true;

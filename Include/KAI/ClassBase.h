@@ -11,8 +11,6 @@ KAI_BEGIN
 struct MethodBase;
 //struct PropertyBase;
 
-typedef boost::unordered_set<Handle> StorageBaseHandles;
-
 /// Base for all Class<T> types. ClassBase defines the type-independent 
 /// interface that all Class<T>s must define
 class ClassBase

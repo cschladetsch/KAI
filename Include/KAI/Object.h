@@ -12,6 +12,9 @@ KAI_BEGIN
 template <class T>
 struct Pointer;
 
+template <class T>
+typename DerefType<T>::Reference Deref(StorageBase &base);
+
 struct Object
 {
 private:
@@ -83,7 +86,7 @@ public:
 	template <class T>
 	bool IsType() const 
 	{
-		return Exists() && GetClass()->GetTypeNumber() == Type::Traits<T>::Number; 
+		return Exists() && GetTypeNumber() == Type::Traits<T>::Number; 
 	}
 
 	void Delete() const;
@@ -141,7 +144,8 @@ public:
 		if (HasChild(L))
 			return ConstDeref<T>(GetChild(L));
 
-		KAI_THROW_1(UnknownProperty, L);
+		//TODO KAI_THROW_1(UnknownProperty, L);
+		KAI_THROW_1(ObjectNotFound, L.ToString());
 	}
 
 	template <class T>
@@ -156,7 +160,8 @@ public:
 		if (HasChild(L))
 			return Deref<T>(GetChild(L));
 
-		KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
+		//TODO KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
+		KAI_THROW_1(ObjectNotFound, L.ToString());
 	}
 
 	void Detach(const Label &L) const { Remove(L); }
@@ -176,36 +181,19 @@ public:
 	String ToXmlString() const;
 
 	template <class T>
-	Object New() const
-	{
-		if (!registry)
-			return Object();
-		return registry->New<T>();
-	}
+	Object New() const;
+
 	template <class T>
-	Object New(const T &X) const
-	{
-		if (!registry)
-			return Object();
-		return registry->New<T>(X);
-	}
+	Object New(const T &X) const;
+
+	StorageBase *GetStorageBase(Handle) const;
 
 	// KAI TODO delete the abomination that is 'retained object'
 	template <class T>
-	Object NewRetained() const
-	{
-		if (!registry)
-			return Object();
-		return registry->NewRetained<T>();
-	}
+	Object NewRetained() const;
 
 	template <class T>
-	Object NewRetained(const T &X) const
-	{
-		if (!registry)
-			return Object();
-		return registry->NewRetained<T>(X);
-	}
+	Object NewRetained(const T &X) const;
 
 	template <class T>
 	T const &GetAttribute(Label const &label) const

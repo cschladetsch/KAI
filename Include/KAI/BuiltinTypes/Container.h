@@ -11,7 +11,7 @@
 KAI_BEGIN
 
 template <class T>
-struct Container : Reflected<T>
+struct Container : Reflected//<T>
 {
 	bool Attach(Object const &Q)
 	{
