@@ -81,7 +81,7 @@ public:
 
 	StorageBase *GetParentPtr();
 
-	typedef boost::unordered_set/*nstd::vector*/<Handle> Handles;
+	typedef StorageBaseHandles Handles;
 	void SetColorRecursive(ObjectColor::Color color, Handles& handles);
 };
 
