@@ -112,7 +112,9 @@ public:
 template <class T>
 struct Pointer : PointerBase<T>, Object
 {
+#	ifdef KAI_POINTER_HAS_STORAGEBASE
     using PointerBase<T>::pointer;
+#endif
     
 	Pointer() 
 	{ 
