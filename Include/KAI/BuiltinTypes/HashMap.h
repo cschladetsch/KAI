@@ -3,10 +3,14 @@
 #	pragma once
 #endif
 
+#include <hash_map>
+
 #ifndef KAI_BUILTIN_TYPES_HASH_MAP_H
 #	define KAI_BUILTIN_TYPES_HASH_MAP_H
 
 KAI_BEGIN
+
+struct Object;
 
 /// A Map defines an associative container. Because this maps Object to Object,
 /// it is possible to store mappings of any type to any type.
@@ -19,7 +23,7 @@ struct HashMapCompare
 	bool operator()(const Object &A, const Object &B) const;
 };
 
-typedef MapBase<nstd::hash_map<Object, Object, HashMapCompare> > HashMap;
+typedef MapBase<std::hash_map<Object, Object, HashMapCompare> > HashMap;
 
 KAI_TYPE_TRAITS(HashMap, Type::Number::HashMap
 	, Type::Properties::StringStreamInsert 

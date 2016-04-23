@@ -3,6 +3,8 @@
 #	pragma once
 #endif
 
+#include <hash_set>
+
 #ifndef KAI_REGISTRY_H
 #	define KAI_REGISTRY_H
 #	include "KAI/Memory.h"
@@ -40,20 +42,20 @@ struct Registry
 #ifdef KAI_BOOST_UNORDERED_REGISTRY
 	typedef boost::unordered_map<Handle, StorageBase *> Instances;
 #elif defined(KAI_HASH_TABLE_REGISTRY)
-	typedef nstd::hash_map<Handle, StorageBase *, HashHandle> Instances;
+	typedef std::hash_map<Handle, StorageBase *, HashHandle> Instances;
 #else
-	typedef nstd::map<Handle, StorageBase *> Instances;
+	typedef std::map<Handle, StorageBase *> Instances;
 #endif
-	typedef nstd::vector<const ClassBase *> Classes;
-	typedef nstd::hash_set<Handle, HashHandle> Handles, Deathrow;
+	typedef std::vector<const ClassBase *> Classes;
+	typedef std::hash_set<Handle, HashHandle> Handles, Deathrow;
 	typedef boost::unordered_set<Handle> RetainedObjects;
-	typedef nstd::vector<Handle> VectorHandles;
+	typedef std::vector<Handle> VectorHandles;
 	// KAI: we need to delete things with lower handle value first :/
 //	typedef boost::unordered_set<Handle> ColoredSet;
-	typedef nstd::set<Handle> ColoredSet;
+	typedef std::set<Handle> ColoredSet;
 
 	/// pools of objects indexed by type number
-	typedef nstd::vector<nstd::vector<StorageBase *> > Pools;
+	typedef std::vector<nstd::vector<StorageBase *> > Pools;
 
 private:
 	friend struct StorageBase;
