@@ -161,7 +161,7 @@
     <OutDir>$(SolutionDir)/Lib/$(Platform)/$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)\</IntDir>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Dev\Include;..\..\Include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\Include;c:\lib\boost</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
     <OutDir>$(SolutionDir)/Lib/$(Platform)/$(Configuration)\</OutDir>

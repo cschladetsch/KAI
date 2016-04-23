@@ -476,7 +476,7 @@ namespace Type
 	namespace Type \
 	{ \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, P,R> { }; \
+		struct Traits<T> : TraitsBase<T, N, P,R> { static const char *Name; }; \
 		const char *Traits<T>::Name = #T; \
 	}
 

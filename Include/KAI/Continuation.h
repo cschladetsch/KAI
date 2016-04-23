@@ -5,11 +5,13 @@
 #ifndef KAI_CONTINUATION_H
 #	define KAI_CONTINUATION_H
 
+#include "KAI/Reflected.h"
+
 KAI_BEGIN
 
 class Executor;
 
-struct Continuation : public Reflected<Continuation>
+struct Continuation : public Reflected//<Continuation>
 {
 	typedef Pointer</*const*/ Array> Code;
 

@@ -14,31 +14,36 @@ KAI_BEGIN
 
 namespace debug
 {
-	Trace::~Trace()
+	struct Trace : StringStream
 	{
-		const char *type_str = "";
-		switch (type)
+		Trace::~Trace()
 		{
-		case Warn: type_str = "Warning: ";
-			break;
-		
-		case Error: type_str = "Error: "; 
-			break;
-		
-		case Fatal: type_str = "Fatal: "; 
-			break;
+			/*
+			const char *type_str = "";
+			switch (type)
+			{
+			case Warn: type_str = "Warning: ";
+				break;
+
+			case Error: type_str = "Error: ";
+				break;
+
+			case Fatal: type_str = "Fatal: ";
+				break;
+			}
+
+			String text = (file_location.ToString(false) + type_str + ToString());
+			text.RemoveAll("sif::sh::");
+			DebugTrace(text.c_str());
+			*/
 		}
 
-		String text = (file_location.ToString(false) + type_str + ToString());
-		text.RemoveAll("sif::sh::");
-		DebugTrace(text.c_str());
-	}
-
-	StringStream &Trace::operator<<(const Object& X)
-	{
-		static_cast<StringStream &>(*this) << X.GetHandle() << ": " << X;
-		return *this;
-	}
+		StringStream &Trace::operator<<(const Object& X)
+		{
+			static_cast<StringStream &>(*this) << X.GetHandle() << ": " << X;
+			return *this;
+		}
+	};
 }
 
 StringStream& operator<<(StringStream& S, ObjectColor::Color C)
@@ -120,7 +125,7 @@ void ToStringStream(const Object &Q, StringStream &S, int level)
 	const StorageBase &base = Q.GetStorageBase();
 	bool write_header = false;
 	if (write_header)
-		S << base.GetLabel().ToString() << ": ";
+	S << base.GetLabel().ToString() << ": ";
 	
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
 		Q.GetClass()->Insert(S, base);

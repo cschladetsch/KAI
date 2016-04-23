@@ -9,7 +9,7 @@
 KAI_TEST_BEGIN
 
 /// A named collecton of Test Suites
-class Module : public Component, public Reflected<Module>
+class Module : public Component, public Reflected//<Module>
 {
 	typedef Factory<Component> Suites;
 	Suites suites;
