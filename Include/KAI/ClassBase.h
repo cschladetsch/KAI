@@ -8,7 +8,7 @@
 
 KAI_BEGIN
 
-struct MethodBase;
+class MethodBase;
 //struct PropertyBase;
 
 /// Base for all Class<T> types. ClassBase defines the type-independent 

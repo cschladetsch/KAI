@@ -14,7 +14,7 @@ class Executor;
 KAI_TYPE_TRAITS(Executor, Type::Number::Executor
 	, Type::Properties::Reflected); 
 
-class Executor : public Reflected<Executor>
+class Executor : public Reflected//<Executor>
 {
 	Pointer<Continuation> continuation;
 	Pointer<Stack> context;

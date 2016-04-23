@@ -73,7 +73,7 @@ protected:
 
 	ConstPointer(const Object &Q)
 	{
-		if (Pointer<T>::CanAssign(Q))
+		if (PointerBase<T>::CanAssign(Q))
 			Object::operator=(Q);
 	}
 
@@ -81,7 +81,7 @@ protected:
 	{
 		if (Q == 0)
 			return;
-		if (Pointer<T>::CanAssign(*Q))
+		if (PointerBase<T>::CanAssign<T>(*Q))
 			Object::operator=(*Q);
 	}
 
@@ -124,7 +124,7 @@ struct Pointer : PointerBase<T>, Object
 	}
 	Pointer(const Object &Q)
 	{ 
-		PointerBase<T>::Assign(Q);
+		Pointer<T>::Assign(Q);
 	}
 
 	explicit Pointer(StorageBase *Q) 
