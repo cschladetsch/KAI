@@ -50,6 +50,7 @@
     <ProjectGuid>{02452D81-0C48-4249-8734-CECCEFA54737}</ProjectGuid>
     <RootNamespace>Library</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>KAILibrary</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'" Label="Configuration">
