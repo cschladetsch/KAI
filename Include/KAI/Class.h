@@ -36,8 +36,8 @@ struct Class : ClassBase
 	// Lifetime management
 	StorageBase *NewStorage(Registry *registry, Handle handle) const 
 	{
-		//return registry->GetMemorySystem().Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
-		return Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
+		return registry->GetMemorySystem().Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
+		//return Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
 	}
 
 	void Create(StorageBase &storage) const

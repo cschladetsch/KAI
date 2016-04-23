@@ -18,7 +18,7 @@ BinaryPacket &operator>>(BinaryPacket &, Compiler &);
 
 KAI_TYPE_TRAITS(Compiler, Type::Number::Compiler, Type::Properties::Reflected);
 
-struct Compiler : Reflected<Compiler>
+struct Compiler : Reflected//<Compiler>
 {
 	typedef nstd::map<Operation, String> OperationToString;
 	typedef nstd::map<String, Pointer<Operation> > StringToOperation;
