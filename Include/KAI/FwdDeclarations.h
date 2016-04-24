@@ -14,6 +14,8 @@ struct Object;
 
 template <class T> struct Storage;
 
+struct String;
+
 struct StringStream;
 struct BinaryStream;
 struct BinaryPacket;

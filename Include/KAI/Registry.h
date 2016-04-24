@@ -29,7 +29,11 @@ struct HashHandle
 struct HashType
 {
 	enum { bucket_size = 4, min_buckets = 16 };
-	nstd::size_t operator()(const Type::Number &A) const { return A.ToInt(); }
+	std::size_t operator()(const Type::Number &A) const 
+	{ 
+		return static_cast<std::size_t>(std::underlying_type<Type::Number>::type(A)); 
+	}
+
 	bool operator()(const Type::Number &A, const Type::Number &B) const { return A < B; }
 };
 

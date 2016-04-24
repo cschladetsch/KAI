@@ -1,17 +1,20 @@
+#include "KAI/Config/Base.h"
+#include "KAI/Config/Compiler.h"
+#include "KAI/Config/Options.h"
+#include "KAI/Config/StdContainers.h"
+#include "KAI/Pointer.h"
 
-#include "KAI/KAI.h"
-#include "KAI/BinBase.h"
-#include "KAI/Pathname.h"
-#include "KAI/Continuation.h"
-#include "KAI/Operation.h"
-#include "KAI/Compiler.h"
+#include "KAI/Type/Number.h"
+#include "KAI/Properties.h"
+
+
+#include "KAI/Type/Number.h"
+#include "KAI/Properties.h"
+#include "KAI/Type/Traits.h"
+#include "KAI/Type/TraitMacros.h"
+#include "KAI/Type/ContainerOperations.h"
+
 #include "KAI/Executor.h"
-#include "KAI/PropertyBase.h"
-
-#include "KAI/Test/Base.h"
-#include "KAI/Test/Module.h"
-#include "KAI/StringStream.h"
-#include "KAI/Debug.h"
 
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Tests/TestCompiler.h"

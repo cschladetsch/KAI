@@ -53,7 +53,7 @@ StringStream &operator<<(StringStream &, BinaryPacket const &);
 BinaryStream &operator<<(BinaryStream &, BinaryPacket const &);
 BinaryPacket &operator>>(BinaryPacket &, BinaryPacket &);
 
-KAI_TYPE_TRAITS(BinaryPacket, Number::BinaryPacket
+KAI_TYPE_TRAITS(BinaryPacket, NumberEnum::BinaryPacket
 	, Properties::StringStreamInsert 
 	| Properties::BinaryStreamExtract 
 	| Properties::BinaryStreamInsert);
