@@ -1,6 +1,7 @@
 
 #include "KAI/KAI.h"
 #include "KAI/Test/Base.h"
+
 #ifdef KAI_UNIT_TESTS
 #	include <iostream>
 
@@ -49,7 +50,9 @@ void BasicOutput::Write(const Result &R)
 	text << "type=" << R.type.ToString() << ": outcome=" << R.outcome.ToString() << ": exp=" << R.expression;
 	std::cout << loc.c_str() << text.ToString().c_str() << std::endl;
 
-	debug::Trace(R.location) << text;
+
+	// TODO TESTS
+//	debug::Trace(R.location) << text;
 
 	//std::cout << "Result: " << R.outcome.ToString().c_str(); << std::endl;
 	//std::cout << R.outcome.ToString().c_str() << ", ";// << std::endl;
@@ -99,11 +102,12 @@ void BasicOutput::Run(Module *module)
 
 void BasicOutput::Register(Registry &R)
 {
-	ClassBuilder<BasicOutput>(R, "TestOutput")
-		.Methods
-			("SetVerbose", &BasicOutput::SetVerbose)
-			("GetSummary", &BasicOutput::GetSummary2)
-		;
+	// TODO TESTS
+	//ClassBuilder<BasicOutput>(R, "TestOutput")
+	//	.Methods
+	//		("SetVerbose", &BasicOutput::SetVerbose)
+	//		("GetSummary", &BasicOutput::GetSummary2)
+	//	;
 }
 
 KAI_TEST_END

@@ -95,14 +95,15 @@ void XmlOutput::Write(const Result &)
 
 void XmlOutput::Register(Registry &R, const char *N)
 {
-	ClassBuilder<XmlOutput>(R, N)
-		.Methods
-			("SetVerbose", &XmlOutput::SetVerbose)
-			("RunBegin", &XmlOutput::RunBegin)
-			("RunEnd", &XmlOutput::RunEnd)
-			("ToString", &XmlOutput::ToString)
-			("GetSummary", &XmlOutput::GetSummary2)
-		;
+	// TODO TESTS
+	//ClassBuilder<XmlOutput>(R, N)
+	//	.Methods
+	//		("SetVerbose", &XmlOutput::SetVerbose)
+	//		("RunBegin", &XmlOutput::RunBegin)
+	//		("RunEnd", &XmlOutput::RunEnd)
+	//		("ToString", &XmlOutput::ToString)
+	//		("GetSummary", &XmlOutput::GetSummary2)
+	//	;
 }
 
 KAI_TEST_END

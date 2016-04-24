@@ -42,7 +42,7 @@ public:
 namespace Type
 {
 	template <class T>
-	struct Traits<CallableBase<T> > : TraitsBase<CallableBase<T> *, Type::Number::Callable> { };
+	struct Traits<CallableBase<T> > : TraitsBase<CallableBase<T> *, Type::Number::Callable, 0> { };
 };
 
 KAI_END

@@ -82,6 +82,9 @@ struct Argument<const T&>
 	};
 //}
 
+// TODO TESTS
+#undef KAI_DEBUG_TRACE
+
 #	ifdef KAI_DEBUG_TRACE
 #		define KAI_TRACE() \
 			KAI_TRACER(__FILE__, __LINE__, __FUNCTION__, Information)

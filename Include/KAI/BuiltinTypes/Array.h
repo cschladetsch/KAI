@@ -37,7 +37,7 @@ KAI_TYPE_TRAITS(Array, Type::Number::Array
 /// A vector of Objects
 struct Array : Container<Array>
 {
-	typedef nstd::vector<Object> Objects;
+	typedef std::vector<Object> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;
 
