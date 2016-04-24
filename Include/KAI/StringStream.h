@@ -1,11 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_STRING_STREAM_H
-#	define KAI_STRING_STREAM_H
+#pragma once
 
 #include "KAI/KAI.h"
 
@@ -56,8 +49,25 @@ inline StringStream &operator<<(StringStream &S, const StringStream &T) { return
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
 
+/*
+YYYYYY
+KAI_TYPE_TRAITS(
+	StringStream, 
+	NumberEnum::StringStream, 
+	Properties::Equiv);
+*/
+
+namespace Type
+{
+	template <>
+	struct Traits<StringStream> : TraitsBase<StringStream, NumberEnum::StringStream, Properties::Equiv | Properties::Assign>
+	{
+		static const char *Name;
+	};
+
+	const char *Traits<StringStream>::Name = "StringStream";
+};
+
 KAI_END
 
-#endif // KAI_STRING_STREAM_H
 
-//EOF
