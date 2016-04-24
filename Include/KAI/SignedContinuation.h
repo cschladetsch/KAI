@@ -34,7 +34,7 @@ struct SignedContinuation
 
 StringStream &operator<<(StringStream &, SignedContinuation const &);
 
-KAI_TYPE_TRAITS(SignedContinuation, Type::Number::SignedContinuation, Type::Properties::StringStreamInsert);
+KAI_TYPE_TRAITS(SignedContinuation, Number::SignedContinuation, Properties::StringStreamInsert);
 
 KAI_END
 

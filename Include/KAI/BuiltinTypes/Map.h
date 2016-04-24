@@ -14,20 +14,20 @@ struct MapCompare
 
 typedef MapBase<nstd::map<Object, Object, MapCompare> > Map;
 
-KAI_TYPE_TRAITS(Map, Type::Number::Map
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming 
-	| Type::Properties::Equiv 
-	// CJS TODO | Type::Properties::Less
-	| Type::Properties::Reflected
-	| Type::Properties::Container);
+KAI_TYPE_TRAITS(Map, Number::Map
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming 
+	| Properties::Equiv 
+	// CJS TODO | Properties::Less
+	| Properties::Reflected
+	| Properties::Container);
 
 StringStream &operator<<(StringStream &, Map::const_iterator const &);
 
-KAI_TYPE_TRAITS(Map::const_iterator, Type::Number::MapConstIterator
-	, Type::Properties::StringStreamInsert
-	| Type::Properties::Equiv
-	//| Type::Properties::Container ?? should an iterator be considered a container?
+KAI_TYPE_TRAITS(Map::const_iterator, Number::MapConstIterator
+	, Properties::StringStreamInsert
+	| Properties::Equiv
+	//| Properties::Container ?? should an iterator be considered a container?
 	);
 
 

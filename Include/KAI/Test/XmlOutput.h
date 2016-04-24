@@ -45,8 +45,12 @@ KAI_BEGIN
 
 StringStream &operator<<(StringStream &, const Test::XmlOutput &);
 
-//KAI_TYPE_TRAITS_DERIVED(Test::XmlOutput, Type::Number::TestOutputXml, Type::Properties::StringStreamInsert, Test::IOutput);
-KAI_TYPE_TRAITS(Test::XmlOutput, Type::Number::TestOutputXml, Type::Properties::StringStreamInsert)
+KAI_TYPE_TRAITS_DERIVED(::KAI::Test::XmlOutput, 
+	Number::TestOutputXml, 
+	Properties::StringStreamInsert, 
+	IOutput);
+
+//KAI_TYPE_TRAITS(Test::XmlOutput, Type::Number::TestOutputXml, Type::Properties::StringStreamInsert)
 
 KAI_END
 

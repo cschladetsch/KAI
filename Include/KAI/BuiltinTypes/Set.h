@@ -59,11 +59,11 @@ public:
 	static void Register(Registry &);
 };
 
-KAI_TYPE_TRAITS(ObjectSet, Type::Number::Set
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming 
-	| Type::Properties::Reflected
-	| Type::Properties::Container);
+KAI_TYPE_TRAITS(ObjectSet, Number::Set
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming 
+	| Properties::Reflected
+	| Properties::Container);
 
 StringStream &operator<<(StringStream &, ObjectSet const &);
 StringStream &operator<<(StringStream &, ObjectSet::const_iterator const &);
