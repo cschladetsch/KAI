@@ -60,7 +60,7 @@ KAI_TEST_END
 
 KAI_BEGIN
 
-KAI_TYPE_TRAITS(Test::Module, Number::TestModule, Properties::Reflected);
+//KAI_TYPE_TRAITS(Test::Module, Number::TestModule, Properties::Reflected);
 
 KAI_END
 

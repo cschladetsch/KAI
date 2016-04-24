@@ -3,6 +3,8 @@
 #	pragma once
 #endif
 
+#include <boost/static_assert.hpp>
+
 #ifndef KAI_TYPE_TRAITS_H
 #	define KAI_TYPE_TRAITS_H
 
@@ -82,18 +84,16 @@ namespace Type
 	/// Describes the properties of a promoted type
 	struct Properties
 	{
-		enum Type
+		enum Type //: int
 		{
-			None = 0,
+			None = -1,
 			Assign = 1 << 0,
 			Reflected = 1 << 1,
 
 			Plus = 1 << 2,
 			Minus = 1 << 3,
-			Divide = 1 << 4,
-			Multiply = 1 << 5,
-			Arithmetic = Plus | Minus | Divide | Multiply,
-			
+			Arithmetic = Plus | Minus,
+
 			Less = 1 << 6,
 			Equiv = 1 << 7,
 			Greater = 1 << 8,
@@ -112,10 +112,14 @@ namespace Type
 			NoHashValue = 1 << 13,
 			CalcHashValue = 1 << 14,
 
-			// KAI why does this make all Reflected types also Container's????
-			Container = /*Reflected | */(1 << 15),
+			Container = 1 << 15,
 			Process = 1 << 16,
 			Absolute = 1 << 17,
+
+			Divide = 1 << 18,
+			Multiply = 1 << 19,
+
+			XmlOutput = 1 << 20,
 		};
 	};
 
@@ -330,14 +334,17 @@ namespace Type
 		template <typename Store, typename C, int N, bool = true>
 		struct MultiplyOp
 		{
+			//BOOST_STATIC_ASSERT((N & Properties::Multiply) == 0);
+
 			static Store Perform(C A, C B)
 			{
 				return A * B;
 			}
 		};
-		template <typename Store, typename C, int N>
+		template <typename Store, typename C, _int64 N>
 		struct MultiplyOp<Store, C, N, false>
 		{
+			//BOOST_STATIC_ASSERT((N & Properties::Multiply) != 0);
 			static Store Perform(C, C)
 			{
 				KAI_THROW_2(NoProperty, N, Properties::Multiply);
@@ -382,11 +389,11 @@ namespace Type
 			}
 		};
 
-	template <class T, int N, int Ops = 0, class P = None, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
+	template <class T, int N, int Props, class P = None, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 	struct TraitsBase
 	{
 		enum { Number = N };
-		enum { Properties = Ops };
+		enum { Ops = Props };
 
 		typedef T Type;
 		typedef P Parent;
@@ -395,17 +402,17 @@ namespace Type
 		typedef Store const *ConstPointer;
 		typedef Ref Reference;
 		typedef ConstRef ConstReference;
-		//static const char *Name;
-
-		template <int N2>
-		struct HasProperty { enum { Value = (Properties & N2) != 0 }; };
-
-		template <int N2>
-		struct HasProperties { enum { Value = (Properties & N2) == N2 }; };
-		typedef ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
 
 		typedef UpCast<Reference, Parent> UpCaster;
 		
+		template <int N2>
+		struct HasProperty { enum { Value = (Ops & N2) != 0 }; };
+
+		template <int N3>
+		struct HasProperties { enum { Value = (Ops & N3) == N3 }; };
+
+		typedef ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
+
 		struct UnReflectedLifetimeManagement
 		{
 			static void Create(Storage<T> *)

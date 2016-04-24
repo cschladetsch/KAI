@@ -39,5 +39,3 @@ KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer, Properties::StringStreamIn
 KAI_END
 
 #include KAI_TEST(X)
-
-s

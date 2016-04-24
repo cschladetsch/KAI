@@ -49,7 +49,8 @@ KAI_TEST_END
 KAI_BEGIN
 
 // TODO
-KAI_TYPE_TRAITS_DERIVED(Test::BasicOutput, Type::Number::TestOutputBasic, 0, Test::IOutput);
+//KAI_TYPE_TRAITS_DERIVED(Test::BasicOutput, Number::TestOutputBasic, 0, IOutput);
+KAI_TYPE_TRAITS(Tests::BasicOutput, Number::TestOutputBasic, Properties::StringStreamInsert);// , IOutput);
 
 KAI_END
 

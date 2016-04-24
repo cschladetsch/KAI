@@ -34,9 +34,9 @@ KAI_TEST_END
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &, const Test::Summary &);
+StringStream &operator<<(StringStream &, const Tests::Summary &);
 
-KAI_TYPE_TRAITS(Test::Summary, Number::TestSummary, Properties::StringStreamInsert);
+KAI_TYPE_TRAITS(Tests::Summary, Number::TestSummary, Properties::StringStreamInsert);
 
 KAI_END
 

@@ -32,7 +32,7 @@ struct ReflectedBase
 	virtual void Delete() { }			//< called immediately before resources are released
 };
 
-typedef nstd::size_t HashValue;
+typedef std::size_t HashValue;
 
 template <class T>
 struct FwdBasePointer { };
@@ -106,6 +106,7 @@ namespace Type
 
 			Container = /*Reflected |*/ (1 << 15),
 			Process = 1 << 16,
+			TestOutput = 1 << 17,
 		};
 	};
 
@@ -480,12 +481,14 @@ namespace Type
 		const char *Traits<T>::Name = #T; \
 	}
 
-HashValue GetHash(const Strng &);
+struct String;
 
-KAI_TYPE_TRAITS(String, Type::Number::String
-	, Type::Properties::Streaming | Type::Properties::Plus | Type::Properties::Equiv | Type::Properties::Relational);
+HashValue GetHash(const String &);
 
-KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
+KAI_TYPE_TRAITS(String, Number::String
+	, Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational);
+
+KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert);
 
 KAI_END
 

@@ -18,6 +18,8 @@
 #		define USING_NAMESPACE_KAI
 #	endif
 
+// TODO TESTS
+#	undef KAI_OPTION_UNIT_TESTS
 #	ifdef KAI_OPTION_UNIT_TESTS
 #		define KAI_TEST(ClassName) \
 		KAI_PP_CONCAT("KAI/Tests/", \

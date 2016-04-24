@@ -19,18 +19,19 @@ void MarkGrey(Object const &);
 template <class T>
 struct Class : ClassBase
 {
-	typedef Type::Traits<T> Traits;
+	typedef typename Type::Traits<T> Traits;
+	enum { Props = Traits::Ops };
 
 	Class(Label const &name) : ClassBase(name, Type::Traits<T>::Number) { }
 
 	int GetTraitsProperties() const
 	{
-		return Traits::Properties;
+		return Props;
 	}
 
 	bool HasTraitsProperty(int N) const
 	{
-		return (Traits::Properties & N) != 0;
+		return (Props & N) != 0;
 	}
 
 	// Lifetime management
