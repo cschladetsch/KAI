@@ -38,7 +38,7 @@ struct Argument<const T&>
 	typedef const T &Type;
 };
 
-//namespace debug {
+namespace debug {
 	struct Trace : StringStream
 	{
 		enum Type
@@ -80,7 +80,7 @@ struct Argument<const T&>
 			return *this;
 		}
 	};
-//}
+}
 
 // TODO TESTS
 #undef KAI_DEBUG_TRACE
