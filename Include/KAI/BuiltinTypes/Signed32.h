@@ -16,12 +16,12 @@ BinaryPacket &operator>>(BinaryPacket &S, int &N);
 
 inline HashValue GetHash(int N) { return N; }
 
-KAI_TYPE_TRAITS(int, Type::Number::Signed32
-	, Type::Properties::Arithmetic 
-	| Type::Properties::Streaming 
-	| Type::Properties::Assign
-	| Type::Properties::Relational
-	| Type::Properties::Absolute
+KAI_TYPE_TRAITS(int, Number::Signed32
+	, Properties::Arithmetic 
+	| Properties::Streaming 
+	| Properties::Assign
+	| Properties::Relational
+	| Properties::Absolute
 	);
 
 KAI_END

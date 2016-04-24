@@ -79,14 +79,14 @@ BinaryPacket &operator>>(BinaryPacket &, List &);
 
 HashValue GetHash(const List &A);
 
-KAI_TYPE_TRAITS(List, Type::Number::List
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming
-	| Type::Properties::Less 
-	| Type::Properties::Equiv
-	| Type::Properties::Assign
-	| Type::Properties::Reflected
-	| Type::Properties::Container);
+KAI_TYPE_TRAITS(List, Number::List
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming
+	| Properties::Less 
+	| Properties::Equiv
+	| Properties::Assign
+	| Properties::Reflected
+	| Properties::Container);
 
 KAI_END
 

@@ -34,11 +34,11 @@ BinaryPacket &operator>>(BinaryPacket &S, Pair &);
 
 HashValue GetHash(const Pair &);
 
-KAI_TYPE_TRAITS(Pair, Type::Number::Pair
-	, Type::Properties::Streaming 
-	| Type::Properties::Equiv 
-	| Type::Properties::Assign
-	| Type::Properties::Less);
+KAI_TYPE_TRAITS(Pair, Number::Pair
+	, Properties::Streaming 
+	| Properties::Equiv 
+	| Properties::Assign
+	| Properties::Less);
 
 KAI_END
 

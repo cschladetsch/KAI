@@ -77,7 +77,7 @@ BinaryPacket &operator>>(BinaryPacket &S, ExampleClass &Q)
 // before the class can be used, it needs to have its type-traits defined
 // this gives the compile-time system the information it needs to deal with
 // serialisation, operator overloads, etc
-KAI_TYPE_TRAITS(ExampleClass, 321, Type::Properties::StringStreamInsert | Type::Properties::BinaryStreaming);
+KAI_TYPE_TRAITS(ExampleClass, 321, Properties::StringStreamInsert | Properties::BinaryStreaming);
 
 // a function that will be reflected. the only restraint is that the argument
 // and return types must be known to the system

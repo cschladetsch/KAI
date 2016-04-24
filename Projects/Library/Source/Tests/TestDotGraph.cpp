@@ -14,7 +14,7 @@ struct TestOwned
 	Pointer<int> num;
 };
 
-KAI_TYPE_TRAITS(TestOwned, 666, Type::Properties::None);
+KAI_TYPE_TRAITS(TestOwned, 666, Properties::None);
 
 KAI_END
 

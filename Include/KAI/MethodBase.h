@@ -38,7 +38,7 @@ public:
 
 StringStream &operator<<(StringStream &, const BasePointer<MethodBase> &);
 
-KAI_TYPE_TRAITS(BasePointer<MethodBase>, Type::Number::Method, Type::Properties::StringStreamInsert | Type::Properties::Reflected);
+KAI_TYPE_TRAITS(BasePointer<MethodBase>, Number::Method, Properties::StringStreamInsert | Properties::Reflected);
 
 KAI_END
 

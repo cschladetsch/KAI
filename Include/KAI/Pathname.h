@@ -73,9 +73,9 @@ bool operator>(T const &A, T const &B)
 	return B < A;
 }
 
-KAI_TYPE_TRAITS(Pathname, Type::Number::Pathname
-	, Type::Properties::Streaming
-	| Type::Properties::Relational
+KAI_TYPE_TRAITS(Pathname, Number::Pathname
+	, Properties::Streaming
+	| Properties::Relational
 	);
 
 Pathname GetFullname(const StorageBase &);
