@@ -1,114 +1,100 @@
+#pragma once
 
-// TODO: Auto-generated from Types.xml
+KAI_TYPE_BEGIN
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_TYPE_NUMBER_H
-#	define KAI_TYPE_NUMBER_H
-
-KAI_BEGIN
-
-namespace Type
+enum class NumberEnum
 {
-	enum Number
-	{
-		// $BEGIN_TYPE_NUMBER_VALUE_ENUMERATION$
-		Undefined = 0,
-		None = 1,
-		Void = 2,
+	Undefined = 0,
+	None = 1,
+	Void = 2,
 
-		TestModule = 3,
-		TestSuite = 4,
-		TestResult = 5,
-		TestSummary = 6,
-		TestOutput = 7,
-		TestOutputBasic = 8,
-		TestOutputXml = 9,
-		TestOutputSocket = 10,
+	TestModule = 3,
+	TestSuite = 4,
+	TestResult = 5,
+	TestSummary = 6,
+	TestOutput = 7,
+	TestOutputBasic = 8,
+	TestOutputXml = 9,
+	TestOutputSocket = 10,
 
-		Handle = 11,
-		Object = 12,
-		Type = 13,
-		TypeNumber = 14,
+	Handle = 11,
+	GeneralObject = 12,
+	Type = 13,
+	TypeNumber = 14,
 
-		BasePointer = 15,
-		Callable = 16,
-		Function = 17,
-		Method = 18,
-		Property = 19,
-		Class = 20,
+	BasePointer = 15,
+	Callable = 16,
+	Function = 17,
+	Method = 18,
+	Property = 19,
+	Class = 20,
 
-		Bool = 21,
-		Signed32 = 22,
-		Single = 23,
-		Double = 24,
-		String = 25,
-		Label = 26,
-		Pathname = 27,
+	Bool = 21,
+	Signed32 = 22,
+	Single = 23,
+	Double = 24,
+	String = 25,
+	Label = 26,
+	Pathname = 27,
 
-		Array = 28,
-		Pair = 29,
-		Map = 30,
-		HashMap = 31,
-		Set = 32,
-		HashSet = 33,
-		Stack = 34,
+	Array = 28,
+	Pair = 29,
+	Map = 30,
+	HashMap = 31,
+	Set = 32,
+	HashSet = 33,
+	Stack = 34,
 
-		MapConstIterator = 35,
-		MapIterator = 36,
-		SetConstIterator = 37,
-		SetIterator = 38,
-		HashMapConstIterator = 39,
-		HashMapIterator = 40,
-		HashSetConstIterator = 41,
-		HashSetIterator = 42,
+	MapConstIterator = 35,
+	MapIterator = 36,
+	SetConstIterator = 37,
+	SetIterator = 38,
+	HashMapConstIterator = 39,
+	HashMapIterator = 40,
+	HashSetConstIterator = 41,
+	HashSetIterator = 42,
 
-		Operation = 43,
-		Continuation = 44,
-		Compiler = 45,
-		Executor = 46,
+	Operation = 43,
+	Continuation = 44,
+	Compiler = 45,
+	Executor = 46,
 
-		StreamBase = 47,
-		StringStream = 48,
-		XmlStream = 49,
-		GraphStream = 50,
-		BinaryStream = 51,
-		BinaryPacket = 52,
+	StreamBase = 47,
+	StringStream = 48,
+	XmlStream = 49,
+	GraphStream = 50,
+	BinaryStream = 51,
+	BinaryPacket = 52,
 
-		Console = 53,
-		Node = 54,
-		Browser = 55,
+	Console = 53,
+	Node = 54,
+	Browser = 55,
 
-		SignedContinuation = 56,
+	SignedContinuation = 56,
 
-		Vector2 = 57,
-		Vector3 = 58,
-		Vector4 = 59,
-		List = 60,
+	Vector2 = 57,
+	Vector3 = 58,
+	Vector4 = 59,
+	List = 60,
 
-		SystemLast = 200,
-		Last = 1000,
-	};
+	SystemLast = 200,
+	Last = 1000,
+};
 
-	struct Instance
-	{
-		Number value;
-		
-		Instance(Number V = Number::None) : value(V) { }
-		Instance(int N) : value(static_cast<Number>(N)) { }
-		friend bool operator<(Number A, Number B) { return A < B; }
-		friend bool operator==(Number A, Number B) { return A == B; }
-		friend bool operator!=(Number A, Number B) { return A != B; }
-		nstd::string ToString() const;
-		int ToInt() const { return (int)value; }
-		int GetValue() const { return (int)value; }
-	};
-}
+struct NumberValue
+{
+	NumberEnum value;
+	
+	NumberValue(NumberEnum V = NumberEnum::None) : value(V) { }
+	NumberValue(int N) : value(static_cast<NumberEnum>(N)) { }
+	friend bool operator<(NumberEnum A, NumberEnum B) { return A < B; }
+	friend bool operator==(NumberEnum A, NumberEnum B) { return A == B; }
+	friend bool operator!=(NumberEnum A, NumberEnum B) { return A != B; }
+	std::string ToString() const;
+	int ToInt() const { return (int)value; }
+	int GetValue() const { return (int)value; }
+};
 
-KAI_END
-
-#endif // KAI_TYPE_NUMBER_H
+KAI_TYPE_END
 
 //EOF

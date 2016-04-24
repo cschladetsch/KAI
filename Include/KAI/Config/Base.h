@@ -8,6 +8,8 @@
 #	ifdef KAI_OPTION_USE_NAMESPACES
 #		define KAI_BEGIN namespace KAI_NAMESPACE_NAME {
 #		define KAI_END }
+#		define KAI_TYPE_BEGIN KAI_BEGIN namespace Type {
+#		define KAI_TYPE_END } }
 #		define USING_NAMESPACE_KAI using namespace KAI_NAMESPACE_NAME;
 #		define KAI_NAMESPACE(E) ::KAI_NAMESPACE_NAME::E
 #	else

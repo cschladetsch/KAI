@@ -32,7 +32,7 @@ struct IObject
 	virtual const StorageBase &GetStorageBase() const = 0;
 	virtual StorageBase &GetStorageBase() = 0;
 
-	virtual Type::Number GetTypeNumber() const = 0;
+	virtual Type::NumberEnum GetTypeNumber() const = 0;
 	virtual const ClassBase *GetClass() const = 0;
 	
 	virtual Registry *GetRegistry() const = 0;
