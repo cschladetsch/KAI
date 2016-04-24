@@ -453,7 +453,7 @@ namespace Type
 		template <> \
 		struct Traits<T> : TraitsBase<T, N, Ops> { }; \
 		template <> \
-		const char *Traits<T>::Name = M; \
+		const char *Traits<T>::Name = #T; \
 	}
 
 #define KAI_TYPE_TRAITS(T, N, Ops) \
@@ -476,11 +476,11 @@ namespace Type
 	namespace Type \
 	{ \
 		template <> \
-		struct Traits<T> : TraitsBase<T, N, P,R> { static const char *Name; }; \
+		struct Traits<T> : TraitsBase<T, N,#T, P,R> { static const char *Name; }; \
 		const char *Traits<T>::Name = #T; \
 	}
 
-HashValue GetHash(const String &);
+HashValue GetHash(const Strng &);
 
 KAI_TYPE_TRAITS(String, Type::Number::String
 	, Type::Properties::Streaming | Type::Properties::Plus | Type::Properties::Equiv | Type::Properties::Relational);

@@ -4,6 +4,25 @@ KAI_BEGIN
 
 struct Array;
 
+namespace Type
+{
+	template <>
+	struct Traits<Array> : TraitsBase<Array, Number::Array
+		, Properties::StringStreamInsert
+		| Properties::BinaryStreaming
+		| Properties::Less
+		| Properties::Equiv
+		| Properties::Assign
+		| Properties::Reflected
+		| Properties::Container>
+	{
+		static const char *Name;
+	};
+
+	const char * Traits<Array>::Name = "Array";
+}
+
+/*
 KAI_TYPE_TRAITS(Array, Type::Number::Array
 	, Type::Properties::StringStreamInsert 
 	| Type::Properties::BinaryStreaming
@@ -13,6 +32,7 @@ KAI_TYPE_TRAITS(Array, Type::Number::Array
 	| Type::Properties::Reflected
 	| Type::Properties::Container
 	);
+*/
 
 /// A vector of Objects
 struct Array : Container<Array>

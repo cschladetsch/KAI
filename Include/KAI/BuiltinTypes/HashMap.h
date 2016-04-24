@@ -25,14 +25,14 @@ struct HashMapCompare
 
 typedef MapBase<std::hash_map<Object, Object, HashMapCompare> > HashMap;
 
-KAI_TYPE_TRAITS(HashMap, Type::Number::HashMap
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming 
-	| Type::Properties::Equiv 
-	| Type::Properties::Less
-	| Type::Properties::Assign
-	| Type::Properties::Reflected
-	| Type::Properties::Container);
+KAI_TYPE_TRAITS(HashMap, Number::HashMap
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming 
+	| Properties::Equiv 
+	| Properties::Less
+	| Properties::Assign
+	| Properties::Reflected
+	| Properties::Container);
 
 KAI_END
 

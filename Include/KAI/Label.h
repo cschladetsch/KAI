@@ -39,10 +39,10 @@ StringStream &operator<<(StringStream &S, const Label &L);
 BinaryStream &operator<<(BinaryStream &, Label const &);
 BinaryPacket &operator>>(BinaryPacket &, Label &);
 
-KAI_TYPE_TRAITS(Label, Type::Number::Label
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::Relational
-	| Type::Properties::BinaryStreaming);
+KAI_TYPE_TRAITS(Label, Number::Label
+	, Properties::StringStreamInsert 
+	| Properties::Relational
+	| Properties::BinaryStreaming);
 
 KAI_END
 

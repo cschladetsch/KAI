@@ -16,7 +16,7 @@ StringStream &operator<<(StringStream &, Compiler const &);
 BinaryStream &operator<<(BinaryStream &, Compiler const &);
 BinaryPacket &operator>>(BinaryPacket &, Compiler &);
 
-KAI_TYPE_TRAITS(Compiler, Type::Number::Compiler, Type::Properties::Reflected);
+KAI_TYPE_TRAITS(Compiler, Number::Compiler, Properties::Reflected);
 
 struct Compiler : Reflected//<Compiler>
 {

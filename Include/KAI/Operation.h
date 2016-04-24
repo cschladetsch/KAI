@@ -129,7 +129,7 @@ StringStream &operator>>(StringStream &, Operation &);
 BinaryStream &operator<<(BinaryStream &, Operation const &);
 BinaryPacket &operator>>(BinaryPacket &, Operation &);
 
-KAI_TYPE_TRAITS(Operation, Type::Number::Operation, Type::Properties::Streaming);
+KAI_TYPE_TRAITS(Operation, Number::Operation, Properties::Streaming);
 
 KAI_END
 
