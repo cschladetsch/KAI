@@ -161,9 +161,6 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
       <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
@@ -175,18 +172,6 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
       <Filter>Source Files\Network\Platform\PC\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\BasicOutput.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\Module.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TestSuite.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\XmlOutput.cpp">
-      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Test.cpp">
       <Filter>Source Files</Filter>

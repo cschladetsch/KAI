@@ -206,7 +206,7 @@ struct Class : ClassBase
 	StorageBase *Multiply(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = ClassBase::NewStorage<T>();
-		Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
+		// TODO MUL Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Divide(StorageBase const &A, StorageBase const &B) const
