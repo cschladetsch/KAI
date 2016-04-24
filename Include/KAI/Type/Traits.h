@@ -62,17 +62,17 @@ namespace Type
 	};
 
 	template <>
-	struct Traits<None>
+	struct Traits<meta::Null>
 	{
 		enum { Number = Number::None };
 		enum { Properties = 0 };
 
-		typedef None Type;
-		typedef None Store;
-		typedef None *Pointer;
-		typedef None const *ConstPointer;
-		typedef None &Reference;
-		typedef None const &ConstReference;	
+		typedef meta::Null Type;
+		typedef meta::Null Store;
+		typedef meta::Null *Pointer;
+		typedef meta::Null const *ConstPointer;
+		typedef meta::Null &Reference;
+		typedef meta::Null const &ConstReference;	
 		static const char *Name;
 	};
 
@@ -81,46 +81,51 @@ namespace Type
 	{
 	};
 
-	/// Describes the properties of a promoted type
-	struct Properties
+	enum Properties;
+
+	inline Properties operator|(Properties a, Properties b)
 	{
-		enum Type //: int
-		{
-			None = -1,
-			Assign = 1 << 0,
-			Reflected = 1 << 1,
+		return static_cast<Properties>(static_cast<int>(a) | static_cast<int>(b));
+	}
 
-			Plus = 1 << 2,
-			Minus = 1 << 3,
-			Arithmetic = Plus | Minus,
+	/// Describes the properties of a promoted type
+	enum Properties : int
+	{
+		//None = -1,
+		Nothing = 0,
+		Assign = 1 << 0,
+		Reflected = 1 << 1,
 
-			Less = 1 << 6,
-			Equiv = 1 << 7,
-			Greater = 1 << 8,
-			Relational = Less | Equiv | Greater,
-			
-			StringStreamInsert = 1 << 9,
-			StringStreamExtract = 1 << 10,
-			BinaryStreamInsert = 1 << 11,
-			BinaryStreamExtract = 1 << 12,
-			BinaryStreaming = BinaryStreamInsert | BinaryStreamExtract,
-			StringStreaming = StringStreamInsert | StringStreamExtract,
-			Streaming = BinaryStreaming | StringStreaming,
-			StreamInsert = StringStreamInsert | BinaryStreamInsert,
-			StreamExtract = StringStreamExtract | BinaryStreamExtract,
+		Plus = 1 << 2,
+		Minus = 1 << 3,
+		Arithmetic = Plus | Minus,
 
-			NoHashValue = 1 << 13,
-			CalcHashValue = 1 << 14,
+		Less = 1 << 6,
+		Equiv = 1 << 7,
+		Greater = 1 << 8,
+		Relational = Less | Equiv | Greater,
+		
+		StringStreamInsert = 1 << 9,
+		StringStreamExtract = 1 << 10,
+		BinaryStreamInsert = 1 << 11,
+		BinaryStreamExtract = 1 << 12,
+		BinaryStreaming = BinaryStreamInsert | BinaryStreamExtract,
+		StringStreaming = StringStreamInsert | StringStreamExtract,
+		Streaming = BinaryStreaming | StringStreaming,
+		StreamInsert = StringStreamInsert | BinaryStreamInsert,
+		StreamExtract = StringStreamExtract | BinaryStreamExtract,
 
-			Container = 1 << 15,
-			Process = 1 << 16,
-			Absolute = 1 << 17,
+		NoHashValue = 1 << 13,
+		CalcHashValue = 1 << 14,
 
-			Divide = 1 << 18,
-			Multiply = 1 << 19,
+		Container = 1 << 15,
+		Process = 1 << 16,
+		Absolute = 1 << 17,
 
-			XmlOutput = 1 << 20,
-		};
+		Divide = 1 << 18,
+	//Multiply = 1 << 21,
+
+		XmlOutput = 1 << 20,
 	};
 
 	template <class T>
@@ -157,6 +162,7 @@ namespace Type
 			{
 				ForEach(R, ColorSetter(C));
 			}
+			
 			static void Erase(Reference R, Object const &Q)
 			{
 				R.Erase(Q);
@@ -196,9 +202,9 @@ namespace Type
 			}
 		};
 		template <typename Reference>
-		struct UpCast<Reference, None>
+		struct UpCast<Reference, meta::Null>
 		{
-			static Storage<None> *Cast(Registry &, Reference)
+			static Storage<meta::Null> *Cast(Registry &, Reference)
 			{
 				return 0;
 			}
@@ -389,12 +395,11 @@ namespace Type
 			}
 		};
 
-	template <class T, int N, int Props, class P = None, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
+	template <class T, enum NumberEnum, enum Properties Props, class P = None, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 	struct TraitsBase
 	{
-		enum { Number = N };
-		enum { Ops = Props };
-
+		enum { Number = NumberEmum };
+		enum { Props = PropertiesEnum };
 		typedef T Type;
 		typedef P Parent;
 		typedef St Store;
@@ -405,11 +410,11 @@ namespace Type
 
 		typedef UpCast<Reference, Parent> UpCaster;
 		
-		template <int N2>
-		struct HasProperty { enum { Value = (Ops & N2) != 0 }; };
+		template <enum Properties N2>
+		struct HasProperty { enum { Value = (Ops & (int)N2) != 0 }; };
 
-		template <int N3>
-		struct HasProperties { enum { Value = (Ops & N3) == N3 }; };
+		template <enum Properties N3>
+		struct HasProperties { enum { Value = (Ops & (int)N3) == N3 }; };
 
 		typedef ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
 
@@ -462,7 +467,6 @@ namespace Type
 		typedef AssignOp<Reference, ConstReference, Number, HasProperty<Properties::Assign>::Value> Assign;
 		typedef AbsoluteOp<Reference, ConstReference, Number, HasProperty<Properties::Absolute>::Value> Absolute;
 
-
 		typedef LessOp<ConstReference, Number, HasProperty<Properties::Less>::Value> Less;
 		typedef EquivOp<ConstReference, Number, HasProperty<Properties::Equiv>::Value> Equiv;
 		typedef GreaterOp<ConstReference, Number, HasProperty<Properties::Greater>::Value> Greater;
@@ -470,7 +474,7 @@ namespace Type
 		typedef PlusOp<St, ConstReference, HasProperty<Properties::Plus>::Value> Plus;
 		typedef MinusOp<St, ConstReference, HasProperty<Properties::Minus>::Value> Minus;
 		typedef DivideOp<St, ConstReference, HasProperty<Properties::Divide>::Value> Divide;
-		typedef MultiplyOp<St, ConstReference, HasProperty<Properties::Multiply>::Value> Multiply;
+		// MUL typedef MultiplyOp<St, ConstReference, HasProperty<Properties::Multiply>::Value> Multiply;
 
 		template <bool, class Stream>
 		struct StreamInsert
@@ -558,8 +562,9 @@ HashValue GetHash(const String &);
 
 KAI_TYPE_TRAITS(String, Number::String
 	, Properties::Streaming 
-	| Properties::Plus |
-	Properties::Equiv  | Properties::Relational);
+	| Properties::Plus 
+	| Properties::Equiv  
+	| Properties::Relational);
 
 KAI_TYPE_TRAITS(StringStream, Number::StringStream, 0);
 
