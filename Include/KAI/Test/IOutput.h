@@ -39,7 +39,7 @@ KAI_TEST_END
 
 KAI_BEGIN
 
-KAI_TYPE_TRAITS(Test::IOutput *, Type::Number::TestOutput, 0);
+KAI_TYPE_TRAITS(Test::IOutput *, Number::TestOutput, 0);
 
 KAI_END
 

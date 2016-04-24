@@ -5,7 +5,7 @@
 
 KAI_BEGIN
 
-//KAI_TYPE_TRAITS(TestClosureTest, 666, Type::Properties::None);
+//KAI_TYPE_TRAITS(TestClosureTest, 666, Properties::None);
 
 KAI_END
 

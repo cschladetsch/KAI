@@ -22,8 +22,8 @@ struct Foobar3 : Foobar2
 	Object K;
 };
 
-KAI_TYPE_TRAITS(Foobar2, 700, Type::Properties::None);
-KAI_TYPE_TRAITS(Foobar3, 701, Type::Properties::None);
+KAI_TYPE_TRAITS(Foobar2, 700, Properties::None);
+KAI_TYPE_TRAITS(Foobar3, 701, Properties::None);
 
 KAI_END
 

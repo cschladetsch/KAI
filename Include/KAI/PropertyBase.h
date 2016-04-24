@@ -77,7 +77,7 @@ public:
 
 StringStream &operator<<(StringStream &S, BasePointer<PropertyBase> const &);
 
-KAI_TYPE_TRAITS(BasePointer<PropertyBase>, Type::Number::Property, Type::Properties::StringStreamInsert);
+KAI_TYPE_TRAITS(BasePointer<PropertyBase>, Number::Property, Type::Properties::StringStreamInsert);
 
 // access the property object
 void SetPropertyObject(Object const &owner, Label const &name, Object value);

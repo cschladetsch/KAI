@@ -11,8 +11,7 @@ KAI_BEGIN
 struct Tree;
 class Executor;
 
-KAI_TYPE_TRAITS(Executor, Type::Number::Executor
-	, Type::Properties::Reflected); 
+KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected); 
 
 class Executor : public Reflected//<Executor>
 {

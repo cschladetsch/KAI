@@ -11,7 +11,7 @@ struct TestObjectIndexingTest
 	Pointer<int> ptr;
 };
 
-KAI_TYPE_TRAITS(TestObjectIndexingTest, 666, Type::Properties::None);
+KAI_TYPE_TRAITS(TestObjectIndexingTest, 666, Properties::None);
 
 KAI_END
 

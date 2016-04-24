@@ -10,14 +10,14 @@ KAI_BEGIN
 
 struct Stack;
 
-KAI_TYPE_TRAITS(Stack, Type::Number::Stack
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming
-	| Type::Properties::Less 
-	| Type::Properties::Equiv
-	| Type::Properties::Assign
-	| Type::Properties::Reflected
-	| Type::Properties::Container
+KAI_TYPE_TRAITS(Stack, Number::Stack
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming
+	| Properties::Less 
+	| Properties::Equiv
+	| Properties::Assign
+	| Properties::Reflected
+	| Properties::Container
 	);
 
 struct Stack : Container<Stack>

@@ -99,28 +99,28 @@ StringStream &operator>>(StringStream &, Vector4 &);
 BinaryStream &operator<<(BinaryStream &, Vector4 const &);
 BinaryPacket &operator>>(BinaryPacket &, Vector4 &);
 
-KAI_TYPE_TRAITS(Vector2, Type::Number::Vector2
-	, Type::Properties::Streaming
-	| Type::Properties::Assign
-	//| Type::Properties::Plus
-	//| Type::Properties::Minus
-	//| Type::Properties::Absolute
+KAI_TYPE_TRAITS(Vector2, Number::Vector2
+	, Properties::Streaming
+	| Properties::Assign
+	//| Properties::Plus
+	//| Properties::Minus
+	//| Properties::Absolute
 	);
 
-KAI_TYPE_TRAITS(Vector3, Type::Number::Vector3
-	, Type::Properties::Streaming
-	| Type::Properties::Assign
-	//| Type::Properties::Plus
-	//| Type::Properties::Minus
-	//| Type::Properties::Absolute
+KAI_TYPE_TRAITS(Vector3, Number::Vector3
+	, Properties::Streaming
+	| Properties::Assign
+	//| Properties::Plus
+	//| Properties::Minus
+	//| Properties::Absolute
 	);
 
-KAI_TYPE_TRAITS(Vector4, Type::Number::Vector4
-	, Type::Properties::Streaming
-	| Type::Properties::Plus
-	//| Type::Properties::Minus
-	//| Type::Properties::Assign
-	//| Type::Properties::Absolute
+KAI_TYPE_TRAITS(Vector4, Number::Vector4
+	, Properties::Streaming
+	| Properties::Plus
+	//| Properties::Minus
+	//| Properties::Assign
+	//| Properties::Absolute
 	);
 
 KAI_END

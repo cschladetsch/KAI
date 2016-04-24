@@ -520,7 +520,7 @@ namespace Type
 	{ \
 		template <> \
 		struct Traits<T> : TraitsBase<T, N, Ops> { static const char *Name; }; \
-		const char *Traits<T>::Name = M; \
+		const char *Traits<T>::Name = #T; \
 	}
 
 #define KAI_TYPE_TRAITS(T, N, Ops) \
@@ -539,22 +539,36 @@ namespace Type
 #define KAI_TYPE_TRAITS_BASIC_STRING_STREAM_INSERT(T,N) \
 	KAI_TYPE_TRAITS(T,N,Type::Properties::StringStreamInsert)
 
-#define KAI_TYPE_TRAITS_DERIVED(T,N,P,R) \
-	namespace Type \
-	{ \
-		template <> \
-		struct Traits<T> : TraitsBase<T, N, P,R> { static const char *Name; }; \
-		const char *Traits<T>::Name = #T; \
-	}
-
+//#define KAI_TYPE_TRAITS_DERIVED(T,N,P,R) \
+//	namespace Type \
+//	{ \
+//		template <> \
+//		struct Traits<T> : TraitsBase<T, N, P,R> { static const char *Name; }; \
+//		const char *Traits<T>::Name = #T; \
+//	}
+//
 HashValue GetHash(const String &);
 
-KAI_TYPE_TRAITS(String, Type::Number::String
-	, Type::Properties::Streaming | Type::Properties::Plus | Type::Properties::Equiv | Type::Properties::Relational);
+KAI_TYPE_TRAITS(String, Number::String
+	, Properties::Streaming 
+	| Properties::Plus |
+	Properties::Equiv  | Properties::Relational);
 
-KAI_TYPE_TRAITS(StringStream, Type::Number::StringStream, 0);
+KAI_TYPE_TRAITS(StringStream, Number::StringStream, 0);
 
-KAI_TYPE_TRAITS(Handle, Type::Number::Handle, Type::Properties::StringStreamInsert);
+//namespace Type
+//{
+//	template <>
+//	struct Traits<Handle> : TraitsBase<Handle, Number::Array
+//		, Properties::StringStreamInsert>
+//	{
+//		static const char *Name;
+//	};
+//
+//	const char * Traits<Handle>::Name = "Handle";
+//}
+
+KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert);
 
 template <class T>
 struct DerefType

@@ -53,10 +53,10 @@ StringStream &operator<<(StringStream &, BinaryPacket const &);
 BinaryStream &operator<<(BinaryStream &, BinaryPacket const &);
 BinaryPacket &operator>>(BinaryPacket &, BinaryPacket &);
 
-KAI_TYPE_TRAITS(BinaryPacket, Type::Number::BinaryPacket
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreamExtract 
-	| Type::Properties::BinaryStreamInsert);
+KAI_TYPE_TRAITS(BinaryPacket, Number::BinaryPacket
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreamExtract 
+	| Properties::BinaryStreamInsert);
 
 /// A BinaryStream is-a BinaryPacket which can also resize and allows insertion
 struct BinaryStream : BinaryPacket
@@ -91,7 +91,7 @@ BinaryStream &operator<<(BinaryStream &, BinaryStream const &);
 BinaryPacket &operator>>(BinaryPacket &, BinaryStream &);
 
 KAI_TYPE_TRAITS(BinaryStream, Type::Number::BinaryStream
-	, Type::Properties::StringStreamInsert | Type::Properties::BinaryStreamExtract | Type::Properties::BinaryStreamInsert);
+	, Properties::StringStreamInsert | Properties::BinaryStreamExtract | Properties::BinaryStreamInsert);
 
 KAI_END
 

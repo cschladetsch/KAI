@@ -354,10 +354,10 @@ Object operator/(Object const &A, Object const &B);
 
 Object Absolute(Object const &A);
 
-KAI_TYPE_TRAITS(Object, Type::Number::Object
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreamInsert 
-	| Type::Properties::BinaryStreamExtract);
+KAI_TYPE_TRAITS(Object, Number::Object
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreamInsert 
+	| Properties::BinaryStreamExtract);
 
 /// hash function which can be overridden for any type.
 /// default to using the type number.
