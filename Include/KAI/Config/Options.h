@@ -9,7 +9,7 @@
 #error please define KAI_NAMESPACE_NAME
 #endif
 
-#define KAI_UNIT_TESTS
+//#define KAI_UNIT_TESTS
 
 #define KAI_USE_EXCEPTIONS
 
@@ -19,6 +19,9 @@
 #		define KAI_DEBUG
 #	endif
 #endif
+
+// TODO TESTS
+#undef KAI_DEBUG
 
 #ifdef KAI_DEBUG
 #	ifndef KAI_DEBUG_TRACE

@@ -37,7 +37,7 @@ public:
 
 KAI_END
 
-#include KAI_TEST(X)
+//#include KAI_TEST(X)
 
 #endif // KAI_TREE_H
 
