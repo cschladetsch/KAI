@@ -1,5 +1,3 @@
-
-
 #ifdef KAI_HAVE_PRAGMA_ONCE
 #	pragma once
 #endif
@@ -43,14 +41,14 @@ KAI_TEST_END
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &, const Test::XmlOutput &);
+StringStream &operator<<(StringStream &, const Tests::XmlOutput &);
 
-KAI_TYPE_TRAITS_DERIVED(::KAI::Test::XmlOutput, 
-	Number::TestOutputXml, 
-	Properties::StringStreamInsert, 
-	IOutput);
+//KAI_TYPE_TRAITS_DERIVED(Test::XmlOutput, 
+//	Number::TestOutputXml, 
+//	Properties::StringStreamInsert, 
+//	IOutput);
 
-//KAI_TYPE_TRAITS(Test::XmlOutput, Type::Number::TestOutputXml, Type::Properties::StringStreamInsert)
+//KAI_TYPE_TRAITS(Tests::XmlOutput, Number::TestOutputXml, Properties::StringStreamInsert);
 
 KAI_END
 

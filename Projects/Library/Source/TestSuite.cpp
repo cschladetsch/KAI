@@ -71,7 +71,7 @@ KAI_TEST_END
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &S, const Test::Summary &C)
+StringStream &operator<<(StringStream &S, const Tests::Summary &C)
 {
 	S << "Module " << C.module_name << ": " 
 		<< C.num_passed << " passed, " 
@@ -81,7 +81,7 @@ StringStream &operator<<(StringStream &S, const Test::Summary &C)
 	return S;
 }
 
-StringStream &operator<<(StringStream &S, const Test::XmlOutput &Q)
+StringStream &operator<<(StringStream &S, const Tests::XmlOutput &Q)
 {
 	return S << Q.xml.ToString();
 }

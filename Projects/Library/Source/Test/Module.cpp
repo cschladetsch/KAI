@@ -37,10 +37,11 @@ Object Module::Run(bool verbose)
 
 Object Module::Run(Object output)
 {
-	Object base = UpCast(output);
-	IOutput *out = Deref<IOutput *>(base);
-	Run(out);
-	Object summary = output.New<Summary>(out->GetSummary());
+	// TEST_FIX
+	//Object base = UpCast(output);
+	//IOutput *out = Deref<IOutput *>(base);
+	//Run(out);
+	Object summary;// = output.New<Summary>(out->GetSummary());
 	return summary;
 }
 
@@ -78,17 +79,19 @@ void Module::Register(Registry &R, const char *name)
 {
 	Object (Module::*Run)(Object) = &Module::Run;	// used to disambiguate the overloaded method name
 	Object (Module::*RunAll)(bool) = &Module::Run;	// used to disambiguate the overloaded method name
-	ClassBuilder<Module>(R, name)
-		.Methods
-		("Run", Run)
-		("RunAll", RunAll)
-		;
+	// TODO TESTS
+	//ClassBuilder<Module>(R, name)
+		//.Methods
+	//	("Run", Run)
+	///("RunAll", RunAll)
+	//	;
 }
 
 void Summary::Register(Registry &R)
 {
-	ClassBuilder<Summary>(R, "Summary")
-		;
+	// TODO TESTS
+	//ClassBuilder<Summary>(R, "Summary")
+	//	;
 }
 
 KAI_TEST_END

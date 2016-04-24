@@ -19,14 +19,15 @@ void String::Register(Registry &R)
 
 void StringStream::Register(Registry &registry)
 {
-	ClassBuilder<StringStream>(registry, "StringStream")
-		.Methods
-		("Size", &StringStream::Size)
-		("Empty", &StringStream::Empty)
-		("ToString", &StringStream::ToString)
-		("Clear", &StringStream::Clear)
-		// TODO ("Append", &StringStream::Append)
-		;
+	// TODO TESTS
+	//ClassBuilder<StringStream>(registry, "StringStream")
+	//	.Methods
+	//	("Size", &StringStream::Size)
+	//	("Empty", &StringStream::Empty)
+	//	("ToString", &StringStream::ToString)
+	//	("Clear", &StringStream::Clear)
+	//	// TODO ("Append", &StringStream::Append)
+	//	;
 }
 
 bool StringStream::CanRead(int N) const

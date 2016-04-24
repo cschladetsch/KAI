@@ -22,11 +22,8 @@
 #		include "KAI/Pathname.h"
 #		include "KAI/XmlScopedElement.h"
 
-#		define KAI_TEST_BEGIN KAI_BEGIN namespace Test {
+#		define KAI_TEST_BEGIN KAI_BEGIN namespace Tests {
 #		define KAI_TEST_END KAI_END }
-
-#		define KAI_TESTS_BEGIN KAI_BEGIN namespace Tests {
-#		define KAI_TESTS_END KAI_END }
 
 KAI_TEST_BEGIN
 

@@ -67,9 +67,9 @@ void StorageBase::Set(const Label &name, Object const &child)
 	// update the child object
 	if (!child)
 	{
-		Dictionary::iterator child = dictionary.find(name);
-		if (child != dictionary.end())
-			dictionary.erase(child);
+		Dictionary::iterator ch = dictionary.find(name);
+		if (ch != dictionary.end())
+			dictionary.erase(ch);
 		return;
 	}
 

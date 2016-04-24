@@ -129,7 +129,8 @@ void Registry::DestroyObject(Handle handle, bool force)
 #ifdef KAI_DEBUG
 			if (IsWatching(handle))
 			{
-				KAI_TRACE() << handle << ": doesn't exist, not deleted";
+				// TODO TRACE
+				//KAI_TRACE() << handle << ": doesn't exist, not deleted";
 			}
 #endif
 			return;
