@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_EXECUTOR_H
-#	define KAI_EXECUTOR_H
+#pragma once
 
 KAI_BEGIN
 
@@ -104,7 +98,3 @@ BinaryStream &operator<<(BinaryStream &, Executor const &);
 BinaryPacket &operator>>(BinaryPacket &, Executor &);
 
 KAI_END
-
-#endif // KAI_EXECUTOR_H
-
-//EOF

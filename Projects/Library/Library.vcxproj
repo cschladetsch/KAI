@@ -446,6 +446,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Include\KAI\Properties.cpp" />
     <ClCompile Include="Source\Bin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">Use</PrecompiledHeader>
@@ -1395,6 +1396,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
+    <None Include="ClassDiagram.cd" />
     <None Include="Source\Array.inl" />
     <None Include="Source\BuiltinTypes\Label.inl" />
     <None Include="Source\List.inl" />
@@ -1496,8 +1498,10 @@
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h" />
     <ClInclude Include="..\..\Include\KAI\Pointer.h" />
     <ClInclude Include="..\..\Include\KAI\KAI.h" />
+    <ClInclude Include="..\..\Include\KAI\Prelude.h" />
     <ClInclude Include="..\..\Include\KAI\Preprocessor.h" />
     <ClInclude Include="..\..\Include\KAI\ProcessBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Properties.h" />
     <ClInclude Include="..\..\Include\KAI\PropertyBase.h" />
     <ClInclude Include="..\..\Include\KAI\Reflected.h" />
     <ClInclude Include="..\..\Include\KAI\Registry.h" />
@@ -1558,8 +1562,11 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Translator.h" />
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\ContainerOperations.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Number.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Traits.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\TraitMacros.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\TypeAll.h" />
     <ClInclude Include="..\..\Include\KAI\Utility.h" />
     <ClInclude Include="..\..\Include\KAI\Value.h" />
     <ClInclude Include="..\..\Include\KAI\XmlScopedElement.h" />

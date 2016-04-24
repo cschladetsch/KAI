@@ -96,6 +96,9 @@
     <Filter Include="Header Files\Translator">
       <UniqueIdentifier>{0c274238-e2e7-40c8-99a7-ab1af241ddbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\NewFilter1">
+      <UniqueIdentifier>{7cf851af-2f3a-49dc-a64a-e62fe8be9a3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
@@ -194,6 +197,9 @@
     <ClCompile Include="Source\Translator\Parser.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Include\KAI\Properties.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\BuiltinTypes\Label.inl">
@@ -214,6 +220,7 @@
     <None Include="Source\Array.inl">
       <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Accessor.h">
@@ -459,9 +466,6 @@
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -695,6 +699,24 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
       <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Properties.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\TraitMacros.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\ContainerOperations.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\TypeAll.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Prelude.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

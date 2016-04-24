@@ -9,7 +9,7 @@ StringStream &operator>>(StringStream &, float &);
 BinaryStream &operator<<(BinaryStream &, float);
 BinaryPacket &operator>>(BinaryPacket &, float &);
 
-KAI_TYPE_TRAITS(float, Type::Number::Single , Properties::Arithmetic 
+KAI_TYPE_TRAITS(float, umber::Single , Properties::Arithmetic 
 	| Properties::Streaming | Properties::Assign
 	| Properties::Relational | Properties::Absolute );
 

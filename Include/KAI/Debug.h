@@ -4,10 +4,11 @@
 #	pragma once
 #endif
 
-#ifndef KAI_DEBUG_H
-#	define KAI_DEBUG_H
+//#ifndef KAI_DEBUG_H
+//#	define KAI_DEBUG_H
+#if 0
 
-#include <KAI/StringStream.h>
+//#include <KAI/StringStream.h>
 
 KAI_BEGIN
 
