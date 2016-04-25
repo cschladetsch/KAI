@@ -100,4 +100,18 @@ namespace Type
 	};
 }
 
+struct HashType
+{
+	enum { bucket_size = 4, min_buckets = 16 };
+	std::size_t operator()(const Type::Number::Value &A) const 
+	{ 
+		return static_cast<std::size_t>(std::underlying_type<Type::Number::Value>::type(A)); 
+	}
+
+	bool operator()(const Type::Number::Value &A, const Type::Number::Value &B) const
+	{
+		return A == B;
+	}
+};
+
 KAI_END

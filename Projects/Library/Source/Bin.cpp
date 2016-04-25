@@ -189,6 +189,7 @@ namespace Bin
 		exit(N);
 	}
 
+#ifdef KAI_UNIT_TESTS
 	Object RunOne(Object object)
 	{
 		Test::Module module;
@@ -293,6 +294,7 @@ namespace Bin
 		AddFunction(Q, RunOne, "test", "run current test");
 #endif
 	}
+#endif
 }
 
 KAI_END

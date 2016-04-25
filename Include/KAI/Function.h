@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_FUNCTION_H
-#	define KAI_FUNCTION_H
+#pragma once
 
 KAI_BEGIN
 
@@ -22,7 +16,7 @@ namespace function_detail
 			AddArgument(Type::Traits<A2>::Number);
 			AddArgument(Type::Traits<A3>::Number);
 		}
-		void AddArgument(Type::NumberEnum N)
+		void AddArgument(Type::Number N)
 		{
 			if (N != Type::Traits<meta::Null>::Number)
 				arguments.push_back(N);
@@ -291,7 +285,7 @@ FunctionBase *MakeFunction(R (*func)(A0, A1, A2,A3), const Label &L = KAI_UNNAME
 }
 
 template <class Fun>
-Object NewFunction(Object const &Q, Fun fun, const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
+Object NewFunction2(Object const &Q, Fun fun, const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
 {
 	return Q.New<BasePointer<FunctionBase> >(MakeFunction(fun, L, D));
 }
@@ -303,8 +297,3 @@ void AddFunction(Object const &Q, Function F, const char *N = KAI_UNNAMED_FUNCTI
 }
 
 KAI_END
-
-#endif // KAI_FUNCTION_H
-
-//EOF
-

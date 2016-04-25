@@ -212,81 +212,6 @@
     <ClCompile Include="Source\Test\XmlOutput.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tests\TestDerivation.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestDotGraph.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestEvents.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestExample.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestExecutor.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestFunction.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestMap.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestMethod.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestObject.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestObjectIndexing.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestPathname.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestProperties.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestRegistry.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestSignedContinuation.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestsPrecompiled.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestStringStream.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestTemplate.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestTest.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestTree.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestTriColor.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\MakeTestModule.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestArray.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestBinaryStream.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestClosure.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tests\TestCompiler.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\BuiltinTypes\Label.inl">
@@ -565,9 +490,6 @@
     <ClInclude Include="..\..\Include\KAI\Meta\Base.h">
       <Filter>Header Files\Meta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Base.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
       <Filter>Header Files\Translator</Filter>
     </ClInclude>
@@ -670,17 +592,11 @@
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Array.h">
       <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Bool.h">
       <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
       <Filter>Header Files\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Component.h">
-      <Filter>Header Files\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
       <Filter>Header Files\BuiltinTypes</Filter>
@@ -693,9 +609,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
       <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h">
-      <Filter>Header Files\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
       <Filter>Header Files\BuiltinTypes</Filter>
@@ -754,9 +667,6 @@
     <ClInclude Include="..\..\Include\KAI\Memory\Memory.h">
       <Filter>Header Files\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Module.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Type\Number.h">
       <Filter>Header Files\Type</Filter>
     </ClInclude>
@@ -765,18 +675,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
       <Filter>Header Files\Platform\PC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Suite.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\Summary.h">
-      <Filter>Header Files\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tests\Traits.h">
       <Filter>Header Files\Tests</Filter>
@@ -817,8 +715,8 @@
     <ClInclude Include="..\..\Include\KAI\KAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Test\KAITest.h">
-      <Filter>Header Files\Test</Filter>
+    <ClInclude Include="..\..\Include\KAI\Detail\HashFunctons.h">
+      <Filter>Header Files\Detail</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

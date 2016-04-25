@@ -741,7 +741,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
@@ -1195,31 +1195,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="Source\Tests\MakeTestModule.cpp" />
-    <ClCompile Include="Source\Tests\TestArray.cpp" />
-    <ClCompile Include="Source\Tests\TestBinaryStream.cpp" />
-    <ClCompile Include="Source\Tests\TestClosure.cpp" />
-    <ClCompile Include="Source\Tests\TestCompiler.cpp" />
-    <ClCompile Include="Source\Tests\TestDerivation.cpp" />
-    <ClCompile Include="Source\Tests\TestDotGraph.cpp" />
-    <ClCompile Include="Source\Tests\TestEvents.cpp" />
-    <ClCompile Include="Source\Tests\TestExample.cpp" />
-    <ClCompile Include="Source\Tests\TestExecutor.cpp" />
-    <ClCompile Include="Source\Tests\TestFunction.cpp" />
-    <ClCompile Include="Source\Tests\TestMap.cpp" />
-    <ClCompile Include="Source\Tests\TestMethod.cpp" />
-    <ClCompile Include="Source\Tests\TestObject.cpp" />
-    <ClCompile Include="Source\Tests\TestObjectIndexing.cpp" />
-    <ClCompile Include="Source\Tests\TestPathname.cpp" />
-    <ClCompile Include="Source\Tests\TestProperties.cpp" />
-    <ClCompile Include="Source\Tests\TestRegistry.cpp" />
-    <ClCompile Include="Source\Tests\TestSignedContinuation.cpp" />
-    <ClCompile Include="Source\Tests\TestsPrecompiled.cpp" />
-    <ClCompile Include="Source\Tests\TestStringStream.cpp" />
-    <ClCompile Include="Source\Tests\TestTemplate.cpp" />
-    <ClCompile Include="Source\Tests\TestTest.cpp" />
-    <ClCompile Include="Source\Tests\TestTree.cpp" />
-    <ClCompile Include="Source\Tests\TestTriColor.cpp" />
     <ClCompile Include="Source\Test\BasicOutput.cpp" />
     <ClCompile Include="Source\Test\Module.cpp" />
     <ClCompile Include="Source\Test\XmlOutput.cpp" />
@@ -1483,6 +1458,7 @@
     <ClInclude Include="..\..\Include\KAI\Continuation.h" />
     <ClInclude Include="..\..\Include\KAI\Debug.h" />
     <ClInclude Include="..\..\Include\KAI\Detail\Event.h" />
+    <ClInclude Include="..\..\Include\KAI\Detail\HashFunctons.h" />
     <ClInclude Include="..\..\Include\KAI\Detail\SystemEvent.h" />
     <ClInclude Include="..\..\Include\KAI\DotGraph.h" />
     <ClInclude Include="..\..\Include\KAI\Event.h" />
@@ -1567,17 +1543,7 @@
     <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\Traits.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\Base.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\Component.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\IOutput.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\KAITest.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Macros.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\Module.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\Suite.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\SuiteBase.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\Summary.h" />
-    <ClInclude Include="..\..\Include\KAI\Test\XmlOutput.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Thread.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Base.h" />
