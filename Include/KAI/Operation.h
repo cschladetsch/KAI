@@ -1,14 +1,8 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_OPERATION_H
-#	define KAI_OPERATION_H
+#pragma once
 
 KAI_BEGIN
 
-/// An Operation represents an action to be taken by and Executor
+// An Operation represents an action to be taken by and Executor
 struct Operation
 {
 	enum Type
@@ -129,13 +123,10 @@ StringStream &operator>>(StringStream &, Operation &);
 BinaryStream &operator<<(BinaryStream &, Operation const &);
 BinaryPacket &operator>>(BinaryPacket &, Operation &);
 
-KAI_TYPE_TRAITS(Operation, Number::Operation, Properties::Streaming);
+KAI_TYPE_TRAITS(Operation, Number::Operation
+	, Properties::Streaming);
 
 KAI_END
 
-#include KAI_TEST(Operation)
-
-#endif // KAI_OPERATION_H
-
-//EOF
-
+// TODO TESTS
+//#include KAI_TEST(Operation)

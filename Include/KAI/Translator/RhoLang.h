@@ -8,8 +8,11 @@
 
 KAI_BEGIN
 
-struct RhoLang : Process, boost::noncopyable
+struct RhoLang : Process//, boost::noncopyable
 {
+	RhoLang(const RhoLang&) = delete;
+	RhoLang(Registry &);
+
 	std::shared_ptr<Lexer> lex;
 	std::shared_ptr<Parser> parse;
 	std::shared_ptr<Translator> trans;
@@ -17,7 +20,6 @@ struct RhoLang : Process, boost::noncopyable
 	Registry &reg;
 	Pointer<Executor> exec;
 
-	RhoLang(Registry &);
 
 	void Print();
 

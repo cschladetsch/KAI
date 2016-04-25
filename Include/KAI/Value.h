@@ -1,11 +1,4 @@
-// (C) christian.schladetsch@gmail.com
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_VALUE_H
-#	define KAI_VALUE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -119,11 +112,11 @@ public:
 		return Exists() && GetObject().IsMutable();
 	}
 
-	Object &GetObject()
+	Object &GetObject() const
 	{
 		return *storage;
 	}
-	const Object &GetObject() const
+	const Object &GetConstObject() const
 	{
 		return *storage;
 	}
@@ -201,8 +194,3 @@ struct Value<const T> : ConstValue<T>
 };
 
 KAI_END
-
-#endif // KAI_VALUE_H
-
-//EOF
-

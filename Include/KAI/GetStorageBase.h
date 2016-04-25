@@ -1,11 +1,4 @@
-// (C) 2014 christian.schladetsch@gmail.com
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_GET_OBJECT_BASE_H
-#	define KAI_GET_OBJECT_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -14,7 +7,7 @@ __forceinline
 #endif
 StorageBase &GetStorageBase(Object const &Q);
 
-Type::NumberEnum GetTypeNumber(Object const &Q);
+int GetTypeNumber(Object const &Q);
 
 template <class T>
 Storage<T> &GetStorage(Pointer<T> const &P)
@@ -105,5 +98,3 @@ Storage<T> *Clone(StorageBase const &Q)
 }
 
 KAI_END
-
-#endif // KAI_GET_OBJECT_BASE_H

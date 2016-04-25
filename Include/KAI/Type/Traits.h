@@ -11,6 +11,8 @@ struct Traits
 	typedef typename NoTraitsDefined<T>::ForType Type;
 };
 
+typedef int TypeNumber;
+
 template <>
 struct Traits<meta::Null>
 {

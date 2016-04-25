@@ -1,18 +1,13 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_POINTER_H
-#	define KAI_POINTER_H
+#pragma once
 
 KAI_BEGIN
 
 /// Common base for ConstPointer<T> and Pointer<T>
 /// To dereference a Pointer<T> requires a hash-table lookup.
 template <class T>
-struct PointerBase
+class PointerBase
 {
+public:
 	typedef Type::Traits<T> Traits;
 	typedef typename Traits::Reference Reference;
 	typedef typename Traits::ConstReference ConstReference;
@@ -300,7 +295,3 @@ namespace Type
 }
 
 KAI_END
-
-#endif // KAI_POINTER_H 
-
-//EOF

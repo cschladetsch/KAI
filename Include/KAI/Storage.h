@@ -3,33 +3,33 @@
 KAI_BEGIN
 
 template <class T>
-class ConstStorage : StorageBase//, IConstStorage<T>
+class ConstStorage : public StorageBase//, IConstStorage<T>
 {
-	typedef typename Type::Traits<T> Traits;
-	typedef typename Traits::Stored Stored;
+	typedef typename Type::Traits<T> Tr;
+	typedef typename Tr::Store Store;
 
 protected:
-	Stored stored;
+	Store stored;
 
 public:
 	ConstStorage(const ObjectConstructParams &P) : StorageBase(P) { SetClean(); }
 
-	typename Type::Traits<T>::ConstReference GetConstReference() const 
+	typename Tr::ConstReference GetConstReference() const 
 	{ 
 		return stored; 
 	}
-	typename Type::Traits<T>::ConstReference operator*() const 
+	typename Tr::ConstReference operator*() const 
 	{ 
 		return stored; 
 	}
-	typename Type::Traits<T>::ConstPointer operator->() const 
+	typename Tr::ConstPointer operator->() const 
 	{ 
 		return &stored; 
 	}
 };
 
 template <class T>
-struct ConstStorage<Container<T> > : StorageBase//, IConstStorage<T>
+class ConstStorage<Container<T> > : public StorageBase//, IConstStorage<T>
 {
 	typedef typename Type::Traits<T> Tr;
 	typedef typename Tr::Store Stored;
@@ -38,7 +38,10 @@ protected:
 	Stored stored;
 
 public:
-	ConstStorage(const ObjectConstructParams &P) : StorageBase(P), stored(5/*P.registry->GetAllocator().GetHeap()*/) { SetClean(); }
+	ConstStorage(const ObjectConstructParams &P) : StorageBase(P), stored(5/*P.registry->GetAllocator().GetHeap()*/) 
+	{ 
+		SetClean(); 
+	}
 
 	typename Tr::ConstReference GetConstReference() const { return stored; }
 	typename Tr::ConstReference operator*() const { return stored; }
@@ -46,12 +49,12 @@ public:
 };
 
 template <class T>
-class Storage : ConstStorage<T>//, IStorage<T>
+class Storage : public ConstStorage<T>//, IStorage<T>
 {
 public:
 	Storage(const ObjectConstructParams &P) : ConstStorage<T>(P) { }
 
-	typedef typename ConstStorage<T>::Traits Tr;
+	typedef typename Type::Traits<T> Tr;
 
 	typename Tr::Reference GetReference() 
 	{ 

@@ -1,12 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_SET_H
-#	define KAI_BUILTIN_TYPES_SET_H
-
-#	include "boost/unordered_set.hpp"
+#pragma once
 
 KAI_BEGIN
 
@@ -72,8 +64,3 @@ BinaryStream &operator<<(BinaryStream &, ObjectSet const &);
 BinaryStream &operator>>(BinaryStream &, ObjectSet &);
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_SET_H
-
-//EOF
-
