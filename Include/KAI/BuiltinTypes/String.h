@@ -1,65 +1,77 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
+#pragma once
 
-#ifndef KAI_STRING_H
-#	define KAI_STRING_H
+#include <string>
 
 KAI_BEGIN
 
-struct String
+class String
 {
+public:
 	typedef char Char;
-	typedef std::basic_string<Char> Storage;
-	//typedef nstd::string Storage;
-	typedef Storage::const_iterator const_iterator;
-	typedef Storage::iterator iterator;
+	//typedef typename std::basic_string<Char> Storage;
+	typedef std::string Storage;
+	typedef typename Storage::const_iterator const_iterator;
+	typedef typename Storage::iterator iterator;
 
 private:
-	Storage string;
+	Storage _myString;
 
 public:
 	String() { }
-	template <class II>
-	String(II A, II B) { string.assign(A,B); }// : string(A, B) { }
-	String(const Char *S) { if (S != 0) string = S; }
-	String(const Storage &S) : string(S) { }
-	String(const String &X) : string(X.string) { }
-	String(int N, Char C) : string(N, C) { }
 
-	String &operator+=(const String &A)
+	//  TODO STRING WTF
+	//template <class II>
+	//String(II A, II B) { _string.assign(A,B); }
+
+	String(const Char *S) { if (S != 0) _myString = S; }
+
+	String(const String &X) { _myString = X._myString; }
+
+	String(int N, Char C) { _myString = std::move(std::string(N, C)); }
+
+	int foo()
 	{
-		string += A.string;
-		return *this;
+		return 0;
 	}
 
-	String &operator+=(Char A)
-	{
-		string += A;
-		return *this;
-	}
+	//String &operator+=(const String &A)
+	//{
+	//	_string += A._string;
+	//	return *this;
+	//}
 
-	friend String operator+(const String &A, const String &B) { return A.string + B.string; }
-	friend bool operator<(const String &A, const String &B);
-	friend bool operator==(const String &A, const String &B);
-	friend bool operator>(const String &A, const String &B);
+	//friend String &operator+=(Char A)
+	//{
+	//	_string += A;
+	//	return *this;
+	//}
 
-	const_iterator begin() const { return string.begin(); }
-	const_iterator end() const { return string.end(); }
-	iterator begin() { return string.begin(); }
-	iterator end() { return string.end(); }
-	iterator erase(iterator A, iterator B) { return string.erase(A,B); }
-	template <class II0, class II1>
-	void insert(II0 where, II1 begin, II1 end) { string.insert(where, begin, end); }
-	int size() const { return (int)string.size(); }
-	bool empty() const { return string.empty(); }
-	nstd::string StdString() const { return string; }
-	const Storage &GetStorage() const { return string; }
-	void clear() { string.clear(); }
+	//String operator+(const String &A) { return A._string + _string; }
+
+	const_iterator begin() const { return _myString.begin(); }
+	const_iterator end() const { return _myString.end(); }
+
+	iterator begin() { return _myString.begin(); }
+	iterator end() { return _myString.end(); }
+
+	// TODO: where did std::erase go?
+	//iterator erase(iterator A, iterator B) { return _string.erase(A,B); }
+
+	// TODO WTF
+	//template <class II0, class II1>
+	//void insert(II0 where, II1 begin, II1 end) { _myString.insert(where, begin, end); }
+	
+	int size() const { return (int)_myString.size(); }
+
+	bool empty() const { return _myString.empty(); }
+
+	std::string StdString() const { return _myString; }
+	const Storage &GetStorage() const { return _myString; }
+	void clear() { _myString.clear(); }
 	int Size() const { return size(); }
-	bool Empty() const { return empty() || string[0] == 0; }
+	bool Empty() const { return empty() || _myString[0] == 0; }
 	const_iterator Begin() const { return begin(); }
-	void Clear() { string.clear(); }
+	void Clear() { _myString.clear(); }
 
 	String tolower() const { return LowerCase(); }
 	String toupper() { return UpperCase(); }
@@ -72,9 +84,9 @@ public:
 	bool StartsWith(String const &) const;
 	bool EndsWith(String const &) const;
 
-	Char &operator[](int N) { return string.at(N); }
-	const Char &operator[](int N) const { return string.at(N); }
-	const Char *c_str() const { return string.c_str(); }
+	Char &operator[](int N) { return _myString.at(N); }
+	const Char &operator[](int N) const { return _myString.at(N); }
+	const Char *c_str() const { return _myString.c_str(); }
 
 	void ReplaceFirst(String const &what, String const &with);
 	void ReplaceLast(String const &what, String const &with);
@@ -83,14 +95,18 @@ public:
 	static void Register(Registry &);
 };
 
+bool operator<(const String &A, const String &B);
+bool operator==(const String &A, const String &B);
+bool operator>(const String &A, const String &B);
+
 StringStream &operator<<(StringStream &, const String &);
 StringStream &operator>>(StringStream &, String &);
 BinaryStream &operator<<(BinaryStream &, const String &);
 BinaryPacket &operator>>(BinaryPacket &, String &);
 
-StringStream &operator<<(StringStream &, const char *);
+//StringStream &operator<<(StringStream &, const char *);
 
-inline StringStream &operator<<(StringStream &K, nstd::string const &S) { return K << S.c_str(); }
+//StringStream &operator<<(StringStream &K, std::string const &S) { return K << S.c_str(); }
 
 KAI_END
 
@@ -151,7 +167,3 @@ namespace boost
 	}
 	#undef get16bits
 }
-
-#endif // KAI_STRING_H
-
-//EOF

@@ -1,11 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_OBJECT_CONSTRUCT_PARAMS_H
-#	define KAI_OBJECT_CONSTRUCT_PARAMS_H
+#pragma once
 
 KAI_BEGIN
 
@@ -24,8 +17,3 @@ struct ObjectConstructParams
 };
 
 KAI_END
-
-#endif // KAI_OBJECT_CONSTRUCT_PARAMS_H
-
-//EOF
-

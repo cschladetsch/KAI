@@ -29,12 +29,12 @@ struct HashHandle
 struct HashType
 {
 	enum { bucket_size = 4, min_buckets = 16 };
-	std::size_t operator()(const Type::Number &A) const 
+	std::size_t operator()(const Type::NumberEnum &A) const 
 	{ 
 		return static_cast<std::size_t>(std::underlying_type<Type::Number>::type(A)); 
 	}
 
-	bool operator()(const Type::Number &A, const Type::Number &B) const { return A < B; }
+	bool operator()(const Type::NumberEnum &A, const Type::NumberEnu &B) const { return A < B; }
 };
 
 /// Use hash-tables for class and instance lookups
@@ -111,7 +111,7 @@ public:
 		AddClass(Type::Traits<T>::Number, klass);
 	}
 
-	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
+	Pointer<ClassBase const *> AddClass(Type::NumberEnum, ClassBase const *);
 
 	/// create a new instance of a given known type
 	template <class T>
@@ -186,7 +186,7 @@ public:
 		return GetClass(Type::Traits<T>::Number);
 	}
 
-	const ClassBase *GetClass(Type::Number);
+	const ClassBase *GetClass(Type::NumberEnum);
 	const ClassBase *GetClass(const Label &);
 #ifndef _DEBUG
 	__forceinline
@@ -215,7 +215,7 @@ public:
 	bool OnDeathRow(Handle) const;
 	void AddClass(const ClassBase *K);
 
-	Object NewFromTypeNumber(Type::Number type_number);
+	Object NewFromTypeNumber(Type::NumberEnum type_number);
 	Object NewFromClassName(const char *classname_str);
 	Object NewFromClass(const ClassBase *klass);
 

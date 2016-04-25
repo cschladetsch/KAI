@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CONSTNESS_H
-#	define KAI_CONSTNESS_H
+#pragma once
 
 KAI_BEGIN
 
@@ -21,7 +15,3 @@ struct Constness
 };
 
 KAI_END
-
-#endif // KAI_CONSTNESS_H
-
-//EOF

@@ -1,16 +1,9 @@
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_HANDLE_H
-#	define KAI_HANDLE_H
-
 KAI_BEGIN
 
-struct Handle
+class Handle
 {
+public:
 	typedef int Value;
 
 private:
@@ -29,10 +22,6 @@ public:
 	static void Register(Registry &);
 };
 
-StringStream &operator<<(StringStream &, Handle);
+ StringStream &operator<<(StringStream &, Handle);
 
 KAI_END
-
-#endif // KAI_HANDLE_H
-
-//EOF

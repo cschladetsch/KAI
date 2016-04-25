@@ -1,17 +1,13 @@
 #pragma once
 
-#include "KAI/Config/Base.h"
-#include <string>
-#include <boost/static_assert.hpp>
-#include "KAI/Boost.h"
-#include "KAI/NonCopyable.h"
-#include "KAI/Meta/Base.h"
-#include "KAI/FwdDeclarations.h"
-#include "KAI/Preprocessor.h"
-
-#undef GetMessage
-#undef SendMessage
-#undef GetObject
+//#include "KAI/Config/Base.h"
+//#include <string>
+//#include <boost/static_assert.hpp>
+//#include "KAI/Boost.h"
+//#include "KAI/NonCopyable.h"
+//#include "KAI/Meta/Base.h"
+//#include "KAI/FwdDeclarations.h"
+//#include "KAI/Preprocessor.h"
 
 KAI_BEGIN
 
@@ -31,11 +27,10 @@ struct ObjectColor
 	};
 };
 
-StringStream& operator<<(StringStream&, ObjectColor::Color);
-
 /// Base for all fully Reflected<T> types
-struct ReflectedBase
+class ReflectedBase
 {
+public:
 	StorageBase *Self;
 
 	virtual ~ReflectedBase() { }
@@ -55,4 +50,4 @@ Storage<T> *NewStorage(Registry &);
 
 KAI_END
 
-#include "KAI/Type/TypeAll.h"
+//#include "KAI/Type/TypeAll.h"

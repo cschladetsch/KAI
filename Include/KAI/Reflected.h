@@ -1,11 +1,4 @@
-// (C) 2014 christian.schladetsch@gmal.com
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_REFLECTED_H
-	#define KAI_REFLECTED_H
+#pragma once
 
 KAI_BEGIN
 
@@ -14,8 +7,9 @@ KAI_BEGIN
 ///
 /// TODO: there doesn't seem to be any point to passing through the reflected type
 //template <class T>
-struct Reflected : ReflectedBase
+class Reflected : ReflectedBase
 {
+public:
 	Registry &Reg() const;
 
 	template <class U>
@@ -77,7 +71,3 @@ struct Reflected : ReflectedBase
 };
 
 KAI_END
-
-#endif // KAI_REFLECTED_H
-
-//EOF
