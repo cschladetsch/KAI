@@ -20,7 +20,8 @@ struct FunctionBase : CallableBase<FunctionBase>
 StringStream &operator<<(StringStream &, FunctionBase const &);
 StringStream &operator<<(StringStream &, const BasePointer<FunctionBase> &);
 
-KAI_TYPE_TRAITS(BasePointer<FunctionBase>, NumberEnum::Function, Properties::StringStreamInsert | Properties::Reflected);
+KAI_TYPE_TRAITS(BasePointer<FunctionBase>, Number::Function
+	, Properties::StringStreamInsert | Properties::Reflected);
 
 KAI_END
 

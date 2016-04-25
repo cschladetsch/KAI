@@ -10,11 +10,11 @@
 #include "KAI/Type/Number.h"
 #include "KAI/Type/Properties.h"
 #include "KAI/Type/Operations.h"
+
 #include "KAI/Type/Traits.h"
 #include "KAI/Type/TraitMacros.h"
 
 #include "KAI/BuiltinTypes/String.h"
-
 #include "KAI/FileLocation.h"
 #include "KAI/Handle.h"
 #include "KAI/Exception/Base.h"
