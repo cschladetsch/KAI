@@ -1,14 +1,9 @@
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_STACK_H
-#	define KAI_BUILTIN_TYPES_STACK_H
+#pragma once
 
 KAI_BEGIN
 
-struct Stack;
+class Stack;
 
 KAI_TYPE_TRAITS(Stack, Number::Stack
 	, Properties::StringStreamInsert 
@@ -20,9 +15,9 @@ KAI_TYPE_TRAITS(Stack, Number::Stack
 	| Properties::Container
 	);
 
-struct Stack : Container<Stack>
+class Stack : Container<Stack>
 {
-	typedef nstd::vector<Object> Objects;
+	typedef std::vector<Object> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;
 
@@ -30,8 +25,6 @@ private:
 	Objects stack;
 	
 public:
-
-
 	friend bool operator==(const Stack &A, const Stack &B) { return A.stack == B.stack; }
 	friend bool operator<(const Stack &A, const Stack &B) { return A.stack < B.stack; }
 
@@ -67,7 +60,3 @@ BinaryPacket &operator>>(BinaryPacket &, Stack &);
 HashValue GetHash(const Stack &);
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_STACK_H
-
-//EOF

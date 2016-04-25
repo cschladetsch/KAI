@@ -2,7 +2,7 @@
 
 KAI_BEGIN
 
-struct Tree;
+class Tree;
 class Executor;
 
 KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected); 
@@ -39,7 +39,7 @@ public:
 	int GetTraceLevel() const;
 
 	void Push(Object const &);
-	void Push(const nstd::pair<Object, Object> &);
+	void Push(const std::pair<Object, Object> &);
 	Object Pop();
 	Object Top() const;
 

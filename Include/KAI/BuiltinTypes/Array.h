@@ -2,7 +2,7 @@
 
 KAI_BEGIN
 
-struct Array;
+class Array;
 
 namespace Type
 {
@@ -35,8 +35,9 @@ KAI_TYPE_TRAITS(Array, Type::Number::Array
 */
 
 /// A vector of Objects
-struct Array : Container<Array>
+class Array : Container<Array>
 {
+public:
 	typedef std::vector<Object> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;

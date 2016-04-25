@@ -1,16 +1,11 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_PATHNAME_H
-#	define KAI_PATHNAME_H
+#pragma once
 
 KAI_BEGIN
 
 /// A Pathname represents a qualified name for an Object
-struct Pathname
+class Pathname
 {
+public:
 	struct Literals
 	{
 		static const String::Char Parent;
@@ -30,7 +25,7 @@ struct Pathname
 		friend bool operator<(const Element &A, const Element &B) { return A.type < B.type || (A.type == B.type && A.name < B.name); }
 		friend bool operator==(const Element &A, const Element &B) { return A.type == B.type && A.name == B.name; }
 	};
-	typedef nstd::list<Element> Elements;
+	typedef std::list<Element> Elements;
 
 private:
 	Elements elements;
@@ -100,9 +95,7 @@ bool Exists(Object const &scope, const Pathname &path);
 
 KAI_END
 
-#include KAI_TEST(Pathname)
+// TODO TESTS
+//#include KAI_TEST(Pathname)
 
-#endif // KAI_PATHNAME_H
-
-//EOF
 

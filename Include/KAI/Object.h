@@ -56,7 +56,7 @@ public:
 	void SetGrey() const { SetColor(ObjectColor::Grey); }
 	void SetBlack() const { SetColor(ObjectColor::Black); }
 
-	int GetTypeNumber() const;
+	Type::Number GetTypeNumber() const;
 	const ClassBase *GetClass() const { return class_base; }
 	Registry *GetRegistry() const { return registry; }
 
@@ -68,7 +68,7 @@ public:
 		if (!Exists())
 			return N == Type::Number::None;
 
-		return GetTypeNumber() == (int)N;
+		return GetTypeNumber() == N;
 	}
 
 	Handle GetParentHandle() const;

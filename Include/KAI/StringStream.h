@@ -55,5 +55,4 @@ KAI_TYPE_TRAITS(
 	Number::StringStream, 
 	Properties::Equiv);
 
-
 KAI_END
