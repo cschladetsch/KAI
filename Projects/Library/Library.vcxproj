@@ -227,7 +227,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>KAI/KAI.h</PrecompiledHeaderFile>
@@ -969,7 +969,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAICommon.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
@@ -1471,6 +1471,7 @@
     <ClInclude Include="..\..\Include\KAI\Handle.h" />
     <ClInclude Include="..\..\Include\KAI\InstanceMap.h" />
     <ClInclude Include="..\..\Include\KAI\IObject.h" />
+    <ClInclude Include="..\..\Include\KAI\KAIRegistry.h" />
     <ClInclude Include="..\..\Include\KAI\Label.h" />
     <ClInclude Include="..\..\Include\KAI\Memory.h" />
     <ClInclude Include="..\..\Include\KAI\Memory\BaseAllocator.h" />
@@ -1498,7 +1499,7 @@
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Mutex.h" />
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h" />
     <ClInclude Include="..\..\Include\KAI\Pointer.h" />
-    <ClInclude Include="..\..\Include\KAI\KAI.h" />
+    <ClInclude Include="..\..\Include\KAI\KAICommon.h" />
     <ClInclude Include="..\..\Include\KAI\Prelude.h" />
     <ClInclude Include="..\..\Include\KAI\Preprocessor.h" />
     <ClInclude Include="..\..\Include\KAI\ProcessBase.h" />

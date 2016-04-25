@@ -8,7 +8,7 @@
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &S, nstd::size_t N);
+StringStream &operator<<(StringStream &S, std::size_t N);
 StringStream &operator<<(StringStream &S, int N);
 StringStream &operator>>(StringStream &S, int &N);
 BinaryStream &operator<<(BinaryStream &S, int N);

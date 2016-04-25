@@ -1,17 +1,10 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CONTINUATION_H
-#	define KAI_CONTINUATION_H
-
-#include "KAI/Reflected.h"
+#pragma once
 
 KAI_BEGIN
 
 class Executor;
 
-struct Continuation : public Reflected//<Continuation>
+class Continuation : public Reflected
 {
 	typedef Pointer</*const*/ Array> Code;
 
@@ -68,8 +61,6 @@ KAI_TYPE_TRAITS(Continuation, Number::Continuation, Properties::Streaming | Prop
 
 KAI_END
 
-#include KAI_TEST(Continuation)
+// TODO TESTS
+//#include KAI_TEST(Continuation)
 
-#endif // KAI_CONTINUATION_H
-
-//EOF

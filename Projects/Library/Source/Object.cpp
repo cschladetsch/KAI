@@ -235,6 +235,7 @@ Object Object::NewFromTypeNumber(Type::Number N) const
 #ifndef _DEBUG
 __forceinline
 #endif
+
 StorageBase &GetStorageBase_(Object const &Q)
 {
 	StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
@@ -247,6 +248,7 @@ StorageBase &GetStorageBase_(Object const &Q)
 #ifndef _DEBUG
 __forceinline
 #endif
+
 StorageBase &GetStorageBase(Object const &Q)
 {
 	if (!Q.Valid())

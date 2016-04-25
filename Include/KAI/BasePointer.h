@@ -17,7 +17,7 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 {
 	typedef T Base;
 	typedef typename Type::Traits<Base> BaseTraits;
-	boost::shared_ptr<Base> base;
+	std::shared_ptr<Base> base;
 
 	BasePointer(Base *P = 0) : base(P) { }
 
@@ -34,8 +34,10 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 	}
 };
 
-KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer, Properties::StringStreamInsert | Properties::Reflected);
+KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer
+	, Properties::StringStreamInsert | Properties::Reflected);
 
 KAI_END
 
-#include KAI_TEST(X)
+// TODO TESTS
+//#include KAI_TEST(X)

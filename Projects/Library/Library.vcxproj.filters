@@ -256,9 +256,6 @@
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Pair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -401,9 +398,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Pointer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\KAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Preprocessor.h">
@@ -726,6 +720,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Type\Deref.h">
       <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\KAICommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\KAIRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

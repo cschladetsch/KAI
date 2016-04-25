@@ -1,15 +1,81 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CLASS_BASE_H
-#	define KAI_CLASS_BASE_H
+#include <unordered_map>
+#include <unordered_set>
 
 KAI_BEGIN
 
 class MethodBase;
-//struct PropertyBase;
+class PropertyBase;
+
+namespace detail
+{
+	#if (defined(__GNUC__) && defined(__i386__)) || defined(__WATCOMC__) \
+	  || defined(_MSC_VER) || defined (__BORLANDC__) || defined (__TURBOC__)
+	#define get16bits(d) (*((const unsigned short *) (d)))
+	#endif
+
+	#if !defined (get16bits)
+	#define get16bits(d) ((((size_t)(((const unsigned char *)(d))[1])) << 8)\
+						   +(size_t)(((const unsigned char *)(d))[0]) )
+	#endif
+
+	struct LabelHash
+	{
+		friend bool operator==(const Label &A, const Label & B)
+		{
+			return A == B;
+		}
+
+		inline std::size_t operator()(KAI_NAMESPACE(Label) const &label) const
+		{
+			const std::string &string = label.GetValue().GetStorage();
+
+			size_t len = string.size();
+			size_t hash = len, tmp;
+			if (len <= 0)
+				return 0;
+			const char *data = reinterpret_cast<const char *>(&*string.begin());
+			size_t rem = len & 3;
+			len >>= 2;
+			// Main loop; 4 bytes each iteration
+			for (; len > 0; len--)
+			{
+				hash += get16bits(data);
+				tmp = (get16bits(data + 2) << 11) ^ hash;
+				hash = (hash << 16) ^ tmp;
+				data += 4;
+				hash += hash >> 11;
+			}
+			// handle end cases
+			switch (rem)
+			{
+			case 3: hash += get16bits(data);
+				hash ^= hash << 16;
+				hash ^= data[sizeof(unsigned short)] << 18;
+				hash += hash >> 11;
+				break;
+			case 2: hash += get16bits(data);
+				hash ^= hash << 11;
+				hash += hash >> 17;
+				break;
+			case 1: hash += *data;
+				hash ^= hash << 10;
+				hash += hash >> 1;
+			}
+
+			// Force "avalanching" of final 127 bits
+			hash ^= hash << 3;
+			hash += hash >> 5;
+			hash ^= hash << 4;
+			hash += hash >> 17;
+			hash ^= hash << 25;
+			hash += hash >> 6;
+			return hash;
+		}
+	};
+	#undef get16bits
+}
 
 /// Base for all Class<T> types. ClassBase defines the type-independent 
 /// interface that all Class<T>s must define
@@ -17,30 +83,30 @@ class ClassBase
 {
 public:
 #ifndef DEBUG
-	typedef boost::unordered_map<Label, MethodBase *> Methods;
-	typedef boost::unordered_map<Label, PropertyBase *> Properties;
+	typedef std::unordered_map<Label, MethodBase *, detail::LabelHash> Methods;
+	typedef std::unordered_map<Label, PropertyBase *, detail::LabelHash> Properties;
 #else
 	typedef std::map<Label, MethodBase *> Methods;
 	typedef std::map<Label, PropertyBase *> Properties;
 #endif
 
 protected:
-	Type::NumberEnum type_number;
+	Type::Number type_number;
 	Properties properties;
 	Methods methods;
 	Label name;
 
 public:
-	ClassBase(Label const &N, Type::NumberEnum T) : name(N), type_number(T) { }
+	ClassBase(Label const &N, Type::Number T) : name(N), type_number(T) { }
 	virtual ~ClassBase();
 
 	/// identification
 	const Label &GetName() const { return name; }
 	const Label &GetLabel() const { return GetName(); }
-	Type::NumberEnum GetTypeNumber() const { return type_number; }
+	Type::Number GetTypeNumber() const { return type_number; }
 
 	/// tri-color marking: set reference objects color
-	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, StorageBaseHandles& handles) const
+	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, std::unordered_set<Handle>& handles) const
 	{
 		if (properties.empty())
 			return;
@@ -57,20 +123,20 @@ public:
 		}
 	}
 
-		template <class T, class U>
-		T *Allocate(Registry *, U const &val) const;
+	template <class T, class U>
+	T *Allocate(Registry *, U const &val) const;
 
-		template <class T>
-		Storage<T> *NewStorage() const;
+	template <class T>
+	Storage<T> *NewStorage() const;
 
-		template <class T>
-		Storage<T> *NewStorage(Registry &) const;
+	template <class T>
+	Storage<T> *NewStorage(Registry &) const;
 
-		Object NewFromTypeNumber(Type::NumberEnum) const;
+	Object NewFromTypeNumber(Type::Number) const;
 
 	virtual void MakeReachableGrey(StorageBase &base) const = 0;
 
-	typedef nstd::list<Object> ObjectList;
+	typedef std::list<Object> ObjectList;
 	
 	// get all objects which are contained by this one
 	virtual void GetContainedObjects(StorageBase &object, ObjectList &contained) const = 0;
@@ -122,8 +188,8 @@ public:
 	virtual void SetMarked2(StorageBase &Q, bool M) const = 0;
 
 	virtual Object UpCast(StorageBase &) const = 0;
-	virtual Object CrossCast(StorageBase &, Type::NumberEnum) const = 0;
-	virtual Object DownCast(StorageBase &, Type::NumberEnum) const = 0;
+	virtual Object CrossCast(StorageBase &, Type::Number) const = 0;
+	virtual Object DownCast(StorageBase &, Type::Number) const = 0;
 
 	virtual HashValue GetHashValue(const StorageBase &) const = 0;
 
@@ -205,6 +271,3 @@ KAI_TYPE_TRAITS_NAMED(const ClassBase *, Type::Number::Class, "Class", Type::Pro
 
 KAI_END
 
-#endif // KAI_CLASS_BASE_H
-
-//EOF
