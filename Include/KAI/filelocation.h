@@ -1,7 +1,4 @@
-
-
-#ifndef KAI_FILE_LOCATION_H
-#define KAI_FILE_LOCATION_H
+#pragma once
 
 KAI_BEGIN
 
@@ -19,7 +16,3 @@ struct FileLocation
 };
 
 KAI_END
-
-#endif // KAI_FILE_LOCATION_H
-
-//EOF

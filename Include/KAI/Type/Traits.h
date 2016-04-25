@@ -72,6 +72,62 @@ struct TraitsBase
 	template <int N3>
 	struct HasProperties { enum { Value = ((int)Props & N3) == N3 }; };
 
+	template <bool>
+	struct ContainerOperations
+	{
+		static void SetMarked(Reference R, bool M)
+		{
+			ForEach(R, sif::SetMarked<T>(M));
+		}
+		static void SetSwitch(Reference R, int S, bool M)
+		{
+			ForEach(R, sif::SetSwitch<T>(S, M));
+		}
+		static void SetColor(Reference R, ObjectColor::Color C)
+		{
+			ForEach(R, KAI_NAMESPACE(ColorSetter<T>(C)));
+		}
+		static void Erase(Reference R, Object const &Q)
+		{
+			R.Erase(Q);
+		}
+		template <class Fun>
+		static Fun ForEachContained(Reference R, Fun F)
+		{
+			return ForEach(R, F);
+		}
+	};
+	template <>
+	struct ContainerOperations<false>
+	{
+		static void SetMarked(Reference, bool) { }
+		static void SetSwitch(Reference, int, bool) { }
+		static void SetColor(Reference, ObjectColor::Color) { }
+		static void Erase(Reference, Object const &) { }
+		template <class Fun>
+		static Fun ForEachContained(Reference, Fun const &F) { return F; }
+	};
+	typedef ContainerOperations<HasProperty<Properties::Container>::Value> ContainerOps;
+
+	//template <class>
+	//struct UpCast
+	//{
+	//	static Storage<Parent *> *Cast(Registry &R, Reference Q)
+	//	{
+	//		Storage<Parent *> *parent = NewStorage<Parent *>(R);
+	//		**parent = &Q;
+	//		return parent;
+	//	}
+	//};
+	//template <>
+	//struct UpCast<None>
+	//{
+	//	static Storage<None> *Cast(Registry &, Reference)
+	//	{
+	//		return 0;
+	//	}
+	//};
+	//typedef UpCast<Parent> UpCaster;
 	struct UnReflectedLifetimeManagement
 	{
 		static void Create(Storage<T> *)
@@ -159,7 +215,9 @@ struct TraitsBase
 	{
 		static void Extract(Stream &, ConstReference)
 		{
-			KAI_THROW_2(NoProperty, Number, Properties::StreamExtract);
+			// TODO EXCEPTION
+			//			KAI_THROW_2(NoProperty, Number, Properties::StreamExtract);
+			throw "No such property";
 		}
 	};
 	typedef StreamInsertOpt<HasProperty<Properties::StringStreamInsert>::Value, ::kai::StringStream> StringStreamInsert;

@@ -55,7 +55,8 @@ struct Class : ClassBase
 	{
 		if (!properties.empty())
 		{
-			foreach (Properties::value_type const &X, properties)
+//			foreach (Properties::value_type const &X, properties)
+			for (auto X : properties)
 			{
 				PropertyBase const &prop = *X.second;
 				if (!prop.IsSystemType())
@@ -75,9 +76,10 @@ struct Class : ClassBase
 	}
 	void CreateProperties(StorageBase &object) const 
 	{
-		foreach (Properties::value_type X, properties)
+		//foreach (Properties::value_type X, properties)
+		for (auto property : properties)
 		{
-			PropertyBase const &prop = *X.second;
+			PropertyBase const &prop = *property.second;
 			if (!prop.IsSystemType())
 				continue;
 			if (!prop.CreateDefaultValue())
@@ -95,7 +97,8 @@ struct Class : ClassBase
 	{
 		Storage<T> *result = ClassBase::NewStorage<T>();
 		Traits::Assign::Perform(result->GetReference(), ConstDeref<T>(parent));
-		foreach (Properties::value_type const &property, properties)
+		//foreach (Properties::value_type const &property, properties)
+		for (auto property : properties)
 		{
 			PropertyBase const &prop = *property.second;
 			// if it is a system-type property, clone it, else just store the value

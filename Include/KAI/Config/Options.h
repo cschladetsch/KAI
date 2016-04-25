@@ -7,7 +7,7 @@
 #error please define KAI_NAMESPACE_NAME
 #endif
 
-#define KAI_UNIT_TESTS
+//#define KAI_UNIT_TESTS
 
 #define KAI_USE_EXCEPTIONS
 

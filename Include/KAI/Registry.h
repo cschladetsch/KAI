@@ -1,68 +1,42 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
+#include <set>
 #include <hash_set>
-
-#ifndef KAI_REGISTRY_H
-#	define KAI_REGISTRY_H
-#	include "KAI/Memory.h"
 
 KAI_BEGIN
 
-#	ifdef KAI_DEBUG
-#		ifndef KAI_DEBUG_REGISTRY
-#			define KAI_DEBUG_REGISTRY
-#		endif
+#ifdef KAI_DEBUG
+#	ifndef KAI_DEBUG_REGISTRY
+#		define KAI_DEBUG_REGISTRY
 #	endif
+#endif
 
-struct Tree;
+class Tree;
 
-struct HashHandle
-{
-	enum { bucket_size = 8, min_buckets = 2048 };
-	nstd::size_t operator()(const Handle &A) const { return A.GetValue(); }
-	bool operator()(const Handle &A, const Handle &B) const { return A.GetValue() < B.GetValue(); }
-};
-
-struct HashType
-{
-	enum { bucket_size = 4, min_buckets = 16 };
-	std::size_t operator()(const Type::NumberEnum &A) const 
-	{ 
-		return static_cast<std::size_t>(std::underlying_type<Type::Number>::type(A)); 
-	}
-
-	bool operator()(const Type::NumberEnum &A, const Type::NumberEnu &B) const { return A < B; }
-};
-
-/// Use hash-tables for class and instance lookups
+// Use hash-tables for class and instance lookups
 //#define KAI_HASH_TABLE_REGISTRY
 #define KAI_BOOST_UNORDERED_REGISTRY
 
-struct Registry
+class Registry
 {
 #ifdef KAI_BOOST_UNORDERED_REGISTRY
-	typedef boost::unordered_map<Handle, StorageBase *> Instances;
+	typedef std::unordered_map<Handle, StorageBase *, HashHandle> Instances;
 #elif defined(KAI_HASH_TABLE_REGISTRY)
 	typedef std::hash_map<Handle, StorageBase *, HashHandle> Instances;
 #else
 	typedef std::map<Handle, StorageBase *> Instances;
 #endif
 	typedef std::vector<const ClassBase *> Classes;
-	typedef std::hash_set<Handle, HashHandle> Handles, Deathrow;
-	typedef boost::unordered_set<Handle> RetainedObjects;
+	typedef std::unordered_set<Handle, HashHandle> Handles, Deathrow;
+	typedef std::unordered_set<Handle, HashHandle> RetainedObjects;
 	typedef std::vector<Handle> VectorHandles;
-	// KAI: we need to delete things with lower handle value first :/
-//	typedef boost::unordered_set<Handle> ColoredSet;
 	typedef std::set<Handle> ColoredSet;
 
-	/// pools of objects indexed by type number
-	typedef std::vector<nstd::vector<StorageBase *> > Pools;
+	// pools of objects indexed by type number
+	typedef std::vector<std::vector<StorageBase *> > Pools;
 
 private:
-	friend struct StorageBase;
+	friend class StorageBase;
 	ColoredSet white;	// condemned set. may be referenced by objects in the white or grey sets
 	ColoredSet grey;	// may or may not have refernces to objects in the white, black or grey sets
 	ColoredSet black;	// has no references to objects in the white set
@@ -111,7 +85,7 @@ public:
 		AddClass(Type::Traits<T>::Number, klass);
 	}
 
-	Pointer<ClassBase const *> AddClass(Type::NumberEnum, ClassBase const *);
+	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
 
 	/// create a new instance of a given known type
 	template <class T>
@@ -186,7 +160,7 @@ public:
 		return GetClass(Type::Traits<T>::Number);
 	}
 
-	const ClassBase *GetClass(Type::NumberEnum);
+	const ClassBase *GetClass(Type::Number);
 	const ClassBase *GetClass(const Label &);
 #ifndef _DEBUG
 	__forceinline
@@ -215,7 +189,7 @@ public:
 	bool OnDeathRow(Handle) const;
 	void AddClass(const ClassBase *K);
 
-	Object NewFromTypeNumber(Type::NumberEnum type_number);
+	Object NewFromTypeNumber(Type::Number type_number);
 	Object NewFromClassName(const char *classname_str);
 	Object NewFromClass(const ClassBase *klass);
 
@@ -238,7 +212,7 @@ public:
 		KAI_NOT_IMPLEMENTED();
 	}
 
-	typedef nstd::list<Object> Roots;
+	typedef std::list<Object> Roots;
 	Roots roots;
 
 	void AddRoot(Object const &root);
@@ -324,7 +298,3 @@ Storage<T> *NewStorage(Registry &R)
 #	endif
 
 KAI_END
-
-#endif // KAI_REGISTRY_H
-
-//EOF

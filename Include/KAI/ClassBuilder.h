@@ -1,21 +1,8 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CLASS_BUILDER_H
-#	define KAI_CLASS_BUILDER_H
+#pragma once
 
 KAI_BEGIN
 
 void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path);
-/*
-{
-	r.AddClass(klass);
-	if (root.Exists() && !path.Empty())
-		Set(root, path, registry->NewFromClass(klass));
-}
-*/
 
 template <class T>
 class ClassBuilder
@@ -79,5 +66,3 @@ public:
 };
 
 KAI_END
-
-#endif 

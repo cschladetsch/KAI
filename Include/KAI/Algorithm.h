@@ -53,22 +53,22 @@ struct IteratedFunctionBase
 			return true;
 		return Invoke(Q);
 	}
-	bool operator()(nstd::pair<Object, Object> &M)
+	bool operator()(std::pair<Object, Object> &M)
 	{
 		return Invoke(M.first)
 			&& Invoke(M.second);
 	}
-	bool operator()(nstd::pair<const Object, Object> &M)
+	bool operator()(std::pair<const Object, Object> &M)
 	{
 		return Invoke(const_cast<Object &>(M.first))
 			&& Invoke(M.second);
 	}
-	bool operator()(nstd::pair<const String, Object> &M)
+	bool operator()(std::pair<const String, Object> &M)
 	{
 		return Invoke(M.second);
 	}
 	template <class T2>
-	bool operator()(nstd::pair<const String, Pointer<T2> > &M)
+	bool operator()(std::pair<const String, Pointer<T2> > &M)
 	{
 		return Invoke(M.second);
 	}
