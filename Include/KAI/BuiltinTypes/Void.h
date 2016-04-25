@@ -1,14 +1,10 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_VOID_H
-#	define KAI_BUILTIN_TYPES_VOID_H
+#include "KAI/Type/Traits.h"
 
 KAI_BEGIN
 
-struct Void 
+struct Void
 { 
 	virtual ~Void() { }
 };
@@ -22,7 +18,12 @@ inline HashValue GetHash(Void) { return 0; }
 
 namespace Type
 {
-	template <> struct Traits<void> : TraitsBase<void, Number::Void, Properties::Streaming, None, Void , Void &, const Void&> { static const char *Name; };
+	template <> struct Traits<void> 
+		: TraitsBase<void, Number::Void, Properties::Streaming, Void, Void &, const Void&> 
+	{ 
+		static const char *Name; 
+	};
+
 	template <> struct Traits<meta::Null> : Traits<void> { };
 	template <> struct Traits<Void> : Traits<void> { };
 
@@ -30,8 +31,6 @@ namespace Type
 }
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_VOID_H
 
 //EOF
 
