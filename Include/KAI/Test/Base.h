@@ -1,29 +1,23 @@
+#pragma once
 
-#ifndef KAI_TEST_BASE_H
-#	ifndef KAI_CONFIG_BASE_H
-#		include "KAI/Config/Base.h"
-#	endif
-#	define KAI_TEST_BASE_H
-#	ifdef KAI_HAS_PRAGMA_ONCE
-#		pragma once
-#	endif
-#	ifdef KAI_UNIT_TESTS
-#		include "KAI/KAI.h"
-#		include "KAI/Factory.h"
-#		include "KAI/BuiltinTypes/Signed32.h"
-#		include "KAI/BuiltinTypes/Bool.h"
-#		include "KAI/BuiltinTypes/Array.h"
-#		include "KAI/Operation.h"
-#		include "KAI/Continuation.h"
-#		include "KAI/Value.h"
-#		include "KAI/Reflected.h"
-#		include "KAI/Executor.h"
-#		include "KAI/Compiler.h"
-#		include "KAI/Pathname.h"
-#		include "KAI/XmlScopedElement.h"
+#ifdef KAI_UNIT_TESTS
 
-#		define KAI_TEST_BEGIN KAI_BEGIN namespace Tests {
-#		define KAI_TEST_END KAI_END }
+#include "KAI/KAI.h"
+#include "KAI/Factory.h"
+#include "KAI/BuiltinTypes/Signed32.h"
+#include "KAI/BuiltinTypes/Bool.h"
+#include "KAI/BuiltinTypes/Array.h"
+#include "KAI/Operation.h"
+#include "KAI/Continuation.h"
+#include "KAI/Value.h"
+#include "KAI/Reflected.h"
+#include "KAI/Executor.h"
+#include "KAI/Compiler.h"
+#include "KAI/Pathname.h"
+#include "KAI/XmlScopedElement.h"
+
+#define KAI_TEST_BEGIN KAI_BEGIN namespace Tests {
+#define KAI_TEST_END KAI_END }
 
 KAI_TEST_BEGIN
 
@@ -31,7 +25,7 @@ class Component;
 class SuiteBase;
 class Module;
 
-/// The nominal result of a test
+// The nominal result of a test
 struct Outcome
 {
 	enum Type { Passed = 1, Failed = 2, None = 3, Exception = 4, NotImplemented = 5};
@@ -42,7 +36,7 @@ struct Outcome
 	String ToString() const;
 };
 
-/// The relationship to test
+// The relationship to test
 struct Operation
 {
 	enum Type { None = 1, True = 2, False = 3 , Equiv = 4, NotEquiv = 5, Less = 6, Greater = 7, LessOrEquiv = 8, GreaterOrEquiv = 9};
@@ -53,7 +47,7 @@ struct Operation
 	String ToString() const;
 };
 
-/// A specific test result
+// A specific test result
 struct Result
 {
 	String expression;
@@ -77,16 +71,16 @@ public:
 
 KAI_TEST_END
 
-#		include "KAI/Test/Summary.h"
-#		include "KAI/Test/IOutput.h"
-#		include "KAI/Test/Component.h"
-#		include "KAI/Test/SuiteBase.h"
-#		include "KAI/Test/Module.h"
-#		include "KAI/Test/Suite.h"
-#		include "KAI/Test/BasicOutput.h"
-#		include "KAI/Test/XmlOutput.h"
-#		include "KAI/Test/Macros.h"
-#	endif // KAI_UNIT_TESTS
-#endif // KAI_TEST_BASE_H
+#include "KAI/Test/Summary.h"
+#include "KAI/Test/IOutput.h"
+#include "KAI/Test/Component.h"
+#include "KAI/Test/SuiteBase.h"
+#include "KAI/Test/Module.h"
+#include "KAI/Test/Suite.h"
+#include "KAI/Test/BasicOutput.h"
+#include "KAI/Test/XmlOutput.h"
+#include "KAI/Test/Macros.h"
+
+#endif // KAI_UNIT_TESTS
 
 //EOF

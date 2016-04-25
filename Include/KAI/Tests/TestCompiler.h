@@ -1,10 +1,6 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#if defined(KAI_UNIT_TESTS) && !defined(KAI_TESTS_COMPILER_H)
-#	define KAI_TESTS_COMPILER_H
+#if defined(KAI_UNIT_TESTS)
 
 KAI_BEGIN
 class Console;
