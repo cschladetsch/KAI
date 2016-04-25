@@ -1,20 +1,4 @@
-#include "KAI/Config/Base.h"
-#include "KAI/Config/Compiler.h"
-#include "KAI/Config/Options.h"
-#include "KAI/Config/StdContainers.h"
-#include "KAI/Pointer.h"
-
-#include "KAI/Type/Number.h"
-#include "KAI/Properties.h"
-
-
-#include "KAI/Type/Number.h"
-#include "KAI/Properties.h"
-#include "KAI/Type/Traits.h"
-#include "KAI/Type/TraitMacros.h"
-#include "KAI/Type/ContainerOperations.h"
-
-#include "KAI/Executor.h"
+#include "KAI/KAI.h"
 
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Tests/TestCompiler.h"
@@ -40,6 +24,7 @@
 #include <iostream>
 #include <fstream>
 
+#if 0
 KAI_BEGIN
 
 using namespace std;
@@ -310,5 +295,7 @@ namespace Bin
 }
 
 KAI_END
+
+#endif
 
 //EOF

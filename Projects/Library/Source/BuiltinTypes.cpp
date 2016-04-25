@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/erase.hpp>
+#include "KAI/StringStream.h"
 
 KAI_BEGIN
 

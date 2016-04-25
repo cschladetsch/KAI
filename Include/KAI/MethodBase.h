@@ -11,13 +11,13 @@ KAI_BEGIN
 class MethodBase : public CallableBase<MethodBase>
 {
 protected:
-	Type::Number class_type;
+	Type::NumberEnum class_type;
 	Constness constness;
 
 public:
 	MethodBase(Constness C, const Label &N) : constness(C), CallableBase<MethodBase>(N) { }
 
-	Type::Number GetClassType() const { return class_type; }
+	Type::NumberEnum GetClassType() const { return class_type; }
 	Constness GetConstness() const { return constness; }
 
 	void Invoke(Object const &Q, Stack &stack)
@@ -38,7 +38,7 @@ public:
 
 StringStream &operator<<(StringStream &, const BasePointer<MethodBase> &);
 
-KAI_TYPE_TRAITS(BasePointer<MethodBase>, Number::Method, Properties::StringStreamInsert | Properties::Reflected);
+KAI_TYPE_TRAITS(BasePointer<MethodBase>, NumberEnum::Method, Properties::StringStreamInsert | Properties::Reflected);
 
 KAI_END
 

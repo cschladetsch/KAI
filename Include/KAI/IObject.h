@@ -1,21 +1,12 @@
-
-
-#ifdef KAI_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_INTERFACES_H
-#	define KAI_INTERFACES_H
+#pragma once
 
 KAI_BEGIN
 
-struct StorageBase;
-struct Label;
-
-struct IObject
+class IObject
 {
+public
 	enum Switch 
-	{ 
+	{
 		Marked = 1, 
 		Managed = 2, 
 		Const = 4, 
@@ -32,7 +23,7 @@ struct IObject
 	virtual const StorageBase &GetStorageBase() const = 0;
 	virtual StorageBase &GetStorageBase() = 0;
 
-	virtual Type::NumberEnum GetTypeNumber() const = 0;
+	virtual enum Type::NumberEnum GetTypeNumber() const = 0;
 	virtual const ClassBase *GetClass() const = 0;
 	
 	virtual Registry *GetRegistry() const = 0;
@@ -74,7 +65,3 @@ struct IObject
 };
 
 KAI_END
-
-#endif // KAI_INTERFACES_H
-
-//EOF

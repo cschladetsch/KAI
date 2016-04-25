@@ -447,6 +447,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Include\KAI\Properties.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Source\Bin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">Use</PrecompiledHeader>
@@ -460,7 +461,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
@@ -1501,7 +1502,6 @@
     <ClInclude Include="..\..\Include\KAI\Prelude.h" />
     <ClInclude Include="..\..\Include\KAI\Preprocessor.h" />
     <ClInclude Include="..\..\Include\KAI\ProcessBase.h" />
-    <ClInclude Include="..\..\Include\KAI\Properties.h" />
     <ClInclude Include="..\..\Include\KAI\PropertyBase.h" />
     <ClInclude Include="..\..\Include\KAI\Reflected.h" />
     <ClInclude Include="..\..\Include\KAI\Registry.h" />
@@ -1563,7 +1563,10 @@
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h" />
     <ClInclude Include="..\..\Include\KAI\Type\ContainerOperations.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\Deref.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Number.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\Operations.h" />
+    <ClInclude Include="..\..\Include\KAI\Type\Properties.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Traits.h" />
     <ClInclude Include="..\..\Include\KAI\Type\TraitMacros.h" />
     <ClInclude Include="..\..\Include\KAI\Type\TypeAll.h" />

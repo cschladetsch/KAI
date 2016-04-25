@@ -1,12 +1,3 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BINARY_STREAM_H
-#	define KAI_BINARY_STREAM_H
-
 KAI_BEGIN
 
 /// A Binary-packet is a fixed-size sequence of bytes which allows only extraction
@@ -51,14 +42,15 @@ public:
 
 StringStream &operator<<(StringStream &, BinaryPacket const &);
 BinaryStream &operator<<(BinaryStream &, BinaryPacket const &);
-BinaryPacket &operator>>(BinaryPacket &, BinaryPacket &);
+BinaryPacket &operator >> (BinaryPacket &, BinaryPacket &);
 
+/*
 KAI_TYPE_TRAITS(BinaryPacket, NumberEnum::BinaryPacket
-	, Properties::StringStreamInsert 
-	| Properties::BinaryStreamExtract 
+	, Properties::StringStreamInsert
+	| Properties::BinaryStreamExtract
 	| Properties::BinaryStreamInsert);
-
-/// A BinaryStream is-a BinaryPacket which can also resize and allows insertion
+*/
+// A BinaryStream is-a BinaryPacket which can also resize and allows insertion
 struct BinaryStream : BinaryPacket
 {
 	typedef nstd::vector<Byte> Bytes;
@@ -88,14 +80,25 @@ public:
 
 StringStream &operator<<(StringStream &, BinaryStream const &);
 BinaryStream &operator<<(BinaryStream &, BinaryStream const &);
-BinaryPacket &operator>>(BinaryPacket &, BinaryStream &);
+BinaryPacket &operator >> (BinaryPacket &, BinaryStream &);
 
-KAI_TYPE_TRAITS(BinaryStream, Type::Number::BinaryStream
-	, Properties::StringStreamInsert | Properties::BinaryStreamExtract | Properties::BinaryStreamInsert);
+/*
+KAI_TYPE_TRAITS(BinaryStream, NumberEnum::BinaryStream
+	, Properties::StringStreamInsert
+/	| Properties::BinaryStreamExtract | Properties::BinaryStreamInsert);
+// tODO)
+*/
+namespace Type
+{
+	template <>
+	struct Traits<::kai::BinaryStream> :
+		TraitsBase<::kai::BinaryStream, 
+		NumberEnum::BinaryStream, 
+		Properties::Nothing>
+	{
+		static const char *Name;
+	};
+}
 
 KAI_END
-
-#endif // KAI_BINARY_STREAM_H
-
-//EOF
 

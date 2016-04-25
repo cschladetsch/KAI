@@ -1,12 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_CONTAINER_H
-#	define KAI_BUILTIN_TYPES_CONTAINER_H
-
-#	include "KAI/Meta/StaticAssert.h"
+#pragma once
 
 KAI_BEGIN
 
@@ -42,7 +34,3 @@ struct Container : Reflected//<T>
 };
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_CONTAINER_H
-
-//EOF

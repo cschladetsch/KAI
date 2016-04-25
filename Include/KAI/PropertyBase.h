@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_PROPERTY_BASE_H
-#	define KAI_PROPERTY_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -45,13 +39,13 @@ namespace CreateParams
 class PropertyBase
 {
 	Label field_name;
-	Type::Number class_type;
-	Type::Number field_type;
+	Type::NumberEnum class_type;
+	Type::NumberEnum field_type;
 	bool is_system;
 	int create_params;	// bitfield created from CreateParams::Params enumeration
 
 public:
-	PropertyBase(Label const &F, Type::Number C, Type::Number N, bool B, CreateParams::Params CP) : field_name(F), class_type(C), field_type(N), is_system(B), create_params(CP) { }
+	PropertyBase(Label const &F, Type::NumberEnum C, Type::NumberEnum N, bool B, CreateParams::Params CP) : field_name(F), class_type(C), field_type(N), is_system(B), create_params(CP) { }
 	virtual ~PropertyBase() { }
 
 	String Description;
@@ -71,13 +65,15 @@ public:
 	virtual Object GetObject(Object const &Q) const = 0;
 
 	Label const &GetFieldName() const { return field_name; }
-	Type::Number GetClassTypeNumber() const { return class_type; }
-	Type::Number GetFieldTypeNumber() const { return field_type; }
+	Type::NumberEnum GetClassTypeNumber() const { return class_type; }
+	Type::NumberEnum GetFieldTypeNumber() const { return field_type; }
 };
 
 StringStream &operator<<(StringStream &S, BasePointer<PropertyBase> const &);
 
-KAI_TYPE_TRAITS(BasePointer<PropertyBase>, Number::Property, Type::Properties::StringStreamInsert);
+KAI_TYPE_TRAITS(BasePointer<PropertyBase>,
+	NumberEnum::Property, 
+	Properties::StringStreamInsert);
 
 // access the property object
 void SetPropertyObject(Object const &owner, Label const &name, Object value);
@@ -101,7 +97,3 @@ T GetProperty(Object const &owner, Label const &name)
 }
 
 KAI_END
-
-#endif // KAI_PROPERTY_BASE_H
-
-//EOF

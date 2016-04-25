@@ -1,15 +1,14 @@
 #pragma once
 
-#include "KAI/KAI.h"
-
 KAI_BEGIN
 
 struct Trace;
 
-struct StringStream
+class StringStream
 {
+public:
 	typedef String::Char Char;
-	typedef nstd::vector<Char> Storage;
+	typedef std::vector<Char> Storage;
 
 private:
 	Storage stream;
@@ -49,25 +48,12 @@ inline StringStream &operator<<(StringStream &S, const StringStream &T) { return
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
 
-/*
-YYYYYY
+StringStream& operator<<(StringStream&, ObjectColor::Color);
+
 KAI_TYPE_TRAITS(
 	StringStream, 
-	NumberEnum::StringStream, 
+	Number::StringStream, 
 	Properties::Equiv);
-*/
 
-namespace Type
-{
-	template <>
-	struct Traits<StringStream> : TraitsBase<StringStream, NumberEnum::StringStream, Properties::Equiv | Properties::Assign>
-	{
-		static const char *Name;
-	};
-
-	const char *Traits<StringStream>::Name = "StringStream";
-};
 
 KAI_END
-
-

@@ -4,7 +4,8 @@ KAI_BEGIN
 
 struct AccessorBase : PropertyBase
 {
-	AccessorBase(Label const &F, Type::Number C, Type::Number N, bool is_system, CreateParams::Params CP) : PropertyBase(F, C, N, is_system, CP) { }
+	AccessorBase(Label const &F, Type::NumberEnum C, Type::NumberEnum N, bool is_system, typename CreateParams::Params CP)
+		: PropertyBase(F, C, N, is_system, CP) { }
 
 	void SetValue(Object const &, Object const &) const
 	{
@@ -14,7 +15,9 @@ struct AccessorBase : PropertyBase
 
 struct MutatorBase : AccessorBase
 {
-	MutatorBase(Label const &F, Type::Number C, Type::Number N, bool is_system, CreateParams::Params CP) : AccessorBase(F, C, N, is_system, CP) { }
+	MutatorBase(Label const &F, Type::NumberEnum C, Type::NumberEnum N
+		, bool is_system, typename CreateParams::Params CP) 
+		: AccessorBase(F, C, N, is_system, CP) { }
 };
 
 KAI_END

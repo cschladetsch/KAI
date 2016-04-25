@@ -22,7 +22,7 @@ namespace function_detail
 			AddArgument(Type::Traits<A2>::Number);
 			AddArgument(Type::Traits<A3>::Number);
 		}
-		void AddArgument(Type::Number N)
+		void AddArgument(Type::NumberEnum N)
 		{
 			if (N != Type::Traits<meta::Null>::Number)
 				arguments.push_back(N);

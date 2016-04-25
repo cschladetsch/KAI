@@ -198,7 +198,10 @@
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Include\KAI\Properties.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -703,9 +706,6 @@
     <ClInclude Include="..\..\Include\KAI\Type\Traits.h">
       <Filter>Header Files\Type</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Properties.h">
-      <Filter>Header Files\Type</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Type\TraitMacros.h">
       <Filter>Header Files\Type</Filter>
     </ClInclude>
@@ -717,6 +717,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Prelude.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Operations.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Properties.h">
+      <Filter>Header Files\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Type\Deref.h">
+      <Filter>Header Files\Type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_LABEL_H
-#	define KAI_LABEL_H
+#pragma once
 
 KAI_BEGIN
 
@@ -46,6 +39,8 @@ KAI_TYPE_TRAITS(Label, Number::Label
 
 KAI_END
 
+
+
 namespace boost
 {
 	inline size_t hash_value(KAI_NAMESPACE(Label) const &label) 
@@ -54,6 +49,3 @@ namespace boost
 	}
 }
 
-#endif // KAI_LABEL_H
-
-//EOF
