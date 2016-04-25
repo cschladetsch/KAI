@@ -108,6 +108,9 @@ BinaryPacket &operator>>(BinaryPacket &, String &);
 
 //StringStream &operator<<(StringStream &K, std::string const &S) { return K << S.c_str(); }
 
+KAI_TYPE_TRAITS(String, Number::String
+	, Properties::Plus | Properties::Equiv | Properties::Less)
+
 KAI_END
 
 namespace boost

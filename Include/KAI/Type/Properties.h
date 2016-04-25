@@ -13,6 +13,7 @@ struct Properties
 
 		Plus = 1 << 2,
 		Minus = 1 << 3,
+		Arithmetic = Plus | Minus,
 
 		Less = 1 << 6,
 		Equiv = 1 << 7,
@@ -35,6 +36,7 @@ struct Properties
 
 		Divide = 1 << 18,
 		Multiply = 1 << 19,
+		Multiplicative = Divide | Multiply,
 
 		XmlOutput = 1 << 20,
 	};

@@ -3,27 +3,27 @@
 #include <string>
 #include <strstream>
 
+#include "KAI/KAICommon.h"
+
+#include "KAI/Translator/Process.h"
 #include "KAI/Translator/Parser.h"
 
-#include "KAI/KAI.h"
 #include "KAI/Operation.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 
-//#define SCHLADETSCH_NAMESPACE KAI_NAMESPACE_NAME
-//#include <EventP.h>
-
 KAI_BEGIN
 
-struct Translator : Process, boost::noncopyable
+struct Translator : Process//, boost::noncopyable
 {
+	Translator(const Translator&) = delete;
+	Translator(std::shared_ptr<Parser> p, Registry &reg);
+
 	struct Exception { };
 	struct Unsupported : Exception { };
 
 	std::vector<Pointer<Continuation>> stack;
 	Registry &reg;
-
-	Translator(std::shared_ptr<Parser> p, Registry &reg);
 
 	std::string Result() const;
 
