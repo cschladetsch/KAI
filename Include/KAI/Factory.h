@@ -31,7 +31,7 @@ class Factory
 {
 public:
 	typedef String Typename;
-	typedef nstd::map<Typename, CreatorBase<Base> *> Types;
+	typedef std::map<Typename, CreatorBase<Base> *> Types;
 
 private:
 	Types types;

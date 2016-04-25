@@ -1,11 +1,6 @@
+#pragma once
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#if defined(KAI_UNIT_TESTS) && !defined(KAI_TEST_COMPONENT_H)
-#	define KAI_TEST_COMPONENT_H
+#if defined(KAI_UNIT_TESTS)
 
 KAI_TEST_BEGIN
 
@@ -13,7 +8,7 @@ KAI_TEST_BEGIN
 class Component
 {
 protected:
-	typedef nstd::list<Component *> Children;
+	typedef std::list<Component *> Children;
 	Children children;
 
 public:

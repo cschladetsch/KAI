@@ -11,7 +11,7 @@ KAI_TEST_BEGIN
 // Summary of execution of a set of tests
 struct Summary
 {
-	typedef nstd::list<Result> Failures;
+	typedef std::list<Result> Failures;
 
 //protected:
 	Failures failures;

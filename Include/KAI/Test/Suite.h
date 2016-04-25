@@ -21,7 +21,7 @@ class Suite : public SuiteBase
 		Method() { }
 		Method(String const &N, MethodPointer P) : name(N), method(P) { }
 	};
-	typedef nstd::list<Method> Methods;
+	typedef std::list<Method> Methods;
 	Methods methods;
 
 public:
