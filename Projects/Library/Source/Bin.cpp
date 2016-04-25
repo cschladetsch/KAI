@@ -40,8 +40,6 @@ namespace Bin
 
 		Value<Array> methods = Q.New<Array>();
 		const ClassBase *K = Q.GetClass();
-		//ClassBase::Methods::const_iterator A = K->GetMethods().begin(), B = K->GetMethods().end();
-		//for (; A != B; ++A)
 		for (auto m : K->GetMethods())
 			methods->Append(Q.New<BasePointer<MethodBase> >(m.second));
 
