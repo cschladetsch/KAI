@@ -1,11 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_EXCEPTION_BASE_H
-#	define KAI_EXCEPTION_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -14,11 +7,11 @@ namespace Exception
 	struct Base
 	{
 		FileLocation location;
-		nstd::string text;
+		std::string text;
 
 		Base() { }
 		Base(const FileLocation &L, const char *T = "Exception") : location(L), text(T) { }
-		nstd::string ToString() const;
+		std::string ToString() const;
 		virtual void WriteExtendedInformation(StringStream &) const { }
 	};
 
@@ -142,7 +135,3 @@ namespace Exception
 #endif
 
 KAI_END
-
-#endif // KAI_EXCEPTION_BASE_H
-
-//EOF

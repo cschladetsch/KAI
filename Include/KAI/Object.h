@@ -1,13 +1,6 @@
 #pragma once
 
-#ifndef KAI_OBJECT_H
-#define KAI_OBJECT_H
-
-#include "KAI/BuiltinTypes/Dictionary.h"
-
 KAI_BEGIN
-
-#undef GetObject
 
 template <class T>
 struct Pointer;
@@ -15,7 +8,7 @@ struct Pointer;
 template <class T>
 typename DerefType<T>::Reference Deref(StorageBase &base);
 
-struct Object
+class Object
 {
 private:
 	const ClassBase *class_base;
@@ -55,7 +48,7 @@ public:
 	ObjectColor::Color GetColor() const;
 	void SetColor(ObjectColor::Color C) const;
 	void SetColorRecursive(ObjectColor::Color C) const;
-	void SetColorRecursive(ObjectColor::Color C, boost::unordered_set/*nstd::vector*/<Handle> &) const;
+	void SetColorRecursive(ObjectColor::Color C, std::unordered_set<Handle> &) const;
 	bool IsWhite() const { return GetColor() == ObjectColor::White; }
 	bool IsGrey() const { return GetColor() == ObjectColor::Grey; }
 	bool IsBlack() const { return GetColor() == ObjectColor::Black; }
@@ -63,19 +56,19 @@ public:
 	void SetGrey() const { SetColor(ObjectColor::Grey); }
 	void SetBlack() const { SetColor(ObjectColor::Black); }
 
-	Type::Number GetTypeNumber() const;
+	int GetTypeNumber() const;
 	const ClassBase *GetClass() const { return class_base; }
 	Registry *GetRegistry() const { return registry; }
 
 	Object Duplicate() const;
 	Object Clone() const { return Duplicate(); }
 
-	bool IsTypeNumber(Type::Number N) const 
+	bool IsTypeNumber(int N) const 
 	{ 
 		if (!Exists())
 			return N == Type::Number::None;
 
-		return GetTypeNumber() == N;
+		return GetTypeNumber() == (int)N;
 	}
 
 	Handle GetParentHandle() const;
@@ -187,7 +180,7 @@ public:
 	}
 
 	// deref's Registry so must be in source file
-	Object NewFromTypeNumber(Type::Number N) const;
+	Object NewFromTypeNumber(int N) const;
 	Object NewFromClassName(String const &type_name) const;
 
 	template <class T>
@@ -278,7 +271,7 @@ public:
 	StorageBase *GetBasePtr() const;
 	StorageBase *GetParentBasePtr() const;
 
-	typedef nstd::list<Object> ObjectList;
+	typedef std::list<Object> ObjectList;
 	void GetPropertyObjects(ObjectList &contained) const;
 	void GetContainedObjects(ObjectList &contained) const;
 	void GetChildObjects(ObjectList &contained) const;
@@ -286,7 +279,7 @@ public:
 
 	class ChildProxy
 	{
-		friend struct Object;
+		friend class Object;
 		Registry *registry;
 		Handle handle;
 		Label label;
@@ -336,9 +329,9 @@ protected:
 	Dictionary &GetDictionaryRef();
 };
 
-StringStream &operator<<(StringStream &S, Object const &Q);
+StringStream &operator<<(StringStream &S, const Object Q);
 StringStream &operator>>(StringStream &S, Object &Q);
-BinaryStream &operator<<(BinaryStream &S, Object const &Q);
+BinaryStream &operator<<(BinaryStream &S, const Object &Q);
 BinaryPacket &operator>>(BinaryPacket &S, Object &Q);
 
 Object operator*(Object const &A);
@@ -348,11 +341,7 @@ inline bool operator!=(Object const &A, Object const &B) { return !(A == B); }
 bool operator>(Object const &A, Object const &B);
 
 Object operator+(Object const &A, Object const &B);
-Object operator-(Object const &A, Object const &B);
-Object operator*(Object const &A, Object const &B);
-Object operator/(Object const &A, Object const &B);
-
-Object Absolute(Object const &A);
+// WTF Object operator-(Object const &Object Absolute(Object const &A);
 
 KAI_TYPE_TRAITS(Object, Number::Object
 	, Properties::StringStreamInsert 
@@ -396,6 +385,3 @@ namespace boost
 		return H.GetHandle().GetValue();
 	}
 }
-
-#endif 
-

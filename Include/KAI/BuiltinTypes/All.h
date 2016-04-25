@@ -4,7 +4,7 @@
 #include "KAI/BuiltinTypes/Float.h"
 #include "KAI/BuiltinTypes/Vector4.h"
 #include "KAI/BuiltinTypes/List.h"
-//#include "KAI/BuiltinTypes/Array.h"
+#include "KAI/BuiltinTypes/Array.h"
 #include "KAI/BuiltinTypes/Bool.h"
 #include "KAI/BuiltinTypes/TypeNumber.h"
 #include "KAI/BuiltinTypes/MapBase.h"

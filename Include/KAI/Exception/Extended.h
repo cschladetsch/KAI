@@ -1,13 +1,6 @@
+#pragma once
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_EXCEPTION_EXTENDED_H
-#	define KAI_EXCEPTION_EXTENDED_H
-
-#	include "KAI/Pathname.h"
+#include "KAI/Pathname.h"
 
 KAI_BEGIN
 
@@ -126,7 +119,3 @@ namespace Exception
 }
 
 KAI_END // KAI_EXCEPTION_EXTENDED_H
-
-#endif
-
-//EOF

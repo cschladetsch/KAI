@@ -8,7 +8,7 @@
 
 KAI_BEGIN
 
-typedef nstd::map<Label, Object> Dictionary;
+typedef std::map<Label, Object> Dictionary;
 
 KAI_END
 
