@@ -1,15 +1,13 @@
-
-
-/// defined to place the system into a single namespace
+// defined to place the system into a single namespace
 #define KAI_OPTION_USE_NAMESPACES
 
-/// if KAI_OPTION_USE_NAMESPACES is defined, this is the namespace name to use
+// if KAI_OPTION_USE_NAMESPACES is defined, this is the namespace name to use
 //#define KAI_NAMESPACE_NAME kai
 #ifndef KAI_NAMESPACE_NAME
 #error please define KAI_NAMESPACE_NAME
 #endif
 
-//#define KAI_UNIT_TESTS
+#define KAI_UNIT_TESTS
 
 #define KAI_USE_EXCEPTIONS
 
@@ -20,7 +18,7 @@
 #	endif
 #endif
 
-// TODO TESTS
+// TODO DEBUG
 #undef KAI_DEBUG
 
 #ifdef KAI_DEBUG
@@ -40,15 +38,12 @@
 
 #endif
 
-
-
-#	ifndef UNUSED
-#		define UNUSED(X) (void)(sizeof(X))
-#	endif
+#ifndef UNUSED
+#	define UNUSED(X) (void)(sizeof(X))
+#endif
 
 #if !defined(KAI_DEBUG_TRACE) && defined(KAI_DEBUG)
 #	define KAI_DEBUG_TRACE
 #endif
-
 
 //EOF
