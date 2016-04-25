@@ -52,7 +52,7 @@ struct ContainerOperations<Reference, false>
 	static Fun ForEachContained(Reference, Fun const &F) { return F; }
 };
 
-typedef ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
+typedef typename ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
 
 
 KAI_TYPE_END

@@ -1,7 +1,4 @@
-
-
-#ifndef KAI_META_BASE_H
-#	define KAI_META_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -50,7 +47,3 @@ namespace meta
 }
 
 KAI_END
-
-#endif // KAI_META_BASE_H
-
-//EOF

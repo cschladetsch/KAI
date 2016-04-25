@@ -25,19 +25,19 @@ public:
 #endif
 
 protected:
-	Type::Number type_number;
+	Type::NumberEnum type_number;
 	Properties properties;
 	Methods methods;
 	Label name;
 
 public:
-	ClassBase(Label const &N, Type::Number T) : name(N), type_number(T) { }
+	ClassBase(Label const &N, Type::NumberEnum T) : name(N), type_number(T) { }
 	virtual ~ClassBase();
 
 	/// identification
 	const Label &GetName() const { return name; }
 	const Label &GetLabel() const { return GetName(); }
-	Type::Number GetTypeNumber() const { return type_number; }
+	Type::NumberEnum GetTypeNumber() const { return type_number; }
 
 	/// tri-color marking: set reference objects color
 	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, StorageBaseHandles& handles) const
@@ -66,7 +66,7 @@ public:
 		template <class T>
 		Storage<T> *NewStorage(Registry &) const;
 
-		Object NewFromTypeNumber(Type::Number) const;
+		Object NewFromTypeNumber(Type::NumberEnum) const;
 
 	virtual void MakeReachableGrey(StorageBase &base) const = 0;
 
@@ -122,8 +122,8 @@ public:
 	virtual void SetMarked2(StorageBase &Q, bool M) const = 0;
 
 	virtual Object UpCast(StorageBase &) const = 0;
-	virtual Object CrossCast(StorageBase &, Type::Number) const = 0;
-	virtual Object DownCast(StorageBase &, Type::Number) const = 0;
+	virtual Object CrossCast(StorageBase &, Type::NumberEnum) const = 0;
+	virtual Object DownCast(StorageBase &, Type::NumberEnum) const = 0;
 
 	virtual HashValue GetHashValue(const StorageBase &) const = 0;
 

@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_TYPE_NUMBER_H
-#	define KAI_BUILTIN_TYPES_TYPE_NUMBER_H
+#pragma once
 
 KAI_BEGIN
 
@@ -16,9 +10,4 @@ BinaryPacket &operator>>(BinaryPacket &, Type::Number &);
 
 KAI_END
 
-#include KAI_TEST(X)
-
-#endif // KAI_BUILTIN_TYPES_TYPE_NUMBER_H
-
-//EOF
-
+//#include KAI_TEST(X)

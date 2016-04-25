@@ -14,7 +14,7 @@ __forceinline
 #endif
 StorageBase &GetStorageBase(Object const &Q);
 
-Type::Number GetTypeNumber(Object const &Q);
+Type::NumberEnum GetTypeNumber(Object const &Q);
 
 template <class T>
 Storage<T> &GetStorage(Pointer<T> const &P)

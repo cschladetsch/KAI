@@ -1,33 +1,19 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_FWD_DECLARATIONS_H
-#	define KAI_FWD_DECLARATIONS_H
+#pragma once
 
 KAI_BEGIN
 
-struct StorageBase;
+template <class T> class Storage;
+class StorageBase;
 class ClassBase;
-struct Object;
+class Object;
+class String;
+class StringStream;
+class BinaryStream;
+class BinaryPacket;
+class Stack;
+class Registry;
+class Handle;
 
-template <class T> struct Storage;
-
-struct String;
-
-struct StringStream;
-struct BinaryStream;
-struct BinaryPacket;
-struct Stack;
-struct Registry;
-
-struct Handle;
-
-typedef boost::unordered_set<Handle> StorageBaseHandles;
+//typedef boost::unordered_set<Handle> StorageBaseHandles;
 
 KAI_END
-
-#endif // KAI_FWD_DECLARATIONS_H
-
-//EOF

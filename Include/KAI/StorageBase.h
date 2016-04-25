@@ -4,10 +4,11 @@ KAI_BEGIN
 
 // Base for all object instances. The value stored with an object is placed
 // contiguously in memory with the object.
-struct StorageBase : public Object
+class StorageBase : public Object
 {
+public:
 	typedef int Switches;
-	typedef nstd::list<Handle> Containers;
+	typedef std::list<Handle> Containers;
 
 private:
 	Containers containers;
@@ -81,7 +82,7 @@ public:
 
 	StorageBase *GetParentPtr();
 
-	typedef StorageBaseHandles Handles;
+	typedef std::unordered_set<Handle> Handles;
 	void SetColorRecursive(ObjectColor::Color color, Handles& handles);
 };
 

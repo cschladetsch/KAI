@@ -13,10 +13,18 @@ StringStream &operator>>(StringStream &, bool &);
 BinaryStream &operator<<(BinaryStream &, bool);
 BinaryPacket &operator>>(BinaryPacket &, bool &);
 
-KAI_TYPE_TRAITS(bool, Number::Bool
-	, Properties::Streaming 
-	| Properties::Assign
-	| Properties::Relational);
+//KAI_TYPE_TRAITS(bool, Number::Bool
+//	, Properties::Streaming 
+//	| Properties::Assign
+//	| Properties::Relational);
+
+namespace Type
+{
+	template <typeame bool>
+	struct Traits : TraitsBase<T, NumbereEnum::Bool, Properties::None>
+	{
+	};
+}
 
 KAI_END
 
