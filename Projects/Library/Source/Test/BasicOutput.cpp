@@ -1,6 +1,8 @@
 
-#include "KAI/KAI.h"
+#include "KAI/KAICommon.h"
 #include "KAI/Test/Base.h"
+#include "KAI/Class.h"
+#include "KAI/ClassBuilder.h"
 
 #ifdef KAI_UNIT_TESTS
 #	include <iostream>
@@ -44,7 +46,7 @@ void BasicOutput::ModuleEnd(const String &N)
 
 void BasicOutput::Write(const Result &R)
 {
-	nstd::string loc = R.location.ToString().c_str();//StdString();
+	std::string loc = R.location.ToString().c_str();//StdString();
 	loc = loc.substr(loc.find_last_of('\\') + 1);
 	StringStream text;
 	text << "type=" << R.type.ToString() << ": outcome=" << R.outcome.ToString() << ": exp=" << R.expression;
@@ -103,11 +105,11 @@ void BasicOutput::Run(Module *module)
 void BasicOutput::Register(Registry &R)
 {
 	// TODO TESTS
-	//ClassBuilder<BasicOutput>(R, "TestOutput")
-	//	.Methods
-	//		("SetVerbose", &BasicOutput::SetVerbose)
-	//		("GetSummary", &BasicOutput::GetSummary2)
-	//	;
+	ClassBuilder<BasicOutput>(R, "TestOutput")
+		.Methods
+			("SetVerbose", &BasicOutput::SetVerbose)
+			("GetSummary", &BasicOutput::GetSummary2)
+		;
 }
 
 KAI_TEST_END

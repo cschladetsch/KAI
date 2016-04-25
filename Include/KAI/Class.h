@@ -20,7 +20,7 @@ template <class T>
 struct Class : ClassBase
 {
 	typedef typename Type::Traits<T> Traits;
-	enum { Props = Traits::Ops };
+	enum { Props = Traits::Props };
 
 	Class(Label const &name) : ClassBase(name, Type::Traits<T>::Number) { }
 
@@ -143,16 +143,25 @@ struct Class : ClassBase
 	void MakeReachableGrey(StorageBase &base) const
 	{
 		ClassBase::MakeReachableGrey(base);
-		Traits::ContainerOps::ForEachContained(CleanDeref<T>(base), MakeReachableGreyFun<T>());
+		typedef typename Traits::ContainerOps Cops;
+		Cops::ForEachContained(CleanDeref<T>(base), MakeReachableGreyFun<T>());
 	}
 	/// @endgroup container operations
 
 	Object UpCast(StorageBase &Q) const
 	{
+		// TODO UPCASTING
+
+		KAI_UNUSED_1(Q);
+
+		/*
 		StorageBase *base = Traits::UpCaster::Cast(*Q.GetRegistry(), Deref<T>(Q));
 		if (base == 0)
 			KAI_THROW_0(BadUpCast);
 		return Object(ObjectConstructParams(base->GetRegistry(), base->GetClass(), base->GetHandle()));
+		*/
+
+		return Object();
 	}
 
 	Object CrossCast(StorageBase &, Type::Number) const
@@ -206,9 +215,11 @@ struct Class : ClassBase
 	StorageBase *Multiply(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = ClassBase::NewStorage<T>();
-		// TODO MUL Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
+		//TODO Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
+		KAI_UNUSED_2(A, B);
 		return R;
 	}
+
 	StorageBase *Divide(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = ClassBase::NewStorage<T>();

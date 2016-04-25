@@ -1195,6 +1195,34 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Source\Tests\MakeTestModule.cpp" />
+    <ClCompile Include="Source\Tests\TestArray.cpp" />
+    <ClCompile Include="Source\Tests\TestBinaryStream.cpp" />
+    <ClCompile Include="Source\Tests\TestClosure.cpp" />
+    <ClCompile Include="Source\Tests\TestCompiler.cpp" />
+    <ClCompile Include="Source\Tests\TestDerivation.cpp" />
+    <ClCompile Include="Source\Tests\TestDotGraph.cpp" />
+    <ClCompile Include="Source\Tests\TestEvents.cpp" />
+    <ClCompile Include="Source\Tests\TestExample.cpp" />
+    <ClCompile Include="Source\Tests\TestExecutor.cpp" />
+    <ClCompile Include="Source\Tests\TestFunction.cpp" />
+    <ClCompile Include="Source\Tests\TestMap.cpp" />
+    <ClCompile Include="Source\Tests\TestMethod.cpp" />
+    <ClCompile Include="Source\Tests\TestObject.cpp" />
+    <ClCompile Include="Source\Tests\TestObjectIndexing.cpp" />
+    <ClCompile Include="Source\Tests\TestPathname.cpp" />
+    <ClCompile Include="Source\Tests\TestProperties.cpp" />
+    <ClCompile Include="Source\Tests\TestRegistry.cpp" />
+    <ClCompile Include="Source\Tests\TestSignedContinuation.cpp" />
+    <ClCompile Include="Source\Tests\TestsPrecompiled.cpp" />
+    <ClCompile Include="Source\Tests\TestStringStream.cpp" />
+    <ClCompile Include="Source\Tests\TestTemplate.cpp" />
+    <ClCompile Include="Source\Tests\TestTest.cpp" />
+    <ClCompile Include="Source\Tests\TestTree.cpp" />
+    <ClCompile Include="Source\Tests\TestTriColor.cpp" />
+    <ClCompile Include="Source\Test\BasicOutput.cpp" />
+    <ClCompile Include="Source\Test\Module.cpp" />
+    <ClCompile Include="Source\Test\XmlOutput.cpp" />
     <ClCompile Include="Source\Translator\Lexer.cpp">
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">false</ExcludedFromBuild>
@@ -1471,6 +1499,7 @@
     <ClInclude Include="..\..\Include\KAI\Handle.h" />
     <ClInclude Include="..\..\Include\KAI\InstanceMap.h" />
     <ClInclude Include="..\..\Include\KAI\IObject.h" />
+    <ClInclude Include="..\..\Include\KAI\KAI.h" />
     <ClInclude Include="..\..\Include\KAI\KAIRegistry.h" />
     <ClInclude Include="..\..\Include\KAI\Label.h" />
     <ClInclude Include="..\..\Include\KAI\Memory.h" />
@@ -1542,6 +1571,7 @@
     <ClInclude Include="..\..\Include\KAI\Test\BasicOutput.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Component.h" />
     <ClInclude Include="..\..\Include\KAI\Test\IOutput.h" />
+    <ClInclude Include="..\..\Include\KAI\Test\KAITest.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Macros.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Module.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Suite.h" />

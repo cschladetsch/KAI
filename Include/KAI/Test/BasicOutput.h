@@ -1,10 +1,6 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#if defined(KAI_UNIT_TESTS) && !defined(KAI_TEST_BASIC_OUTPUT_H)
-#	define KAI_TEST_BASIC_OUTPUT_H
+#if defined(KAI_UNIT_TESTS)
 
 KAI_TEST_BEGIN
 

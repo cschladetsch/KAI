@@ -1,5 +1,6 @@
 
 #include "KAI/Test/Base.h"
+
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Tests/TestCompiler.h"
 #	include "KAI/Console.h"
