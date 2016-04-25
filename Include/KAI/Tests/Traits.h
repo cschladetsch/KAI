@@ -312,20 +312,20 @@ namespace Type
 				return A + B;
 			}
 		};
-		template <>
+		template <bool>
 		struct PlusOp<false>
 		{
 			static Store Perform(ConstReference A, ConstReference B)
 			{
-				KAI_THROW_2(NoProperty, Number, Properties::Plus);
+				return A - B;
 			}
 		};
 		template <bool>
-		struct MinusOp
+		struct MinusOp<false
 		{
 			static Store Perform(ConstReference A, ConstReference B)
 			{
-				return A - B;
+				KAI_THROW_2(NoProperty, Number, Properties::Plus);
 			}
 		};
 		template <>

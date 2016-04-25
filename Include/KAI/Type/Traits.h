@@ -48,8 +48,8 @@ struct StorageType
 template <class T, int E, int Q, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 struct TraitsBase
 {
-	enum { Number = static_cast<int>(E) };
-	enum { Props = static_cast<int>(Q) };
+	enum { Number = (E) };
+	enum { Props = (Q) };
 	typedef T Type;
 	//typedef P Parent;
 	typedef St Store;
@@ -58,20 +58,239 @@ struct TraitsBase
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
-	//typedef UpCast<Reference, Parent> UpCaster;
-	
 	template <int N2>
-	struct HasProperty
-	{
-		enum
-		{
-			Value = (N2 & (int)Props) != 0
-		};
-	};
+	struct HasProperty { enum { Value = (N2 & Q) != 0 }; };
 
 	template <int N3>
-	struct HasProperties { enum { Value = ((int)Props & N3) == N3 }; };
+	struct HasProperties { enum { Value = (N3 & Q) == N3 }; };
 
+	template <bool>
+	struct UpCast
+	{
+		//static Storage<Parent *> *Cast(Registry &R, Reference Q)
+		//{
+		//	return 0;
+		//}
+	};
+
+	template <>
+	struct UpCast <true>
+	{
+		static Storage<meta::Null> *Cast(Registry &, Reference)
+		{
+			Storage<Parent *> *parent = NewStorage<Parent *>(R);
+			**parent = &Q;
+			return parent;
+		}
+	};
+
+	// Assignment
+	template <bool>
+	struct AssignOp
+	{
+		static void Perform(Reference, ConstReference)
+		{
+//			KAI_THROW_2(NoProperty, Number, Properties::Assign);
+			throw;
+		}
+	};
+	template <>
+	struct AssignOp<true>
+	{
+		static void Perform(Reference, ConstReference)
+		{
+			A = B;
+		}
+	};
+
+	// absolute
+	template <bool>
+	struct AbsoluteOp
+	{
+		static void Perform(Reference)
+		{
+			//KAI_THROW_2(NoProperty, Number, Properties::Absolute);
+			throw;
+		}
+	};
+
+	template <>
+	struct AbsoluteOp<true>
+	{
+		static void Perform(Reference)
+		{
+			SetAbsoluteValue(value);
+		}
+	};
+
+	template <bool>
+	struct LessOp
+	{
+		static bool Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, N, Properties::Less);
+			// TODO THROW
+			throw;
+		}
+	};
+
+	template <>
+	struct LessOp<true>
+	{
+		static bool Perform(ConstReference A, ConstReference B)
+		{
+			return A < B;
+		}
+	};
+
+	template <bool>
+	struct EquivOp
+	{
+		static bool Perform(ConstReference A, ConstReference B)
+		{
+			return A == B;
+		}
+	};
+
+	template <>
+	struct EquivOp<false>
+	{
+		static bool Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, N, Properties::Equiv);
+			throw;
+		}
+	};
+	/// Greater
+	template <bool>
+	struct GreaterOp
+	{
+		static bool Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, N, Properties::Greater);
+			// TODO THROW
+			throw;
+		}
+	};
+	template <>
+	struct GreaterOp<true>
+	{
+		static bool Perform(ConstReference, ConstReference)
+		{
+			return A > B;
+		}
+	};
+
+	// TODO: implement arithmetic using += etc
+	template <bool>
+	struct PlusOp
+	{
+		static Store Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, Properties::Plus);
+			// TODO THROW
+			throw;
+		}
+	};
+
+	template <>
+	struct PlusOp<true>
+	{
+		static Store Perform(ConstReference, ConstReference)
+		{
+			return A + B;
+		}
+	};
+
+	// minus
+	template <bool>
+	struct MinusOp
+	{
+		static Store Perform(ConstReference A, ConstReference B)
+		{
+			return A - B;
+		}
+	};
+
+	template <>
+	struct MinusOp<false>
+	{
+		static Store Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, Properties::Minus);
+			// TODO THROW
+			throw;
+		}
+	};
+
+	template <bool>
+	struct MultiplyOp
+	{
+		static Store Perform(ConstReference A, ConstReference B)
+		{
+			return A * B;
+		}
+	};
+	template <>
+	struct MultiplyOp<true>
+	{
+		static Store Perform(ConstReference, ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, N, Properties::Multiply);
+			// TODO THROW
+			throw;
+		}
+	};
+
+	template <bool>
+	struct DivideOp
+	{
+		static Store Perform(ConstReference A, ConstReference B)
+		{
+			//KAI_THROW_2(NoProperty, Properties::Divide);
+			// TODO THROW
+			throw;
+		}
+	};
+	template <>
+	struct DivideOp<true>
+	{
+		static Store Perform(ConstReference A, ConstReference B)
+		{
+			return A / B;
+		}
+	};
+
+	template <bool>
+	struct HashOp
+	{
+		static HashValue Calc(ConstReference A)
+		{
+	#pragma warning (push)
+			// warning: unreachable code. NFI why...
+	#pragma warning (disable:4702)
+			return GetHash(A);
+	#pragma warning (push)
+		}
+	};
+	template <>
+	struct HashOp<false>
+	{
+		static HashValue Calc(ConstReference)
+		{
+			//KAI_THROW_2(NoProperty, N, Properties::CalcHashValue);
+			// TODO THROW
+			throw;
+		}
+	};
+
+	//public TraitsBase()
+	//{
+	//	printf("%d, %d\n", E, Q);
+	//}
+
+	//typedef UpCast<Reference, Parent> UpCaster;
+	
 	template <bool>
 	struct ContainerOperations
 	{
@@ -107,7 +326,7 @@ struct TraitsBase
 		template <class Fun>
 		static Fun ForEachContained(Reference, Fun const &F) { return F; }
 	};
-	typedef ContainerOperations<HasProperty<Properties::Container>::Value> ContainerOps;
+	typedef ContainerOperations<HasProperty<Properties::Container>::Value != 0> ContainerOps;
 
 	//template <class>
 	//struct UpCast
@@ -169,41 +388,43 @@ struct TraitsBase
 		}
 	};
 
-	typedef typename meta::If<HasProperty<Properties::Reflected>::Value
+	typedef typename meta::If<HasProperty<Properties::Reflected>::Value != 0
 		, ReflectedLifetimeManagement
 		, UnReflectedLifetimeManagement>::Type 
 		LifetimeManager;
 
-	typedef AssignOp<Reference, ConstReference, Number, HasProperty<Properties::Assign>::Value> Assign;
-	typedef AbsoluteOp<Reference, ConstReference, Number, HasProperty<Properties::Absolute>::Value> Absolute;
+	typedef AssignOp<HasProperty<Properties::Assign>::Value != 0> Assign;
+	typedef AbsoluteOp<HasProperty<Properties::Absolute>::Value != 0> Absolute;
 
-	typedef LessOp<ConstReference, Number, HasProperty<Properties::Less>::Value> Less;
-	typedef EquivOp<ConstReference, Number, HasProperty<Properties::Equiv>::Value> Equiv;
-	typedef GreaterOp<ConstReference, Number, HasProperty<Properties::Greater>::Value> Greater;
+	typedef LessOp<HasProperty<Properties::Less>::Value != 0> Less;
+	typedef EquivOp<HasProperty<Properties::Equiv>::Value != 0> Equiv;
+	typedef GreaterOp<HasProperty<Properties::Greater>::Value != 0> Greater;
 
-	typedef PlusOp<St, ConstReference, HasProperty<Properties::Plus>::Value> Plus;
-	typedef MinusOp<St, ConstReference, HasProperty<Properties::Minus>::Value> Minus;
-	typedef DivideOp<St, ConstReference, HasProperty<Properties::Divide>::Value> Divide;
-	// MUL typedef MultiplyOp<St, ConstReference, HasProperty<Properties::Multiply>::Value> Multiply;
+	typedef PlusOp<HasProperty<Properties::Plus>::Value != 0> Plus;
+	typedef MinusOp<HasProperty<Properties::Minus>::Value != 0> Minus;
+	typedef DivideOp<HasProperty<Properties::Divide>::Value != 0> Divide;
+	typedef MultiplyOp<HasProperty<Properties::Multiply>::Value != 0> Multiply;
 
 	template <bool, class Stream>
-	struct StreamInsertOpt
+	struct StreamInsertOp
 	{
 		static void Insert(Stream &S, ConstReference X)
 		{
 			S << X;
 		}
 	};
+
 	template <class Stream>
-	struct StreamInsertOpt<false, Stream>
+	struct StreamInsertOp<false, Stream>
 	{
 		static void Insert(Stream &, ConstReference)
 		{
-			KAI_THROW_2(NoProperty, Number, Properties::StreamInsert);
+			//nKAI_THROW_1("Can't insert into stream");
 		}
 	};
+
 	template <bool, class Stream>
-	struct StreamExtractOpt
+	struct StreamExtractOp
 	{
 		static void Extract(Stream &S, Reference X)
 		{
@@ -211,7 +432,7 @@ struct TraitsBase
 		}
 	};
 	template <class Stream>
-	struct StreamExtractOpt<false, Stream>
+	struct StreamExtractOp<false, Stream>
 	{
 		static void Extract(Stream &, ConstReference)
 		{
@@ -220,13 +441,13 @@ struct TraitsBase
 			throw "No such property";
 		}
 	};
-	typedef StreamInsertOpt<HasProperty<Properties::StringStreamInsert>::Value, ::kai::StringStream> StringStreamInsert;
-	typedef StreamExtractOpt<HasProperty<Properties::StringStreamExtract>::Value, ::kai::StringStream> StringStreamExtract;
-	typedef StreamInsertOpt<HasProperty<Properties::BinaryStreamInsert>::Value, ::kai::BinaryStream> BinaryStreamInsert;
-	typedef StreamExtractOpt<HasProperty<Properties::BinaryStreamExtract>::Value, ::kai::BinaryPacket> BinaryPacketExtract;
+	typedef StreamInsertOp<HasProperty<Properties::StringStreamInsert>::Value != 0, ::kai::StringStream> StringStreamInsert;
+	typedef StreamExtractOp<HasProperty<Properties::StringStreamExtract>::Value != 0, ::kai::StringStream> StringStreamExtract;
+	typedef StreamInsertOp<HasProperty<Properties::BinaryStreamInsert>::Value != 0, ::kai::BinaryStream> BinaryStreamInsert;
+	typedef StreamExtractOp<HasProperty<Properties::BinaryStreamExtract>::Value != 0, ::kai::BinaryPacket> BinaryPacketExtract;
 	//typedef typename StreamInsert<HasProperty<Properties::XmlStreamInsert>::Value, XmlStream> XmlStreamInsert;
 
-	typedef HashOp<ConstReference, Number, !HasProperty<Properties::NoHashValue>::Value> HashFunction;
+	typedef HashOp<HasProperty<Properties::NoHashValue>::Value != 0> HashFunction;
 };
 
 KAI_TYPE_END

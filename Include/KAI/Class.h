@@ -226,7 +226,8 @@ struct Class : ClassBase
 	StorageBase *Divide(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = ClassBase::NewStorage<T>();
-		Traits::Assign::Perform(R->GetReference(), Traits::Divide::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
+		//Traits::Assign::Perform(R->GetReference(), Traits::Divide::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
+		KAI_UNUSED_2(A, B);
 		return R;
 	}
 
