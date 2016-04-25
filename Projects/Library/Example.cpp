@@ -8,8 +8,6 @@
 #include "KAI/Class.h"
 #include "KAI/Pathname.h"
 #include "KAI/ClassBuilder.h"
-
-
 #include "KAI/BuiltinTypes/Void.h" 
 #include "KAI/FunctionBase.h" 
 #include "KAI/Algorithm.h" 
