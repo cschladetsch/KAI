@@ -13,20 +13,20 @@ struct Traits
 
 typedef int TypeNumber;
 
-template <>
-struct Traits<meta::Null>
-{
-	enum { Num = Number::None };
-	enum { Properties = 0 };
-
-	typedef meta::Null Type;
-	typedef meta::Null Store;
-	typedef meta::Null *Pointer;
-	typedef meta::Null const *ConstPointer;
-	typedef meta::Null &Reference;
-	typedef meta::Null const &ConstReference;	
-	static const char *Name;
-};
+//template <>
+//struct Traits<meta::Null>
+//{
+//	enum { Number = Number::None };
+//	enum { Properties =  };
+//
+//	typedef meta::Null Type;
+//	typedef meta::Null Store;
+//	typedef meta::Null *Pointer;
+//	typedef meta::Null const *ConstPointer;
+//	typedef meta::Null &Reference;
+//	typedef meta::Null const &ConstReference;	
+//	static const char *Name;
+//};
 
 template <typename T>
 struct Traits<const T> : Traits<T>

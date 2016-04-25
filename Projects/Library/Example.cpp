@@ -10,6 +10,7 @@
 #include "KAI/ClassBuilder.h"
 
 
+#include "KAI/BuiltinTypes/Void.h" 
 #include "KAI/FunctionBase.h" 
 #include "KAI/Algorithm.h" 
 #include "KAI/Function.h"
