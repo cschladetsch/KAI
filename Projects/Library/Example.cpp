@@ -1,5 +1,4 @@
 #include "KAI/KAI.h"
-
 #include "KAI/BasePointer.h"
 #include "KAI/PropertyBase.h"
 #include "KAI/MethodBase.h"
@@ -10,9 +9,12 @@
 #include "KAI/Pathname.h"
 #include "KAI/ClassBuilder.h"
 
-#include "KAI/FunctionBase.h"
-#include "KAI/Algorithm.h"
+
+#include "KAI/FunctionBase.h" 
+#include "KAI/Algorithm.h" 
 #include "KAI/Function.h"
+#include "KAI/MethodBase.h" 
+#include "KAI/Method.h"
 
 KAI_BEGIN
 
@@ -59,8 +61,8 @@ public:
 	static void Register(Object R)
 	{
 		// this is where we reflect the class type, and the methods we wish
-		// to have exposed to the runtime. macros could be used to simplify
-		// this, but have been omitted to show exactly what is happening.
+		// to have exposed to the runtime. notice there are NO MACROS used
+		// in any of the reflection, other than in registering type traits.
 		ClassBuilder<ExampleClass>(*R.GetRegistry(), String("ExampleClass"))
 			.Methods
 			("Method0", &ExampleClass::Method0)
@@ -76,7 +78,8 @@ public:
 // before the class can be used, it needs to have its type-traits defined
 // this gives the compile-time system the information it needs to deal with
 // serialisation, operator overloads, etc
-KAI_TYPE_TRAITS(ExampleClass, 321, Properties::StringStreamInsert | Properties::BinaryStreaming);
+//KAI_TYPE_TRAITS(ExampleClass, 321, Properties::StringStreamInsert | Properties::BinaryStreaming);
+KAI_TYPE_TRAITS(ExampleClass, 321, 0);
 
 StringStream &operator<<(StringStream &S, const ExampleClass &Q)
 {
