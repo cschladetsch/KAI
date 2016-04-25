@@ -9,6 +9,7 @@
 #include "KAI/BuiltinTypes/Signed32.h"
 #include "KAI/BuiltinTypes/Bool.h"
 
+#include "KAI/Exception/Extended.h"
 #include "KAI/Reflected.h"
 #include "KAI/Pointer.h"
 #include "KAI/Continuation.h"
@@ -31,3 +32,9 @@
 #include "KAI/BinaryStream.h"
 
 #include "KAI/GetStorageBase.h"
+
+//#include "KAI/ClassBase.h"
+//#include "KAI/Class.h"
+//#include "KAI/Pathname.h"
+//#include "KAI/ClassBuilder.h"
+

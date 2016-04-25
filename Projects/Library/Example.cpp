@@ -1,7 +1,18 @@
 #include "KAI/KAI.h"
-#if 0
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Signed32.h"
+
+#include "KAI/BasePointer.h"
+#include "KAI/PropertyBase.h"
+#include "KAI/MethodBase.h"
+#include "KAI/ClassBase.h"
+#include "KAI/Memory.h"
+#include "KAI/Registry.h"
+#include "KAI/Class.h"
+#include "KAI/Pathname.h"
+#include "KAI/ClassBuilder.h"
+
+#include "KAI/FunctionBase.h"
+#include "KAI/Algorithm.h"
+#include "KAI/Function.h"
 
 KAI_BEGIN
 
@@ -22,6 +33,8 @@ public:
 	}
 	String Method1(int N) const		// const methods are supported
 	{
+		KAI_UNUSED_1(N);
+
 		return "hello";
 	}
 	int Method2(int M, int N)
@@ -48,7 +61,8 @@ public:
 		// this is where we reflect the class type, and the methods we wish
 		// to have exposed to the runtime. macros could be used to simplify
 		// this, but have been omitted to show exactly what is happening.
-		ClassBuilder<ExampleClass>(*R.GetRegistry(), "ExampleClass")
+		ClassBuilder<ExampleClass>(*R.GetRegistry(), String("ExampleClass"))
+			.Methods
 			("Method0", &ExampleClass::Method0)
 			("Method1", &ExampleClass::Method1)
 			("Method2", &ExampleClass::Method2)
@@ -58,6 +72,11 @@ public:
 			;
 	}
 };
+
+// before the class can be used, it needs to have its type-traits defined
+// this gives the compile-time system the information it needs to deal with
+// serialisation, operator overloads, etc
+KAI_TYPE_TRAITS(ExampleClass, 321, Properties::StringStreamInsert | Properties::BinaryStreaming);
 
 StringStream &operator<<(StringStream &S, const ExampleClass &Q)
 {
@@ -74,11 +93,6 @@ BinaryPacket &operator>>(BinaryPacket &S, ExampleClass &Q)
 	return S >> Q.number >> Q.string;
 }
 
-// before the class can be used, it needs to have its type-traits defined
-// this gives the compile-time system the information it needs to deal with
-// serialisation, operator overloads, etc
-KAI_TYPE_TRAITS(ExampleClass, 321, Properties::StringStreamInsert | Properties::BinaryStreaming);
-
 // a function that will be reflected. the only restraint is that the argument
 // and return types must be known to the system
 int SomeFunction(int N)
@@ -92,17 +106,14 @@ void AddExamples(Object R)
 	ExampleClass::Register(R);
 
 	// expose a function to the runtime. again, macros here could help but are not necessary
-	Set(R, Pathname("/Bin/SomeFunction"), NewFunction(R, SomeFunction, "SomeFunction"));
+	// TODO: why need ::kai::NewFunction???
+	Set(R, Pathname("/Bin/SomeFunction"), ::kai::NewFunction2(R, SomeFunction, Label("SomeFunction")));
 
 	// make a new instance, expose it to the runtime
 	Pointer<ExampleClass> instance = R.New<ExampleClass>();
 	instance->number = 123;
 	Set(R, Pathname("/Home/instance"), instance);
-
 }
 
 KAI_END
 
-//EOF
-
-#endif
