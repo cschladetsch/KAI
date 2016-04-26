@@ -39,7 +39,7 @@ void Continuation::Enter(Executor *exec)
 		Stack &data = *exec->GetDataStack();
 		if (data.Size() < args->Size())
 		{
-			KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
+			//KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
 			KAI_THROW_0(EmptyStack);
 		}
 
@@ -127,11 +127,11 @@ void Continuation::Register(Registry &R)
 	ClassBuilder<Continuation>(R, "Continuation")
 		.Methods
 		.Properties
-		("code", &Continuation::code)
-		("args", &Continuation::args)
-		("scope", &Continuation::scope)
-		("source_code", &Continuation::source_code)
-		("entered", &Continuation::entered)
+		// TODO ("code", &Continuation::code)
+		//("args", &Continuation::args)
+		//("scope", &Continuation::scope)
+		//("source_code", &Continuation::source_code)
+		//("entered", &Continuation::entered)
 		;
 }
 

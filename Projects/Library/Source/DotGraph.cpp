@@ -80,18 +80,20 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 	object.GetContainedObjects(contained);
 	object.GetChildObjects(children);
 
-	foreach (Object child, children)
+	for (auto const &child : children)
 	{
 		graph << object_id << " -> " << child.GetHandle().GetValue() << "[weight=10]\n";
 		graph << child;
 	}
-	foreach (Object prop, props)
+
+	for (auto const &prop : props)
 	{
 		//graph << object_id << "[label=\"" << prop.GetLabel() << "\"]\n";
 		graph << object_id << " -> " << prop.GetHandle().GetValue() << "[style=dashed]\n";
 		graph << prop;
 	}
-	foreach (Object cont, contained)
+
+	for (auto const &cont : contained)
 	{
 		graph << object_id << " -> " << cont.GetHandle().GetValue() << "[style=dotted]\n";
 		graph << cont;

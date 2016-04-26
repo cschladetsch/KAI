@@ -48,7 +48,7 @@ public:
 	ObjectColor::Color GetColor() const;
 	void SetColor(ObjectColor::Color C) const;
 	void SetColorRecursive(ObjectColor::Color C) const;
-	void SetColorRecursive(ObjectColor::Color C, std::unordered_set<Handle> &) const;
+	void SetColorRecursive(ObjectColor::Color C, HandleSet &) const;
 	bool IsWhite() const { return GetColor() == ObjectColor::White; }
 	bool IsGrey() const { return GetColor() == ObjectColor::Grey; }
 	bool IsBlack() const { return GetColor() == ObjectColor::Black; }
@@ -180,7 +180,7 @@ public:
 	}
 
 	// deref's Registry so must be in source file
-	Object NewFromTypeNumber(int N) const;
+	Object NewFromTypeNumber(Type::Number N) const;
 	Object NewFromClassName(String const &type_name) const;
 
 	template <class T>

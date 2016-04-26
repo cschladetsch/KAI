@@ -21,6 +21,7 @@ void String::Register(Registry &R)
 
 void StringStream::Register(Registry &registry)
 {
+	KAI_UNUSED(registry);
 	// TODO TESTS
 	//ClassBuilder<StringStream>(registry, "StringStream")
 	//	.Methods

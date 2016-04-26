@@ -6,7 +6,7 @@ KAI_BEGIN
 
 namespace Exception 
 {
-	nstd::string Base::ToString() const 
+	std::string Base::ToString() const 
 	{ 
 		StringStream S;
 		std::string loc = location.ToString().c_str();
