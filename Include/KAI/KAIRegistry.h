@@ -4,7 +4,6 @@
 
 #include "KAI/Pointer.h"
 #include "KAI/Algorithm.h"
-#include "KAI/TypeInfo.h"
 #include "KAI/Event.h"
 #include "KAI/BasePointer.h"
 #include "KAI/BuiltinTypes/Array.h"

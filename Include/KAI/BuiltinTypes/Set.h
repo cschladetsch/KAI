@@ -10,9 +10,18 @@ struct CompareHandles
 	}
 };
 
+struct HashObject
+{
+	inline size_t operator()(Object const &A) const
+	{
+		return A.GetHandle().GetValue();
+	}
+
+};
+
 struct ObjectSet : Container<ObjectSet>
 {
-	typedef boost::unordered_set<Object, boost::hash<Object>, CompareHandles> Objects;
+	typedef std::unordered_set<Object, HashObject, CompareHandles> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;
 

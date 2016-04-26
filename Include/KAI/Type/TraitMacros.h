@@ -37,5 +37,10 @@ KAI_BEGIN
 #define KAI_TYPE_TRAITS_BASIC_STRING_STREAM_INSERT(T,N) \
 	KAI_TYPE_TRAITS(T,N,Type::Properties::StringStreamInsert)
 
+KAI_TYPE_TRAITS(String, Number::String
+	, Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
+
+KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert)
+
 KAI_END
 
