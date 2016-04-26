@@ -23,6 +23,7 @@
 #include "KAI/FunctionBase.h"
 #include "KAI/Function.h"
 #include "KAI/GetStorageBase.h"
+#include "KAI/Memory.h"
 #include "KAI/Registry.h"
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/Function.h"

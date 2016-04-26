@@ -5,9 +5,9 @@ KAI_BEGIN
 template <class Cont, class Fun>
 Fun ForEach(Cont &container, Fun fun)
 {
-	for (auto const &A : container)
+	for (auto &A : container)
 	{
-		if (!fun(*A))
+		if (!fun(A))
 			break;
 	}
 	return fun;
@@ -126,8 +126,8 @@ template <class T>
 struct SetObjectColorRecursive : IteratedFunctionBase < T >
 {
 	ObjectColor::Color color;
-	StorageBase::Handles *handles;
-	SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Handles &H) : color(C), handles(&H) { }
+	StorageBase::Containers *handles;
+	SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Containers &H) : color(C), handles(&H) { }
 	bool Invoke(Object const &Q)
 	{
 		Object(Q).SetColorRecursive(color, *handles);
