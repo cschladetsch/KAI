@@ -1,6 +1,9 @@
 #include "KAI/KAI.h"
+#include "KAI/StringStream.h"
 #include "KAI/Pathname.h"
+#include "KAI/Exception/Extended.h"
 #include "KAI/BuiltinTypes/Bool.h"
+#include "KAI/ClassBuilder.h"
 
 #include <ctype.h>
 
@@ -107,7 +110,7 @@ String Pathname::ToString() const
 	if (Absolute)
 		str.Append(Literals::Seperator);
 
-	foreach (Element const &element, elements)
+	for (auto element : elements)
 	{
 		switch (element.type)
 		{

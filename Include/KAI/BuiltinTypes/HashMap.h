@@ -10,7 +10,7 @@
 
 KAI_BEGIN
 
-struct Object;
+class Object;
 
 /// A Map defines an associative container. Because this maps Object to Object,
 /// it is possible to store mappings of any type to any type.
@@ -19,7 +19,7 @@ struct HashMapCompare
 {
 	// TODO: determine optimal values for these
 	enum { bucket_size = 333, min_buckets = 3 };
-	nstd::size_t operator()(const Object &A) const;
+	std::size_t operator()(const Object &A) const;
 	bool operator()(const Object &A, const Object &B) const;
 };
 

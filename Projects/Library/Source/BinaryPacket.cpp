@@ -1,9 +1,4 @@
 #include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/BuiltinTypes/Bool.h"
-#include "KAI/BuiltinTypes/Signed32.h"
-#include "KAI/BuiltinTypes/String.h"
-#include "KAI/Pathname.h"
 
 KAI_BEGIN
 

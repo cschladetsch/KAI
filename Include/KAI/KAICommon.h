@@ -25,6 +25,7 @@
 #include "KAI/Constness.h"
 #include "KAI/ObjectConstructParams.h"
 #include "KAI/Object.h"
+#include "KAI/TypeInfo.h"
 #include "KAI/StorageBase.h"
 #include "KAI/Reflected.h"
 #include "KAI/BuiltinTypes/Container.h"

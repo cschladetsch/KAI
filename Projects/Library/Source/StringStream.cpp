@@ -1,11 +1,13 @@
-
-
 #include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/String.h"
 #include "KAI/BuiltinTypes/Bool.h"
-#include "KAI/BuiltinTypes/Signed32.h"
-#include "KAI/Function.h"
+//#include "KAI/BuiltinTypes/Signed32.h"
+//#include "KAI/Function.h"
 
+#include <iterator>
+#include <string>
 KAI_BEGIN
+
 
 void String::Register(Registry &R)
 {

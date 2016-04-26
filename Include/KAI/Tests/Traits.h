@@ -472,17 +472,12 @@ namespace Type
 		const char *Traits<T>::Name = #T; \
 	}
 
-struct String;
+class String;
 
 HashValue GetHash(const String &);
 
-KAI_TYPE_TRAITS(String, Number::String
-	, Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational);
-
-KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert);
-
 KAI_END
 
-#endif // KAI_TYPE_TRAITS_H
+//#endif // KAI_TYPE_TRAITS_H
 
 //EOF

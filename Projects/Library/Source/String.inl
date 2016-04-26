@@ -2,26 +2,27 @@
 
 String String::LowerCase() const
 {
-	String result((int)string.size(), ' ');
-	std::transform(string.begin(), string.end(), result.begin(), ::tolower);
+	String result((int)_string.size(), ' ');
+	std::transform(_string.begin(), _string.end(), result.begin(), ::tolower);
 	return result;
 }
 
 String String::UpperCase() const
 {
-	String result((int)string.size(), ' ');
-	std::transform(string.begin(), string.end(), result.begin(), ::toupper);
+	String result((int)_string.size(), ' ');
+	std::transform(_string.begin(), _string.end(), result.begin(), ::toupper);
 	return result;
 }
 
 String String::Capitalise() const
 {
-	if (string.empty())
-		return String();
+	//if (_string.empty())
+	//	return String();
 
-	String result = string;
-	result[0] = (String::Char)::toupper(result[0]);
-	return result;
+	//String result = _string;
+	//result[0] = (String::Char)::toupper(result[0]);
+	//return result;
+	KAI_NOT_IMPLEMENTED();
 }
 
 bool String::Contains(String const &) const
@@ -48,8 +49,9 @@ void String::ReplaceLast(String const &what, String const &with)
 
 void String::RemoveAll(String const &what)
 {
-	//throw;
-	boost::algorithm::erase_all(*this, what);
+	KAI_UNUSED(what);
+	KAI_NOT_IMPLEMENTED();
+	//boost::algorithm::erase_all(*this, what);
 }
 
 bool String::EndsWith(String const &) const

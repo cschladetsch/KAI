@@ -71,9 +71,9 @@ StringStream &operator<<(StringStream &stream, const Stack &stack)
 {
 	stream << "Stack[";
 	String sep;
-	foreach (Object object, stack)
+	for (auto obj : stack)
 	{
-		stream << sep << object;
+		stream << sep << obj;
 		if (sep.empty())
 			sep = ", ";
 	}

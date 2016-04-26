@@ -33,6 +33,8 @@
 
 #include "KAI/GetStorageBase.h"
 
+#include "KAI/KAIClassBuilder.h"
+
 //#include "KAI/ClassBase.h"
 //#include "KAI/Class.h"
 //#include "KAI/Pathname.h"

@@ -14,7 +14,7 @@ bool ObjectSet::Empty() const
 
 int ObjectSet::Size() const
 {
-	return numeric_cast<int>(objects.size());
+	return static_cast<int>(objects.size());
 }
 
 bool ObjectSet::Destroy()

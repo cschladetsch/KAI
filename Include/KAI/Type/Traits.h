@@ -97,7 +97,7 @@ struct TraitsBase
 	template <>
 	struct AssignOp<true>
 	{
-		static void Perform(Reference, ConstReference)
+		static void Perform(Reference A, ConstReference B)
 		{
 			A = B;
 		}
@@ -175,7 +175,7 @@ struct TraitsBase
 	template <>
 	struct GreaterOp<true>
 	{
-		static bool Perform(ConstReference, ConstReference)
+		static bool Perform(ConstReference A, ConstReference B)
 		{
 			return A > B;
 		}
@@ -296,11 +296,11 @@ struct TraitsBase
 	{
 		static void SetMarked(Reference R, bool M)
 		{
-			ForEach(R, sif::SetMarked<T>(M));
+			ForEach(R, KAI_NAMESPACE(SetMarked<T>)(M));
 		}
 		static void SetSwitch(Reference R, int S, bool M)
 		{
-			ForEach(R, sif::SetSwitch<T>(S, M));
+			ForEach(R, KAI_NAMESPACE(SetSwitch<T>)(S, M));
 		}
 		static void SetColor(Reference R, ObjectColor::Color C)
 		{
@@ -451,6 +451,7 @@ struct TraitsBase
 };
 
 KAI_TYPE_END
+
 
 namespace boost
 {
