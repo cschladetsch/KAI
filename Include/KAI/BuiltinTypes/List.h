@@ -11,7 +11,7 @@ KAI_BEGIN
 /// A list of Objects
 struct List : Container<List>
 {
-	typedef nstd::list<Object> Objects;
+	typedef std::list<Object> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;
 
@@ -50,7 +50,7 @@ public:
 	iterator Erase(Object const &Q);
 	bool Contains(Object const &Q) const
 	{
-		foreach (Object const &element, objects)
+		for (auto element : objects)
 		{
 			if (element.GetHandle() == Q.GetHandle())
 				return true;

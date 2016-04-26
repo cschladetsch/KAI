@@ -446,8 +446,14 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Include\KAI\Properties.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="..\..\Include\KAI\Properties.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Source\Bin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">Use</PrecompiledHeader>
@@ -461,9 +467,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -502,8 +507,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -542,8 +546,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -582,8 +585,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -622,8 +624,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -662,8 +663,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -702,8 +702,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -741,9 +740,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -786,8 +784,7 @@
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
       <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessSuppressLineNumbers>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -826,8 +823,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -866,6 +862,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Source\LibrarySource.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -874,6 +872,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
@@ -889,8 +889,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -929,8 +928,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -969,8 +967,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAICommon.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1009,8 +1006,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1049,8 +1045,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1089,8 +1084,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1129,8 +1123,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1169,8 +1162,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"KAI/KAI.h"</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
@@ -1222,12 +1214,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Test.cpp">
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">false</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Token.cpp">
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">false</ExcludedFromBuild>
@@ -1239,46 +1225,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">false</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="Source\Tree.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">false</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseLN|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='ReleaseWithDebug|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RetailOpt|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RetailOpt|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RetailOpt|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RetailProfiled|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RetailProfiled|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RetailProfiled|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
@@ -1384,6 +1330,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailProfiled|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Source\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Source\CompilerTokens.inl">

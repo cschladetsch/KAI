@@ -101,6 +101,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
+      <Filter>Source Files\BuiltinTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuiltinTypes\Map.cpp">
+      <Filter>Source Files\BuiltinTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Network\Tcp.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
+      <Filter>Source Files\Network\Platform\PC\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Node.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Lexer.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\RhoLang.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Token.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Translator.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Parser.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\BasicOutput.cpp">
+      <Filter>Source Files\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\Module.cpp">
+      <Filter>Source Files\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\XmlOutput.cpp">
+      <Filter>Source Files\Test</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Bin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -149,10 +188,16 @@
     <ClCompile Include="Source\Probes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Include\KAI\Properties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Registry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SignedContinuation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\StorageBase.cpp">
@@ -163,54 +208,6 @@
     </ClCompile>
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BuiltinTypes\Map.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Network\Tcp.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
-      <Filter>Source Files\Network\Platform\PC\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Node.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Lexer.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\RhoLang.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Token.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Translator.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Include\KAI\Properties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\BasicOutput.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\Module.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\XmlOutput.cpp">
-      <Filter>Source Files\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,10 @@
 #include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/All.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/Function.h"
 #include <algorithm>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/erase.hpp>
-#include "KAI/StringStream.h"
+
+#include "KAI/BuiltinTypes/All.h"
+#include "KAI/BuiltinTypes/List.h"
 
 KAI_BEGIN
 
@@ -85,7 +84,7 @@ void WriteArgumentList(StringStream &S, const typename Callable::ArgumentTypes &
 String MethodBase::ToString() const
 {
 	StringStream S;
-	S << return_type.ToString() << " " << class_type.ToString() << "::" << name;
+	S << return_type.ToString() << String(" ") << class_type.ToString() << String("::") << name;
 	WriteArgumentList<MethodBase>(S, arguments);
 
 	if (constness == Constness::Const)
@@ -162,7 +161,7 @@ StringStream &operator<<(StringStream &S, float N)
 
 namespace Type
 {
-	nstd::string Number::ToString() const
+	std::string Number::ToString() const
 	{
 		switch (value)
 		{
@@ -329,7 +328,7 @@ BinaryPacket &operator>>(BinaryPacket &S, Vector4 &V)
 	return S >> V.x >> V.y >> V.z >> V.w;
 }
 
-StringStream &operator<<(StringStream &S, nstd::size_t N)
+StringStream &operator<<(StringStream &S, std::size_t N)
 {
 	return S << (int)N;
 }

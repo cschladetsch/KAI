@@ -49,10 +49,8 @@ BinaryStream &operator<<(BinaryStream &stream, List const &list)
 {
 	int size = list.Size(); 
 	stream << size;
-	foreach (Object object, list)
-	{
+	for (auto object : list)
 		stream << object;
-	}
 	return stream;
 }
 
@@ -73,7 +71,7 @@ StringStream &operator<<(StringStream &stream, List const &list)
 {
 	stream << "List[";
 	String sep = "";
-	foreach (Object object, list)
+	for (auto object : list)
 	{
 		stream << sep << object;
 		if (sep.empty())

@@ -15,8 +15,9 @@ KAI_TYPE_TRAITS(Stack, Number::Stack
 	| Properties::Container
 	);
 
-class Stack : Container<Stack>
+class Stack : public Container<Stack>
 {
+public:
 	typedef std::vector<Object> Objects;
 	typedef Objects::const_iterator const_iterator;
 	typedef Objects::iterator iterator;

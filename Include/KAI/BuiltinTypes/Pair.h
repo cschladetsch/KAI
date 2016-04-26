@@ -13,7 +13,7 @@ struct Pair
 	Object first, second;
 	Pair() {}
 	Pair(const Object &A, const Object &B) : first(A), second(B) { }
-	Pair(nstd::pair<Object, Object> const &P) : first(P.first), second(P.second) { }
+	Pair(std::pair<Object, Object> const &P) : first(P.first), second(P.second) { }
 
 	static void Register(Registry &);
 
