@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_NODE_H
-#	define KAI_NODE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -74,5 +68,3 @@ struct NodeProxy : Implements<NodeInterface>
 };
 
 KAI_END
-
-//EOF

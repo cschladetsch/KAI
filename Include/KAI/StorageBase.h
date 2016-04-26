@@ -82,8 +82,7 @@ public:
 
 	StorageBase *GetParentPtr();
 
-	typedef std::unordered_set<Handle, HashHandle> Handles;
-	void SetColorRecursive(ObjectColor::Color color, Handles& handles);
+	void SetColorRecursive(ObjectColor::Color color, HandleSet& handles);
 };
 
 KAI_END

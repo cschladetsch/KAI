@@ -18,8 +18,8 @@ struct SignedContinuation
 		FormalParameter(Type::Number T, Label const &L) : type(T), label(L) { }
 	};
 
-	typedef nstd::vector<FormalParameter> FormalParameters;
-	typedef nstd::vector<Type::Number> ReturnTuple;
+	typedef std::vector<FormalParameter> FormalParameters;
+	typedef std::vector<Type::Number> ReturnTuple;
 
 	Pointer<Continuation> cont;
 	FormalParameters params;
