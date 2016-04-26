@@ -17,15 +17,12 @@ private:
 	Storage _string;
 
 public:
-	String() { }
-
+	String() = default;
 	template <class II>
 	String(II A, II B) { _string.assign(A,B); }
-
 	String(const Char *S) { if (S != 0) _string = S; }
-
+	String(const std::string &X) { _string = X; }
 	String(const String &X) { _string = X._string; }
-
 	String(int N, Char C) { _string = std::move(std::string(N, C)); }
 
 	int foo()
@@ -51,6 +48,10 @@ public:
 		return std::move(A);
 	}
 
+	friend String operator+(String const &A, String const & B)
+	{
+		return std::move(String(A._string + B._string));
+	}
 	//String operator+(const String &A) { return A._string + _string; }
 
 	const_iterator begin() const { return _string.begin(); }

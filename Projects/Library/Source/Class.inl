@@ -30,11 +30,11 @@ void ClassBase::MakeReachableGrey(StorageBase &base) const
 		if (!prop.IsSystemType())
 			continue;
 		Object property = prop.GetObject(base);
-		StorageBase *base = property.GetRegistry()->GetStorageBase(property.GetHandle());
-		if (base == 0)
+		StorageBase *sbase = property.GetRegistry()->GetStorageBase(property.GetHandle());
+		if (sbase == 0)
 			continue;
-		if (base->IsWhite())
-			base->SetColor(ObjectColor::Grey);
+		if (sbase->IsWhite())
+			sbase->SetColor(ObjectColor::Grey);
 	}
 }
 

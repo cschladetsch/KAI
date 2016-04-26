@@ -302,11 +302,11 @@ void Object::SetSwitch(int S, bool M) const
 	GetClass()->SetSwitch(base, S, M);
 }
 
-Object Object::NewFromTypeNumber(Type::Number type_number) const
-{
-	return registry->NewFromTypeNumber(type_number);
-}
-
+//Object Object::NewFromTypeNumber(Type::Number type_number) const
+//{
+//	return registry->NewFromTypeNumber(type_number);
+//}
+//
 Object Object::NewFromClassName(String const &type_name) const
 {
 	return registry->NewFromClassName(type_name.c_str());
@@ -392,7 +392,7 @@ void Object::SetColorRecursive(ObjectColor::Color C) const
 	}
 }
 
-void Object::SetColorRecursive(ObjectColor::Color C, boost::unordered_set/*nstd::vector*/<Handle> &H) const
+void Object::SetColorRecursive(ObjectColor::Color C, HandleSet &H) const
 {
 	if (Exists()) 
 		GetStorageBase().SetColorRecursive(C, H); 
@@ -454,10 +454,8 @@ void Object::GetChildObjects(ObjectList &contained) const
 	if (!*this)
 		return;
 
-	foreach (Dictionary::value_type child, GetDictionary())
-	{
+	for (auto &child : GetDictionary())
 		contained.push_back(child.second);
-	}
 }
 
 void Object::GetAllReferencedObjects(ObjectList &contained) const
@@ -493,7 +491,7 @@ BinaryStream &operator<<(BinaryStream &stream, const Object &object)
 		klass.Insert(stream, base);
 
 	// insert any properties
-	foreach (ClassBase::Properties::value_type const &prop_iter, klass.GetProperties())
+	for (auto const &prop_iter : klass.GetProperties())
 	{
 		stream << prop_iter.second->GetValue(object);
 	}
@@ -501,7 +499,7 @@ BinaryStream &operator<<(BinaryStream &stream, const Object &object)
 	// insert sub-objects
 	const Dictionary &dict = base.GetDictionary();
 	stream << (int)dict.size();
-	foreach (Dictionary::value_type const &child, dict)
+	for (auto const &child : dict)
 	{
 		stream << child.first << child.second;
 	}
@@ -535,7 +533,7 @@ BinaryPacket &operator>>(BinaryPacket &packet, Object &extracted)
 		extracted = registry.NewFromTypeNumber(type_number);
 
 	// extract any properties
-	foreach (ClassBase::Properties::value_type const &prop_iter, klass->GetProperties())
+	for (ClassBase::Properties::value_type const &prop_iter : klass->GetProperties())
 	{
 		Object prop_value;
 		packet >> prop_value;
@@ -615,7 +613,7 @@ bool operator<(Object const &A, Object const &B)
 	}
 	
 	// test properties
-	foreach (ClassBase::Properties::value_type const &prop, klass_a.GetProperties())
+	for (ClassBase::Properties::value_type const &prop : klass_a.GetProperties())
 	{
 		Object prop_a = prop.second->GetValue(A);
 		Object prop_b = B.Get(prop.second->GetFieldName());
@@ -628,7 +626,7 @@ bool operator<(Object const &A, Object const &B)
 	}
 
 	// test sub-objects
-	foreach (Dictionary::value_type const &child_a_entry, A.GetDictionary())
+	for (Dictionary::value_type const &child_a_entry : A.GetDictionary())
 	{
 		Object child_a = child_a_entry.second;
 		Object child_b = B.Get(child_a_entry.first);
@@ -667,7 +665,7 @@ bool operator==(Object const &A, Object const &B)
 		return false;
 
 	// test properties
-	foreach (ClassBase::Properties::value_type const &prop, klass.GetProperties())
+	for (ClassBase::Properties::value_type const &prop : klass.GetProperties())
 	{
 		Object prop_a = prop.second->GetValue(A);
 		Object prop_b = B.Get(prop.second->GetFieldName());
@@ -676,7 +674,7 @@ bool operator==(Object const &A, Object const &B)
 	}
 
 	// test sub-objects
-	foreach (Dictionary::value_type const &child_a_entry, dict_a)
+	for(Dictionary::value_type const &child_a_entry : dict_a)
 	{
 		Object child_a = child_a_entry.second;
 		Object child_b = B.Get(child_a_entry.first);

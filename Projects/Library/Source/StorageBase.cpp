@@ -123,12 +123,12 @@ void StorageBase::Remove(const Label &label)
 
 void StorageBase::SetColorRecursive(ObjectColor::Color color)
 {
-	Handles handles;
+	HandleSet handles;
 	SetColorRecursive(color, handles);
 }
 
 // avoid loops by passing history of objects traversed via handles argument
-void StorageBase::SetColorRecursive(ObjectColor::Color color, Handles& handles)
+void StorageBase::SetColorRecursive(ObjectColor::Color color, HandleSet& handles)
 {
 	Handle handle = GetHandle();
 	if (handles.find(handle) != handles.end())
@@ -143,7 +143,7 @@ void StorageBase::SetColorRecursive(ObjectColor::Color color, Handles& handles)
 	if (dictionary.empty())
 		return;
 
-	foreach (Dictionary::value_type const &child, dictionary)
+	for (Dictionary::value_type const &child : dictionary)
 	{
 		StorageBase *sub = GetRegistry()->GetStorageBase(child.second.GetHandle());
 		if (!sub)

@@ -6,11 +6,9 @@
 #include "KAI/BuiltinTypes/HashMap.h"
 #include "KAI/BuiltinTypes/Map.h"
 #include "KAI/BuiltinTypes/List.h"
+#include "KAI/KAIClassBuilder.h"
 
 KAI_BEGIN
-
-//#define KAI_PRAGMA_MESSAGE_NOT_IMPLEMENTED() \
-//	message 
 
 StringStream &operator<<(StringStream &S, Map::const_iterator const &P)
 {
@@ -18,7 +16,7 @@ StringStream &operator<<(StringStream &S, Map::const_iterator const &P)
 	return S << "MapConstIterator";
 }
 
-nstd::size_t HashMapCompare::operator()(const Object &A) const
+std::size_t HashMapCompare::operator()(const Object &A) const
 {
 	if (!A.Valid())
 		return 0;

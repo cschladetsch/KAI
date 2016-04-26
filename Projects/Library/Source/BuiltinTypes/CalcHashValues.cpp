@@ -1,7 +1,8 @@
-
 #include "KAI/KAI.h"
 
 KAI_BEGIN
+
+// THESE ARE TERRIBLE HASH FUNCTIONS FOR CONTAINERS
 
 HashValue GetHash(const Stack &S)
 {

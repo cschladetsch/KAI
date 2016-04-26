@@ -1,9 +1,6 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
+#pragma once
 
-#ifndef KAI_BUILTIN_TYPES_MAP_H
-#	define KAI_BUILTIN_TYPES_MAP_H
+#include "KAI/BuiltinTypes/MapBase.h"
 
 KAI_BEGIN
 
@@ -30,10 +27,4 @@ KAI_TYPE_TRAITS(Map::const_iterator, Number::MapConstIterator
 	//| Properties::Container ?? should an iterator be considered a container?
 	);
 
-
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_MAP_H
-
-//EOF
-
