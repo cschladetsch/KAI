@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_MAP_BASE_H
-#	define KAI_BUILTIN_TYPES_MAP_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -120,7 +114,3 @@ BinaryPacket &operator>>(BinaryPacket &S, MapBase<Map> &M)
 }
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_MAP_BASE_H
-
-//EOF

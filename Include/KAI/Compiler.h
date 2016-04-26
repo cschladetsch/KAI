@@ -12,7 +12,7 @@ BinaryPacket &operator>>(BinaryPacket &, Compiler &);
 
 KAI_TYPE_TRAITS(Compiler, Number::Compiler, Properties::Reflected);
 
-class Compiler : Reflected//<Compiler>
+class Compiler : public Reflected
 {
 	typedef std::map<Operation, String> OperationToString;
 	typedef std::map<String, Pointer<Operation> > StringToOperation;

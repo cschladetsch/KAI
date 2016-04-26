@@ -8,6 +8,7 @@
 #include "KAI/BuiltinTypes/String.h"
 #include "KAI/BuiltinTypes/Signed32.h"
 #include "KAI/BuiltinTypes/Bool.h"
+#include "KAI/StdContainers.h"
 
 #include "KAI/Exception/Extended.h"
 #include "KAI/Reflected.h"
@@ -33,6 +34,9 @@
 
 #include "KAI/GetStorageBase.h"
 
+#include "KAI/IObject.h"
+
+#include "KAI/KAIRegistry.h"
 #include "KAI/KAIClassBuilder.h"
 
 //#include "KAI/ClassBase.h"

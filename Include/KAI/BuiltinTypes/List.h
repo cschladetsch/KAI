@@ -67,7 +67,8 @@ public:
 
 	void SetChildSwitch(int N, bool M)
 	{
-		ForEach(objects, SetSwitch<List>(N, M));
+		for (auto &elem : objects)
+			elem.SetSwitch(N, M);
 	}
 
 	static void Register(Registry &);

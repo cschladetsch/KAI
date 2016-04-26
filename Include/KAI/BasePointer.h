@@ -27,6 +27,8 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 
 	static void Register(Registry &R)
 	{
+		KAI_UNUSED(R);
+
 		/* MUSTFIX
 		ClassBuilder<BasePointer<T> >(R, String("BasePointer"))
 			;
