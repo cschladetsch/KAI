@@ -5,6 +5,7 @@
 #include "KAI/Value.h"
 #include "KAI/Compiler.h"
 #include "KAI/Reflected.h"
+#include "KAI/GetStorageBase.h"
 #include "KAI/Executor.h"
 #include "KAI/Pathname.h"
 #include "KAI/Tree.h"
@@ -45,7 +46,7 @@ void Executor::Push(Object const &Q)
 		Push(*data, Q);
 }
 
-void Executor::Push(const nstd::pair<Object, Object> &P)
+void Executor::Push(const std::pair<Object, Object> &P)
 {
 	Push(New(Pair(P.first, P.second)));
 }
@@ -103,8 +104,8 @@ void Executor::Continue()
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
-				KAI_TRACE_3(data, context, continuation);
-				KAI_TRACE_1(E);
+				//KAI_TRACE_3(data, context, continuation);
+				//KAI_TRACE_1(E);
 				(void)E;
 				throw;
 			}
@@ -136,7 +137,10 @@ void Executor::NextContinuation()
 	}
 
 	if (context->Empty())
-		KAI_TRACE_ERROR() << "Context stack is empty";
+		// TODO ERRORS KAI_TRACE_ERROR() << "Context stack is empty";
+	{
+		KAI_NOT_IMPLEMENTED();
+	}
 
 	SetContinuation(context->Pop());
 }
@@ -517,7 +521,8 @@ void Executor::Perform(Operation::Type op)
 		{
 			if (data->Size() < 1)
 			{
-				KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
+				//TODO ERRORS KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
+				KAI_NOT_IMPLEMENTED();
 			}
 			Object where_to_go = Resolve(Pop());
 			switch (where_to_go.GetTypeNumber().GetValue())
@@ -646,7 +651,8 @@ void Executor::Perform(Operation::Type op)
 		{
 			if (data->Size() < 3)
 			{
-				KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
+				//KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
+				KAI_NOT_IMPLEMENTED();
 			}
 
 			Object condition = Pop();

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <strstream>
 #include <stdarg.h>
+#include <algorithm>
 
 #include "KAI/Translator/Lexer.h"
 

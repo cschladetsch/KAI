@@ -1,5 +1,6 @@
 #include "KAI/KAI.h"
 #include "KAI/Translator/Translator.h"
+#include "KAI/BuiltinTypes/All.h"
 #include <boost/lexical_cast.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 

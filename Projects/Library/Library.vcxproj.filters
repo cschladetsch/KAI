@@ -101,9 +101,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\Map.cpp">
       <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
@@ -130,15 +127,6 @@
     </ClCompile>
     <ClCompile Include="Source\Translator\Parser.cpp">
       <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\BasicOutput.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\Module.cpp">
-      <Filter>Source Files\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\XmlOutput.cpp">
-      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="Source\Bin.cpp">
       <Filter>Source Files</Filter>
@@ -170,12 +158,6 @@
     <ClCompile Include="Source\Executor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InstanceMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibrarySource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -185,19 +167,10 @@
     <ClCompile Include="Source\Precompiled.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Probes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Include\KAI\Properties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Registry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SignedContinuation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\StorageBase.cpp">
@@ -208,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuiltinTypes\CalcHashVales.cpp">
+      <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,9 +310,6 @@
     <ClInclude Include="..\..\Include\KAI\GetStorageBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\GuardStart.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -374,9 +347,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Network\Template.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\NonCopyable.h">

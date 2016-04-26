@@ -57,7 +57,7 @@ StringStream &operator<<(StringStream &S, SignedContinuation const &Q)
 	SignedContinuation::FormalParameters::const_iterator A = Q.params.begin(), B = Q.params.end();
 	for (; A != B; ++A)
 	{
-		S << sep << A->type << " " << A->label;
+		S << sep << A->type.TypeNumber << String(" ") << A->label;
 		sep = ", ";
 	}
 

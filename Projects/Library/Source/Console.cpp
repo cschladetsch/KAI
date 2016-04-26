@@ -1,5 +1,6 @@
 #include "KAI/KAI.h"
 #include "KAI/Operation.h"
+#include "KAI/IObject.h"
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/Continuation.h"
 #include "KAI/PropertyBase.h"
@@ -93,13 +94,13 @@ void Console::ControlC()
 Console::Console(Memory::IAllocator *alloc)
 {
 	registry = alloc->Allocate<Registry>(alloc);
-	nstd::vector<String> args;
+	std::vector<String> args;
 	Create(args);
 	static C c;
 	this->alloc = alloc;
 }
 
-Console::Console(const nstd::vector<String> &args, Memory::IAllocator *alloc)
+Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
 {
 	registry = alloc->Allocate<Registry>(alloc);
 	Create(args);
@@ -109,7 +110,7 @@ Console::Console(const nstd::vector<String> &args, Memory::IAllocator *alloc)
 Console::Console()
 {
 	registry = alloc->Allocate<Registry>();
-	Create(nstd::vector<String>());
+	Create(std::vector<String>());
 }
 
 Console::~Console()
@@ -117,7 +118,7 @@ Console::~Console()
 	alloc->DeAllocate(registry);
 }
 
-void Console::Create(const nstd::vector<String> &args)
+void Console::Create(const std::vector<String> &args)
 {
 	KAI_UNUSED(args);
 	try
@@ -213,17 +214,17 @@ String Console::Execute(Pointer<Continuation> cont)
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
-		KAI_TRACE_ERROR_1(E);
+		//KAI_TRACE_ERROR_1(E);
 		std::cerr << color(C::Error) << "Error: " << E.ToString() << std::endl;
 	}
 	KAI_CATCH(std::exception, E)
 	{
-		KAI_TRACE_ERROR_2("StdException: ", E.what());
+		//KAI_TRACE_ERROR_2("StdException: ", E.what());
 		std::cerr << color(C::Error) << "Error: " << E.what() << std::endl;
 	}
 	KAI_CATCH_ALL()
 	{
-		KAI_TRACE_ERROR_1("UnknownException");
+		//KAI_TRACE_ERROR_1("UnknownException");
 		std::cerr << color(C::Error) << "Error" << std::endl;
 	}
 	return "";

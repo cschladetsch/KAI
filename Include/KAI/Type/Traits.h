@@ -117,7 +117,7 @@ struct TraitsBase
 	template <>
 	struct AbsoluteOp<true>
 	{
-		static void Perform(Reference)
+		static void Perform(Reference value)
 		{
 			SetAbsoluteValue(value);
 		}
@@ -196,7 +196,7 @@ struct TraitsBase
 	template <>
 	struct PlusOp<true>
 	{
-		static Store Perform(ConstReference, ConstReference)
+		static Store Perform(ConstReference A, ConstReference B)
 		{
 			return A + B;
 		}
@@ -462,7 +462,7 @@ namespace boost
 		//return H.GetValue();
 	}
 
-	inline size_t hash_value(::kai::NumberEnum const &H)
+	inline size_t hash_value(::kai::Number const &H)
 	{
 		throw;
 		//return H.GetValue();

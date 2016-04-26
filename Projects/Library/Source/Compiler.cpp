@@ -60,7 +60,8 @@ Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName,
 	p->TranslateFile(fileName.c_str(), st);
 	if (p->Failed)
 	{
-		KAI_TRACE_ERROR_1(p->Error);
+		// TODO ERRORS
+		//KAI_TRACE_ERROR_1(p->Error);
 		std::cerr << p->Error;
 		return Object();
 	}

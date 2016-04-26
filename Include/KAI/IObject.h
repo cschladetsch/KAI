@@ -4,7 +4,7 @@ KAI_BEGIN
 
 class IObject
 {
-public
+public:
 	enum Switch 
 	{
 		Marked = 1, 
@@ -23,7 +23,7 @@ public
 	virtual const StorageBase &GetStorageBase() const = 0;
 	virtual StorageBase &GetStorageBase() = 0;
 
-	virtual enum Type::NumberEnum GetTypeNumber() const = 0;
+	virtual Type::Number GetTypeNumber() const = 0;
 	virtual const ClassBase *GetClass() const = 0;
 	
 	virtual Registry *GetRegistry() const = 0;
