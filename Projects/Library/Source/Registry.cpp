@@ -63,7 +63,7 @@ void Registry::ClearInstances()
 	// create a set of handles to destroy, then destroy them
 	// this can't be done in one pass, as otherwise we would be mutating the
 	// container as we traverse it
-	nstd::vector<Handle> handles;
+	std::vector<Handle> handles;
 	for (auto const &instance : instances)
 		handles.push_back(instance.first);
 
@@ -101,7 +101,8 @@ Object Registry::NewFromClassName(const char *classname_str)
 
 const ClassBase *Registry::GetClass(const Label &name)
 {
-	foreach (ClassBase const *klass, classes)
+	//foreach (ClassBase const *klass, classes)
+	for (auto const klass : classes)
 		if (klass && klass->GetName() == name)
 			return klass;
 
@@ -183,11 +184,15 @@ void Registry::DestroyObject(Handle handle, bool force)
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
-		KAI_TRACE() << "\n\t" << E.ToString();
+		KAI_UNUSED(E);
+		// TODO TRACE
+		//KAI_TRACE() << "\n\t" << E.ToString();
 	}
 	KAI_CATCH(std::exception, E)
 	{
-		KAI_TRACE() << "std::exception: " << E.what();
+		KAI_UNUSED(E);
+		// TODO TRACE
+		//KAI_TRACE() << "std::exception: " << E.what();
 	}
 	KAI_CATCH_ALL()
 	{
@@ -195,7 +200,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 
 	if (!succeeded)
 	{
-		KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
+		//KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
 		Instances::iterator iter = instances.find(handle);
 		if (iter != instances.end())
 		{
@@ -499,7 +504,8 @@ void Registry::TriColor()
 	const int max_cycles = 17;
 	if (gc_trace_level >= 1)
 	{
-		KAI_TRACE_3(instances.size(), grey.size(), white.size());
+		//KAI_TRACE_3(instances.size(), grey.size(), white.size());
+		// TODO TRACE
 	}
 
 	int cycle = 0;
@@ -528,15 +534,19 @@ void Registry::TriColor()
 	}
 
 	if (gc_trace_level >= 1)
-		KAI_TRACE() << "TriColor: " << cycle << " passes";
+	{	
+		//KAI_TRACE() << "TriColor: " << cycle << " passes";
+		printf("Tricolor passes\n");
+	}
 }
 
 void Registry::ReleaseWhite()
 {
 	// make a copy of the white set to avoid mutation while iterating
-	nstd::vector<Handle> to_delete(white.begin(), white.end());
+	std::vector<Handle> to_delete(white.begin(), white.end());
 	white.clear();
-	foreach (Handle handle, to_delete)
+	//foreach (Handle handle, to_delete)
+	for (auto const &handle : to_delete)
 	{
 		DestroyObject(handle);
 	}

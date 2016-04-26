@@ -12,8 +12,8 @@ KAI_BEGIN
 struct DotGraph : StringStream
 {
 private:
-	nstd::set<Label> excluded_names;
-	nstd::set<Type::Number> excluded_types;
+	std::set<Label> excluded_names;
+	std::set<Type::Number> excluded_types;
 
 public:
 	DotGraph();

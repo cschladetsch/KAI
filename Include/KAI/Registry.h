@@ -1,8 +1,5 @@
 #pragma once
 
-#include <set>
-#include <hash_set>
-
 KAI_BEGIN
 
 #ifdef KAI_DEBUG
@@ -19,6 +16,7 @@ class Tree;
 
 class Registry
 {
+public:
 #ifdef KAI_BOOST_UNORDERED_REGISTRY
 	typedef std::unordered_map<Handle, StorageBase *, HashHandle> Instances;
 #elif defined(KAI_HASH_TABLE_REGISTRY)
@@ -27,8 +25,8 @@ class Registry
 	typedef std::map<Handle, StorageBase *> Instances;
 #endif
 	typedef std::vector<const ClassBase *> Classes;
-	typedef std::unordered_set<Handle, HashHandle> Handles, Deathrow;
-	typedef std::unordered_set<Handle, HashHandle> RetainedObjects;
+	typedef HandleSet Handles, Deathrow;
+	typedef HandleSet RetainedObjects;
 	typedef std::vector<Handle> VectorHandles;
 	typedef std::set<Handle> ColoredSet;
 

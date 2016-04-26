@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unordered_set>
+
 KAI_BEGIN
 
 class Handle
@@ -37,6 +39,8 @@ struct HashHandle
 	}
 };
 
- StringStream &operator<<(StringStream &, Handle);
+StringStream &operator<<(StringStream &, Handle);
+
+typedef std::unordered_set<Handle, HashHandle> HandleSet;
 
 KAI_END

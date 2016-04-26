@@ -31,9 +31,9 @@ public:
 	~Console();
 	Console();
 	Console(Memory::IAllocator *);
-	Console(const nstd::vector<String> &args, Memory::IAllocator *);
+	Console(const std::vector<String> &args, Memory::IAllocator *);
 
-	void Create(const nstd::vector<String> &);
+	void Create(const std::vector<String> &);
 
 	String GetPrompt() const;
 	String Process(const String&);

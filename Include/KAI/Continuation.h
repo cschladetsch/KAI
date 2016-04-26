@@ -6,6 +6,7 @@ class Executor;
 
 class Continuation : public Reflected
 {
+public:
 	typedef Pointer</*const*/ Array> Code;
 
 ///private:

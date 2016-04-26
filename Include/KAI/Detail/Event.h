@@ -451,23 +451,23 @@ namespace event_detail
 			template <class C>
 			void AddMethod(C *base, typename MethodObject<C>::Method method)
 			{
-				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
+				Parent::sinks.push_back(std::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
 			}
 			template <class C>
 			void AddMethod(Object object, typename MethodObject<C>::Method method)
 			{
-				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C,true>(object, method)));
+				Parent::sinks.push_back(std::make_pair(DelegateType::Method, new MethodObject<C,true>(object, method)));
 			}
 			template <class C>
-			void AddMethod(nstd::pair<C *, typename MethodObject<C>::Method> bound)
+			void AddMethod(std::pair<C *, typename MethodObject<C>::Method> bound)
 			{
-				Parent::sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(bound.first, bound.second)));
+				Parent::sinks.push_back(std::make_pair(DelegateType::Method, new MethodObject<C>(bound.first, bound.second)));
 			}
 
 			//template <class C>
 			//void AddMethod2(StorageBase *base, typename MethodObject<C>::Method method)
 			//{
-			//	//sinks.push_back(nstd::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
+			//	//sinks.push_back(std::make_pair(DelegateType::Method, new MethodObject<C>(base, method)));
 			//}
 
 			///// Chain to another event
@@ -506,12 +506,12 @@ namespace event_detail
 				Remove(MethodObject<C>(object, method));
 			}
 			template <class C>
-			void Remove(nstd::pair<C *, typename MethodObject<C>::Method> bound)
+			void Remove(std::pair<C *, typename MethodObject<C>::Method> bound)
 			{
 				Remove(MethodObject<C>(bound.first, bound.second));
 			}
 			template <class C>
-			void Remove(nstd::pair<Object, typename MethodObject<C>::Method> bound)
+			void Remove(std::pair<Object, typename MethodObject<C>::Method> bound)
 			{
 				Remove(MethodObject<C,true>(bound.first, bound.second));
 			}

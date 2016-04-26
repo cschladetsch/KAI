@@ -1,4 +1,5 @@
 #include "KAI/KAI.h"
+#include "KAI/KAIRegistry.h"
 #include "KAI/Operation.h"
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/Continuation.h"
@@ -1296,13 +1297,14 @@ int Executor::GetTraceLevel() const
 void Executor::Register(Registry &R, const char * N)
 {
 	ClassBuilder<Executor>(R, N)
-		.Methods
-			("SetTraceLevel", &Executor::SetTraceLevel)
-			("GetTraceLevel", &Executor::GetTraceLevel)
-		.Properties
-			("Continuation", &Executor::continuation)
-			("Context", &Executor::context)
-			("Data", &Executor::data)
+		// TODO
+		//.Methods
+		//	("SetTraceLevel", &Executor::SetTraceLevel)
+		//	("GetTraceLevel", &Executor::GetTraceLevel)
+		//.Properties
+		//	("Continuation", &Executor::continuation)
+		//	("Context", &Executor::context)
+		//	("Data", &Executor::data)
 		;
 }
 

@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CLASS_H
-#	define KAI_CLASS_H
+#pragma once
 
 KAI_BEGIN
 
@@ -17,8 +11,9 @@ void MarkGrey(Object const &);
 
 /// A Class<T> manages instances of T
 template <class T>
-struct Class : ClassBase
+class Class : public ClassBase
 {
+public:
 	typedef typename Type::Traits<T> Traits;
 	enum { Props = Traits::Props };
 
@@ -123,7 +118,7 @@ struct Class : ClassBase
 		Traits::ContainerOps::ForEachContained(CleanDeref<T>(object), AddContainedFun<T, ObjectList>(contained));
 	}
 
-	void SetReferencedObjectsColor(StorageBase &Q, ObjectColor::Color C, StorageBase::Handles &H) const
+	void SetReferencedObjectsColor(StorageBase &Q, ObjectColor::Color C, StorageBase::Containers &H) const
 	{
 		ClassBase::SetReferencedObjectsColor(Q, C, H);
 		Traits::ContainerOps::ForEachContained(CleanDeref<T>(Q), SetObjectColorRecursive<T>(C, H));
@@ -258,13 +253,8 @@ struct Class : ClassBase
 		Traits::BinaryPacketExtract::Extract(S, Q->GetReference());
 		return Q;
 	}
-
 };
 
-#	pragma warning(pop)
+#pragma warning(pop)
 
 KAI_END
-
-#endif // KAI_CLASS_H
-
-//EOF

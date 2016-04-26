@@ -246,12 +246,12 @@ namespace event_detail_sys
 
 				DelegateType type;
 				Object object;
-				boost::shared_ptr<Delegate> delegate;
+				std::shared_ptr<Delegate> delegate;
 
 				Entry() : delegate(0) { }
 				Entry(DelegateType T, Object Q, Delegate *G) : type(T), object(Q), delegate(G) { }
 			};
-			typedef nstd::list<Entry> Type;
+			typedef std::list<Entry> Type;
 		};
 	};
 
@@ -268,7 +268,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, nstd::vector<Entry>(sinks.begin(), sinks.end()))
+				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke();
 			}
 		};
@@ -287,7 +287,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, nstd::vector<Entry>(sinks.begin(), sinks.end()))
+				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0);
 			}
 		};
@@ -306,7 +306,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, nstd::vector<Entry>(sinks.begin(), sinks.end()))
+				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0, t1);
 			}
 		};
@@ -325,7 +325,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, nstd::vector<Entry>(sinks.begin(), sinks.end()))
+				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0,t1,t2);
 			}
 		};
@@ -370,7 +370,7 @@ namespace event_detail_sys
 				typedef typename Parent::Method Method;
 
 				MethodObject(Object const &Q, Method M) : Parent(Q, M) { }
-				MethodObject(nstd::pair<Object, Method> pair) : Parent(pair.first, pair.second) { }
+				MethodObject(std::pair<Object, Method> pair) : Parent(pair.first, pair.second) { }
 			};
 
 			/// Add a new function delegate
@@ -412,7 +412,7 @@ namespace event_detail_sys
 
 			/// Add a new method delegate using a pair(instance, method)
 			template <class C>
-			void Add(nstd::pair<Object, typename MethodObject<C>::Method> bound)
+			void Add(std::pair<Object, typename MethodObject<C>::Method> bound)
 			{
 				Add(MethodObject<C>(bound));
 			}
@@ -468,7 +468,7 @@ namespace event_detail_sys
 
 			/// Remove an existing delegate using a pair (instance, method)
 			template <class C>
-			void Remove(nstd::pair<Object, typename MethodObject<C>::Method> bound)
+			void Remove(std::pair<Object, typename MethodObject<C>::Method> bound)
 			{
 				Remove(MethodObject<C>(bound));
 			}

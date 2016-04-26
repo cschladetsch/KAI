@@ -101,9 +101,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\BuiltinTypes\Map.cpp">
-      <Filter>Source Files\BuiltinTypes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Network\Tcp.cpp">
       <Filter>Source Files\Network</Filter>
     </ClCompile>
@@ -182,7 +179,7 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BuiltinTypes\CalcHashVales.cpp">
+    <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
       <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
   </ItemGroup>

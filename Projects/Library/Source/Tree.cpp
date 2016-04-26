@@ -17,7 +17,7 @@ Pathname GetFullname(const Object &Q)
 
 Pathname GetFullname(const StorageBase &Q)
 {
-	nstd::list<String> parentage;
+	std::list<String> parentage;
 	Label const &label = Q.GetLabel();
 	if (!label.ToString().empty())
 		parentage.push_back(label.ToString());
@@ -32,7 +32,7 @@ Pathname GetFullname(const StorageBase &Q)
 	else
 		path.Append('/');
 
-	foreach (String const &name, parentage)
+	for (auto const &name : parentage)
 	{
 		path.Append(name);
 		path.Append('/');
@@ -288,7 +288,7 @@ Object Tree::Resolve(const Label &label) const
 			return found;
 	}
 
-	foreach (Object const &object, path)
+	for (Object const &object : path)
 	{
 		if (!object)
 			continue;
@@ -310,8 +310,7 @@ Object Tree::Resolve(const Pathname &P) const
 	if (P.Absolute)
 		return Object();
 	
-	SearchPath::const_iterator A = path.begin(), B = path.end();
-	for (; A != B; ++A)
+	for (auto const &A : path)
 	{
 		Object found = Get(root, *A, P);
 		if (found.Exists())

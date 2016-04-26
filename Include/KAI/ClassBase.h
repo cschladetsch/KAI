@@ -1,8 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-#include <unordered_set>
-
 KAI_BEGIN
 
 class MethodBase;
@@ -106,19 +103,22 @@ public:
 	Type::Number GetTypeNumber() const { return type_number; }
 
 	/// tri-color marking: set reference objects color
-	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, std::unordered_set<Handle>& handles) const
+	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, HandleSet& handles) const
 	{
 		if (properties.empty())
 			return;
-		ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
-		for (; iter != end; ++iter)
+		//ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
+		//for (; iter != end; ++iter)
+		for (auto const &iter : properties)
 		{
-			PropertyBase const &prop = *iter->second;
+			PropertyBase const &prop = *(iter.second);
 			if (!prop.IsSystemType())
 				continue;
+
 			Object property = prop.GetObject(base);
 			if (!property.Exists())
 				continue;
+
 			property.SetColorRecursive(color, handles);
 		}
 	}
