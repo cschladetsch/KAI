@@ -1,17 +1,11 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_TREE_H
-#	define KAI_TREE_H
+#pragma once
 
 KAI_BEGIN
 
-struct Tree
+class Tree
 {
-	typedef nstd::list<Object> SearchPath;
+public:
+	typedef std::list<Object> SearchPath;
 
 private:
 	SearchPath path;
@@ -36,10 +30,3 @@ public:
 };
 
 KAI_END
-
-//#include KAI_TEST(X)
-
-#endif // KAI_TREE_H
-
-//EOF
-
