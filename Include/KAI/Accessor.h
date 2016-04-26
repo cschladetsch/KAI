@@ -128,17 +128,17 @@ namespace property_detail
 	struct Mutator<K,C,true,T,S> : SystemProperty<MutatorBase, K, T, S (C::*)>
 	{
 		typedef NonsystemProperty<MutatorBase, K, T, T (C::*)> Parent;
-		using typename Parent::Field;
-		using Parent::field;
+		typedef typename Parent::Field Field;
 
-		Mutator(Field F, Label const &L, CreateParams::Params create_params) : SystemProperty<MutatorBase, K, T, S (C::*)>(F,L,create_params) { }
+		Mutator(Field F, Label const &L, CreateParams::Params create_params) 
+			: SystemProperty<MutatorBase, K, T, S (C::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
 			return ConstDeref<K>(Q).*field;	// just return the object for system types
 		}
 		void SetValue(Object const &Q, Object const &V) const
 		{
-			Object P = Deref<K>(Q).*field;									// get the containing object
+			Object P = Deref<K>(Q).*field;	// get the containing object
 			if (!P)
 			{
 				Deref<K>(Q).*field = Q.New(ConstDeref<T>(V));

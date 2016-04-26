@@ -1,7 +1,4 @@
-
-
-#ifndef KAI_TYPE_INFO_H
-#define KAI_TYPE_INFO_H
+#pragma once
 
 KAI_BEGIN
 
@@ -31,7 +28,3 @@ struct TypeInfo<Pointer<T> >
 };
 
 KAI_END
-
-#endif // KAI_TYPE_INFO_H
-
-//EOF

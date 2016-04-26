@@ -12,7 +12,7 @@ struct MapCompare
 	bool operator()(const Object &A, const Object &B) const;
 };
 
-typedef MapBase<nstd::map<Object, Object, MapCompare> > Map;
+typedef MapBase<std::map<Object, Object, MapCompare> > Map;
 
 KAI_TYPE_TRAITS(Map, Number::Map
 	, Properties::StringStreamInsert 

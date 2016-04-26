@@ -35,7 +35,7 @@ KAI_TYPE_TRAITS(Array, Type::Number::Array
 */
 
 /// A vector of Objects
-class Array : Container<Array>
+class Array : public Container<Array>
 {
 public:
 	typedef std::vector<Object> Objects;

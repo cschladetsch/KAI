@@ -5,8 +5,7 @@ KAI_BEGIN
 template <class Cont, class Fun>
 Fun ForEach(Cont &container, Fun fun)
 {
-	typename Cont::iterator A = container.begin(), B = container.end();
-	for (; A != B; ++A)
+	for (auto const &A : container)
 	{
 		if (!fun(*A))
 			break;

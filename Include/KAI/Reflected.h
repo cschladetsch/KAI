@@ -7,7 +7,7 @@ KAI_BEGIN
 ///
 /// TODO: there doesn't seem to be any point to passing through the reflected type
 //template <class T>
-class Reflected : ReflectedBase
+class Reflected : public ReflectedBase
 {
 public:
 	Registry &Reg() const;
