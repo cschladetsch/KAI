@@ -11,7 +11,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-#pragma comment(lib, "../../Lib/Win32/Debug/library.lib")
+#pragma comment(lib, "../../Lib/Win32/Debug/kailibrary.lib")
 
 KAI_BEGIN
 
@@ -30,7 +30,7 @@ void RunTests(Console &console);
 
 int main(int argc, char **argv)
 {
-	nstd::vector<String> args;
+	std::vector<String> args;
 	for (int N = 1; N < argc; ++N)
 		args.push_back(argv[N]);
 	
