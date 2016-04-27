@@ -19,7 +19,7 @@ inline HashValue GetHash(Void) { return 0; }
 namespace Type
 {
 	template <> struct Traits<void> 
-		: TraitsBase<void, Number::Void, Properties::Streaming, Void, Void &, const Void&> 
+		: TraitsBase<void, Number::Void, 0,/*TODO Properties::Streaming,*/ Void, Void &, const Void&> 
 	{ 
 		static const char *Name() 
 		{ 

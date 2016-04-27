@@ -11,6 +11,18 @@ public:
 	{
 		return *Self->GetRegistry();
 	}
+
+	template <class T>
+	Pointer<T> New()
+	{
+		return Reg().New<T>();
+	}
+
+	template <class T>
+	Pointer<T> New(const T& val)
+	{
+		return Reg().New(val);
+	}
 };
 
 KAI_END

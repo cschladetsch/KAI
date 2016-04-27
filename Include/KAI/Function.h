@@ -287,13 +287,13 @@ FunctionBase *MakeFunction(R (*func)(A0, A1, A2,A3), const Label &L = KAI_UNNAME
 template <class Fun>
 Object NewFunction2(Object const &Q, Fun fun, const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
 {
-	return Q.New<BasePointer<FunctionBase> >(MakeFunction(fun, L, D));
+	return Q.GetRegistry()->New<BasePointer<FunctionBase> >(MakeFunction(fun, L, D));
 }
 
 template <class Function>
 void AddFunction(Object const &Q, Function F, const char *N = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
 {
-	Set(Q, Pathname(N), Q.New<BasePointer<FunctionBase> >(MakeFunction(F, N, D)));
+	Set(Q, Pathname(N), Q.GetRegistry()->New<BasePointer<FunctionBase> >(MakeFunction(F, N, D)));
 }
 
 KAI_END

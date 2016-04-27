@@ -7,17 +7,17 @@ StorageBase &GetStorageBase(Object const &Q);
 Type::Number GetTypeNumber(Object const &Q);
 
 template <class T>
-Storage<T> &GetStorage(Pointer<T> const &P)
+Storage<typename Type::Traits<T>::Store> &GetStorage(Pointer<T> const &P)
 {
 	return GetStorage<T>(GetStorageBase(P));
 }
 
 template <class T>
-Storage<T> &GetStorage(StorageBase &base)
+Storage<typename Type::Traits<T>::Store> &GetStorage(StorageBase &base)
 {
 	if (base.GetTypeNumber().GetValue() != Type::Traits<T>::Number)
 		KAI_THROW_2(TypeMismatch, base.GetTypeNumber().ToInt(), Type::Traits<T>::Number);
-	return static_cast<Storage<T> &>(base);
+	return static_cast<Storage<typename Type::Traits<T>::Store> &>(base);
 }
 
 template <class T>
