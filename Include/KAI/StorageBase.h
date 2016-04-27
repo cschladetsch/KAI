@@ -58,7 +58,6 @@ public:
 	void SetDirty(bool B = true) { SetClean(!B); }
 	int GetSwitches() const { return switches; }
 
-
 	bool IsSwitchOn(Switch S) const { return (switches & S) != 0; }
 	bool IsMarked() const { return IsSwitchOn(Marked); }
 	bool IsManaged() const { return IsSwitchOn(Managed); }

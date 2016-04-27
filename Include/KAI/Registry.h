@@ -70,7 +70,7 @@ public:
 	const Classes &GetClasses() const { return classes; }
 
 	template <class T>
-	void AddClass(const String::Char *S = Type::Traits<T>::Name)
+	void AddClass(const String::Char *S = Type::Traits<T>::Name())
 	{
 		AddClass<T>(String(S));
 	}
@@ -160,9 +160,6 @@ public:
 
 	const ClassBase *GetClass(Type::Number);
 	const ClassBase *GetClass(const Label &);
-#ifndef _DEBUG
-	__forceinline
-#endif
 	StorageBase *GetStorageBase(Handle) const;
 
 	Object GetObject(Handle) const;

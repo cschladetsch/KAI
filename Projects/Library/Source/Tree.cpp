@@ -76,7 +76,7 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 				StorageBase &base = GetStorageBase(scope);
 				if (!base.Has(name))
 				{
-					Object added = scope.New<void>();
+					Object added = scope.GetRegistry()->New<void>();
 					base.Set(name, added);
 					scope = added;
 				}

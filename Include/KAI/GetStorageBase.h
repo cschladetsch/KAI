@@ -2,9 +2,6 @@
 
 KAI_BEGIN
 
-#ifndef _DEBUG
-__forceinline
-#endif
 StorageBase &GetStorageBase(Object const &Q);
 
 Type::Number GetTypeNumber(Object const &Q);

@@ -1,6 +1,11 @@
 #include "KAI/KAI.h"
+#include "KAI/KAIRegistry.h"
 
 KAI_BEGIN
+
+void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path)
+{
+}
 
 ClassBase::~ClassBase()
 {
