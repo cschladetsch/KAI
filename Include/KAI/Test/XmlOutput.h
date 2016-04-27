@@ -1,9 +1,6 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
+#pragma once
 
-#if !defined(KAI_TEST_XML_OUTPUT_H) && defined(KAI_UNIT_TESTS)
-#	define KAI_TEST_XML_OUTPUT_H
+#if defined(KAI_UNIT_TESTS)
 
 KAI_TEST_BEGIN
 
@@ -52,6 +49,6 @@ StringStream &operator<<(StringStream &, const Tests::XmlOutput &);
 
 KAI_END
 
-#endif // KAI_TEST_XML_OUTPUT_H
+#endif // KAI_UNIT_TESTS
 
 //EOF
