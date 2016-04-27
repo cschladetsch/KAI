@@ -572,9 +572,6 @@ Object Object::ChildProxy::GetObject() const
 	return *base;
 }
 
-#include "Class.inl"
-#include "Property.inl"
-
 Object Absolute(Object const &A)
 {
 	if (!A)

@@ -185,7 +185,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <Profile>true</Profile>
       <AdditionalDependencies>%(AdditionalDependencies);c:\lib\KAI\KAILibrary.lib;</AdditionalDependencies>
-      <ShowProgress>LinkVerbose</ShowProgress>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">

@@ -1,3 +1,6 @@
+#include "KAI/KAI.h"
+
+KAI_BEGIN
 
 void SetPropertyValue(Object const &owner, Label const &name, Object value)
 {
@@ -36,4 +39,6 @@ Object GetPropertyObject(Object const &owner, Label const &name)
 	PropertyBase const &prop = klass->GetProperty(name);
 	return prop.GetObject(owner);
 }
+
+KAI_END
 

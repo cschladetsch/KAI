@@ -1,3 +1,6 @@
+#include "KAI/KAI.h"
+
+KAI_BEGIN
 
 ClassBase::~ClassBase()
 {
@@ -18,4 +21,43 @@ void ClassBase::SetMarked(StorageBase &Q, bool M) const
 	}
 	SetMarked2(Q, M);
 }
+
+void ClassBase::MakeReachableGrey(StorageBase &base) const
+{
+	if (properties.empty())
+		return;
+	ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
+	for (; iter != end; ++iter)
+	{
+		PropertyBase const &prop = *iter->second;
+		if (!prop.IsSystemType())
+			continue;
+		Object property = prop.GetObject(base);
+		StorageBase *b = property.GetRegistry()->GetStorageBase(property.GetHandle());
+		if (b == 0)
+			continue;
+		if (b->IsWhite())
+			b->SetColor(ObjectColor::Grey);
+	}
+}
+
+void ClassBase::GetPropertyObjects(StorageBase &object, ObjectList &contained) const
+{
+	if (properties.empty())
+		return;
+	ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
+	for (; iter != end; ++iter)
+	{
+		PropertyBase const &prop = *iter->second;
+		if (!prop.IsSystemType())
+			continue;
+		Object property = prop.GetObject(object);
+		StorageBase *base = property.GetRegistry()->GetStorageBase(property.GetHandle());
+		if (base == 0)
+			continue;
+		contained.push_back(*base);
+	}
+}
+
+KAI_END
 

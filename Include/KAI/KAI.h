@@ -13,6 +13,7 @@
 #include "KAI/Exception/Extended.h"
 #include "KAI/Reflected.h"
 #include "KAI/Pointer.h"
+#include "KAI/Storage.h"
 #include "KAI/Continuation.h"
 #include "KAI/Operation.h"
 #include "KAI/Pathname.h"
