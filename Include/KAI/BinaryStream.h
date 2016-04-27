@@ -1,3 +1,5 @@
+#pragma once
+
 KAI_BEGIN
 
 // A BinaryStream is-a BinaryPacket which can also resize and allows insertion
@@ -37,6 +39,5 @@ BinaryPacket &operator >> (BinaryPacket &, BinaryStream &);
 KAI_TYPE_TRAITS(BinaryStream, Number::BinaryStream
 	, Properties::StringStreamInsert
 	| Properties::BinaryStreamExtract | Properties::BinaryStreamInsert)
-
 KAI_END
 
