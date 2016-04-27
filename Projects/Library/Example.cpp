@@ -112,7 +112,7 @@ void AddExamples(Object R)
 	Set(R, Pathname("/Bin/SomeFunction"), ::kai::NewFunction2(R, SomeFunction, Label("SomeFunction")));
 
 	// make a new instance, expose it to the runtime
-	Pointer<ExampleClass> instance = R.New<ExampleClass>();
+	Pointer<ExampleClass> instance = R.GetRegistry()->New<ExampleClass>();
 	instance->number = 123;
 	Set(R, Pathname("/Home/instance"), instance);
 }

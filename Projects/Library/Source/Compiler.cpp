@@ -32,7 +32,7 @@ bool Compiler::Destroy()
 void Compiler::AddOperation(int N, const String &S)
 {
 	Operation T = Operation::Type(N);
-	Pointer<Operation> Q = Self->New(T);
+	Pointer<Operation> Q = Self->GetRegistry()->New(T);
 	Q.SetManaged(false);
 	string_to_op[S] = Q;
 	op_to_string[T] = S;

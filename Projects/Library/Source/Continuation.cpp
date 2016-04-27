@@ -9,10 +9,10 @@ KAI_BEGIN
 
 void Continuation::Create()
 {
-	entered = New<bool>(false);
-	scopeBreak = New<bool>(false);
+	entered = New(false);
+	scopeBreak = New(false);
 	args = New<Array>();
-	index = New<int>(0);
+	index = New(0);
 }
 
 bool Continuation::Destroy()

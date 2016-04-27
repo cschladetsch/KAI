@@ -971,7 +971,7 @@ void Executor::Perform(Operation::Type op)
 			Object ident = Pop();
 			Object value = ResolvePop();
 			if (!continuation->HasScope())
-				continuation->SetScope(New<Void>().GetObject());
+				continuation->SetScope(New<void>().GetObject());
 
 			Set(tree->GetRoot(), continuation->GetScope(), ident, value);
 		}

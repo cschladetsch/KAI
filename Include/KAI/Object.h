@@ -38,6 +38,13 @@ public:
 	Object(Object const &);
 	Object(ObjectConstructParams const &P);
 
+	// TODO with fwd references
+	//template <class T>
+	//Object(const ConstValue<T> &val)
+	//{
+	//	*this = val.GetObject();
+	//}
+
 	Object &operator=(Object const &);
 
 	operator bool() const { return Exists(); }

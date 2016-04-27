@@ -106,8 +106,8 @@ namespace method_detail
 						WithArgs(typename Parent::MethodType M, const Label &N) : Parent(M,N) { }
 						void ConstInvoke(const Object & Q, Stack &stack)
 						{
-							Pointer<const T> servant = Q;
-							stack.Push(servant.New<ReturnType>(((*servant).*method)()));
+							Value<const T> servant = Q;
+							stack.Push(servant.GetRegistry()->New<ReturnType>(((*servant).*method)()));
 						}
 					};
 				};
@@ -141,7 +141,7 @@ namespace method_detail
 						void NonConstInvoke(const Object & Q, Stack &stack)
 						{
 							Pointer<T> servant = Q;
-							stack.Push(servant.New<ReturnType>(((*servant).*method)()));
+							stack.Push(servant.GetRegistry()->New<ReturnType>(((*servant).*method)()));
 						}
 					};
 				};
@@ -179,9 +179,9 @@ namespace method_detail
 						WithArgs(typename Parent::MethodType M, const Label &N) : Parent(M, N) { }
 						void ConstInvoke(const Object & Q, Stack &stack)
 						{
-							Pointer<const T> servant = Q;
-							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New<ReturnType>(((*servant).*method)(Deref<A0>(a0))));
+							Value<const T> servant = Q;
+							Value<A0> a0 = stack.Pop();
+							stack.Push(Q.GetRegistry()->New<ReturnType>(((*servant).*method)(Deref<A0>(a0))));
 						}
 					};
 				};
@@ -217,7 +217,7 @@ namespace method_detail
 						{
 							Pointer<T> servant = Q;
 							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New(((*servant).*method)(Deref<A0>(a0))));
+							stack.Push(Q.GetRegistry()->New(((*servant).*method)(Deref<A0>(a0))));
 						}
 					};
 				};
@@ -259,7 +259,7 @@ namespace method_detail
 							Pointer<const T> servant = Q;
 							PointerType<A1>::Type a1 = stack.Pop();
 							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1))));
+							stack.Push(Q.GetRegistry()->New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1))));
 						}
 					};
 				};
@@ -297,7 +297,7 @@ namespace method_detail
 							Pointer<T> servant = Q;
 							PointerType<A1>::Type a1 = stack.Pop();
 							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1))));
+							stack.Push(Q.GetRegistry()->New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1))));
 						}
 					};
 				};
@@ -340,7 +340,7 @@ namespace method_detail
 							PointerType<A2>::Type a2 = stack.Pop();
 							PointerType<A1>::Type a1 = stack.Pop();
 							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1), Deref<A2>(a2))));
+							stack.Push(Q.GetRegistry()->New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1), Deref<A2>(a2))));
 						}
 					};
 				};
@@ -380,7 +380,7 @@ namespace method_detail
 							PointerType<A2>::Type a2 = stack.Pop();
 							PointerType<A1>::Type a1 = stack.Pop();
 							PointerType<A0>::Type a0 = stack.Pop();
-							stack.Push(Q.New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1), Deref<A2>(a2))));
+							stack.Push(Q.GetRegistry()->New(((*servant).*method)(Deref<A0>(a0), Deref<A1>(a1), Deref<A2>(a2))));
 						}
 					};
 				};

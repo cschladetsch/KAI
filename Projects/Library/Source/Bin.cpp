@@ -38,10 +38,11 @@ namespace Bin
 		if (!Q.Exists())
 			return Object();
 
-		Value<Array> methods = Q.New<Array>();
+		auto &r = *Q.GetRegistry();
+		Value<Array> methods = r.New<Array>();
 		const ClassBase *K = Q.GetClass();
 		for (auto m : K->GetMethods())
-			methods->Append(Q.New<BasePointer<MethodBase> >(m.second));
+			methods->Append(r.New<BasePointer<MethodBase> >(m.second));
 
 		return methods.GetObject();
 	}
@@ -56,9 +57,10 @@ namespace Bin
 		if (!Q.Exists())
 			return Object();
 
-		Value<Array> properties = Q.New<Array>();
+		auto &r = *Q.GetRegistry();
+		Value<Array> properties = r.New<Array>();
 		for (auto prop : Q.GetClass()->GetProperties())
-			properties->Append(Q.New<BasePointer<PropertyBase>>(prop.second));
+			properties->Append(r.New<BasePointer<PropertyBase>>(prop.second));
 
 		return properties.GetObject();
 	}
@@ -158,7 +160,7 @@ namespace Bin
 
 	Object Freeze(Object Q)
 	{
-		Value<BinaryStream> S = Q.New<BinaryStream>();
+		Value<BinaryStream> S = Q.GetRegistry()->New<BinaryStream>();
 		*S << Q;
 		return S.GetObject();
 	}

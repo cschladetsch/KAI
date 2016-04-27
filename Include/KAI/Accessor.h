@@ -109,11 +109,16 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Mutator(Field F, Label const &L, CreateParams::Params create_params) : NonsystemProperty<MutatorBase, K, T, T (C::*)>(F,L,create_params) { }
+		Mutator(Field F, Label const &L, CreateParams::Params create_params) 
+			: NonsystemProperty<MutatorBase, K, T, T (C::*)>(F,L,create_params) 
+		{ 
+		}
+		
 		Object GetValue(Object const &Q) const
 		{
-			return Q.New(ConstDeref<K>(Q).*field);	// have to create a new Object to return value of non-system types
+			return Q.GetRegistry()->New(ConstDeref<K>(Q).*field);	// have to create a new Object to return value of non-system types
 		}
+		
 		void SetValue(Object const &Q, Object const &V) const
 		{
 			C &W = Deref<K>(Q);				// get the containing structure - may be a sub-object
@@ -141,7 +146,7 @@ namespace property_detail
 			Object P = Deref<K>(Q).*field;	// get the containing object
 			if (!P)
 			{
-				Deref<K>(Q).*field = Q.New(ConstDeref<T>(V));
+				Deref<K>(Q).*field = Q.GetRegistry()->New(ConstDeref<T>(V));
 				return;
 			}
 			P.Assign(P.GetStorageBase(), V.GetStorageBase());	// use the class system to perform the assignment

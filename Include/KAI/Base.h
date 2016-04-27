@@ -32,6 +32,7 @@ class ReflectedBase
 {
 public:
 	StorageBase *Self;
+	//TODO Registry *Registry;
 
 	virtual ~ReflectedBase() { }
 	
