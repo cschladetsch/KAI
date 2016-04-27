@@ -185,6 +185,11 @@ bool Object::OnDeathRow() const
 	return registry->OnDeathRow(handle);
 }
 
+StorageBase *Object::GetStorageBase(Handle handle) const
+{
+	return registry->GetStorageBase(handle);
+}
+
 StorageBase &Object::GetStorageBase() const
 {
 	if (!Valid())
@@ -222,18 +227,6 @@ Type::Number GetTypeNumber(Object const &Q)
 	return klass->GetTypeNumber();
 }
 
-
-Object Object::NewFromTypeNumber(Type::Number N) const
-{
-		if (!registry)
-			return Object();
-		return registry->NewFromTypeNumber(N);
-}
-
-#ifndef _DEBUG
-__forceinline
-#endif
-
 StorageBase &GetStorageBase_(Object const &Q)
 {
 	StorageBase *base = Q.GetRegistry()->GetStorageBase(Q.GetHandle());
@@ -242,10 +235,6 @@ StorageBase &GetStorageBase_(Object const &Q)
 
 	return *base;
 }
-
-#ifndef _DEBUG
-__forceinline
-#endif
 
 StorageBase &GetStorageBase(Object const &Q)
 {
@@ -264,7 +253,6 @@ StringStream &operator>>(StringStream &S, Object &Q)
 
 	return S;
 }
-
 
 void Object::Set(const Label &L, const Object &Q) const
 {
@@ -298,16 +286,6 @@ void Object::SetSwitch(int S, bool M) const
 
 	StorageBase &base = GetStorageBase();
 	GetClass()->SetSwitch(base, S, M);
-}
-
-//Object Object::NewFromTypeNumber(Type::Number type_number) const
-//{
-//	return registry->NewFromTypeNumber(type_number);
-//}
-//
-Object Object::NewFromClassName(String const &type_name) const
-{
-	return registry->NewFromClassName(type_name.c_str());
 }
 
 Dictionary const &Object::GetDictionary() const
@@ -660,7 +638,7 @@ bool operator==(Object const &A, Object const &B)
 		return false;
 
 	// test properties
-	for (ClassBase::Properties::value_type const &prop : klass.GetProperties())
+	for (auto const &prop : klass.GetProperties())
 	{
 		Object prop_a = prop.second->GetValue(A);
 		Object prop_b = B.Get(prop.second->GetFieldName());
@@ -669,7 +647,7 @@ bool operator==(Object const &A, Object const &B)
 	}
 
 	// test sub-objects
-	for(Dictionary::value_type const &child_a_entry : dict_a)
+	for (auto const &child_a_entry : dict_a)
 	{
 		Object child_a = child_a_entry.second;
 		Object child_b = B.Get(child_a_entry.first);
@@ -691,7 +669,7 @@ bool operator>(Object const &A, Object const &B)
 	if (A.GetClass()->HasOperation(Type::Properties::Greater))
 		return A.GetClass()->Greater(A,B);
 	
-	return A.GetClass()->Less(B,A);
+	return A.GetClass()->Less(B,A) && !A.GetClass()->Equiv(A,B);
 }
 
 Object operator+(Object const &A, Object const &B)

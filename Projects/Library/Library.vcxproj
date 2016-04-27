@@ -222,7 +222,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;DEBUG</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -237,7 +237,7 @@
       <OutputFile>$(OutDir)$(ProjectName).lib</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo Copying to c:\Lib\KAI ; copy /y $(TargetPath) c:\Lib\KAI
+      <Command>copy /y $(TargetPath) c:\Lib\KAI
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>

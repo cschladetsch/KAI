@@ -13,6 +13,7 @@
 #include "KAI/Function.h"
 #include "KAI/SignedContinuation.h"
 #include "KAI/BuiltinTypes/List.h"
+#include "KAI/StringStream.h"
 
 #undef GetObject
 
@@ -48,7 +49,7 @@ void Executor::Push(Object const &Q)
 
 void Executor::Push(const std::pair<Object, Object> &P)
 {
-	Push(New(Pair(P.first, P.second)));
+	Push(New(Pair(P.first, P.second)).GetObject());
 }
 
 Object Executor::ResolvePop()
@@ -61,18 +62,18 @@ Object Executor::Pop()
 	return Pop(*data);
 }
 
-Pointer<Stack> Executor::GetDataStack()
+Value<Stack> Executor::GetDataStack()
 {
 	return data;
 }
 
-Pointer<const Stack> Executor::GetContextStack() const
+Value<const Stack> Executor::GetContextStack() const
 {
-	return context;
+	return Value<const Stack>(data.GetConstObject()); // TODO: automatereturn context;
 }
 
 
-void Executor::SetContinuation(Pointer<Continuation> C)
+void Executor::SetContinuation(Value<Continuation> C)
 {
 	continuation = C;
 	if (continuation.Exists())
@@ -122,7 +123,7 @@ void Executor::Continue()
 	}
 }
 
-void Executor::Continue(Pointer<Continuation> C)
+void Executor::Continue(Value<Continuation> C)
 {
 	SetContinuation(C);
 	Continue();
@@ -191,9 +192,9 @@ void Executor::PushAll(const Cont &cont)
 	Push(New(cont.Size()));
 }
 
-Pointer<Continuation> Executor::NewContinuation(Pointer<Continuation> orig)
+Value<Continuation> Executor::NewContinuation(Value<Continuation> orig)
 {
-	Pointer<Continuation> cont = New<Continuation>();
+	Value<Continuation> cont = New<Continuation>();
 	cont->SetCode(orig->GetCode());
 	cont->args = orig->args;
 	return cont;
@@ -247,7 +248,7 @@ void Executor::GetChildren()
 	const Dictionary &D = Q.GetDictionary();
 	Dictionary::const_iterator A = D.begin(), B = D.end();
 	for (; A != B; ++A)
-		children->Append(New(A->first.ToString()));
+		children->Append(New(A->first.ToString()).GetObject());
 
 	Push(children.GetObject());
 }
@@ -287,22 +288,22 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 	{
 	case Operation::Suspend:
 		continuation->Next();
-		context->Push(continuation);
+		context->Push(continuation.GetObject());
 	case Operation::Replace:
-		context->Push(NewContinuation(Pop()));
+		context->Push(NewContinuation(Pop()).GetObject());
 	case Operation::Resume:
 		Break = true;
 		break;
 	}
 }
 
-void Executor::ContinueOnly(Pointer<Continuation> C)
+void Executor::ContinueOnly(Value<Continuation> C)
 {
 	context->Push(Object());	// add an empty context to break. this forces exection to stop after C is finished
 	Continue(C);
 }
 
-void Executor::ContinueTestCode(Pointer<Continuation> test)
+void Executor::ContinueTestCode(Value<Continuation> test)
 {
 	// preserve the stack depth going into the test
 	int start_depth = data->Size();
@@ -321,7 +322,6 @@ void Executor::ContinueTestCode(Pointer<Continuation> test)
 		data->Pop();
 }
 
-
 void Executor::Perform(Operation::Type op)
 {
 	switch (op)
@@ -336,10 +336,10 @@ void Executor::Perform(Operation::Type op)
 				return;
 
 			case Type::Number::Continuation:
-				context->Push(continuation);
+				context->Push(continuation.GetObject());
 				auto next = NewContinuation(what);
 				*next->scopeBreak = true;
-				context->Push(next);
+				context->Push(next.GetObject());
 				Break = true;
 				return;
 			}
@@ -388,7 +388,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Pointer<float> y = Pop();
 			Pointer<float> x = Pop();
-			Pointer<Vector2> V = New<Vector2>();
+			Value<Vector2> V = New<Vector2>();
 			V->x = *x;
 			V->y = *y;
 			Push(V);
@@ -397,24 +397,24 @@ void Executor::Perform(Operation::Type op)
 
 	case Operation::ToVector3:
 		{
-			Pointer<float> z = Pop();
-			Pointer<float> y = Pop();
-			Pointer<float> x = Pop();
-			Pointer<Vector3> V = New<Vector3>();
+			Value<float> z = Pop();
+			Value<float> y = Pop();
+			Value<float> x = Pop();
+			Value<Vector3> V = New<Vector3>();
 			V->x = *x;
 			V->y = *y;
 			V->z = *z;
-			Push(V);
+			Push(V.GetObject());
 		}
 		break;
 
 	case Operation::ToVector4:
 		{
-			Pointer<float> w = Pop();
-			Pointer<float> z = Pop();
-			Pointer<float> y = Pop();
-			Pointer<float> x = Pop();
-			Pointer<Vector4> V = New<Vector4>();
+			Value<float> w = Pop();
+			Value<float> z = Pop();
+			Value<float> y = Pop();
+			Value<float> x = Pop();
+			Value<Vector4> V = New<Vector4>();
 			V->x = *x;
 			V->y = *y;
 			V->z = *z;
@@ -437,23 +437,23 @@ void Executor::Perform(Operation::Type op)
 	
 	case Operation::PostInc:
 		{
-			Pointer<int> N = Pop();
-			Pointer<int> M = New<int>();
+			Value<int> N = Pop();
+			Value<int> M = New<int>();
 			int &ref = *N;
 			*M = ref;
 			++ref;
-			Push(M);
+			Push(M.GetObject());
 		}
 		break;
 	
 	case Operation::PostDec:
 		{
-			Pointer<int> N = Pop();
-			Pointer<int> M = New<int>();
+			Value<int> N = Pop();
+			Value<int> M = New<int>();
 			int &ref = *N;
 			*M = ref;
 			--ref;
-			Push(M);
+			Push(M.GetObject());
 		}
 		break;
 	
@@ -481,7 +481,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Pointer<Continuation> body = Pop();
 			Pointer<Continuation> test = Pop();
-			context->Push(continuation);	// for scoping
+			context->Push(continuation.GetObject());	// for scoping
 			ContinueTestCode(test);
 			while (Deref<bool>(Pop()))
 			{
@@ -494,7 +494,7 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::ThisContinuation:
-		Push(continuation);
+		Push(continuation.GetObject());
 		break;
 
 	case Operation::Delete:
@@ -543,7 +543,7 @@ void Executor::Perform(Operation::Type op)
 				break;
 			}
 
-			context->Push(continuation);
+			context->Push(continuation.GetObject());
 			context->Push(where_to_go);
 			if (where_to_go.IsType<Continuation>())
 				Deref<Continuation>(where_to_go).Enter(this);
@@ -568,7 +568,7 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::Replace:
-		context->Push(NewContinuation(Pop()));
+		context->Push(NewContinuation(Pop()).GetObject());
 	case Operation::Resume:
 		Break = true;
 		break;
@@ -671,8 +671,8 @@ void Executor::Perform(Operation::Type op)
 			Object then = Pop();
 			if (ConstDeref<bool>(Pop()))
 			{
-				context->Push(continuation);
-				context->Push(NewContinuation(then));
+				context->Push(continuation.GetObject());
+				context->Push(NewContinuation(then).GetObject());
 				Break = true;
 			}
 		}
@@ -682,11 +682,11 @@ void Executor::Perform(Operation::Type op)
 		{
 			Pointer<Continuation> else_ = Pop();
 			Pointer<Continuation> then = Pop();
-			context->Push(continuation);
+			context->Push(continuation.GetObject());
 			if (ConstDeref<bool>(Pop()))
-				context->Push(NewContinuation(then));
+				context->Push(NewContinuation(then).GetObject());
 			else
-				context->Push(NewContinuation(else_));
+				context->Push(NewContinuation(else_).GetObject());
 
 			Break = true;
 		}
@@ -709,7 +709,7 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::ThisContext:
-		Push(continuation);
+		Push(continuation.GetObject());
 		break;
 
 	case Operation::Remove:
@@ -971,7 +971,7 @@ void Executor::Perform(Operation::Type op)
 			Object ident = Pop();
 			Object value = ResolvePop();
 			if (!continuation->HasScope())
-				continuation->SetScope(New<void>());
+				continuation->SetScope(New<Void>().GetObject());
 
 			Set(tree->GetRoot(), continuation->GetScope(), ident, value);
 		}
@@ -1086,9 +1086,9 @@ void Executor::Perform(Operation::Type op)
 }
 
 template <class D>
-Pointer<Array> Executor::ForEach(D const &C, Object const &F)
+Value<Array> Executor::ForEach(D const &C, Object const &F)
 {
-	Pointer<Array> R = New<Array>();
+	Value<Array> R = New<Array>();
 	typename D::const_iterator A = C.Begin(), B = C.End();
 	for (; A != B; ++A)
 	{
@@ -1125,7 +1125,7 @@ Object Executor::Resolve(Object ident) const
 Object Executor::TryResolve(Label const &label) const
 {
 	// search in current scope
-	if (continuation)
+	if (continuation.Exists())
 	{
 		Object scope = continuation->GetScope();
 		if (scope && scope.Has(label))

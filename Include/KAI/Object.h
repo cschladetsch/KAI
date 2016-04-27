@@ -173,23 +173,23 @@ public:
 	String ToString() const;
 	String ToXmlString() const;
 
-	template <class T>
-	Object New() const
-	{
-		return NewFromTypeNumber(Type::Traits<T>::Number);
-	}
+	//template <class T>
+	//Object New() const
+	//{
+	//	return NewFromTypeNumber(Type::Traits<T>::Number);
+	//}
 
-	// deref's Registry so must be in source file
-	Object NewFromTypeNumber(Type::Number N) const;
-	Object NewFromClassName(String const &type_name) const;
+	//// deref's Registry so must be in source file
+	//Object NewFromTypeNumber(Type::Number N) const;
+	//Object NewFromClassName(String const &type_name) const;
 
-	template <class T>
-	Object New(const T &X) const
-	{
-		auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
-		Deref<T>(Q) = X;
-		return Q;
-	}
+	//template <class T>
+	//Object New(const T &X) const
+	//{
+	//	auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
+	//	Deref<T>(Q) = X;
+	//	return Q;
+	//}
 
 	void Assign(StorageBase &, StorageBase const &);
 
@@ -329,7 +329,7 @@ protected:
 	Dictionary &GetDictionaryRef();
 };
 
-StringStream &operator<<(StringStream &S, const Object Q);
+StringStream &operator<<(StringStream &S, const Object &Q);
 StringStream &operator>>(StringStream &S, Object &Q);
 BinaryStream &operator<<(BinaryStream &S, const Object &Q);
 BinaryPacket &operator>>(BinaryPacket &S, Object &Q);
