@@ -3,27 +3,18 @@
 #include "KAI/Config/Base.h"
 #include "KAI/Config/StdContainers.h"
 
-//#include <vector>
-//#include <list>
-//#include <set>
-//#include <map>
-//#include <unordered_set>
-//#include <unordered_map>
-
 #include "KAI/Meta/Base.h"
 #include "KAI/FwdDeclarations.h"
 #include "KAI/Base.h"
 
-#include "KAI/Type/Number.h"
 #include "KAI/Type/Properties.h"
-#include "KAI/Type/Operations.h"
-
+#include "KAI/Handle.h"
+#include "KAI/Type/Number.h"
 #include "KAI/Type/Traits.h"
 #include "KAI/Type/TraitMacros.h"
 
 #include "KAI/BuiltinTypes/String.h"
 #include "KAI/FileLocation.h"
-#include "KAI/Handle.h"
 #include "KAI/Exception/Base.h"
 
 #include "KAI/Label.h"

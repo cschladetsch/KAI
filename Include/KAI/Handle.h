@@ -1,7 +1,5 @@
 #pragma once
 
-#include <unordered_set>
-
 KAI_BEGIN
 
 class Handle
