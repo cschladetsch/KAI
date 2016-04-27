@@ -20,6 +20,11 @@ public:
 	MutatorBase(Label const &F, Type::Number C, Type::Number N
 		, bool is_system, typename CreateParams::Params CP) 
 		: AccessorBase(F, C, N, is_system, CP) { }
+
+	Object GetValue(Object const &) const
+	{
+		KAI_THROW_0(ConstError);
+	}
 };
 
 KAI_END
