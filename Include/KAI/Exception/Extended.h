@@ -70,7 +70,7 @@ namespace Exception
 		Type::Number type_number;
 		UnknownClass(const FileLocation &L, const String &N) : Base(L, "Unknown Class"), name(N) { }
 		UnknownClass(const FileLocation &L, Type::Number N) : Base(L, "Unknown Class"), type_number(N) { }
-		UnknownClass(const FileLocation &L) : Base(L, "Unknown Class"), type_number(Type::Traits<T>::Number), name(Type::Traits<T>::Name) { }
+		UnknownClass(const FileLocation &L) : Base(L, "Unknown Class"), type_number(Type::Traits<T>::Number), name("TODO boost::typeindex") { }
 		void WriteExtendedInformation(StringStream &S) const
 		{
 			S << "name=" << name << ", type_number=" << type_number.ToInt();
@@ -118,4 +118,4 @@ namespace Exception
 	
 }
 
-KAI_END // KAI_EXCEPTION_EXTENDED_H
+KAI_END 

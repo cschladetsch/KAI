@@ -21,13 +21,17 @@ namespace Type
 	template <> struct Traits<void> 
 		: TraitsBase<void, Number::Void, Properties::Streaming, Void, Void &, const Void&> 
 	{ 
-		static const char *Name; 
+		static const char *Name() 
+		{ 
+			typedef TraitsBase<void, Number::Void, Properties::Streaming, Void, Void &, const Void&> Tr;
+			return Tr::Name();
+		}
 	};
 
 	template <> struct Traits<meta::Null> : Traits<void> { };
 	template <> struct Traits<Void> : Traits<void> { };
 
-	const char *Traits<void>::Name = "Void";
+	//const char *Traits<void>::Name = "Void";
 }
 
 KAI_END
