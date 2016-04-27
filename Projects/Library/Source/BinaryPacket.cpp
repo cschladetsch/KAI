@@ -27,7 +27,7 @@ bool BinaryPacket::CanRead(int len) const
 
 void BinaryStream::Register(Registry &registry)
 {
-	ClassBuilder<BinaryStream>(registry, Type::Traits<BinaryStream>::Name)
+	ClassBuilder<BinaryStream>(registry, Type::Traits<BinaryStream>::Name())
 		.Methods
 			("Size", &BinaryStream::Size)
 			("Clear", &BinaryStream::Clear)

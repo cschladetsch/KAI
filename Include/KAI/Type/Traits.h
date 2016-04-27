@@ -1,5 +1,7 @@
 #pragma once
 
+#include <boost/type_index.hpp>
+
 KAI_TYPE_BEGIN
 
 template <typename T>
@@ -57,6 +59,16 @@ struct TraitsBase
 	typedef Store const *ConstPointer;
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
+
+	static const char *_name;
+
+	static const char *Name()
+	{
+		if (_name != nullptr)
+			return _name;
+
+		return _name = boost::typeindex::type_id<T>().pretty_name().c_str();
+	}
 
 	template <int N2>
 	struct HasProperty { enum { Value = (N2 & Q) != 0 }; };

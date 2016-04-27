@@ -96,7 +96,7 @@ void Array::Register(Registry &R)
 {
 	void (Array::*remove_method)(Object) = &Array::Erase2;
 
-	ClassBuilder<Array>(R, Type::Traits<Array>::Name)
+	ClassBuilder<Array>(R, Type::Traits<Array>::Name())
 		.Methods
 			("Append", &Array::Append2, "Add an Object to the end")
 			("Erase", remove_method, "Remove an object from the sequence")
