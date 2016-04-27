@@ -1,5 +1,3 @@
-
-
 #include "KAI/KAI.h"
 #include "KAI/BuiltinTypes/Signed32.h"
 #include <iostream>

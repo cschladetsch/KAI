@@ -1,25 +1,20 @@
-// (C) 2014 christian.schladetsch@gmail.com
-
 #include <iostream>
-
 #include "KAI/Console.h"
 
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Tests/TestAll.h"
 #endif
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
-#pragma comment(lib, "../../Lib/Win32/Debug/kailibrary.lib")
+//#define WIN32_LEAN_AND_MEAN
+//#include <windows.h>
 
 KAI_BEGIN
 
 void DebugTrace(const char *text)
 {
-	OutputDebugStringA(text);
-	OutputDebugStringA("\n");
-	//std::cerr << text << std::endl;
+	//OutputDebugStringA(text);
+	//OutputDebugStringA("\n");
+	std::cerr << text << std::endl;
 }
 
 KAI_END
@@ -30,21 +25,27 @@ void RunTests(Console &console);
 
 int main(int argc, char **argv)
 {
-	std::vector<String> args;
-	for (int N = 1; N < argc; ++N)
-		args.push_back(argv[N]);
-	
+	Object q;
+
 	Memory::StandardAllocator alloc;
-	Console console(args, &alloc);
+	Value<int> n;
 
-#if defined(PROFILE)
-	for (int n = 0; n < 10; ++n)
-#endif
-		RunTests(console);
+	Registry r(&alloc);
 
-#if !defined(PROFILE)
-	console.Run();
-#endif
+	//std::vector<String> args;
+	//for (int N = 1; N < argc; ++N)
+	//	args.push_back(argv[N]);
+	//
+	//Console console(args, &alloc);
+//
+//#if defined(PROFILE)
+//	for (int n = 0; n < 10; ++n)
+//#endif
+//		RunTests(console);
+//
+//#if !defined(PROFILE)
+//	console.Run();
+//#endif
 }
 
 void RunTests(Console &console)

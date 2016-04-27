@@ -228,9 +228,6 @@ const ClassBase *Registry::GetClass(Type::Number type_number)
 	return classes[type_number.ToInt()];
 }
 
-#ifndef _DEBUG
-__forceinline
-#endif
 StorageBase *Registry::GetStorageBase(Handle handle) const
 {
 	if (handle == 0)

@@ -61,7 +61,6 @@ struct TraitsBase
 	typedef ConstRef ConstReference;
 
 	static const char *_name;
-
 	static const char *Name()
 	{
 		if (_name != nullptr)
