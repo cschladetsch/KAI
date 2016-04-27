@@ -7,6 +7,10 @@ KAI_BEGIN
 	{ \
 		template <> \
 		struct Traits<T> : TraitsBase<T, N, Ops> { \
+			typedef TraitsBase<T,N,Ops> Tr; \
+			using typename Tr::Store; \
+			using typename Tr::Reference; \
+			using typename Tr::ConstReference; \
 			static const char *Name() \
 			{ \
 				typedef TraitsBase<T,N,Ops> Tr; \

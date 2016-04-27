@@ -13,7 +13,12 @@ template <class T>
 class ConstValue
 {
 protected:
-	Storage<T> *storage;
+	typedef Type::Traits<T> Traits;
+	typedef typename Traits::Store Store;
+	typedef typename Traits::Reference Reference;
+	typedef typename Traits::ConstReference ConstReference;
+
+	Storage<Store> *storage;
 
 public:
 	ConstValue() : storage(0) { }
@@ -23,6 +28,11 @@ public:
 		AssignFrom(Q);
 	}
 	
+	operator Object() const
+	{
+		return *storage;
+	}
+
 	ConstValue<T> &operator=(const ConstValue<T> &Q)
 	{
 		AssignFrom(Q.GetObject());
@@ -48,7 +58,7 @@ public:
 		storage = &GetStorage<T>(Q);
 	}
 
-	const T &operator*() const
+	ConstReference operator*() const
 	{ 
 		if (storage == 0)
 			KAI_THROW_0(NullObject);
@@ -116,6 +126,7 @@ public:
 	{
 		return *storage;
 	}
+
 	const Object &GetConstObject() const
 	{
 		return *storage;
@@ -132,6 +143,10 @@ public:
 template <class T>
 struct Value : ConstValue<T>
 {
+	using typename ConstValue<T>::Store;
+	using typename ConstValue<T>::Reference;
+	using typename ConstValue<T>::ConstReference;
+
 	Value() { }
 
 	Value(Object const &Q)
@@ -145,7 +160,7 @@ struct Value : ConstValue<T>
 		return *this;
 	}
 
-	T &operator*()
+	Reference operator*()
 	{ 
 		if (storage == 0)
 			KAI_THROW_0(NullObject);
@@ -158,7 +173,8 @@ struct Value : ConstValue<T>
 			KAI_THROW_0(NullObject);
 		return &storage->GetReference();
 	}
-	const T &operator*() const
+
+	ConstReference operator*() const
 	{ 
 		return ConstValue<T>::operator*();
 	}
@@ -172,6 +188,10 @@ struct Value : ConstValue<T>
 template <class T>
 struct Value<const T> : ConstValue<T>
 {
+	using typename ConstValue<T>::Store;
+	using typename ConstValue<T>::Reference;
+	using typename ConstValue<T>::ConstReference;
+
 	Value() { }
 
 	Value(Object const &Q) : ConstValue<T>(Q) { }
@@ -182,7 +202,7 @@ struct Value<const T> : ConstValue<T>
 		return *this;
 	}
 
-	const T &operator*() const
+	ConstReference operator*() const
 	{ 
 		return ConstValue<T>::operator*();
 	}
