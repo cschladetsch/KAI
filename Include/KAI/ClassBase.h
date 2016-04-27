@@ -76,7 +76,7 @@ namespace detail
 
 /// Base for all Class<T> types. ClassBase defines the type-independent 
 /// interface that all Class<T>s must define
-class ClassBase
+class ClassBase 
 {
 public:
 #ifndef DEBUG
@@ -122,17 +122,6 @@ public:
 			property.SetColorRecursive(color, handles);
 		}
 	}
-
-	template <class T, class U>
-	T *Allocate(Registry *, U const &val) const;
-
-	template <class T>
-	Storage<T> *NewStorage() const;
-
-	template <class T>
-	Storage<T> *NewStorage(Registry &) const;
-
-	Object NewFromTypeNumber(Type::Number) const;
 
 	virtual void MakeReachableGrey(StorageBase &base) const = 0;
 

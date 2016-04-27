@@ -237,9 +237,11 @@ struct TraitsBase
 	template <bool>
 	struct MultiplyOp
 	{
-		static Store Perform(ConstReference A, ConstReference B)
+		static Store Perform(ConstReference , ConstReference )
 		{
-			return A * B;
+			//KAI_THROW_2(NoProperty, N, Properties::Multiply);
+			// TODO THROW
+			throw;
 		}
 	};
 	template <>
@@ -247,16 +249,14 @@ struct TraitsBase
 	{
 		static Store Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::Multiply);
-			// TODO THROW
-			throw;
+			return A * B;
 		}
 	};
 
 	template <bool>
 	struct DivideOp
 	{
-		static Store Perform(ConstReference A, ConstReference B)
+		static Store Perform(ConstReference , ConstReference )
 		{
 			//KAI_THROW_2(NoProperty, Properties::Divide);
 			// TODO THROW
