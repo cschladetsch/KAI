@@ -79,7 +79,7 @@ public:
 				continue;
 			if (!prop.CreateDefaultValue())
 				continue;
-			Object value = NewFromTypeNumber(prop.GetFieldTypeNumber());
+			Object value = object.GetRegistry()->NewFromTypeNumber(prop.GetFieldTypeNumber());
 			prop.SetObject(object, value);
 		}
 	}
@@ -90,7 +90,7 @@ public:
 	}
 	Object Duplicate(StorageBase const &parent) const
 	{
-		Storage<T> *result = ClassBase::NewStorage<T>();
+		Storage<T> *result = parent.GetRegistry()->NewStorage<T>();
 		Traits::Assign::Perform(result->GetReference(), ConstDeref<T>(parent));
 		//foreach (Properties::value_type const &property, properties)
 		for (auto property : properties)
@@ -200,29 +200,27 @@ public:
 	}
 	StorageBase *Plus(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = ClassBase::NewStorage<T>();
+		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Plus::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Minus(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = ClassBase::NewStorage<T>();
+		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
 		Traits::Assign::Perform(R->GetReference(), Traits::Minus::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 	StorageBase *Multiply(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = ClassBase::NewStorage<T>();
-		//TODO Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
-		KAI_UNUSED_2(A, B);
+		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Traits::Assign::Perform(R->GetReference(), Traits::Multiply::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 
 	StorageBase *Divide(StorageBase const &A, StorageBase const &B) const
 	{
-		Storage<T> *R = ClassBase::NewStorage<T>();
-		//Traits::Assign::Perform(R->GetReference(), Traits::Divide::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
-		KAI_UNUSED_2(A, B);
+		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
+		Traits::Assign::Perform(R->GetReference(), Traits::Divide::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
 
@@ -233,7 +231,7 @@ public:
 
 	StorageBase *Extract(Registry &R, StringStream &S) const
 	{
-		Storage<T> *Q = ClassBase::NewStorage<T>(R);
+		Storage<T> *Q = R.NewStorage<T>();
 		Traits::StringStreamExtract::Extract(S, Q->GetReference());
 		return Q;
 	}
@@ -247,11 +245,12 @@ public:
 	{
 		Traits::BinaryStreamInsert::Insert(S, ConstDeref<T>(Q));
 	}
+
 	StorageBase *Extract(Registry &R, BinaryPacket &S) const
 	{
-		Storage<T> *Q = ClassBase::NewStorage<T>(R);
-		Traits::BinaryPacketExtract::Extract(S, Q->GetReference());
-		return Q;
+		Value<T> Q = R.New<T>();
+		Traits::BinaryPacketExtract::Extract(S, *Q);
+		return &Q.GetObject().GetStorageBase();
 	}
 };
 

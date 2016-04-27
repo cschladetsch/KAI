@@ -1,4 +1,5 @@
 #pragma once
+#include <KAI/Value.h>
 
 KAI_BEGIN
 
@@ -7,11 +8,11 @@ class Executor;
 
 KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected); 
 
-class Executor : public Reflected//<Executor>
+class Executor : public Reflected
 {
-	Pointer<Continuation> continuation;
-	Pointer<Stack> context;
-	Pointer<Stack> data;
+	Value<Continuation> continuation;
+	Value<Stack> context;
+	Value<Stack> data;
 	bool Break;
 	Tree *tree;
 	int traceLevel;
@@ -21,16 +22,26 @@ public:
 	void Create();
 	bool Destroy();
 
-	void SetContinuation(Pointer<Continuation>);
-	void Continue(Pointer<Continuation>);
-	void ContinueOnly(Pointer<Continuation> C);	// continue C, do not call into the context stack after
-	void ContinueTestCode(Pointer<Continuation> C);	// continue C, leaving one result on the stack
+	void SetContinuation(Value<Continuation>);
+	void Continue(Value<Continuation>);
+	void ContinueOnly(Value<Continuation> C);	// continue C, do not call into the context stack after
+	void ContinueTestCode(Value<Continuation> C);	// continue C, leaving one result on the stack
 	void Continue();
 
 	void Eval(Object const &Q);
-
 	void Dump(Object const &Q);
 
+	template <class T>
+	Value<T> New()
+	{
+		return Reg().New<T>();
+	}
+
+	template <class T>
+	Value<T> New(T const & X)
+	{
+		return Reg().New(X);
+	}
 
 	void SetTree(Tree *T) { tree = T; }
 	Tree *GetTree() const { return tree; }
@@ -38,14 +49,20 @@ public:
 	void SetTraceLevel(int);
 	int GetTraceLevel() const;
 
+	template <class T>
+	void Push(const Value<T> &val)
+	{
+		Push(val.GetObject());
+	}
+	
 	void Push(Object const &);
 	void Push(const std::pair<Object, Object> &);
 	Object Pop();
 	Object Top() const;
 
-	Pointer<Stack> GetDataStack();
-	Pointer<const Stack> GetDataStack() const { return data; }
-	Pointer<const Stack> GetContextStack() const;
+	Value<Stack> GetDataStack();
+	Value<const Stack> GetDataStack() const { return Value<const Stack>(data.GetConstObject()); }	// TODO: automate
+	Value<const Stack> GetContextStack() const;
 	void ClearStacks() { data->Clear(); context->Clear(); }
 
 	static void Register(Registry &, const char * = "Executor");
@@ -80,7 +97,7 @@ protected:
 
 private:
 	template <class C>
-	Pointer<Array> ForEach(C const &, Object const &);
+	Value<Array> ForEach(C const &, Object const &);
 	template <class Cont>
 	void PushAll(const Cont &cont);
 
@@ -89,7 +106,7 @@ private:
 	void Trace(const Label &, const StorageBase&, StringStream &);
 	void Trace(const Object&, StringStream &);
 	void ConditionalContextSwitch(Operation::Type);
-	Pointer<Continuation> NewContinuation(Pointer<Continuation> P);
+	Value<Continuation> NewContinuation(Value<Continuation> P);
 	Object TryResolve(Label const &label) const;
 };
 
