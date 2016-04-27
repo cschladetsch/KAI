@@ -51,6 +51,7 @@
     <RootNamespace>Library</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>KAILibrary</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'" Label="Configuration">
@@ -159,8 +160,8 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)/Lib/$(Platform)/$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)\Lib\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\Obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\Include;c:\lib\boost</IncludePath>
   </PropertyGroup>
@@ -221,11 +222,10 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KAI_DEBUG;KAI_DEBUG_TRACE;KAI_NAMESPACE_NAME=kai</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
@@ -236,6 +236,16 @@
     <Lib>
       <OutputFile>$(OutDir)$(ProjectName).lib</OutputFile>
     </Lib>
+    <PostBuildEvent>
+      <Command>echo Copying to c:\Lib\KAI ; copy /y $(TargetPath) c:\Lib\KAI
+</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying</Message>
+    </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">
     <ClCompile>
@@ -1304,33 +1314,7 @@
     <ClInclude Include="..\..\Include\KAI\Storage.h" />
     <ClInclude Include="..\..\Include\KAI\StorageBase.h" />
     <ClInclude Include="..\..\Include\KAI\StringStream.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\DummyTestHeader.h" />
     <ClInclude Include="..\..\Include\KAI\Tests\Number.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestAll.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestArray.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestBinaryStream.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestClosure.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestCompiler.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDerivation.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestDotGraph.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestEvents.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExample.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestExecutor.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestFunction.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMap.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestMethod.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObject.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestObjectIndexing.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestPathname.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestProperties.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestRegistry.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestSignedContinuation.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestStringStream.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTemplate.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTest.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTree.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\TestTriColor.h" />
-    <ClInclude Include="..\..\Include\KAI\Tests\Traits.h" />
     <ClInclude Include="..\..\Include\KAI\Test\Macros.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Mutex.h" />
     <ClInclude Include="..\..\Include\KAI\Threads\Thread.h" />
