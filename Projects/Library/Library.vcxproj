@@ -1227,7 +1227,6 @@
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Stack.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h" />
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Traits.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\TypeNumber.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Vector4.h" />
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h" />
@@ -1351,7 +1350,6 @@
     <ClInclude Include="..\..\Include\KAI\Type\ContainerOperations.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Deref.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Number.h" />
-    <ClInclude Include="..\..\Include\KAI\Type\Operations.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Properties.h" />
     <ClInclude Include="..\..\Include\KAI\Type\Traits.h" />
     <ClInclude Include="..\..\Include\KAI\Type\TraitMacros.h" />

@@ -634,9 +634,6 @@
     <ClInclude Include="..\..\Include\KAI\Type\Number.h">
       <Filter>Header Files\Type</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Traits.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\Thread.h">
       <Filter>Header Files\Platform\PC</Filter>
     </ClInclude>
@@ -657,9 +654,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Prelude.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Type\Operations.h">
-      <Filter>Header Files\Type</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Type\Properties.h">
       <Filter>Header Files\Type</Filter>

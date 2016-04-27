@@ -6,20 +6,23 @@ class Array;
 
 namespace Type
 {
-	template <>
-	struct Traits<Array> : TraitsBase<Array, Number::Array
-		, Properties::StringStreamInsert
-		| Properties::BinaryStreaming
-		| Properties::Less
-		| Properties::Equiv
-		| Properties::Assign
-		| Properties::Reflected
-		| Properties::Container>
-	{
-		static const char *Name;
-	};
+#define KAI_TRAITS_OPS Properties::StringStreamInsert \
+	| Properties::BinaryStreaming \
+	| Properties::Less \
+	| Properties::Equiv \
+	| Properties::Assign \
+	| Properties::Reflected \
+	| Properties::Container 
 
-	const char * Traits<Array>::Name = "Array";
+	template <>
+	struct Traits<Array> : TraitsBase<Array, Number::Array, KAI_TRAITS_OPS>
+	{
+		static const char *Name() 
+		{ 
+			typedef TraitsBase<Array, Number::Array, KAI_TRAITS_OPS> Tr;
+			return Tr::Name(); 
+		} 
+	};
 }
 
 /*

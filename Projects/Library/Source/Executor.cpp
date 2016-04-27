@@ -12,7 +12,6 @@
 #include "KAI/Tree.h"
 #include "KAI/Function.h"
 #include "KAI/SignedContinuation.h"
-#include "KAI/BuiltinTypes/All.h"
 #include "KAI/BuiltinTypes/List.h"
 
 #undef GetObject

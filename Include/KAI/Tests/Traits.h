@@ -1,4 +1,5 @@
-#	include "KAI/Meta/Base.h"
+#include "KAI/Meta/Base.h"
+#include <boost/type_index.hpp>
 
 KAI_BEGIN
 
@@ -62,44 +63,44 @@ namespace Type
 	{
 	};
 
-	/// Describes the properties of a promoted type
-	struct Properties
-	{
-		enum Type
-		{
-			None = 0,
-			Assign = 1 << 0,
-			Reflected = 1 << 1,
+	///// Describes the properties of a promoted type
+	//struct Properties
+	//{
+	//	enum Type
+	//	{
+	//		None = 0,
+	//		Assign = 1 << 0,
+	//		Reflected = 1 << 1,
 
-			Plus = 1 << 2,
-			Minus = 1 << 3,
-			Divide = 1 << 4,
-			Multiply = 1 << 5,
-			Arithmetic = Plus | Minus | Divide | Multiply,
-			
-			Less = 1 << 6,
-			Equiv = 1 << 7,
-			Greater = 1 << 8,
-			Relational = Less | Equiv | Greater,
-			
-			StringStreamInsert = 1 << 9,
-			StringStreamExtract = 1 << 10,
-			BinaryStreamInsert = 1 << 11,
-			BinaryStreamExtract = 1 << 12,
-			BinaryStreaming = BinaryStreamInsert | BinaryStreamExtract,
-			StringStreaming = StringStreamInsert | StringStreamExtract,
-			Streaming = BinaryStreaming | StringStreaming,
-			StreamInsert = StringStreamInsert | BinaryStreamInsert,
-			StreamExtract = StringStreamExtract | BinaryStreamExtract,
+	//		Plus = 1 << 2,
+	//		Minus = 1 << 3,
+	//		Divide = 1 << 4,
+	//		Multiply = 1 << 5,
+	//		Arithmetic = Plus | Minus | Divide | Multiply,
+	//		
+	//		Less = 1 << 6,
+	//		Equiv = 1 << 7,
+	//		Greater = 1 << 8,
+	//		Relational = Less | Equiv | Greater,
+	//		
+	//		StringStreamInsert = 1 << 9,
+	//		StringStreamExtract = 1 << 10,
+	//		BinaryStreamInsert = 1 << 11,
+	//		BinaryStreamExtract = 1 << 12,
+	//		BinaryStreaming = BinaryStreamInsert | BinaryStreamExtract,
+	//		StringStreaming = StringStreamInsert | StringStreamExtract,
+	//		Streaming = BinaryStreaming | StringStreaming,
+	//		StreamInsert = StringStreamInsert | BinaryStreamInsert,
+	//		StreamExtract = StringStreamExtract | BinaryStreamExtract,
 
-			NoHashValue = 1 << 13,
-			CalcHashValue = 1 << 14,
+	//		NoHashValue = 1 << 13,
+	//		CalcHashValue = 1 << 14,
 
-			Container = /*Reflected |*/ (1 << 15),
-			Process = 1 << 16,
-			TestOutput = 1 << 17,
-		};
-	};
+	//		Container = /*Reflected |*/ (1 << 15),
+	//		Process = 1 << 16,
+	//		TestOutput = 1 << 17,
+	//	};
+	//};
 
 	template <class T>
 	struct StorageType
@@ -120,7 +121,15 @@ namespace Type
 		typedef Store const *ConstPointer;
 		typedef Ref Reference;
 		typedef ConstRef ConstReference;
-		static const char *Name;
+		static const char *NameString;
+
+		static const char *Name()
+		{
+			if (NameString != nullptr)
+				return NameString;
+
+			NameString = boost::typeindex::type_id<T>().pretty_name().c_str();
+		}
 
 		template <int N>
 		struct HasProperty { enum { Value = (Properties & N) != 0 }; };

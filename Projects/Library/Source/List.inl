@@ -87,7 +87,7 @@ size_t GetHash(List const &)
 
 void List::Register(Registry &R)
 {
-	ClassBuilder<List>(R, Type::Traits<List>::Name)
+	ClassBuilder<List>(R, Type::Traits<List>::Name())
 		.Methods
 			("PopBack", &List::PopBack, "Remove last object from the sequence")
 			("PushBack", &List::Append2, "Add an Object to the end")
