@@ -116,8 +116,8 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)/Bin/$(Platform)/$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)</IntDir>
+    <OutDir>$(SolutionDir)/Bin/$(Platform)/$(Configuration)/</OutDir>
+    <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)/</IntDir>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\Lib\boost;..\..\Include</IncludePath>

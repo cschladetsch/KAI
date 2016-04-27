@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_LIST_H
-#	define KAI_LIST_H
+#pragma once
 
 KAI_BEGIN
 
@@ -90,7 +84,5 @@ KAI_TYPE_TRAITS(List, Number::List
 	| Properties::Container);
 
 KAI_END
-
-#endif // KAI_LIST_H
 
 //EOF

@@ -2,40 +2,32 @@
 
 KAI_BEGIN
 
-class Array;
-
-namespace Type
-{
-#define KAI_TRAITS_OPS Properties::StringStreamInsert \
-	| Properties::BinaryStreaming \
-	| Properties::Less \
-	| Properties::Equiv \
-	| Properties::Assign \
-	| Properties::Reflected \
-	| Properties::Container 
-
-	template <>
-	struct Traits<Array> : TraitsBase<Array, Number::Array, KAI_TRAITS_OPS>
-	{
-		static const char *Name() 
-		{ 
-			typedef TraitsBase<Array, Number::Array, KAI_TRAITS_OPS> Tr;
-			return Tr::Name(); 
-		} 
-	};
-}
-
-/*
-KAI_TYPE_TRAITS(Array, Type::Number::Array
-	, Type::Properties::StringStreamInsert 
-	| Type::Properties::BinaryStreaming
-	| Type::Properties::Less 
-	| Type::Properties::Equiv
-	| Type::Properties::Assign
-	| Type::Properties::Reflected
-	| Type::Properties::Container
-	);
-*/
+//class Array;
+//
+//namespace Type
+//{
+//#define KAI_TRAITS_ARRAY_OPS Properties::StringStreamInsert \
+//	| Properties::BinaryStreaming \
+//	| Properties::Less \
+//	| Properties::Equiv \
+//	| Properties::Assign \
+//	| Properties::Reflected \
+//	| Properties::Container 
+//
+//	template <>
+//	struct Traits<Array> : TraitsBase<Array, Number::Array, KAI_TRAITS_ARRAY_OPS>
+//	{
+//		typedef TraitsBase<Array, Number::Array, KAI_TRAITS_ARRAY_OPS> Tr;
+//		using typename Tr::Store;
+//		using typename Tr::Reference;
+//		using typename Tr::ConstReference;
+//		static const char *Name()
+//		{
+//			return Tr::Name();
+//		} 
+//	};
+//}
+//
 
 /// A vector of Objects
 class Array : public Container<Array>
@@ -94,5 +86,15 @@ BinaryStream &operator<<(BinaryStream &, const Array &);
 BinaryPacket &operator>>(BinaryPacket &, Array &);
 
 HashValue GetHash(const Array &A);
+
+KAI_TYPE_TRAITS(Array, Number::Array
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming
+	| Properties::Less 
+	| Properties::Equiv
+	| Properties::Assign
+	| Properties::Reflected
+	| Properties::Container
+	);
 
 KAI_END

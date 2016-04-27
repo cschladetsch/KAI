@@ -27,6 +27,12 @@ Object::Object(Object const &Q)
 	*this = Q;
 }
 
+void Object::Assign(StorageBase &A, StorageBase const &B)
+{
+	GetClass()->Assign(A, B);
+}
+
+
 Object &Object::operator=(Object const &Q)
 {
 	// if we are assigning over an existing object, catch any leak by determining new color

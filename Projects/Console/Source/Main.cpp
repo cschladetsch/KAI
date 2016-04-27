@@ -10,8 +10,6 @@
 
 KAI_BEGIN
 
-extern int foo();
-
 void DebugTrace(const char *text)
 {
 	//OutputDebugStringA(text);
@@ -27,8 +25,6 @@ void RunTests(Console &console);
 
 int main(int argc, char **argv)
 {
-	std::cout << foo();
-
 	Object q;
 
 	Memory::StandardAllocator alloc;

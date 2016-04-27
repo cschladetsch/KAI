@@ -1,6 +1,7 @@
 // (C) 2014 christian.schladetsch@gmail.com
 
 #include "KAI/KAI.h"
+#pragma warning(disable:4221)
 
 #ifdef KAI_UNIT_TESTS
 #	include "KAI/Test/Base.h"
