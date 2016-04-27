@@ -1,9 +1,10 @@
+
+
 const char *Operation::ToString(int value)
 {
 	switch (value)
 	{
 		#define CASE(N) case N: return #N;
-		CASE(Return);
 		CASE(None);
 		CASE(True);
 		CASE(False);
@@ -74,20 +75,8 @@ const char *Operation::ToString(int value)
 		CASE(ToVector2);
 		CASE(ToVector3);
 		CASE(ToVector4);
-		CASE(LogicalNot); 
-		CASE(LogicalAnd); 
-		CASE(LogicalOr); 
-		CASE(LogicalXor); 
-		CASE(LogicalNand);
-		CASE(GetProperty);
-		CASE(Index);
-		CASE(Lookup);
-		CASE(If);
-		CASE(IfElse);
-		CASE(ForEachContained);
-		CASE(SuspendNew);
 	}
-
 	return "?UNKNOWN_OP?";
 }
 
+//EOF

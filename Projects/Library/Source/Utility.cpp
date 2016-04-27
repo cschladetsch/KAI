@@ -132,7 +132,7 @@ void ToStringStream(const Object &Q, StringStream &S, int level)
 	
 	S << "\n";
 
-	foreach (Dictionary::value_type const &child, base.GetDictionary())
+	for (auto const &child : base.GetDictionary())
 		ToStringStream(child.second, S, level + 1);
 
 	return;
@@ -165,7 +165,7 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 		S << "</Value>\n";
 	}
 
-	foreach (ClassBase::Properties::value_type const &prop_iter, klass.GetProperties())
+	for (auto const &prop_iter : klass.GetProperties())
 	{
 		PropertyBase const &property = *prop_iter.second;
 		S << indent.ToString() <<"<Property name='" << property.GetFieldName() << "'>";
@@ -175,7 +175,7 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 	}
 
 	const Dictionary &dict = base.GetDictionary();
-	foreach (Dictionary::value_type const &child, dict)
+	for (auto const &child : dict)
 		ToXmlStream(child.second, S, level + 1);
 
 	S << indent.ToString() << "</Object>\n";
@@ -183,7 +183,4 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 	return;
 }
 
-
 KAI_END
-
-//EOF

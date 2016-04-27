@@ -170,6 +170,24 @@
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
       <Filter>Source Files\BuiltinTypes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Documentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Property.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\BuiltinTypes\Label.inl">
@@ -191,6 +209,9 @@
       <Filter>Source Files\BuiltinTypes\Inline</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="Source\Makefile">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Accessor.h">
