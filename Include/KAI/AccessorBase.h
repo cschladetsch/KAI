@@ -21,8 +21,9 @@ public:
 		, bool is_system, typename CreateParams::Params CP) 
 		: AccessorBase(F, C, N, is_system, CP) { }
 
-	Object GetValue(Object const &) const
+	Object GetValue(Object const &Q) const
 	{
+		KAI_UNUSED_1(Q);
 		KAI_THROW_0(ConstError);
 	}
 };

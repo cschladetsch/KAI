@@ -209,9 +209,6 @@
     <ClCompile Include="Source\Tests\TestCompiler.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tests\TestDerivation.cpp">
-      <Filter>Source Files\Tests</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Tests\TestDotGraph.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>

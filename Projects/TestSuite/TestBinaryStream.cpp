@@ -3,7 +3,7 @@
 using namespace kai;
 using namespace std;
 
-TEST(TestBinaryStrea, Builtins)
+TEST(TestBinaryStream, Builtins)
 {
 	BinaryStream S;
 
@@ -67,10 +67,10 @@ TEST(TestBinaryStream, TestArray)
 	R.AddClass<int>("int");
 
 	Pointer<Array> A = R.New<Array>();
-	A->Append(R.New(0));
-	A->Append(R.New(1));
-	A->Append(R.New(2));
-	A->Append(R.New(3));
+	A->Append(R.New<int>(0));
+	A->Append(R.New<int>(1));
+	A->Append(R.New<int>(2));
+	A->Append(R.New<int>(3));
 
 	BinaryStream S;
 	S.SetRegistry(&R);
