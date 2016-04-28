@@ -188,6 +188,9 @@
     <ClCompile Include="Source\Property.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\BuiltinTypes\Label.inl">

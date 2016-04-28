@@ -105,9 +105,8 @@ void Executor::Continue()
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
-				//KAI_TRACE_3(data, context, continuation);
-				//KAI_TRACE_1(E);
-				(void)E;
+				KAI_TRACE_3(data, context, continuation);
+				KAI_TRACE_1(E);
 				throw;
 			}
 		}
@@ -138,8 +137,8 @@ void Executor::NextContinuation()
 	}
 
 	if (context->Empty())
-		// TODO ERRORS KAI_TRACE_ERROR() << "Context stack is empty";
 	{
+		KAI_TRACE_ERROR() << "Context stack is empty";
 		KAI_NOT_IMPLEMENTED();
 	}
 
@@ -521,7 +520,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			if (data->Size() < 1)
 			{
-				//TODO ERRORS KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
+				KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
 				KAI_NOT_IMPLEMENTED();
 			}
 			Object where_to_go = Resolve(Pop());
@@ -651,7 +650,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			if (data->Size() < 3)
 			{
-				//KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
+				KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
 				KAI_NOT_IMPLEMENTED();
 			}
 

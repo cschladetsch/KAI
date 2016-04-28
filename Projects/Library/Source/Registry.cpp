@@ -130,8 +130,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 #ifdef KAI_DEBUG
 			if (IsWatching(handle))
 			{
-				// TODO TRACE
-				//KAI_TRACE() << handle << ": doesn't exist, not deleted";
+				KAI_TRACE() << handle << ": doesn't exist, not deleted";
 			}
 #endif
 			return;
@@ -185,14 +184,12 @@ void Registry::DestroyObject(Handle handle, bool force)
 	KAI_CATCH(Exception::Base, E)
 	{
 		KAI_UNUSED(E);
-		// TODO TRACE
-		//KAI_TRACE() << "\n\t" << E.ToString();
+		KAI_TRACE() << "\n\t" << E.ToString();
 	}
 	KAI_CATCH(std::exception, E)
 	{
 		KAI_UNUSED(E);
-		// TODO TRACE
-		//KAI_TRACE() << "std::exception: " << E.what();
+		KAI_TRACE() << "std::exception: " << E.what();
 	}
 	KAI_CATCH_ALL()
 	{
@@ -200,7 +197,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 
 	if (!succeeded)
 	{
-		//KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
+		KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
 		Instances::iterator iter = instances.find(handle);
 		if (iter != instances.end())
 		{
@@ -501,8 +498,7 @@ void Registry::TriColor()
 	const int max_cycles = 17;
 	if (gc_trace_level >= 1)
 	{
-		//KAI_TRACE_3(instances.size(), grey.size(), white.size());
-		// TODO TRACE
+		KAI_TRACE_3(instances.size(), grey.size(), white.size());
 	}
 
 	int cycle = 0;
@@ -532,7 +528,7 @@ void Registry::TriColor()
 
 	if (gc_trace_level >= 1)
 	{	
-		//KAI_TRACE() << "TriColor: " << cycle << " passes";
+		KAI_TRACE() << "TriColor: " << cycle << " passes";
 		printf("Tricolor passes\n");
 	}
 }
@@ -654,7 +650,7 @@ bool Registry::IsWatching(Handle handle) const
 
 void Registry::WatchAllTypes()
 {
-	foreach (ClassBase const *klass, classes)
+	for (auto klass : classes)
 		if (klass)
 			WatchType(klass->GetTypeNumber());
 }
@@ -682,7 +678,7 @@ void Registry::TraceSet(Registry::ColoredSet const &set, const char *name) const
 	KAI_TRACE() << name << "(" << (int)set.size() << "): ";
 	if (gc_trace_level > 2)
 	{
-		foreach (Handle handle, set)
+		for (auto handle : set)
 		{
 			Object Q = GetObject(handle);
 			if (!Q.Exists())

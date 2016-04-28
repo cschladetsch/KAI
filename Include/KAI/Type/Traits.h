@@ -121,8 +121,7 @@ struct TraitsBase
 	{
 		static void Perform(Reference)
 		{
-			//KAI_THROW_2(NoProperty, Number, Properties::Absolute);
-			throw;
+			KAI_THROW_2(NoProperty, Number, Properties::Absolute);
 		}
 	};
 

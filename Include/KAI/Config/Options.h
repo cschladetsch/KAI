@@ -1,3 +1,5 @@
+#pragma once
+
 // defined to place the system into a single namespace
 #define KAI_OPTION_USE_NAMESPACES
 
@@ -7,9 +9,10 @@
 #error please define KAI_NAMESPACE_NAME
 #endif
 
-//#define KAI_UNIT_TESTS
-
+#define KAI_DEBUG
+#define KAI_DEBUG_TRACE
 #define KAI_USE_EXCEPTIONS
+//#define KAI_UNIT_TESTS
 
 /// if KAI_DEBUG is defined, extra debugging features may be exposed
 #if defined(_DEBUG) || defined(DEBUG)
@@ -17,9 +20,6 @@
 #		define KAI_DEBUG
 #	endif
 #endif
-
-// TODO DEBUG
-#undef KAI_DEBUG
 
 #ifdef KAI_DEBUG
 #	ifndef KAI_DEBUG_TRACE
@@ -45,5 +45,3 @@
 #if !defined(KAI_DEBUG_TRACE) && defined(KAI_DEBUG)
 #	define KAI_DEBUG_TRACE
 #endif
-
-//EOF

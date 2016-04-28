@@ -214,17 +214,17 @@ String Console::Execute(Pointer<Continuation> cont)
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
-		//KAI_TRACE_ERROR_1(E);
+		KAI_TRACE_ERROR_1(E);
 		std::cerr << color(C::Error) << "Error: " << E.ToString() << std::endl;
 	}
 	KAI_CATCH(std::exception, E)
 	{
-		//KAI_TRACE_ERROR_2("StdException: ", E.what());
+		KAI_TRACE_ERROR_2("StdException: ", E.what());
 		std::cerr << color(C::Error) << "Error: " << E.what() << std::endl;
 	}
 	KAI_CATCH_ALL()
 	{
-		//KAI_TRACE_ERROR_1("UnknownException");
+		KAI_TRACE_ERROR_1("UnknownException");
 		std::cerr << color(C::Error) << "Error" << std::endl;
 	}
 	return "";

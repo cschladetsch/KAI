@@ -39,7 +39,7 @@ void Continuation::Enter(Executor *exec)
 		Stack &data = *exec->GetDataStack();
 		if (data.Size() < args->Size())
 		{
-			//KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
+			KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
 			KAI_THROW_0(EmptyStack);
 		}
 
