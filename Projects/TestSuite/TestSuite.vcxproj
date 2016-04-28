@@ -148,6 +148,9 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TestBinaryStream.cpp" />
+    <ClCompile Include="TestClassScripting.cpp" />
+    <ClCompile Include="TestFunctionScripting.cpp" />
+    <ClCompile Include="TestFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestBase.h" />
