@@ -11,15 +11,6 @@ struct Number
 		None = 1,
 		Void = 2,
 
-		TestModule = 3,
-		TestSuite = 4,
-		TestResult = 5,
-		TestSummary = 6,
-		TestOutput = 7,
-		TestOutputBasic = 8,
-		TestOutputXml = 9,
-		TestOutputSocket = 10,
-
 		Handle = 11,
 		Object = 12,
 		Type = 13,
