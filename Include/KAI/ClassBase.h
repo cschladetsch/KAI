@@ -79,13 +79,8 @@ namespace detail
 class ClassBase 
 {
 public:
-#ifndef DEBUG
 	typedef std::unordered_map<Label, MethodBase *, detail::LabelHash> Methods;
 	typedef std::unordered_map<Label, PropertyBase *, detail::LabelHash> Properties;
-#else
-	typedef std::map<Label, MethodBase *> Methods;
-	typedef std::map<Label, PropertyBase *> Properties;
-#endif
 
 protected:
 	Type::Number type_number;
