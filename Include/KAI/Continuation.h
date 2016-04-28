@@ -28,8 +28,7 @@ public:
 	void SetCode(Code);
 	void SetCode(Code, String const *source);
 
-	//void AddArg(Label const &arg) { args->Append(New(arg)); }
-	void AddArg(Label const &arg);// { args->Append(New(arg)); }
+	void AddArg(Label const &arg) { args->Append(New(arg)); }
 
 	Code &GetCode() { return code; }
 	const Code &GetCode() const { return code; }

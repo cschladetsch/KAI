@@ -154,6 +154,12 @@ struct Value : ConstValue<T>
 		AssignFrom(Q);
 	}
 
+	Value<T> &operator=(Value<T> const &Q)
+	{
+		ConstValue<T>::operator=(Q);
+		return *this;
+	}
+
 	Value<T> &operator=(Object const &Q)
 	{
 		ConstValue<T>::operator=(Q);
