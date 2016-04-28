@@ -169,14 +169,6 @@ namespace Type
 			Case(Undefined);
 			Case(None);
 			Case(Void);
-			Case(TestModule);
-			Case(TestSuite);
-			Case(TestResult);
-			Case(TestSummary);
-			Case(TestOutput);
-			Case(TestOutputBasic);
-			Case(TestOutputXml);
-			Case(TestOutputSocket);
 			Case(Handle);
 			Case(Object);
 			Case(Type);
