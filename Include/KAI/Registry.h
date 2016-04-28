@@ -232,8 +232,8 @@ public:
 	void SetGCTraceLevel(int);
 
 #ifdef KAI_DEBUG_REGISTRY
-	typedef nstd::set<Type::Number> ObservedTypes;
-	typedef nstd::set<Handle> Observed;
+	typedef std::set<Type::Number> ObservedTypes;
+	typedef std::set<Handle> Observed;
 	ObservedTypes observed_types;
 	Observed observed;
 

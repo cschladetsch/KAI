@@ -1,14 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-//#ifndef KAI_DEBUG_H
-//#	define KAI_DEBUG_H
-#if 0
-
-//#include <KAI/StringStream.h>
+#pragma once
 
 KAI_BEGIN
 
@@ -39,7 +29,8 @@ struct Argument<const T&>
 	typedef const T &Type;
 };
 
-namespace debug {
+namespace debug 
+{
 	struct Trace : StringStream
 	{
 		enum Type
@@ -82,9 +73,6 @@ namespace debug {
 		}
 	};
 }
-
-// TODO TESTS
-#undef KAI_DEBUG_TRACE
 
 #	ifdef KAI_DEBUG_TRACE
 #		define KAI_TRACE() \
@@ -159,6 +147,3 @@ namespace debug {
 
 KAI_END
 
-#endif // KAI_DEBUG_H
-
-//EOF
