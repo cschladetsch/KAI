@@ -1,6 +1,5 @@
 
 #include "KAI/Test/Base.h"
-#ifdef KAI_UNIT_TESTS
 #	include "KAI/Tree.h"
 #	include "KAI/Test/Base.h"
 #	include "KAI/BuiltinTypes/List.h"
