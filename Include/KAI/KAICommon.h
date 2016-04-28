@@ -1,33 +1,5 @@
 #pragma once
 
-#include "KAI/Config/Base.h"
-#include "KAI/Config/StdContainers.h"
-
-#include "KAI/Meta/Base.h"
-#include "KAI/FwdDeclarations.h"
-#include "KAI/Base.h"
-
-#include "KAI/Type/Properties.h"
-#include "KAI/Handle.h"
-#include "KAI/Type/Number.h"
-#include "KAI/Type/Traits.h"
-#include "KAI/Type/TraitMacros.h"
-
-#include "KAI/BuiltinTypes/String.h"
-#include "KAI/FileLocation.h"
-#include "KAI/Exception/Base.h"
-
-#include "KAI/Label.h"
-#include "KAI/BuiltinTypes/Dictionary.h"
-#include "KAI/Type/Deref.h"
-#include "KAI/Constness.h"
-#include "KAI/ObjectConstructParams.h"
-#include "KAI/Object.h"
-#include "KAI/TypeInfo.h"
-#include "KAI/StorageBase.h"
-#include "KAI/Reflected.h"
-#include "KAI/BuiltinTypes/Container.h"
-#include "KAI/Storage.h"
 
 //#include "KAI/StringStream.h"
 

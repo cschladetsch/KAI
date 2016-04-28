@@ -17,8 +17,10 @@ bool MapCompare::operator()(const Object &A, const Object &B) const
 	return A.GetClass()->Less(A, B);
 }
 
+#if 0
 namespace debug
 {
+	/*
 	struct Trace : StringStream
 	{
 		Trace::~Trace()
@@ -49,7 +51,9 @@ namespace debug
 			return *this;
 		}
 	};
+	*/
 }
+#endif // 0
 
 StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 {

@@ -1,6 +1,4 @@
-
-#ifndef KAI_CONFIG_BASE_H
-#	define KAI_CONFIG_BASE_H
+#pragma once
 
 #	include "KAI/Config/Options.h"
 #	include "KAI/Config/Compiler.h"
@@ -50,6 +48,3 @@
 #	include "KAI/Config/IntegralTypes.h"
 #	include "KAI/Utility.h"
 
-#endif // KAI_CONFIG_BASE_H
-
-//EOF
