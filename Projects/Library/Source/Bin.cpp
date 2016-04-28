@@ -231,17 +231,18 @@ namespace Bin
 		return object.New(Pair(out, object.New(out->GetSummary())));
 		//return object.New(out->ToString());
 	}
+#endif
 
 	/*Pointer<ClassBase const *> */Object TypeNumberToClass(Object tn)
 	{
 		Pointer<int> type_number = tn;
-		return type_number.New(type_number.GetRegistry()->GetClass(*type_number));
+		return type_number.GetRegistry()->New(type_number.GetRegistry()->GetClass(*type_number));
 	}
 
 	/// returns a pair containing the methods and properties of a class
 	/*Pointer<Pair>*/ Object Describe(Object Q)
 	{
-		Pointer<Pair> P = Q.New<Pair>();
+		Pointer<Pair> P = Q.GetRegistry()->New<Pair>();
 		P->first = GetMethods(Q);
 		P->second = GetProperties(Q);
 		return P;
@@ -251,12 +252,12 @@ namespace Bin
 	{
 		StringStream text;
 		text << "Methods:\n";
-		foreach (Object const &method, ConstDeref<Array>(GetMethods(object)))
+		for (auto const & method : ConstDeref<Array>(GetMethods(object)))
 			text << "\t" << method.ToString() << "\n";
 
 		text << "Properties:\n";
-		foreach (Object const &property, ConstDeref<Array>(GetProperties(object)))
-			text << "\t" << property.ToString() << "\n";
+		for (auto const &prop : ConstDeref<Array>(GetProperties(object)))
+			text << "\t" << prop.ToString() << "\n";
 
 		return text.ToString();
 	}
@@ -294,7 +295,6 @@ namespace Bin
 		AddFunction(Q, RunOne, "test", "run current test");
 #endif
 	}
-#endif
 }
 
 KAI_END

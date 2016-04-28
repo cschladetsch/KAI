@@ -3,8 +3,11 @@
 
 KAI_BEGIN
 
-void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path)
+void RegisterClass(Registry &reg, ClassBase const &klass, Object const &root, Pathname const &path)
 {
+	reg.AddClass(&klass);
+	//root.
+	//root.Set(root);
 }
 
 ClassBase::~ClassBase()

@@ -133,7 +133,7 @@ void Executor::NextContinuation()
 {
 	if (context->Empty())
 	{
-		SetContinuation(Object());
+		continuation = Object();
 		return;
 	}
 

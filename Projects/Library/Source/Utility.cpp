@@ -12,6 +12,11 @@
 
 KAI_BEGIN
 
+bool MapCompare::operator()(const Object &A, const Object &B) const
+{
+	return A.GetClass()->Less(A, B);
+}
+
 namespace debug
 {
 	struct Trace : StringStream
