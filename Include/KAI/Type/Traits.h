@@ -60,13 +60,14 @@ struct TraitsBase
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
-	static const char *_name;
+	//static const char *_name = 0;
+
 	static const char *Name()
 	{
-		if (_name != nullptr)
-			return _name;
+		//if (_name != nullptr)
+		//	return _name;
 
-		return _name = boost::typeindex::type_id<T>().pretty_name().c_str();
+		return boost::typeindex::type_id<T>().pretty_name().c_str();
 	}
 
 	template <int N2>
