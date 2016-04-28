@@ -151,6 +151,9 @@
     <ClCompile Include="TestClassScripting.cpp" />
     <ClCompile Include="TestFunctionScripting.cpp" />
     <ClCompile Include="TestFunction.cpp" />
+    <ClCompile Include="TestTriColorGarbageCollection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestBase.h" />
