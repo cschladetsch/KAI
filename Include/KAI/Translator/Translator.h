@@ -6,6 +6,7 @@
 #include "KAI/KAICommon.h"
 
 #include "KAI/Translator/Process.h"
+#include "KAI/Translator/RhoLang.h"
 #include "KAI/Translator/Parser.h"
 
 #include "KAI/Operation.h"

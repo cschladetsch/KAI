@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_SIGNED_CONTINUATION
-#	define KAI_SIGNED_CONTINUATION
+#pragma once
 
 KAI_BEGIN
 
@@ -37,7 +31,3 @@ StringStream &operator<<(StringStream &, SignedContinuation const &);
 KAI_TYPE_TRAITS(SignedContinuation, Number::SignedContinuation, Properties::StringStreamInsert);
 
 KAI_END
-
-#endif	// KAI_SIGNED_CONTINUATION
-
-//EOF
