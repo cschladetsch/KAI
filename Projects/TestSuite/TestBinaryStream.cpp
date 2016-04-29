@@ -93,7 +93,7 @@ struct TestPropertiesStruct
 {
 	int num;
 	String str;
-	Object foo;
+	bool foo;
 };
 
 KAI_BEGIN
@@ -108,6 +108,7 @@ TEST(TestBinaryStream, TestProperties)
 	Registry R;
 	R.AddClass<void>();
 	R.AddClass<int>();
+	R.AddClass<bool>();
 	R.AddClass<String>();
 	ClassBuilder<TestPropertiesStruct>(R, "TestPropertiesStruct")
 		.Methods
@@ -119,7 +120,8 @@ TEST(TestBinaryStream, TestProperties)
 	Pointer<TestPropertiesStruct> tps = R.New<TestPropertiesStruct>();
 	tps->num = 42;
 	tps->str = "hello";
-	tps->foo = R.New<TestPropertiesStruct>();
+	//tps->foo = R.New<TestPropertiesStruct>();
+	tps->foo = true;
 	KAI_TRACE_1(tps);
 
 	BinaryStream stream(R);
@@ -133,7 +135,8 @@ TEST(TestBinaryStream, TestProperties)
 	ASSERT_TRUE(result.IsType<TestPropertiesStruct>());
 	EXPECT_EQ(result.GetValue<int>("num"), 42);
 	EXPECT_EQ(result.GetValue<String>("str"), "hello");
-	ASSERT_TRUE(result.Get("foo").IsType<TestPropertiesStruct>());
+	//ASSERT_TRUE(result.Get("foo").IsType<TestPropertiesStruct>());
+	ASSERT_TRUE(result.Get("foo").IsType<bool>());
 }
 
 TEST(TestBinaryStream, TestList)
