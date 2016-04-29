@@ -1,12 +1,5 @@
+#include "KAI/ExecutorPCH.h"
 
-#include "KAI/KAI.h"
-#include "KAI/Operation.h"
-#include "KAI/Continuation.h"
-#include "KAI/Executor.h"
-#include "KAI/SignedContinuation.h"
-#include "KAI/Tree.h"
-
-#include <iostream>
 
 KAI_BEGIN
 

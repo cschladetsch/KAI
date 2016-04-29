@@ -1,12 +1,5 @@
 #include <iostream>
-#include "KAI/Console.h"
-
-#ifdef KAI_UNIT_TESTS
-#	include "KAI/Tests/TestAll.h"
-#endif
-
-//#define WIN32_LEAN_AND_MEAN
-//#include <windows.h>
+#include "KAI/ExecutorPCH.h"
 
 KAI_BEGIN
 
@@ -48,25 +41,4 @@ int main(int argc, char **argv)
 
 void RunTests(Console &console)
 {
-#if defined(KAI_UNIT_TESTS)
-	#define ADD_TEST(Name) \
-		module.AddSuite<Tests::Name>(#Name);
-
-	Test::Module module("AutoRun");
-	ADD_TEST(TestTest);
-	ADD_TEST(TestRegistry);
-	ADD_TEST(TestTree);
-	ADD_TEST(TestTriColor);
-	ADD_TEST(TestCompiler);
-	ADD_TEST(TestEvents);
-	ADD_TEST(TestFunction);
-	ADD_TEST(TestRegistry);
-	//ADD_TEST(TestObject);
-
-	Pointer<Test::BasicOutput> out = console.GetRegistry().New<Test::BasicOutput>();
-	module.Run(out);
-	std::cout << out->GetSummary().ToString().c_str() << std::endl;
-#endif
 }
-
-//EOF

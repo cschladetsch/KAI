@@ -1,11 +1,4 @@
-#include "KAI/KAI.h"
-#include "KAI/Operation.h"
-#include "KAI/Value.h"
-#include "KAI/Continuation.h"
-#include "KAI/Compiler.h"
-#include "KAI/Reflected.h"
-#include "KAI/Executor.h"
-#include "KAI/Pathname.h"
+#include "KAI/ExecutorPCH.h"
 
 #include <iostream>
 #include <algorithm>

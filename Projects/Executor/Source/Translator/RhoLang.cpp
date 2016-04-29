@@ -1,12 +1,6 @@
-#include "KAI/KAI.h"
+#include "KAI/ExecutorPCH.h"
+
 #include <fstream>
-#include <iostream>
-
-#include "KAI/Translator/RhoLang.h"
-#include "KAI/Translator/Parser.h"
-#include "KAI/Translator/Translator.h"
-
-#include "KAI/Executor.h"
 
 using namespace std;
 

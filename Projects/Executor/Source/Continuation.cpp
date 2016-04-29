@@ -1,9 +1,4 @@
-
-#include "KAI/KAI.h"
-#include "KAI/Operation.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/Continuation.h"
-#include "KAI/Executor.h"
+#include "KAI/ExecutorPCH.h"
 
 KAI_BEGIN
 
@@ -136,5 +131,3 @@ void Continuation::Register(Registry &R)
 }
 
 KAI_END
-
-//EOF

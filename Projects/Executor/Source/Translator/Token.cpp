@@ -1,6 +1,5 @@
-#include "KAI/KAI.h"
-#include "KAI/Translator/Token.h"
-#include "KAI/Translator/Lexer.h"
+#include "KAI/ExecutorPCH.h"
+
 
 KAI_BEGIN
 
