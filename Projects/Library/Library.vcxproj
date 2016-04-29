@@ -891,6 +891,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">KAI/KAI.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Retail|Win32'">$(IntDir)Precompiled.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Source\Tests\MakeTestModule.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

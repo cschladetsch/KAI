@@ -116,7 +116,7 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)/Bin/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>c:\bin\</OutDir>
     <IntDir>$(SolutionDir)/Obj/$(Platform)/$(Configuration)/$(ProjectName)/</IntDir>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <LinkIncremental>false</LinkIncremental>

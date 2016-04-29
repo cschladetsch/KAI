@@ -5,9 +5,9 @@ KAI_BEGIN
 
 void RegisterClass(Registry &reg, ClassBase const &klass, Object const &root, Pathname const &path)
 {
+	// TODO: what were there ever for?
+	KAI_UNUSED_2(root, path);
 	reg.AddClass(&klass);
-	//root.
-	//root.Set(root);
 }
 
 ClassBase::~ClassBase()
