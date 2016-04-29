@@ -94,7 +94,3 @@ bool Exists(Object const &root, Object const &scope, const Pathname &path);
 bool Exists(Object const &scope, const Pathname &path);
 
 KAI_END
-
-// TODO TESTS
-//#include KAI_TEST(Pathname)
-

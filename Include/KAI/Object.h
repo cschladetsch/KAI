@@ -38,13 +38,6 @@ public:
 	Object(Object const &);
 	Object(ObjectConstructParams const &P);
 
-	// TODO with fwd references
-	//template <class T>
-	//Object(const ConstValue<T> &val)
-	//{
-	//	*this = val.GetObject();
-	//}
-
 	Object &operator=(Object const &);
 
 	operator bool() const { return Exists(); }
@@ -144,7 +137,6 @@ public:
 		if (HasChild(L))
 			return ConstDeref<T>(GetChild(L));
 
-		//TODO KAI_THROW_1(UnknownProperty, L);
 		KAI_THROW_1(ObjectNotFound, L.ToString());
 	}
 
@@ -160,8 +152,8 @@ public:
 		if (HasChild(L))
 			return Deref<T>(GetChild(L));
 
-		//TODO KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
-		KAI_THROW_1(ObjectNotFound, L.ToString());
+		KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
+		//KAI_THROW_1(ObjectNotFound, L.ToString());
 	}
 
 	void Detach(const Label &L) const { Remove(L); }

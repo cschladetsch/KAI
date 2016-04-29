@@ -12,6 +12,3 @@ BinaryStream &operator<<(BinaryStream &, bool);
 BinaryPacket &operator>>(BinaryPacket &, bool &);
 
 KAI_END
-
-// TODO TESTS
-//#include KAI_TEST(X)

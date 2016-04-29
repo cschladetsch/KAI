@@ -27,11 +27,11 @@ namespace property_detail
 		// cannot get or set the property object for non-system types
 		Object GetObject(Object const &) const 
 		{ 
-			KAI_THROW_0(NoProperty); 
+			KAI_THROW_0(NoOperation);
 		}
 		void SetObject(Object const&, Object const &) const 
 		{ 
-			KAI_THROW_0(NoProperty); 
+			KAI_THROW_0(NoOperation);
 		}
 
 		// non-system types cannot be marked 
