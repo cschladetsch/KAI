@@ -1,22 +1,4 @@
-#include "KAI/KAI.h"
-#include "KAI/Operation.h"
-#include "KAI/IObject.h"
-#include "KAI/BuiltinTypes/All.h"
-#include "KAI/Continuation.h"
-#include "KAI/PropertyBase.h"
-#include "KAI/Value.h"
-#include "KAI/Compiler.h"
-#include "KAI/Reflected.h"
-#include "KAI/Executor.h"
-#include "KAI/Pathname.h"
-#include "KAI/Tree.h"
-#include "KAI/Test/Base.h"
-#include "KAI/BinBase.h"
-#include "KAI/Console.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/BuiltinTypes/Void.h"
-
-#include <iostream>
+#include "KAI/ExecutorPCH.h"
 
 #ifdef WIN32
 #	define WIN32_LEAN_AND_MEAN

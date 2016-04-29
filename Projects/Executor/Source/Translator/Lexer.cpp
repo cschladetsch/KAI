@@ -1,11 +1,8 @@
-#include "KAI/KAI.h"
+#include "KAI/ExecutorPCH.h"
 
-#include <iostream>
 #include <strstream>
 #include <stdarg.h>
 #include <algorithm>
-
-#include "KAI/Translator/Lexer.h"
 
 using namespace std;
 

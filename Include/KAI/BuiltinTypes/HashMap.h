@@ -1,12 +1,6 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#include <hash_map>
-
-#ifndef KAI_BUILTIN_TYPES_HASH_MAP_H
-#	define KAI_BUILTIN_TYPES_HASH_MAP_H
+#include <unordered_map>
 
 KAI_BEGIN
 
@@ -23,7 +17,7 @@ struct HashMapCompare
 	bool operator()(const Object &A, const Object &B) const;
 };
 
-typedef MapBase<std::hash_map<Object, Object, HashMapCompare> > HashMap;
+typedef MapBase<std::unordered_map<Object, Object, HashMapCompare> > HashMap;
 
 KAI_TYPE_TRAITS(HashMap, Number::HashMap
 	, Properties::StringStreamInsert 
@@ -35,8 +29,3 @@ KAI_TYPE_TRAITS(HashMap, Number::HashMap
 	| Properties::Container);
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_HASH_MAP_H
-
-//EOF
-

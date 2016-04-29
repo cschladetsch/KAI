@@ -25,7 +25,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -68,13 +68,26 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\include\boost;$(SolitionDir)\Include\;</IncludePath>
+    <LibraryPath>c:\lib\KAI;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)\Obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>c:\lib\kai\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>KAI/ExecutorPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
     </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -110,6 +123,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Bin.cpp" />
+    <ClCompile Include="Source\Compiler.cpp" />
+    <ClCompile Include="Source\Console.cpp" />
+    <ClCompile Include="Source\Continuation.cpp" />
+    <ClCompile Include="Source\Executor.cpp" />
+    <ClCompile Include="Source\Precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="Source\SignedContinuation.cpp" />
+    <ClCompile Include="Source\Translator\Lexer.cpp" />
+    <ClCompile Include="Source\Translator\Node.cpp" />
+    <ClCompile Include="Source\Translator\Parser.cpp" />
+    <ClCompile Include="Source\Translator\RhoLang.cpp" />
+    <ClCompile Include="Source\Translator\Token.cpp" />
+    <ClCompile Include="Source\Translator\Translator.cpp" />
+    <ClCompile Include="Source\Tree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\KAI\Compiler.h" />
+    <ClInclude Include="..\..\Include\KAI\Console.h" />
+    <ClInclude Include="..\..\Include\KAI\Continuation.h" />
+    <ClInclude Include="..\..\Include\KAI\Executor.h" />
+    <ClInclude Include="..\..\Include\KAI\ExecutorPCH.h" />
+    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Base.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Node.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Token.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h" />
+    <ClInclude Include="..\..\Include\KAI\Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

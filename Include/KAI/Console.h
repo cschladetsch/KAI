@@ -1,21 +1,4 @@
-
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CONSOLE_H
-#	define KAI_CONSOLE_H
-
-#include "KAI/KAI.h"
-#include "KAI/Tree.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/Continuation.h"
-#include "KAI/Value.h"
-#include "KAI/Operation.h"
-#include "KAI/Executor.h"
-#include "KAI/Compiler.h"
-#include "KAI/Memory.h"
+#pragma once
 
 KAI_BEGIN
 
@@ -63,8 +46,3 @@ protected:
 };
 
 KAI_END
-
-#endif // KAI_CONSOLE_H
-
-//EOF
-

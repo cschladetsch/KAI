@@ -9,9 +9,9 @@
 #error please define KAI_NAMESPACE_NAME
 #endif
 
-#define KAI_DEBUG
-#define KAI_DEBUG_TRACE
-#define KAI_USE_EXCEPTIONS
+//#define KAI_DEBUG
+//#define KAI_USE_EXCEPTIONS
+
 //#define KAI_UNIT_TESTS
 
 /// if KAI_DEBUG is defined, extra debugging features may be exposed

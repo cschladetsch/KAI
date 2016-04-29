@@ -75,18 +75,6 @@
     <Filter Include="Source Files\BuiltinTypes\Inline">
       <UniqueIdentifier>{eea51e9a-ebde-46b3-9af9-c35414ee5213}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Translator">
-      <UniqueIdentifier>{a1539637-fa9a-40f8-978f-8550ec6c2f23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Bin">
-      <UniqueIdentifier>{411b9cde-ad18-4244-a69d-266d32c02696}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Translator">
-      <UniqueIdentifier>{0c274238-e2e7-40c8-99a7-ab1af241ddbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\NewFilter1">
-      <UniqueIdentifier>{7cf851af-2f3a-49dc-a64a-e62fe8be9a3e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{223fc41c-a482-4fb6-ab71-12fa73096b0c}</UniqueIdentifier>
     </Filter>
@@ -98,40 +86,10 @@
     <ClCompile Include="Source\Platform\PC\Network\TcpClientImpl.cpp">
       <Filter>Source Files\Network\Platform\PC\Network</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Node.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Lexer.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\RhoLang.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Token.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Translator.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Bin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BinaryPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Compiler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Continuation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\DotGraph.cpp">
@@ -141,9 +99,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Executor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
@@ -158,16 +113,10 @@
     <ClCompile Include="Source\Registry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SignedContinuation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\StorageBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\StringStream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\BuiltinTypes\CalcHashValues.cpp">
@@ -180,9 +129,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Documentation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utility.cpp">
@@ -340,25 +286,16 @@
     <ClInclude Include="..\..\Include\KAI\ClassBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Compiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\IntegralTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Constness.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\ConstObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Continuation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Debug.h">
@@ -371,9 +308,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Executor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Factory.h">
@@ -475,9 +409,6 @@
     <ClInclude Include="..\..\Include\KAI\Registry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\StdContainers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -505,21 +436,6 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Precompiled.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\TypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -535,14 +451,8 @@
     <ClInclude Include="..\..\Include\KAI\Network\Base.h">
       <Filter>Header Files\Network</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Bin\Base.h">
-      <Filter>Header Files\Bin</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Meta\Base.h">
       <Filter>Header Files\Meta</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
-      <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Exception\Base.h">
       <Filter>Header Files\Exception</Filter>
@@ -552,18 +462,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BinBase.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
-      <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\All.h">
       <Filter>Header Files\BuiltinTypes</Filter>
@@ -615,9 +513,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Options.h">
       <Filter>Header Files\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
-      <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\String.h">
       <Filter>Header Files\BuiltinTypes</Filter>
