@@ -23,8 +23,10 @@ public:
 
 	Object GetValue(Object const &Q) const
 	{
-		KAI_UNUSED_1(Q);
-		KAI_THROW_0(ConstError);
+		if (!IsSystemType())
+			KAI_THROW_0(ConstError);
+
+		return GetPropertyObject(Q, GetFieldName());
 	}
 };
 
