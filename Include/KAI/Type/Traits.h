@@ -102,8 +102,7 @@ struct TraitsBase
 	{
 		static void Perform(Reference, ConstReference)
 		{
-//			KAI_THROW_2(NoProperty, Number, Properties::Assign);
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Assign);
 		}
 	};
 	template <>
@@ -208,9 +207,7 @@ struct TraitsBase
 
 	// minus
 	template <bool>
-	struct MinusOp
-	{
-		static Store Perform(ConstReference A, ConstReference B)
+	struct MinusOp { static Store Perform(ConstReference A, ConstReference B)
 		{
 			return A - B;
 		}
@@ -245,7 +242,7 @@ struct TraitsBase
 	template <bool>
 	struct DivideOp
 	{
-		static Store Perform(ConstReference, ConstReference )
+		static Store Perform(ConstReference , ConstReference )
 		{
 			KAI_THROW_2(NoOperation, Number, Properties::Divide);
 		}
@@ -274,7 +271,7 @@ struct TraitsBase
 	template <>
 	struct HashOp<false>
 	{
-		static HashValue Calc(ConstReference )
+		static HashValue Calc(ConstReference)
 		{
 			KAI_THROW_2(NoOperation, Number, Properties::CalcHashValue);
 		}
@@ -425,11 +422,10 @@ struct TraitsBase
 	{
 		static void Extract(Stream &, ConstReference)
 		{
-			// TODO EXCEPTION
-			//			KAI_THROW_2(NoProperty, Number, Properties::StreamExtract);
-			throw "No such property";
+			KAI_THROW_2(NoOperation, Number, Properties::StreamExtract);
 		}
 	};
+
 	typedef StreamInsertOp<HasProperty<Properties::StringStreamInsert>::Value != 0, ::kai::StringStream> StringStreamInsert;
 	typedef StreamExtractOp<HasProperty<Properties::StringStreamExtract>::Value != 0, ::kai::StringStream> StringStreamExtract;
 	typedef StreamInsertOp<HasProperty<Properties::BinaryStreamInsert>::Value != 0, ::kai::BinaryStream> BinaryStreamInsert;

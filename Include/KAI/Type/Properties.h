@@ -39,6 +39,7 @@ struct Properties
 		Multiplicative = Divide | Multiply,
 
 		XmlOutput = 1 << 20,
+		StreamExtract = 1 << 21
 	};
 };
 
