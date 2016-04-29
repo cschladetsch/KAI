@@ -36,7 +36,7 @@ namespace Exception
 		S << "label=" << label;
 	}
 
-	void NoProperty::WriteExtendedInformation(StringStream &S) const
+	void NoOperation::WriteExtendedInformation(StringStream &S) const
 	{
 		S << "type_number=" << type_number << ", type_property=" << type_property;
 	}

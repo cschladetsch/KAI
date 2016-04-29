@@ -63,12 +63,12 @@ namespace Exception
 	{
 		Assertion(const FileLocation &L) : Base(L, "AssertionFailed") { }
 	};
-	struct NoProperty : Base
+	struct NoOperation : Base
 	{
 		int type_property;
 		int type_number;
-		NoProperty(const FileLocation &L) : Base(L, "Class does not have required property"), type_property(0), type_number(0) { }
-		NoProperty(const FileLocation &L, int N, int P) : Base(L, "Class does not have required property"), type_number(N), type_property(P) { }
+		NoOperation(const FileLocation &L) : Base(L, "Class does not have required operation"), type_property(0), type_number(0) { }
+		NoOperation(const FileLocation &L, int N, int P) : Base(L, "Class does not have required opeation"), type_number(N), type_property(P) { }
 		void WriteExtendedInformation(StringStream &) const;
 	};
 	struct PacketExtraction : Base
@@ -86,10 +86,10 @@ namespace Exception
 }
 
 #define KAI_FILE_LOCATION \
-	KAI_NAMESPACE(FileLocation)(__FILE__, __LINE__, __FUNCTION__)
+	KAI_NAMESPACE(FileLocation)(__FILE__, __LINE__)
 
 #define KAI_FUNCTION_NAME \
-	KAI_NAMESPACE(FileLocation)(__FUNCTION__)
+	KAI_NAMESPACE(FileLocation)(
 
 #ifdef KAI_USE_EXCEPTIONS
 
@@ -97,16 +97,16 @@ namespace Exception
 		throw;
 
 #	define KAI_THROW_0(E) \
-		throw KAI_NAMESPACE(Exception::E)(KAI_FILE_LOCATION)
+		throw KAI_NAMESPACE(Exception:: E)(KAI_FILE_LOCATION)
 
 #	define KAI_THROW_1(E, A0) \
-		throw KAI_NAMESPACE(Exception::E)(KAI_FILE_LOCATION, A0)
+		throw KAI_NAMESPACE(Exception:: E)(KAI_FILE_LOCATION, A0)
 
 #	define KAI_THROW_2(E, A0, A1) \
-		throw KAI_NAMESPACE(Exception::E)(KAI_FILE_LOCATION, A0, A1)
+		throw KAI_NAMESPACE(Exception:: E)(KAI_FILE_LOCATION, A0, A1)
 
 #	define KAI_THROW_3(E, A0, A1, A2) \
-		throw KAI_NAMESPACE(Exception::E)(KAI_FILE_LOCATION, A0, A1, A2)
+		throw KAI_NAMESPACE(Exception:: E)(KAI_FILE_LOCATION, A0, A1, A2)
 
 #	define KAI_NOT_IMPLEMENTED() \
 		throw KAI_NAMESPACE(Exception::NotImplemented)(KAI_FILE_LOCATION);

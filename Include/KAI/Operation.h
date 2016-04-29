@@ -127,6 +127,3 @@ KAI_TYPE_TRAITS(Operation, Number::Operation
 	, Properties::Streaming);
 
 KAI_END
-
-// TODO TESTS
-//#include KAI_TEST(Operation)

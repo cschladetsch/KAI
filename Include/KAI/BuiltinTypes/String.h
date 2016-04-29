@@ -52,7 +52,6 @@ public:
 	{
 		return std::move(String(A._string + B._string));
 	}
-	//String operator+(const String &A) { return A._string + _string; }
 
 	const_iterator begin() const { return _string.begin(); }
 	const_iterator end() const { return _string.end(); }
@@ -60,17 +59,13 @@ public:
 	iterator begin() { return _string.begin(); }
 	iterator end() { return _string.end(); }
 
-	// TODO: where did std::erase go?
-	//iterator erase(iterator A, iterator B) { return _string.erase(A,B); }
+	iterator erase(iterator A, iterator B) { return _string.erase(A,B); }
 
-	// TODO WTF
-	//template <class II0, class II1>
-	//void insert(II0 where, II1 begin, II1 end) { _myString.insert(where, begin, end); }
+	template <class II0, class II1>
+	void insert(II0 where, II1 begin, II1 end) { _myString.insert(where, begin, end); }
 	
 	int size() const { return (int)_string.size(); }
-
 	bool empty() const { return _string.empty(); }
-
 	std::string StdString() const { return _string; }
 	const Storage &GetStorage() const { return _string; }
 	void clear() { _string.clear(); }
@@ -82,9 +77,9 @@ public:
 	String tolower() const { return LowerCase(); }
 	String toupper() { return UpperCase(); }
 
-	String LowerCase()const ;
-	String UpperCase()const ;
-	String Capitalise()const ;
+	String LowerCase() const;
+	String UpperCase() const;
+	String Capitalise() const;
 	
 	bool Contains(String const &) const;
 	bool StartsWith(String const &) const;

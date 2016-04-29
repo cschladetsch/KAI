@@ -84,6 +84,7 @@
       <PrecompiledHeaderFile>KAI/ExecutorPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
       <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
@@ -126,13 +127,19 @@
     <ClCompile Include="Source\Bin.cpp" />
     <ClCompile Include="Source\Compiler.cpp" />
     <ClCompile Include="Source\Console.cpp" />
-    <ClCompile Include="Source\Continuation.cpp" />
-    <ClCompile Include="Source\Executor.cpp" />
+    <ClCompile Include="Source\Continuation.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
+    <ClCompile Include="Source\Executor.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="Source\SignedContinuation.cpp" />
+    <ClCompile Include="Source\SignedContinuation.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="Source\Translator\Lexer.cpp" />
     <ClCompile Include="Source\Translator\Node.cpp" />
     <ClCompile Include="Source\Translator\Parser.cpp" />

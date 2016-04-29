@@ -40,6 +40,3 @@ KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer
 	, Properties::StringStreamInsert | Properties::Reflected);
 
 KAI_END
-
-// TODO TESTS
-//#include KAI_TEST(X)

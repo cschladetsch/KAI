@@ -121,7 +121,7 @@ struct TraitsBase
 	{
 		static void Perform(Reference)
 		{
-			KAI_THROW_2(NoProperty, Number, Properties::Absolute);
+			KAI_THROW_2(NoOperation, Number, Properties::Absolute);
 		}
 	};
 
@@ -139,9 +139,7 @@ struct TraitsBase
 	{
 		static bool Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::Less);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Less);
 		}
 	};
 
@@ -168,8 +166,7 @@ struct TraitsBase
 	{
 		static bool Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::Equiv);
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Equiv);
 		}
 	};
 	/// Greater
@@ -178,9 +175,7 @@ struct TraitsBase
 	{
 		static bool Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::Greater);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Greater);
 		}
 	};
 	template <>
@@ -198,9 +193,7 @@ struct TraitsBase
 	{
 		static Store Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, Properties::Plus);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Plus);
 		}
 	};
 
@@ -228,9 +221,7 @@ struct TraitsBase
 	{
 		static Store Perform(ConstReference, ConstReference)
 		{
-			//KAI_THROW_2(NoProperty, Properties::Minus);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Minus);
 		}
 	};
 
@@ -239,9 +230,7 @@ struct TraitsBase
 	{
 		static Store Perform(ConstReference , ConstReference )
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::Multiply);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Multiply);
 		}
 	};
 	template <>
@@ -256,11 +245,9 @@ struct TraitsBase
 	template <bool>
 	struct DivideOp
 	{
-		static Store Perform(ConstReference , ConstReference )
+		static Store Perform(ConstReference, ConstReference )
 		{
-			//KAI_THROW_2(NoProperty, Properties::Divide);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::Divide);
 		}
 	};
 	template <>
@@ -287,21 +274,12 @@ struct TraitsBase
 	template <>
 	struct HashOp<false>
 	{
-		static HashValue Calc(ConstReference)
+		static HashValue Calc(ConstReference )
 		{
-			//KAI_THROW_2(NoProperty, N, Properties::CalcHashValue);
-			// TODO THROW
-			throw;
+			KAI_THROW_2(NoOperation, Number, Properties::CalcHashValue);
 		}
 	};
 
-	//public TraitsBase()
-	//{
-	//	printf("%d, %d\n", E, Q);
-	//}
-
-	//typedef UpCast<Reference, Parent> UpCaster;
-	
 	template <bool>
 	struct ContainerOperations
 	{
