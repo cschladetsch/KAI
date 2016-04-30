@@ -1,40 +1,51 @@
 #pragma once
 
+
+#include "KAI/Translator/Pi/PiBase.h"
+#include "KAI/Translator/Slice.h"
 #include <string>
 
-#include "KAI/Translator/Slice.h"
+KAI_PI_BEGIN
 
-KAI_BEGIN
-
+template <class Token>
 struct Lexer;
 
 // A token in the language
-struct Token
+struct PiToken
 {
 	enum Type
 	{
 		None,
 		Whitespace,
-		Semi,
 		Int,
 		Float,
 		String,
 		True,
 		False,
-		Return,
+
+		Suspend,
+		Resume,
+		Replace,
+
 		Ident,
 		Dot,
 		Comma,
+
 		If,
-		Else,
+		IfElse,
+
 		For,
 		While,
+
 		OpenBrace,
 		CloseBrace,
+
 		OpenParan,
 		CloseParan,
+
 		Plus, Minus, Mul, Divide,
 		Assign,
+
 		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEquiv,
 
 		Not, And, Or, Xor,
@@ -48,34 +59,29 @@ struct Token
 
 		// added because we want whitespace to matter for formatting, as in python
 		Tab, NewLine,
-		Fun,
 
 		Comment,
 
-		Yield,
-		
-		Suspend, Replace, Resume,
 		PlusAssign, MinusAssign, MulAssign, DivAssign,
 		In, Colon,
 		Assert,
-
 	};
 
 	static const char *ToString(Type t);
 
 	Type type;
-	const Lexer *lexer;
 	Slice slice;
 	int lineNumber;
+	const Lexer<PiToken> *lexer;
 
-	Token() : lexer(0), type(None) { }
-	Token(Type type, const Lexer &lexer, int lineNumber, Slice slice);
+	PiToken() : lexer(0), type(None) { }
+	PiToken(Type type, const Lexer<PiToken> &lexer, int lineNumber, Slice slice);
 
 	std::string Text() const;
 	char operator[](int n) const;
 
-	friend std::ostream &operator<<(std::ostream &out, Token const &node);
+	friend std::ostream &operator<<(std::ostream &out, PiToken const &node);
 };
 
-KAI_END
+KAI_PI_END
 
