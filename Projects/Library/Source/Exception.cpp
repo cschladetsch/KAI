@@ -23,7 +23,7 @@ namespace Exception
 
 	void UnknownTypeNumber::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "type_number=" << type_number;
+		S << "type=" << type_number;
 	}
 
 	void UnknownObject::WriteExtendedInformation(StringStream &S) const
@@ -38,17 +38,22 @@ namespace Exception
 
 	void NoOperation::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "type_number=" << type_number << ", type_property=" << type_property;
+		S << "type=" << type_number << ", type_property=" << type_property;
 	}
 
 	void PacketExtraction::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "type_number=" << type_number;
+		S << "type=" << type_number;
+	}
+
+	void OutOfBounds::WriteExtendedInformation(StringStream &S) const
+	{
+		S << "type=" << type_number << ", index=" << index;
 	}
 
 	void PacketInsertion::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "type_number=" << type_number;
+		S << "type=" << type_number;
 	}
 
 	void CannotResolve::WriteExtendedInformation(StringStream &S) const

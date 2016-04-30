@@ -1068,7 +1068,7 @@
     <ClInclude Include="..\..\Include\KAI\Detail\SystemEvent.h" />
     <ClInclude Include="..\..\Include\KAI\DotGraph.h" />
     <ClInclude Include="..\..\Include\KAI\Event.h" />
-    <ClInclude Include="..\..\Include\KAI\Exception\Base.h" />
+    <ClInclude Include="..\..\Include\KAI\Exception\Common.h" />
     <ClInclude Include="..\..\Include\KAI\Exception\Extended.h" />
     <ClInclude Include="..\..\Include\KAI\Factory.h" />
     <ClInclude Include="..\..\Include\KAI\filelocation.h" />

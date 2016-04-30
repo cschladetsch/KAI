@@ -12,6 +12,12 @@ struct LexerBase : Process
 	LexerBase(const char *);
 	typedef std::vector<std::string> Lines;
 
+	const std::string &GetLine(size_t n) const
+	{
+		if (lines.empty() || n < 0 || n >= lines.size())
+			KAI_THROW_2(OutOfBounds, n, 0);
+		return lines[n];
+	}
 	const Lines &GetLines() const { return lines; }
 	const std::string GetInput() const { return input; }
 	int GetOffset() const { return offset; }

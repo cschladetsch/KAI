@@ -1,11 +1,12 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Rho/Rho.h"
 
 #include <boost/lexical_cast.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
 KAI_BEGIN
 
-Translator::Translator(std::shared_ptr<Parser> p, Registry &r) 
+RhoTranslator::RhoTranslator(std::shared_ptr<RhoParser> p, Registry &r)
 	: reg(r)
 {
 	if (p->Failed)
@@ -15,7 +16,7 @@ Translator::Translator(std::shared_ptr<Parser> p, Registry &r)
 
 	try
 	{
-		Translate(p->root);
+		Translate(p->GetRoot());
 	}
 	catch (Exception &)
 	{
@@ -24,114 +25,114 @@ Translator::Translator(std::shared_ptr<Parser> p, Registry &r)
 	}
 }
 
-void Translator::TranslateFromToken(Parser::NodePtr node)
+void RhoTranslator::TranslateFromToken(NodePtr node)
 {
-	switch (node->token.type)
+	switch (node->type)
 	{
-	case Token::While:
+	case RhoToken::While:
 		TranslateWhile(node);
 		return;
 
-	case Token::DivAssign:
+	case RhoToken::DivAssign:
 		TranslateBinaryOp(node, Operation::DivEquals);
 		return;
 
-	case Token::MulAssign:
+	case RhoToken::MulAssign:
 		TranslateBinaryOp(node, Operation::MulEquals);
 		return;
 
-	case Token::MinusAssign:
+	case RhoToken::MinusAssign:
 		TranslateBinaryOp(node, Operation::MinusEquals);
 		return;
 
-	case Token::PlusAssign:
+	case RhoToken::PlusAssign:
 		TranslateBinaryOp(node, Operation::PlusEquals);
 		return;
 
-	case Token::Assign:
+	case RhoToken::Assign:
 		TranslateBinaryOp(node, Operation::Store);
 		return;
 
-	case Token::Lookup:
+	case RhoToken::Lookup:
 		AppendNewOp(Operation::Lookup);
 		return;
 
-	case Token::Self:
+	case RhoToken::Self:
 		AppendNewOp(Operation::This);
 		return;
 
-	case Token::NotEquiv:
+	case RhoToken::NotEquiv:
 		TranslateBinaryOp(node, Operation::NotEquiv);
 		return;
 
-	case Token::Equiv:
+	case RhoToken::Equiv:
 		TranslateBinaryOp(node, Operation::Equiv);
 		return;
 
-	case Token::Less:
+	case RhoToken::Less:
 		TranslateBinaryOp(node, Operation::Less);
 		return;
 
-	case Token::Greater:
+	case RhoToken::Greater:
 		TranslateBinaryOp(node, Operation::Greater);
 		return;
 
-	case Token::GreaterEquiv:
+	case RhoToken::GreaterEquiv:
 		TranslateBinaryOp(node, Operation::GreaterOrEquiv);
 		return;
 
-	case Token::LessEquiv:
+	case RhoToken::LessEquiv:
 		TranslateBinaryOp(node, Operation::LessOrEquiv);
 		return;
 
-	case Token::Minus:
+	case RhoToken::Minus:
 		TranslateBinaryOp(node, Operation::Minus);
 		return;
 
-	case Token::Plus:
+	case RhoToken::Plus:
 		TranslateBinaryOp(node, Operation::Plus);
 		return;
 
-	case Token::Mul:
+	case RhoToken::Mul:
 		TranslateBinaryOp(node, Operation::Multiply);
 		return;
 
-	case Token::Divide:
+	case RhoToken::Divide:
 		TranslateBinaryOp(node, Operation::Divide);
 		return;
 
-	case Token::Or:
+	case RhoToken::Or:
 		TranslateBinaryOp(node, Operation::LogicalOr);
 		return;
 
-	case Token::And:
+	case RhoToken::And:
 		TranslateBinaryOp(node, Operation::LogicalAnd);
 		return;
 
-	case Token::Int:
+	case RhoToken::Int:
 		Append(reg.New<int>(boost::lexical_cast<int>(node->token.Text())));
 		return;
 
-	case Token::Float:
+	case RhoToken::Float:
 		Append(reg.New<float>(boost::lexical_cast<float>(node->token.Text())));
 		return;
 
-	case Token::String:
+	case RhoToken::String:
 		Append(reg.New<String>(node->token.Text()));
 		return;
 
-	case Token::Ident:
+	case RhoToken::Ident:
 		Append(reg.New<Label>(Label(node->token.Text())));
 		return;
 
-	case Token::Yield:
+	case RhoToken::Yield:
 		//for (auto ch : node->Children)
 		//	Translate(ch);
 		//AppendNewOp(Operation::PushContext);
 		KAI_NOT_IMPLEMENTED();
 		return;
 
-	case Token::Return:
+	case RhToken::Return:
 		for (auto ch : node->Children)
 			Translate(ch);
 		AppendNewOp(Operation::Return);

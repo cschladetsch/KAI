@@ -143,12 +143,24 @@
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
     <ClCompile Include="Source\Translator\Node.cpp" />
     <ClCompile Include="Source\Translator\Parser.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiLang.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiLexer.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiNode.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiParser.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiToken.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiNode.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiParser.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiToken.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Source\Translator\Process.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoNode.cpp" />

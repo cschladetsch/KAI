@@ -62,7 +62,7 @@ struct RhoToken
 
 	};
 
-	struct Node : TokenBase
+	struct Node : TokenBase<Enum>
 	{
 		friend std::ostream &operator<<(std::ostream &out, Node const &node)
 		{
