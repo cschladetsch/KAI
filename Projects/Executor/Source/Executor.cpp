@@ -1312,6 +1312,51 @@ void Executor::Dump(Object const &Q)
 	}
 }
 
+/* TODO
+bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+{
+	std::fstream file(filename, std::ios::in);
+	if (!file)
+		return false;
+
+	char line[2000];
+	StringStream text;
+	while (file.getline(line, 2000))
+	{
+		text.Append(line);
+		text.Append('\n');
+	}
+
+	try
+	{
+		Pointer<Continuation> cont = compiler->Compile
+			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
+
+		if (!cont)
+			return false;
+
+		cont->SetScope(scope);
+		executor->Continue(cont);
+
+		return true;
+	}
+	catch (Exception::Base &E)
+	{
+		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
+	}
+	catch (std::exception &E2)
+	{
+		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "Exception running file '" << filename << "'" << std::endl;
+	}
+
+	return false;
+}
+*/
+
 KAI_END
 
 //EOF

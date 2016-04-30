@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\include\boost;$(SolitionDir)\Include\;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\Include;c:\lib\boost</IncludePath>
     <LibraryPath>c:\lib\KAI;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)\Obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>c:\lib\kai\</OutDir>
@@ -140,12 +140,22 @@
     <ClCompile Include="Source\SignedContinuation.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Lexer.cpp" />
+    <ClCompile Include="Source\Translator\LexerBase.cpp" />
     <ClCompile Include="Source\Translator\Node.cpp" />
     <ClCompile Include="Source\Translator\Parser.cpp" />
-    <ClCompile Include="Source\Translator\RhoLang.cpp" />
-    <ClCompile Include="Source\Translator\Token.cpp" />
-    <ClCompile Include="Source\Translator\Translator.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiLang.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiLexer.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiNode.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiParser.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiToken.cpp" />
+    <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp" />
+    <ClCompile Include="Source\Translator\Process.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoNode.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoParser.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoToken.cpp" />
+    <ClCompile Include="Source\Translator\Rho\Translator.cpp" />
     <ClCompile Include="Source\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,16 +166,37 @@
     <ClInclude Include="..\..\Include\KAI\ExecutorPCH.h" />
     <ClInclude Include="..\..\Include\KAI\SignedContinuation.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Base.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Common.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Config.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Node.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerCommon.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\ParserBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiConfig.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiNode.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiParser.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiProcess.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Process.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\Rho.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLexer.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoStructure.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoToken.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoTranslator.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Slice.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Token.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h" />
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
+    <ClCompile Include="Source\Translator\TokenBase.cpp">
+      <FileType>CppHeader</FileType>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

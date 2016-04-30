@@ -39,7 +39,7 @@ struct Node
 
 	static const char *ToString(Node::Type ty);
 	Type type;
-	Token token;
+	RhoToken token;
 	typedef std::vector<std::shared_ptr<Node>> ChildrenType;
 	ChildrenType Children;
 

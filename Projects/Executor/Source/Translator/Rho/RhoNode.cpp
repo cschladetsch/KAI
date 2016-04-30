@@ -1,9 +1,10 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Rho/RhoNode.h"
 
 KAI_BEGIN
 
-template <class Token>
-const char *RhoNode<Token>::ToString(Token::Type ty)
+template <class T>
+const char *RhoNode<T>::ToString(Type ty)
 {
 	switch (ty)
 	{
