@@ -4,39 +4,36 @@
 #include <map>
 
 #include "KAI/Translator/Slice.h"
-#include "KAI/Translator/Token.h"
 #include "KAI/Translator/Process.h"
+#include "KAI/Translator/Pi/Token.h"
 
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
 #	include <boost/monotonic/monotonic.hpp>
 #endif
 
-KAI_BEGIN
+KAI_PI_BEGIN
 
 // Tokenise an input string for later parsing
-struct Lexer : Process
+template <class Token>
+struct PiLexer : Lexer
 {
 	//boost::monotonic::string<> input;
-	std::string input;
-
-	Lexer(const char *input);
+	PiLexer(const char *input);
 
 	void Print() const;
 
 private:
-	friend struct Token;
-	friend struct Parser;
-
-	int offset, lineNumber;
+	friend struct PiToken;
+	friend struct PiParser;
 
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
 	typedef boost::monotonic::vector<Token> Tokens;
 	typedef boost::monotonic::vector<std::string> Lines;
-	typedef boost::monotonic::map<std::string, Token::Type> Keywords;
+	typedef boost::monotonic::map<std::string, EnumType> Keywords;
 #else
 	typedef std::vector<Token> Tokens;
 	typedef std::vector<std::string> Lines;
-	typedef std::map<std::string, Token::Type> Keywords;
+	typedef std::map<std::string, EnumType> Keywords;
 #endif
 
 	Lines lines;
@@ -60,18 +57,18 @@ private:
 
 	void SearchForKeyword(Token &tok) const;
 
-	bool Add(Token::Type type, Slice slice);
-	bool Add(Token::Type type, int len = 1);
+	bool Add(EnumType type, Slice slice);
+	bool Add(EnumType type, int len = 1);
 
 	// consume characters that pass the given filter function
 	Slice Gather(int(*filt)(int ch));
 
-	bool AddTwoCharOp(Token::Type ty);
-	bool AddIfNext(char ch, Token::Type thenType, Token::Type elseType);
+	bool AddTwoCharOp(EnumType ty);
+	bool AddIfNext(char ch, EnumType thenType, EnumType elseType);
 	
 public:
 	static std::string CreateErrorMessage(Token tok, const char *fmt, ...);
 	bool LexString();
 };
 
-KAI_END
+KAI_PI_END

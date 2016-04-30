@@ -2,6 +2,7 @@
 
 #	include "KAI/Config/Options.h"
 #	include "KAI/Config/Compiler.h"
+#	include "KAI/Config/Platform.h"
 
 #	ifdef KAI_OPTION_USE_NAMESPACES
 #		define KAI_BEGIN namespace KAI_NAMESPACE_NAME {

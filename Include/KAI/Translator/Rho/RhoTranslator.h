@@ -1,24 +1,29 @@
 #pragma once
 
-#include <string>
-#include <strstream>
-
 #include "KAI/KAICommon.h"
-
-#include "KAI/Translator/Process.h"
-#include "KAI/Translator/RhoLang.h"
-#include "KAI/Translator/Parser.h"
-
 #include "KAI/Operation.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 
+#include "KAI/Translator/Process.h"
+#include "KAI/Translator/LexerCommon.h"
+#include "KAI/Translator/ParserCommon.h"
+
+#include "KAI/Translator/Rho/RhoToken.h"
+#include "KAI/Translator/Rho/RhoAstNode.h"
+#include "KAI/Translator/Rho/RhoParser.h"
+#include "KAI/Translator/Rho/RhoLang.h"
+
 KAI_BEGIN
 
-struct Translator : Process//, boost::noncopyable
+struct RhoTranslator : Process
 {
-	Translator(const Translator&) = delete;
-	Translator(std::shared_ptr<Parser> p, Registry &reg);
+	typedef LexerCommon<RhoToken> Lexer;
+	typedef ParserCommon<LexerCommon<RhoToken>, RhoAstNode> Parser;
+	typedef typename Parser::NodePtr NodePtr;
+
+	RhoTranslator(const RhoTranslator&) = delete;
+	RhoTranslator(std::shared_ptr<Parser> p, Registry &reg);
 
 	struct Exception { };
 	struct Unsupported : Exception { };
@@ -29,8 +34,6 @@ struct Translator : Process//, boost::noncopyable
 	std::string Result() const;
 
 private:
-	typedef Parser::NodePtr NodePtr;
-
 	void Traverse(NodePtr node);
 	void TranslateFunction(NodePtr node);
 	void TranslateBlock(NodePtr node);
@@ -59,9 +62,9 @@ private:
 	}
 	Pointer<Continuation> Pop();
 	void AppendNewOp(Operation::Type op);
-	void TranslateIf(Parser::NodePtr node);
-	void TranslateFor(Parser::NodePtr node);
-	void TranslateWhile(Parser::NodePtr node);
+	void TranslateIf(NodePtr node);
+	void TranslateFor(NodePtr node);
+	void TranslateWhile(NodePtr node);
 };
 
 KAI_END
