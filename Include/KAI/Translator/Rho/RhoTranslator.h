@@ -20,10 +20,10 @@ struct RhoTranslator : Process
 {
 	typedef LexerCommon<RhoToken> Lexer;
 	typedef ParserCommon<LexerCommon<RhoToken>, RhoAstNode> Parser;
-	typedef typename Parser::NodePtr NodePtr;
+	typedef typename RhoParser::NodePtr NodePtr;
 
 	RhoTranslator(const RhoTranslator&) = delete;
-	RhoTranslator(std::shared_ptr<Parser> p, Registry &reg);
+	RhoTranslator(std::shared_ptr<RhoParser> p, Registry &reg);
 
 	struct Exception { };
 	struct Unsupported : Exception { };
