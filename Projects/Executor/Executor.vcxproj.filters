@@ -19,6 +19,18 @@
     <Filter Include="Header Files\Translator">
       <UniqueIdentifier>{d43a2d7b-a95d-4f85-b72a-05832fb05937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Translator\Pi">
+      <UniqueIdentifier>{8d3a8ef0-d0c4-4832-b224-0346a1d3fe10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Translator\Rho">
+      <UniqueIdentifier>{584fbf81-231f-486d-87ed-b45bf189db78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Translator\Rho">
+      <UniqueIdentifier>{68f2c7f9-3c8a-4e30-b0e1-e968f71dbdd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Translator\Pi">
+      <UniqueIdentifier>{dfb68a6f-5fc5-44a3-beee-c9e9241d5b82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Bin.cpp">
@@ -42,26 +54,59 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Lexer.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Node.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Parser.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\RhoLang.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Token.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Translator.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiNode.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiParser.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiToken.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Process.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\LexerBase.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoParser.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\Translator.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoNode.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoToken.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\TokenBase.cpp">
+      <Filter>Source Files\Translator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,18 +114,6 @@
       <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Lexer.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Node.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Parser.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Translator.h">
       <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Console.h">
@@ -95,18 +128,6 @@
     <ClInclude Include="..\..\Include\KAI\Executor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\RhoLang.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Token.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -115,6 +136,84 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiBase.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiConfig.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiNode.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiParser.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiProcess.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\ParserBase.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoStructure.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoToken.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoTranslator.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Common.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\Rho.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLexer.h">
+      <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerCommon.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h">
+      <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h">
+      <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

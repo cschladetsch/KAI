@@ -4,9 +4,8 @@
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 #include "KAI/Value.h"
-#include "KAI/Compiler.h"
 #include "KAI/Reflected.h"
-#include "KAI/Executor.h"
+
 #include <iostream>
 #include <fstream>
 
@@ -70,49 +69,6 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 	}
 
 	return S << "UnknownColor";
-}
-
-bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
-{
-	std::fstream file(filename, std::ios::in);
-	if (!file)
-		return false;
-
-	char line[2000];
-	StringStream text;
-	while (file.getline(line, 2000))
-	{
-		text.Append(line);
-		text.Append('\n');
-	}
-
-	try
-	{
-		Pointer<Continuation> cont = compiler->Compile
-			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
-
-		if (!cont)
-			return false;
-
-		cont->SetScope(scope);
-		executor->Continue(cont);
-
-		return true;
-	}
-	catch (Exception::Base &E)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
-	}
-	catch (std::exception &E2)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Exception running file '" << filename << "'" << std::endl;
-	}
-
-	return false;
 }
 
 void ToStringStream(const Object &Q, StringStream &S, int level)

@@ -1,4 +1,7 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Pi/Base.h"
+#include "KAI/Translator/Pi/Token.h"
+#include "KAI/Translator/Pi/Lexer.h"
 
 #include <strstream>
 #include <stdarg.h>
@@ -6,9 +9,10 @@
 
 using namespace std;
 
-KAI_BEGIN
+KAI_PI_BEGIN
 
-Lexer::Lexer(const char *in)
+template <enum T>
+Lexer<T>::Lexer(const char *in)
 	: input(in)
 {
 	if (input.empty())
@@ -19,7 +23,8 @@ Lexer::Lexer(const char *in)
 	Run();
 }
 
-void Lexer::CreateLines()
+template <enum T>
+void Lexer<T>::CreateLines()
 {
 	if (input.back() != '\n')
 		input.push_back('\n');
@@ -35,6 +40,7 @@ void Lexer::CreateLines()
 	}
 }
 
+template <enum T>
 void Lexer::AddKeywords()
 {
 	keyWords["if"] = Token::If;
@@ -51,7 +57,8 @@ void Lexer::AddKeywords()
 	keyWords["assert"] = Token::Assert;
 }
 
-bool Lexer::Run()
+template <enum T>
+bool Lexer<T>::Run()
 {
 	offset = 0;
 	lineNumber = 0;
@@ -67,7 +74,9 @@ int IsSpaceChar(int ch)
 	return ch == ' ';
 }
 
-bool Lexer::NextToken()
+
+template <enum T>
+bool Lexer<T>::NextToken()
 {
 	auto current = Current();
 	if (current == 0)
@@ -147,7 +156,8 @@ bool Lexer::NextToken()
 	return false;
 }
 
-Slice Lexer::Gather(int (*filt)(int)) 
+template <enum T>
+Slice Lexer<T>::Gather(int (*filt)(int)) 
 {
 	int start = offset;
 	while (filt(Next()))
@@ -156,12 +166,14 @@ Slice Lexer::Gather(int (*filt)(int))
 	return Slice(start, offset);
 }
 
+template <enum T>
 bool Lexer::Add(Token::Type type, Slice slice)
 {
 	tokens.push_back(Token(type, *this, lineNumber, slice));
 	return true;
 }
 
+template <enum T>
 bool Lexer::Add(Token::Type type, int len)
 {
 	Add(type, Slice(offset, offset + len));
@@ -171,6 +183,7 @@ bool Lexer::Add(Token::Type type, int len)
 	return true;
 }
 
+template <enum T>
 bool Lexer::LexAlpha()
 {
 	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
@@ -184,6 +197,7 @@ bool Lexer::LexAlpha()
 	return true;
 }
 
+template <enum T>
 bool Process::Fail(const std::string &err)
 {
 	Failed = true;
@@ -244,7 +258,8 @@ bool Lexer::EndOfLine() const
 	return offset == (int)Line().size() - 1;
 }
 
-bool Lexer::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
+template <enum T>
+bool Lexer<T>::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
 {
 	if (Peek() == ch)
 	{
@@ -255,7 +270,8 @@ bool Lexer::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
 	return Add(elseType, 1);
 }
 
-bool Lexer::AddTwoCharOp(Token::Type ty)
+template <enum T>
+bool Lexer<T>::AddTwoCharOp(Token::Type ty)
 {
 	Add(ty, 2);
 	Next();
@@ -263,45 +279,8 @@ bool Lexer::AddTwoCharOp(Token::Type ty)
 	return true;
 }
 
-bool Lexer::LexString()
-{
-	int start = offset;
-	Next();
-	while (!Failed && Current() != '"')
-	{
-		if (Current() == '\\')
-		{
-			switch (Next())
-			{
-			case '"':
-			case 'n':
-			case 't':
-				break;
-
-			default:
-				LexError("Bad escape sequence %c");
-				return false;
-			}
-		}
-
-		if (Peek() == 0)
-		{
-			Fail("Bad string literal");
-			return false;
-		}
-
-		Next();
-	}
-
-	Next();
-
-	// the +1 and -1 to remove the start and end double quote " characters
-	tokens.push_back(Token(Token::String, *this, lineNumber, Slice(start + 1, offset - 1)));
-
-	return true;
-}
-
-void Lexer::LexError(const char *text)
+template <class T>
+void Lexer<T>::LexError(const char *text)
 {
 	Fail(CreateErrorMessage(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
 }
