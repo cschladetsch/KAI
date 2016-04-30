@@ -11,7 +11,7 @@
 
 #include "KAI/BuiltinTypes/String.h"
 #include "KAI/FileLocation.h"
-#include "KAI/Exception/Base.h"
+#include "KAI/Exception/Common.h"
 
 #include "KAI/Type/Properties.h"
 #include "KAI/Type/Number.h"
@@ -52,7 +52,6 @@
 #include "KAI/BasePointer.h"
 #include "KAI/CallableBase.h"
 #include "KAI/MethodBase.h"
-#include "KAI/Exception/Extended.h"
 #include "KAI/PropertyBase.h"
 #include "KAI/ClassBase.h"
 

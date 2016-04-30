@@ -3,22 +3,21 @@
 #include "KAI/Translator/TokenBase.h"
 #include "KAI/Translator/AstNodeBase.h"
 #include "KAI/Translator/ParserCommon.h"
+#include "KAI/Translator/Rho/RhoStructure.h"
 
 KAI_BEGIN
 
 // parser specific to the in-fix Rho language
-template <class Lexer, class Node>
-struct RhoParser : ParserCommon<Lexer, Node>
+struct RhoParser : ParserCommon<RhoLexer, RhoToken>
 {
 	typedef ParserCommon<Lexer, Node> Parent;
 	using typename Parent::Lexer;
 	using typename Parent::Node;
 	using typename Parent::Token;
-	using typename Parent::TokenType;
-	using typename Parent::NodeType;
+	using typename Parent::TokenEnum;
 	using typename Parent::NodePtr;
 
-	RhoParser(std::shared_ptr<Lexer> lexer, RhoStructure st = RhoStructure.ParseProgram);
+	RhoParser(std::shared_ptr<Lexer> lexer, RhoStructure st = RhoStructure::ParseProgram);
 
 	void Run(RhoStructure st);
 	void ConsumeNewLines();
