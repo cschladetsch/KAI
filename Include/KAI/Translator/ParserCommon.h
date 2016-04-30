@@ -23,6 +23,8 @@ struct ParserCommon : ParserBase<Lexer, Node>
 
 	const std::string &GetError() const { return error; }
 
+	NodePtr GetRoot() { return root; }
+
 protected:
 	std::vector<Token> tokens;
 	std::vector<NodePtr> stack;
