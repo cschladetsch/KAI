@@ -2,33 +2,40 @@
 
 #include "KAI/Translator/Base.h"
 #include "KAI/Translator/Process.h"
-#include "KAI/Translator/Parser.h"
-#include "KAI/Translator/Translator.h"
+#include "KAI/Translator/ParserCommon.h"
+
+#include "KAI/Translator/Pi/PiToken.h"
+#include "KAI/Translator/Pi/PiLexer.h"
+#include "KAI/Translator/Pi/PiParser.h"
+#include "KAI/Translator/Pi/PiTranslator.h"
+
 #include "KAI/Executor.h"
 
 KAI_BEGIN
 
-struct Pi : Process//, boost::noncopyable
+struct PiLang : Process
 {
-	//RhoLang(const RhoLang&) = delete;
-	//RhoLang(Registry &);
+	typedef PiLexer Lexer;
+	typedef PiParser Parser;
 
-	//std::shared_ptr<Lexer> lex;
-	//std::shared_ptr<Parser> parse;
-	//std::shared_ptr<RhoTranslator> trans;
-
-	//Registry &reg;
-	//Pointer<Executor> exec;
+	std::shared_ptr<Lexer> lex;
+	std::shared_ptr<Parser> parse;
 
 
-	//void Print();
+	PiLang(const PiLang&) = delete;
+	PiLang(Registry &);
 
-	//void Exec(const char *text, Parser::Structure st = Parser::ParseExpression);
+	Registry &reg;
+	Pointer<Executor> exec;
 
-	//Pointer<Continuation> ProcessFile(const char *fileName);
+	void Print();
 
-	//bool Translate(const char *text, Parser::Structure st = Parser::ParseProgram);
-	//bool TranslateFile(const char *name, Parser::Structure st = Parser::ParseProgram);
+	void Exec(const char *text, Structure st = Structure::Expression);
+
+	Pointer<Continuation> ProcessFile(const char *fileName);
+
+	bool Translate(const char *text, Structure st = Structure::Program);
+	bool TranslateFile(const char *name, Structure st = Structure::Program);
 };
 
 KAI_END

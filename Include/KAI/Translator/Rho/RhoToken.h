@@ -2,8 +2,6 @@
 
 #include "KAI/Translator/Common.h"
 
-#include <iostream>
-
 KAI_BEGIN
 
 // A token in the language
