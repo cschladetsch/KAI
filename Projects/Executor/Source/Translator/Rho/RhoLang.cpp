@@ -1,6 +1,8 @@
 #include "KAI/ExecutorPCH.h"
 
 #include <fstream>
+#include <iostream>
+
 
 using namespace std;
 
@@ -52,7 +54,12 @@ bool RhoLang::Translate(const char *text, Structure st)
 	if (lex->GetTokens().empty())
 		return true;
 
+	std::cout << lex->Print() << std::endl;
+
 	parse = std::make_shared<Parser>(lex, st);
+
+	parse->Print();
+
 	trans = std::make_shared<Translator>(parse, reg);
 
 	if (lex->Failed)

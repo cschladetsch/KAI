@@ -41,12 +41,13 @@ char LexerBase::Current() const
 
 const std::string &LexerBase::Line() const
 {
-	return GetLine(offset);
+	return GetLine(lineNumber);
 }
 
 bool LexerBase::EndOfLine() const
 {
-	return offset == (int)Line().size() - 1;
+	auto len = (int)Line().size();
+	return len == 0 || offset == (int)Line().size() - 1;
 }
 
 char LexerBase::Peek() const

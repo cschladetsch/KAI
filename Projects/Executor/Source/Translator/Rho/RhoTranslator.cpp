@@ -139,8 +139,7 @@ void RhoTranslator::TranslateFromToken(AstNodePtr node)
 		return;
 	}
 
-	//MUST
-	//Fail("Unsupported node %s (token %s)", RhoAstNode::ToString(node->type), Token::ToString(node->token.type));
+	Fail("Unsupported node %s (token %s)", RhoAstNode::ToString(node->type), RhoTokenEnumType::ToString(node->token.type));
 	throw Unsupported();
 }
 
@@ -217,7 +216,7 @@ void RhoTranslator::Translate(AstNodePtr node)
 		return;
 	}
 
-	//MUST Fail("Unsupported node %s (token %s)", AstNode::ToString(node->type), RhoTokenEnumType::ToString(node->token.type));
+	Fail("Unsupported node %s (token %s)", AstNode::ToString(node->type), RhoTokenEnumType::ToString(node->token.type));
 	throw Unsupported();
 }
 
