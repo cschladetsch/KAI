@@ -1,5 +1,7 @@
 #pragma once
 
+#include "KAI/Translator/Rho/Rho.h"
+
 KAI_BEGIN
 
 class Console
@@ -27,7 +29,7 @@ public:
 	Object GetRoot() const { return tree.GetRoot(); }
 	Pointer<Executor> GetExecutor() const { return executor; }
 	Pointer<Compiler> GetCompiler() const { return compiler; }
-	//Pointer<Continuation> Compile(const char *, Parser::Structure);
+	Pointer<Continuation> Compile(const char *, Structure);
 	Object ExecFile(const char *fileName);
 	String Execute(Pointer<Continuation>);
 

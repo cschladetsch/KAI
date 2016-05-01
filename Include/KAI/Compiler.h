@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/Rho/RhoStructure.h"
+#include "KAI/Translator/Structure.h"
 #include "KAI/Translator/Rho/RhoLang.h"
 
 KAI_BEGIN
@@ -26,8 +26,8 @@ public:
 	void Create();
 	bool Destroy();
 
-	Pointer<Continuation> Compile(Registry &, const String &, RhoStructure = RhoStructure::ParseStatement) const;
-	Pointer<Continuation> CompileFile(Registry &, const String &, RhoStructure = RhoStructure::ParseProgram) const;
+	Pointer<Continuation> Compile(Registry &, const String &, Structure = Structure::Statement) const;
+	Pointer<Continuation> CompileFile(Registry &, const String &, Structure = Structure::Program) const;
 
 	static void Register(Registry &, const char * = "Compiler");
 
