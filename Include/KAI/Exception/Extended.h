@@ -115,6 +115,10 @@ namespace Exception
 		UnknownProperty(const FileLocation &L, Label const &K, Label const &P) : Base(L, "UnknownProperty"), klass(K), prop(P) { }
 		void WriteExtendedInformation(StringStream &) const;
 	};
+	struct NoInput : Base
+	{
+		NoInput(const FileLocation &L) : Base(L, "UnknownProperty") { }
+	};
 	
 }
 

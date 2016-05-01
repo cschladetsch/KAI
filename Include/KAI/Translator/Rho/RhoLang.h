@@ -15,9 +15,9 @@ KAI_BEGIN
 
 struct RhoLang : Process
 {
-	typedef typename RhoTranslator::Parser Parser;
-	typedef typename Parser::Lexer Lexer;
-	typedef typename RhoStructure Structure;
+	typedef RhoLexer Lexer;
+	typedef RhoParser Parser;
+	typedef RhoTranslator Translator;
 
 	std::shared_ptr<Lexer> lex;
 	std::shared_ptr<Parser> parse;
@@ -31,12 +31,12 @@ struct RhoLang : Process
 
 	void Print();
 
-	void Exec(const char *text, RhoStructure st = RhoStructure::ParseExpression);
+	void Exec(const char *text, Structure st = Structure::Expression);
 
 	Pointer<Continuation> ProcessFile(const char *fileName);
 
-	bool Translate(const char *text, RhoStructure st = RhoStructure::ParseProgram);
-	bool TranslateFile(const char *name, RhoStructure st = RhoStructure::ParseProgram);
+	bool Translate(const char *text, Structure st = Structure::Program);
+	bool TranslateFile(const char *name, Structure st = Structure::Program);
 };
 
 KAI_END

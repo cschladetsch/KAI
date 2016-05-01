@@ -10,6 +10,7 @@ int IsSpaceChar(int ch);
 struct LexerBase : Process
 {
 	LexerBase(const char *);
+
 	typedef std::vector<std::string> Lines;
 
 	const std::string &GetLine(size_t n) const
@@ -25,20 +26,14 @@ struct LexerBase : Process
 	const std::string &Line() const;
 
 protected:
-	void Construct();
+	//void Construct();
+	//bool Run();
 
 	Lines lines;
 	std::string input;
 	int offset, lineNumber;
 
-	virtual void AddKeyWords() = 0;
-	virtual void LexErrorBase(const char *) = 0;
-	virtual void Terminate() = 0;
-	virtual bool NextToken() = 0;
-	virtual void AddStringToken(int ineNumber , Slice slice) = 0;
-
 	void CreateLines();
-	bool Run();
 	bool LexString();
 
 	char Current() const;
@@ -47,7 +42,11 @@ protected:
 	char Peek() const;
 	char PeekBase() const;
 
+	virtual void LexErrorBase(const char *msg) = 0;
+	virtual void AddStringToken(int lineNumber, Slice slice) = 0;
+
 	Slice Gather(int(*filt)(int ch));
 };
 
 KAI_END
+
