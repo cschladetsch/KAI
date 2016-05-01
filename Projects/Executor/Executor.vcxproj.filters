@@ -54,9 +54,6 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Parser.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -103,9 +100,6 @@
       <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
     <ClCompile Include="Source\Source.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\LexerCommon.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiAstNode.cpp">

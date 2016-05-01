@@ -26,9 +26,6 @@ struct LexerBase : Process
 	const std::string &Line() const;
 
 protected:
-	//void Construct();
-	//bool Run();
-
 	Lines lines;
 	std::string input;
 	int offset, lineNumber;
