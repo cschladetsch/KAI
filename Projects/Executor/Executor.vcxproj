@@ -142,8 +142,6 @@
     </ClCompile>
     <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
-    <ClCompile Include="Source\Translator\LexerCommon.cpp" />
-    <ClCompile Include="Source\Translator\Parser.cpp" />
     <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
