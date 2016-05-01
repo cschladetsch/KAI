@@ -39,7 +39,6 @@ struct ParserCommon : Process
 				tokens.push_back(tok);
 
 		root = NewNode(AstEnum::Program);
-
 	}
 
 	virtual void Run(Structure st)
@@ -126,6 +125,7 @@ protected:
 	{
 		return Peek().type == ty;
 	}
+
 	Token const &Consume()
 	{
 		return tokens[current++];
