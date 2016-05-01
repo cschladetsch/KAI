@@ -39,7 +39,11 @@ struct AstNodeBase
 	{
 		return std::move(token.Text());
 	}
-	static const char *ToString(Enum ty);
+
+	static const char *ToString(Enum ty)
+	{
+		return AstEnumType::ToString(ty);
+	}
 };
 
 KAI_END
