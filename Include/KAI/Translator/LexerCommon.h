@@ -36,6 +36,7 @@ struct LexerCommon : LexerBase
 	void Process()
 	{
 		AddKeyWords();
+		CreateLines();
 		Run();
 	}
 
