@@ -151,7 +151,7 @@ protected:
 
 	void Print(AstNode const &node, int level)
 	{
-		//MUST std::cout << Lead(level) << node.ToString() << std::endl;
+		 std::cout << Lead(level) << node.ToString(node.type) << std::endl;
 
 		for (auto const &ch : node.Children)
 			Print(*ch, level + 1);
