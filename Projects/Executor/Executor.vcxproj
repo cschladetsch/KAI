@@ -150,7 +150,7 @@
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Pi\PiNode.cpp">
+    <ClCompile Include="Source\Translator\Pi\PiAstNode.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiParser.cpp">
@@ -185,15 +185,14 @@
     <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiBase.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiConfig.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\Pi.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiNode.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiAstNode.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiParser.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiProcess.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Process.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\Rho.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h" />

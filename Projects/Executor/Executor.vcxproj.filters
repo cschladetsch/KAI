@@ -66,9 +66,6 @@
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Pi\PiNode.cpp">
-      <Filter>Source Files\Translator\Pi</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiParser.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
@@ -111,6 +108,9 @@
     <ClCompile Include="Source\Translator\LexerCommon.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Translator\Pi\PiAstNode.cpp">
+      <Filter>Source Files\Translator\Pi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
@@ -146,31 +146,16 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
       <Filter>Header Files\Translator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiBase.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiConfig.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiNode.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiParser.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiProcess.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h">
@@ -214,6 +199,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Structure.h">
       <Filter>Header Files\Translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\Pi.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiAstNode.h">
+      <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

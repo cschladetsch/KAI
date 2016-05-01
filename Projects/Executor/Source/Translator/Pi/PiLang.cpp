@@ -1,4 +1,5 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Pi/Pi.h"
 
 #include <fstream>
 
@@ -6,12 +7,12 @@ using namespace std;
 
 KAI_BEGIN
 
-RhoLang::RhoLang(Registry &r)
+PiLang::PiLang(Registry &r)
 	: reg(r)
 {
 }
 
-void RhoLang::Print()
+void PiLang::Print()
 {
 	cout << "Input--" << endl;
 	cout << lex->input << endl;
@@ -27,7 +28,7 @@ void RhoLang::Print()
 }
 
 
-bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
+bool PiLang::TranslateFile(const char *name, Parser::Structure st)
 {
 	ifstream file(name, ios::binary);
 	if (!file)
@@ -43,7 +44,7 @@ bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 	return Translate(text, st);
 }
 
-bool RhoLang::Translate(const char *text, Parser::Structure st)
+bool PiLang::Translate(const char *text, Parser::Structure st)
 {
 	if (text == 0 || text[0] == 0)
 		return true;
