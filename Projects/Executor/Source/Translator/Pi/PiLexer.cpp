@@ -285,7 +285,8 @@ void Lexer<T>::LexError(const char *text)
 	Fail(CreateErrorMessage(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
 }
 
-std::string Lexer::CreateErrorMessage(Token tok, const char *fmt, ...)
+template <class T>
+std::string Lexer<T>::CreateErrorMessage(Token tok, const char *fmt, ...)
 {
 	char buff0[2000];
 	va_list ap;

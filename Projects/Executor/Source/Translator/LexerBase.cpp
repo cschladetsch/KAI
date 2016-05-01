@@ -3,19 +3,16 @@
 
 KAI_BEGIN
 
+int IsSpaceChar(int ch)
+{
+	return ch == ' ';
+}
+
 LexerBase::LexerBase(const char *in)
 	: input(in)
 {
-	if (input.empty())
-		return;
-}
-
-void LexerBase::Construct()
-{
-	AddKeyWords();
-
-	CreateLines();
-	Run();
+	//if (input.empty())
+	//	return;
 }
 
 void LexerBase::CreateLines()
@@ -34,23 +31,30 @@ void LexerBase::CreateLines()
 	}
 }
 
-bool LexerBase::Run()
-{
-	offset = 0;
-	lineNumber = 0;
-
-	while (!Failed && NextToken())
-		;
-
-	return !Failed;
-}
-
 char LexerBase::Current() const
 {
 	if (lineNumber == (int)lines.size())
 		return 0;
 
 	return Line()[offset];
+}
+
+const std::string &LexerBase::Line() const
+{
+	return GetLine(offset);
+}
+
+bool LexerBase::EndOfLine() const
+{
+	return offset == (int)Line().size() - 1;
+}
+
+char LexerBase::Peek() const
+{
+	if (EndOfLine())
+		return 0;
+
+	return Line()[offset + 1];
 }
 
 Slice LexerBase::Gather(int (*filt)(int)) 

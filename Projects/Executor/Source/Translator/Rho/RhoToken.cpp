@@ -4,12 +4,7 @@
 
 KAI_BEGIN
 
-RhoToken::RhoToken(Type type, const LexerBase &lexer, int ln, Slice slice) 
-	: type(type), lexer(&lexer), lineNumber(ln), slice(slice)
-{
-}
-
-const char * RhoToken::ToString(Type t)
+const char *RhoTokenEnumType::ToString(RhoToken::Enum t)
 {
 	switch (t)
 	{
@@ -69,15 +64,15 @@ const char * RhoToken::ToString(Type t)
 
 std::ostream &operator<<(std::ostream &out, RhoToken const &node)
 {
-	if (node.type == RhoToken::None)
+	if (node.type == RhoTokenEnumType::None)
 		return out;
 
-	out << RhoToken::ToString(node.type);
+	out << RhoTokenEnumType::ToString(node.type);
 	switch (node.type)
 	{
-	case RhoToken::Int:
-	case RhoToken::String:
-	case RhoToken::Ident:
+	case RhoTokenEnumType::Int:
+	case RhoTokenEnumType::String:
+	case RhoTokenEnumType::Ident:
 		out << "=" << node.Text();
 	}
 

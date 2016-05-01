@@ -54,9 +54,6 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Node.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Parser.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
@@ -93,12 +90,6 @@
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp">
       <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Translator\Rho\Translator.cpp">
-      <Filter>Source Files\Translator\Rho</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Rho\RhoNode.cpp">
-      <Filter>Source Files\Translator\Rho</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Rho\RhoToken.cpp">
       <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
@@ -106,6 +97,18 @@
       <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\TokenBase.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoTranslator.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\Rho\RhoAstNode.cpp">
+      <Filter>Source Files\Translator\Rho</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Source.cpp">
+      <Filter>Source Files\Translator</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Translator\LexerCommon.cpp">
       <Filter>Source Files\Translator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,16 +176,10 @@
     <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h">
       <Filter>Header Files\Translator</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\ParserBase.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h">
       <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h">
-      <Filter>Header Files\Translator\Rho</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoStructure.h">
       <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoToken.h">
@@ -214,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h">
       <Filter>Header Files\Translator\Rho</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Structure.h">
+      <Filter>Header Files\Translator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

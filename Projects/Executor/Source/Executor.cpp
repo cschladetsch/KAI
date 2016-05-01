@@ -1,5 +1,7 @@
 #include "KAI/ExecutorPCH.h"
 
+#include <fstream>
+
 using namespace std;
 
 KAI_BEGIN
@@ -1312,7 +1314,6 @@ void Executor::Dump(Object const &Q)
 	}
 }
 
-/* TODO
 bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
 {
 	std::fstream file(filename, std::ios::in);
@@ -1330,7 +1331,7 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 	try
 	{
 		Pointer<Continuation> cont = compiler->Compile
-			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
+			(*executor->Self->GetRegistry(), text.ToString(), Structure::Program);
 
 		if (!cont)
 			return false;
@@ -1355,7 +1356,6 @@ bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compi
 
 	return false;
 }
-*/
 
 KAI_END
 

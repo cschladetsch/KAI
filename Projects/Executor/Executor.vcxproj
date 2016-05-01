@@ -140,8 +140,9 @@
     <ClCompile Include="Source\SignedContinuation.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
+    <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
-    <ClCompile Include="Source\Translator\Node.cpp" />
+    <ClCompile Include="Source\Translator\LexerCommon.cpp" />
     <ClCompile Include="Source\Translator\Parser.cpp" />
     <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -163,11 +164,11 @@
     </ClCompile>
     <ClCompile Include="Source\Translator\Process.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
-    <ClCompile Include="Source\Translator\Rho\RhoNode.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoAstNode.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLang.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoToken.cpp" />
-    <ClCompile Include="Source\Translator\Rho\Translator.cpp" />
+    <ClCompile Include="Source\Translator\Rho\RhoTranslator.cpp" />
     <ClCompile Include="Source\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,7 +185,6 @@
     <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\ParserBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiConfig.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h" />
@@ -200,10 +200,10 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLexer.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoStructure.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoToken.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoTranslator.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Slice.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Structure.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h" />
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
     <ClCompile Include="Source\Translator\TokenBase.cpp">

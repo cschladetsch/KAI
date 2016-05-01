@@ -18,9 +18,14 @@ KAI_BEGIN
 
 struct RhoTranslator : Process
 {
-	typedef LexerCommon<RhoToken> Lexer;
-	typedef ParserCommon<LexerCommon<RhoToken>, RhoAstNode> Parser;
-	typedef typename RhoParser::NodePtr NodePtr;
+	typedef RhoAstNodeEnumType::Node AstNode;
+	typedef RhoToken Token;
+	typedef LexerCommon<Token> Lexer;
+	typedef ParserCommon<Lexer, AstNode> Parser;
+	typedef typename RhoParser::AstNodePtr AstNodePtr;
+	typedef typename AstNode::Enum AstEnum;
+	typedef RhoTokenEnumType TokenType;
+	typedef RhoAstNodeEnumType AstType;
 
 	RhoTranslator(const RhoTranslator&) = delete;
 	RhoTranslator(std::shared_ptr<RhoParser> p, Registry &reg);
@@ -34,18 +39,18 @@ struct RhoTranslator : Process
 	std::string Result() const;
 
 private:
-	void Traverse(NodePtr node);
-	void TranslateFunction(NodePtr node);
-	void TranslateBlock(NodePtr node);
-	void Translate(NodePtr node);
-	void TranslateBinaryOp(NodePtr node, Operation::Type);
+	void Traverse(AstNodePtr node);
+	void TranslateFunction(AstNodePtr node);
+	void TranslateBlock(AstNodePtr node);
+	void Translate(AstNodePtr node);
+	void TranslateBinaryOp(AstNodePtr node, Operation::Type);
 
 	// TODO: not create strings on each call: store the conversion in a map or something
-	std::string ConvertOp(NodePtr node);
+	std::string ConvertOp(AstNodePtr node);
 
-	void TranslateFromToken(NodePtr node);
-	void TranslateCall(NodePtr node);
-	void TranslateIndex(NodePtr node);
+	void TranslateFromToken(AstNodePtr node);
+	void TranslateCall(AstNodePtr node);
+	void TranslateIndex(AstNodePtr node);
 
 	Pointer<Continuation> Top();
 	void PushNew();
@@ -62,9 +67,9 @@ private:
 	}
 	Pointer<Continuation> Pop();
 	void AppendNewOp(Operation::Type op);
-	void TranslateIf(NodePtr node);
-	void TranslateFor(NodePtr node);
-	void TranslateWhile(NodePtr node);
+	void TranslateIf(AstNodePtr node);
+	void TranslateFor(AstNodePtr node);
+	void TranslateWhile(AstNodePtr node);
 };
 
 KAI_END

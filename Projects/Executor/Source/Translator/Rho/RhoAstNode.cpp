@@ -1,10 +1,9 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Rho/RhoNode.h"
+#include "KAI/Translator/Rho/RhoAstNode.h"
 
 KAI_BEGIN
 
-template <class T>
-const char *RhoNode<T>::ToString(Type ty)
+const char *RhoAstNodeEnumType::ToString(Enum ty)
 {
 	switch (ty)
 	{

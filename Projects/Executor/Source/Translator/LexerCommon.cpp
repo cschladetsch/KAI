@@ -1,5 +1,8 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/ParserBase.h"
+
+#include <strstream>
+#include <stdarg.h>
+#include <algorithm>
 
 using namespace std;
 

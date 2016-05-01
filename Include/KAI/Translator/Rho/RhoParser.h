@@ -3,43 +3,48 @@
 #include "KAI/Translator/TokenBase.h"
 #include "KAI/Translator/AstNodeBase.h"
 #include "KAI/Translator/ParserCommon.h"
-#include "KAI/Translator/Rho/RhoStructure.h"
+#include "KAI/Translator/Structure.h"
+#include "KAI/Translator/Rho/RhoAstNode.h"
 
 KAI_BEGIN
 
 // parser specific to the in-fix Rho language
-struct RhoParser : ParserCommon<RhoLexer, RhoToken>
+struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 {
-	typedef ParserCommon<Lexer, Node> Parent;
+	typedef ParserCommon<RhoLexer, RhoAstNodeEnumType> Parent;
 	using typename Parent::Lexer;
-	using typename Parent::Node;
+	using typename Parent::AstNode;
 	using typename Parent::Token;
 	using typename Parent::TokenEnum;
-	using typename Parent::NodePtr;
+	using typename Parent::AstNodePtr;
+	typedef RhoAstNodeEnumType NodeType;
+	typedef RhoTokenEnumType TokenType;
 
-	RhoParser(std::shared_ptr<Lexer> lexer, RhoStructure st = RhoStructure::ParseProgram);
+	RhoParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
+	RhoParser(std::shared_ptr<Lexer> lexer, Structure st) : Parent(lexer) { Run(st); }
 
-	void Run(RhoStructure st);
-	void ConsumeNewLines();
-	void Block(NodePtr block);
-	bool ParseFactorIdent();
-	void ParseGetMember();
-	void ParseMethodCall();
-	void Function(NodePtr);
-	void AddBlock(NodePtr fun);
 	bool Program();
-	bool Statement(NodePtr );
+	bool Statement(AstNodePtr );
 	bool Expression();
 	bool Logical();
 	bool Relational();
 	bool Additive();
 	bool Term();
 	bool Factor();
-	void IfCondition(NodePtr block);
+
+	void Run(Structure st);
+	void ConsumeNewLines();
+	void Block(AstNodePtr block);
+	bool ParseFactorIdent();
+	void ParseGetMember();
+	void ParseMethodCall();
+	void Function(AstNodePtr);
+	void AddBlock(AstNodePtr fun);
+	void IfCondition(AstNodePtr block);
 	void ParseIndexOp();
-	void Assignment(NodePtr);
-	void For(NodePtr block);
-	void While(NodePtr block);
+	void Assignment(AstNodePtr);
+	void For(AstNodePtr block);
+	void While(AstNodePtr block);
 	bool CreateError(const char *text);
 };
 
