@@ -1,16 +1,13 @@
 #pragma once
 
-#include <string>
-
 #include "KAI/Translator/Common.h"
+
+#include <iostream>
 
 KAI_BEGIN
 
-template <class Token>
-struct LexerCommon;
-
 // A token in the language
-struct RhoToken
+struct RhoTokenEnumType
 {
 	enum Enum
 	{
@@ -37,40 +34,36 @@ struct RhoToken
 		Plus, Minus, Mul, Divide,
 		Assign,
 		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEquiv,
-
 		Not, And, Or, Xor,
-
 		OpenSquareBracket, CloseSquareBracket,
 		Increment, Decrement,
 		BitAnd, BitOr, BitXor,
-
 		Self,
 		Lookup,
-
 		// added because we want whitespace to matter for formatting, as in python
 		Tab, NewLine,
 		Fun,
-
 		Comment,
-
 		Yield,
-		
 		Suspend, Replace, Resume,
 		PlusAssign, MinusAssign, MulAssign, DivAssign,
 		In, Colon,
 		Assert,
-
 	};
 
-	struct Node : TokenBase<Enum>
+	static const char *ToString(Enum val);
+
+	struct Type : TokenBase<RhoTokenEnumType>
 	{
-		friend std::ostream &operator<<(std::ostream &out, Node const &node)
-		{
-			//return out << ToString(node.type) << ": " << node.token;
-			return out << "token-node";
-		}
+		Type() { }
+
+		Type(Enum val, const LexerBase &lexer, int ln, Slice slice) 
+			: TokenBase<RhoTokenEnumType>(val, lexer, ln, slice) { }
+
+		friend std::ostream &operator<<(std::ostream &out, Type const &node);
 	};
 };
 
-KAI_END
+typedef RhoTokenEnumType::Type RhoToken;
 
+KAI_END

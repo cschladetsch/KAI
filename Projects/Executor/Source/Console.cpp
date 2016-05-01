@@ -339,7 +339,7 @@ void Console::RegisterTypes()
 #endif
 }
 
-Pointer<Continuation> Console::Compile(const char *text, Parser::Structure st)
+Pointer<Continuation> Console::Compile(const char *text, Structure st)
 {
 	return compiler->Compile(*registry, text, st);
 }
@@ -350,7 +350,7 @@ void Console::Register(Registry &)
 
 Object Console::ExecFile(const char *fileName)
 {
-	auto c = compiler->CompileFile(*registry, fileName, Parser::ParseProgram);
+	auto c = compiler->CompileFile(*registry, fileName, Structure::Program);
 	Execute(c);
 	return Object();
 }

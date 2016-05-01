@@ -4,13 +4,16 @@
 
 KAI_BEGIN
 
+template <class AstEnumStruct>
+struct TokenBase;
+
 template <class Token>
 struct LexerCommon;
 
 template <class AstEnum>
 struct NodeBase;
 
-template <class Lexer, class Node>
+template <class Lexer, class AstEnumStruct>
 struct ParserCommon;
 
 KAI_END

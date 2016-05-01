@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/Translator/Structure.h"
 #include "KAI/Translator/LexerCommon.h"
 #include "KAI/Translator/AstNodeBase.h"
 #include "KAI/Translator/ParserBase.h"
@@ -8,44 +9,84 @@ KAI_BEGIN
 
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
-template <class Lexer, class Node>
-struct ParserCommon : ParserBase<Lexer, Node>
+template <class Lexer, class AstEnumStruct>
+struct ParserCommon : Process
 {
-	typedef ParserBase<Lexer, Node> Parent;
-	using typename Parent::Lexer;
-	using typename Parent::Node;
-	using typename Parent::Token;
-	using typename Parent::TokenEnum;
-	//using typename Parent::NodeType;
-	using typename Parent::NodePtr;
+	typedef Lexer Lexer;
+	typedef typename Lexer::Token Token;
+	typedef typename Token::Enum TokenEnum;
+	typedef typename AstEnumStruct::Enum AstEnum;
+	typedef AstNodeBase<Token, AstEnumStruct> AstNode;
+	typedef std::shared_ptr<AstNode> AstNodePtr;
 
 	bool Passed() const { return passed;  }
-
 	const std::string &GetError() const { return error; }
+	AstNodePtr GetRoot() { return root; }
+	void Print() { Print(*root, 0); }
 
-	NodePtr GetRoot() { return root; }
+	ParserCommon(std::shared_ptr<Lexer> lex, Structure st = Structure::Statement)
+	{
+		current = 0;
+		indent = 0;
+		lexer = lex;
+
+		if (lexer->Failed)
+			return;
+
+		// strip whitespace and comments
+		for (auto tok : lexer->GetTokens())
+			if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+				tokens.push_back(tok);
+
+		root = NewNode(AstEnum::Program);
+
+	}
+
+	virtual void Run(Structure st)
+	{
+		try
+		{
+			Run(st);
+		}
+		catch (Exception::Base &e)
+		{
+			if (!Failed)
+				Fail(Lexer::CreateErrorMessage(Current(), "%s", e.ToString()));
+		}
+		catch (std::exception &f)
+		{
+			if (!Failed)
+				Fail(Lexer::CreateErrorMessage(Current(), "%s", f.what()));
+		}
+		catch (...)
+		{
+			if (!Failed)
+				Fail(Lexer::CreateErrorMessage(Current(), "internal error"));
+		}
+	}
 
 protected:
 	std::vector<Token> tokens;
-	std::vector<NodePtr> stack;
+	std::vector<AstNodePtr> stack;
 	int current;
-	NodePtr root;
+	AstNodePtr root;
 	bool passed;
 	std::string error;
 	int indent;
+	std::shared_ptr<Lexer> lexer;
 
-private:
-	void Push(NodePtr node)
+protected:
+	void Push(AstNodePtr node)
 	{
 		if (node)
 			stack.push_back(node);
 	}
 
-	NodePtr Pop()
+	AstNodePtr Pop()
 	{
 		if (stack.empty())
 		{
-			CreateError("Internal Error: Parse stack empty");
+			//MUST CreateError("Internal Error: Parse stack empty");
 			KAI_THROW_0(EmptyStack);
 		}
 
@@ -95,29 +136,24 @@ private:
 		return Current().type == type;
 	}
 
-	NodePtr Expect(TokenEnum type)
+	AstNodePtr Expect(TokenEnum type)
 	{
 		Token tok = Current();
 		if (tok.type != type)
 		{
-			Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
+			//MUST Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 
 		Next();
-		return std::make_shared<Node>(Last());
+		return std::make_shared<AstNode>(Last());
 	}
 
-	void Print()
+	void Print(AstNode const &node, int level)
 	{
-		Print(*root, 0);
-	}
+		//MUST std::cout << Lead(level) << node.ToString() << std::endl;
 
-	void Print(Node const &node, int level)
-	{
-		std::cout << Lead(level) << node << std::endl;
-
-		for (auto ch : node.Children)
+		for (auto const &ch : node.Children)
 			Print(*ch, level + 1);
 	}
 
@@ -126,8 +162,8 @@ private:
 		return std::move(std::string(level*4, ' '));
 	}
 
-	NodePtr NewNode(TokenEnum t) { return std::make_shared<Node>(t); }
-	NodePtr NewNode(Token const &t) { return std::make_shared<Node>(t); }
+	AstNodePtr NewNode(AstEnum t) { return std::make_shared<AstNode>(t); }
+	AstNodePtr NewNode(Token const &t) { return std::make_shared<AstNode>(t); }
 };
 
 KAI_END

@@ -25,125 +25,126 @@ RhoTranslator::RhoTranslator(std::shared_ptr<RhoParser> p, Registry &r)
 	}
 }
 
-void RhoTranslator::TranslateFromToken(NodePtr node)
+void RhoTranslator::TranslateFromToken(AstNodePtr node)
 {
 	switch (node->type)
 	{
-	case RhoToken::While:
+	case TokenType::While:
 		TranslateWhile(node);
 		return;
 
-	case RhoToken::DivAssign:
+	case TokenType::DivAssign:
 		TranslateBinaryOp(node, Operation::DivEquals);
 		return;
 
-	case RhoToken::MulAssign:
+	case TokenType::MulAssign:
 		TranslateBinaryOp(node, Operation::MulEquals);
 		return;
 
-	case RhoToken::MinusAssign:
+	case TokenType::MinusAssign:
 		TranslateBinaryOp(node, Operation::MinusEquals);
 		return;
 
-	case RhoToken::PlusAssign:
+	case TokenType::PlusAssign:
 		TranslateBinaryOp(node, Operation::PlusEquals);
 		return;
 
-	case RhoToken::Assign:
+	case TokenType::Assign:
 		TranslateBinaryOp(node, Operation::Store);
 		return;
 
-	case RhoToken::Lookup:
+	case TokenType::Lookup:
 		AppendNewOp(Operation::Lookup);
 		return;
 
-	case RhoToken::Self:
+	case TokenType::Self:
 		AppendNewOp(Operation::This);
 		return;
 
-	case RhoToken::NotEquiv:
+	case TokenType::NotEquiv:
 		TranslateBinaryOp(node, Operation::NotEquiv);
 		return;
 
-	case RhoToken::Equiv:
+	case TokenType::Equiv:
 		TranslateBinaryOp(node, Operation::Equiv);
 		return;
 
-	case RhoToken::Less:
+	case TokenType::Less:
 		TranslateBinaryOp(node, Operation::Less);
 		return;
 
-	case RhoToken::Greater:
+	case TokenType::Greater:
 		TranslateBinaryOp(node, Operation::Greater);
 		return;
 
-	case RhoToken::GreaterEquiv:
+	case TokenType::GreaterEquiv:
 		TranslateBinaryOp(node, Operation::GreaterOrEquiv);
 		return;
 
-	case RhoToken::LessEquiv:
+	case TokenType::LessEquiv:
 		TranslateBinaryOp(node, Operation::LessOrEquiv);
 		return;
 
-	case RhoToken::Minus:
+	case TokenType::Minus:
 		TranslateBinaryOp(node, Operation::Minus);
 		return;
 
-	case RhoToken::Plus:
+	case TokenType::Plus:
 		TranslateBinaryOp(node, Operation::Plus);
 		return;
 
-	case RhoToken::Mul:
+	case TokenType::Mul:
 		TranslateBinaryOp(node, Operation::Multiply);
 		return;
 
-	case RhoToken::Divide:
+	case TokenType::Divide:
 		TranslateBinaryOp(node, Operation::Divide);
 		return;
 
-	case RhoToken::Or:
+	case TokenType::Or:
 		TranslateBinaryOp(node, Operation::LogicalOr);
 		return;
 
-	case RhoToken::And:
+	case TokenType::And:
 		TranslateBinaryOp(node, Operation::LogicalAnd);
 		return;
 
-	case RhoToken::Int:
+	case TokenType::Int:
 		Append(reg.New<int>(boost::lexical_cast<int>(node->token.Text())));
 		return;
 
-	case RhoToken::Float:
+	case TokenType::Float:
 		Append(reg.New<float>(boost::lexical_cast<float>(node->token.Text())));
 		return;
 
-	case RhoToken::String:
-		Append(reg.New<String>(node->token.Text()));
+	case TokenType::String:
+		Append(reg.New<String>(node->Text()));
 		return;
 
-	case RhoToken::Ident:
-		Append(reg.New<Label>(Label(node->token.Text())));
+	case TokenType::Ident:
+		Append(reg.New<Label>(Label(node->Text())));
 		return;
 
-	case RhoToken::Yield:
+	case TokenType::Yield:
 		//for (auto ch : node->Children)
 		//	Translate(ch);
 		//AppendNewOp(Operation::PushContext);
 		KAI_NOT_IMPLEMENTED();
 		return;
 
-	case RhToken::Return:
+	case TokenType::Return:
 		for (auto ch : node->Children)
 			Translate(ch);
 		AppendNewOp(Operation::Return);
 		return;
 	}
 
-	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
+	//MUST
+	//Fail("Unsupported node %s (token %s)", RhoAstNode::ToString(node->type), Token::ToString(node->token.type));
 	throw Unsupported();
 }
 
-void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
+void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 {
 	Translate(node->Children[0]);
 	Translate(node->Children[1]);
@@ -151,7 +152,7 @@ void Translator::TranslateBinaryOp(Parser::NodePtr node, Operation::Type op)
 	AppendNew<Operation>(Operation(op));
 }
 
-void Translator::Translate(Parser::NodePtr node)
+void RhoTranslator::Translate(AstNodePtr node)
 {
 	if (!node)
 	{
@@ -161,77 +162,77 @@ void Translator::Translate(Parser::NodePtr node)
 
 	switch (node->type)
 	{
-	case Node::IndexOp:
+	case AstEnum::IndexOp:
 		TranslateBinaryOp(node, Operation::Index);
 		return;
 
-	case Node::GetMember:
+	case AstEnum::GetMember:
 		TranslateBinaryOp(node, Operation::GetProperty);
 		return;
 
-	case Node::TokenType:
+	case AstEnum::TokenType:
 		TranslateFromToken(node);
 		return;
 
-	case Node::Assignment:
+	case AstEnum::Assignment:
 		// like a binary op, but argument order is reversed
 		Translate(node->Children[1]);
 		Translate(node->Children[0]);
 		AppendNew<Operation>(Operation(Operation::Store));
 		return;
 
-	case Node::Call:
+	case AstEnum::Call:
 		TranslateCall(node);
 		return;
 
-	case Node::Conditional:
+	case AstEnum::Conditional:
 		TranslateIf(node);
 		return;
 
-	case Node::Block:
+	case AstEnum::Block:
 		PushNew();
 		for (auto st : node->Children)
 			Translate(st);
 		Append(Pop());
 		return;
 
-	case Node::List:
+	case AstEnum::List:
 		for (auto ch : boost::adaptors::reverse(node->Children))
 			Translate(ch);
 		AppendNew<int>(node->Children.size());
 		AppendNewOp(Operation::ToArray);
 		return;
 
-	case Node::For:
+	case AstEnum::For:
 		TranslateFor(node);
 		return;
 
-	case Node::Function:
+	case AstEnum::Function:
 		TranslateFunction(node);
 		return;
 
-	case Node::Program:
+	case AstEnum::Program:
 		for (auto e : node->Children)
 			Translate(e);
 		return;
 	}
 
-	Fail("Unsupported node %s (token %s)", Node::ToString(node->type), Token::ToString(node->token.type));
+	//MUST Fail("Unsupported node %s (token %s)", AstNode::ToString(node->type), RhoTokenEnumType::ToString(node->token.type));
 	throw Unsupported();
 }
 
-void Translator::TranslateBlock(NodePtr node)
+void RhoTranslator::TranslateBlock(AstNodePtr node)
 {
 	for (auto st : node->Children)
 		Translate(st);
 }
 
-void Translator::TranslateFunction(NodePtr node)
+void RhoTranslator::TranslateFunction(AstNodePtr node)
 {
 	// child 0: ident
 	// child 1: args
 	// child 2: block
-	Node::ChildrenType const &ch = node->Children;
+	AstNode::ChildrenType const &ch = node->Children;
 
 	// write the body
 	PushNew();
@@ -245,48 +246,48 @@ void Translator::TranslateFunction(NodePtr node)
 
 	// write the name and store
 	Append(cont);
-	AppendNew(Label(ch[0]->token.Text()));
+	AppendNew(Label(ch[0]->Text()));
 	AppendNewOp(Operation::Store);
 }
 
-void Translator::TranslateCall(NodePtr node)
+void RhoTranslator::TranslateCall(AstNodePtr node)
 {
-	Node::ChildrenType &children = node->Children;
+	typename AstNode::ChildrenType &children = node->Children;
 	for (auto a : children[1]->Children)
 		Translate(a);
 
 	Translate(children[0]);
-	if (children.size() > 2 && children[2]->token.type == Token::Replace)
+	if (children.size() > 2 && children[2]->token.type == TokenType::Replace)
 		AppendNew(Operation(Operation::Replace));
 	else
 		AppendNew(Operation(Operation::SuspendNew));
 }
 
-Pointer<Continuation> Translator::Top()
+Pointer<Continuation> RhoTranslator::Top()
 {
 	return stack.back();
 }
 
-void Translator::PushNew()
+void RhoTranslator::PushNew()
 {
 	Pointer<Continuation> c = reg.New<Continuation>();
 	c->SetCode(reg.New<Array>());
 	stack.push_back(c);
 }
 
-void Translator::Append(Object ob)
+void RhoTranslator::Append(Object ob)
 {
 	Top()->GetCode()->Append(ob);
 }
 
-Pointer<Continuation> Translator::Pop()
+Pointer<Continuation> RhoTranslator::Pop()
 {
 	auto top = Top();
 	stack.pop_back();
 	return top;
 }
 
-std::string Translator::Result() const
+std::string RhoTranslator::Result() const
 {
 	StringStream str;
 	for (auto ob : *stack.back()->GetCode())
@@ -295,14 +296,14 @@ std::string Translator::Result() const
 	return str.ToString().c_str();
 }
 
-void Translator::AppendNewOp(Operation::Type op)
+void RhoTranslator::AppendNewOp(Operation::Type op)
 {
 	AppendNew<Operation>(Operation(op));
 }
 
-void Translator::TranslateIf(Parser::NodePtr node)
+void RhoTranslator::TranslateIf(AstNodePtr node)
 {
-	Node::ChildrenType const &ch = node->Children;
+	typename AstNode::ChildrenType const &ch = node->Children;
 	bool hasElse = ch.size() > 2;
 	Translate(ch[0]);
 	if (hasElse)
@@ -312,12 +313,12 @@ void Translator::TranslateIf(Parser::NodePtr node)
 	AppendNewOp(hasElse ? Operation::IfThenSuspendElseSuspend : Operation::IfThenSuspend);
 }
 
-void Translator::TranslateFor(Parser::NodePtr node)
+void RhoTranslator::TranslateFor(AstNodePtr node)
 {
 	AppendNewOp(Operation::None);
 }
 
-void Translator::TranslateWhile(Parser::NodePtr node)
+void RhoTranslator::TranslateWhile(AstNodePtr node)
 {
 	AppendNewOp(Operation::None);
 }
