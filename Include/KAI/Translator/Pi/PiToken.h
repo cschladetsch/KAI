@@ -39,7 +39,6 @@ struct PiTokenEnumType
 		BitAnd, BitOr, BitXor,
 		Self,
 		Lookup,
-		// added because we want whitespace to matter for formatting, as in python
 		Tab, NewLine,
 		Comment,
 		PlusAssign, MinusAssign, MulAssign, DivAssign,
