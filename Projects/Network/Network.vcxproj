@@ -136,9 +136,12 @@
     <ClCompile Include="Source\ProxyCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Address.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\AgentCommon.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Net.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\NetHandle.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\ProxyCommon.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Representative.h" />
     <ClInclude Include="..\..\Include\KAI\Net\AgentBase.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Base.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Config.h" />
