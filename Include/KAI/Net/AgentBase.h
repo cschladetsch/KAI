@@ -35,7 +35,7 @@ struct TimeSpan
 
 struct Message
 {
-	ResponseType Result;
+	ResponseType ResultType;
 
 	DateTime Sent;
 	DateTime Received;
@@ -47,13 +47,10 @@ struct Message
 	Object Result;
 };
 
-template <class T>
 struct Future
 {
-	typedef T Message;
-	
 	bool Arrived;
-	Message Message;
+	Object Response;
 };
 
 template <class T>
@@ -61,10 +58,10 @@ struct AgentBase : AgentCommon
 {
 	typedef T  Servant;
 
-	Future<Message> Request(ProxyBase<T> proxy, Object request);
+	Future Request(ProxyBase<T> proxy, Object request);
 
 private:
-	std::shared_ptr<Servat> _servant;
+	std::shared_ptr<Servant> _servant;
 };
 
 KAI_NET_END

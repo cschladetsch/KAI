@@ -1,12 +1,6 @@
 #pragma once
 
-#include "KAI/Net/Base.h"
-#include "KAI/Net/Address.h"
-#include "KAI/Net/NetHandle.h"
-#include "KAI/Net/ProxyCommon.h"
-
-#include <unordered_map>
-#include <memory>
+#include "KAI/Net/Net.h"
 
 KAI_NET_BEGIN
 
