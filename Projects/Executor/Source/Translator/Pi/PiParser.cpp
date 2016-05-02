@@ -13,28 +13,33 @@ KAI_BEGIN
 
 void PiParser::Process(Structure st)
 {
-	while (!Failed && NextSingle())
-		root->Add(Pop());
+	while (!Failed && NextSingle(root))
+		;
 }
 
-bool PiParser::NextSingle()
+bool PiParser::NextSingle(AstNodePtr root)
 {
 	if (current == tokens.size() - 1)
 		return false;
 
-	auto tok = Peek();
+	auto tok = Current();
 	switch (tok.type)
 	{
+	case PiTokens::CloseSquareBracket:
+	case PiTokens::CloseBrace:
+		Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
+		return false;
+
 	case PiTokens::OpenSquareBracket:
 		Consume();
-		return ParseArray();
+		return ParseArray(root);
 
 	case PiTokens::OpenBrace:
 		Consume();
-		return ParseContinuation();
+		return ParseContinuation(root);
 
 	default:
-		Push(NewNode(Consume()));
+		root->Add(NewNode(Consume()));
 		return true;
 	}
 }
@@ -55,27 +60,25 @@ bool PiParser::NextSingle()
 //	return false;
 //}
 //
-bool PiParser::ParseArray()
+bool PiParser::ParseArray(AstNodePtr root)
 {
 	auto node = NewNode(PiAstNodes::Array);
-	while (!PeekIs(PiTokens::CloseSquareBracket))
+	while (Current().type != PiTokens::CloseSquareBracket)
 	{
-		if (NextSingle())
-			node->Add(Pop());
-		else
+		if (!NextSingle(node))
 		{
-			Fail("Malformed");
+			Fail("Malformed Array");
 			return false;
 		}
 	}
-	
 	Consume();
-	Push(node);
 
+	root->Add(node);
+	
 	return true;
 }
 
-bool PiParser::ParseContinuation()
+bool PiParser::ParseContinuation(AstNodePtr root)
 {
 	return false;
 }
