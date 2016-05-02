@@ -1,9 +1,7 @@
 #pragma once
 
-#include "KAI/Translator/Config.h"
-#include "KAI/Translator/TokenBase.h"
+#include "KAI/Translator/Common.h"
 #include "KAI/Translator/AstNodeBase.h"
-#include "KAI/Translator/Pi/PiToken.h"
 
 KAI_BEGIN
 
@@ -13,10 +11,14 @@ struct PiAstNodeEnumType
 	enum Enum
 	{
 		None,
-		Anything,
+		List,
+		Map,
+		Set,
+		Array,
+		Continuation,
+		TokenType,
 	};
 
-	static const char *ToString(Enum val);
 
 	struct Node : AstNodeBase<PiToken, PiAstNodeEnumType>
 	{
@@ -27,15 +29,13 @@ struct PiAstNodeEnumType
 		Node(Enum e) : Parent(e) { }
 		Node(Enum e, Token &tok) : Parent(e, tok) { }
 		Node(Parent::Token tok) : Parent(tok) { }
-
-		friend std::ostream &operator<<(std::ostream &out, Node const &node)
-		{
-			return out << ToString(node.type) << ": " << node.token;
-		}
 	};
 };
 
+typedef PiAstNodeEnumType PiAstNodes;
 typedef PiAstNodeEnumType::Node PiAstNode;
+
+const char *ToString(PiAstNodes::Enum val);
 
 KAI_END
 

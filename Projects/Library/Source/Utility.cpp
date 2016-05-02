@@ -11,6 +11,16 @@
 
 KAI_BEGIN
 
+const char *ToLower(const char *text)
+{
+	char *out = (char *)(malloc(strlen(text) + 1));
+	size_t n;
+	for (n = 0; n < strlen(text); ++n)
+		out[n] = (char)tolower(text[n]);
+	out[n] = 0;
+	return out;
+}
+
 bool MapCompare::operator()(const Object &A, const Object &B) const
 {
 	return A.GetClass()->Less(A, B);

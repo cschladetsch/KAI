@@ -1,9 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/TokenBase.h"
-#include "KAI/Translator/AstNodeBase.h"
-#include "KAI/Translator/ParserCommon.h"
-#include "KAI/Translator/Structure.h"
+#include "KAI/Translator/Common.h"
 #include "KAI/Translator/Rho/RhoAstNode.h"
 
 KAI_BEGIN

@@ -31,32 +31,17 @@
     <Filter Include="Source Files\Translator\Pi">
       <UniqueIdentifier>{dfb68a6f-5fc5-44a3-beee-c9e9241d5b82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Translator\Common">
+      <UniqueIdentifier>{54118656-15f1-474f-9e94-77cdb70b74df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{7f87c6c3-bbad-4419-97ae-ee1d1cf6482b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{f54f4a49-f7bd-4bb6-9051-44db2954e39f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Bin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Compiler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Continuation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Executor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SignedContinuation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Precompiled.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
@@ -105,41 +90,32 @@
     <ClCompile Include="Source\Translator\Pi\PiAstNode.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Bin.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Compiler.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Continuation.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Executor.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Precompiled.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SignedContinuation.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tree.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Compiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Continuation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Executor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\ExecutorPCH.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
@@ -151,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h">
       <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h">
-      <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h">
       <Filter>Header Files\Translator\Rho</Filter>
@@ -167,38 +140,77 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoTranslator.h">
       <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Common.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\Rho.h">
       <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLexer.h">
       <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\LexerCommon.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h">
-      <Filter>Header Files\Translator</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h">
       <Filter>Header Files\Translator\Rho</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Structure.h">
-      <Filter>Header Files\Translator</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\Pi.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiAstNode.h">
       <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h">
+      <Filter>Header Files\Translator\Pi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Base.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Common.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Config.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerBase.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\LexerCommon.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Process.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Slice.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Structure.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Compiler.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Console.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Continuation.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Executor.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\ExecutorPCH.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Tree.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

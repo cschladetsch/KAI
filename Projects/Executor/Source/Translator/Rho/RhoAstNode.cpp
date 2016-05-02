@@ -1,31 +1,36 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Rho/RhoToken.h"
 #include "KAI/Translator/Rho/RhoAstNode.h"
 
 KAI_BEGIN
 
-const char *RhoAstNodeEnumType::ToString(Enum ty)
+const char *ToString(RhoAstNodes::Enum ty)
 {
 	switch (ty)
 	{
-	case None: return "None";
-	case Program: return "Program";
-	case Ident: return "Ident";
-	case GetMember: return "GetMember";
-	case Assignment: return "Assignment";
-	case Call: return "Call";
-	case Increment: return "Increment";
-	case Decrement: return "Decrement";
-	case TokenType: return "->";
-	case Positive: return "Positive";
-	case Negative: return "Negative";
-	case Function: return "Function";
-	case Block: return "Block";
-	case Conditional: return "If";
-	case ArgList: return "ArgList";
-	case IndexOp: return "Index";
-	case List: return "List";
-	case ForEach: return "ForEach";
-	case For: return "For";
+		#define CASE(N) case RhoAstNodes::N : return #N;
+		#define CASE_LOWER(N) case RhoAstNodes::N : return ToLower(#N);
+		#define CASE_REPLACE(N, M) case RhoAstNodes::N : return M;
+		CASE(None)
+		CASE(Program)
+		CASE(Ident)
+		CASE(GetMember)
+		CASE(Function)
+		CASE(Block)
+		CASE(Conditional)
+		CASE(Assignment)
+		CASE(Call)
+		CASE(Increment)
+		CASE(Decrement)
+		CASE(TokenType)
+		CASE(Positive)
+		CASE(Negative)
+		CASE(ArgList)
+		CASE(IndexOp)
+		CASE(ForEach)
+		CASE(For)
+		CASE(List)
+		CASE(Map)
 	}
 	return "???";
 }
