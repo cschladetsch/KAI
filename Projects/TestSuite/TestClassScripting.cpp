@@ -1,5 +1,4 @@
 #include "TestBase.h"
-#include "KAI/KAIClassBuilder.h"
 #include "KAI/Console.h"
 
 using namespace kai;

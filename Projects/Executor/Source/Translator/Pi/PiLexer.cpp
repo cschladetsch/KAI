@@ -1,7 +1,5 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Pi/Base.h"
-#include "KAI/Translator/Pi/Token.h"
-#include "KAI/Translator/Pi/Lexer.h"
+#include "KAI/Translator/Pi/PiLexer.h"
 
 #include <strstream>
 #include <stdarg.h>
@@ -9,76 +7,22 @@
 
 using namespace std;
 
-KAI_PI_BEGIN
+KAI_BEGIN
 
-template <enum T>
-Lexer<T>::Lexer(const char *in)
-	: input(in)
+void PiLexer::AddKeyWords()
 {
-	if (input.empty())
-		return;
-
-	CreateLines();
-	AddKeywords();
-	Run();
+	keyWords["if"] = Enum::If;
+	keyWords["for"] = Enum::For;
+	keyWords["true"] = Enum::True;
+	keyWords["false"] = Enum::False;
+	keyWords["self"] = Enum::Self;
+	keyWords["while"] = Enum::While;
+	keyWords["assert"] = Enum::Assert;
 }
 
-template <enum T>
-void Lexer<T>::CreateLines()
+bool PiLexer::NextToken()
 {
-	if (input.back() != '\n')
-		input.push_back('\n');
-
-	size_t lineStart = 0;
-	for (size_t n = 0; n < input.size(); ++n)
-	{
-		if (input[n] == '\n')
-		{
-			lines.push_back(input.substr(lineStart, n - lineStart + 1));
-			lineStart = n + 1;
-		}
-	}
-}
-
-template <enum T>
-void Lexer::AddKeywords()
-{
-	keyWords["if"] = Token::If;
-	keyWords["else"] = Token::Else;
-	keyWords["for"] = Token::For;
-	keyWords["true"] = Token::True;
-	keyWords["false"] = Token::False;
-	keyWords["return"] = Token::Return;
-	keyWords["self"] = Token::Self;
-	keyWords["fun"] = Token::Fun;
-	keyWords["yield"] = Token::Yield;
-	keyWords["in"] = Token::In;
-	keyWords["while"] = Token::While;
-	keyWords["assert"] = Token::Assert;
-}
-
-template <enum T>
-bool Lexer<T>::Run()
-{
-	offset = 0;
-	lineNumber = 0;
-
-	while (!Failed && NextToken())
-		;
-
-	return Add(Token::None, 0);
-}
-
-int IsSpaceChar(int ch)
-{
-	return ch == ' ';
-}
-
-
-template <enum T>
-bool Lexer<T>::NextToken()
-{
-	auto current = Current();
+	char current = Current();
 	if (current == 0)
 		return false;
 
@@ -86,38 +30,37 @@ bool Lexer<T>::NextToken()
 		return LexAlpha();
 
 	if (isdigit(current))
-		return Add(Token::Int, Gather(isdigit));
+		return Add(Enum::Int, Gather(isdigit));
 
 	switch (current)
 	{
-	case ';': return Add(Token::Semi);
-	case '{': return Add(Token::OpenBrace);
-	case '}': return Add(Token::CloseBrace);
-	case '(': return Add(Token::OpenParan);
-	case ')': return Add(Token::CloseParan);
-	case ':': return Add(Token::Colon);
-	case ' ': return Add(Token::Whitespace, Gather(IsSpaceChar));
-	case '@': return Add(Token::Lookup);
-	case ',': return Add(Token::Comma);
-	case '*': return Add(Token::Mul);
-	case '[': return Add(Token::OpenSquareBracket);
-	case ']': return Add(Token::CloseSquareBracket);
-	case '=': return AddIfNext('=', Token::Equiv, Token::Assign);
-	case '!': return AddIfNext('=', Token::NotEquiv, Token::Not);
-	case '&': return AddIfNext('&', Token::And, Token::BitAnd);
-	case '|': return AddIfNext('|', Token::Or, Token::BitOr);
-	case '<': return AddIfNext('=', Token::LessEquiv, Token::Less);
-	case '>': return AddIfNext('=', Token::GreaterEquiv, Token::Greater);
+	case '{': return Add(Enum::OpenBrace);
+	case '}': return Add(Enum::CloseBrace);
+	case '(': return Add(Enum::OpenParan);
+	case ')': return Add(Enum::CloseParan);
+	case ':': return Add(Enum::Colon);
+	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
+	case '@': return Add(Enum::Lookup);
+	case ',': return Add(Enum::Comma);
+	case '*': return Add(Enum::Mul);
+	case '[': return Add(Enum::OpenSquareBracket);
+	case ']': return Add(Enum::CloseSquareBracket);
+	case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
+	case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
+	case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
+	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
+	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
+	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
 	case '"': return LexString();
 	case '\'': return LexAlpha();
-	case '\t': return Add(Token::Tab);
-	case '\n': return Add(Token::NewLine);
+	case '\t': return Add(Enum::Tab);
+	case '\n': return Add(Enum::NewLine);
 	case '-':
 		if (Peek() == '-')
-			return AddTwoCharOp(Token::Decrement);
+			return AddTwoCharOp(Enum::Decrement);
 		if (Peek() == '=')
-			return AddTwoCharOp(Token::MinusAssign);
-		return Add(Token::Minus);
+			return AddTwoCharOp(Enum::MinusAssign);
+		return Add(Enum::Minus);
 
 	case '.':
 		if (Peek() == '.')
@@ -126,18 +69,18 @@ bool Lexer<T>::NextToken()
 			if (Peek() == '.')
 			{
 				Next();
-				return Add(Token::Replace, 3);
+				return Add(Enum::Replace, 3);
 			}
 			return Fail("Two dots doesn't work");
 		}
-		return Add(Token::Dot);
+		return Add(Enum::Dot);
 
 	case '+':
 		if (Peek() == '+')
-			return AddTwoCharOp(Token::Increment);
+			return AddTwoCharOp(Enum::Increment);
 		if (Peek() == '=')
-			return AddTwoCharOp(Token::PlusAssign);
-		return Add(Token::Plus);
+			return AddTwoCharOp(Enum::PlusAssign);
+		return Add(Enum::Plus);
 
 	case '/':
 		if (Peek() == '/')
@@ -146,9 +89,9 @@ bool Lexer<T>::NextToken()
 			int start = offset;
 			while (Next() != '\n')
 				;
-			return Add(Token::Comment, offset - start);
+			return Add(Enum::Comment, offset - start);
 		}
-		return Add(Token::Divide);
+		return Add(Enum::Divide);
 	}
 
 	LexError("Unrecognised %c");
@@ -156,197 +99,9 @@ bool Lexer<T>::NextToken()
 	return false;
 }
 
-template <enum T>
-Slice Lexer<T>::Gather(int (*filt)(int)) 
+void PiLexer::Terminate()
 {
-	int start = offset;
-	while (filt(Next()))
-		;
-
-	return Slice(start, offset);
-}
-
-template <enum T>
-bool Lexer::Add(Token::Type type, Slice slice)
-{
-	tokens.push_back(Token(type, *this, lineNumber, slice));
-	return true;
-}
-
-template <enum T>
-bool Lexer::Add(Token::Type type, int len)
-{
-	Add(type, Slice(offset, offset + len));
-	while (len--) 
-		Next();
-
-	return true;
-}
-
-template <enum T>
-bool Lexer::LexAlpha()
-{
-	Token tok(Token::Ident, *this, lineNumber, Gather(isalnum));
-
-	auto kw = keyWords.find(tok.Text());
-	if (kw != keyWords.end())
-		tok.type = kw->second;
-
-	tokens.push_back(tok);
-
-	return true;
-}
-
-template <enum T>
-bool Process::Fail(const std::string &err)
-{
-	Failed = true;
-	Error = err;
-
-	return false;
-}
-
-bool Process::Fail(const char *fmt, ...)
-{
-	va_list ap;
-	va_start(ap, fmt);
-	char buffer[1000];
-	vsprintf_s(buffer, fmt, ap);
-
-	return Fail(std::string(buffer));
-}
-
-char Lexer::Current() const
-{
-	if (lineNumber == (int)lines.size())
-		return 0;
-
-	return Line()[offset];
-}
-
-const std::string &Lexer::Line() const
-{
-	return lines[lineNumber];
-}
-
-char Lexer::Next()
-{
-	if (EndOfLine())
-	{
-		offset = 0;
-		++lineNumber;
-	}
-	else
-		++offset;
-
-	if (lineNumber == (int)lines.size())
-		return 0;
-
-	return Line()[offset];
-}
-
-char Lexer::Peek() const
-{
-	if (EndOfLine())
-		return 0;
-
-	return Line()[offset + 1];
-}
-
-bool Lexer::EndOfLine() const
-{
-	return offset == (int)Line().size() - 1;
-}
-
-template <enum T>
-bool Lexer<T>::AddIfNext(char ch, Token::Type thenType, Token::Type elseType)
-{
-	if (Peek() == ch)
-	{
-		Next();
-		return Add(thenType, 2);
-	}
-
-	return Add(elseType, 1);
-}
-
-template <enum T>
-bool Lexer<T>::AddTwoCharOp(Token::Type ty)
-{
-	Add(ty, 2);
-	Next();
-
-	return true;
-}
-
-template <class T>
-void Lexer<T>::LexError(const char *text)
-{
-	Fail(CreateErrorMessage(Token(Token::None, *this, lineNumber, Slice(offset, offset)), text, Current()));
-}
-
-template <class T>
-std::string Lexer<T>::CreateErrorMessage(Token tok, const char *fmt, ...)
-{
-	char buff0[2000];
-	va_list ap;
-	va_start(ap, fmt);
-	vsprintf_s(buff0, fmt, ap);
-
-	const char *fmt1 = "%s(%d):[%d]: %s\n";
-	char buff[2000];
-	sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
-	int beforeContext = 1;
-	int afterContext = 0;
-
-	const Lexer &lex = *tok.lexer;
-	int start = std::max(0, tok.lineNumber - beforeContext);
-	int end = std::min((int)lex.lines.size() - 1, tok.lineNumber + afterContext);
-
-	strstream err;
-	err << buff << endl;
-	for (int n = start; n <= end; ++n)
-	{
-		for (auto ch : lex.lines[n])
-		{
-			if (ch == '\t')
-				err << "    ";
-			else
-				err << ch;
-		}
-
-		if (n == tok.lineNumber)
-		{
-			for (int ch = 0; ch < (int)lex.lines[n].size(); ++ch)
-			{
-				if (ch == tok.slice.Start)
-				{
-					err << '^';
-					break;
-				}
-
-				auto c = lex.lines[tok.lineNumber][ch];
-				if (c == '\t')
-					err << "    ";
-				else
-					err << ' ';
-			}
-
-			err << endl;
-		}
-	}
-
-	err << ends;
-
-	return err.str();
-}
-
-void Lexer::Print() const
-{
-	for (auto tok : tokens)
-		std::cout << tok << " ";
-
-	std::cout << std::endl;
+	Add(Enum::None, 0);
 }
 
 KAI_END

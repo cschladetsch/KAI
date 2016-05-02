@@ -5,14 +5,7 @@
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 
-#include "KAI/Translator/Process.h"
-#include "KAI/Translator/LexerCommon.h"
-#include "KAI/Translator/ParserCommon.h"
-
-#include "KAI/Translator/Rho/RhoToken.h"
-#include "KAI/Translator/Rho/RhoAstNode.h"
-#include "KAI/Translator/Rho/RhoParser.h"
-#include "KAI/Translator/Rho/RhoLang.h"
+#include "KAI/Translator/Rho/Rho.h"
 
 KAI_BEGIN
 

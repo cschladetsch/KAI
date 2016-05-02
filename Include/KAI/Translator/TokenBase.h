@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <sstream>
 
 KAI_BEGIN
 
@@ -26,12 +26,27 @@ struct TokenBase
 		return lexer->GetInput()[slice.Start + n];
 	}
 
+	std::string ToString() const
+	{
+		std::stringstream out;
+		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]" << std::ends;
+		return std::move(out.str());
+	}
+
 	std::string Text() const
 	{
 		if (lexer == 0)
 			return "";
 
+		if (slice.Start == slice.End)
+			return "";
+
 		return std::move(lexer->GetLine(lineNumber).substr(slice.Start, slice.Length()));
+	}
+
+	friend std::ostream &operator<<(std::ostream &out, Self const &node)
+	{
+		return out << node.ToString();
 	}
 };
 

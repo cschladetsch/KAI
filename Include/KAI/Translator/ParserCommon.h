@@ -22,7 +22,14 @@ struct ParserCommon : Process
 	bool Passed() const { return passed;  }
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
-	void Print() { Print(*root, 0); }
+	
+	std::string Print()
+	{
+		std::stringstream str;
+		Print(str, *root, 0);
+		str << std::ends;
+		return std::move(str.str());
+	}
 
 	ParserCommon(std::shared_ptr<Lexer> lex, Structure st = Structure::Statement)
 	{
@@ -38,7 +45,7 @@ struct ParserCommon : Process
 			if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
 				tokens.push_back(tok);
 
-		root = NewNode(AstEnum::Program);
+		root = NewNode(AstEnum::None);
 	}
 
 	virtual void Run(Structure st)
@@ -149,12 +156,12 @@ protected:
 		return std::make_shared<AstNode>(Last());
 	}
 
-	void Print(AstNode const &node, int level)
+	void Print(std::stringstream &out,  AstNode const &node, int level)
 	{
-		 std::cout << Lead(level) << node.ToString(node.type) << std::endl;
+		out << Lead(level) << node << std::endl;
 
 		for (auto const &ch : node.Children)
-			Print(*ch, level + 1);
+			Print(out, *ch, level + 1);
 	}
 
 	std::string ParserCommon::Lead(int level)

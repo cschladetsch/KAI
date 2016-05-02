@@ -3,61 +3,77 @@
 
 KAI_BEGIN
 
-const char *RhoTokenEnumType::ToString(RhoToken::Enum t)
+static const char *ToString(RhoTokenEnumType::Enum val)
 {
-	switch (t)
+	switch (val)
 	{
-	case None: return "None";
-	case Whitespace: return "";
-	case Semi: return "Semi";
-	case Int: return "Int";
-	case Float: return "Float";
-	case String: return "String";
-	case Ident: return "Ident";
-	case Dot: return "Dot";
-	case If: return "If";
-	case Else: return "Else";
-	case For: return "For";
-	case While: return "While";
-	case OpenParan: return "OpenParan";
-	case CloseParan: return "CloseParan";
-	case Plus:  return "Plus";
-	case Minus:  return "Minus";
-	case Mul:  return "Mul";
-	case Divide: return "Divide";
-	case Assign: return "Assign";
-	case Less:  return "Less";
-	case Equiv:  return "Equiv";
-	case Greater:  return "Greater";
-	case LessEquiv:  return "LessEquiv";
-	case GreaterEquiv: return "GreaterEqiv";
-	case Return: return "Return";
-	case OpenBrace: return "OpenBrace";
-	case CloseBrace: return "CloseBrace";
-	case Not: return "Not";
-	case NotEquiv: return "NotEquiv";
-	case And: return "And";
-	case Or: return "Or";
-	case Comma: return "Comma";
-	case OpenSquareBracket: return "OpenSquareBracket";
-	case CloseSquareBracket: return "CloseSquareBracket";
-	case Increment: return "++";
-	case Decrement: return "--";
-	case Self: return "Self";
-	case Lookup: return "Lookup";
-	case Fun: return "Fun";
-	case Tab: return "Tab";
-	case NewLine: return "NewLine";
-	case Comment: return "Comment";
-	case PlusAssign: return "PlusAssign";
-	case MinusAssign: return "MinusAssign";
-	case MulAssign: return "MulAssign";
-	case DivAssign: return "DivAssign";
-	case Yield: return "Yield";
+		#define CASE(N) case RhoTokens::N : return #N;
+		#define CASE_LOWER(N) case RhoTokens::N : return ToLower(#N);
+		#define CASE_REPLACE(N, M) case RhoTokens::N : return M;
+
+		CASE(None)
+		CASE(Whitespace)
+		CASE(Semi)
+		CASE(Int)
+		CASE(Float )
+		CASE(String )
+		CASE(True )
+		CASE(False)
+		CASE(Return)
+		CASE(Ident)
+		CASE(Dot)
+		CASE(Comma)
+		CASE(If )
+		CASE(Else)
+		CASE(For )
+		CASE(While)
+		CASE(OpenBrace )
+		CASE(CloseBrace)
+		CASE(OpenParan )
+		CASE(CloseParan)
+		CASE(Plus )
+		CASE(Minus)
+		CASE(Mul)
+		CASE(Divide)
+		CASE(Assign)
+		CASE(Less )
+		CASE(Equiv)
+		CASE(NotEquiv)
+		CASE(Greater)
+		CASE(LessEquiv)
+		CASE(GreaterEquiv)
+		CASE(Not)
+		CASE(And)
+		CASE(Or)
+		CASE(Xor)
+		CASE(OpenSquareBracket)
+		CASE(CloseSquareBracket)
+		CASE(Increment)
+		CASE(Decrement)
+		CASE(BitAnd)
+		CASE(BitOr)
+		CASE(BitXor)
+		CASE(Self)
+		CASE(Lookup)
+		CASE(Tab)
+		CASE(NewLine)
+		CASE(Fun)
+		CASE(Comment)
+		CASE(Yield)
+		CASE(Suspend)
+		CASE(Replace)
+		CASE(Resume)
+		CASE(PlusAssign)
+		CASE(MinusAssign)
+		CASE(MulAssign)
+		CASE(DivAssign)
+		CASE(In)
+		CASE(Colon)
+		CASE(Assert)
 	}
 
-	static char b[100];
-	_itoa_s(t, b, 100, 10);
+	static char b[100] = "UnnamedRhoToken #";
+	_itoa_s(val, b + strlen(b), 100 - strlen(b), 10);
 	return b;
 }
 
@@ -66,7 +82,7 @@ std::ostream &operator<<(std::ostream &out, RhoToken const &node)
 	if (node.type == RhoTokenEnumType::None)
 		return out;
 
-	out << RhoTokenEnumType::ToString(node.type);
+	out << ToString(node.type);
 	switch (node.type)
 	{
 	case RhoTokenEnumType::Int:

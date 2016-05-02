@@ -12,23 +12,15 @@ struct RhoTokenEnumType
 		None,
 		Whitespace,
 		Semi,
-		Int,
-		Float,
-		String,
-		True,
-		False,
+		Int, Float, String, True, False,
 		Return,
 		Ident,
 		Dot,
 		Comma,
-		If,
-		Else,
-		For,
-		While,
-		OpenBrace,
-		CloseBrace,
-		OpenParan,
-		CloseParan,
+		If, Else,
+		For, While,
+		OpenBrace, CloseBrace,
+		OpenParan, CloseParan,
 		Plus, Minus, Mul, Divide,
 		Assign,
 		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEquiv,
@@ -48,7 +40,6 @@ struct RhoTokenEnumType
 		Assert,
 	};
 
-	static const char *ToString(Enum val);
 
 	struct Type : TokenBase<RhoTokenEnumType>
 	{
@@ -56,11 +47,12 @@ struct RhoTokenEnumType
 
 		Type(Enum val, const LexerBase &lexer, int ln, Slice slice) 
 			: TokenBase<RhoTokenEnumType>(val, lexer, ln, slice) { }
-
-		friend std::ostream &operator<<(std::ostream &out, Type const &node);
 	};
 };
 
 typedef RhoTokenEnumType::Type RhoToken;
+typedef RhoTokenEnumType RhoTokens;
+
+const char *ToString(RhoTokenEnumType::Enum val);
 
 KAI_END

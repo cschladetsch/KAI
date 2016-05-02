@@ -25,7 +25,6 @@
 #include "KAI/BinaryPacket.h"
 #include "KAI/BinaryStream.h"
 
-
 #include "KAI/BuiltinTypes/Dictionary.h"
 #include "KAI/Type/Deref.h"
 #include "KAI/Constness.h"
@@ -54,18 +53,9 @@
 #include "KAI/MethodBase.h"
 #include "KAI/PropertyBase.h"
 #include "KAI/ClassBase.h"
-
 #include "KAI/BuiltinTypes/Vector4.h"
-
-
 #include "KAI/GetStorageBase.h"
-
 
 #include "KAI/KAIRegistry.h"
 #include "KAI/KAIClassBuilder.h"
-
-//#include "KAI/ClassBase.h"
-//#include "KAI/Class.h"
-//#include "KAI/Pathname.h"
-//#include "KAI/ClassBuilder.h"
 

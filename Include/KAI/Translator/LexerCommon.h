@@ -188,7 +188,7 @@ public:
 		std::stringstream str;
 		for (auto tok : tokens)
 			str << tok << " ";
-
+		str << std::ends;
 		return str.str();
 	}
 };
