@@ -1,10 +1,8 @@
 #pragma once
 
-#include "KAI/Translator/TokenBase.h"
-#include "KAI/Translator/AstNodeBase.h"
-#include "KAI/Translator/ParserCommon.h"
-#include "KAI/Translator/Structure.h"
+#include "KAI/Translator/Common.h"
 #include "KAI/Translator/Pi/PiAstNode.h"
+#include "KAI/Translator/Pi/PiLexer.h"
 
 KAI_BEGIN
 
@@ -25,3 +23,6 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 
 	bool Program();
 };
+
+KAI_END
+

@@ -10,10 +10,10 @@ template <class Token, class AstEnumType>
 struct AstNodeBase
 {
 	typedef Token Token;
-	typedef AstNodeBase<Token, AstEnumType> Self;
-	typedef typename AstEnumType::Enum Enum;
 	typedef AstNodeBase<Token, AstEnumType> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
+	typedef typename AstEnumType::Enum Enum;
+	typedef AstNodeBase<Token, AstEnumType> Self;
 	typedef std::vector<std::shared_ptr<Self> > ChildrenType;
 
 	Enum type;
@@ -35,17 +35,22 @@ struct AstNodeBase
 		Children.push_back(node);
 	}
 
+	std::string ToString() const
+	{
+		std::stringstream out;
+		out << "[AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << "]" << std::ends;
+		return std::move(out.str());
+	}
+
 	std::string Text() const
 	{
 		return std::move(token.Text());
 	}
 
-	static const char *ToString(Enum ty)
+	friend std::ostream &operator<<(std::ostream &out, Self const &node)
 	{
-		return AstEnumType::ToString(ty);
+		return out << node.ToString();
 	}
 };
 
 KAI_END
-
-

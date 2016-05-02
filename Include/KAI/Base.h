@@ -11,6 +11,8 @@
 
 KAI_BEGIN
 
+const char *ToLower(const char *str);
+
 template <class T>
 void SetAbsoluteValue(T &value)
 {
