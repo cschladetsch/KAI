@@ -31,6 +31,18 @@ Object Function_3(Object object)
 	return object["num"];
 }
 
+TEST(TestFunctionScripting, Test0)
+{
+	Memory::StandardAllocator alloc;
+	Console console(&alloc);
+
+	// a registry is a factory for classes and instances
+	Registry &reg = console.GetRegistry();
+	Object root = console.GetRoot();
+
+	console.Execute("a+1;");
+}
+
 TEST(TestFunctionScripting, Test)
 {
 	// we can give the KAI runtime a custom allocator to use. we will just use
