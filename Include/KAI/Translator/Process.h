@@ -1,5 +1,3 @@
-#include <string>
-
 #pragma once
 
 KAI_BEGIN

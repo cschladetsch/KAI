@@ -29,16 +29,8 @@ int main(int argc, char **argv)
 	
 	Console console(args, &alloc);
 
-#if defined(PROFILE)
-	for (int n = 0; n < 10; ++n)
-#endif
-		RunTests(console);
-
 #if !defined(PROFILE)
 	console.Run();
 #endif
 }
 
-void RunTests(Console &console)
-{
-}

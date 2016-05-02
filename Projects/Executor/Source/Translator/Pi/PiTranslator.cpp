@@ -1,11 +1,14 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/Pi/Pi.h"
 
 #include <boost/lexical_cast.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
 KAI_BEGIN
 
-Translator::Translator(std::shared_ptr<Parser> p, Registry &r) 
+#if 0
+
+PiTranslator::Translator(std::shared_ptr<PiParser> p, Registry &r) 
 	: reg(r)
 {
 	if (p->Failed)
@@ -320,6 +323,7 @@ void Translator::TranslateWhile(Parser::NodePtr node)
 {
 	AppendNewOp(Operation::None);
 }
+#endif
 
 KAI_END
 

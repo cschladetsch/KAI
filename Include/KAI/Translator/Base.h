@@ -4,9 +4,16 @@
 
 KAI_BEGIN
 
-struct Lexer;
-struct Parser;
-struct Translator;
-struct RhoLang;
+template <class AstEnumStruct>
+struct TokenBase;
+
+template <class Token>
+struct LexerCommon;
+
+template <class AstEnum>
+struct NodeBase;
+
+template <class Lexer, class AstEnumStruct>
+struct ParserCommon;
 
 KAI_END
