@@ -140,7 +140,6 @@
     <ClCompile Include="Source\SignedContinuation.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
-    <ClCompile Include="Source\Source.cpp" />
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
     <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

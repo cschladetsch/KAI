@@ -215,6 +215,8 @@ String Console::Execute(Pointer<Continuation> cont)
 Pointer<Continuation> Console::Execute(String const &text)
 {
 	auto cont = compiler->Compile(*registry, text.c_str());
+	if (!cont)
+		return Object();
 	Execute(cont);
 	return cont;
 }

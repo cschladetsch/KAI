@@ -84,9 +84,6 @@
     <ClCompile Include="Source\Translator\Rho\RhoAstNode.cpp">
       <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Source.cpp">
-      <Filter>Source Files\Translator</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiAstNode.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>

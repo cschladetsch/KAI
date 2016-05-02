@@ -10,6 +10,11 @@
 
 KAI_BEGIN
 
+void RhoParser::Run(Structure st)
+{
+	Process(st);
+}
+
 void RhoParser::Process(Structure st)
 {
 	switch (st)

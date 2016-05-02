@@ -3,7 +3,7 @@
 
 KAI_BEGIN
 
-static const char *ToString(RhoTokenEnumType::Enum val)
+const char *ToString(RhoTokenEnumType::Enum val)
 {
 	switch (val)
 	{
