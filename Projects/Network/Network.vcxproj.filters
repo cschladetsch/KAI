@@ -62,5 +62,14 @@
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\AgentCommon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\NetHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Representative.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
