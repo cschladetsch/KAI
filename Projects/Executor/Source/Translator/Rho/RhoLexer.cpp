@@ -44,7 +44,7 @@ bool RhoLexer::NextToken()
 	case '}': return Add(Enum::CloseBrace);
 	case '(': return Add(Enum::OpenParan);
 	case ')': return Add(Enum::CloseParan);
-	case ':': return Add(Enum::Colon);
+	//case ':': return Add(Enum::Colon);
 	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Enum::Lookup);
 	case ',': return Add(Enum::Comma);

@@ -68,7 +68,6 @@ const char *ToString(RhoTokenEnumType::Enum val)
 		CASE(MulAssign)
 		CASE(DivAssign)
 		CASE(In)
-		CASE(Colon)
 		CASE(Assert)
 	}
 
