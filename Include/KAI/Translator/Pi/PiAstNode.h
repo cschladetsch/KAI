@@ -11,6 +11,7 @@ struct PiAstNodeEnumType
 	enum Enum
 	{
 		None,
+		Program,
 		Operation,
 		List,
 		Map,
