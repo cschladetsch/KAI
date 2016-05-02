@@ -1,29 +1,7 @@
 #include "KAI/ExecutorPCH.h"
 
-#ifdef KAI_UNIT_TESTS
-#	include "KAI/Tests/TestCompiler.h"
-#	include "KAI/Tests/TestObject.h"
-#	include "KAI/Tests/TestMethod.h"
-#	include "KAI/Tests/TestFunction.h"
-#	include "KAI/Tests/TestProperties.h"
-#	include "KAI/Tests/TestRegistry.h"
-#	include "KAI/Tests/TestTriColor.h"
-#	include "KAI/Tests/TestMap.h"
-#	include "KAI/Tests/TestEvents.h"
-#	include "KAI/Tests/TestTree.h"
-#	include "KAI/Tests/TestPathname.h"
-#	include "KAI/Tests/TestBinaryStream.h"
-#	include "KAI/Tests/TestStringStream.h"
-#	include "KAI/Tests/TestDotGraph.h"
-#	include "KAI/Tests/TestObjectIndexing.h"
-#	include "KAI/Tests/TestExample.h"
-#	include "KAI/Tests/TestExecutor.h"
-#	include "KAI/Tests/TestTest.h"
-#endif
-
 #include <iostream>
 #include <fstream>
-
 
 KAI_BEGIN
 
@@ -289,11 +267,6 @@ namespace Bin
 		ADD_FUN(ScaleVector3, "Multiply a vector by a float");
 		ADD_FUN(AddVector3, "Adds two Vector3s together.")
 		ADD_FUN(Help, "LOL");
-		
-#ifdef KAI_UNIT_TESTS
-		AddFunction(Q, RunAllTests, "tests", "run all tests");
-		AddFunction(Q, RunOne, "test", "run current test");
-#endif
 	}
 }
 

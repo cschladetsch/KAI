@@ -37,7 +37,7 @@ struct ParserCommon : Process
 			if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
 				tokens.push_back(tok);
 
-		root = NewNode(AstEnum::None);
+		root = NewNode(AstEnum::Program);
 	}
 
 	virtual void Process(Structure st) = 0;
