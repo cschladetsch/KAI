@@ -106,7 +106,7 @@ struct PiTokenEnumType
 typedef PiTokenEnumType PiTokens;
 typedef PiTokenEnumType::Type PiToken;
 
-static const char *ToString(PiTokens::Enum t);
+const char *ToString(PiTokens::Enum t);
 
 KAI_END
 

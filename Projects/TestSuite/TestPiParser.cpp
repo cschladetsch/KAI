@@ -11,12 +11,12 @@ namespace
 
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
-		KAI_TRACE_1(lex->Print());
+		//KAI_TRACE_1(lex->Print());
 
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_FALSE(parse->Failed);
 
@@ -32,14 +32,14 @@ namespace
 		auto input = "[[[]]]";
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
-		KAI_TRACE_1(lex->Print());
+		//KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_FALSE(parse->Failed);
 
@@ -61,14 +61,14 @@ namespace
 
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
-		KAI_TRACE_1(lex->Print());
+		//KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_FALSE(parse->Failed);
 	}
@@ -78,14 +78,14 @@ namespace
 		auto input = "[";
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
-		KAI_TRACE_1(lex->Print());
+		//KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
@@ -95,14 +95,14 @@ namespace
 		auto input = "[[]";
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
-		KAI_TRACE_1(lex->Print());
+		//KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
@@ -119,7 +119,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
 		parse->Run(Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		//KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
