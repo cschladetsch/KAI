@@ -11,14 +11,15 @@ struct PiAstNodeEnumType
 	enum Enum
 	{
 		None,
+		Operation,
 		List,
 		Map,
 		Set,
 		Array,
 		Continuation,
 		TokenType,
+		Object = TokenType,
 	};
-
 
 	struct Node : AstNodeBase<PiToken, PiAstNodeEnumType>
 	{
