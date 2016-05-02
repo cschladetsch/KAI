@@ -31,7 +31,7 @@ void Compiler::AddOperation(int N, const String &S)
 	op_to_string[T] = S;
 }
 
-Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser::Structure st) const
+Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Structure st) const
 {
 	if (text.empty())
 		return Object();
@@ -47,7 +47,7 @@ Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Parser:
 	return p->trans->stack.back();
 }
 
-Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName, Parser::Structure st) const
+Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName, Structure st) const
 {
 	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
 	p->TranslateFile(fileName.c_str(), st);

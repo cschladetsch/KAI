@@ -1,6 +1,8 @@
 #include "KAI/ExecutorPCH.h"
 
 #include <fstream>
+#include <iostream>
+
 
 using namespace std;
 
@@ -14,7 +16,7 @@ RhoLang::RhoLang(Registry &r)
 void RhoLang::Print()
 {
 	cout << "Input--" << endl;
-	cout << lex->input << endl;
+	cout << lex->GetInput() << endl;
 
 	cout << "Lexer--" << endl;
 	lex->Print();
@@ -26,8 +28,7 @@ void RhoLang::Print()
 	cout << trans->Result() << endl;
 }
 
-
-bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
+bool RhoLang::TranslateFile(const char *name, Structure st)
 {
 	ifstream file(name, ios::binary);
 	if (!file)
@@ -43,13 +44,22 @@ bool RhoLang::TranslateFile(const char *name, Parser::Structure st)
 	return Translate(text, st);
 }
 
-bool RhoLang::Translate(const char *text, Parser::Structure st)
+bool RhoLang::Translate(const char *text, Structure st)
 {
 	if (text == 0 || text[0] == 0)
 		return true;
 
 	lex = std::make_shared<Lexer>(text);
+	lex->Process();
+	if (lex->GetTokens().empty())
+		return true;
+
+	std::cout << lex->Print() << std::endl;
+
 	parse = std::make_shared<Parser>(lex, st);
+
+	parse->Print();
+
 	trans = std::make_shared<Translator>(parse, reg);
 
 	if (lex->Failed)
