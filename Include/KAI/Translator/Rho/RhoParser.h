@@ -20,6 +20,8 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 	RhoParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
 	RhoParser(std::shared_ptr<Lexer> lexer, Structure st) : Parent(lexer) { Run(st); }
 
+	virtual void Process(Structure st);
+
 	bool Program();
 	bool Statement(AstNodePtr );
 	bool Expression();

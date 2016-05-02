@@ -23,15 +23,7 @@ struct ParserCommon : Process
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
 	
-	std::string Print()
-	{
-		std::stringstream str;
-		Print(str, *root, 0);
-		str << std::ends;
-		return std::move(str.str());
-	}
-
-	ParserCommon(std::shared_ptr<Lexer> lex, Structure st = Structure::Statement)
+	ParserCommon(std::shared_ptr<Lexer> lex)
 	{
 		current = 0;
 		indent = 0;
@@ -48,11 +40,13 @@ struct ParserCommon : Process
 		root = NewNode(AstEnum::None);
 	}
 
-	virtual void Run(Structure st)
+	virtual void Process(Structure st) = 0;
+
+	void Run(Structure st)
 	{
 		try
 		{
-			Run(st);
+			Process(st);
 		}
 		catch (Exception::Base &e)
 		{
@@ -69,6 +63,14 @@ struct ParserCommon : Process
 			if (!Failed)
 				Fail(Lexer::CreateErrorMessage(Current(), "internal error"));
 		}
+	}
+
+	std::string Print()
+	{
+		std::stringstream str;
+		Print(str, *root, 0);
+		str << std::ends;
+		return str.str();
 	}
 
 protected:
@@ -128,6 +130,12 @@ protected:
 		return tokens[current + 1];
 	}
 
+	void PeekConsume(TokenEnum ty)
+	{
+		if (tokens[current + 1] == ty)
+			Consume();
+	}
+
 	bool PeekIs(TokenEnum ty) const
 	{
 		return Peek().type == ty;
@@ -156,9 +164,10 @@ protected:
 		return std::make_shared<AstNode>(Last());
 	}
 
-	void Print(std::stringstream &out,  AstNode const &node, int level)
+	void Print(std::ostream &out, AstNode const &node, int level)
 	{
 		out << Lead(level) << node << std::endl;
+		std::cout << node.ToString();
 
 		for (auto const &ch : node.Children)
 			Print(out, *ch, level + 1);
