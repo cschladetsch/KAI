@@ -76,7 +76,7 @@ struct ParserCommon : Process
 protected:
 	std::vector<Token> tokens;
 	std::vector<AstNodePtr> stack;
-	int current;
+	size_t current;
 	AstNodePtr root;
 	bool passed;
 	std::string error;

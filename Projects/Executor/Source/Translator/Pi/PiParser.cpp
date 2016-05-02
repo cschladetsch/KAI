@@ -13,6 +13,7 @@ KAI_BEGIN
 
 void PiParser::Process(Structure st)
 {
+	KAI_UNUSED_1(st);
 	while (!Failed && NextSingle(root))
 		;
 }

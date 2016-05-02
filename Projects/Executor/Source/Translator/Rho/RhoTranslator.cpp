@@ -25,6 +25,9 @@ RhoTranslator::RhoTranslator(std::shared_ptr<RhoParser> p, Registry &r)
 	}
 }
 
+// WTF  warning C4063: case '55' is not a valid value for switch of enum 'kai::RhoAstNodeEnumType::Enum'
+#pragma warning (disable:4063)
+
 void RhoTranslator::TranslateFromToken(AstNodePtr node)
 {
 	switch (node->type)
