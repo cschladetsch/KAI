@@ -69,8 +69,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);c:\include\boost;$(SolitionaDir)\Include\;</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;c:\lib;</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\..\Include;c:\lib\boost</IncludePath>
+    <LibraryPath>c:\lib\KAI;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)\Obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>c:\lib\kai\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,10 +83,14 @@
       <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>KAI/Net/Net.h</PrecompiledHeaderFile>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalDependencies>c:\lib\kai\core.lib;c:\lib\kai\execor.ib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -120,14 +126,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AgentCommon.cpp" />
+    <ClCompile Include="Source\Connection.cpp" />
     <ClCompile Include="Source\Node.cpp" />
     <ClCompile Include="Source\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
+    <ClCompile Include="Source\ProxyCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\AgentCommon.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Net.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\ProxyCommon.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\AgentBase.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Base.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Net.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Config.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Connection.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Network.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Node.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\ProxyBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

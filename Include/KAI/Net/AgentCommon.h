@@ -1,4 +1,4 @@
-#include "KAI/Net/Net.h"
+#pragma once
 
 KAI_NET_BEGIN
 
