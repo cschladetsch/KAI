@@ -11,13 +11,74 @@
 
 KAI_BEGIN
 
-bool PiParser::Program()
+void PiParser::Process(Structure st)
 {
-	while (!Try(TokenType::None) && !Failed)
+	while (!Failed && NextSingle())
+		root->Add(Pop());
+}
+
+bool PiParser::NextSingle()
+{
+	if (current == tokens.size() - 1)
+		return false;
+
+	auto tok = Peek();
+	switch (tok.type)
 	{
+	case PiTokens::OpenSquareBracket:
+		Consume();
+		return ParseArray();
+
+	case PiTokens::OpenBrace:
+		Consume();
+		return ParseContinuation();
+
+	default:
+		Push(NewNode(Consume()));
+		return true;
 	}
+}
+
+//bool PiParser::Compound()
+//{
+//	switch (Peek().type)
+//	{
+//	case PiTokens::OpenBrace:
+//		return ParseContinuation();
+//		break;
+//
+//	case PiTokens::OpenSquareBracket:
+//		return ParseArray();
+//		break;
+//	}
+//
+//	return false;
+//}
+//
+bool PiParser::ParseArray()
+{
+	auto node = NewNode(PiAstNodes::Array);
+	while (!PeekIs(PiTokens::CloseSquareBracket))
+	{
+		if (NextSingle())
+			node->Add(Pop());
+		else
+		{
+			Fail("Malformed");
+			return false;
+		}
+	}
+	
+	Consume();
+	Push(node);
 
 	return true;
 }
+
+bool PiParser::ParseContinuation()
+{
+	return false;
+}
+
 
 KAI_END

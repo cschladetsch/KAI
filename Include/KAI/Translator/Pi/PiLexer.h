@@ -13,6 +13,9 @@ struct PiLexer : LexerCommon<PiTokenEnumType>
 	virtual void AddKeyWords();
 	virtual bool NextToken();
 	virtual void Terminate();
+
+private:
+	bool QuotedIdent();
 };
 
 KAI_END

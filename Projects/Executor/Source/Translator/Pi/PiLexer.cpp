@@ -20,6 +20,21 @@ void PiLexer::AddKeyWords()
 	keyWords["assert"] = Enum::Assert;
 }
 
+
+bool PiLexer::QuotedIdent()
+{
+	auto start = offset;
+	Next();
+	if (!LexAlpha())
+		return false;
+
+	PiToken id = tokens.back();
+	tokens.pop_back();
+	Add(PiTokens::QuotedIdent, Slice(start + 1, offset));
+
+	return true;
+}
+
 bool PiLexer::NextToken()
 {
 	char current = Current();
@@ -34,6 +49,7 @@ bool PiLexer::NextToken()
 
 	switch (current)
 	{
+	case '\'': return QuotedIdent();
 	case '{': return Add(Enum::OpenBrace);
 	case '}': return Add(Enum::CloseBrace);
 	case '(': return Add(Enum::OpenParan);
@@ -42,6 +58,7 @@ bool PiLexer::NextToken()
 	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Enum::Lookup);
 	case ',': return Add(Enum::Comma);
+	case '#': return Add(Enum::Store);
 	case '*': return Add(Enum::Mul);
 	case '[': return Add(Enum::OpenSquareBracket);
 	case ']': return Add(Enum::CloseSquareBracket);
@@ -52,7 +69,7 @@ bool PiLexer::NextToken()
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
 	case '"': return LexString();
-	case '\'': return LexAlpha();
+//case '\'': return LexAlpha();
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
 	case '-':

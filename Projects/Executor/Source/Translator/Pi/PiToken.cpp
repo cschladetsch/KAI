@@ -29,6 +29,7 @@ const char *ToString(PiTokenEnumType::Enum t)
 		CASE_REPLACE(Resume, "...")
 		CASE_REPLACE(Replace, "!")
 		CASE_LOWER(Ident)
+		CASE_LOWER(QuotedIdent, "'")
 		CASE_REPLACE(Dot, ".")
 		CASE_REPLACE(Comma, ",")
 		CASE_LOWER(If)
@@ -129,6 +130,7 @@ const char *ToString(PiTokenEnumType::Enum t)
 		CASE_LOWER(PopFolder)
 		CASE_LOWER(History)
 		CASE_LOWER(Jobs)
+		CASE_LOWER(Store)
 	}
 	
 	static char b[100];
@@ -157,6 +159,10 @@ std::ostream &operator<<(std::ostream &out, PiToken const &node)
 	case PiTokenEnumType::String:
 	case PiTokenEnumType::Ident:
 		out << "=" << node.Text();
+		break;
+	case PiTokenEnumType::QuotedIdent:
+		out << "='" << node.Text();
+		break;
 	}
 
 	return out;

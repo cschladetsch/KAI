@@ -1,6 +1,5 @@
 #include "KAI/ExecutorPCH.h"
 
-
 KAI_BEGIN
 
 void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Pointer<Continuation> C, Pointer<Executor> exec)

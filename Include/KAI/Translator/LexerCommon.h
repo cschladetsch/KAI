@@ -189,7 +189,7 @@ public:
 		for (auto tok : tokens)
 			str << tok << " ";
 		str << std::ends;
-		return str.str();
+		return std::move(str.str());
 	}
 };
 

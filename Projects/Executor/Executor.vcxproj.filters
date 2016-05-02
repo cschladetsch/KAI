@@ -37,7 +37,7 @@
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{7f87c6c3-bbad-4419-97ae-ee1d1cf6482b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Common">
+    <Filter Include="Header Files\Base">
       <UniqueIdentifier>{f54f4a49-f7bd-4bb6-9051-44db2954e39f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -192,25 +192,25 @@
       <Filter>Header Files\Translator\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Compiler.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Console.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Continuation.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Executor.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\ExecutorPCH.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\SignedContinuation.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tree.h">
-      <Filter>Header Files\Common</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

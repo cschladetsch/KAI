@@ -39,7 +39,7 @@ struct AstNodeBase
 	{
 		std::stringstream out;
 		out << "[AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << "]" << std::ends;
-		return std::move(out.str());
+		return out.str();
 	}
 
 	std::string Text() const

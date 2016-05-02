@@ -15,6 +15,8 @@ struct PiTokenEnumType
 		True, False,
 		Suspend, Resume, Replace,
 		Ident,
+		QuotedIdent,
+		Store,
 		Dot,
 		Comma,
 		If, IfElse,
