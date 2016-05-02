@@ -1,14 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/Base.h"
-#include "KAI/Translator/Process.h"
-#include "KAI/Translator/ParserCommon.h"
-
-#include "KAI/Translator/Pi/PiToken.h"
-#include "KAI/Translator/Pi/PiLexer.h"
 #include "KAI/Translator/Pi/PiParser.h"
-#include "KAI/Translator/Pi/PiTranslator.h"
-
 #include "KAI/Executor.h"
 
 KAI_BEGIN
