@@ -1,7 +1,8 @@
 #pragma once
 
-#include "KAI/ExecutorPCH.h"
+#include "KAI/Config/Base.h"
+#include "KAI/Net/Config.h"
 
-class AgentBase;
-class ProxyBase;
-class NodeBase;
+KAI_NET_BEGIN
+
+KAI_NET_END
