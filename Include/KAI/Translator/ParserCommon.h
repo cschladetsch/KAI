@@ -104,6 +104,11 @@ protected:
 		return last;
 	}
 
+	AstNodePtr Top()
+	{
+		return stack.back();
+	}
+
 	bool PushConsume()
 	{
 		Push(NewNode(Consume()));
