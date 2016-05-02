@@ -1,13 +1,6 @@
 #pragma once
 
-//#include "KAI/Config/Base.h"
-//#include <string>
-//#include <boost/static_assert.hpp>
-//#include "KAI/Boost.h"
-//#include "KAI/NonCopyable.h"
-//#include "KAI/Meta/Base.h"
-//#include "KAI/FwdDeclarations.h"
-//#include "KAI/Preprocessor.h"
+#include "Kai/Net/Config.h"
 
 KAI_BEGIN
 
