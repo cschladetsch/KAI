@@ -10,12 +10,13 @@ const char *ToString(PiAstNodeEnumType::Enum ty)
 	{
 		#define CASE(X) case PiAstNodeEnumType::Enum::X: return #X;
 		CASE(None)
+		CASE(Object)
+		CASE(Operation)
 		CASE(List)
 		CASE(Map)
 		CASE(Set)
 		CASE(Array)
 		CASE(Continuation)
-		CASE(TokenType)
 	}
 
 	static char b[100];
