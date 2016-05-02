@@ -7,7 +7,7 @@ KAI_BEGIN
 
 struct RhoAstNodeEnumType
 {
-	enum Enum
+	enum Enum : int
 	{
 		None,
 		Program,
@@ -29,6 +29,14 @@ struct RhoAstNodeEnumType
 		For,
 		List,
 		Map,
+		Plus,
+		Minus,
+		Mul,
+		Divide,
+		Less,
+		Equiv,
+		NotEquiv,
+		Greater,
 	};
 
 	struct Node : AstNodeBase<RhoToken, RhoAstNodeEnumType>
