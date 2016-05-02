@@ -25,12 +25,10 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 protected:
 
 private:
-	bool Compound();
-
-	Object NewObject();
-	bool NextSingle();
-	bool ParseArray();
-	bool ParseContinuation();
+	Object NewObject(AstNodePtr context);
+	bool NextSingle(AstNodePtr context);
+	bool ParseArray(AstNodePtr context);
+	bool ParseContinuation(AstNodePtr context);
 };
 
 KAI_END
