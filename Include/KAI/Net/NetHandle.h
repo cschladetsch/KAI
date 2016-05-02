@@ -1,7 +1,5 @@
 #pragma once
 
-#include "KAI/Net/Node.h"
-
 KAI_NET_BEGIN
 
 struct NetHandle

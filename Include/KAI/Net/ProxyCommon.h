@@ -1,5 +1,4 @@
-#include  "KAI/Net/Net.h"
-#include  "KAI/Net/Representative.h"
+#pragma once
 
 KAI_NET_BEGIN
 
