@@ -111,6 +111,9 @@
     <ClCompile Include="Source\Tree.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Translator\TranslatorCommon.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
@@ -208,6 +211,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Tree.h">
       <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\TranslatorBase.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\TranslatorCommon.h">
+      <Filter>Header Files\Translator\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

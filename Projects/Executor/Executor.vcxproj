@@ -157,7 +157,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Translator\Process.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
@@ -166,6 +166,7 @@
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoToken.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoTranslator.cpp" />
+    <ClCompile Include="Source\Translator\TranslatorCommon.cpp" />
     <ClCompile Include="Source\Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +203,8 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Slice.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Structure.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\TokenBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\TranslatorBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\TranslatorCommon.h" />
     <ClInclude Include="..\..\Include\KAI\Tree.h" />
     <ClCompile Include="Source\Translator\TokenBase.cpp">
       <FileType>CppHeader</FileType>
