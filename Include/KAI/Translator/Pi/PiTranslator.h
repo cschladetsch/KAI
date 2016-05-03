@@ -9,7 +9,7 @@
 
 KAI_BEGIN
 
-struct PiTranslator : TranslatorBase<PiLexer, PiTokens>
+struct PiTranslator : TranslatorBase<PiLexer>
 {
 
 };
