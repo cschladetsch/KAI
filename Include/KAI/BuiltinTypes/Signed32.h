@@ -18,6 +18,7 @@ inline HashValue GetHash(int N) { return N; }
 
 KAI_TYPE_TRAITS(int, Number::Signed32
 	, Properties::Arithmetic 
+	| Properties::Multiplicative 
 	| Properties::Streaming 
 	| Properties::Assign
 	| Properties::Relational
