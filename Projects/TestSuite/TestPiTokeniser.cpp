@@ -47,12 +47,10 @@ namespace
 		// remove all whitespace
 		tokens.erase(remove_if(tokens.begin(), tokens.end(), [](auto t)->bool { return IsWhitespace(t); }), tokens.end());
 
-#ifdef KAI_VERBOSE_TESTS
 		stringstream out;
 		for (size_t m = 0; m < tokens.size(); ++m)
 			out << m << ": " << tokens[m] << endl;
 		KAI_TRACE_1(out.str());
-#endif
 
 		EXPECT_EQ(tokens.size(), types.size());
 

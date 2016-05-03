@@ -54,11 +54,11 @@ bool RhoLang::Translate(const char *text, Structure st)
 	if (lex->GetTokens().empty())
 		return true;
 
-	std::cout << lex->Print() << std::endl;
+	//std::cout << lex->Print() << std::endl;
 
 	parse = std::make_shared<Parser>(lex, st);
 
-	parse->Print();
+	//parse->Print();
 
 	trans = std::make_shared<Translator>(parse, reg);
 
