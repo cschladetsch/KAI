@@ -22,10 +22,10 @@
 #endif
 
 #ifdef KAI_DEBUG
-#	ifndef KAI_DEBUG_TRACE
-#		define KAI_DEBUG_TRACE
-#	endif
-#	define KAI_DEBUG_REGISTRY
+//#	ifndef KAI_DEBUG_TRACE
+//#		define KAI_DEBUG_TRACE
+//#	endif
+//#	define KAI_DEBUG_REGISTRY
 
 /// if KAI_OBJECT_HAS_STORAGEBASE is defined, a pointer to the value of the 
 /// stored inside it with the name 'storage'. this is entirely for debugging 
@@ -42,6 +42,3 @@
 #	define UNUSED(X) (void)(sizeof(X))
 #endif
 
-#if !defined(KAI_DEBUG_TRACE) && defined(KAI_DEBUG)
-#	define KAI_DEBUG_TRACE
-#endif
