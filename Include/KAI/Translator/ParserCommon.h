@@ -171,8 +171,8 @@ protected:
 
 	void Print(std::ostream &out, AstNode const &node, int level)
 	{
-		out << Lead(level) << node << "\n";// std::endl;
-		std::cout << Lead(level) << node << std::endl;
+		out << Lead(level) << node << std::endl;
+		//std::cout << Lead(level) << node << std::endl;
 
 		for (auto const &ch : node.Children)
 			Print(out, *ch, level + 1);
