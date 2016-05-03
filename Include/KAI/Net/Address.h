@@ -11,7 +11,18 @@ struct MacAddress
 		KAI_UNUSED_2(A, B);
 		return false;
 	}
+
+	size_t Hash() const
+	{
+		//MUST return boost::hash<string>(text);
+		return 3; 
+	}
+
+private:
+	std::string _text;
 };
+
+
 
 struct IpAddress
 {

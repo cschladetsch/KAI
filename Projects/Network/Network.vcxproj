@@ -146,6 +146,7 @@
     <ClInclude Include="..\..\Include\KAI\Net\Base.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Config.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Connection.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Future.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Node.h" />
     <ClInclude Include="..\..\Include\KAI\Net\ProxyBase.h" />
   </ItemGroup>

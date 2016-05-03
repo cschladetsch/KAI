@@ -5,7 +5,7 @@ using namespace std;
 
 namespace
 {
-	TEST(NetworkCalls, Proxy)
+	TEST(Network, DirectConnect)
 	{
 	}
 }

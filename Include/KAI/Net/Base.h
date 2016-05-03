@@ -5,4 +5,6 @@
 
 KAI_NET_BEGIN
 
+struct Node;
+
 KAI_NET_END

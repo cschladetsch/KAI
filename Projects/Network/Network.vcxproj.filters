@@ -68,5 +68,8 @@
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Address.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Net\Future.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
