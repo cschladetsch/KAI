@@ -88,8 +88,12 @@ void Executor::Continue()
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
+#if defined(KAI_DEBUG_TRACE)
 				KAI_TRACE_3(data, context, continuation);
 				KAI_TRACE_1(E);
+#else
+				std::cerr << E.ToString() << std::endl;
+#endif
 				throw;
 			}
 		}

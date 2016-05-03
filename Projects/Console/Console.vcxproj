@@ -169,7 +169,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>

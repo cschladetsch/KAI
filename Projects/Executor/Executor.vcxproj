@@ -83,7 +83,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>KAI/ExecutorPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
