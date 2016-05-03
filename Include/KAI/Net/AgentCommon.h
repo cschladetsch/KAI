@@ -8,6 +8,10 @@ KAI_NET_BEGIN
 
 struct AgentCommon : Representative
 {
+	AgentCommon(Node &node, Object const &servant)
+		: Representative(node, servant) 
+	{ 
+	}
 };
 
 KAI_NET_END
