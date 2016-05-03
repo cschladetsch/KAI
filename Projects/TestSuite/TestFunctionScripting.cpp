@@ -20,27 +20,15 @@ void Function_1(int )
 String Function_2(int , int , String p)
 {
 	funCalled[2] = true;
-	//KAI_TRACE_3(n, f, p);
+	KAI_TRACE_3(n, f, p);
 	return p + "foo";
 }
 
 Object Function_3(Object object)
 {
 	funCalled[3] = true;
-	//KAI_TRACE_1(object);
+	KAI_TRACE_1(object);
 	return object["num"];
-}
-
-TEST(TestFunctionScripting, Test0)
-{
-	Memory::StandardAllocator alloc;
-	Console console(&alloc);
-
-	// a registry is a factory for classes and instances
-	Registry &reg = console.GetRegistry();
-	Object root = console.GetRoot();
-
-	console.Execute("a+1;");
 }
 
 TEST(TestFunctionScripting, Test)

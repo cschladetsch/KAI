@@ -30,7 +30,7 @@ RhoTranslator::RhoTranslator(std::shared_ptr<RhoParser> p, Registry &r)
 
 void RhoTranslator::TranslateFromToken(AstNodePtr node)
 {
-	switch (node->type)
+	switch (node->token.type)
 	{
 	case TokenType::While:
 		TranslateWhile(node);

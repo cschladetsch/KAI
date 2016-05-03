@@ -7,6 +7,8 @@
 
 #include "gtest/gtest.h"
 
+#undef KAI_DEBUG_TRACE
+
 #include "KAI/ExecutorPCH.h"
 #include "KAI/KAIClassBuilder.h"
 #include "KAI/Translator/Pi/PiToken.h"
