@@ -37,6 +37,7 @@ TEST(TestFunctionScripting, Test)
 	// the standard one which uses malloc and free
 	Memory::StandardAllocator alloc;
 	Console console(&alloc);
+	console.SetLanguage(Language::Rho);
 
 	// a registry is a factory for classes and instances
 	Object root = console.GetRoot();
@@ -51,8 +52,9 @@ TEST(TestFunctionScripting, Test)
 	// invoke the functions; take copies of the resultant stacks after each function completes
 	console.Execute("Function0();");
 	console.Execute("Function1(42);");
-	//console.Execute("Function2(123, 3, \"bar\");");
-	//console.Execute("Function3(mystruct);");
+	console.Execute("Function1(42);");
+	console.Execute("Function2(123, 3, \"bar\");");
+	console.Execute("Function3(mystruct);");
 
 	for (int n = 0; n < 2; ++n)
 		ASSERT_TRUE(funCalled[n]);
