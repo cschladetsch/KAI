@@ -9,10 +9,8 @@ int IsSpaceChar(int ch)
 }
 
 LexerBase::LexerBase(const char *in)
-	: input(in)
+	: input(in), offset(0), lineNumber(0)
 {
-	//if (input.empty())
-	//	return;
 }
 
 void LexerBase::CreateLines()

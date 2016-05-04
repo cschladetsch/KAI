@@ -80,7 +80,7 @@ Console::Console(Memory::IAllocator *alloc)
 	Create(args);
 	static C c;
 	this->alloc = alloc;
-	language = Language::Rho;
+	SetLanguage(Language::Rho);
 }
 
 Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
