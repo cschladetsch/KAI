@@ -22,8 +22,6 @@ public:
 	RhoTranslator(const RhoTranslator&) = delete;
 	RhoTranslator(Registry &r) : Parent(r) { }
 
-	//virtual Pointer<Continuation> Translate(const char *, Structure = Structure::Statement) override;
-
 protected:
 	virtual void TranslateNode(AstNodePtr node) override;
 
