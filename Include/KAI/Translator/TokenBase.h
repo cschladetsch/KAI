@@ -9,6 +9,7 @@ template <class EnumType>
 struct TokenBase
 {
 	typedef TokenBase<EnumType> Self;
+	typedef typename EnumType EnumType;
 	typedef typename EnumType::Enum Enum;
 
 	Enum type;

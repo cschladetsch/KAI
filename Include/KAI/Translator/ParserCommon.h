@@ -10,7 +10,7 @@ KAI_BEGIN
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class Lexer, class AstEnumStruct>
-struct ParserCommon : Process
+struct ParserCommon : CommonBase
 {
 	typedef Lexer Lexer;
 	typedef typename Lexer::Token TokenNode;
@@ -23,7 +23,9 @@ struct ParserCommon : Process
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
 	
-	ParserCommon(std::shared_ptr<Lexer> lex)
+	ParserCommon(Registry& r) : CommonBase(r) { }
+
+	void Process()
 	{
 		current = 0;
 		indent = 0;
@@ -40,7 +42,19 @@ struct ParserCommon : Process
 		root = NewNode(AstEnum::Program);
 	}
 
-	virtual void Process(Structure st) = 0;
+	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
+
+	template <class T>
+	AstNodePtr AppendLexicalValue(TokenNode const &tok)
+	{
+		return Append(registry.New(std::lexical_cast<T>(tok.Text())));
+	}
+
+	template <class T>
+	Pointer<T> New(T const &val)
+	{
+		return reg.New<T>(val);
+	}
 
 	void Run(Structure st)
 	{
@@ -88,6 +102,11 @@ protected:
 	{
 		if (node)
 			stack.push_back(node);
+	}
+
+	void Append(Object Q)
+	{
+		Top()->Children.push_back(make_shared<AstNode>(AstEnum::Object, Q));
 	}
 
 	AstNodePtr Pop()

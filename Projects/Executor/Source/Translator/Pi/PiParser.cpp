@@ -8,10 +8,14 @@
 #include <algorithm>
 #include <strstream>
 #include <stdarg.h>
+#include <boost/lexical_cast.hpp>
+
+using namespace std;
+using namespace boost;
 
 KAI_BEGIN
 
-void PiParser::Process(Structure st)
+void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	KAI_UNUSED_1(st);
 	while (!Failed && NextSingle(root))
@@ -39,11 +43,16 @@ bool PiParser::NextSingle(AstNodePtr root)
 		Consume();
 		return ParseContinuation(root);
 
+	case PiTokens::Int:
+		Top()->Add(std::make_shared<AstNode>(New(lexical_cast<int>(tok.Text()))));
+		break;
 	default:
 		root->Add(NewNode(Consume()));
 		return true;
 	}
 }
+
+		//Appent
 
 //bool PiParser::Compound()
 //{

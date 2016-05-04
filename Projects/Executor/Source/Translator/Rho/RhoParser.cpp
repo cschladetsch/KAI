@@ -8,14 +8,11 @@
 #include <strstream>
 #include <stdarg.h>
 
+using namespace std;
+
 KAI_BEGIN
 
-void RhoParser::Run(Structure st)
-{
-	Process(st);
-}
-
-void RhoParser::Process(Structure st)
+void RhoParser::Process(shared_ptr<Lexer> lexer,  Structure st)
 {
 	switch (st)
 	{

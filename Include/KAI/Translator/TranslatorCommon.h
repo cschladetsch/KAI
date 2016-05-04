@@ -2,7 +2,7 @@
 
 KAI_BEGIN
 
-struct TranslatorCommon : Process
+struct TranslatorCommon : CommonBase
 {
 public:
 	TranslatorCommon(Registry &r);
@@ -23,6 +23,18 @@ public:
 	void AppendNew(T val)
 	{
 		Append(reg.New<T>(val));
+	}
+
+	template <class T>
+	Value<T> NewObject()
+	{
+		return reg.New<T>();
+	}
+
+	template <class T>
+	Value<T> NewObject(const T &val)
+	{
+		return reg.New<T>(val);
 	}
 
 	template <>

@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\users\christian\dev\KAI\Include\KAI\Translator\CommonBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Language.h">
       <FileType>CppCode</FileType>
     </ClInclude>
