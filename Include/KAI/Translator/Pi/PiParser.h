@@ -12,7 +12,7 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 	typedef ParserCommon<PiLexer, PiAstNodeEnumType> Parent;
 	using typename Parent::Lexer;
 	using typename Parent::AstNode;
-	using typename Parent::Token;
+	using typename Parent::TokenNode;
 	using typename Parent::TokenEnum;
 	using typename Parent::AstNodePtr;
 	typedef PiAstNodeEnumType NodeType;

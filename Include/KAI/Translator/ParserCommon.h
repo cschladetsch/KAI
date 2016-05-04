@@ -13,10 +13,10 @@ template <class Lexer, class AstEnumStruct>
 struct ParserCommon : Process
 {
 	typedef Lexer Lexer;
-	typedef typename Lexer::Token Token;
-	typedef typename Token::Enum TokenEnum;
+	typedef typename Lexer::Token TokenNode;
+	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename AstEnumStruct::Enum AstEnum;
-	typedef AstNodeBase<Token, AstEnumStruct> AstNode;
+	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 
 	bool Passed() const { return passed;  }
@@ -74,7 +74,7 @@ struct ParserCommon : Process
 	}
 
 protected:
-	std::vector<Token> tokens;
+	std::vector<TokenNode> tokens;
 	std::vector<AstNodePtr> stack;
 	size_t current;
 	AstNodePtr root;
@@ -94,7 +94,7 @@ protected:
 	{
 		if (stack.empty())
 		{
-			//MUST CreateError("Internal Error: Parse stack empty");
+			CreateError("Internal Error: Parse stack empty");
 			KAI_THROW_0(EmptyStack);
 		}
 
@@ -115,22 +115,22 @@ protected:
 		return true;
 	}
 
-	Token const &Next()
+	TokenNode const &Next()
 	{
 		return tokens[++current];
 	}
 
-	Token const &Last()
+	TokenNode const &Last()
 	{
 		return tokens[current - 1];
 	}
 
-	Token const &Current() const
+	TokenNode const &Current() const
 	{
 		return tokens[current];
 	}
 
-	Token const &Peek() const
+	TokenNode const &Peek() const
 	{
 		return tokens[current + 1];
 	}
@@ -146,7 +146,7 @@ protected:
 		return Peek().type == ty;
 	}
 
-	Token const &Consume()
+	TokenNode const &Consume()
 	{
 		return tokens[current++];
 	}
@@ -158,7 +158,7 @@ protected:
 
 	AstNodePtr Expect(TokenEnum type)
 	{
-		Token tok = Current();
+		TokenNode tok = Current();
 		if (tok.type != type)
 		{
 			//MUST Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
@@ -184,7 +184,7 @@ protected:
 	}
 
 	AstNodePtr NewNode(AstEnum t) { return std::make_shared<AstNode>(t); }
-	AstNodePtr NewNode(Token const &t) { return std::make_shared<AstNode>(t); }
+	AstNodePtr NewNode(TokenNode const &t) { return std::make_shared<AstNode>(t); }
 };
 
 KAI_END

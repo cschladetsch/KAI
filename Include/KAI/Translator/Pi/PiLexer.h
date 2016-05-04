@@ -8,6 +8,9 @@ KAI_BEGIN
 struct PiLexer : LexerCommon<PiTokenEnumType>
 {
 	typedef LexerCommon<PiTokenEnumType> Parent;
+	typedef Parent Lexer;
+	typedef TokenBase<PiTokenEnumType> TokenNode;
+
 	PiLexer(const char *text) : Parent(text) { }
 
 	virtual void AddKeyWords();
