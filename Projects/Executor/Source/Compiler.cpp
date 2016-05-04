@@ -38,6 +38,16 @@ void Compiler::Register(Registry &R, const char *name)
 		;
 }
 
+void Compiler::SetLanguage(int n)
+{
+	_language = static_cast<Language>(n);
+}
+
+int Compiler::GetLanguage() const
+{
+	return static_cast<int>(_language);
+}
+
 StringStream &operator<<(StringStream &S, Operation const &P)
 {
 	return S << P.ToString();

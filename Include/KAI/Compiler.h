@@ -36,6 +36,9 @@ public:
 	void Create();
 	bool Destroy();
 
+	void SetLanguage(int);
+	int GetLanguage() const;
+
 	Pointer<Continuation> Compiler::Translate(const String &text, Structure st = Structure::Statement) const
 	{
 		switch (_language)

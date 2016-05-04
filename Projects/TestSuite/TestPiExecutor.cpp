@@ -16,12 +16,13 @@ TEST(TestPiExec, ExecArith)
 	r.AddClass<String>();
 	r.AddClass<Executor>();
 
-	auto lex = make_shared<PiLexer>(input);
-	lex->Process();
-	auto parse = make_shared<PiParser>(lex);
-	auto trans = make_shared<PiTranslator>(parse, r);
+	auto trans = make_shared<PiTranslator>(r);
+	auto cont = trans->Translate(input, Structure::Sequence);
+	Pointer<Executor> e = r.New<Executor>();
+	e->Continue(cont);
+	auto stack = e->GetDataStack();
+	//ASSERT_EQ(e->GetDataStack())
 
-	auto e = r.New<Executor>();
 }
 
 TEST(TestPiExec, TestConsole)
