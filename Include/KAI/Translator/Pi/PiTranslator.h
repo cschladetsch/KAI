@@ -9,16 +9,18 @@
 
 KAI_BEGIN
 
-struct PiTranslator : TranslatorBase<PiLexer>
+struct PiTranslator : TranslatorBase<PiParser>
 {
-	typedef TranslatorBase<PiLexer> Parent;
-	typedef typename Parent::Token Token;
+	typedef TranslatorBase<PiParser> Parent;
+	typedef typename Parent::TokenNode TokenNode;
 	typedef typename Parent::AstNode AstNode;
 	typedef typename Parent::TokenEnum TokenEnum;
 	typedef typename Parent::AstEnum AstNodeEnum;
 	typedef typename Parent::AstNodePtr AstNodePtr;
 	
-
+private:
+	virtual void Traverse(AstNodePtr node) override;
+	virtual void Translate(AstNodePtr node) override;
 };
 
 KAI_END
