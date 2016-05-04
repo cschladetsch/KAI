@@ -1,13 +1,14 @@
 #pragma once
 
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Translator/CommonBase.h"
 
 KAI_BEGIN
 
 int IsSpaceChar(int ch);
 
 // Common to all lexers with different token types
-struct LexerBase : Process
+struct LexerBase : CommonBase
 {
 	LexerBase(const char *);
 

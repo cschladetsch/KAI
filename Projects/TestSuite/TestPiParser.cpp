@@ -1,4 +1,5 @@
 #include "TestBase.h"
+#include "KAI/Registry.h"
 
 using namespace kai;
 using namespace std;
@@ -8,13 +9,14 @@ namespace
 	TEST(PiParser, TestSimple)
 	{
 		auto input = "1";
+		Registry reg;
 
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
@@ -30,14 +32,15 @@ namespace
 	TEST(PiParser, TestCompoundWorks)
 	{
 		auto input = "[[[]]]";
+		Registry reg;
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
@@ -58,6 +61,7 @@ namespace
 	TEST(PiParser, TestMixedCompound)
 	{
 		auto input = "{ [ 1 2 3 ] 'a # }";
+		Registry reg;
 
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
@@ -65,8 +69,8 @@ namespace
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
@@ -76,14 +80,15 @@ namespace
 	TEST(PiParser, TestCompoundFail)
 	{
 		auto input = "[";
+		Registry reg;
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
@@ -93,14 +98,16 @@ namespace
 	TEST(PiParser, TestCompoundFail2)
 	{
 		auto input = "[[]";
+		Registry reg;
+
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
@@ -110,14 +117,16 @@ namespace
 	TEST(PiParser, TestCompoundFail3)
 	{
 		auto input = "]";
+		Registry reg;
+
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(lex);
-		parse->Run(Structure::Sequence);
+		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
+		parse->Process(lex, Structure::Sequence);
 
 		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);

@@ -23,6 +23,12 @@ TEST(TestPiExec, ExecArith)
 
 	auto trans = make_shared<PiTranslator>(r);
 	auto cont = trans->Translate(input, Structure::Sequence);
+	auto code = cont->GetCode();
+	cout << code->Size() << endl;
+	Array::iterator A = code->Begin(), B = code->End();
+	for (; A != B;  ++A)
+		cout << *A << endl;
+
 	Pointer<Executor> e = r.New<Executor>();
 	e->Continue(cont);
 	auto stack = e->GetDataStack();

@@ -30,8 +30,8 @@ struct TranslatorBase : TranslatorCommon
 		if (lex->Failed)
 			Fail(lex->Error);
 
-		auto parse = std::make_shared<Parser>(lex);
-		parse->Process(st);
+		auto parse = std::make_shared<Parser>(reg);
+		parse->Process(lex, st);
 		if (parse->Failed)
 			Fail(parse->Error);
 
