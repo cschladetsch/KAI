@@ -12,9 +12,14 @@ TEST(TestPiExec, ExecArith)
 
 	Registry r;
 	r.AddClass<void>();
+	r.AddClass<bool>();
 	r.AddClass<int>();
 	r.AddClass<String>();
+	r.AddClass<Array>();
+	r.AddClass<Stack>();
 	r.AddClass<Executor>();
+	r.AddClass<Continuation>();
+	r.AddClass<Operation>();
 
 	auto trans = make_shared<PiTranslator>(r);
 	auto cont = trans->Translate(input, Structure::Sequence);

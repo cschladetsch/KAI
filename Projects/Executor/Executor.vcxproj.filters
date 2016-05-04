@@ -116,9 +116,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
@@ -127,9 +124,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h">
       <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h">
-      <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h">
       <Filter>Header Files\Translator\Rho</Filter>

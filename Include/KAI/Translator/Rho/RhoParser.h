@@ -23,6 +23,7 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 
 	virtual void Process(Structure st);
 
+private:
 	bool Program();
 	bool Statement(AstNodePtr );
 	bool Expression();
