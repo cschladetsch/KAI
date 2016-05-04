@@ -26,12 +26,12 @@ struct RhoTranslator : Process
 	struct Exception { };
 	struct Unsupported : Exception { };
 
-	std::vector<Pointer<Continuation>> stack;
-	Registry &reg;
-
 	std::string Result() const;
 
 private:
+	std::vector<Pointer<Continuation>> stack;
+	Registry &reg;
+
 	void Traverse(AstNodePtr node);
 	void TranslateFunction(AstNodePtr node);
 	void TranslateBlock(AstNodePtr node);
