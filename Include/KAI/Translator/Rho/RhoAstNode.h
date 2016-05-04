@@ -37,12 +37,14 @@ struct RhoAstNodeEnumType
 		Equiv,
 		NotEquiv,
 		Greater,
+		Object,
 	};
 
 	struct Node : AstNodeBase<RhoToken, RhoAstNodeEnumType>
 	{
 		typedef AstNodeBase<RhoToken, RhoAstNodeEnumType> Parent;
 		using typename Parent::Token;
+		KAI_NAMESPACE(Object) object;
 
 		Node() : Parent(Enum::None) {  }
 		Node(Enum e) : Parent(e) { }
