@@ -80,6 +80,7 @@ Console::Console(Memory::IAllocator *alloc)
 	Create(args);
 	static C c;
 	this->alloc = alloc;
+	language = Language::Rho;
 }
 
 Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
@@ -130,6 +131,22 @@ void Console::ExposeTypesToTree(Object types)
 			continue;
 		types.Set(K->GetName(), registry->New(K));
 	}
+}
+
+void Console::SetLanguage(Language lang)
+{
+	SetLanguage(static_cast<int>(lang));
+}
+
+void Console::SetLanguage(int lang)
+{
+	language = static_cast<Language>(lang);
+	compiler->SetLanguage(lang);
+}
+
+int Console::GetLanguage() const
+{
+	return static_cast<int>(language);
 }
 
 void Console::CreateTree()

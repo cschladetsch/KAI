@@ -10,7 +10,7 @@ TEST(TestFunctionScripting, TestAssignment)
 	Console console(&alloc);
 
 	// a registry is a factory for classes and instances
-	Registry &reg = console.GetRegistry();
+	//Registry &reg = console.GetRegistry();
 	Object root = console.GetRoot();
 
 	console.Execute("a=1+2;");
