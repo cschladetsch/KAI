@@ -24,6 +24,7 @@ struct AstNodeBase
 	AstNodeBase(Enum e) : type(e) { }
 	AstNodeBase(Enum e, Token &t) : type(e), token(t) { }
 	AstNodeBase(Token const &t) : type(AstEnumType::TokenType), token(t) { }
+	AstNodeBase(Object Q) : type(AstEnumType::Object), Object(Q) { }
 
 	void Add(Token const &tok)
 	{
@@ -51,6 +52,8 @@ struct AstNodeBase
 	{
 		return out << node.ToString();
 	}
+
+	Object Object;
 };
 
 KAI_END

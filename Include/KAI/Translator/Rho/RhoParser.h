@@ -18,10 +18,9 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 	typedef RhoAstNodeEnumType NodeType; 
 	typedef RhoTokenEnumType TokenType;
 
-	RhoParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
-	RhoParser(std::shared_ptr<Lexer> lexer, Structure st) : Parent(lexer) { Run(st); }
+	RhoParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(Structure st);
+	virtual void Process(std::shared_ptr<Lexer> lexer, Structure st);
 
 private:
 	bool Program();
