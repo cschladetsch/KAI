@@ -11,6 +11,13 @@ KAI_BEGIN
 
 struct PiTranslator : TranslatorBase<PiLexer>
 {
+	typedef TranslatorBase<PiLexer> Parent;
+	typedef typename Parent::Token Token;
+	typedef typename Parent::AstNode AstNode;
+	typedef typename Parent::TokenEnum TokenEnum;
+	typedef typename Parent::AstEnum AstNodeEnum;
+	typedef typename Parent::AstNodePtr AstNodePtr;
+	
 
 };
 
