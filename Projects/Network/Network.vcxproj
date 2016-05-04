@@ -80,7 +80,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINDOWS;_MBCS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_TRACE_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>KAI/Net/Net.h</PrecompiledHeaderFile>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -136,14 +136,17 @@
     <ClCompile Include="Source\ProxyCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Address.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\AgentCommon.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Net.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\NetHandle.h" />
     <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\ProxyCommon.h" />
+    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Representative.h" />
     <ClInclude Include="..\..\Include\KAI\Net\AgentBase.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Base.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Config.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Connection.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Network.h" />
+    <ClInclude Include="..\..\Include\KAI\Net\Future.h" />
     <ClInclude Include="..\..\Include\KAI\Net\Node.h" />
     <ClInclude Include="..\..\Include\KAI\Net\ProxyBase.h" />
   </ItemGroup>
