@@ -122,6 +122,7 @@ public:
 	static void Register(Registry &);
 };
 
-KAI_TYPE_TRAITS(Operation, Number::Operation , Properties::Streaming);
+//KAI_TYPE_TRAITS(Operation, Number::Operation , Properties::Streaming);
+KAI_TYPE_TRAITS(Operation, Number::Operation, 0);
 
 KAI_END
