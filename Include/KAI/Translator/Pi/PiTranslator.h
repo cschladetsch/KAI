@@ -23,7 +23,7 @@ public:
 	PiTranslator() = delete;
 	PiTranslator(Registry &r) : Parent(r) { }
 
-	virtual Pointer<Continuation> Translate(const char *text, Structure st) override;
+	//virtual Pointer<Continuation> Translate(const char *text, Structure st) override;
 
 protected:
 	virtual void TranslateNode(AstNodePtr node) override;
