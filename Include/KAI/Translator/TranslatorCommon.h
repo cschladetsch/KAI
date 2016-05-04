@@ -13,6 +13,10 @@ public:
 
 	std::string Result() const;
 
+	struct Exception { };
+	struct Unsupported : Exception { };
+
+
 private:
 	std::vector<Pointer<Continuation>> stack;
 	Registry &reg;
