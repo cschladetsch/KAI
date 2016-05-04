@@ -23,6 +23,10 @@ public:
 
 	void Create(const std::vector<String> &);
 
+	void SetLanguage(Language lang);
+	void SetLanguage(int lang);
+	int GetLanguage() const;
+
 	String GetPrompt() const;
 	String Process(const String&);
 	Registry &GetRegistry() const { return *registry; }
