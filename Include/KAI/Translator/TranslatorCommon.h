@@ -5,17 +5,17 @@ KAI_BEGIN
 struct TranslatorCommon : Process
 {
 public:
-	std::string Result() const;
-	void PushNew();
-	Pointer<Continuation> Pop();
-	void Append(Object ob);
-	Pointer<Continuation> Top();
+	std::string ToString() const;
 
-	std::string Result() const;
+	void PushNew();
+	void Append(Object ob);
+
+	Pointer<Continuation> Pop();
+	Pointer<Continuation> Top() const;
+	Pointer<Continuation> Result() const { return Top(); }
 
 	struct Exception { };
 	struct Unsupported : Exception { };
-
 
 private:
 	std::vector<Pointer<Continuation>> stack;

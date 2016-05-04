@@ -3,7 +3,7 @@
 
 KAI_BEGIN
 
-Pointer<Continuation> TranslatorCommon::Top()
+Pointer<Continuation> TranslatorCommon::Top() const
 {
 	return stack.back();
 }
@@ -27,7 +27,7 @@ Pointer<Continuation> TranslatorCommon::Pop()
 	return top;
 }
 
-std::string TranslatorCommon::Result() const
+std::string TranslatorCommon::ToString() const
 {
 	StringStream str;
 	for (auto ob : *stack.back()->GetCode())
