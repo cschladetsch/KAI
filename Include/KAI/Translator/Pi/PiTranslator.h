@@ -11,6 +11,14 @@ KAI_BEGIN
 
 struct PiTranslator : TranslatorBase<PiLexer, PiTokens>
 {
+	typedef RhoAstNodeEnumType::Node AstNode;
+	typedef RhoToken Token;
+	typedef LexerCommon<Token> Lexer;
+	typedef ParserCommon<Lexer, AstNode> Parser;
+	typedef typename RhoParser::AstNodePtr AstNodePtr;
+	typedef typename AstNode::Enum AstEnum;
+	typedef RhoTokenEnumType TokenType;
+	typedef RhoAstNodeEnumType AstType;
 
 };
 
