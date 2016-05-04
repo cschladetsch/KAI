@@ -9,12 +9,13 @@ KAI_BEGIN
 struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 {
 	typedef ParserCommon<RhoLexer, RhoAstNodeEnumType> Parent;
+	using typename Parent::TokenEnum;
+	using typename Parent::TokenNode;
 	using typename Parent::Lexer;
 	using typename Parent::AstNode;
-	using typename Parent::Token;
-	using typename Parent::TokenEnum;
 	using typename Parent::AstNodePtr;
-	typedef RhoAstNodeEnumType NodeType;
+
+	typedef RhoAstNodeEnumType NodeType; 
 	typedef RhoTokenEnumType TokenType;
 
 	RhoParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
