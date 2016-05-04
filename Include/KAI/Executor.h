@@ -30,6 +30,8 @@ public:
 
 	void Eval(Object const &Q);
 	void Dump(Object const &Q);
+	
+	std::string PrintStack() const;
 
 	template <class T>
 	Value<T> New()

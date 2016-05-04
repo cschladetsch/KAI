@@ -1318,48 +1318,57 @@ void Executor::Dump(Object const &Q)
 	}
 }
 
-bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+std::string Executor::PrintStack() const
 {
-	std::fstream file(filename, std::ios::in);
-	if (!file)
-		return false;
-
-	char line[2000];
-	StringStream text;
-	while (file.getline(line, 2000))
-	{
-		text.Append(line);
-		text.Append('\n');
-	}
-
-	try
-	{
-		Pointer<Continuation> cont = compiler->Compile
-			(*executor->Self->GetRegistry(), text.ToString(), Structure::Program);
-
-		if (!cont)
-			return false;
-
-		cont->SetScope(scope);
-		executor->Continue(cont);
-
-		return true;
-	}
-	catch (Exception::Base &E)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
-	}
-	catch (std::exception &E2)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Exception running file '" << filename << "'" << std::endl;
-	}
-
-	return false;
+	return "";
 }
+
+//bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+//{
+//	KAI_UNUSED
+//	KAI_NOT_IMPLEMENTED();
+//}
+
+//bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+//{
+//	std::fstream file(filename, std::ios::in);
+//	if (!file)
+//		return false;
+//
+//	char line[2000];
+//	StringStream text;
+//	while (file.getline(line, 2000))
+//	{
+//		text.Append(line);
+//		text.Append('\n');
+//	}
+//
+//	try
+//	{
+//		auto cont = compiler->Translate (text.ToString(), Structure::Program);
+//		if (!cont)
+//			return false;
+//
+//		cont->SetScope(scope);
+//		executor->Continue(cont);
+//
+//		return true;
+//	}
+//	catch (Exception::Base &E)
+//	{
+//		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
+//	}
+//	catch (std::exception &E2)
+//	{
+//		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
+//	}
+//	catch (...)
+//	{
+//		std::cerr << "Exception running file '" << filename << "'" << std::endl;
+//	}
+//
+//	return false;
+//}
 
 KAI_END
 

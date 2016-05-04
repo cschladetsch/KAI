@@ -218,5 +218,8 @@
     <ClInclude Include="..\..\Include\KAI\Translator\TranslatorCommon.h">
       <Filter>Header Files\Translator\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Language.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,4 +2,9 @@
 
 KAI_NET_BEGIN
 
+Node::Node()
+{
+
+}
+
 KAI_NET_END

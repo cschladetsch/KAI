@@ -46,32 +46,22 @@ bool RhoLang::TranslateFile(const char *name, Structure st)
 
 bool RhoLang::Translate(const char *text, Structure st)
 {
-	if (text == 0 || text[0] == 0)
-		return true;
+	KAI_UNUSED_2(text, st);
+	return false;
 
-	lex = std::make_shared<Lexer>(text);
-	lex->Process();
-	if (lex->GetTokens().empty())
-		return true;
+	//trans = std::make_shared<Translator>(reg);
+	//trans->Translate(text);
 
-	//std::cout << lex->Print() << std::endl;
+	//if (lex->Failed)
+	//	Fail(lex->Error);
 
-	parse = std::make_shared<Parser>(lex, st);
+	//if (parse->Failed)
+	//	Fail(parse->Error);
 
-	//parse->Print();
+	//if (trans->Failed)
+	//	Fail(trans->Error);
 
-	trans = std::make_shared<Translator>(parse, reg);
-
-	if (lex->Failed)
-		Fail(lex->Error);
-
-	if (parse->Failed)
-		Fail(parse->Error);
-
-	if (trans->Failed)
-		Fail(trans->Error);
-
-	return !Failed;
+	//return !Failed;
 }
 
 KAI_END

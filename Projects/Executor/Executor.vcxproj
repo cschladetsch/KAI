@@ -124,6 +124,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\KAI\Translator\Language.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClCompile Include="Source\Bin.cpp" />
     <ClCompile Include="Source\Compiler.cpp" />
     <ClCompile Include="Source\Console.cpp" />

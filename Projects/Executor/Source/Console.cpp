@@ -179,12 +179,12 @@ void Console::CreateTree()
 	ExposeTypesToTree(types);
 }
 
-void Console::ExecuteFile(const char *filename)
-{
-	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
-}
+//void Console::ExecuteFile(const char *filename)
+//{
+//	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
+//}
 
-String Console::Execute(Pointer<Continuation> cont)
+void Console::Execute(Pointer<Continuation> cont)
 {
 	KAI_TRY
 	{
@@ -192,7 +192,8 @@ String Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		return WriteStack();
+		//return WriteStack();
+		//return WriteStack();
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
@@ -209,16 +210,14 @@ String Console::Execute(Pointer<Continuation> cont)
 		KAI_TRACE_ERROR_1("UnknownException");
 		std::cerr << color(C::Error) << "Error" << std::endl;
 	}
-	return "";
 }
 
-Pointer<Continuation> Console::Execute(String const &text)
+void Console::Execute(String const &text, Structure st)
 {
-	auto cont = compiler->Compile(*registry, text.c_str());
+	auto cont = compiler->Translate(text.c_str(), st);
 	if (!cont)
-		return Object();
-	Execute(cont);
-	return cont;
+		return;
+	executor->Continue(cont);
 }
 
 String Console::Process(const String& text)
@@ -227,12 +226,13 @@ String Console::Process(const String& text)
 	KAI_TRY
 	{
 		std::cout << color(C::Error);
-		Pointer<Continuation> cont = compiler->Compile(*registry, text.c_str());
+		Pointer<Continuation> cont = compiler->Translate(text.c_str());
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
 			std::cout << color(C::Trace);
-			return Execute(cont);
+			Execute(cont);
+			return executor->PrintStack();
 		}
 
 		return "";
@@ -343,18 +343,17 @@ void Console::RegisterTypes()
 
 Pointer<Continuation> Console::Compile(const char *text, Structure st)
 {
-	return compiler->Compile(*registry, text, st);
+	return compiler->Translate(text, st);
 }
 
 void Console::Register(Registry &)
 {
 }
 
-Object Console::ExecFile(const char *fileName)
+void Console::ExecuteFile(const char *fileName)
 {
-	auto c = compiler->CompileFile(*registry, fileName, Structure::Program);
-	Execute(c);
-	return Object();
+	auto c = compiler->CompileFile(fileName, Structure::Program);
+	executor->Continue(c);
 }
 
 KAI_END
