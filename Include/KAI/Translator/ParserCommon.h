@@ -23,7 +23,12 @@ struct ParserCommon : CommonBase
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
 	
-	ParserCommon(Registry& r) : CommonBase(r) { }
+	ParserCommon(Registry& r) : CommonBase(r)
+	{ 
+		current = 0;
+		indent = 0;
+		lexer.reset();
+	}
 
 	void Process()
 	{
