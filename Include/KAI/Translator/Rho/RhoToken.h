@@ -67,6 +67,9 @@ struct RhoTokenEnumType
 		DivAssign,
 		In,
 		Assert,
+		ToRho,
+		RhoSequence,
+
 	};
 
 	struct Type : TokenBase<RhoTokenEnumType>

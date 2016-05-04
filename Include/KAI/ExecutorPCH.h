@@ -10,5 +10,8 @@
 #include "KAI/Compiler.h"
 #include "KAI/Console.h"
 #include "KAI/BinBase.h"
+#include "KAI/Translator/Base.h"
+#include "KAI/Translator/Process.h"
+//#include "KAI/Translator/TranslatorCommmon.h"
 
 //#include "KAI/Translator/Common.h"

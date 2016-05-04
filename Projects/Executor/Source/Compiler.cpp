@@ -31,36 +31,6 @@ void Compiler::AddOperation(int N, const String &S)
 	op_to_string[T] = S;
 }
 
-Pointer<Continuation> Compiler::Compile(Registry &R, const String &text, Structure st) const
-{
-	if (text.empty())
-		return Object();
-
-	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
-	p->Translate(text.c_str(), st);
-	if (p->Failed)
-	{
-		std::cerr << p->Error;
-		return Object();
-	}
-
-	return p->trans->stack.back();
-}
-
-Pointer<Continuation> Compiler::CompileFile(Registry &R, const String &fileName, Structure st) const
-{
-	std::shared_ptr<RhoLang> p = std::make_shared<RhoLang>(R);
-	p->TranslateFile(fileName.c_str(), st);
-	if (p->Failed)
-	{
-		KAI_TRACE_ERROR_1(p->Error);
-		std::cerr << p->Error;
-		return Object();
-	}
-
-	return p->trans->stack.back();
-}
-
 void Compiler::Register(Registry &R, const char *name)
 {
 	ClassBuilder<Compiler>(R, name)
