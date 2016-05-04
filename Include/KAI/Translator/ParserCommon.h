@@ -94,7 +94,7 @@ protected:
 	{
 		if (stack.empty())
 		{
-			CreateError("Internal Error: Parse stack empty");
+			//MUST CreateError("Internal Error: Parse stack empty");
 			KAI_THROW_0(EmptyStack);
 		}
 

@@ -25,7 +25,7 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 protected:
 
 private:
-	Object NewObject(AstNodePtr context);
+	//Object NewObject(AstNodePtr context);
 	bool NextSingle(AstNodePtr context);
 	bool ParseArray(AstNodePtr context);
 	bool ParseContinuation(AstNodePtr context);
