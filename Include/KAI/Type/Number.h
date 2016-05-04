@@ -92,6 +92,8 @@ KAI_TYPE_END
 
 KAI_BEGIN
 
+typedef int TypeNumber;
+
 struct HashType
 {
 	enum { bucket_size = 4, min_buckets = 16 };
