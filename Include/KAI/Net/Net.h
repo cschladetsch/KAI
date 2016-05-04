@@ -1,7 +1,5 @@
 #pragma once
 
-struct Node;
-struct Connection;
 
 #include "KAI/Net/Config.h"
 #include "KAI/Net/Base.h"
