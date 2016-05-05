@@ -1,33 +1,10 @@
 #pragma once
 
+#include "KAI/Argument.h"
+
 KAI_BEGIN
 
 extern void DebugTrace(const char *);
-
-template <class T>
-struct Argument
-{
-	typedef const T &Type;
-};
-
-template <class T>
-struct Argument<const T>
-{
-	typedef const T &Type;
-};
-
-
-template <class T>
-struct Argument<T &>
-{
-	typedef T &Type;
-};
-
-template <class T>
-struct Argument<const T&>
-{
-	typedef const T &Type;
-};
 
 namespace debug 
 {
@@ -40,6 +17,7 @@ namespace debug
 			Error,
 			Fatal,
 		};
+
 		Type type;
 		FileLocation file_location;
 		Trace(FileLocation const &F, Type T = Information) : type(T), file_location(F) { }
@@ -57,7 +35,12 @@ namespace debug
 		template <class T>
 		Trace &Write(const char *P, T const &X)
 		{
+#ifdef KAI_TRACE_VERBOSE
 			*this << "[" << P << "='" << X << "'] ";
+#else
+			KAI_UNUSED_1(P);
+			*this << X;
+#endif
 			return *this;
 		}
 	};

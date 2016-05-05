@@ -6,8 +6,9 @@
 KAI_BEGIN
 
 // parser specific to the in-fix Rho language
-struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
+class RhoParser : public ParserCommon<RhoLexer, RhoAstNodeEnumType>
 {
+public:
 	typedef ParserCommon<RhoLexer, RhoAstNodeEnumType> Parent;
 	using typename Parent::TokenEnum;
 	using typename Parent::TokenNode;
@@ -26,6 +27,7 @@ protected:
 	void Process(Structure);
 
 private:
+	void Run(Structure st);
 	bool Program();
 	bool Statement(AstNodePtr );
 	bool Expression();
@@ -34,8 +36,6 @@ private:
 	bool Additive();
 	bool Term();
 	bool Factor();
-
-	void Run(Structure st);
 	void ConsumeNewLines();
 	void Block(AstNodePtr block);
 	bool ParseFactorIdent();
@@ -52,4 +52,3 @@ private:
 };
 
 KAI_END
-
