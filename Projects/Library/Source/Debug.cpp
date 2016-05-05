@@ -10,7 +10,7 @@ namespace debug
 		switch (t)
 		{
 			#define CASE(V) case Trace::V: return #V;
-			CASE(Information);
+			case Trace::Information: return 0;
 			CASE(Warn);
 			CASE(Error);
 			CASE(Fatal);
@@ -21,7 +21,14 @@ namespace debug
 
 	Trace::~Trace()
 	{
+#ifdef KAI_TRACE_VERBOSE
 		std::cerr << file_location.ToString(true).c_str() << ": " << TypeToString(type) << ": " << ToString().c_str() << std::endl;
+#else
+		auto lead = TypeToString(type);
+		if (lead != 0)
+			std::cerr << lead << ": ";
+		std::cerr << ToString().c_str() << std::endl;
+#endif
 	}
 }
 

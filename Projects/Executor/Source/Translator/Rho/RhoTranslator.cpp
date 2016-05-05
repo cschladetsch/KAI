@@ -10,9 +10,8 @@ KAI_BEGIN
 
 void RhoTranslator::TranslateToken(AstNodePtr node)
 {
-	switch (node->token.type)
+	switch (node->GetToken().type)
 	{
-
 	case TokenEnum::While:
 		TranslateWhile(node);
 		return;
@@ -94,11 +93,11 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 		return;
 
 	case TokenEnum::Int:
-		Append(reg.New<int>(boost::lexical_cast<int>(node->token.Text())));
+		Append(reg.New<int>(boost::lexical_cast<int>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::Float:
-		Append(reg.New<float>(boost::lexical_cast<float>(node->token.Text())));
+		Append(reg.New<float>(boost::lexical_cast<float>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::String:
@@ -117,7 +116,7 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 		return;
 
 	case TokenEnum::Return:
-		for (auto ch : node->Children)
+		for (auto ch : node->GetChildren())
 			TranslateNode(ch);
 		AppendOp(Operation::Return);
 		return;
@@ -129,8 +128,8 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 
 void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 {
-	TranslateNode(node->Children[0]);
-	TranslateNode(node->Children[1]);
+	TranslateNode(node->GetChild(0));
+	TranslateNode(node->GetChild(1));
 
 	AppendNew<Operation>(Operation(op));
 }
@@ -143,7 +142,7 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 		return;
 	}
 
-	switch (node->type)
+	switch (node->GetType())
 	{
 	case AstEnum::IndexOp:
 		TranslateBinaryOp(node, Operation::Index);
@@ -159,8 +158,8 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 
 	case AstEnum::Assignment:
 		// like a binary op, but argument order is reversed
-		TranslateNode(node->Children[1]);
-		TranslateNode(node->Children[0]);
+		TranslateNode(node->GetChild(1));
+		TranslateNode(node->GetChild(0));
 		AppendNew<Operation>(Operation(Operation::Store));
 		return;
 
@@ -174,15 +173,15 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 
 	case AstEnum::Block:
 		PushNew();
-		for (auto st : node->Children)
+		for (auto st : node->GetChildren())
 			TranslateNode(st);
 		Append(Pop());
 		return;
 
 	case AstEnum::List:
-		for (auto ch : boost::adaptors::reverse(node->Children))
+		for (auto ch : boost::adaptors::reverse(node->GetChildren()))
 			TranslateNode(ch);
-		AppendNew<int>(node->Children.size());
+		AppendNew<int>(node->GetChildren().size());
 		//AppendNewOp(Operation::ToArray);
 		KAI_NOT_IMPLEMENTED();
 		return;
@@ -196,7 +195,7 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 		return;
 
 	case AstEnum::Program:
-		for (auto e : node->Children)
+		for (auto e : node->GetChildren())
 			TranslateNode(e);
 		return;
 	}
@@ -207,7 +206,7 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 
 void RhoTranslator::TranslateBlock(AstNodePtr node)
 {
-	for (auto st : node->Children)
+	for (auto st : node->GetChildren())
 		TranslateNode(st);
 }
 
@@ -216,17 +215,17 @@ void RhoTranslator::TranslateFunction(AstNodePtr node)
 	// child 0: ident
 	// child 1: args
 	// child 2: block
-	AstNode::ChildrenType const &ch = node->Children;
+	AstNode::ChildrenType const &ch = node->GetChildren();
 
 	// write the body
 	PushNew();
-	for (auto b : ch[2]->Children)
+	for (auto b : ch[2]->GetChildren())
 		TranslateNode(b);
 
 	// add the args
 	auto cont = Pop();
-	for (auto a : ch[1]->Children)
-		cont->AddArg(Label(a->token.Text()));
+	for (auto a : ch[1]->GetChildren())
+		cont->AddArg(Label(a->GetTokenText()));
 
 	// write the name and store
 	Append(cont);
@@ -236,12 +235,12 @@ void RhoTranslator::TranslateFunction(AstNodePtr node)
 
 void RhoTranslator::TranslateCall(AstNodePtr node)
 {
-	typename AstNode::ChildrenType &children = node->Children;
-	for (auto a : children[1]->Children)
+	typename AstNode::ChildrenType const &children = node->GetChildren();
+	for (auto a : children[1]->GetChildren())
 		TranslateNode(a);
 
 	TranslateNode(children[0]);
-	if (children.size() > 2 && children[2]->token.type == TokenEnum::Replace)
+	if (children.size() > 2 && children[2]->GetToken().type == TokenEnum::Replace)
 		AppendNew(Operation(Operation::Replace));
 	else
 		AppendNew(Operation(Operation::SuspendNew));
@@ -249,7 +248,7 @@ void RhoTranslator::TranslateCall(AstNodePtr node)
 
 void RhoTranslator::TranslateIf(AstNodePtr node)
 {
-	typename AstNode::ChildrenType const &ch = node->Children;
+	typename AstNode::ChildrenType const &ch = node->GetChildren();
 	bool hasElse = ch.size() > 2;
 	TranslateNode(ch[0]);
 	if (hasElse)

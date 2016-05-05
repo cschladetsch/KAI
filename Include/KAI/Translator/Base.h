@@ -5,15 +5,15 @@
 KAI_BEGIN
 
 template <class AstEnumStruct>
-struct TokenBase;
+class TokenBase;
 
 template <class Token>
-struct LexerCommon;
+class LexerCommon;
 
 template <class AstEnum>
-struct NodeBase;
+class NodeBase;
 
 template <class Lexer, class AstEnumStruct>
-struct ParserCommon;
+class ParserCommon;
 
 KAI_END

@@ -100,6 +100,8 @@ struct Operation
 
 		ToPi,
 		ToRho,
+		StartPiSequence,
+		StartRhoSequence,
 		GarbageCollect,
 	};
 

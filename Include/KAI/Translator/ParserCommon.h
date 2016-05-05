@@ -7,11 +7,13 @@
 
 KAI_BEGIN
 
+
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class Lexer, class AstEnumStruct>
-struct ParserCommon : CommonBase
+class ParserCommon : public CommonBase, public HierarchicalPrinter<ParserCommon<Lexer, AstEnumStruct> >
 {
+public:
 	typedef Lexer Lexer;
 	typedef typename Lexer::Token TokenNode;
 	typedef typename TokenNode::Enum TokenEnum;
@@ -28,20 +30,6 @@ struct ParserCommon : CommonBase
 		current = 0;
 		indent = 0;
 		lexer.reset();
-	}
-
-	std::string Print() const
-	{
-		std::stringstream str;
-		Print(str, 0, root);
-		return str.str();
-	}
-
-	void Print(std::stringstream &str, int level, AstNodePtr root)
-	{
-		str << std::string(' ', 4*level) << root << std::ends;
-		for (auto char &ch : root->Children)
-			print(str, level + 1, ch);
 	}
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
@@ -84,12 +72,23 @@ struct ParserCommon : CommonBase
 	std::string Print()
 	{
 		std::stringstream str;
-		Print(str, *root, 0);
+		Print(str, 0, root);
 		str << std::endl << std::ends;
 		return str.str();
 	}
 
 protected:
+	void Print(std::stringstream &str, int level, AstNodePtr root)
+	{
+		str << *root << "\n";
+		std::string indent(4, ' ');
+		for (auto const &ch : root->GetChildren())
+		{
+			str << indent;
+			Print(str, level + 1, ch);
+		}
+	}
+
 	std::vector<TokenNode> tokens;
 	std::vector<AstNodePtr> stack;
 	size_t current;
@@ -188,20 +187,6 @@ protected:
 
 		Next();
 		return std::make_shared<AstNode>(Last());
-	}
-
-	void Print(std::ostream &out, AstNode const &node, int level)
-	{
-		out << Lead(level) << node << std::endl;
-		//std::cout << Lead(level) << node << std::endl;
-
-		for (auto const &ch : node.Children)
-			Print(out, *ch, level + 1);
-	}
-
-	std::string ParserCommon::Lead(int level)
-	{
-		return std::move(std::string(level*4, ' '));
 	}
 
 	AstNodePtr NewNode(AstEnum t) { return std::make_shared<AstNode>(t); }

@@ -42,9 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
-      <Filter>Source Files\Translator\Pi</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Source\Translator\LexerBase.cpp">
       <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp">
-      <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp">
       <Filter>Source Files\Translator\Rho</Filter>
