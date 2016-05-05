@@ -37,9 +37,9 @@ public:
 	{
 		std::stringstream out;
 #ifdef KAI_TRACE_VERBOSE
-		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")" << std::ends;
+		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")";
 #else
-		out << "( " << KAI_NAMESPACE(ToString(type)) << ": " << KAI_NAMESPACE(ToString(token.type)) << ") " << std::ends;
+		out << "(" << KAI_NAMESPACE(ToString(type)) << ": " << KAI_NAMESPACE(ToString(token.type)) << ")";
 #endif
 		return out.str();
 	}
@@ -68,7 +68,6 @@ protected:
 	Enum type;
 	Token token;
 	ChildrenType Children;
-
 	Object Object;
 };
 

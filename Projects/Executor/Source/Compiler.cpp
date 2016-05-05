@@ -71,8 +71,6 @@ BinaryPacket &operator>>(BinaryPacket &S, Operation &P)
 	return S;
 }
 
-#include "OperationToString.inl"
-
 const char *Operation::ToString() const
 {
 	return ToString((int)value);

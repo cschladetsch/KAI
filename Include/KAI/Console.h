@@ -5,6 +5,7 @@
 
 KAI_BEGIN
 
+struct Coloriser;
 
 class Console
 {
@@ -14,6 +15,7 @@ class Console
 	Pointer<Compiler> compiler;
 	Memory::IAllocator *alloc;
 	Language language;
+	//Coloriser *color;
 
 public:
 	~Console();

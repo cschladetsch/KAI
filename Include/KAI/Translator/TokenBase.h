@@ -32,10 +32,19 @@ public:
 	{
 		std::stringstream out;
 #ifdef KAI_TRACE_VERBOSE
-		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]" << std::ends;
+		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
-		out << "[" << KAI_NAMESPACE(ToString(type)) << ": " << Text() << "] " << std::ends;
+		out << KAI_NAMESPACE(ToString(type));
+		switch (type)
+		{
+		case EnumType::Ident:
+		case EnumType::Int:
+		case EnumType::Float:
+		case EnumType::Pathname:
+			out << "=" << Text();
+		}
 #endif
+		//ENDS out << std::ends;
 		return std::move(out.str());
 	}
 
@@ -54,6 +63,7 @@ public:
 	{
 		return out << node.ToString();
 	}
+
 };
 
 KAI_END

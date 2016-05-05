@@ -25,7 +25,10 @@ int main(int argc, char **argv)
 	
 	Console console(args, &alloc);
 	console.SetLanguage(Language::Rho);
-	Process::trace = 1;
+
+	Process::trace = 0;
+	console.GetExecutor()->SetTraceLevel(0);
+
 	console.Run();
 }
 

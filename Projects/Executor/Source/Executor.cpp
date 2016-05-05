@@ -1306,7 +1306,14 @@ void Executor::Dump(Object const &Q)
 
 std::string Executor::PrintStack() const
 {
-	return "";
+	int n = 0;
+	std::stringstream str;
+	str << "size: " << data->Size() << std::endl;
+	for (auto const &ob : *data)
+	{
+		str << ob << std::endl;
+	}
+	return std::move(str.str());
 }
 
 //bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
