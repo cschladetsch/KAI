@@ -73,18 +73,17 @@ public:
 	{
 		std::stringstream str;
 		Print(str, 0, root);
-		str << std::endl << std::ends;
+		//ENDS str << std::endl << std::ends;
 		return str.str();
 	}
 
 protected:
 	void Print(std::stringstream &str, int level, AstNodePtr root)
 	{
-		str << *root << "\n";
-		std::string indent(4, ' ');
+		std::string indent(4*level, ' ');
+		str << indent << *root << "\n";
 		for (auto const &ch : root->GetChildren())
 		{
-			str << indent;
 			Print(str, level + 1, ch);
 		}
 	}

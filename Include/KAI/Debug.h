@@ -80,7 +80,7 @@ namespace debug
 #		define KAI_TRACE_3(A,B,C) \
 			KAI_TRACE_2(A,B).Write(#C,C)
 #		define KAI_TRACE_4(A,B,C,D) \
-			KAI_TRACE_3(A,B,C).Write(#D,D)
+			KAI_TRACE_3(A,B,Coloriser).Write(#D,D)
 
 #		define KAI_TRACE_WARN_0() \
 			KAI_TRACE_WARN()
@@ -91,7 +91,7 @@ namespace debug
 #		define KAI_TRACE_WARN_3(A,B,C) \
 			KAI_TRACE_WARN_2(A,B).Write(#C,C)
 #		define KAI_TRACE_WARN_4(A,B,C,D) \
-			KAI_TRACE_WARN_3(A,B,C).Write(#D,D)
+			KAI_TRACE_WARN_3(A,B,Coloriser).Write(#D,D)
 
 #		define KAI_TRACE_ERROR_0() \
 			KAI_TRACE_ERROR()
@@ -102,7 +102,7 @@ namespace debug
 #		define KAI_TRACE_ERROR_3(A,B,C) \
 			KAI_TRACE_ERROR_2(A,B).Write(#C,C)
 #		define KAI_TRACE_ERROR_4(A,B,C,D) \
-			KAI_TRACE_ERROR_3(A,B,C).Write(#D,D)
+			KAI_TRACE_ERROR_3(A,B,Coloriser).Write(#D,D)
 
 #	else
 #		define KAI_EMPTY_TRACE_SINK debug::EmptySink()

@@ -177,7 +177,7 @@ public:
 			}
 		}
 
-		err << std::ends;
+		//ENDS err << std::ends;
 
 		return err.str();
 	}
@@ -187,7 +187,7 @@ public:
 		std::stringstream str;
 		for (auto tok : tokens)
 			str << tok << ", ";
-		str << std::ends;
+		//ENDS str << std::ends;
 		return str.str();
 	}
 };
