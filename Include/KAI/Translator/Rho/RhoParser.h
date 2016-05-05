@@ -6,22 +6,28 @@
 KAI_BEGIN
 
 // parser specific to the in-fix Rho language
-struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
+class RhoParser : public ParserCommon<RhoLexer, RhoAstNodeEnumType>
 {
+public:
 	typedef ParserCommon<RhoLexer, RhoAstNodeEnumType> Parent;
+	using typename Parent::TokenEnum;
+	using typename Parent::TokenNode;
 	using typename Parent::Lexer;
 	using typename Parent::AstNode;
-	using typename Parent::Token;
-	using typename Parent::TokenEnum;
 	using typename Parent::AstNodePtr;
-	typedef RhoAstNodeEnumType NodeType;
+
+	typedef RhoAstNodeEnumType NodeType; 
 	typedef RhoTokenEnumType TokenType;
 
-	RhoParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
-	RhoParser(std::shared_ptr<Lexer> lexer, Structure st) : Parent(lexer) { Run(st); }
+	RhoParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(Structure st);
+	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
+protected:
+	void Process(Structure);
+
+private:
+	void Run(Structure st);
 	bool Program();
 	bool Statement(AstNodePtr );
 	bool Expression();
@@ -30,8 +36,6 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 	bool Additive();
 	bool Term();
 	bool Factor();
-
-	void Run(Structure st);
 	void ConsumeNewLines();
 	void Block(AstNodePtr block);
 	bool ParseFactorIdent();
@@ -48,4 +52,3 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 };
 
 KAI_END
-

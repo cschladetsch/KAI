@@ -3,7 +3,8 @@
 #include "KAI/Continuation.h"
 #include <fstream>
 
-#if 1//def KAI_PLATFORM_PC
+using namespace std;
+using namespace kai;
 
 KAI_BEGIN
 
@@ -65,7 +66,7 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 	case ObjectColor::Grey: graph << "blue"; break;
 	case ObjectColor::Black: graph << "green"; break;
 	}
-	
+
 	graph << "]\n";
 	if (excluded)
 		return graph;
@@ -116,7 +117,3 @@ void DotGraph::WriteToFile(const char *filename)
 }
 
 KAI_END
-
-#endif // KAI_PLATFORM_PC
-
-//EOF

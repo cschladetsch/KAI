@@ -88,8 +88,12 @@ void Executor::Continue()
 			}
 			KAI_CATCH(Exception::Base, E)
 			{
+#if defined(KAI_DEBUG_TRACE)
 				KAI_TRACE_3(data, context, continuation);
 				KAI_TRACE_1(E);
+#else
+				std::cerr << E.ToString() << std::endl;
+#endif
 				throw;
 			}
 		}
@@ -308,26 +312,12 @@ void Executor::Perform(Operation::Type op)
 {
 	switch (op)
 	{
-	case Operation::SuspendNew:
-		{
-			Object what = ResolvePop();
-			switch (what.GetTypeNumber().GetValue())
-			{
-			case Type::Number::Function:
-				ConstDeref<BasePointer<FunctionBase> >(what)->Invoke(*what.GetRegistry(), *data);
-				return;
-
-			case Type::Number::Continuation:
-				context->Push(continuation.GetObject());
-				auto next = NewContinuation(what);
-				*next->scopeBreak = true;
-				context->Push(next.GetObject());
-				Break = true;
-				return;
-			}
-
-			break;
-		}
+	case Operation::ToPi:
+		Deref<Compiler>(compiler).SetLanguage((int)Language::Pi);
+		break;
+	case Operation::ToRho:
+		Deref<Compiler>(compiler).SetLanguage((int)Language::Rho);
+		break;
 
 	case Operation::Lookup:
 		Push(Resolve(Pop()));
@@ -1314,48 +1304,78 @@ void Executor::Dump(Object const &Q)
 	}
 }
 
-bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+std::string Executor::PrintStack() const
 {
-	std::fstream file(filename, std::ios::in);
-	if (!file)
-		return false;
-
-	char line[2000];
-	StringStream text;
-	while (file.getline(line, 2000))
+	int n = 0;
+	std::stringstream str;
+	str << "size: " << data->Size() << std::endl;
+	for (auto const &ob : *data)
 	{
-		text.Append(line);
-		text.Append('\n');
+		str << ob << std::endl;
 	}
-
-	try
-	{
-		Pointer<Continuation> cont = compiler->Compile
-			(*executor->Self->GetRegistry(), text.ToString(), Structure::Program);
-
-		if (!cont)
-			return false;
-
-		cont->SetScope(scope);
-		executor->Continue(cont);
-
-		return true;
-	}
-	catch (Exception::Base &E)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
-	}
-	catch (std::exception &E2)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Exception running file '" << filename << "'" << std::endl;
-	}
-
-	return false;
+	return std::move(str.str());
 }
+
+//bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+//{
+//	KAI_UNUSED
+//	KAI_NOT_IMPLEMENTED();
+//}
+
+//bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
+//{
+//	std::fstream file(filename, std::ios::in);
+//	if (!file)
+//		return false;
+//
+//	char line[2000];
+//	StringStream text;
+//	while (file.getline(line, 2000))
+//	{
+//		text.Append(line);
+//		text.Append('\n');
+//	}
+//
+//	try
+//	{
+//		auto cont = compiler->Translate (text.ToString(), Structure::Program);
+//		if (!cont)
+//			return false;
+//
+//		cont->SetScope(scope);
+//		executor->Continue(cont);
+//
+//		return true;
+//	}
+//	catch (Exception::Base &E)
+//	{
+//		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
+//	}
+//	catch (std::exception &E2)
+//	{
+//		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
+//	}
+//	catch (...)
+//	{
+//		std::cerr << "Exception running file '" << filename << "'" << std::endl;
+//	}
+//
+//	return false;
+//}
+
+const char *ToString(Language l)
+{
+	switch (l)
+	{
+	case Language::None: return "none";
+	case Language::Pi: return "pi";
+	case Language::Rho: return "rho";
+	case Language::Tau: return "tau";
+	}
+	return "UknownLanguage";
+}
+
+int Process::trace = 0;
 
 KAI_END
 

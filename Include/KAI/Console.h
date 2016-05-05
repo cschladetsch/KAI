@@ -1,8 +1,11 @@
 #pragma once
 
+#include "KAI/Translator/Pi/Pi.h"
 #include "KAI/Translator/Rho/Rho.h"
 
 KAI_BEGIN
+
+struct Coloriser;
 
 class Console
 {
@@ -11,6 +14,8 @@ class Console
 	Pointer<Executor> executor;
 	Pointer<Compiler> compiler;
 	Memory::IAllocator *alloc;
+	Language language;
+	//Coloriser *color;
 
 public:
 	~Console();
@@ -19,6 +24,10 @@ public:
 	Console(const std::vector<String> &args, Memory::IAllocator *);
 
 	void Create(const std::vector<String> &);
+
+	void SetLanguage(Language lang);
+	void SetLanguage(int lang);
+	int GetLanguage() const;
 
 	String GetPrompt() const;
 	String Process(const String&);
@@ -29,12 +38,12 @@ public:
 	Object GetRoot() const { return tree.GetRoot(); }
 	Pointer<Executor> GetExecutor() const { return executor; }
 	Pointer<Compiler> GetCompiler() const { return compiler; }
-	Pointer<Continuation> Compile(const char *, Structure);
-	Object ExecFile(const char *fileName);
-	String Execute(Pointer<Continuation>);
 
-	Pointer<Continuation> Execute(String const &text);
+	Pointer<Continuation> Compile(const char *, Structure);
+	void Execute(const String &text, Structure st = Structure::Statement);
 	void ExecuteFile(const char *);
+	void Execute(Pointer<Continuation> cont);
+
 	String WriteStack() const;
 	void ControlC();
 	static void Register(Registry &);

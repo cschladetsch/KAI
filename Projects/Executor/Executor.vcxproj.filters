@@ -42,9 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
-      <Filter>Source Files\Translator\Pi</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <Filter>Source Files\Translator\Pi</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Source\Translator\LexerBase.cpp">
       <Filter>Source Files\Translator</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp">
-      <Filter>Source Files\Translator\Rho</Filter>
     </ClCompile>
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp">
       <Filter>Source Files\Translator\Rho</Filter>
@@ -114,11 +108,11 @@
     <ClCompile Include="Source\Translator\TranslatorCommon.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Operation.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h">
-      <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h">
       <Filter>Header Files\Translator\Pi</Filter>
     </ClInclude>
@@ -127,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiToken.h">
       <Filter>Header Files\Translator\Pi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h">
-      <Filter>Header Files\Translator\Rho</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h">
       <Filter>Header Files\Translator\Rho</Filter>
@@ -216,6 +207,12 @@
       <Filter>Header Files\Translator\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Translator\TranslatorCommon.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Translator\Language.h">
+      <Filter>Header Files\Translator\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\users\christian\dev\KAI\Include\KAI\Translator\CommonBase.h">
       <Filter>Header Files\Translator\Common</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,27 +20,15 @@ void Function_1(int )
 String Function_2(int , int , String p)
 {
 	funCalled[2] = true;
-	//KAI_TRACE_3(n, f, p);
+	KAI_TRACE_3(n, f, p);
 	return p + "foo";
 }
 
 Object Function_3(Object object)
 {
 	funCalled[3] = true;
-	//KAI_TRACE_1(object);
+	KAI_TRACE_1(object);
 	return object["num"];
-}
-
-TEST(TestFunctionScripting, Test0)
-{
-	Memory::StandardAllocator alloc;
-	Console console(&alloc);
-
-	// a registry is a factory for classes and instances
-	Registry &reg = console.GetRegistry();
-	Object root = console.GetRoot();
-
-	console.Execute("a+1;");
 }
 
 TEST(TestFunctionScripting, Test)
@@ -49,10 +37,11 @@ TEST(TestFunctionScripting, Test)
 	// the standard one which uses malloc and free
 	Memory::StandardAllocator alloc;
 	Console console(&alloc);
+	console.SetLanguage(Language::Rho);
 
 	// a registry is a factory for classes and instances
-	Registry &reg = console.GetRegistry();
 	Object root = console.GetRoot();
+	//Registry &reg = console.GetRegistry();
 
 	// add general functions to the root of the tree
 	AddFunction(root, Function_0, "Function0"); 
@@ -63,8 +52,9 @@ TEST(TestFunctionScripting, Test)
 	// invoke the functions; take copies of the resultant stacks after each function completes
 	console.Execute("Function0();");
 	console.Execute("Function1(42);");
-	//console.Execute("Function2(123, 3, \"bar\");");
-	//console.Execute("Function3(mystruct);");
+	console.Execute("Function1(42);");
+	console.Execute("Function2(123, 3, \"bar\");");
+	console.Execute("Function3(mystruct);");
 
 	for (int n = 0; n < 2; ++n)
 		ASSERT_TRUE(funCalled[n]);

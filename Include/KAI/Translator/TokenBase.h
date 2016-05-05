@@ -6,9 +6,11 @@ KAI_BEGIN
 
 // common to all Tokens
 template <class EnumType>
-struct TokenBase
+class TokenBase
 {
+public:
 	typedef TokenBase<EnumType> Self;
+	typedef typename EnumType EnumType;
 	typedef typename EnumType::Enum Enum;
 
 	Enum type;
@@ -29,7 +31,20 @@ struct TokenBase
 	std::string ToString() const
 	{
 		std::stringstream out;
-		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]" << std::ends;
+#ifdef KAI_TRACE_VERBOSE
+		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
+#else
+		out << KAI_NAMESPACE(ToString(type));
+		switch (type)
+		{
+		case EnumType::Ident:
+		case EnumType::Int:
+		case EnumType::Float:
+		case EnumType::Pathname:
+			out << "=" << Text();
+		}
+#endif
+		//ENDS out << std::ends;
 		return std::move(out.str());
 	}
 
@@ -48,6 +63,7 @@ struct TokenBase
 	{
 		return out << node.ToString();
 	}
+
 };
 
 KAI_END
