@@ -12,8 +12,7 @@ TEST(TestFunctionScripting, TestAssignment)
 	// a registry is a factory for classes and instances
 	//Registry &reg = console.GetRegistry();
 	Object root = console.GetRoot();
-
-	console.Execute("a=1+2;");
+	console.Execute("a=1;");
 
 	ASSERT_TRUE(root.HasChild("a"));
 	ASSERT_EQ(Deref<int>(root.GetChild("a")), 3);
