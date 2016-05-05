@@ -8,6 +8,8 @@ KAI_BEGIN
 struct RhoLexer : LexerCommon<RhoTokenEnumType>
 {
 	typedef LexerCommon<RhoTokenEnumType> Parent;
+	typedef TokenBase<RhoTokenEnumType> TokenNode;
+
 	RhoLexer(const char *text) : Parent(text) { }
 
 	virtual void AddKeyWords();

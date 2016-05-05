@@ -1,60 +1,75 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
+#include "KAI/Translator/TranslatorCommon.h"
 
 KAI_BEGIN
 
 template <class Parser>
-struct TranslatorBase : Process
+struct TranslatorBase : TranslatorCommon
 {
-	typedef typename Parser::Token Token;
+	typedef Parser Parser;
+	typedef typename Parser::TokenNode TokenNode;
+	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename Parser::Lexer Lexer;
 	typedef typename Parser::AstNode AstNode;
-	typedef typename Parser::TokenNode TokenNode;
 	typedef typename AstNode::Enum AstEnum;
-	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename Parser::AstNodePtr AstNodePtr;
-	//typedef typename Parer::
 
 	TranslatorBase(const TranslatorBase&) = delete;
-	TranslatorBase(std::shared_ptr<Parser> p, Registry &reg);
+	TranslatorBase(Registry &reg) : TranslatorCommon(reg) { }
 
-	std::string TextResult() const;
-	Pointer<Continuation> Result() const { return Top(); }
-
-private:
-	virtual void Traverse(AstNodePtr node) = 0;
-	virtual void Translate(AstNodePtr node) = 0;
-	virtual void TranslateFunction(AstNodePtr node) = 0;
-	virtual void TranslateBlock(AstNodePtr node) = 0;
-	virtual void TranslateBinaryOp(AstNodePtr node, typename Operation::Type) = 0;
-	virtual void TranslateFromToken(AstNodePtr node) = 0;
-	virtual void TranslateCall(AstNodePtr node) = 0;
-	virtual void TranslateIndex(AstNodePtr node) = 0;
-
-private:
-	Registry &reg;
-	std::vector<Pointer<Continuation>> stack;
-
-	Pointer<Continuation> Top() const;
-	void PushNew();
-	void Append(Object ob);
-	template <class T>
-	void AppendNew(T const &val)
+	virtual Pointer<Continuation> Translate(const char *text, Structure st) override
 	{
-		Append(reg.New<T>(val));
-	}
-	template <class T>
-	void AppendNew()
-	{
-		Append(reg.New<T>());
+		if (text == 0 || text[0] == 0)
+			return Object();
+
+		auto lex = std::make_shared<Lexer>(text);
+		lex->Process();
+		if (lex->GetTokens().empty())
+			return Object();
+		if (lex->Failed)
+			Fail(lex->Error);
+
+		if (trace)
+			KAI_TRACE_1(lex->Print());
+
+		auto parse = std::make_shared<Parser>(reg);
+		parse->Process(lex, st);
+		if (parse->Failed)
+			Fail(parse->Error);
+
+		if (trace)
+			KAI_TRACE_1(parse->Print());
+
+		PushNew();
+		TranslateNode(parse->GetRoot());
+
+		if (stack.empty())
+			KAI_THROW_0(EmptyStack);
+
+		if (trace)
+			KAI_TRACE_1(stack.back());
+
+		return stack.back();
 	}
 
-	Pointer<Continuation> Pop();
-	void AppendNewOp(Operation::Enum op);
-	void TranslateIf(AstNodePtr node);
-	void TranslateFor(AstNodePtr node);
-	void TranslateWhile(AstNodePtr node);
+protected:
+	virtual void TranslateNode(AstNodePtr node) = 0;
+
+	void Run(std::shared_ptr<Parser> p)
+	{
+		PushNew();
+
+		try
+		{
+			TranslateNode(p->GetRoot());
+		}
+		catch (Exception &)
+		{
+			if (!Failed)
+				Fail("Failed");
+		}
+	}
 };
 
 KAI_END

@@ -12,20 +12,18 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 	typedef ParserCommon<PiLexer, PiAstNodeEnumType> Parent;
 	using typename Parent::Lexer;
 	using typename Parent::AstNode;
-	using typename Parent::Token;
+	using typename Parent::TokenNode;
 	using typename Parent::TokenEnum;
 	using typename Parent::AstNodePtr;
 	typedef PiAstNodeEnumType NodeType;
 	typedef PiTokenEnumType TokenType;
 
-	PiParser(std::shared_ptr<Lexer> lexer) : Parent(lexer) { }
+	PiParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(Structure st) override;
-
-protected:
+	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 private:
-	Object NewObject(AstNodePtr context);
+	void Run(Structure);
 	bool NextSingle(AstNodePtr context);
 	bool ParseArray(AstNodePtr context);
 	bool ParseContinuation(AstNodePtr context);
