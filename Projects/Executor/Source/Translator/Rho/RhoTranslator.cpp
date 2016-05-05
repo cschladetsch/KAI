@@ -243,7 +243,7 @@ void RhoTranslator::TranslateCall(AstNodePtr node)
 	if (children.size() > 2 && children[2]->GetToken().type == TokenEnum::Replace)
 		AppendNew(Operation(Operation::Replace));
 	else
-		AppendNew(Operation(Operation::SuspendNew));
+		AppendNew(Operation(Operation::Suspend));
 }
 
 void RhoTranslator::TranslateIf(AstNodePtr node)

@@ -1,6 +1,6 @@
 #include "KAI/KAI.h"
 #include "KAI/BuiltinTypes/String.h"
-#include "KAI/BuiltinTypes/Bool.h"
+#include "KAI/Operation.h"
 //#include "KAI/BuiltinTypes/Signed32.h"
 //#include "KAI/Function.h"
 
@@ -134,7 +134,16 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	if (klass->HasOperation(Type::Properties::StringStreamInsert))
 		klass->Insert(stream, object.GetStorageBase());
 	else
-		stream << "Object: handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
+	{
+		if (klass->GetTypeNumber() == Type::Number::Operation)
+		{
+			stream << ConstDeref<Operation>(object).ToString();
+		}
+		else
+		{
+			stream << "Handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
+		}
+	}
 
 	return stream;
 }

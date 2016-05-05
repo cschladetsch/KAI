@@ -108,6 +108,9 @@
     <ClCompile Include="Source\Translator\TranslatorCommon.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Operation.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h">

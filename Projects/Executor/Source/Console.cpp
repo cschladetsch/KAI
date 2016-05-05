@@ -1,6 +1,6 @@
 #include "KAI/ExecutorPCH.h"
 
-#ifdef WIN32
+//#ifdef WIN32
 #	define WIN32_LEAN_AND_MEAN
 #	include <windows.h>
 
@@ -45,7 +45,7 @@ struct C
 
 	void operator()(What c) const { SetColor(c); }
 };
-#endif
+//#endif
 
 WORD C::colors[C::Last];
 HANDLE C::hstdout;
@@ -211,8 +211,7 @@ void Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		//return WriteStack();
-		//return WriteStack();
+		WriteStack();
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
@@ -251,7 +250,8 @@ String Console::Process(const String& text)
 			cont->SetScope(tree.GetScope());
 			std::cout << color(C::Trace);
 			Execute(cont);
-			return executor->PrintStack();
+			//if (DebugOptions & PrintStack)
+			//	return executor->PrintStack();
 		}
 
 		return "";
