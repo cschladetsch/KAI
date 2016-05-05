@@ -218,7 +218,7 @@ struct TraitsBase
 	template <>
 	struct MultiplyOp<true>
 	{
-		static Store Perform(ConstReference, ConstReference)
+		static Store Perform(ConstReference A, ConstReference B)
 		{
 			return A * B;
 		}

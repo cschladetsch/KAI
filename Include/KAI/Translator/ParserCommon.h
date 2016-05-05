@@ -7,40 +7,44 @@
 
 KAI_BEGIN
 
+
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class Lexer, class AstEnumStruct>
-struct ParserCommon : Process
+class ParserCommon : public CommonBase, public HierarchicalPrinter<ParserCommon<Lexer, AstEnumStruct> >
 {
+public:
 	typedef Lexer Lexer;
-	typedef typename Lexer::Token Token;
-	typedef typename Token::Enum TokenEnum;
+	typedef typename Lexer::Token TokenNode;
+	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename AstEnumStruct::Enum AstEnum;
-	typedef AstNodeBase<Token, AstEnumStruct> AstNode;
+	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 
 	bool Passed() const { return passed;  }
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
 	
-	ParserCommon(std::shared_ptr<Lexer> lex)
-	{
+	ParserCommon(Registry& r) : CommonBase(r)
+	{ 
 		current = 0;
 		indent = 0;
-		lexer = lex;
-
-		if (lexer->Failed)
-			return;
-
-		// strip whitespace and comments
-		for (auto tok : lexer->GetTokens())
-			if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
-				tokens.push_back(tok);
-
-		root = NewNode(AstEnum::Program);
+		lexer.reset();
 	}
 
-	virtual void Process(Structure st) = 0;
+	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
+
+	template <class T>
+	AstNodePtr AppendLexicalValue(TokenNode const &tok)
+	{
+		return Append(registry.New(std::lexical_cast<T>(tok.Text())));
+	}
+
+	template <class T>
+	Pointer<T> New(T const &val)
+	{
+		return reg.New<T>(val);
+	}
 
 	void Run(Structure st)
 	{
@@ -68,13 +72,23 @@ struct ParserCommon : Process
 	std::string Print()
 	{
 		std::stringstream str;
-		Print(str, *root, 0);
-		str << std::ends;
+		Print(str, 0, root);
+		//ENDS str << std::endl << std::ends;
 		return str.str();
 	}
 
 protected:
-	std::vector<Token> tokens;
+	void Print(std::stringstream &str, int level, AstNodePtr root)
+	{
+		std::string indent(4*level, ' ');
+		str << indent << *root << "\n";
+		for (auto const &ch : root->GetChildren())
+		{
+			Print(str, level + 1, ch);
+		}
+	}
+
+	std::vector<TokenNode> tokens;
 	std::vector<AstNodePtr> stack;
 	size_t current;
 	AstNodePtr root;
@@ -88,6 +102,11 @@ protected:
 	{
 		if (node)
 			stack.push_back(node);
+	}
+
+	void Append(Object Q)
+	{
+		Top()->Children.push_back(make_shared<AstNode>(AstEnum::Object, Q));
 	}
 
 	AstNodePtr Pop()
@@ -115,22 +134,22 @@ protected:
 		return true;
 	}
 
-	Token const &Next()
+	TokenNode const &Next()
 	{
 		return tokens[++current];
 	}
 
-	Token const &Last()
+	TokenNode const &Last()
 	{
 		return tokens[current - 1];
 	}
 
-	Token const &Current() const
+	TokenNode const &Current() const
 	{
 		return tokens[current];
 	}
 
-	Token const &Peek() const
+	TokenNode const &Peek() const
 	{
 		return tokens[current + 1];
 	}
@@ -146,7 +165,7 @@ protected:
 		return Peek().type == ty;
 	}
 
-	Token const &Consume()
+	TokenNode const &Consume()
 	{
 		return tokens[current++];
 	}
@@ -158,7 +177,7 @@ protected:
 
 	AstNodePtr Expect(TokenEnum type)
 	{
-		Token tok = Current();
+		TokenNode tok = Current();
 		if (tok.type != type)
 		{
 			//MUST Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
@@ -169,22 +188,8 @@ protected:
 		return std::make_shared<AstNode>(Last());
 	}
 
-	void Print(std::ostream &out, AstNode const &node, int level)
-	{
-		out << Lead(level) << node << std::endl;
-		std::cout << node.ToString();
-
-		for (auto const &ch : node.Children)
-			Print(out, *ch, level + 1);
-	}
-
-	std::string ParserCommon::Lead(int level)
-	{
-		return std::move(std::string(level*4, ' '));
-	}
-
 	AstNodePtr NewNode(AstEnum t) { return std::make_shared<AstNode>(t); }
-	AstNodePtr NewNode(Token const &t) { return std::make_shared<AstNode>(t); }
+	AstNodePtr NewNode(TokenNode const &t) { return std::make_shared<AstNode>(t); }
 };
 
 KAI_END

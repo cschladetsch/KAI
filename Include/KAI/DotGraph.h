@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAS_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_DOTGRAPH_H
-#	define KAI_DOTGRAPH_H
+#pragma once
 
 KAI_BEGIN
 
@@ -43,7 +37,3 @@ protected:
 DotGraph &operator<<(DotGraph &graph, Object const &object);
 
 KAI_END
-
-#endif // KAI_DOTGRAPH_H
-
-//EOF

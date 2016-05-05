@@ -15,8 +15,9 @@ KAI_BEGIN
 
 // Tokenise an input string for later parsing
 template <class EnumType>
-struct LexerCommon : LexerBase
+class LexerCommon : public LexerBase
 {
+public:
 	typedef typename EnumType::Type Token;
 	typedef typename EnumType::Enum Enum;
 
@@ -29,9 +30,7 @@ struct LexerCommon : LexerBase
 	typedef std::map<std::string, Enum> Keywords;
 #endif
 
-	LexerCommon(const char *input) : LexerBase(input)
-	{
-	}
+	LexerCommon(const char *input) : LexerBase(input) { }
 
 	void Process()
 	{
@@ -178,7 +177,7 @@ public:
 			}
 		}
 
-		err << std::ends;
+		//ENDS err << std::ends;
 
 		return err.str();
 	}
@@ -187,9 +186,9 @@ public:
 	{
 		std::stringstream str;
 		for (auto tok : tokens)
-			str << tok << " ";
-		str << std::ends;
-		return std::move(str.str());
+			str << tok << ", ";
+		//ENDS str << std::ends;
+		return str.str();
 	}
 };
 

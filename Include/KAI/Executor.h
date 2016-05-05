@@ -13,6 +13,7 @@ class Executor : public Reflected
 	Value<Continuation> continuation;
 	Value<Stack> context;
 	Value<Stack> data;
+	Object compiler;
 	bool Break;
 	Tree *tree;
 	int traceLevel;
@@ -28,8 +29,14 @@ public:
 	void ContinueTestCode(Value<Continuation> C);	// continue C, leaving one result on the stack
 	void Continue();
 
+	// just so we cn switch languages
+	Object GetCompiler() const { return compiler; }
+	void SetCompiler(Object c) { compiler = c; }
+
 	void Eval(Object const &Q);
 	void Dump(Object const &Q);
+	
+	std::string PrintStack() const;
 
 	template <class T>
 	Value<T> New()
