@@ -50,6 +50,7 @@ struct RhoAstNodeEnumType
 		Node(Enum e) : Parent(e) { }
 		Node(Enum e, Token &tok) : Parent(e, tok) { }
 		Node(Parent::Token tok) : Parent(tok) { }
+
 	};
 };
 

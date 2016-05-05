@@ -30,16 +30,25 @@ struct TranslatorBase : TranslatorCommon
 		if (lex->Failed)
 			Fail(lex->Error);
 
+		if (trace)
+			KAI_TRACE_1(lex->Print());
+
 		auto parse = std::make_shared<Parser>(reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
 			Fail(parse->Error);
+
+		if (trace)
+			KAI_TRACE_1(parse->Print());
 
 		PushNew();
 		TranslateNode(parse->GetRoot());
 
 		if (stack.empty())
 			KAI_THROW_0(EmptyStack);
+
+		if (trace)
+			KAI_TRACE_1(stack.back());
 
 		return stack.back();
 	}

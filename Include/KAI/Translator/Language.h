@@ -8,6 +8,8 @@ class TauTranslator;
 
 enum class Language { None, Pi, Rho, Tau };
 
+const char *ToString(Language);
+
 //template <enum class Language>
 //struct TranslationProvider { typedef PiTranslator Lang; };
 //

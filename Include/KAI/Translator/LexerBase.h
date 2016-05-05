@@ -8,11 +8,12 @@ KAI_BEGIN
 int IsSpaceChar(int ch);
 
 // Common to all lexers with different token types
-struct LexerBase : CommonBase
+class LexerBase: public CommonBase
 {
-	LexerBase(const char *);
-
+public:
 	typedef std::vector<std::string> Lines;
+
+	LexerBase(const char *);
 
 	const std::string &GetLine(size_t n) const
 	{
@@ -20,8 +21,9 @@ struct LexerBase : CommonBase
 			KAI_THROW_2(OutOfBounds, n, 0);
 		return lines[n];
 	}
+
 	const Lines &GetLines() const { return lines; }
-	const std::string GetInput() const { return input; }
+	const std::string &GetInput() const { return input; }
 	int GetOffset() const { return offset; }
 	int GetLineNumber() const { return offset; }
 	const std::string &Line() const;
@@ -33,7 +35,6 @@ protected:
 
 	void CreateLines();
 	bool LexString();
-
 	char Current() const;
 	char Next();
 	bool EndOfLine() const;

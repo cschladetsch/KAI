@@ -39,6 +39,7 @@ struct PiTokenEnumType
 		Assert,
 		Pathname,
 		ToRho,
+		ToRhoSequence,
 
 		// RPN specific
 		Dup,
