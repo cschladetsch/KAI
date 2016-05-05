@@ -83,7 +83,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>KAI/ExecutorPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>WIN32;_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
@@ -124,6 +124,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\users\christian\dev\KAI\Include\KAI\Translator\CommonBase.h" />
+    <ClInclude Include="..\..\Include\KAI\Translator\Language.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClCompile Include="Source\Bin.cpp" />
     <ClCompile Include="Source\Compiler.cpp" />
     <ClCompile Include="Source\Console.cpp" />
@@ -133,6 +137,7 @@
     <ClCompile Include="Source\Executor.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
+    <ClCompile Include="Source\Operation.cpp" />
     <ClCompile Include="Source\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_MBCS;%(PreprocessorDefinitions);KAI_NAMESPACE_NAME=kai;</PreprocessorDefinitions>
@@ -141,9 +146,6 @@
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -157,12 +159,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiTranslator.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Translator\Process.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoAstNode.cpp" />
-    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoToken.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoTranslator.cpp" />
@@ -184,7 +185,6 @@
     <ClInclude Include="..\..\Include\KAI\Translator\AstNodeBase.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\ParserCommon.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\Pi.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLang.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiLexer.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiAstNode.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -194,7 +194,6 @@
     <ClInclude Include="..\..\Include\KAI\Translator\Pi\PiTranslator.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Process.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\Rho.h" />
-    <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLang.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoLexer.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoAstNode.h" />
     <ClInclude Include="..\..\Include\KAI\Translator\Rho\RhoParser.h" />

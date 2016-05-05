@@ -8,14 +8,31 @@
 #include <strstream>
 #include <stdarg.h>
 
+using namespace std;
+
 KAI_BEGIN
 
-void RhoParser::Run(Structure st)
+void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
-	Process(st);
+	current = 0;
+	indent = 0;
+	lexer = lex;
+
+	if (lexer->Failed)
+		return;
+
+	// strip whitespace and comments
+	for (auto tok : lexer->GetTokens())
+		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+			tokens.push_back(tok);
+
+	root = NewNode(AstEnum::Program);
+
+	KAI_UNUSED_1(st);
+	Run(Structure::Program);
 }
 
-void RhoParser::Process(Structure st)
+void RhoParser::Run(Structure st)
 {
 	switch (st)
 	{

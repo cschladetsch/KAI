@@ -11,7 +11,7 @@ struct PiTokenEnumType
 	{
 		None, Null = None,
 		Whitespace,
-		Int, Float, String,
+		Int, Float, String, Bool,
 		True, False,
 		Suspend, Resume, Replace,
 		Ident,
@@ -38,6 +38,8 @@ struct PiTokenEnumType
 		In, Colon,
 		Assert,
 		Pathname,
+		ToRho,
+		ToRhoSequence,
 
 		// RPN specific
 		Dup,

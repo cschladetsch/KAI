@@ -34,8 +34,7 @@ public:
 	const Code &GetCode() const { return code; }
 
 	Pointer<String> GetSourceCode() const { return source_code; }
-	//void SetSourceCode(const char *C) { source_code = New<String>(C); }
-	void SetSourceCode(const char *C);// { source_code = New<String>(C); }
+	void SetSourceCode(const char *C);
 
 	void SetScope(Object const &Q) { scope = Q; }
 	Object GetScope() const { return scope; }

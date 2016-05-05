@@ -1,6 +1,6 @@
 #include "KAI/ExecutorPCH.h"
 
-#ifdef WIN32
+//#ifdef WIN32
 #	define WIN32_LEAN_AND_MEAN
 #	include <windows.h>
 
@@ -45,7 +45,7 @@ struct C
 
 	void operator()(What c) const { SetColor(c); }
 };
-#endif
+//#endif
 
 WORD C::colors[C::Last];
 HANDLE C::hstdout;
@@ -80,6 +80,7 @@ Console::Console(Memory::IAllocator *alloc)
 	Create(args);
 	static C c;
 	this->alloc = alloc;
+	SetLanguage(Language::Rho);
 }
 
 Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
@@ -87,12 +88,14 @@ Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
 	registry = alloc->Allocate<Registry>(alloc);
 	Create(args);
 	this->alloc = alloc;
+	SetLanguage(Language::Rho);
 }
 
 Console::Console()
 {
 	registry = alloc->Allocate<Registry>();
 	Create(std::vector<String>());
+	SetLanguage(Language::Rho);
 }
 
 Console::~Console()
@@ -130,6 +133,22 @@ void Console::ExposeTypesToTree(Object types)
 			continue;
 		types.Set(K->GetName(), registry->New(K));
 	}
+}
+
+void Console::SetLanguage(Language lang)
+{
+	SetLanguage(static_cast<int>(lang));
+}
+
+void Console::SetLanguage(int lang)
+{
+	language = static_cast<Language>(lang);
+	compiler->SetLanguage(lang);
+}
+
+int Console::GetLanguage() const
+{
+	return static_cast<int>(language);
 }
 
 void Console::CreateTree()
@@ -179,12 +198,12 @@ void Console::CreateTree()
 	ExposeTypesToTree(types);
 }
 
-void Console::ExecuteFile(const char *filename)
-{
-	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
-}
+//void Console::ExecuteFile(const char *filename)
+//{
+//	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
+//}
 
-String Console::Execute(Pointer<Continuation> cont)
+void Console::Execute(Pointer<Continuation> cont)
 {
 	KAI_TRY
 	{
@@ -192,7 +211,7 @@ String Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		return WriteStack();
+		WriteStack();
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
@@ -209,16 +228,14 @@ String Console::Execute(Pointer<Continuation> cont)
 		KAI_TRACE_ERROR_1("UnknownException");
 		std::cerr << color(C::Error) << "Error" << std::endl;
 	}
-	return "";
 }
 
-Pointer<Continuation> Console::Execute(String const &text)
+void Console::Execute(String const &text, Structure st)
 {
-	auto cont = compiler->Compile(*registry, text.c_str());
+	auto cont = compiler->Translate(text.c_str(), st);
 	if (!cont)
-		return Object();
-	Execute(cont);
-	return cont;
+		return;
+	executor->Continue(cont);
 }
 
 String Console::Process(const String& text)
@@ -227,12 +244,14 @@ String Console::Process(const String& text)
 	KAI_TRY
 	{
 		std::cout << color(C::Error);
-		Pointer<Continuation> cont = compiler->Compile(*registry, text.c_str());
+		Pointer<Continuation> cont = compiler->Translate(text.c_str());
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
 			std::cout << color(C::Trace);
-			return Execute(cont);
+			Execute(cont);
+			//if (DebugOptions & PrintStack)
+			//	return executor->PrintStack();
 		}
 
 		return "";
@@ -256,7 +275,7 @@ String Console::GetPrompt() const
 {
 	StringStream prompt;
 	prompt
-		<< int(GetRegistry().GetInstances().size()) << "; " 
+		<< ToString((Language)compiler->GetLanguage()) << ": " << int(GetRegistry().GetInstances().size()) << "; " 
 		<< GetFullname(GetTree().GetScope()).ToString().c_str() << "> ";
 
 	return prompt.ToString();
@@ -343,18 +362,17 @@ void Console::RegisterTypes()
 
 Pointer<Continuation> Console::Compile(const char *text, Structure st)
 {
-	return compiler->Compile(*registry, text, st);
+	return compiler->Translate(text, st);
 }
 
 void Console::Register(Registry &)
 {
 }
 
-Object Console::ExecFile(const char *fileName)
+void Console::ExecuteFile(const char *fileName)
 {
-	auto c = compiler->CompileFile(*registry, fileName, Structure::Program);
-	Execute(c);
-	return Object();
+	auto c = compiler->CompileFile(fileName, Structure::Program);
+	executor->Continue(c);
 }
 
 KAI_END

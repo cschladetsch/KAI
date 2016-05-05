@@ -35,10 +35,6 @@ TEST(TestBinaryStream, TestObject)
 	S.SetRegistry(&R);
 
 	Pointer<int> N = R.New(42);
-	for (auto p : N.GetClass()->GetProperties())
-	{
-		std::cout << p.first.ToString().c_str() << ", " << p.second << endl;
-	}
 
 	S << N;
 	Object Q;

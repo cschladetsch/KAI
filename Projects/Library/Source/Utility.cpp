@@ -83,24 +83,18 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 
 void ToStringStream(const Object &Q, StringStream &S, int level)
 {
-	StringStream indent;
-	for (int N = 0; N < level; ++N)
-	{
-		indent.Append(' ');
-		indent.Append(' ');
-	}
+	S << std::string(4, ' ');
 
-	S << indent.ToString();
 	if (!Q.Valid())
 	{
-		S << "InvalidObject\n";
+		S << "[Invalid]\n";
 		return;
 	}
 
 	const StorageBase &base = Q.GetStorageBase();
-	bool write_header = false;
-	if (write_header)
+#ifdef KAI_TRACE_VERBOSE
 	S << base.GetLabel().ToString() << ": ";
+#endif
 	
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
 		Q.GetClass()->Insert(S, base);
