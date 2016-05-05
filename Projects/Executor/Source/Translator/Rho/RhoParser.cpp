@@ -12,7 +12,26 @@ using namespace std;
 
 KAI_BEGIN
 
-void RhoParser::Process(shared_ptr<Lexer> lexer,  Structure st)
+void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+{
+	current = 0;
+	indent = 0;
+	lexer = lex;
+
+	if (lexer->Failed)
+		return;
+
+	// strip whitespace and comments
+	for (auto tok : lexer->GetTokens())
+		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+			tokens.push_back(tok);
+
+	root = NewNode(AstEnum::Program);
+
+	Run(Structure::Program);
+}
+
+void RhoParser::Run(Structure st)
 {
 	switch (st)
 	{

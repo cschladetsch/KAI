@@ -17,6 +17,25 @@ KAI_BEGIN
 
 void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
+	current = 0;
+	indent = 0;
+	lexer = lex;
+
+	if (lexer->Failed)
+		return;
+
+	// strip whitespace and comments
+	for (auto tok : lexer->GetTokens())
+		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+			tokens.push_back(tok);
+
+	root = NewNode(AstEnum::Program);
+
+	Run(st);
+}
+
+void PiParser::Run(Structure st)
+{
 	KAI_UNUSED_1(st);
 	while (!Failed && NextSingle(root))
 		;
@@ -46,6 +65,13 @@ bool PiParser::NextSingle(AstNodePtr root)
 	case PiTokens::Int:
 		Top()->Add(std::make_shared<AstNode>(New(lexical_cast<int>(tok.Text()))));
 		break;
+
+	case PiTokens::Float:
+		Top()->Add(std::make_shared<AstNode>(New(lexical_cast<float>(tok.Text()))));
+		break;
+	//case PiTokens::Plus:
+	//	Top()->Add(std::make_shared<AstNode>(New(lexical_cast<float>(tok.Text()))));
+	//	break;
 	default:
 		root->Add(NewNode(Consume()));
 		return true;
@@ -73,7 +99,7 @@ bool PiParser::NextSingle(AstNodePtr root)
 bool PiParser::ParseArray(AstNodePtr root)
 {
 	auto node = NewNode(PiAstNodes::Array);
-	while (Current().type != PiTokens::CloseSquareBracket)
+	while (!Failed && Current().type != PiTokens::CloseSquareBracket)
 	{
 		if (!NextSingle(node))
 		{

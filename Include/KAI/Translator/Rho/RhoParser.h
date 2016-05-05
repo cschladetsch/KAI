@@ -20,7 +20,10 @@ struct RhoParser : ParserCommon<RhoLexer, RhoAstNodeEnumType>
 
 	RhoParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(std::shared_ptr<Lexer> lexer, Structure st);
+	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
+
+protected:
+	void Process(Structure);
 
 private:
 	bool Program();

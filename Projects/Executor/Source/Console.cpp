@@ -88,12 +88,14 @@ Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
 	registry = alloc->Allocate<Registry>(alloc);
 	Create(args);
 	this->alloc = alloc;
+	SetLanguage(Language::Rho);
 }
 
 Console::Console()
 {
 	registry = alloc->Allocate<Registry>();
 	Create(std::vector<String>());
+	SetLanguage(Language::Rho);
 }
 
 Console::~Console()

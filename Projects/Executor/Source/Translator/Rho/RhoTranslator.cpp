@@ -6,43 +6,13 @@
 
 KAI_BEGIN
 
-//Pointer<Continuation> Translate(const char *text, Structure st)
-//{
-//	if (text == 0 || text[0] == 0)
-//		return Object();
-//
-//	auto lex = std::make_shared<RhoLexer>(text);
-//	lex->Process();
-//	if (lex->GetTokens().empty())
-//		return Object();
-//	if (lex->Failed)
-//		Fail(lex->Error);
-//
-//	auto parse = std::make_shared<RhoParser>(lex);
-//	parse->Process(st);
-//	if (parse->Failed)
-//		Fail(parse->Error);
-//
-//	Run(parse);
-//
-//	if (stack.empty())
-//		KAI_THROW_0(EmptyStack);
-//
-//	return stack.back();
-//}
-
-//Pointer<Continuation> Translate(const char *text, Structure st = Structure::Statement)
-//{
-//	return Object();
-//}
-//
-// WTF  warning C4063: case '55' is not a valid value for switch of enum 'kai::RhoAstNodeEnumType::Enum'
 #pragma warning (disable:4063)
 
-void RhoTranslator::TranslateNode(AstNodePtr node)
+void RhoTranslator::TranslateToken(AstNodePtr node)
 {
 	switch (node->token.type)
 	{
+
 	case TokenEnum::While:
 		TranslateWhile(node);
 		return;
@@ -165,75 +135,76 @@ void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 	AppendNew<Operation>(Operation(op));
 }
 
-//void RhoTranslator::TranslateNode(AstNodePtr node)
-//{
-//	if (!node)
-//	{
-//		Failed = true;
-//		return;
-//	}
-//
-//	switch (node->type)
-//	{
-//	case AstEnum::IndexOp:
-//		TranslateBinaryOp(node, Operation::Index);
-//		return;
-//
-//	case AstEnum::GetMember:
-//		TranslateBinaryOp(node, Operation::GetProperty);
-//		return;
-//
-//	case AstEnum::TokenEnum:
-//		TranslateFromToken(node);
-//		return;
-//
-//	case AstEnum::Assignment:
-//		// like a binary op, but argument order is reversed
-//		TranslateNode(node->Children[1]);
-//		TranslateNode(node->Children[0]);
-//		AppendNew<Operation>(Operation(Operation::Store));
-//		return;
-//
-//	case AstEnum::Call:
-//		TranslateCall(node);
-//		return;
-//
-//	case AstEnum::Conditional:
-//		TranslateIf(node);
-//		return;
-//
-//	case AstEnum::Block:
-//		PushNew();
-//		for (auto st : node->Children)
-//			TranslateNode(st);
-//		Append(Pop());
-//		return;
-//
-//	case AstEnum::List:
-//		for (auto ch : boost::adaptors::reverse(node->Children))
-//			TranslateNode(ch);
-//		AppendNew<int>(node->Children.size());
-//		AppendNewOp(Operation::ToArray);
-//		return;
-//
-//	case AstEnum::For:
-//		TranslateFor(node);
-//		return;
-//
-//	case AstEnum::Function:
-//		TranslateFunction(node);
-//		return;
-//
-//	case AstEnum::Program:
-//		for (auto e : node->Children)
-//			TranslateNode(e);
-//		return;
-//	}
-//
-//	Fail("Unsupported node %s", node->ToString());
-//	KAI_NOT_IMPLEMENTED();
-//}
-//
+void RhoTranslator::TranslateNode(AstNodePtr node)
+{
+	if (!node)
+	{
+		Failed = true;
+		return;
+	}
+
+	switch (node->type)
+	{
+	case AstEnum::IndexOp:
+		TranslateBinaryOp(node, Operation::Index);
+		return;
+
+	case AstEnum::GetMember:
+		TranslateBinaryOp(node, Operation::GetProperty);
+		return;
+
+	case AstEnum::TokenType:
+		TranslateToken(node);
+		return;
+
+	case AstEnum::Assignment:
+		// like a binary op, but argument order is reversed
+		TranslateNode(node->Children[1]);
+		TranslateNode(node->Children[0]);
+		AppendNew<Operation>(Operation(Operation::Store));
+		return;
+
+	case AstEnum::Call:
+		TranslateCall(node);
+		return;
+
+	case AstEnum::Conditional:
+		TranslateIf(node);
+		return;
+
+	case AstEnum::Block:
+		PushNew();
+		for (auto st : node->Children)
+			TranslateNode(st);
+		Append(Pop());
+		return;
+
+	case AstEnum::List:
+		for (auto ch : boost::adaptors::reverse(node->Children))
+			TranslateNode(ch);
+		AppendNew<int>(node->Children.size());
+		//AppendNewOp(Operation::ToArray);
+		KAI_NOT_IMPLEMENTED();
+		return;
+
+	case AstEnum::For:
+		TranslateFor(node);
+		return;
+
+	case AstEnum::Function:
+		TranslateFunction(node);
+		return;
+
+	case AstEnum::Program:
+		for (auto e : node->Children)
+			TranslateNode(e);
+		return;
+	}
+
+	Fail("Unsupported node %s", node->ToString());
+	KAI_NOT_IMPLEMENTED();
+}
+
 void RhoTranslator::TranslateBlock(AstNodePtr node)
 {
 	for (auto st : node->Children)
