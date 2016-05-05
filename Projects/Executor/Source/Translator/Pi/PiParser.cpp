@@ -76,6 +76,8 @@ bool PiParser::NextSingle(AstNodePtr root)
 		root->Add(NewNode(Consume()));
 		return true;
 	}
+
+	return false;
 }
 
 		//Appent

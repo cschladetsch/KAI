@@ -580,6 +580,12 @@
     <ClInclude Include="..\..\Include\KAI\Exception\Common.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Argument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\HierarchicalPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TODO.txt" />

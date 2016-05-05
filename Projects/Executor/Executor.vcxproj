@@ -145,9 +145,6 @@
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
     <ClCompile Include="Source\Translator\LexerBase.cpp" />
-    <ClCompile Include="Source\Translator\Pi\PiLang.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Source\Translator\Pi\PiLexer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -166,7 +163,6 @@
     <ClCompile Include="Source\Translator\Process.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoLexer.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoAstNode.cpp" />
-    <ClCompile Include="Source\Translator\Rho\RhoLang.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoParser.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoToken.cpp" />
     <ClCompile Include="Source\Translator\Rho\RhoTranslator.cpp" />

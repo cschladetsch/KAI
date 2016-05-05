@@ -28,6 +28,7 @@ void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Program);
 
+	KAI_UNUSED_1(st);
 	Run(Structure::Program);
 }
 

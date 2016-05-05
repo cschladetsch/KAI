@@ -275,7 +275,7 @@ String Console::GetPrompt() const
 {
 	StringStream prompt;
 	prompt
-		<< int(GetRegistry().GetInstances().size()) << "; " 
+		<< ToString((Language)compiler->GetLanguage()) << ": " << int(GetRegistry().GetInstances().size()) << "; " 
 		<< GetFullname(GetTree().GetScope()).ToString().c_str() << "> ";
 
 	return prompt.ToString();

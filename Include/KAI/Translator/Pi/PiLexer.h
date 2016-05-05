@@ -5,8 +5,9 @@
 
 KAI_BEGIN
 
-struct PiLexer : LexerCommon<PiTokenEnumType>
+class PiLexer : public LexerCommon<PiTokenEnumType>
 {
+public:
 	typedef LexerCommon<PiTokenEnumType> Parent;
 	typedef Parent Lexer;
 	typedef TokenBase<PiTokenEnumType> TokenNode;

@@ -312,26 +312,12 @@ void Executor::Perform(Operation::Type op)
 {
 	switch (op)
 	{
-	case Operation::SuspendNew:
-		{
-			Object what = ResolvePop();
-			switch (what.GetTypeNumber().GetValue())
-			{
-			case Type::Number::Function:
-				ConstDeref<BasePointer<FunctionBase> >(what)->Invoke(*what.GetRegistry(), *data);
-				return;
-
-			case Type::Number::Continuation:
-				context->Push(continuation.GetObject());
-				auto next = NewContinuation(what);
-				*next->scopeBreak = true;
-				context->Push(next.GetObject());
-				Break = true;
-				return;
-			}
-
-			break;
-		}
+	case Operation::ToPi:
+		Deref<Compiler>(compiler).SetLanguage((int)Language::Pi);
+		break;
+	case Operation::ToRho:
+		Deref<Compiler>(compiler).SetLanguage((int)Language::Rho);
+		break;
 
 	case Operation::Lookup:
 		Push(Resolve(Pop()));
@@ -1369,6 +1355,20 @@ std::string Executor::PrintStack() const
 //
 //	return false;
 //}
+
+const char *ToString(Language l)
+{
+	switch (l)
+	{
+	case Language::None: return "none";
+	case Language::Pi: return "pi";
+	case Language::Rho: return "rho";
+	case Language::Tau: return "tau";
+	}
+	return "UknownLanguage";
+}
+
+int Process::trace = 0;
 
 KAI_END
 

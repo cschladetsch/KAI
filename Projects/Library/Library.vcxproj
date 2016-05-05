@@ -1025,6 +1025,7 @@
     <ClInclude Include="..\..\Include\KAI\Accessor.h" />
     <ClInclude Include="..\..\Include\KAI\AccessorBase.h" />
     <ClInclude Include="..\..\Include\KAI\Algorithm.h" />
+    <ClInclude Include="..\..\Include\KAI\Argument.h" />
     <ClInclude Include="..\..\Include\KAI\AutoPointer.h" />
     <ClInclude Include="..\..\Include\KAI\Base.h" />
     <ClInclude Include="..\..\Include\KAI\BasePointer.h" />
@@ -1079,6 +1080,7 @@
     <ClInclude Include="..\..\Include\KAI\FwdDeclarations.h" />
     <ClInclude Include="..\..\Include\KAI\GetStorageBase.h" />
     <ClInclude Include="..\..\Include\KAI\Handle.h" />
+    <ClInclude Include="..\..\Include\KAI\HierarchicalPrinter.h" />
     <ClInclude Include="..\..\Include\KAI\InstanceMap.h" />
     <ClInclude Include="..\..\Include\KAI\IObject.h" />
     <ClInclude Include="..\..\Include\KAI\KAI.h" />

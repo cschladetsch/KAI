@@ -131,6 +131,8 @@ const char *ToString(PiTokenEnumType::Enum t)
 		CASE_LOWER(History)
 		CASE_LOWER(Jobs)
 		CASE_LOWER(Store)
+		CASE_REPLACE(ToRho, "rho")
+		CASE_REPLACE(ToRhoSequence, "rho{")
 	}
 	
 	static char b[100];

@@ -7,12 +7,12 @@ KAI_BEGIN
 
 void PiTranslator::TranslateNode(AstNodePtr node)
 {
-	switch (node->type)
+	switch (node->GetType())
 	{
 		case PiAstNodeEnumType::Continuation:
 		{
 			PushNew();
-			for (auto const &ch : node->Children)
+			for (auto const &ch : node->GetChildren())
 			{
 				TranslateNode(ch);
 			}
@@ -21,13 +21,13 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 		case PiAstNodeEnumType::Array:
 		{
 			PushNew();
-			for (auto const &ch : node->Children)
+			for (auto const &ch : node->GetChildren())
 			{
 				TranslateNode(ch);
 			}
 			Append(Pop());
 		default:
-			AppendSingle(node->token);
+			AppendSingle(node->GetToken());
 			break;
 		}
 	}
