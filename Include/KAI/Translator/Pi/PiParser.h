@@ -20,10 +20,10 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 
 	PiParser(Registry &r) : Parent(r) { }
 
-
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 private:
+	void Run(Structure);
 	bool NextSingle(AstNodePtr context);
 	bool ParseArray(AstNodePtr context);
 	bool ParseContinuation(AstNodePtr context);

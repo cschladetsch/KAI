@@ -30,21 +30,18 @@ struct ParserCommon : CommonBase
 		lexer.reset();
 	}
 
-	void Process()
+	std::string Print() const
 	{
-		current = 0;
-		indent = 0;
-		lexer = lex;
+		std::stringstream str;
+		Print(str, 0, root);
+		return str.str();
+	}
 
-		if (lexer->Failed)
-			return;
-
-		// strip whitespace and comments
-		for (auto tok : lexer->GetTokens())
-			if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
-				tokens.push_back(tok);
-
-		root = NewNode(AstEnum::Program);
+	void Print(std::stringstream &str, int level, AstNodePtr root)
+	{
+		str << std::string(' ', 4*level) << root << std::ends;
+		for (auto char &ch : root->Children)
+			print(str, level + 1, ch);
 	}
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;

@@ -26,6 +26,7 @@ protected:
 	virtual void TranslateNode(AstNodePtr node) override;
 
 private:
+	void TranslateToken(AstNodePtr node);
 	void TranslateFunction(AstNodePtr node);
 	void TranslateBlock(AstNodePtr node);
 	void TranslateBinaryOp(AstNodePtr node, Operation::Type);
