@@ -1,67 +1,5 @@
 #include "KAI/ExecutorPCH.h"
-
-//#ifdef WIN32
-#	define WIN32_LEAN_AND_MEAN
-#	include <windows.h>
-
-struct C
-{
-	enum What
-	{
-		Prompt,
-		Input,
-		Trace,
-		Error,
-		Warning,
-		Last
-	};
-	static WORD colors[Last];
-	static HANDLE hstdout;
-	static CONSOLE_SCREEN_BUFFER_INFO orig;
-
-	C()
-	{
-		colors[Prompt] = FOREGROUND_GREEN;
-		colors[Input] = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
-		colors[Trace] = FOREGROUND_BLUE | FOREGROUND_GREEN;
-		colors[Error] = FOREGROUND_RED;
-		colors[Warning] = FOREGROUND_GREEN | FOREGROUND_RED;
-
-		hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		// Remember how things were when we started
-		GetConsoleScreenBufferInfo(hstdout, &orig);
-	}
-
-	~C()
-	{
-		SetConsoleTextAttribute(hstdout, orig.wAttributes);
-	}
-
-	static void SetColor(What c)
-	{
-		SetConsoleTextAttribute(hstdout, colors[c]);
-	}
-
-	void operator()(What c) const { SetColor(c); }
-};
-//#endif
-
-WORD C::colors[C::Last];
-HANDLE C::hstdout;
-CONSOLE_SCREEN_BUFFER_INFO C::orig;
-
-struct color
-{
-	C::What col;
-	color(C::What c) : col(c) { }
-
-	friend std::ostream& operator<<(std::ostream& out, color const &c)
-	{
-		C::SetColor(c.col);
-		return out;
-	}
-};
+#include "KAI/ConsoleColor.h"
 
 KAI_BEGIN
 
@@ -79,7 +17,6 @@ Console::Console(Memory::IAllocator *alloc)
 	registry = alloc->Allocate<Registry>(alloc);
 	std::vector<String> args;
 	Create(args);
-	static C c;
 	this->alloc = alloc;
 	SetLanguage(Language::Rho);
 }
@@ -221,17 +158,17 @@ void Console::Execute(Pointer<Continuation> cont)
 	KAI_CATCH(Exception::Base, E)
 	{
 		KAI_TRACE_ERROR_1(E);
-		std::cerr << color(C::Error) << "Error: " << E.ToString() << std::endl;
+		std::cerr << Color::Error << "Error: " << E.ToString() << std::endl;
 	}
 	KAI_CATCH(std::exception, E)
 	{
 		KAI_TRACE_ERROR_2("StdException: ", E.what());
-		std::cerr << color(C::Error) << "Error: " << E.what() << std::endl;
+		std::cerr << Color::Error << "Error: " << E.what() << std::endl;
 	}
 	KAI_CATCH_ALL()
 	{
 		KAI_TRACE_ERROR_1("UnknownException");
-		std::cerr << color(C::Error) << "Error" << std::endl;
+		std::cerr << Color::Error << "Error" << std::endl;
 	}
 }
 
@@ -248,12 +185,12 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		std::cout << color(C::Error);
+		std::cout << Color::Error;
 		Pointer<Continuation> cont = compiler->Translate(text.c_str());
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
-			std::cout << color(C::Trace);
+			std::cout << Color::Trace;
 			Execute(cont);
 			//if (DebugOptions & PrintStack)
 			//	return executor->PrintStack();
@@ -312,10 +249,10 @@ void Console::Run()
 {
 	for (;;)
 	{
-		std::cout << color(C::Prompt) << GetPrompt().c_str() << color(C::Input);
+		std::cout << Color::Prompt << GetPrompt().c_str() << Color::Input;
 		std::string text;
 		std::getline(std::cin, text);
-		std::cout << color(C::Trace) << Process(text.c_str()).c_str();
+		std::cout << Color::Trace << Process(text.c_str()).c_str();
 
 		if (compiler->GetLanguage() == (int)Language::Pi)
 		{
