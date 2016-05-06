@@ -13,6 +13,9 @@ struct Color
 		Warning,
 		StackEntry,
 		StackIndex,
+		LanguageName,
+		NumObjects,
+		Pathname,
 		Last
 	};
 
