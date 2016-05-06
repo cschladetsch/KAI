@@ -68,8 +68,9 @@ struct RhoTokenEnumType
 		In,
 		Assert,
 		ToPi,
-		ToPiSequence,
+		PiSequence,
 		Pathname,
+		Debug,
 	};
 
 	struct Type : TokenBase<RhoTokenEnumType>

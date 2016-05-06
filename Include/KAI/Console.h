@@ -14,16 +14,13 @@ class Console
 	Registry *registry;
 	Pointer<Executor> executor;
 	Pointer<Compiler> compiler;
-	Memory::IAllocator *alloc;
+	std::shared_ptr<Memory::IAllocator> alloc;
 	Language language;
 
 public:
-	~Console();
 	Console();
-	Console(Memory::IAllocator *);
-	Console(const std::vector<String> &args, Memory::IAllocator *);
-
-	void Create(const std::vector<String> &);
+	Console(std::shared_ptr<Memory::IAllocator>);
+	~Console();
 
 	void SetLanguage(Language lang);
 	void SetLanguage(int lang);
@@ -48,12 +45,17 @@ public:
 	void ControlC();
 	static void Register(Registry &);
 	
-	void Run();
+	int Run();
 
 protected:
+	void Create();
 	void CreateTree();
 	void RegisterTypes();
 	void ExposeTypesToTree(Object types);
+
+private:
+	bool _end = false;
+	int _endCode = 0;
 };
 
 KAI_END
