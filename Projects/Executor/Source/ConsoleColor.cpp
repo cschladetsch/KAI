@@ -21,6 +21,9 @@ Color::Color()
 	colors[Warning] = FOREGROUND_GREEN | FOREGROUND_BLUE;
 	colors[StackEntry] = FOREGROUND_GREEN;
 	colors[StackIndex] = FOREGROUND_GREEN | FOREGROUND_RED;
+	colors[LanguageName] = FOREGROUND_RED;
+	colors[NumObjects] = FOREGROUND_GREEN | FOREGROUND_RED;
+	colors[Pathname] = FOREGROUND_GREEN | FOREGROUND_BLUE;
 
 	hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
 

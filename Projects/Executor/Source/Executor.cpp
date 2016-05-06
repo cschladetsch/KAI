@@ -1313,7 +1313,7 @@ std::string Executor::PrintStack() const
 	//str << "size: " << data->Size() << std::endl;
 	for (auto const &ob : *_data)
 	{
-		str << Color::StackIndex << "[" << n << "]: " << Color::StackEntry << ob << std::endl;
+		str << Color::StackIndex << "[" << n << "/: " << Color::StackEntry << ob << std::endl;
 	}
 	return std::move(str.str());
 }
