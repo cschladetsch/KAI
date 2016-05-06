@@ -211,7 +211,7 @@ void Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		WriteStack();
+		std::cout << WriteStack().c_str() << std::endl;
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
@@ -311,6 +311,11 @@ void Console::Run()
 		std::string text;
 		std::getline(std::cin, text);
 		std::cout << color(C::Trace) << Process(text.c_str()).c_str();
+
+		if (compiler->GetLanguage() == (int)Language::Pi)
+		{
+			executor->PrintStack();
+		}
 	}
 }
 

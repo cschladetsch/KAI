@@ -139,7 +139,7 @@ void Executor::Push(Stack& L, Object const &Q)
 
 void Executor::Eval(Object const &Q)
 {
-	Dump(Q);
+	//Dump(Q);
 	stepNumber++;
 
 	switch (GetTypeNumber(Q).value)
@@ -1308,10 +1308,10 @@ std::string Executor::PrintStack() const
 {
 	int n = 0;
 	std::stringstream str;
-	str << "size: " << data->Size() << std::endl;
+	//str << "size: " << data->Size() << std::endl;
 	for (auto const &ob : *data)
 	{
-		str << ob << std::endl;
+		str << "[" << n << "]: " << ob << std::endl;
 	}
 	return std::move(str.str());
 }

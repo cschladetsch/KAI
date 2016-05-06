@@ -4,7 +4,7 @@
 KAI_BEGIN
 
 TranslatorCommon::TranslatorCommon(Registry &r)
-	: reg(r)
+	: CommonBase(r)
 {
 }
 
