@@ -29,7 +29,7 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
 			tokens.push_back(tok);
 
-	root = NewNode(AstEnum::Program);
+	root = NewNode(AstEnum::Continuation);
 
 	Run(st);
 }
@@ -62,18 +62,12 @@ bool PiParser::NextSingle(AstNodePtr root)
 		Consume();
 		return ParseContinuation(root);
 
-	case PiTokens::Int:
-		Top()->Add(std::make_shared<AstNode>(New(lexical_cast<int>(tok.Text()))));
-		break;
-
-	case PiTokens::Float:
-		Top()->Add(std::make_shared<AstNode>(New(lexical_cast<float>(tok.Text()))));
-		break;
+	//case PiTokens::Int:
+	//case PiTokens::Float:
+	//case PiTokens::Minus:
 	//case PiTokens::Plus:
-	//	Top()->Add(std::make_shared<AstNode>(New(lexical_cast<float>(tok.Text()))));
-	//	break;
 	default:
-		root->Add(NewNode(Consume()));
+		root->Add(Consume());
 		return true;
 	}
 

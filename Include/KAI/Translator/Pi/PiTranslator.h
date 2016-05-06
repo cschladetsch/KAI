@@ -22,12 +22,16 @@ public:
 
 	PiTranslator() = delete;
 	PiTranslator(Registry &r) : Parent(r) { }
+	virtual Pointer<Continuation> Result() override
+	{
+		return stack.front();
+	}
 
 protected:
 	virtual void TranslateNode(AstNodePtr node) override;
 
 private:
-	void AppendSingle(const TokenNode& tok);
+	void AppendTokenised(const TokenNode& tok);
 };
 
 KAI_END

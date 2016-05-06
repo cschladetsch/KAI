@@ -20,18 +20,17 @@ public:
 	typedef std::vector<Child > ChildrenType;
 
 	AstNodeBase() { }
-	AstNodeBase(Enum e) : type(e) { }
-	AstNodeBase(Enum e, Token &t) : type(e), token(t) { }
-	AstNodeBase(Token const &t) : type(AstEnumType::TokenType), token(t) { }
-	AstNodeBase(Object Q) : type(AstEnumType::Object), Object(Q) { }
+	AstNodeBase(Enum e) : _astType(e) { }
+	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
+	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
 
 	const Child &GetChild(size_t n) const { return GetChildren()[n]; }
-	const ChildrenType &GetChildren() const { return Children; }
+	const ChildrenType &GetChildren() const { return _children; }
 
-	Enum GetType() const { return type; }
-	const Token &GetToken() const { return token; }
-	std::string GetTokenText() const { return std::move(token.Text()); }
-	Enum GetEnum() const { return type; }
+	Enum GetType() const { return _astType; }
+	const Token &GetToken() const { return _token; }
+	std::string GetTokenText() const { return std::move(_token.Text()); }
+	Enum GetEnum() const { return _astType; }
 
 	std::string ToString() const
 	{
@@ -39,14 +38,14 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")";
 #else
-		out << "(" << KAI_NAMESPACE(ToString(type)) << ": " << KAI_NAMESPACE(ToString(token.type)) << ")";
+		out << KAI_NAMESPACE(ToString(_astType)) << ": " << _token.ToString();
 #endif
 		return out.str();
 	}
 
 	std::string Text() const
 	{
-		return std::move(token.Text());
+		return std::move(_token.Text());
 	}
 
 	friend std::ostream &operator<<(std::ostream &out, Self const &node)
@@ -56,7 +55,7 @@ public:
 
 	void Add(AstNodePtr node)
 	{
-		Children.push_back(node);
+		_children.push_back(node);
 	}
 
 	void Add(Token const &tok)
@@ -65,9 +64,9 @@ public:
 	}
 
 protected:
-	Enum type;
-	Token token;
-	ChildrenType Children;
+	Enum _astType;
+	Token _token;
+	ChildrenType _children;
 	Object Object;
 };
 

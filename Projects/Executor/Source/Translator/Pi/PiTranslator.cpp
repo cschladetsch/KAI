@@ -7,6 +7,8 @@ KAI_BEGIN
 
 void PiTranslator::TranslateNode(AstNodePtr node)
 {
+//	std::cout << ToString() << std::endl;
+
 	switch (node->GetType())
 	{
 		case PiAstNodeEnumType::Continuation:
@@ -16,49 +18,20 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 			{
 				TranslateNode(ch);
 			}
-			Append(Pop());
+			stack.push_back(Pop());
+			break;
 		}
-		case PiAstNodeEnumType::Array:
-		{
-			PushNew();
-			for (auto const &ch : node->GetChildren())
-			{
-				TranslateNode(ch);
-			}
-			Append(Pop());
+
 		default:
-			AppendSingle(node->GetToken());
+		{
+			if (node->GetToken().type != PiTokenEnumType::NewLine)
+				AppendTokenised(node->GetToken());
 			break;
 		}
 	}
 }
 
-//Pointer<Continuation> PiTranslator::Translate(const char *text, Structure st)
-//{
-//	if (text == 0 || text[0] == 0)
-//		return Object();
-//
-//	auto lex = std::make_shared<PiLexer>(text);
-//	lex->Process();
-//	if (lex->GetTokens().empty())
-//		return Object();
-//	if (lex->Failed)
-//		Fail(lex->Error);
-//
-//	auto parse = std::make_shared<Parser>(lex);
-//	parse->Process(st);
-//	if (parse->Failed)
-//		Fail(parse->Error);
-//
-//	Run(parse);
-//
-//	if (stack.empty())
-//		KAI_THROW_0(EmptyStack);
-//
-//	return stack.back();
-//}
-//
-void PiTranslator::AppendSingle(const TokenNode& tok)
+void PiTranslator::AppendTokenised(const TokenNode& tok)
 {
 	switch (tok.type)
 	{

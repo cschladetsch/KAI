@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 		args.push_back(argv[N]);
 	
 	Console console(args, &alloc);
-	console.SetLanguage(Language::Rho);
+	console.SetLanguage(Language::Pi);
 
 	Process::trace = 0;
 	console.GetExecutor()->SetTraceLevel(0);
