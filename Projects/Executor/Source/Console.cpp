@@ -198,8 +198,8 @@ String Console::GetPrompt() const
 {
 	StringStream prompt;
 	prompt
-		<< ToString((Language)compiler->GetLanguage()) << ": " << int(GetRegistry().GetInstances().size()) << "; " 
-		<< GetFullname(GetTree().GetScope()).ToString().c_str() << "> ";
+		<< Color::LanguageName << ToString((Language)compiler->GetLanguage())
+		<< Color::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() << Color::Input << "> ";
 
 	return prompt.ToString();
 }
@@ -228,6 +228,7 @@ String Console::WriteStack() const
 
 int Console::Run()
 {
+	executor->Compiler = this;
 	for (;;)
 	{
 		KAI_TRY
