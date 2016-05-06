@@ -18,8 +18,9 @@ void PiLexer::AddKeyWords()
 	keyWords["self"] = Enum::Self;
 	keyWords["while"] = Enum::While;
 	keyWords["assert"] = Enum::Assert;
+	keyWords["rho"] = Enum::ToRho;
+	keyWords["rho{"] = Enum::ToRhoSequence;
 }
-
 
 bool PiLexer::QuotedIdent()
 {

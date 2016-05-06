@@ -1,41 +1,20 @@
 #include "KAI/ExecutorPCH.h"
 #include "KAI/ConsoleColor.h"
 
+using namespace std;
+
 KAI_BEGIN
-
-bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope);
-void AddExamples(Object const &Q);
-
-void Console::ControlC()
-{
-	executor->ClearContext();
-}
-
-Console::Console(Memory::IAllocator *alloc)
-{
-	this->alloc = alloc;
-	registry = alloc->Allocate<Registry>(alloc);
-	std::vector<String> args;
-	Create(args);
-	this->alloc = alloc;
-	SetLanguage(Language::Rho);
-}
-
-Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
-{
-	this->alloc = alloc;
-	registry = alloc->Allocate<Registry>(alloc);
-	Create(args);
-	this->alloc = alloc;
-	SetLanguage(Language::Rho);
-}
 
 Console::Console()
 {
-	alloc = new Memory::StandardAllocator();
-	registry = alloc->Allocate<Registry>(alloc);
-	Create(std::vector<String>());
-	SetLanguage(Language::Rho);
+	alloc = make_shared<Memory::StandardAllocator>();
+	Create();
+}
+
+Console::Console(shared_ptr<Memory::IAllocator> alloc)
+{
+	this->alloc = alloc;
+	Create();
 }
 
 Console::~Console()
@@ -43,15 +22,14 @@ Console::~Console()
 	alloc->DeAllocate(registry);
 }
 
-void Console::Create(const std::vector<String> &args)
+void Console::Create()
 {
-	KAI_UNUSED(args);
 	try
 	{
-		alloc = new Memory::StandardAllocator();
 		registry = alloc->Allocate<Registry>(alloc);
 
 		RegisterTypes();
+
 		executor = registry->New<Executor>();
 		compiler = registry->New<Compiler>();
 
@@ -60,9 +38,9 @@ void Console::Create(const std::vector<String> &args)
 
 		CreateTree();
 	}
-	catch (Exception::Base &E)
+	KAI_CATCH(exception, e)
 	{
-		std::cerr << "Console::Create::Exception '" << E.ToString().c_str() << "'" << std::ends;
+		cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
 	}
 }
 
@@ -86,6 +64,11 @@ void Console::SetLanguage(int lang)
 {
 	language = static_cast<Language>(lang);
 	compiler->SetLanguage(lang);
+}
+
+void Console::ControlC()
+{
+	executor->ClearContext();
 }
 
 int Console::GetLanguage() const
@@ -123,10 +106,6 @@ void Console::CreateTree()
 	Set(root, Pathname("/Executor"), executor);
 
 	Bin::AddFunctions(bin);
-	//bin.Set("RunTests", compiler->Compile(registry, "TestOutput new Tests 'Run ->"));
-	//bin.Set("LoadContinuation", compiler->Compile(registry, "ReadFile () /Sys/Compiler 'Compile ->"));
-	//bin.Set("RunFile", compiler->Compile(*registry, "LoadContinuation & !"));
-
 	tree.AddSearchPath(Pathname("/Bin"));
 	tree.AddSearchPath(Pathname("/Sys"));
 	tree.AddSearchPath(Pathname("/Types"));
@@ -140,11 +119,6 @@ void Console::CreateTree()
 	ExposeTypesToTree(types);
 }
 
-//void Console::ExecuteFile(const char *filename)
-//{
-//	KAI_NAMESPACE(ExecuteFile)(filename, executor, compiler, tree.GetScope());
-//}
-
 void Console::Execute(Pointer<Continuation> cont)
 {
 	KAI_TRY
@@ -153,22 +127,31 @@ void Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		std::cout << WriteStack().c_str() << std::endl;
+		cout << WriteStack().c_str() << endl;
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
+#ifdef KAI_DEBUG_TRACE
 		KAI_TRACE_ERROR_1(E);
-		std::cerr << Color::Error << "Error: " << E.ToString() << std::endl;
+#else
+		cerr << Color::Error << "Error: " << E.ToString() << endl;
+#endif
 	}
-	KAI_CATCH(std::exception, E)
+	KAI_CATCH(exception, E)
 	{
+#ifdef KAI_DEBUG_TRACE
 		KAI_TRACE_ERROR_2("StdException: ", E.what());
-		std::cerr << Color::Error << "Error: " << E.what() << std::endl;
+#else
+		cerr << Color::Error << "StdError: " << E.what() << endl;
+#endif
 	}
 	KAI_CATCH_ALL()
 	{
+#ifdef KAI_DEBUG_TRACE
 		KAI_TRACE_ERROR_1("UnknownException");
-		std::cerr << Color::Error << "Error" << std::endl;
+#else
+		cerr << Color::Error << "UnknownException" << endl;
+#endif
 	}
 }
 
@@ -185,15 +168,13 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		std::cout << Color::Error;
-		Pointer<Continuation> cont = compiler->Translate(text.c_str());
+		cout << Color::Error;
+		auto cont = compiler->Translate(text.c_str());
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
-			std::cout << Color::Trace;
+			cout << Color::Trace;
 			Execute(cont);
-			//if (DebugOptions & PrintStack)
-			//	return executor->PrintStack();
 		}
 
 		return "";
@@ -202,7 +183,7 @@ String Console::Process(const String& text)
 	{
 		result << "Exception: " << E.ToString() << "\n";
 	}
-	KAI_CATCH(std::exception, E)
+	KAI_CATCH(exception, E)
 	{
 		result << "StdException: " << E.what() << "\n";
 	}
@@ -245,18 +226,37 @@ String Console::WriteStack() const
 	return result.ToString();
 }
 
-void Console::Run()
+int Console::Run()
 {
 	for (;;)
 	{
-		std::cout << Color::Prompt << GetPrompt().c_str() << Color::Input;
-		std::string text;
-		std::getline(std::cin, text);
-		std::cout << Color::Trace << Process(text.c_str()).c_str();
-
-		if (compiler->GetLanguage() == (int)Language::Pi)
+		KAI_TRY
 		{
-			executor->PrintStack();
+			for (;;)
+			{
+				cout << Color::Prompt << GetPrompt().c_str() << Color::Input;
+				string text;
+				getline(cin, text);
+				cout << Color::Trace << Process(text.c_str()).c_str();
+
+				if (_end)
+					return _endCode;
+
+				if (compiler->GetLanguage() == (int)Language::Pi)
+					cout << executor->PrintStack();
+			}
+		}
+		KAI_CATCH(Exception::Base, E)
+		{
+			KAI_TRACE_ERROR_1(E);
+		}
+		KAI_CATCH(exception, E)
+		{
+			KAI_TRACE_ERROR_1(E.what());
+		}
+		KAI_CATCH_ALL()
+		{
+			KAI_TRACE_ERROR() << " something went wrong";
 		}
 	}
 }

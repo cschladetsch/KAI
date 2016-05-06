@@ -35,8 +35,7 @@ TEST(TestFunctionScripting, Test)
 {
 	// we can give the KAI runtime a custom allocator to use. we will just use
 	// the standard one which uses malloc and free
-	Memory::StandardAllocator alloc;
-	Console console(&alloc);
+	Console console;
 	console.SetLanguage(Language::Rho);
 
 	// a registry is a factory for classes and instances
