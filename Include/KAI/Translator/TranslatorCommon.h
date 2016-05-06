@@ -15,7 +15,7 @@ public:
 	Pointer<Continuation> Pop();
 	Pointer<Continuation> Top();
 	Pointer<const Continuation> Top() const;
-	Pointer<Continuation> Result() { return Top(); }
+	virtual Pointer<Continuation> Result() { return Top(); }
 
 	void Append(Object const &ob);
 
@@ -50,7 +50,6 @@ public:
 
 protected:
 	std::vector<Pointer<Continuation> > stack;
-	Registry &reg;
 };
 
 KAI_END

@@ -19,7 +19,6 @@ struct PiAstNodeEnumType
 		Array,
 		Continuation,
 		TokenType,
-		Object = TokenType,
 	};
 
 	struct Node : AstNodeBase<PiToken, PiAstNodeEnumType>
