@@ -351,6 +351,9 @@
     <None Include="Scripts\TestClass.kai" />
     <None Include="Scripts\TestFun.kai" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\KAI\ConsoleColor.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

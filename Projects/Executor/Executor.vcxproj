@@ -131,6 +131,7 @@
     <ClCompile Include="Source\Bin.cpp" />
     <ClCompile Include="Source\Compiler.cpp" />
     <ClCompile Include="Source\Console.cpp" />
+    <ClCompile Include="Source\ConsoleColor.cpp" />
     <ClCompile Include="Source\Continuation.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>

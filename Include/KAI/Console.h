@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/ConsoleColor.h"
 #include "KAI/Translator/Pi/Pi.h"
 #include "KAI/Translator/Rho/Rho.h"
 
@@ -15,7 +16,6 @@ class Console
 	Pointer<Compiler> compiler;
 	Memory::IAllocator *alloc;
 	Language language;
-	//Coloriser *color;
 
 public:
 	~Console();
