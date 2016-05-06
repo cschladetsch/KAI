@@ -24,7 +24,7 @@ void RhoLexer::AddKeyWords()
 	keyWords["while"] = Enum::While;
 	keyWords["assert"] = Enum::Assert;
 	keyWords["pi"] = Enum::ToPi;
-	keyWords["pi{"] = Enum::ToPiSequence;
+	keyWords["pi{"] = Enum::PiSequence;
 }
 
 bool RhoLexer::NextToken()

@@ -70,6 +70,8 @@ const char *ToString(RhoTokenEnumType::Enum val)
 		CASE(In)
 		CASE(Assert)
 		CASE(ToPi)
+		CASE(PiSequence)
+		CASE(Debug)
 	}
 
 	static char b[100] = "UnnamedRhoToken #";

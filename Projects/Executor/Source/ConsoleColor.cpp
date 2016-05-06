@@ -10,16 +10,17 @@ KAI_BEGIN
 static WORD colors[Color::Last];
 static HANDLE hstdout;
 static CONSOLE_SCREEN_BUFFER_INFO orig;
-#endif
-
 
 Color::Color()
 {
-	colors[Prompt] = FOREGROUND_GREEN;
-	colors[Input] = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
+	WORD white = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
+	colors[Prompt] = FOREGROUND_GREEN | FOREGROUND_RED;
+	colors[Input] = white;
 	colors[Trace] = FOREGROUND_BLUE | FOREGROUND_GREEN;
-	colors[Error] = FOREGROUND_RED;
-	colors[Warning] = FOREGROUND_GREEN | FOREGROUND_RED;
+	colors[Error] = BACKGROUND_RED | white;
+	colors[Warning] = FOREGROUND_GREEN | FOREGROUND_BLUE;
+	colors[StackEntry] = FOREGROUND_GREEN;
+	colors[StackIndex] = FOREGROUND_GREEN | FOREGROUND_RED;
 
 	hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -37,5 +38,6 @@ void Color::SetColor(Type c)
 	SetConsoleTextAttribute(hstdout, colors[c]);
 }
 
-KAI_END
+#endif
 
+KAI_END

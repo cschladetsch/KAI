@@ -5,8 +5,7 @@ KAI_BEGIN
 
 TEST(TestStrings, TestConcat)
 {
-	Memory::BaseAllocator alloc;
-	Console console(&alloc);
+	Console console;
 	Process::trace = 1;
 	console.SetLanguage((int)Language::Pi);
 

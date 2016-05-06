@@ -316,6 +316,7 @@ void Executor::Perform(Operation::Type op)
 	case Operation::ToPi:
 		Deref<Compiler>(_compiler).SetLanguage((int)Language::Pi);
 		break;
+
 	case Operation::ToRho:
 		Deref<Compiler>(_compiler).SetLanguage((int)Language::Rho);
 		break;
@@ -1312,7 +1313,7 @@ std::string Executor::PrintStack() const
 	//str << "size: " << data->Size() << std::endl;
 	for (auto const &ob : *_data)
 	{
-		str << "[" << n << "]: " << ob << std::endl;
+		str << Color::StackIndex << "[" << n << "]: " << Color::StackEntry << ob << std::endl;
 	}
 	return std::move(str.str());
 }

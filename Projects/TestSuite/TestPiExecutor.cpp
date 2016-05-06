@@ -38,10 +38,4 @@ TEST(TestPiExec, ExecArith)
 
 TEST(TestPiExec, TestConsole)
 {
-	Memory::BaseAllocator alloc;
-	Console console(&alloc);
-
-	//console.SetPi();
-	//console.SetRho();
-
 }

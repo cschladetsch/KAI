@@ -6,14 +6,12 @@ using namespace std;
 
 TEST(TestFunctionScripting, TestAssignment)
 {
-	Memory::StandardAllocator alloc;
-	Console console(&alloc);
+	Console console;
 
-	// a registry is a factory for classes and instances
-	//Registry &reg = console.GetRegistry();
-	Object root = console.GetRoot();
 	console.Execute("a=1;");
+	console.SetLanguage(Language::Rho);
 
+	Object root = console.GetRoot();
 	ASSERT_TRUE(root.HasChild("a"));
 	ASSERT_EQ(Deref<int>(root.GetChild("a")), 3);
 }

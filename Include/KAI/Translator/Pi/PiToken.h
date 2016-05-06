@@ -92,6 +92,7 @@ struct PiTokenEnumType
 		History,
 
 		Jobs,
+		Debug,
 
 	};
 

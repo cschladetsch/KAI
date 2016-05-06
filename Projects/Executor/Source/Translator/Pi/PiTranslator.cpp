@@ -36,7 +36,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	switch (tok.type)
 	{
 	case PiTokenEnumType::String:
-		AppendNew(String("\"" + tok.Text() + "\""));
+		AppendNew(String(tok.Text()));
 		break;
 
 	case PiTokenEnumType::Bool:
