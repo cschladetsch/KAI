@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 	Console console(args, &alloc);
 	console.SetLanguage(Language::Pi);
 
-	Process::trace = 0;
-	console.GetExecutor()->SetTraceLevel(0);
+	Process::trace = 1;
+	console.GetExecutor()->SetTraceLevel(1);
 
 	console.Run();
 }

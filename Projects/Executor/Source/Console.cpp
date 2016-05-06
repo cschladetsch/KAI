@@ -75,6 +75,7 @@ void Console::ControlC()
 
 Console::Console(Memory::IAllocator *alloc)
 {
+	this->alloc = alloc;
 	registry = alloc->Allocate<Registry>(alloc);
 	std::vector<String> args;
 	Create(args);
@@ -85,6 +86,7 @@ Console::Console(Memory::IAllocator *alloc)
 
 Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
 {
+	this->alloc = alloc;
 	registry = alloc->Allocate<Registry>(alloc);
 	Create(args);
 	this->alloc = alloc;
@@ -93,7 +95,8 @@ Console::Console(const std::vector<String> &args, Memory::IAllocator *alloc)
 
 Console::Console()
 {
-	registry = alloc->Allocate<Registry>();
+	alloc = new Memory::StandardAllocator();
+	registry = alloc->Allocate<Registry>(alloc);
 	Create(std::vector<String>());
 	SetLanguage(Language::Rho);
 }
@@ -108,8 +111,10 @@ void Console::Create(const std::vector<String> &args)
 	KAI_UNUSED(args);
 	try
 	{
-		RegisterTypes();
+		alloc = new Memory::StandardAllocator();
+		registry = alloc->Allocate<Registry>(alloc);
 
+		RegisterTypes();
 		executor = registry->New<Executor>();
 		compiler = registry->New<Compiler>();
 
