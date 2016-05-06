@@ -47,12 +47,12 @@ private:
 	Tree *tree;
 	RetainedObjects retained_objects;
 	Pools pools;
-	Memory::IAllocator *allocator;
+	std::shared_ptr<Memory::IAllocator> allocator;
 	bool owns_allocator;
 
 public:
 	Registry();
-	Registry(Memory::IAllocator *);
+	Registry(std::shared_ptr<Memory::IAllocator>);
 	~Registry();
 
 	Memory::IAllocator &GetMemorySystem() const

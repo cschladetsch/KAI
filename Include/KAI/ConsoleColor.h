@@ -11,6 +11,8 @@ struct Color
 		Trace,
 		Error,
 		Warning,
+		StackEntry,
+		StackIndex,
 		Last
 	};
 
