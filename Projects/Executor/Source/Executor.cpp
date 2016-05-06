@@ -10,11 +10,11 @@ const ClassBase *GetClass(Object const &Q);
 
 void Executor::Create()
 {
-	data = New<Stack>();
-	context = New<Stack>();
-	Break = false;
-	traceLevel = 0;
-	stepNumber = 0;
+	_data = New<Stack>();
+	_context = New<Stack>();
+	_break = false;
+	_traceLevel = 0;
+	_stepNumber = 0;
 }
 
 bool Executor::Destroy()
@@ -25,9 +25,9 @@ bool Executor::Destroy()
 void Executor::Push(Object const &Q)
 {
 	if (Q.GetTypeNumber() == Type::Number::Object)
-		Push(*data, ConstDeref<Object>(Q));
+		Push(*_data, ConstDeref<Object>(Q));
 	else
-		Push(*data, Q);
+		Push(*_data, Q);
 }
 
 void Executor::Push(const std::pair<Object, Object> &P)
@@ -37,32 +37,32 @@ void Executor::Push(const std::pair<Object, Object> &P)
 
 Object Executor::ResolvePop()
 {
-	return Resolve(Pop(*data));
+	return Resolve(Pop(*_data));
 }
 
 Object Executor::Pop()
 {
-	return Pop(*data);
+	return Pop(*_data);
 }
 
 Value<Stack> Executor::GetDataStack()
 {
-	return data;
+	return _data;
 }
 
 Value<const Stack> Executor::GetContextStack() const
 {
-	return Value<const Stack>(data.GetConstObject()); // TODO: automatereturn context;
+	return Value<const Stack>(_data.GetConstObject()); // TODO: automatereturn context;
 }
 
 
 void Executor::SetContinuation(Value<Continuation> C)
 {
-	continuation = C;
-	if (continuation.Exists())
+	_continuation = C;
+	if (_continuation.Exists())
 	{
-		continuation->Enter(this);
-		continuation->InitialStackDepth = data->Size();
+		_continuation->Enter(this);
+		_continuation->InitialStackDepth = _data->Size();
 	}
 }
 
@@ -79,8 +79,8 @@ void Executor::Continue()
 	Object next;
 	for (;;)
 	{
-		Break = false;
-		if (continuation->Next(next))
+		_break = false;
+		if (_continuation->Next(next))
 		{
 			KAI_TRY
 			{
@@ -89,7 +89,7 @@ void Executor::Continue()
 			KAI_CATCH(Exception::Base, E)
 			{
 #if defined(KAI_DEBUG_TRACE)
-				KAI_TRACE_3(data, context, continuation);
+				KAI_TRACE_3(_data, _context, _continuation);
 				KAI_TRACE_1(E);
 #else
 				std::cerr << E.ToString() << std::endl;
@@ -98,12 +98,12 @@ void Executor::Continue()
 			}
 		}
 		else
-			Break = true;
+			_break = true;
 
-		if (Break)
+		if (_break)
 		{
 			NextContinuation();
-			if (!continuation.Exists())
+			if (!_continuation.Exists())
 				return;
 		}
 	}
@@ -117,19 +117,19 @@ void Executor::Continue(Value<Continuation> C)
 
 void Executor::NextContinuation()
 {
-	if (context->Empty())
+	if (_context->Empty())
 	{
-		continuation = Object();
+		_continuation = Object();
 		return;
 	}
 
-	if (context->Empty())
+	if (_context->Empty())
 	{
 		KAI_TRACE_ERROR() << "Context stack is empty";
 		KAI_NOT_IMPLEMENTED();
 	}
 
-	SetContinuation(context->Pop());
+	SetContinuation(_context->Pop());
 }
 
 void Executor::Push(Stack& L, Object const &Q)
@@ -140,7 +140,7 @@ void Executor::Push(Stack& L, Object const &Q)
 void Executor::Eval(Object const &Q)
 {
 	//Dump(Q);
-	stepNumber++;
+	_stepNumber++;
 
 	switch (GetTypeNumber(Q).value)
 	{
@@ -188,7 +188,7 @@ Value<Continuation> Executor::NewContinuation(Value<Continuation> orig)
 
 void Executor::MarkAndSweep()
 {
-	Object Q = tree->GetRoot();
+	Object Q = _tree->GetRoot();
 	MarkAndSweep(Q);
 }
 
@@ -273,39 +273,39 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 	switch (op)
 	{
 	case Operation::Suspend:
-		continuation->Next();
-		context->Push(continuation.GetObject());
+		_continuation->Next();
+		_context->Push(_continuation.GetObject());
 	case Operation::Replace:
-		context->Push(NewContinuation(Pop()).GetObject());
+		_context->Push(NewContinuation(Pop()).GetObject());
 	case Operation::Resume:
-		Break = true;
+		_break = true;
 		break;
 	}
 }
 
 void Executor::ContinueOnly(Value<Continuation> C)
 {
-	context->Push(Object());	// add an empty context to break. this forces exection to stop after C is finished
+	_context->Push(Object());	// add an empty context to break. this forces exection to stop after C is finished
 	Continue(C);
 }
 
 void Executor::ContinueTestCode(Value<Continuation> test)
 {
 	// preserve the stack depth going into the test
-	int start_depth = data->Size();
+	int start_depth = _data->Size();
 
 	// execute the test code
 	ContinueOnly(test);
 
 	// ensure we have at least one extra argument on the stack
-	int new_depth = data->Size();
+	int new_depth = _data->Size();
 	if (new_depth < start_depth + 1)
 		KAI_THROW_1(Base, "Corrupted stack");
 
 	// pop off the extraneous left-overs from the conditional
-	int num_pops = data->Size() - new_depth - 1;
+	int num_pops = _data->Size() - new_depth - 1;
 	for (int N = 0; N < num_pops; ++N)
-		data->Pop();
+		_data->Pop();
 }
 
 void Executor::Perform(Operation::Type op)
@@ -313,10 +313,10 @@ void Executor::Perform(Operation::Type op)
 	switch (op)
 	{
 	case Operation::ToPi:
-		Deref<Compiler>(compiler).SetLanguage((int)Language::Pi);
+		Deref<Compiler>(_compiler).SetLanguage((int)Language::Pi);
 		break;
 	case Operation::ToRho:
-		Deref<Compiler>(compiler).SetLanguage((int)Language::Rho);
+		Deref<Compiler>(_compiler).SetLanguage((int)Language::Rho);
 		break;
 
 	case Operation::Lookup:
@@ -397,13 +397,13 @@ void Executor::Perform(Operation::Type op)
 	
 	case Operation::LevelStack:
 		{
-			int required_depth = continuation->InitialStackDepth;
-			int depth = data->Size();
+			int required_depth = _continuation->InitialStackDepth;
+			int depth = _data->Size();
 			if (depth < required_depth)
 				KAI_THROW_0(EmptyStack);	// we lost some objects off the stack
 			int num_pops = depth - required_depth;
 			for (int N = 0; N < num_pops; ++N)
-				data->Pop();
+				_data->Pop();
 		}
 		break;
 	
@@ -453,7 +453,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Pointer<Continuation> body = Pop();
 			Pointer<Continuation> test = Pop();
-			context->Push(continuation.GetObject());	// for scoping
+			_context->Push(_continuation.GetObject());	// for scoping
 			ContinueTestCode(test);
 			while (Deref<bool>(Pop()))
 			{
@@ -461,12 +461,12 @@ void Executor::Perform(Operation::Type op)
 				ContinueTestCode(test);
 			}
 
-			context->Pop();
+			_context->Pop();
 		}
 		break;
 
 	case Operation::ThisContinuation:
-		Push(continuation.GetObject());
+		Push(_continuation.GetObject());
 		break;
 
 	case Operation::Delete:
@@ -491,7 +491,7 @@ void Executor::Perform(Operation::Type op)
 	
 	case Operation::Suspend:
 		{
-			if (data->Size() < 1)
+			if (_data->Size() < 1)
 			{
 				KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
 				KAI_NOT_IMPLEMENTED();
@@ -500,13 +500,13 @@ void Executor::Perform(Operation::Type op)
 			switch (where_to_go.GetTypeNumber().GetValue())
 			{
 			case Type::Number::Function:
-				ConstDeref<BasePointer<FunctionBase> >(where_to_go)->Invoke(*where_to_go.GetRegistry(), *data);
+				ConstDeref<BasePointer<FunctionBase> >(where_to_go)->Invoke(*where_to_go.GetRegistry(), *_data);
 				return;
 
 			case Type::Number::SignedContinuation:
 				{
 					SignedContinuation &signed_continuation = Deref<SignedContinuation>(where_to_go);
-					signed_continuation.Enter(*data);
+					signed_continuation.Enter(*_data);
 					where_to_go = signed_continuation.GetContinuation();
 				}
 				break;
@@ -515,19 +515,19 @@ void Executor::Perform(Operation::Type op)
 				break;
 			}
 
-			context->Push(continuation.GetObject());
-			context->Push(where_to_go);
+			_context->Push(_continuation.GetObject());
+			_context->Push(where_to_go);
 			if (where_to_go.IsType<Continuation>())
 				Deref<Continuation>(where_to_go).Enter(this);
 
-			Break = true;
+			_break = true;
 		}
 		break;
 
 	case Operation::Return:
 		{
 			int n = 0;
-			for (auto sc : *context)
+			for (auto sc : *_context)
 			{
 				if (*Deref<Continuation>(sc).scopeBreak)
 					break;
@@ -535,14 +535,14 @@ void Executor::Perform(Operation::Type op)
 			}
 
 			for (; n > 0; --n)
-				context->Pop();
+				_context->Pop();
 		}
 		break;
 
 	case Operation::Replace:
-		context->Push(NewContinuation(Pop()).GetObject());
+		_context->Push(NewContinuation(Pop()).GetObject());
 	case Operation::Resume:
-		Break = true;
+		_break = true;
 		break;
 
 	case Operation::NTimes:
@@ -554,7 +554,7 @@ void Executor::Perform(Operation::Type op)
 			for (int N = 0; N < M; ++N)
 			{
 				// push a null continuation to break the call chain
-				context->Push(Object());
+				_context->Push(Object());
 				// re-continue the functor
 				Continue(C);
 			}
@@ -621,9 +621,9 @@ void Executor::Perform(Operation::Type op)
 
 	case Operation::IfElse:
 		{
-			if (data->Size() < 3)
+			if (_data->Size() < 3)
 			{
-				KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << data->Size() << " is too small";
+				KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << _data->Size() << " is too small";
 				KAI_NOT_IMPLEMENTED();
 			}
 
@@ -643,9 +643,9 @@ void Executor::Perform(Operation::Type op)
 			Object then = Pop();
 			if (ConstDeref<bool>(Pop()))
 			{
-				context->Push(continuation.GetObject());
-				context->Push(NewContinuation(then).GetObject());
-				Break = true;
+				_context->Push(_continuation.GetObject());
+				_context->Push(NewContinuation(then).GetObject());
+				_break = true;
 			}
 		}
 		break;
@@ -654,13 +654,13 @@ void Executor::Perform(Operation::Type op)
 		{
 			Pointer<Continuation> else_ = Pop();
 			Pointer<Continuation> then = Pop();
-			context->Push(continuation.GetObject());
+			_context->Push(_continuation.GetObject());
 			if (ConstDeref<bool>(Pop()))
-				context->Push(NewContinuation(then).GetObject());
+				_context->Push(NewContinuation(then).GetObject());
 			else
-				context->Push(NewContinuation(else_).GetObject());
+				_context->Push(NewContinuation(else_).GetObject());
 
-			Break = true;
+			_break = true;
 		}
 		break;
 
@@ -681,11 +681,11 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::ThisContext:
-		Push(continuation.GetObject());
+		Push(_continuation.GetObject());
 		break;
 
 	case Operation::Remove:
-		Remove(tree->GetRoot(), continuation->GetScope(), Pop());
+		Remove(_tree->GetRoot(), _continuation->GetScope(), Pop());
 		break;
 
 	case Operation::MarkAndSweep:
@@ -717,7 +717,7 @@ void Executor::Perform(Operation::Type op)
 	case Operation::CppFunctionCall:
 		{
 			Object Q = Pop();
-			ConstDeref<BasePointer<FunctionBase> >(Q)->Invoke(*Q.GetRegistry(), *data);
+			ConstDeref<BasePointer<FunctionBase> >(Q)->Invoke(*Q.GetRegistry(), *_data);
 		}
 		break;
 
@@ -805,11 +805,11 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::Clear:
-		data->Clear();
+		_data->Clear();
 		break;
 
 	case Operation::Depth:
-		Push(New(data->Size()));
+		Push(New(_data->Size()));
 		break;
 
 	case Operation::ToPair:
@@ -825,7 +825,7 @@ void Executor::Perform(Operation::Type op)
 		break;
 
 	case Operation::This:
-		Push(continuation->GetScope());
+		Push(_continuation->GetScope());
 		break;
 
 	case Operation::Expand:
@@ -848,9 +848,9 @@ void Executor::Perform(Operation::Type op)
 		{
 			Object id = Pop();
 			if (GetTypeNumber(id) == Type::Number::Label)
-				tree->SetScope(GetStorageBase(tree->GetScope()).Get(ConstDeref<Label>(id)));
+				_tree->SetScope(GetStorageBase(_tree->GetScope()).Get(ConstDeref<Label>(id)));
 			else
-				tree->SetScope(ConstDeref<Pathname>(id));
+				_tree->SetScope(ConstDeref<Pathname>(id));
 		}
 		break;
 
@@ -942,10 +942,10 @@ void Executor::Perform(Operation::Type op)
 		{
 			Object ident = Pop();
 			Object value = ResolvePop();
-			if (!continuation->HasScope())
-				continuation->SetScope(New<void>().GetObject());
+			if (!_continuation->HasScope())
+				_continuation->SetScope(New<void>().GetObject());
 
-			Set(tree->GetRoot(), continuation->GetScope(), ident, value);
+			Set(_tree->GetRoot(), _continuation->GetScope(), ident, value);
 		}
 		break;
 
@@ -997,7 +997,7 @@ void Executor::Perform(Operation::Type op)
 			if (method == 0)
 				KAI_THROW_2(UnknownMethod, method_name.ToString(), klass->GetName().ToString());
 
-			method->Invoke(object, *data);
+			method->Invoke(object, *_data);
 		}
 		break;
 
@@ -1065,7 +1065,7 @@ Value<Array> Executor::ForEach(D const &C, Object const &F)
 	for (; A != B; ++A)
 	{
 		Push(*A);
-		context->Push(Object());
+		_context->Push(Object());
 		Continue(F);
 		R->Append(Pop());
 	}
@@ -1080,7 +1080,7 @@ Object Executor::Pop(Stack &stack)
 
 Object Executor::Top() const
 {
-	return data->Top();
+	return _data->Top();
 }
 
 Object Executor::Resolve(Object ident) const
@@ -1097,15 +1097,15 @@ Object Executor::Resolve(Object ident) const
 Object Executor::TryResolve(Label const &label) const
 {
 	// search in current scope
-	if (continuation.Exists())
+	if (_continuation.Exists())
 	{
-		Object scope = continuation->GetScope();
+		Object scope = _continuation->GetScope();
 		if (scope && scope.Has(label))
 			return scope.Get(label);
 	}
 
 	// search in parent scopes
-	Stack const &scopes = *context;
+	Stack const &scopes = *_context;
 	for (int N = 0; N < scopes.Size(); ++N)
 	{
 		Pointer<Continuation> cont = scopes.At(N);
@@ -1117,7 +1117,7 @@ Object Executor::TryResolve(Label const &label) const
 	}
 
 	// finally, search the tree
-	return tree->Resolve(label);
+	return _tree->Resolve(label);
 }
 
 Object Executor::Resolve(Label const &label) const
@@ -1135,11 +1135,11 @@ Object Executor::Resolve(Pathname const &path) const
 	if (!path.Absolute)
 	{
 		// search in current scope
-		if (continuation.Exists() && Exists(continuation->GetScope(), path))
-			return Get(continuation->GetScope(), path);
+		if (_continuation.Exists() && Exists(_continuation->GetScope(), path))
+			return Get(_continuation->GetScope(), path);
 
 		// search in parent scopes
-		Stack const &scopes = *context;
+		Stack const &scopes = *_context;
 		for (int N = 0; N < scopes.Size(); ++N)
 		{
 			Pointer<Continuation> cont = scopes.At(N);
@@ -1153,7 +1153,7 @@ Object Executor::Resolve(Pathname const &path) const
 	}
 
 	// finally, search the tree
-	Object Q = tree->Resolve(path);
+	Object Q = _tree->Resolve(path);
 	if (!Q.Valid())
 		KAI_THROW_1(CannotResolve, path);
 	return Q;
@@ -1190,8 +1190,8 @@ void Executor::Trace(const Object &Q)
 
 void Executor::ClearContext()
 {
-	continuation = Object();
-	context->Clear();
+	_continuation = Object();
+	_context->Clear();
 }
 
 void Executor::TraceAll()
@@ -1257,12 +1257,12 @@ void Executor::DumpContinuation(Continuation const &C, int ip)
 
 void Executor::SetTraceLevel(int N)
 {
-	traceLevel = N;
+	_traceLevel = N;
 }
 
 int Executor::GetTraceLevel() const
 {
-	return traceLevel;
+	return _traceLevel;
 }
 
 void Executor::Register(Registry &R, const char * N)
@@ -1281,18 +1281,18 @@ void Executor::Register(Registry &R, const char * N)
 
 void Executor::Dump(Object const &Q)
 {
-	if (traceLevel > 0)
+	if (_traceLevel > 0)
 	{
-		if (traceLevel > 1)
+		if (_traceLevel > 1)
 		{
 			std::cout << "Stack:\n";
-			DumpStack(*data);
+			DumpStack(*_data);
 		}
 
-		if (traceLevel > 2)
+		if (_traceLevel > 2)
 		{
 			std::cout << "Context:\n";
-			for (auto c : *context)
+			for (auto c : *_context)
 			{
 				StringStream str;
 				str << c;
@@ -1300,7 +1300,7 @@ void Executor::Dump(Object const &Q)
 			}
 		}
 
-		std::cout << "\n[" << stepNumber << "]: Eval: @" << *continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
+		std::cout << "\n[" << _stepNumber << "]: Eval: @" << *_continuation->index << " " << Q.ToString().c_str() << "\n";//std::endl;
 	}
 }
 
@@ -1309,7 +1309,7 @@ std::string Executor::PrintStack() const
 	int n = 0;
 	std::stringstream str;
 	//str << "size: " << data->Size() << std::endl;
-	for (auto const &ob : *data)
+	for (auto const &ob : *_data)
 	{
 		str << "[" << n << "]: " << ob << std::endl;
 	}

@@ -26,32 +26,21 @@ struct StorageType
 	typedef T Type;
 };
 
-//template <class T>
-//struct StorageType<FwdBasePointer<T> >
-//{
-//	typedef T Type;
-//};
-
 template <class T, int E, int Q, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 struct TraitsBase
 {
 	enum { Number = (E) };
 	enum { Props = (Q) };
 	typedef T Type;
-	//typedef P Parent;
 	typedef St Store;
 	typedef Store *Pointer;
 	typedef Store const *ConstPointer;
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
-	//static const char *_name = 0;
 
 	static const char *Name()
 	{
-		//if (_name != nullptr)
-		//	return _name;
-
 		return boost::typeindex::type_id<T>().pretty_name().c_str();
 	}
 
