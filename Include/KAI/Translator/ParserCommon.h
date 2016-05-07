@@ -7,7 +7,6 @@
 
 KAI_BEGIN
 
-
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class Lexer, class AstEnumStruct>
@@ -147,6 +146,11 @@ protected:
 	TokenNode const &Current() const
 	{
 		return tokens[current];
+	}
+
+	bool Current(TokenNode node) const
+	{
+		return tokens[current] == node;
 	}
 
 	TokenNode const &Peek() const

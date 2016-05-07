@@ -23,14 +23,14 @@ void StringStream::Register(Registry &registry)
 {
 	KAI_UNUSED(registry);
 	// TODO TESTS
-	//ClassBuilder<StringStream>(registry, "StringStream")
-	//	.Methods
-	//	("Size", &StringStream::Size)
-	//	("Empty", &StringStream::Empty)
-	//	("ToString", &StringStream::ToString)
-	//	("Clear", &StringStream::Clear)
-	//	// TODO ("Append", &StringStream::Append)
-	//	;
+//ClassBuilder<StringStream>(registry, "StringStream")
+//	.Methods
+//	("Size", &StringStream::Size)
+//	("Empty", &StringStream::Empty)
+//	("ToString", &StringStream::ToString)
+//	("Clear", &StringStream::Clear)
+//	// TODO ("Append", &StringStream::Append)
+//	;
 }
 
 bool StringStream::CanRead(int N) const
@@ -104,7 +104,7 @@ bool StringStream::Extract(Char &C)
 	return true;
 }
 
-StringStream &operator<<(StringStream &S, void (*)(EndsArgument))
+StringStream &operator<<(StringStream &S, void(*)(EndsArgument))
 {
 	//S.Append('\0');
 	return S;

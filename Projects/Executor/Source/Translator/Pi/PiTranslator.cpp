@@ -3,22 +3,25 @@
 
 #include <boost/lexical_cast.hpp>
 
+using namespace boost;
+using namespace std;
+
 KAI_BEGIN
 
 void PiTranslator::TranslateNode(AstNodePtr node)
 {
-//	std::cout << ToString() << std::endl;
-
 	switch (node->GetType())
 	{
 		case PiAstNodeEnumType::Continuation:
 		{
 			PushNew();
-			for (auto const &ch : node->GetChildren())
+			for (auto ch : node->GetChildren())
 			{
-				TranslateNode(ch);
+				//cout << *ch << endl;
+				if (ch->GetToken().type != PiTokenEnumType::NewLine)
+					TranslateNode(ch);
 			}
-			stack.push_back(Pop());
+			Append(Pop());
 			break;
 		}
 

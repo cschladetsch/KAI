@@ -103,31 +103,34 @@ bool PiParser::ParseArray(AstNodePtr root)
 			return false;
 		}
 	}
-	Consume();
 
+	if (Failed)
+		return false;
+
+	Consume();
 	root->Add(node);
-	
+
 	return true;
 }
 
 bool PiParser::ParseContinuation(AstNodePtr root)
 {
 	AstNodePtr node = NewNode(PiAstNodes::Continuation);
-	while (!Failed && PeekIs(TokenEnum::CloseBrace))
+	while (!Failed && !Try(PiTokenEnumType::CloseBrace))
 	{
 		if (!NextSingle(node))
-			break;
+		{
+			Fail("Malformed Coro");
+			return false;
+		}
 	}
 
-	if (Failed || PeekIs(TokenEnum::CloseBrace))
-	{
-		if (!Failed)
-			Fail("Closed brace expected");
+	if (Failed)
 		return false;
-	}
 	Consume();
 
 	root->Add(node);
+
 	return true;
 }
 
