@@ -65,7 +65,7 @@ bool Continuation::Next(Object &next) const
 
 	int &n = Deref<int>(index);
 	if (n == code->Size())
-		return n != 0;
+		return false;
 
 	next = code->At(n++);
 
