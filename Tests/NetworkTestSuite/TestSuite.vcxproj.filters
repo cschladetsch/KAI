@@ -36,6 +36,9 @@
     <ClCompile Include="TestCompilerBasic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestPi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Precompiled.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,12 +58,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestPiString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPiParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPiTokeniser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
