@@ -1,4 +1,4 @@
-//#include "KAI/KAI.h"
+#include "KAI/KAI.h"
 //#include "KAI/BasePointer.h"
 //#include "KAI/PropertyBase.h"
 //#include "KAI/MethodBase.h"
