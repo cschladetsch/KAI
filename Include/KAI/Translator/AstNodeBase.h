@@ -22,6 +22,7 @@ public:
 	AstNodeBase() { }
 	AstNodeBase(Enum e) : _astType(e) { }
 	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
+	AstNodeBase(Enum e, Object const &Q) : _astType(e), Object(Q) { }
 	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
 
 	const Child &GetChild(size_t n) const { return GetChildren()[n]; }
@@ -56,6 +57,11 @@ public:
 	void Add(AstNodePtr node)
 	{
 		_children.push_back(node);
+	}
+
+	void Add(Enum type, Object content)
+	{
+		_children.push_back(std::make_shared<Self>(type, content));
 	}
 
 	void Add(Token const &tok)
