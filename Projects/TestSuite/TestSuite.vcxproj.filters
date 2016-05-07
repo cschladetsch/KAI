@@ -24,6 +24,9 @@
     <ClCompile Include="TestFunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestFunctionScripting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="TestClassScripting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,16 +36,10 @@
     <ClCompile Include="TestCompilerBasic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestPi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Precompiled.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPiTokeniser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestPiParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestFunctionScripting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestPiExecutor.cpp">
