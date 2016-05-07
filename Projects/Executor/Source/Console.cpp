@@ -127,7 +127,7 @@ void Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		cout << WriteStack().c_str() << endl;
+		//cout << WriteStack().c_str() << endl;
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
