@@ -30,6 +30,7 @@
 #include "KAI/Constness.h"
 #include "KAI/ObjectConstructParams.h"
 #include "KAI/Object.h"
+#include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/TypeInfo.h"
 #include "KAI/StorageBase.h"
 #include "KAI/Reflected.h"
@@ -43,7 +44,6 @@
 #include "KAI/BuiltinTypes/Bool.h"
 #include "KAI/StdContainers.h"
 
-#include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/Reflected.h"
 #include "KAI/Pointer.h"
 #include "KAI/Storage.h"
