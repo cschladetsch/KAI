@@ -164,8 +164,7 @@ void Executor::Eval(Object const &Q)
 		break;
 
 	default:
-		if (Q.Exists())
-			Push(Q.Clone());
+		Push(Q.Clone());
 		break;
 	}
 }
