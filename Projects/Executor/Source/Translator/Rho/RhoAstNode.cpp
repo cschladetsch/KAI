@@ -20,17 +20,13 @@ const char *ToString(RhoAstNodes::Enum ty)
 		CASE(Conditional)
 		CASE(Assignment)
 		CASE(Call)
-		CASE(Increment)
-		CASE(Decrement)
-		CASE(TokenType)
-		CASE(Positive)
-		CASE(Negative)
 		CASE(ArgList)
 		CASE(IndexOp)
 		CASE(ForEach)
 		CASE(For)
 		CASE(List)
 		CASE(Map)
+		CASE(Continuation)
 	}
 	return "???";
 }

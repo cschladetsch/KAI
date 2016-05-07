@@ -8,7 +8,7 @@ KAI_BEGIN
 
 struct Coloriser;
 
-class Console
+class Console : public Reflected
 {
 	Tree tree;
 	Registry *registry;

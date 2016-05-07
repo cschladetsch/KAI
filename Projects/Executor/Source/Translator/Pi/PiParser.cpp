@@ -49,10 +49,10 @@ bool PiParser::NextSingle(AstNodePtr root)
 	auto tok = Current();
 	switch (tok.type)
 	{
-	case PiTokens::CloseSquareBracket:
-	case PiTokens::CloseBrace:
-		Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
-		return false;
+	//case PiTokens::CloseSquareBracket:
+	//case PiTokens::CloseBrace:
+	//	Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
+	//	return false;
 
 	case PiTokens::OpenSquareBracket:
 		Consume();
@@ -62,10 +62,28 @@ bool PiParser::NextSingle(AstNodePtr root)
 		Consume();
 		return ParseContinuation(root);
 
-	//case PiTokens::Int:
-	//case PiTokens::Float:
-	//case PiTokens::Minus:
-	//case PiTokens::Plus:
+	case PiTokens::Clear:
+	case PiTokens::Drop:
+	case PiTokens::Dup:
+	case PiTokens::Rot:
+	case PiTokens::PickN:
+	case PiTokens::Pathname:
+
+	case PiTokens::String:
+	case PiTokens::Int:
+	case PiTokens::Float:
+	case PiTokens::True:
+	case PiTokens::False:
+
+	case PiTokens::Plus:
+	case PiTokens::Minus:
+	case PiTokens::Mul:
+	case PiTokens::Divide:
+
+	case PiTokens::PlusAssign:
+	case PiTokens::MinusAssign:
+	case PiTokens::MulAssign:
+	case PiTokens::DivAssign:
 	default:
 		root->Add(Consume());
 		return true;
@@ -74,28 +92,10 @@ bool PiParser::NextSingle(AstNodePtr root)
 	return false;
 }
 
-		//Appent
-
-//bool PiParser::Compound()
-//{
-//	switch (Peek().type)
-//	{
-//	case PiTokens::OpenBrace:
-//		return ParseContinuation();
-//		break;
-//
-//	case PiTokens::OpenSquareBracket:
-//		return ParseArray();
-//		break;
-//	}
-//
-//	return false;
-//}
-//
 bool PiParser::ParseArray(AstNodePtr root)
 {
 	auto node = NewNode(PiAstNodes::Array);
-	while (!Failed && Current().type != PiTokens::CloseSquareBracket)
+	while (!Failed && !PeekIs(PiTokens::CloseSquareBracket))
 	{
 		if (!NextSingle(node))
 		{
@@ -112,7 +112,23 @@ bool PiParser::ParseArray(AstNodePtr root)
 
 bool PiParser::ParseContinuation(AstNodePtr root)
 {
-	return false;
+	AstNodePtr node = NewNode(PiAstNodes::Continuation);
+	while (!Failed && PeekIs(TokenEnum::CloseBrace))
+	{
+		if (!NextSingle(node))
+			break;
+	}
+
+	if (Failed || PeekIs(TokenEnum::CloseBrace))
+	{
+		if (!Failed)
+			Fail("Closed brace expected");
+		return false;
+	}
+	Consume();
+
+	root->Add(node);
+	return true;
 }
 
 

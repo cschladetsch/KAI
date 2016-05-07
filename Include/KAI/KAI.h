@@ -11,7 +11,7 @@
 
 #include "KAI/BuiltinTypes/String.h"
 #include "KAI/FileLocation.h"
-#include "KAI/Exception/Common.h"
+#include "KAI/Exception/Exceptions.h"
 
 #include "KAI/Type/Properties.h"
 #include "KAI/Type/Number.h"
@@ -43,7 +43,7 @@
 #include "KAI/BuiltinTypes/Bool.h"
 #include "KAI/StdContainers.h"
 
-#include "KAI/Exception/Extended.h"
+#include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/Reflected.h"
 #include "KAI/Pointer.h"
 #include "KAI/Storage.h"

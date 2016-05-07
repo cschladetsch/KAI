@@ -170,6 +170,7 @@ String Console::Process(const String& text)
 	{
 		cout << Color::Error;
 		auto cont = compiler->Translate(text.c_str());
+		KAI_TRACE_1(cont);
 		if (cont)
 		{
 			cont->SetScope(tree.GetScope());
@@ -228,7 +229,8 @@ String Console::WriteStack() const
 
 int Console::Run()
 {
-	executor->Compiler = this;
+	executor->SetCompiler(*Self);
+
 	for (;;)
 	{
 		KAI_TRY
@@ -243,8 +245,8 @@ int Console::Run()
 				if (_end)
 					return _endCode;
 
-				if (compiler->GetLanguage() == (int)Language::Pi)
-					cout << executor->PrintStack();
+				//if (compiler->GetLanguage() == (int)Language::Pi)
+				//	cout << executor->PrintStack();
 			}
 		}
 		KAI_CATCH(Exception::Base, E)

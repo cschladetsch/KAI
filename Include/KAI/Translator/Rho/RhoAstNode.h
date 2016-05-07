@@ -38,6 +38,7 @@ struct RhoAstNodeEnumType
 		NotEquiv,
 		Greater,
 		Object,
+		Continuation,
 	};
 
 	struct Node : AstNodeBase<RhoToken, RhoAstNodeEnumType>
