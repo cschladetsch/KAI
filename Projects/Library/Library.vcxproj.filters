@@ -574,17 +574,17 @@
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
       <Filter>Header Files\BuiltinTypes\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Common.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Argument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\HierarchicalPrinter.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\Exceptions.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\ExceptionsExtended.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

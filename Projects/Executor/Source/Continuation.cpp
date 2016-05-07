@@ -43,10 +43,10 @@ void Continuation::Enter(Executor *exec)
 			Object a = data.Pop();
 			scope.Set(ConstDeref<Label>(arg), a);
 		}
-
-		*index = 0;
-		*entered = true;
 	}
+
+	*index = 0;
+	*entered = true;
 }
 
 bool Continuation::Next() const
@@ -65,9 +65,10 @@ bool Continuation::Next(Object &next) const
 
 	int &n = Deref<int>(index);
 	if (n == code->Size())
-		return false;
+		return n != 0;
 
 	next = code->At(n++);
+
 	return true;
 }
 

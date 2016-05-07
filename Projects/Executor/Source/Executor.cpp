@@ -90,7 +90,7 @@ void Executor::Continue()
 			KAI_CATCH(Exception::Base, E)
 			{
 #if defined(KAI_DEBUG_TRACE)
-				KAI_TRACE_3(_data, _context, _continuation);
+				//KAI_TRACE_3(_data, _context, _continuation);
 				KAI_TRACE_1(E);
 #else
 				std::cerr << E.ToString() << std::endl;
@@ -164,7 +164,8 @@ void Executor::Eval(Object const &Q)
 		break;
 
 	default:
-		Push(Q.Clone());
+		if (Q.Exists())
+			Push(Q.Clone());
 		break;
 	}
 }
@@ -1313,7 +1314,7 @@ std::string Executor::PrintStack() const
 	//str << "size: " << data->Size() << std::endl;
 	for (auto const &ob : *_data)
 	{
-		str << Color::StackIndex << "[" << n << "/: " << Color::StackEntry << ob << std::endl;
+		str << Color::StackIndex << "[" << n << "]: " << Color::StackEntry << ob << std::endl;
 	}
 	return std::move(str.str());
 }
