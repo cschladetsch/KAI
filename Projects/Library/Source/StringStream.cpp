@@ -197,15 +197,6 @@ StringStream &operator>>(StringStream &S, bool &N)
 	return S;
 }
 
-
-const char *Operation::ToString(void)const
-{
-	//String T;
-	//S >> T;
-	//N = (float)atof(T.c_str());
-	return "";// S;
-}
-
 void Ends(EndsArgument)
 {
 	KAI_NOT_IMPLEMENTED_1("This is used to terminate string streams. Do not call it.");
