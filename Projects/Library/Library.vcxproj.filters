@@ -594,8 +594,5 @@
     <CustomBuild Include="Source\CompilerTokens.inl">
       <Filter>Source Files\Inline</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\OperationToString.inl">
-      <Filter>Source Files\Inline</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>

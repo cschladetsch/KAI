@@ -67,9 +67,9 @@ KAI_TYPE_TRAITS(ObjectSet, Number::Set
 	| Properties::Container);
 
 StringStream &operator<<(StringStream &, ObjectSet const &);
-StringStream &operator<<(StringStream &, ObjectSet::const_iterator const &);
+//StringStream &operator<<(StringStream &, ObjectSet::const_iterator const &);
 
 BinaryStream &operator<<(BinaryStream &, ObjectSet const &);
-BinaryStream &operator>>(BinaryStream &, ObjectSet &);
+//BinaryStream &operator>>(BinaryStream &, ObjectSet &);
 
 KAI_END

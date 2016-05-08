@@ -1004,13 +1004,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">true</ExcludedFromBuild>
     </CustomBuild>
-    <CustomBuild Include="Source\OperationToString.inl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='CLRDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugCLR|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugMin|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailCLR|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RetailMin|Win32'">true</ExcludedFromBuild>
-    </CustomBuild>
     <None Include="ClassDiagram.cd" />
     <None Include="Source\Array.inl" />
     <None Include="Source\BuiltinTypes\Label.inl" />
