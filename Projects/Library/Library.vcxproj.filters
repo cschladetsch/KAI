@@ -78,6 +78,9 @@
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{223fc41c-a482-4fb6-ab71-12fa73096b0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Exception">
+      <UniqueIdentifier>{d9933e57-f754-49bf-a061-b7826029f3e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Network\Tcp.cpp">

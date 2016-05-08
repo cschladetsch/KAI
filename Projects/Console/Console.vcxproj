@@ -176,7 +176,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader />
       <ProgramDataBaseFileName>$(OutDir)$(Platform).pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <TreatWarningAsError>true</TreatWarningAsError>
