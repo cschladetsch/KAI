@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CAB7099F-43CA-43FD-8876-B976F274AB3B}</ProjectGuid>
-    <RootNamespace>Network</RootNamespace>
+    <ProjectGuid>{FBF35910-89FB-4BBB-A53B-249BC9B9CAEC}</ProjectGuid>
+    <RootNamespace>NetworkCodeGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,9 +70,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)/Include;c:\Include</IncludePath>
-    <LibraryPath>c:\lib\KAI;$(LibraryPath)</LibraryPath>
-    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)$(PlatformName)\</IntDir>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir);c:\Lib\um\x86;|lib</LibraryPath>
     <OutDir>c:\lib\kai\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)$(PlatformName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -80,19 +80,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;WIN64;WINDOWS;KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS;KAI_ENABLE_EXCEPTIONS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>KAI/Net/Net.h</PrecompiledHeaderFile>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;WIN32;WIN64;WINDOWS;KAI_NAMESPACE_NAME=kai;KAI_DEBUG;KAI_DEBUG_TRACE;KAI_USE_EXCEPTIONS;KAI_ENABLE_EXCEPTIONS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>c:\lib\kai\core.lib;c:\lib\kai\execor.ib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-    <Lib>
-      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -128,29 +120,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\AgentCommon.cpp" />
-    <ClCompile Include="Source\Connection.cpp" />
-    <ClCompile Include="Source\Node.cpp" />
+    <ClCompile Include="Source\Lang\NetGenParser.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/NetGen/NetGen.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Source\Lang\NetGenTokens.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/NetGen/NetGen.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Source\Lang\NetGenTranslator.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/NetGen/NetGen.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="Source\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">KAI/NetGen/NetGen.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Source\ProxyCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Address.h" />
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\AgentCommon.h" />
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Net.h" />
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\NetHandle.h" />
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\ProxyCommon.h" />
-    <ClInclude Include="..\..\..\..\Users\christian\dev\KAI\Include\KAI\Net\Representative.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\AgentBase.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Base.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Config.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Connection.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Future.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\Node.h" />
-    <ClInclude Include="..\..\Include\KAI\Net\ProxyBase.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\Base.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\Config.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\NetGenParser.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\NetGenTokens.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\NetGenTranslator.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\Lang\Options.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\NetGen.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\NetGenAgent.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\NetGenBase.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\NetGenOptions.h" />
+    <ClInclude Include="..\..\Include\KAI\NetGen\NetGenProxy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

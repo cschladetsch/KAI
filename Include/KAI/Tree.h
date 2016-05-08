@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Exception/Exceptions.h"
+
 KAI_BEGIN
 
 class Tree

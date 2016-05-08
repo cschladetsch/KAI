@@ -3,6 +3,7 @@
 
 KAI.VC.*
 *.i
+/Intermediate/
 
 # User-specific files
 *.suo
