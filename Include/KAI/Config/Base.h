@@ -2,6 +2,7 @@
 
 #	include "KAI/Config/Options.h"
 #	include "KAI/Config/Compiler.h"
+#	include "KAI/Config/Platform.h"
 
 #	ifdef KAI_OPTION_USE_NAMESPACES
 #		define KAI_BEGIN namespace KAI_NAMESPACE_NAME {
@@ -42,7 +43,7 @@
 #	define KAI_UNUSED(A) ( &reinterpret_cast< const int& >( A ) )
 #	define KAI_UNUSED_1(A) KAI_UNUSED(A)
 #	define KAI_UNUSED_2(A,B) KAI_UNUSED(A), KAI_UNUSED(B)
-#	define KAI_UNUSED_3(A,B,C) KAI_UNUSED(A), KAI_UNUSED(B), KAI_UNUSED(C)
+#	define KAI_UNUSED_3(A,B,C) KAI_UNUSED(A), KAI_UNUSED(B), KAI_UNUSED(Coloriser)
 
 #	include "KAI/Config/Platform.h"
 #	include "KAI/Config/IntegralTypes.h"
