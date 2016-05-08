@@ -32,8 +32,9 @@ int main(int argc, char **argv)
 	Console console(std::make_shared<Memory::StandardAllocator>());
 	console.SetLanguage(Language::Pi);
 
-	Process::trace = 1;
-	console.GetExecutor()->SetTraceLevel(1);
+
+	Process::trace = 0;
+	console.GetExecutor()->SetTraceLevel(0);
 
 	return console.Run();
 }

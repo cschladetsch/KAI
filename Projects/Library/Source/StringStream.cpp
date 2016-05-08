@@ -227,31 +227,6 @@ bool operator==(const String &A, const String &B)
 	return std::equal(A.begin(), A.end(), B.begin());
 }
 
-// WTF These already defined in Object.cpp
-//StringStream &operator<<(StringStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-
-//StringStream &operator >> (StringStream &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryStream &operator<<(BinaryStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryPacket &operator >> (BinaryPacket &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-
 KAI_END
 
 //EOF

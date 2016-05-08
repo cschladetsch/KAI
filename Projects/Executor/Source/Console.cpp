@@ -241,6 +241,8 @@ int Console::Run()
 				getline(cin, text);
 				cout << Color::Trace << Process(text.c_str()).c_str();
 
+				cout << executor->PrintStack() << endl;
+
 				if (_end)
 					return _endCode;
 			}
