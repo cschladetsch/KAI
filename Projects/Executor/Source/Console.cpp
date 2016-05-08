@@ -228,8 +228,6 @@ String Console::WriteStack() const
 
 int Console::Run()
 {
-	executor->SetCompiler(*Self);
-
 	for (;;)
 	{
 		KAI_TRY

@@ -274,9 +274,6 @@
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\SystemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\TypeNumber.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\CallableBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>

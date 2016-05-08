@@ -29,9 +29,10 @@ int main(int argc, char **argv)
 {
 	KAI_UNUSED_2(argc, argv);
 
-	Console console(std::make_shared<Memory::StandardAllocator>());
+	Registry reg(std::make_shared<Memory::StandardAllocator>());
+	reg.AddClass<Console>("Console");
+	Console &console = Deref<Console>(reg.New<Console>());
 	console.SetLanguage(Language::Pi);
-
 
 	Process::trace = 0;
 	console.GetExecutor()->SetTraceLevel(0);
