@@ -135,6 +135,11 @@ const char *Operation::ToString(int value)
 	str << "UnnamedOp#" << value;
 	return str.str().c_str();
 }
+	//char const *Operation::ToString() const
+	//{
+	//	return "";
+	//}
+
 
 KAI_END
 
