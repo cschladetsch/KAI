@@ -15,21 +15,6 @@ struct Traits
 
 typedef int TypeNumber;
 
-//template <>
-//struct Traits<meta::Null>
-//{
-//	enum { Number = Number::None };
-//	enum { Properties =  };
-//
-//	typedef meta::Null Type;
-//	typedef meta::Null Store;
-//	typedef meta::Null *Pointer;
-//	typedef meta::Null const *ConstPointer;
-//	typedef meta::Null &Reference;
-//	typedef meta::Null const &ConstReference;	
-//	static const char *Name;
-//};
-
 template <typename T>
 struct Traits<const T> : Traits<T>
 {
@@ -41,32 +26,21 @@ struct StorageType
 	typedef T Type;
 };
 
-//template <class T>
-//struct StorageType<FwdBasePointer<T> >
-//{
-//	typedef T Type;
-//};
-
 template <class T, int E, int Q, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
 struct TraitsBase
 {
 	enum { Number = (E) };
 	enum { Props = (Q) };
 	typedef T Type;
-	//typedef P Parent;
 	typedef St Store;
 	typedef Store *Pointer;
 	typedef Store const *ConstPointer;
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
-	//static const char *_name = 0;
 
 	static const char *Name()
 	{
-		//if (_name != nullptr)
-		//	return _name;
-
 		return boost::typeindex::type_id<T>().pretty_name().c_str();
 	}
 
@@ -239,7 +213,7 @@ struct TraitsBase
 	template <class D>
 	struct MultiplyOp<D, true>
 	{
-		static Store Perform(ConstReference, ConstReference)
+		static Store Perform(ConstReference A, ConstReference B)
 		{
 			return A * B;
 		}

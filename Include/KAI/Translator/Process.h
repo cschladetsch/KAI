@@ -1,5 +1,3 @@
-#include <string>
-
 #pragma once
 
 KAI_BEGIN
@@ -10,6 +8,8 @@ struct Process
 	std::string Error;
 
 	Process() : Failed(false) { }
+
+	static int trace;
 
 protected:
 	bool Fail(const char *fmt, ...);
