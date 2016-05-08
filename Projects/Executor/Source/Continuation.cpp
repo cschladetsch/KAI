@@ -109,7 +109,11 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
 
 StringStream &operator<<(StringStream &S, const Continuation &C)
 {
-	return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
+	//return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
+	S << "{ ";
+	for (auto ch : *C.GetCode())
+		S << ch << " ";
+	return S << "}";
 }
 
 StringStream &operator>>(StringStream &, Continuation &)
