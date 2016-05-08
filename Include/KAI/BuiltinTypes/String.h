@@ -62,7 +62,7 @@ public:
 	iterator erase(iterator A, iterator B) { return _string.erase(A,B); }
 
 	template <class II0, class II1>
-	void insert(II0 where, II1 begin, II1 end) { _myString.insert(where, begin, end); }
+	void insert(II0 where, II1 begin, II1 end) { _string.insert(where, begin, end); }
 	
 	int size() const { return (int)_string.size(); }
 	bool empty() const { return _string.empty(); }
