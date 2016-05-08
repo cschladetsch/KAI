@@ -31,6 +31,7 @@ struct TraitsBase
 {
 	enum { Number = (E) };
 	enum { Props = (Q) };
+
 	typedef T Type;
 	typedef St Store;
 	typedef Store *Pointer;
