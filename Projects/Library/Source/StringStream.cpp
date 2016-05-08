@@ -197,12 +197,13 @@ StringStream &operator>>(StringStream &S, bool &N)
 	return S;
 }
 
-StringStream &operator>>(StringStream &S, float &N)
+
+const char *Operation::ToString(void)const
 {
-	String T;
-	S >> T;
-	N = (float)atof(T.c_str());
-	return S;
+	//String T;
+	//S >> T;
+	//N = (float)atof(T.c_str());
+	return "";// S;
 }
 
 void Ends(EndsArgument)

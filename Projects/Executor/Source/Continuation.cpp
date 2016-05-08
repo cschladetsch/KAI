@@ -82,7 +82,7 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
 		return stream << "...}";
 
 	// finished
-	if (index == code.Size())
+	if (index == (int)code.Size())
 		return stream << "}";
 
 	auto const &next = code.At(index);
@@ -98,7 +98,7 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
 		return InsertContinuation(stream, *coro.GetCode(), 0, ++depth);
 	}
 
-	while (code.Size() > index)
+	while (code.Size() > (int)index)
 	{
 		stream << code.At(index) << " ";
 		InsertContinuation(stream, code, ++index, depth);
