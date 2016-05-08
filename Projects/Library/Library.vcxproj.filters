@@ -454,9 +454,6 @@
     <ClInclude Include="..\..\Include\KAI\Meta\Base.h">
       <Filter>Header Files\Meta</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Base.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Base.h">
       <Filter>Header Files\Config</Filter>
     </ClInclude>
@@ -475,17 +472,8 @@
     <ClInclude Include="..\..\Include\KAI\Config\Compiler.h">
       <Filter>Header Files\Config</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Platform\PC\Threads\CriticalSection.h">
       <Filter>Header Files\Platform\PC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Exception\Extended.h">
-      <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Float.h">
       <Filter>Header Files\BuiltinTypes</Filter>
@@ -493,23 +481,8 @@
     <ClInclude Include="..\..\Include\KAI\Platform\PC\GameController.h">
       <Filter>Header Files\Platform\PC</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Set.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Signed32.h">
       <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
-      <Filter>Header Files\Config</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Config\Options.h">
       <Filter>Header Files\Config</Filter>
@@ -524,9 +497,6 @@
       <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Void.h">
-      <Filter>Header Files\BuiltinTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
       <Filter>Header Files\BuiltinTypes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Detail\Event.h">
@@ -579,6 +549,42 @@
     </ClInclude>
     <ClInclude Include="..\..\Include\KAI\Detail\HashFunctons.h">
       <Filter>Header Files\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Config\StdContainers.h">
+      <Filter>Header Files\BuiltinTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Set.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\MapBase.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Map.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\List.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\HashMap.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Dictionary.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\BuiltinTypes\Container.h">
+      <Filter>Header Files\BuiltinTypes\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Argument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\HierarchicalPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\Exceptions.h">
+      <Filter>Header Files\Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\KAI\Exception\ExceptionsExtended.h">
+      <Filter>Header Files\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

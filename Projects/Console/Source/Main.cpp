@@ -1,12 +1,21 @@
 #include <iostream>
 #include "KAI/ExecutorPCH.h"
+#include "KAI/ConsoleColor.h"
+
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#endif
 
 KAI_BEGIN
 
 void DebugTrace(const char *text)
 {
-	//OutputDebugStringA(text);
-	//OutputDebugStringA("\n");
+#ifdef WIN32
+	OutputDebugStringA(text);
+	OutputDebugStringA("\n");
+#endif
+
 	std::cerr << text << std::endl;
 }
 
@@ -14,31 +23,18 @@ KAI_END
 
 USING_NAMESPACE_KAI
 
-//error LNK2001 : unresolved external symbol "public: static char const * const kai::Type::TraitsBase<class kai::Array,28,39619,class kai::Array,class kai::Array &,class kai::Array const &>::_name" (? _name@?$TraitsBase@VArray@kai@@$0BM@$0JKMD@V12@AAV12@ABV12@@Type@kai@@
-
-void RunTests(Console &console);
+static Color _color;
 
 int main(int argc, char **argv)
 {
-	Memory::StandardAllocator alloc;
-	Registry r(&alloc);
+	KAI_UNUSED_2(argc, argv);
 
-	std::vector<String> args;
-	for (int N = 1; N < argc; ++N)
-		args.push_back(argv[N]);
-	
-	Console console(args, &alloc);
+	Console console(std::make_shared<Memory::StandardAllocator>());
+	console.SetLanguage(Language::Pi);
 
-#if defined(PROFILE)
-	for (int n = 0; n < 10; ++n)
-#endif
-		RunTests(console);
+	Process::trace = 1;
+	console.GetExecutor()->SetTraceLevel(1);
 
-#if !defined(PROFILE)
-	console.Run();
-#endif
+	return console.Run();
 }
 
-void RunTests(Console &console)
-{
-}

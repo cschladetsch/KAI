@@ -1,9 +1,4 @@
 #include "KAI/KAI.h"
-#include "KAI/StringStream.h"
-#include "KAI/Pathname.h"
-#include "KAI/Exception/Extended.h"
-#include "KAI/BuiltinTypes/Bool.h"
-#include "KAI/ClassBuilder.h"
 
 #include <ctype.h>
 

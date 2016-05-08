@@ -146,6 +146,11 @@ void Compiler::Create()
 	ADD_OP("*=", MulEquals);
 	ADD_OP("/=", DivEquals);
 	ADD_OP("%=", ModEquals);
+
+	ADD_OP("pi", ToPi);
+	ADD_OP("pi{", StartPiSequence);
+	ADD_OP("rho", ToRho);
+	ADD_OP("rho{", StartRhoSequence);
 }
 
 //EOF

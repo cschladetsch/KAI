@@ -1,6 +1,5 @@
 
 #include "TestBase.h"
-#include "KAI/Executor.h"
 
 #ifdef TEST_COMPILER_BASIC
 

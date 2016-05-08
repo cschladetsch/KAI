@@ -8,6 +8,9 @@
     <Filter Include="Script">
       <UniqueIdentifier>{f168bbe0-369c-4033-8f15-b5d4080e9738}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{6aa0aa9b-4ae3-4f04-9cad-23c2c27ab792}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -27,5 +30,10 @@
     <None Include="Scripts\TestFun.kai">
       <Filter>Script</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Include\KAI\ConsoleColor.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

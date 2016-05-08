@@ -4,13 +4,22 @@
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 #include "KAI/Value.h"
-#include "KAI/Compiler.h"
 #include "KAI/Reflected.h"
-#include "KAI/Executor.h"
+
 #include <iostream>
 #include <fstream>
 
 KAI_BEGIN
+
+const char *ToLower(const char *text)
+{
+	char *out = (char *)(malloc(strlen(text) + 1));
+	size_t n;
+	for (n = 0; n < strlen(text); ++n)
+		out[n] = (char)tolower(text[n]);
+	out[n] = 0;
+	return out;
+}
 
 bool MapCompare::operator()(const Object &A, const Object &B) const
 {
@@ -72,69 +81,20 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 	return S << "UnknownColor";
 }
 
-bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)
-{
-	std::fstream file(filename, std::ios::in);
-	if (!file)
-		return false;
-
-	char line[2000];
-	StringStream text;
-	while (file.getline(line, 2000))
-	{
-		text.Append(line);
-		text.Append('\n');
-	}
-
-	try
-	{
-		Pointer<Continuation> cont = compiler->Compile
-			(*executor->Self->GetRegistry(), text.ToString(), Parser::ParseProgram);
-
-		if (!cont)
-			return false;
-
-		cont->SetScope(scope);
-		executor->Continue(cont);
-
-		return true;
-	}
-	catch (Exception::Base &E)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E.ToString() << std::endl;
-	}
-	catch (std::exception &E2)
-	{
-		std::cerr << "Exception running file '" << filename << "': " << E2.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Exception running file '" << filename << "'" << std::endl;
-	}
-
-	return false;
-}
-
 void ToStringStream(const Object &Q, StringStream &S, int level)
 {
-	StringStream indent;
-	for (int N = 0; N < level; ++N)
-	{
-		indent.Append(' ');
-		indent.Append(' ');
-	}
+	S << std::string(4, ' ');
 
-	S << indent.ToString();
 	if (!Q.Valid())
 	{
-		S << "InvalidObject\n";
+		S << "[Invalid]\n";
 		return;
 	}
 
 	const StorageBase &base = Q.GetStorageBase();
-	bool write_header = false;
-	if (write_header)
+#ifdef KAI_TRACE_VERBOSE
 	S << base.GetLabel().ToString() << ": ";
+#endif
 	
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
 		Q.GetClass()->Insert(S, base);

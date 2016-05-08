@@ -1,5 +1,5 @@
-#include "KAI/ExecutorPCH.h"
 
+#include "KAI/ExecutorPCH.h"
 KAI_BEGIN
 
 void Continuation::Create()
@@ -43,10 +43,10 @@ void Continuation::Enter(Executor *exec)
 			Object a = data.Pop();
 			scope.Set(ConstDeref<Label>(arg), a);
 		}
-
-		*index = 0;
-		*entered = true;
 	}
+
+	*index = 0;
+	*entered = true;
 }
 
 bool Continuation::Next() const
@@ -68,33 +68,48 @@ bool Continuation::Next(Object &next) const
 		return false;
 
 	next = code->At(n++);
+
 	return true;
+}
+
+const static int MaxDepth = 3;
+const static int MaxLen = 80;
+
+StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t index, int depth)
+{
+	// too long
+	if (stream.Size() >= MaxLen)
+		return stream << "...}";
+
+	// finished
+	if (index == code.Size())
+		return stream << "}";
+
+	auto const &next = code.At(index);
+
+	// print next thing
+	if (next.IsType<Continuation>())
+	{
+		// limit depth of coro pritning
+		if (depth == MaxDepth)
+			return stream << "{...}...";
+
+		auto const &coro = ConstDeref<Continuation>(next);
+		return InsertContinuation(stream, *coro.GetCode(), 0, ++depth);
+	}
+
+	while (code.Size() > index)
+	{
+		stream << code.At(index) << " ";
+		InsertContinuation(stream, code, ++index, depth);
+	}
+
+	return stream;
 }
 
 StringStream &operator<<(StringStream &S, const Continuation &C)
 {
-	S << "{ ";
-	if (C.GetCode().Exists())
-	{
-		Array::const_iterator A = C.GetCode()->Begin(), B = C.GetCode()->End();
-		for (; A != B; ++A)
-			S << *A << " ";
-	}
-
-	S << "}" << "@" << *C.index;
-
-	if (C.code->Size() > 0)
-	{
-		S << ":: ";
-		int n = *C.index;
-
-		if (n < C.code->Size())
-			S << C.code->At(n);
-		else
-			S << "[end]";
-	}
-
-	return S;
+	return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
 }
 
 StringStream &operator>>(StringStream &, Continuation &)
