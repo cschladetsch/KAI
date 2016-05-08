@@ -4,11 +4,11 @@ CXX_SRCS := $(wildcard *.cpp)
 C_OBJS := ${C_SRCS:.c=.o}
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(C_OBJS) $(CXX_OBJS)
-INCLUDE_DIRS := /Users/christian/Dev/KAI/Include /Users/christian/Dev/External/
+INCLUDE_DIRS := /home/christian/dev/KAI/Include /home/christian/dev/External/
 LIBRARY_DIRS :=
 LIBRARIES :=
 
-CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=KAI -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -Wno-c++11-extensions
+CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=KAI -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -std=c++11
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
