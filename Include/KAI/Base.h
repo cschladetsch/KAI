@@ -1,15 +1,11 @@
 #pragma once
 
-//#include "KAI/Config/Base.h"
-//#include <string>
-//#include <boost/static_assert.hpp>
-//#include "KAI/Boost.h"
-//#include "KAI/NonCopyable.h"
-//#include "KAI/Meta/Base.h"
-//#include "KAI/FwdDeclarations.h"
-//#include "KAI/Preprocessor.h"
+#include "Kai/Net/Config.h"
+#include "KAI/HierarchicalPrinter.h"
 
 KAI_BEGIN
+
+const char *ToLower(const char *str);
 
 template <class T>
 void SetAbsoluteValue(T &value)

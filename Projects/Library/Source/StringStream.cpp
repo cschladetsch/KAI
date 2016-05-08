@@ -1,6 +1,6 @@
 #include "KAI/KAI.h"
 #include "KAI/BuiltinTypes/String.h"
-#include "KAI/BuiltinTypes/Bool.h"
+#include "KAI/Operation.h"
 //#include "KAI/BuiltinTypes/Signed32.h"
 //#include "KAI/Function.h"
 
@@ -23,14 +23,14 @@ void StringStream::Register(Registry &registry)
 {
 	KAI_UNUSED(registry);
 	// TODO TESTS
-	//ClassBuilder<StringStream>(registry, "StringStream")
-	//	.Methods
-	//	("Size", &StringStream::Size)
-	//	("Empty", &StringStream::Empty)
-	//	("ToString", &StringStream::ToString)
-	//	("Clear", &StringStream::Clear)
-	//	// TODO ("Append", &StringStream::Append)
-	//	;
+//ClassBuilder<StringStream>(registry, "StringStream")
+//	.Methods
+//	("Size", &StringStream::Size)
+//	("Empty", &StringStream::Empty)
+//	("ToString", &StringStream::ToString)
+//	("Clear", &StringStream::Clear)
+//	// TODO ("Append", &StringStream::Append)
+//	;
 }
 
 bool StringStream::CanRead(int N) const
@@ -104,7 +104,7 @@ bool StringStream::Extract(Char &C)
 	return true;
 }
 
-StringStream &operator<<(StringStream &S, void (*)(EndsArgument))
+StringStream &operator<<(StringStream &S, void(*)(EndsArgument))
 {
 	//S.Append('\0');
 	return S;
@@ -134,7 +134,16 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	if (klass->HasOperation(Type::Properties::StringStreamInsert))
 		klass->Insert(stream, object.GetStorageBase());
 	else
-		stream << "Object: handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
+	{
+		if (klass->GetTypeNumber() == Type::Number::Operation)
+		{
+			stream << ConstDeref<Operation>(object).ToString();
+		}
+		else
+		{
+			stream << "Handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
+		}
+	}
 
 	return stream;
 }

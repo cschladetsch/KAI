@@ -21,24 +21,21 @@
 
 KAI_BEGIN
 
-Registry::Registry() 
-	: allocator(new Memory::StandardAllocator())
-	, owns_allocator(true)
+Registry::Registry()
 {
+	allocator = std::shared_ptr<Memory::IAllocator>();
 	Construct();
 }
 
-Registry::Registry(Memory::IAllocator *alloc) 
-	: allocator(alloc)
-	, owns_allocator(false)
+Registry::Registry(std::shared_ptr<Memory::IAllocator> alloc)
 {
+	allocator = alloc;
 	Construct();
 }
 
 void Registry::Construct()
 {
 	classes.resize(2000, 0);
-
 	gc_trace_level = 0;
 	tree = 0;
 	std::fill(classes.begin(), classes.end(), (ClassBase const *)0);
@@ -47,9 +44,6 @@ void Registry::Construct()
 Registry::~Registry()
 {
 	Clear();
-
-	if (owns_allocator)
-		delete allocator;
 }
 
 void Registry::Clear()
@@ -197,7 +191,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 
 	if (!succeeded)
 	{
-		KAI_TRACE() << "*** AWESOMELY BAD EXCEPTION deleting object ***";
+		KAI_TRACE_WARN() << " coudldn't delete handle " << handle;
 		Instances::iterator iter = instances.find(handle);
 		if (iter != instances.end())
 		{

@@ -1,33 +1,10 @@
 #pragma once
 
+#include "KAI/Argument.h"
+
 KAI_BEGIN
 
 extern void DebugTrace(const char *);
-
-template <class T>
-struct Argument
-{
-	typedef const T &Type;
-};
-
-template <class T>
-struct Argument<const T>
-{
-	typedef const T &Type;
-};
-
-
-template <class T>
-struct Argument<T &>
-{
-	typedef T &Type;
-};
-
-template <class T>
-struct Argument<const T&>
-{
-	typedef const T &Type;
-};
 
 namespace debug 
 {
@@ -40,6 +17,7 @@ namespace debug
 			Error,
 			Fatal,
 		};
+
 		Type type;
 		FileLocation file_location;
 		Trace(FileLocation const &F, Type T = Information) : type(T), file_location(F) { }
@@ -57,7 +35,12 @@ namespace debug
 		template <class T>
 		Trace &Write(const char *P, T const &X)
 		{
+#ifdef KAI_TRACE_VERBOSE
 			*this << "[" << P << "='" << X << "'] ";
+#else
+			KAI_UNUSED_1(P);
+			*this << X;
+#endif
 			return *this;
 		}
 	};
@@ -97,7 +80,7 @@ namespace debug
 #		define KAI_TRACE_3(A,B,C) \
 			KAI_TRACE_2(A,B).Write(#C,C)
 #		define KAI_TRACE_4(A,B,C,D) \
-			KAI_TRACE_3(A,B,C).Write(#D,D)
+			KAI_TRACE_3(A,B,Coloriser).Write(#D,D)
 
 #		define KAI_TRACE_WARN_0() \
 			KAI_TRACE_WARN()
@@ -108,7 +91,7 @@ namespace debug
 #		define KAI_TRACE_WARN_3(A,B,C) \
 			KAI_TRACE_WARN_2(A,B).Write(#C,C)
 #		define KAI_TRACE_WARN_4(A,B,C,D) \
-			KAI_TRACE_WARN_3(A,B,C).Write(#D,D)
+			KAI_TRACE_WARN_3(A,B,Coloriser).Write(#D,D)
 
 #		define KAI_TRACE_ERROR_0() \
 			KAI_TRACE_ERROR()
@@ -119,7 +102,7 @@ namespace debug
 #		define KAI_TRACE_ERROR_3(A,B,C) \
 			KAI_TRACE_ERROR_2(A,B).Write(#C,C)
 #		define KAI_TRACE_ERROR_4(A,B,C,D) \
-			KAI_TRACE_ERROR_3(A,B,C).Write(#D,D)
+			KAI_TRACE_ERROR_3(A,B,Coloriser).Write(#D,D)
 
 #	else
 #		define KAI_EMPTY_TRACE_SINK debug::EmptySink()

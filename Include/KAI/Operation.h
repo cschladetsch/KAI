@@ -97,6 +97,12 @@ struct Operation
 		MulEquals,
 		DivEquals,
 		ModEquals,
+
+		ToPi,
+		ToRho,
+		StartPiSequence,
+		StartRhoSequence,
+		GarbageCollect,
 	};
 
 private:
@@ -118,12 +124,7 @@ public:
 	static void Register(Registry &);
 };
 
-StringStream &operator<<(StringStream &, Operation const &);
-StringStream &operator>>(StringStream &, Operation &);
-BinaryStream &operator<<(BinaryStream &, Operation const &);
-BinaryPacket &operator>>(BinaryPacket &, Operation &);
-
-KAI_TYPE_TRAITS(Operation, Number::Operation
-	, Properties::Streaming);
+//KAI_TYPE_TRAITS(Operation, Number::Operation , Properties::Streaming);
+KAI_TYPE_TRAITS(Operation, Number::Operation, 0);
 
 KAI_END

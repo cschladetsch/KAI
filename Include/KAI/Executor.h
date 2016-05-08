@@ -10,13 +10,14 @@ KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected);
 
 class Executor : public Reflected
 {
-	Value<Continuation> continuation;
-	Value<Stack> context;
-	Value<Stack> data;
-	bool Break;
-	Tree *tree;
-	int traceLevel;
-	int stepNumber;
+	Value<Continuation> _continuation;
+	Value<Stack> _context;
+	Value<Stack> _data;
+	Object _compiler;
+	bool _break;
+	Tree *_tree;
+	int _traceLevel;
+	int _stepNumber;
 
 public:
 	void Create();
@@ -28,8 +29,14 @@ public:
 	void ContinueTestCode(Value<Continuation> C);	// continue C, leaving one result on the stack
 	void Continue();
 
+	// just so we cn switch languages
+	Object GetCompiler() const { return _compiler; }
+	void SetCompiler(Object c) { _compiler = c; }
+
 	void Eval(Object const &Q);
 	void Dump(Object const &Q);
+	
+	std::string PrintStack() const;
 
 	template <class T>
 	Value<T> New()
@@ -43,8 +50,8 @@ public:
 		return Reg().New(X);
 	}
 
-	void SetTree(Tree *T) { tree = T; }
-	Tree *GetTree() const { return tree; }
+	void SetTree(Tree *T) { _tree = T; }
+	Tree *GetTree() const { return _tree; }
 
 	void SetTraceLevel(int);
 	int GetTraceLevel() const;
@@ -61,9 +68,9 @@ public:
 	Object Top() const;
 
 	Value<Stack> GetDataStack();
-	Value<const Stack> GetDataStack() const { return Value<const Stack>(data.GetConstObject()); }	// TODO: automate
+	Value<const Stack> GetDataStack() const { return Value<const Stack>(_data.GetConstObject()); }	// TODO: automate
 	Value<const Stack> GetContextStack() const;
-	void ClearStacks() { data->Clear(); context->Clear(); }
+	void ClearStacks() { _data->Clear(); _context->Clear(); }
 
 	static void Register(Registry &, const char * = "Executor");
 

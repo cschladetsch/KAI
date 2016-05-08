@@ -33,8 +33,7 @@ Object Stack::Top() const
 
 void Stack::Push(Object const &Q) 
 { 
-	if (Attach(Q))
-		stack.push_back(Q); 
+	stack.push_back(Q);
 }
 
 void Stack::Clear() 

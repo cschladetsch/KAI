@@ -1,6 +1,4 @@
 #include "TestBase.h"
-#include "KAI/KAIClassBuilder.h"
-//#include <gtest/>
 
 using namespace kai;
 using namespace std;
