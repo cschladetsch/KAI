@@ -29,26 +29,6 @@ public:
 };
 
 template <class T>
-class ConstStorage<Container<T> > : public StorageBase//, IConstStorage<T>
-{
-	typedef typename Type::Traits<T> Tr;
-	typedef typename Tr::Store Stored;
-
-protected:
-	Stored stored;
-
-public:
-	ConstStorage(const ObjectConstructParams &P) : StorageBase(P), stored(5/*P.registry->GetAllocator().GetHeap()*/) 
-	{ 
-		SetClean(); 
-	}
-
-	typename Tr::ConstReference GetConstReference() const { return stored; }
-	typename Tr::ConstReference operator*() const { return stored; }
-	typename Tr::ConstPointer operator->() const { return &stored; }
-};
-
-template <class T>
 class Storage : public ConstStorage<T>//, IStorage<T>
 {
 public:
@@ -83,6 +63,7 @@ class Storage<const T> : ConstStorage<T>
 		KAI_THROW_0(ConstError); 
 	}
 };
+
 
 KAI_END
 

@@ -13,6 +13,7 @@ class BinaryPacket;
 class Stack;
 class Registry;
 class Handle;
+class Label;
 
 //typedef boost::unordered_set<Handle> StorageBaseHandles;
 

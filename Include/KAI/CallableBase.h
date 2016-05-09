@@ -23,7 +23,8 @@ public:
 	Type::Number GetArgumentType(int N) const { return arguments[N]; }
 	String Description;
 
-	Object GetArgumentTypesArray() const
+	Object GetArgumentTypesArray() const;
+	/*
 	{
 		Pointer<Array> args = New<Array>();
 		ArgumentTypes::const_iterator A = arguments.begin(), B = arguments.end();
@@ -31,6 +32,7 @@ public:
 			args->Append(New(*A));
 		return args;
 	}
+	*/
 };
 
 namespace Type

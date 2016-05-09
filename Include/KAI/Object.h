@@ -6,7 +6,13 @@ template <class T>
 struct Pointer;
 
 template <class T>
+struct DerefType;
+
+template <class T>
 typename DerefType<T>::Reference Deref(StorageBase &base);
+
+template <class T>
+typename DerefType<T>::ConstReference ConstDeref(StorageBase &base);
 
 class Object
 {
@@ -152,8 +158,8 @@ public:
 		if (HasChild(L))
 			return Deref<T>(GetChild(L));
 
-		KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
-		//KAI_THROW_1(ObjectNotFound, L.ToString());
+		//KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
+		KAI_THROW_1(ObjectNotFound, L.ToString());
 	}
 
 	void Detach(const Label &L) const { Remove(L); }
@@ -172,23 +178,23 @@ public:
 	String ToString() const;
 	String ToXmlString() const;
 
-	//template <class T>
-	//Object New() const
-	//{
-	//	return NewFromTypeNumber(Type::Traits<T>::Number);
-	//}
+	template <class T>
+	Object New() const
+	{
+		return NewFromTypeNumber(Type::Traits<T>::Number);
+	}
 
-	//// deref's Registry so must be in source file
-	//Object NewFromTypeNumber(Type::Number N) const;
-	//Object NewFromClassName(String const &type_name) const;
+	// deref's Registry so must be in source file
+	Object NewFromTypeNumber(Type::Number N) const;
+	Object NewFromClassName(String const &type_name) const;
 
-	//template <class T>
-	//Object New(const T &X) const
-	//{
-	//	auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
-	//	Deref<T>(Q) = X;
-	//	return Q;
-	//}
+	template <class T>
+	Object New(const T &X) const
+	{
+		auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
+		Deref<T>(Q) = X;
+		return Q;
+	}
 
 	void Assign(StorageBase &, StorageBase const &);
 

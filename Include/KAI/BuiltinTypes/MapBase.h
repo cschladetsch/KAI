@@ -50,7 +50,7 @@ public:
 	
 	void SetChildSwitch(int S, bool M)
 	{
-		foreach (Map::value_type X, map)
+		for (auto const & X : map)
 		{
 			const_cast<Object &>(X.first).SetSwitch(S, M);
 			X.second.SetSwitch(S, M);

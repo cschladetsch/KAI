@@ -126,7 +126,7 @@ template <class T>
 struct SetObjectColorRecursive : IteratedFunctionBase < T >
 {
 	ObjectColor::Color color;
-	StorageBase::Containers *handles;
+	HandleSet *handles;
 	SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Containers &H) : color(C), handles(&H) { }
 	bool Invoke(Object const &Q)
 	{
