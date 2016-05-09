@@ -15,6 +15,8 @@ namespace Memory
 	struct IAllocator
 	{
 		typedef void *VoidPtr;
+		typedef char *BytePtr;
+
 		typedef std::size_t size_t;
 
 		typedef VoidPtr (*Allocator)(size_t);
@@ -112,7 +114,7 @@ namespace Memory
 			}
 			catch (...)
 			{
-				DeAllocateBytes(base, num_byte);
+				DeAllocateBytes(base, num_bytes);
 				base = 0;
 			}
 			return base;

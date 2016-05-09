@@ -2,7 +2,7 @@
 
 KAI_BEGIN
 
-struct BasePointerBase : Reflected
+struct BasePointerBase //: Reflected
 {
 	void Create() {}
 	bool Destroy() { return true; }

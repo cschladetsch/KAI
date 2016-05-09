@@ -20,7 +20,7 @@
 //#define KAI_DEBUG_TRACE
 
 // use exceptions or not
-//#define KAI_USE_EXCEPTIONS
+#define KAI_USE_EXCEPTIONS
 
 // deprecated
 //#define KAI_UNIT_TESTS

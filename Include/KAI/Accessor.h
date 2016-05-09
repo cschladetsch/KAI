@@ -134,6 +134,7 @@ namespace property_detail
 	{
 		typedef NonsystemProperty<MutatorBase, K, T, T (C::*)> Parent;
 		typedef typename Parent::Field Field;
+		using Parent::field;
 
 		Mutator(Field F, Label const &L, CreateParams::Params create_params) 
 			: SystemProperty<MutatorBase, K, T, S (C::*)>(F,L,create_params) { }

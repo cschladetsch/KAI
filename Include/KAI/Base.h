@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kai/Net/Config.h"
+#include "KAI/Net/Config.h"
 #include "KAI/HierarchicalPrinter.h"
 
 KAI_BEGIN

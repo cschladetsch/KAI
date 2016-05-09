@@ -28,17 +28,19 @@ typename DerefType<T>::Reference Deref(StorageBase &base)
 	return GetStorage<DerefType<T>::Value>(base).GetReference();
 }
 
-template <class T>
-typename T &Deref(T &Q)
+/* TODO
+template<>
+Object &Deref<Object>(Object &Q)
 {
 	return Q;
 }
 
-template <class T>
-typename T const &Deref(T const &Q)
+template<>
+Object const &Deref<Object>(Object const &Q)
 {
 	return Q;
 }
+*/
 
 template <class T>
 typename DerefType<T>::Reference CleanDeref(StorageBase &base)

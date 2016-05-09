@@ -2,7 +2,7 @@
 
 KAI_TYPE_BEGIN
 
-template <typename Reference, bool IsContainer = true>
+template <typename Reference, bool IsContainer>
 struct ContainerOperations
 {
 	struct ColorSetter
@@ -48,11 +48,14 @@ struct ContainerOperations<Reference, false>
 	static void SetSwitch(Reference, int, bool) { }
 	static void SetColor(Reference, ObjectColor::Color) { }
 	static void Erase(Reference, Object const &) { }
-	template <class Fun>
-	static Fun ForEachContained(Reference, Fun const &F) { return F; }
+
+	template <class Fun, class Ref>
+	static Fun ForEachContained(Ref, Fun const &F) { return F; }
 };
 
+/* How did this ever comp[pile
 typedef typename ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
+*/
 
 
 KAI_TYPE_END

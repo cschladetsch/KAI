@@ -61,6 +61,7 @@ struct ConstPointer : PointerBase<T>, Object
 {
 	typedef typename PointerBase<T>::ConstReference ConstReference;
 	typedef typename PointerBase<T>::ConstPointerType ConstPointerType;
+	using PointerBase<T>::CanAssign;
     //typedef typename PointerBase<T>::PointerType;
     
 protected:
@@ -76,7 +77,7 @@ protected:
 	{
 		if (Q == 0)
 			return;
-		if (PointerBase<T>::CanAssign<T>(*Q))
+		if (PointerBase<T>::CanAssign(*Q))
 			Object::operator=(*Q);
 	}
 
