@@ -21,6 +21,7 @@ protected:
 	Storage<Store> *storage;
 
 public:
+
 	ConstValue() : storage(0) { }
 
 	ConstValue(Object const &Q) : storage(0)
@@ -146,6 +147,8 @@ struct Value : ConstValue<T>
 	using typename ConstValue<T>::Store;
 	using typename ConstValue<T>::Reference;
 	using typename ConstValue<T>::ConstReference;
+
+	using ConstValue<T>::storage;
 
 	Value() { }
 

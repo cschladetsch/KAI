@@ -18,7 +18,7 @@ private:
 	{
 		str << *root << "\n";
 		Str indent = Str(' ', 4 * level);
-		for (auto char &ch : root->GetChildren())
+		for (const auto  &ch : root->GetChildren())
 		{
 			str << indent;
 			Print(str, level + 1, ch);

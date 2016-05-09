@@ -257,62 +257,6 @@ struct TraitsBase
 		}
 	};
 
-	template <class, bool>
-	struct ContainerOperations
-	{
-		static void SetMarked(Reference R, bool M)
-		{
-			ForEach(R, KAI_NAMESPACE(SetMarked<T>)(M));
-		}
-		static void SetSwitch(Reference R, int S, bool M)
-		{
-			ForEach(R, KAI_NAMESPACE(SetSwitch<T>)(S, M));
-		}
-		static void SetColor(Reference R, ObjectColor::Color C)
-		{
-			ForEach(R, KAI_NAMESPACE(ColorSetter<T>(C)));
-		}
-		static void Erase(Reference R, Object const &Q1)
-		{
-			R.Erase(Q1);
-		}
-		template <class Fun>
-		static Fun ForEachContained(Reference R, Fun F)
-		{
-			return ForEach(R, F);
-		}
-	};
-	template <class D>
-	struct ContainerOperations<D, false>
-	{
-		static void SetMarked(Reference, bool) { }
-		static void SetSwitch(Reference, int, bool) { }
-		static void SetColor(Reference, ObjectColor::Color) { }
-		static void Erase(Reference, Object const &) { }
-		template <class Fun>
-		static Fun ForEachContained(Reference, Fun const &F) { return F; }
-	};
-	typedef ContainerOperations<D, HasProperty<Properties::Container>::Value != 0> ContainerOps;
-
-	//template <class>
-	//struct UpCast
-	//{
-	//	static Storage<Parent *> *Cast(Registry &R, Reference Q)
-	//	{
-	//		Storage<Parent *> *parent = NewStorage<Parent *>(R);
-	//		**parent = &Q;
-	//		return parent;
-	//	}
-	//};
-	//template <>
-	//struct UpCast<None>
-	//{
-	//	static Storage<None> *Cast(Registry &, Reference)
-	//	{
-	//		return 0;
-	//	}
-	//};
-	//typedef UpCast<Parent> UpCaster;
 	struct UnReflectedLifetimeManagement
 	{
 		static void Create(Storage<T> *)
