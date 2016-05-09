@@ -77,11 +77,13 @@ public:
 
 	/// add a new type to the system
 	template <class T>
-	void AddClass(Label const &name)
+	void AddClass(Label const &name);
+	/*TODO MOVE
 	{
 		Class<T> *klass = GetMemorySystem().Allocate<Class<T> >(name);
 		AddClass(Type::Traits<T>::Number, klass);
 	}
+	*/
 
 	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
 
@@ -121,8 +123,8 @@ public:
 		return P;
 	}
 
-	template <>
-	Object New<Object>(const Object &Q)
+	//template <>
+	Object New(const Object &Q)
 	{
 		return Q;
 	}
@@ -191,9 +193,9 @@ public:
 	void NominateAll();
 
 	template <class T>
-	void FreeResources(T *P)
+	void FreeResources(T *p)
 	{
-		memory_system.DeAllocate(P);
+		allocator->DeAllocate(p);
 	}
 
 	// delete all objects on deathrow, returning the number deleted
