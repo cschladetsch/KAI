@@ -61,14 +61,14 @@ public:
 			return Object();
 
 		std::shared_ptr<Trans> p = std::make_shared<Trans>(Reg());
-		p->Translate(text.c_str(), st);
+		auto result = p->Translate(text.c_str(), st);
 		if (p->Failed)
 		{
 			std::cerr << p->Error;
 			return Object();
 		}
 
-		return p->Top();
+		return result;
 	}
 
 	Pointer<Continuation> Compiler::CompileFile(const String &fileName, Structure st) const
