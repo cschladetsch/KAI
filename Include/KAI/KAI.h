@@ -68,14 +68,17 @@ KAI_END
 
 #include "KAI/Reflected.h"
 
-#include "KAI/KAIClassBuilder.h"
-
 #include "KAI/BuiltinTypes/Container.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/BuiltinTypes/Stack.h"
 #include "KAI/StdContainers.h"
+
+/*
+#include "KAI/KAIClassBuilder.h"
+
 #include "KAI/BuiltinTypes/All.h"
-#include "KAI/Function.h"
+p*/
+//#include "KAI/Function.h"
 
 
 
