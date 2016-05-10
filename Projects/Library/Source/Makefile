@@ -8,7 +8,7 @@ INCLUDE_DIRS := /home/christian/dev/KAI/Include /home/christian/dev/External/
 LIBRARY_DIRS :=
 LIBRARIES :=
 
-CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=kai -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -std=c++11
+CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) -DKAI_NAMESPACE_NAME=kai -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++11
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
@@ -16,8 +16,8 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 all: $(NAME)
 
-Test.o: Test.cpp
-	g++ $(CPPFLAGS) -c Test.cpp -o Tetst.o1
+Test: Test.cpp
+	g++ $(CPPFLAGS) Test.cpp -o yay
 
 clean:
 	@- $(RM) $(NAME)
