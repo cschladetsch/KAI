@@ -1,11 +1,14 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/StringStream.h"
 
 #include <fstream>
-
 
 using namespace std;
 
 KAI_BEGIN
+
+StringStream &operator<<(StringStream &stream, const Object &object);
+StringStream &operator>>(StringStream &stream, Object &object);
 
 const ClassBase *GetClass(Object const &Q);
 
@@ -1309,13 +1312,14 @@ void Executor::Dump(Object const &Q)
 std::string Executor::PrintStack() const
 {
 	int n = 0;
-	std::stringstream str;
-	//str << "size: " << data->Size() << std::endl;
-	for (auto const &ob : *_data)
+	StringStream str;
+	//auto const &stack = _data->GetStack();
+	//Stack::const_reverse_iterator A = stack.rbegin(), B = stack.rend();
+	for (const auto &A : _data->GetStack())
 	{
-		str << Color::StackIndex << "[" << n << "]: " << Color::StackEntry << ob << std::endl;
+		str << "[" << n++ << "]: " << A <<  "\n";
 	}
-	return std::move(str.str());
+	return str.ToString().c_str();
 }
 
 //bool ExecuteFile(const char *filename, Pointer<Executor> executor, Pointer<Compiler> compiler, Object scope)

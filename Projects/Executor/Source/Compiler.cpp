@@ -71,11 +71,11 @@ BinaryPacket &operator>>(BinaryPacket &S, Operation &P)
 	return S;
 }
 
-const char *Operation::ToString() const
-{
-	return ToString((int)value);
-}
-
+//const char *Operation::ToString() const
+//{
+//	return ToString((int)value);
+//}
+//
 void Operation::Register(Registry &R)
 {
 	ClassBuilder<Operation>(R, "Operation")
