@@ -3,6 +3,7 @@
 #include "KAI/ConsoleColor.h"
 #include "KAI/Translator/Pi/Pi.h"
 #include "KAI/Translator/Rho/Rho.h"
+#include "KAI/Type/Traits.h"
 
 KAI_BEGIN
 
@@ -57,5 +58,7 @@ private:
 	bool _end = false;
 	int _endCode = 0;
 };
+
+KAI_TYPE_TRAITS(Console, Number::Console, Properties::Reflected);
 
 KAI_END

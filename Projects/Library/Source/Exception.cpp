@@ -123,6 +123,7 @@ namespace Exception
 	{
 		S << "class=" << klass << ", property=" << prop;
 	}
+
 }
 
 KAI_END

@@ -15,6 +15,12 @@ KAI_BEGIN
 #include "List.inl"
 #include "Array.inl"
 
+StringStream &operator >> (StringStream &S, float &F)
+{
+	//return S >> F;
+	KAI_NOT_IMPLEMENTED();
+}
+
 StringStream &operator<<(StringStream &S, const BasePointerBase &B)
 {
 	B.Self->GetClass()->Insert(S, *B.Self);

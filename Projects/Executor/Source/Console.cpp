@@ -228,8 +228,6 @@ String Console::WriteStack() const
 
 int Console::Run()
 {
-	executor->SetCompiler(*Self);
-
 	for (;;)
 	{
 		KAI_TRY
@@ -240,6 +238,8 @@ int Console::Run()
 				string text;
 				getline(cin, text);
 				cout << Color::Trace << Process(text.c_str()).c_str();
+
+				cout << executor->PrintStack() << endl;
 
 				if (_end)
 					return _endCode;

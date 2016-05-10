@@ -197,15 +197,6 @@ StringStream &operator>>(StringStream &S, bool &N)
 	return S;
 }
 
-
-const char *Operation::ToString(void)const
-{
-	//String T;
-	//S >> T;
-	//N = (float)atof(T.c_str());
-	return "";// S;
-}
-
 void Ends(EndsArgument)
 {
 	KAI_NOT_IMPLEMENTED_1("This is used to terminate string streams. Do not call it.");
@@ -227,31 +218,6 @@ bool operator==(const String &A, const String &B)
 		return false;
 	return std::equal(A.begin(), A.end(), B.begin());
 }
-
-// WTF These already defined in Object.cpp
-//StringStream &operator<<(StringStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-
-//StringStream &operator >> (StringStream &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryStream &operator<<(BinaryStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryPacket &operator >> (BinaryPacket &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
 
 KAI_END
 
