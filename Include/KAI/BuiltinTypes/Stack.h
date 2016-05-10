@@ -61,3 +61,4 @@ BinaryPacket &operator>>(BinaryPacket &, Stack &);
 HashValue GetHash(const Stack &);
 
 KAI_END
+
