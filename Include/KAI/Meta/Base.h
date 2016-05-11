@@ -18,9 +18,21 @@ namespace meta
 	};
 
 	template <class A, class B>
-	struct If<0, A, B>
+	struct If<false, A, B>
 	{
 		typedef B Type;
+	};
+
+	template <class A, class B>
+	struct SameType
+	{
+		enum { value = 0 };
+	};
+
+	template <class A>
+	struct SameType<A, A>
+	{
+		enum { value = 1 };
 	};
 
 	template <class T>

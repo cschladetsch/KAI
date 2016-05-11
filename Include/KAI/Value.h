@@ -149,6 +149,7 @@ struct Value : ConstValue<T>
 	using typename ConstValue<T>::ConstReference;
 
 	using ConstValue<T>::storage;
+	using ConstValue<T>::AssignFrom;
 
 	Value() { }
 

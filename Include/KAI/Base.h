@@ -1,5 +1,10 @@
 #pragma once
 
+#include <functional>
+#include <tuple>
+#include <utility>
+#include <memory>
+
 #include "KAI/Net/Config.h"
 #include "KAI/HierarchicalPrinter.h"
 
