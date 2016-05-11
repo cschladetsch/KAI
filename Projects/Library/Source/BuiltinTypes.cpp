@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/erase.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/BuiltinTypes/List.h"
@@ -21,11 +22,13 @@ StringStream &operator >> (StringStream &S, float &F)
 	KAI_NOT_IMPLEMENTED();
 }
 
+/* TODO WTF
 StringStream &operator<<(StringStream &S, const BasePointerBase &B)
 {
 	B.Self->GetClass()->Insert(S, *B.Self);
 	return S;
 }
+*/
 
 void BasePointerBase::Register(Registry &R)
 {
@@ -75,12 +78,11 @@ String FileLocation::ToString(bool strip_path) const
 template <class Callable>
 void WriteArgumentList(StringStream &S, const typename Callable::ArgumentTypes &arguments)
 {
-	Callable::ArgumentTypes::const_iterator A = arguments.begin(), B = arguments.end();
 	S << "(";
 	String sep = "";
-	for (; A != B; ++A)
+	for (const auto &A : arguments)
 	{
-		S << sep << A->ToString();
+		S << sep << A.ToString();
 		sep = ", ";
 	}
 
@@ -125,9 +127,7 @@ void FunctionBase::Register(Registry &R)
 
 StringStream &operator<<(StringStream &S, int N)
 {
-	char buffer[179];
-	_itoa_s(N, buffer, 179, 10);
-	S << String(buffer);
+	S << boost::lexical_cast<std::string>(N);
 	return S;
 }
 
@@ -174,6 +174,7 @@ namespace Type
 			#define Case(N) case N : return #N;
 			Case(Undefined);
 			Case(None);
+			Case(List);
 			Case(Void);
 			Case(Handle);
 			Case(Object);
@@ -221,6 +222,11 @@ namespace Type
 			Case(Node);
 			Case(Browser);
 			Case(SignedContinuation);
+			Case(Vector2);
+			Case(Vector3);
+			Case(Vector4);
+			Case(Last);
+			Case(SystemLast);
 		}
 
 		KAI_NAMESPACE(StringStream) S;

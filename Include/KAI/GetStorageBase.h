@@ -25,7 +25,7 @@ typename DerefType<T>::Reference Deref(StorageBase &base)
 {
 	if (base.IsConst())
 		KAI_THROW_0(ConstError);
-	return GetStorage<DerefType<T>::Value>(base).GetReference();
+	return GetStorage<typename DerefType<T>::Value>(base).GetReference();
 }
 
 /* TODO
@@ -45,7 +45,7 @@ Object const &Deref<Object>(Object const &Q)
 template <class T>
 typename DerefType<T>::Reference CleanDeref(StorageBase &base)
 {
-	return GetStorage<DerefType<T>::Value>(base).GetCleanReference();
+	return GetStorage<typename DerefType<T>::Value>(base).GetCleanReference();
 }
 
 template <class T>
@@ -65,7 +65,7 @@ ConstStorage<T> const &GetConstStorage(StorageBase const &base)
 template <class T>
 typename DerefType<T>::ConstReference ConstDeref(StorageBase const &base)
 {
-	return GetConstStorage<DerefType<T>::Value>(base).GetConstReference();
+	return GetConstStorage<typename DerefType<T>::Value>(base).GetConstReference();
 }
 
 template <class T>

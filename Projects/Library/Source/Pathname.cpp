@@ -1,5 +1,7 @@
 #include "KAI/KAIClassBuilder.h"
 
+#if 0
+
 #include <ctype.h>
 
 KAI_BEGIN
@@ -182,4 +184,5 @@ void Pathname::Register(Registry &R)
 
 KAI_END
 
+#endif
 //EOF
