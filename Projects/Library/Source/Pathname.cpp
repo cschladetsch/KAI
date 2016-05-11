@@ -1,4 +1,4 @@
-#include "KAI/KAI.h"
+#include "KAI/KAIClassBuilder.h"
 
 #include <ctype.h>
 
@@ -119,6 +119,9 @@ String Pathname::ToString() const
 			break;
 
 		case Element::Name: str << element.name.ToString(); 
+			break;
+
+		case Element::None:
 			break;
 		}
 	}

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 KAI_BEGIN
 
 class String
