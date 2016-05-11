@@ -127,7 +127,11 @@ struct SetObjectColorRecursive : IteratedFunctionBase < T >
 {
 	ObjectColor::Color color;
 	HandleSet *handles;
-	SetObjectColorRecursive(ObjectColor::Color C, StorageBase::Containers &H) : color(C), handles(&H) { }
+	SetObjectColorRecursive(
+			ObjectColor::Color C, 
+			HandleSet &H) 
+		: color(C), handles(&H) { }
+
 	bool Invoke(Object const &Q)
 	{
 		Object(Q).SetColorRecursive(color, *handles);
