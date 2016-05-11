@@ -17,7 +17,8 @@ public:
 	typedef typename Type::Traits<T> Traits;
 	enum { Props = Traits::Props };
 
-	Class(Label const &name) : ClassBase(name, Type::Traits<T>::Number) { }
+	Class(Label const &name) 
+		: ClassBase(name, Type::Traits<T>::Number) { }
 
 	int GetTraitsProperties() const
 	{
@@ -141,8 +142,7 @@ public:
 	void MakeReachableGrey(StorageBase &base) const
 	{
 		ClassBase::MakeReachableGrey(base);
-		typedef typename Traits::ContainerOps Cops;
-		Cops::ForEachContained(CleanDeref<T>(base), MakeReachableGreyFun<T>());
+		Traits::ContainerOps::ForEachContained(CleanDeref<T>(base), MakeReachableGreyFun<T>());
 	}
 	/// @endgroup container operations
 

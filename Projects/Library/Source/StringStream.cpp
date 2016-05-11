@@ -1,21 +1,8 @@
-#include "KAI/KAIClassBuilder.h"
-#include "KAI/BuiltinTypes/String.h"
+#include "KAI/KAI.h"
+#include "KAI/FunctionBase.h"
 #include "KAI/Operation.h"
 
-#include <iterator>
-#include <string>
 KAI_BEGIN
-
-
-void String::Register(Registry &R)
-{
-	ClassBuilder<String>(R, "String")
-		.Methods
-		("Size", &String::Size)
-		("Empty", &String::Empty)
-		("Clear", &String::Clear)
-		;
-}
 
 void StringStream::Register(Registry &registry)
 {
@@ -56,10 +43,10 @@ StringStream &operator<<(StringStream &S, const BasePointer<FunctionBase> &F)
 	return S << "Function: " << F->ToString();
 }
 
-StringStream &operator<<(StringStream &S, const FunctionBase *F)
-{
-	return S << "Function: " << F->ToString();
-}
+//StringStream &operator<<(StringStream &S, const FunctionBase *F)
+//{
+//	return S << "Function: " << F->ToString();
+//}
 
 String StringStream::ToString() const
 {
