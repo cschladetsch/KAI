@@ -68,9 +68,11 @@ bool operator>(T const &A, T const &B)
 	return B < A;
 }
 
-KAI_TYPE_TRAITS(Pathname, Number::Pathname
+KAI_TYPE_TRAITS(Pathname, 
+	Number::Pathname
 	, Properties::Streaming
 	| Properties::Relational
+	//| Properties::Container
 	);
 
 Pathname GetFullname(const StorageBase &);
@@ -94,3 +96,4 @@ bool Exists(Object const &root, Object const &scope, const Pathname &path);
 bool Exists(Object const &scope, const Pathname &path);
 
 KAI_END
+

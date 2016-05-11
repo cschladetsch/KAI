@@ -1,10 +1,4 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_FUNCTION_BASE_H
-#	define KAI_FUNCTION_BASE_H
+#pragma once
 
 KAI_BEGIN
 
@@ -18,14 +12,11 @@ struct FunctionBase : CallableBase<FunctionBase>
 };
 
 StringStream &operator<<(StringStream &, FunctionBase const &);
-StringStream &operator<<(StringStream &, const BasePointer<FunctionBase> &);
+//StringStream &operator<<(StringStream &, const BasePointer<FunctionBase> &);
 
 KAI_TYPE_TRAITS(BasePointer<FunctionBase>, Number::Function
-	, Properties::StringStreamInsert | Properties::Reflected);
+	, Properties::StringStreamInsert 
+	| Properties::Reflected);
 
 KAI_END
-
-#endif // KAI_FUNCTION_BASE_H
-
-//EOF
 

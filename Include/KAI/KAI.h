@@ -72,6 +72,7 @@ KAI_END
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/BuiltinTypes/Stack.h"
 #include "KAI/StdContainers.h"
+#include "KAI/Pathname.h"
 
 /*
 #include "KAI/KAIClassBuilder.h"

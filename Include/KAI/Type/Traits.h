@@ -39,6 +39,12 @@ struct TraitsBase
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
+	enum ContainerOps { Val = 0 };
+
+	template <class F, class G>
+	void ForEachContained(F &, G&)
+	{
+	}
 
 	static const char *Name()
 	{
