@@ -2,6 +2,7 @@
 
 KAI_BEGIN
 
+/// Common for all methods that return void or not, and are const or not
 class MethodBase : public CallableBase<MethodBase>
 {
 protected:
@@ -9,7 +10,8 @@ protected:
 	Constness constness;
 
 public:
-	MethodBase(Constness C, const Label &N) : constness(C), CallableBase<MethodBase>(N) { }
+	MethodBase(Constness C, const Label &N) 
+		: constness(C), CallableBase<MethodBase>(N) { }
 
 	Type::Number GetClassType() const { return class_type; }
 	Constness GetConstness() const { return constness; }
@@ -33,6 +35,8 @@ public:
 StringStream &operator<<(StringStream &, const BasePointer<MethodBase> &);
 
 KAI_TYPE_TRAITS(BasePointer<MethodBase>, Number::Method
-	, Properties::StringStreamInsert | Properties::Reflected);
+	, Properties::StringStreamInsert 
+	| Properties::Reflected);
 
 KAI_END
+

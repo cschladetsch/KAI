@@ -253,7 +253,7 @@ public:
 
 StringStream &operator<<(StringStream &, const ClassBase *);
 
-KAI_TYPE_TRAITS_NAMED(const ClassBase *, Type::Number::Class, "Class", Type::Properties::StringStreamInsert)
+KAI_TYPE_TRAITS_NAMED(const ClassBase *, Number::Class, "Class", Properties::StringStreamInsert)
 
 KAI_END
 
