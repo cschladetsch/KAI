@@ -1,5 +1,7 @@
 #pragma once
 
+#include "KAI/KAIClassBuilder.h"
+
 KAI_BEGIN
 
 /// A Map defines an associative container. Because this maps Object to Object,
@@ -77,11 +79,10 @@ template <class Map>
 StringStream &operator<<(StringStream &S, MapBase<Map> const &M)
 {
 	S << "{ ";
-	Map::const_iterator A = M.Begin(), B = M.End();
 	const char *sep = "";
-	for (; A != B; ++A)
+	for (auto const &A : M)
 	{
-		S << sep << "[" << A->first << ", " << A->second << "]";
+		S << sep << "[" << A.first << ", " << A.second << "]";
 		sep = ", ";
 	}
 	return S << " }";
@@ -91,10 +92,9 @@ template <class Map>
 BinaryStream &operator<<(BinaryStream &S, MapBase<Map> const &M)
 {
 	S << M.Size();
-	Map::const_iterator A = M.Begin(), B = M.End();
-	for (; A != B; ++A)
+	for (const auto &A : M)
 	{
-		S << A->first << A->second;
+		S << A.first << A.second;
 	}
 	return S;
 }

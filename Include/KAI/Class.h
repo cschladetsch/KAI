@@ -109,7 +109,7 @@ public:
 			else
 				prop.SetValue(*result, prop.GetValue(parent));
 		}
-		return result;
+		return *result;
 	}
 
 	/// @group container operations

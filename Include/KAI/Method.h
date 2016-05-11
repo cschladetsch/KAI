@@ -79,7 +79,7 @@ namespace method_detail
 		}
 	};
 
-	template <class R, class T, bool C, class... Args>
+	template <class T, class R, bool C, class... Args>
 	struct Selector
 	{
 		enum { VoidRet = SameType<R, Void>::value };
@@ -90,23 +90,23 @@ namespace method_detail
 
 } // namespace method_detail
 
-template <class R, class T, bool C, class... Args>
-struct Method : method_detail::Selector<R,T,C,Args...>::Type
+template <class T, class R, bool C, class... Args>
+struct Method : method_detail::Selector<T,R,C,Args...>::Type
 {
-	typedef typename method_detail::Selector<R,T,C,Args...>::Type Parent;
+	typedef typename method_detail::Selector<T,R,C,Args...>::Type Parent;
 	Method(typename Parent::MethodType M, const Label &L) : Parent(M, L) { }
 };
 
-template <class R, class T, class... Args>
+template <class T, class R, class... Args>
 MethodBase *MakeMethod(R (T::*method)(Args...), const Label &N)
 {
-	return new Method<R,T,false,Args...>(method, N);
+	return new Method<T,R,false, Args...>(method, N);
 }
 
-template <class R, class T, class... Args>
-MethodBase *MakeMethod(R (T::*method)() const, const Label &N)
+template <class T, class R, class... Args>
+MethodBase *MakeMethod(R(T::*method)(Args...) const, const Label &N)
 {
-	return new Method<R,T,true>(method, N);
+	return new Method<T,R,true, Args...>(method, N);
 }
 
 KAI_END

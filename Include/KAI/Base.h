@@ -4,6 +4,8 @@
 #include <tuple>
 #include <utility>
 #include <memory>
+#include <utility>
+#include <boost/type_index.hpp>
 
 #include "KAI/Net/Config.h"
 #include "KAI/HierarchicalPrinter.h"

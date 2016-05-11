@@ -3,7 +3,6 @@
 void ObjectSet::Register(Registry &R)
 {
 	ClassBuilder<ObjectSet>(R, "Set")
-		.Methods
 		;
 }
 

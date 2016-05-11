@@ -1,7 +1,5 @@
 #pragma once
 
-#include <boost/type_index.hpp>
-
 KAI_TYPE_BEGIN
 
 template <typename T>
@@ -38,13 +36,6 @@ struct TraitsBase
 	typedef Store const *ConstPointer;
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
-
-	enum ContainerOps { Val = 0 };
-
-	template <class F, class G>
-	void ForEachContained(F &, G&)
-	{
-	}
 
 	static const char *Name()
 	{
@@ -305,23 +296,73 @@ struct TraitsBase
 		}
 	};
 
+	template <class, bool>
+	struct Contained
+	{
+		template <class A, class B, class C>
+		static void SetSwitch(A, B, C)
+		{
+		}
+
+		template <class A, class B>
+		static void SetMarked(A, B)
+		{
+		}
+
+		template <class A, class B>
+		static void Erase(A, B)
+		{
+		}
+
+		template <class A, class B>
+		static void ForEachContained(A, B)
+		{
+			//KAI_NOT_IMPLEMENTED();
+		}
+	};
+
+	template <class D>
+	struct Contained<D, true>
+	{
+		template <class A, class B, class C>
+		static void SetSwitch(A, B, C)
+		{
+		}
+
+		template <class A, class B>
+		static void SetMarked(A, B)
+		{
+		}
+
+		template <class A, class B>
+		static void Erase(A, B)
+		{
+		}
+		template <class A, class B>
+		static void ForEachContained(A, B)
+		{
+			//KAI_NOT_IMPLEMENTED();
+		}
+	};
+
+	typedef Contained<D, HasProperty<Properties::Container>::Value> 
+		ContainerOps;
 	typedef typename meta::If<HasProperty<Properties::Reflected>::Value != 0
 		, ReflectedLifetimeManagement
 		, UnReflectedLifetimeManagement>::Type 
 		LifetimeManager;
-
 	typedef AssignOp<D, HasProperty<Properties::Assign>::Value != 0> Assign;
-	typedef AbsoluteOp<D, HasProperty<Properties::Absolute>::Value != 0> Absolute;
-
+	typedef AbsoluteOp<D, HasProperty<Properties::Absolute>::Value != 0> 
+		Absolute;
 	typedef LessOp<D, HasProperty<Properties::Less>::Value != 0> Less;
 	typedef EquivOp<D, HasProperty<Properties::Equiv>::Value != 0> Equiv;
-	typedef GreaterOp<D, HasProperty<Properties::Greater>::Value != 0> Greater;
-
+	typedef GreaterOp<D, HasProperty<Properties::Greater>::Value != 0> 
+		Greater;
 	typedef PlusOp<D, HasProperty<Properties::Plus>::Value != 0> Plus;
 	typedef MinusOp<D, HasProperty<Properties::Minus>::Value != 0> Minus;
 	typedef DivideOp<D, HasProperty<Properties::Divide>::Value != 0> Divide;
-	typedef MultiplyOp<D, HasProperty<Properties::Multiply>::Value != 0> Multiply;
-
+	typedef MultiplyOp<D, HasProperty<Properties::Multiply>::Value != 0> 
+		Multiply;
 	template <bool, class Stream>
 	struct StreamInsertOp
 	{
