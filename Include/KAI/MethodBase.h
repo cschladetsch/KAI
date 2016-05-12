@@ -5,11 +5,10 @@ KAI_BEGIN
 /// Common for all methods that return void or not, and are const or not
 class MethodBase : public CallableBase<MethodBase>
 {
-protected:
-	Type::Number class_type;
-	Constness constness;
 
 public:
+	Type::Number class_type;
+	Constness constness;
 	MethodBase(Constness C, const Label &N) 
 		: constness(C), CallableBase<MethodBase>(N) { }
 
@@ -44,8 +43,6 @@ struct ConstMethodBase : MethodBase
 	{
 		ConstInvoke(Q, S);
 	}
-
-protected:
 	ConstMethodBase(Method M, const Label &N, Constness C) 
 		: method(M), MethodBase(C, N) { }
 };
@@ -53,8 +50,6 @@ protected:
 template <class Method>
 struct MutatingMethodBase : ConstMethodBase<Method>
 {
-protected:
-
 	MutatingMethodBase(Method M, const Label &N) 
 		: ConstMethodBase<Method>(M, N, Constness::Mutable) { }
 

@@ -70,20 +70,10 @@ public:
 	const Classes &GetClasses() const { return classes; }
 
 	template <class T>
-	void AddClass(const String::Char *S = Type::Traits<T>::Name())
+	void AddClass(const Label &N)
 	{
-		AddClass<T>(String(S));
+		AddClass<T>(N);
 	}
-
-	/// add a new type to the system
-	template <class T>
-	void AddClass(Label const &name);
-	/*TODO MOVE
-	{
-		Class<T> *klass = GetMemorySystem().Allocate<Class<T> >(name);
-		AddClass(Type::Traits<T>::Number, klass);
-	}
-	*/
 
 	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
 

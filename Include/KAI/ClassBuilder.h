@@ -48,7 +48,7 @@ public:
 	};
 	MethodsCollector Methods;
 
-	ClassBuilder(Registry &R, String const &N) : registry(&R), klass(new Class<T>(N.c_str()))
+	ClassBuilder(Registry &R, Label const &N) : registry(&R), klass(new Class<T>(N))
 	{ 
 		Methods.builder = this;
 		Methods.Properties.builder = this;
