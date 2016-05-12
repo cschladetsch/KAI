@@ -39,8 +39,8 @@ void Label::Register(Registry &R)
 {
 	ClassBuilder<Label>(R, "Label")
 		.Methods
-			//TODO("ToString", &Label::ToString)
-			("FromString", &Label::FromString2)
+			(&Label::ToString, Label(("ToString")))
+			(&Label::FromString2, Label("FromString"))
 		;
 }
 

@@ -22,8 +22,15 @@ public:
 	void FromString2(Value S);
 	const Value &GetValue() const { return value; }
 
-	friend bool operator<(const Label &A, const Label &B) { return A.value < B.value; }
-	friend bool operator==(const Label &A, const Label &B) { return A.value == B.value; }
+	friend bool operator<(const Label &A, const Label &B) 
+	{
+	   	return A.value < B.value; 
+	}
+
+	friend bool operator==(const Label &A, const Label &B) 
+	{
+	   	return A.value == B.value; 
+	}
 
 	static void Register(Registry &);
 };
@@ -38,8 +45,6 @@ KAI_TYPE_TRAITS(Label, Number::Label
 	| Properties::BinaryStreaming);
 
 KAI_END
-
-
 
 namespace boost
 {
