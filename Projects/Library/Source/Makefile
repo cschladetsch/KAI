@@ -9,8 +9,8 @@ OBJS := $(C_OBJS) $(CXX_OBJS)
 INCLUDE_DIRS := /home/christian/dev/KAI/Include /usr/include /opt/local/include
 LIBRARY_DIRS :=
 LIBRARIES :=
-
-CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g --std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
+CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type
+CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g --std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))

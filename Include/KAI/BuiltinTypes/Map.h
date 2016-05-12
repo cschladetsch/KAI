@@ -21,10 +21,13 @@ KAI_TYPE_TRAITS(Map, Number::Map
 
 StringStream &operator<<(StringStream &, Map::const_iterator const &);
 
+/* TODO or not?
 KAI_TYPE_TRAITS(Map::const_iterator, Number::MapConstIterator
 	, Properties::StringStreamInsert
 	| Properties::Equiv
 	//| Properties::Container ?? should an iterator be considered a container?
 	);
+	*/
 
 KAI_END
+
