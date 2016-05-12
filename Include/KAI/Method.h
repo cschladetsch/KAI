@@ -77,7 +77,7 @@ namespace method_detail
 		MethodType meth;
 		tuple<Args...> _args;
 
-		Method(MethodType m, const Label &N) : meth(m), Parent(N) { }
+		Method(MethodType m, const Label &N) : meth(m), Parent(m, N) { }
 
 		void Invoke(Object &servant, Stack &stack)
 		{
