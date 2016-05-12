@@ -114,3 +114,4 @@ BinaryPacket &operator>>(BinaryPacket &S, MapBase<Map> &M)
 }
 
 KAI_END
+
