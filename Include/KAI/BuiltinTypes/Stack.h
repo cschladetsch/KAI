@@ -5,16 +5,6 @@ KAI_BEGIN
 
 class Stack;
 
-KAI_TYPE_TRAITS(Stack, Number::Stack
-	, Properties::StringStreamInsert 
-	| Properties::BinaryStreaming
-	| Properties::Less 
-	| Properties::Equiv
-	| Properties::Assign
-	| Properties::Reflected
-	| Properties::Container
-	);
-
 class Stack : public Container<Stack>
 {
 public:
@@ -62,6 +52,16 @@ BinaryStream &operator<<(BinaryStream &, const Stack &);
 BinaryPacket &operator>>(BinaryPacket &, Stack &);
 
 HashValue GetHash(const Stack &);
+
+KAI_TYPE_TRAITS(Stack, Number::Stack
+	, Properties::StringStreamInsert 
+	| Properties::BinaryStreaming
+	| Properties::Less 
+	| Properties::Equiv
+	| Properties::Assign
+	| Properties::Reflected
+	| Properties::Container
+	);
 
 KAI_END
 
