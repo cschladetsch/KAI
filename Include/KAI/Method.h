@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MethodBase.h"
 #include "Detail/CallableBase.h"
 
 KAI_BEGIN
@@ -9,83 +10,106 @@ namespace method_detail
 	using namespace std;
 	using namespace meta;
 
-	template <class Method>
-	struct ConstMethodBase : MethodBase
+	// a method that returns something and is const
+	template <class T, class R, class... Args>
+	struct MethodConst : ConstMethodBase<R (T::*)(Args...) const>
 	{
-		typedef Method MethodType;
-		Method method;
-		ConstMethodBase(Method M, const Label &N) 
-			: method(M), MethodBase(Constness::Const, N) { }
-		void NonConstInvoke(const Object & Q, Stack &S)
+		typedef R (T::*MethodType)(Args...) const;
+		typedef ConstMethodBase<MethodType> Parent;
+		MethodType meth;
+		tuple<Args...> _args;
+		static size_t constexpr arity = sizeof...(Args);
+
+		MethodConst(MethodType m, const Label &N) : meth(m), Parent(N) { }
+
+		void Invoke(const Object &servant, Stack &stack)
 		{
-			ConstInvoke(Q, S);
-		}
-
-	protected:
-		ConstMethodBase(Method M, const Label &N, Constness C) 
-			: method(M), MethodBase(C, N) { }
-	};
-
-	template <class Method>
-	struct MutatingMethodBase : ConstMethodBase<Method>
-	{
-	protected:
-
-		MutatingMethodBase(Method M, const Label &N) 
-			: ConstMethodBase<Method>(M, N, Constness::Mutable) { }
-
-		void ConstInvoke(const Object &, Stack &)
-		{
-			KAI_THROW_1(ConstError, "Mutating method");
+			detail::Add<arity - 1>::Arg(stack, _args);
+			stack.Push(servant.New(CallMethod(servant, meth, _args)));
 		}
 	};
 
-	template <class R, class T, bool C, class... Args>
+	// a method that returns void and is const
+	template <class T, class... Args>
+	struct VoidMethodConst : ConstMethodBase<void (T::*)(Args...) const>
+	{
+		typedef void (T::*MethodType)(Args...) const;
+		typedef MutatingMethodBase<MethodType> Parent;
+		static size_t constexpr arity = sizeof...(Args);
+		MethodType meth;
+		tuple<Args...> _args;
+		VoidMethodConst(MethodBase m, const Label &N) 
+			: meth(m), Parent(N) { }
+
+		void Invoke(const Object& servant, Stack &stack)
+		{
+			detail::Add<arity - 1>::Arg(stack, _args);
+			CallMethod(servant, meth, _args);
+		}
+	};
+
+	// a method that returns void  and is not const
+	template <class T, class... Args>
+	struct VoidMethod : MutatingMethodBase<void (T::*)(Args...)>
+	{
+		typedef void (T::*MethodType)(Args...);
+		typedef MutatingMethodBase<MethodType> Parent;
+		static size_t constexpr arity = sizeof...(Args);
+		MethodType meth;
+		tuple<Args...> _args;
+
+		VoidMethod(MethodType m, const Label &N) : meth(m), Parent(N) { }
+
+		void Invoke(Object &servant, Stack &stack)
+		{
+			detail::Add<arity - 1>::Arg(stack, _args);
+			CallMethod(servant, meth, _args);
+		}
+	};
+
+	// a method that returns something and is not const
+	template <class T, class R, class... Args>
 	struct Method : MutatingMethodBase<R (T::*)(Args...)>
 	{
-		typedef R (T::*Meth)(Args...);
-		typedef MutatingMethodBase<Meth> Parent;
+		typedef R (T::*MethodType)(Args...);
+		typedef MutatingMethodBase<MethodType> Parent;
 		static size_t constexpr arity = sizeof...(Args);
-		Meth meth;
+		MethodType meth;
 		tuple<Args...> _args;
 
-		Method(Meth m, const Label &N) : meth(m), Parent(N) { }
+		Method(MethodType m, const Label &N) : meth(m), Parent(N) { }
 
-		void Invoke(Registry &reg, Stack &stack)
+		void Invoke(Object &servant, Stack &stack)
 		{
-			auto servant =  Deref<T>(stack.Pop());
 			detail::Add<arity - 1>::Arg(stack, _args);
-			auto &result = reg.New(CallMethod(servant, meth, _args));
-			stack.Push(reg.New(result));
+			stack.Push(servant.New(CallMethod(servant, meth, _args)));
 		}
 	};
 
-
-	template <class T, bool C, class... Args>
-	struct VoidMethod
+	template  <bool V, bool C, class T00, class T01, class T10, class T11>
+	struct Select
 	{
-		typedef void (T::*Meth)(Args...);
-		typedef MutatingMethodBase<Meth> Parent;
-		static size_t constexpr arity = sizeof...(Args);
-		Meth meth;
-		tuple<Args...> _args;
-		VoidMethod(Meth m, const Label &N) : meth(m), Parent(N) { }
-
-		void Invoke(Registry &reg, Stack &stack)
-		{
-			auto servant =  Deref<T>(stack.Pop());
-			detail::Add<arity - 1>::Arg(stack, _args);
-			reg.New(CallMethod(servant, meth, _args));
-		}
+		typedef typename If<V,
+				typename If<C, T11, T01>::Type,
+				typename If<C, T01, T00>::Type>::Type Type;
 	};
 
+	/// selects implementation based on whether the target method
+	/// returns void or not
 	template <class T, class R, bool C, class... Args>
 	struct Selector
 	{
-		enum { VoidRet = SameType<R, Void>::value };
-		typedef typename If<VoidRet, 
-				VoidMethod<T, C, Args...>, 
-				Method<R, T, C, Args...> >::Type Type; 
+		enum { VoidRet = SameType<R, void>::value };
+		enum { Const = C };
+
+		typedef typename Select<VoidRet, Const
+				 , Method<T, R, Args...> 	
+				 , MethodConst<T, R, Args...>
+				 , VoidMethod<T, Args...>	  		
+				 , VoidMethodConst<T, Args...>	
+				 >::Type
+
+				 Type;
 	};
 
 } // namespace method_detail
@@ -93,8 +117,10 @@ namespace method_detail
 template <class T, class R, bool C, class... Args>
 struct Method : method_detail::Selector<T,R,C,Args...>::Type
 {
-	typedef typename method_detail::Selector<T,R,C,Args...>::Type Parent;
-	Method(typename Parent::MethodType M, const Label &L) : Parent(M, L) { }
+	typedef typename method_detail::Selector<T,R,C,Args...>::Type 
+		Parent;
+	Method(typename Parent::MethodType M, const Label &L) 
+		: Parent(M, L) { }
 };
 
 template <class T, class R, class... Args>
