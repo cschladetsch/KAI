@@ -37,10 +37,9 @@ BinaryPacket &operator>>(BinaryPacket &S, Label &L)
 
 void Label::Register(Registry &R)
 {
-	ClassBuilder<Label>(R, "Label")
-		.Methods
-			(&Label::ToString, Label(("ToString")))
-			(&Label::FromString2, Label("FromString"))
+	ClassBuilder<Label>(R, Label("Label"))
+		//.Methods
+			//(&Label::ToString, "ToString")
 		;
 }
 
