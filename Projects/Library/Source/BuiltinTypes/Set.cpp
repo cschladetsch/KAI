@@ -1,4 +1,5 @@
 #include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/Set.h"
 
 KAI_BEGIN
 

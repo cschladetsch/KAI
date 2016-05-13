@@ -1,4 +1,7 @@
+#include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/Stack.h"
 
+KAI_BEGIN
 
 void Stack::Register(Registry &R)
 {
@@ -91,4 +94,5 @@ BinaryPacket &operator>>(BinaryPacket &S, Stack &T)
 	KAI_NOT_IMPLEMENTED();
 }
 
-//EOF
+KAI_END
+
