@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Kai/Net/Base.h"
-#include "Kai/Net/NetHandle.h"
-#include "Kai/Net/Representative.h"
+#include "KAI/Net/Base.h"
+#include "KAI/Net/NetHandle.h"
+#include "KAI/Net/Representative.h"
 
 KAI_NET_BEGIN
 
