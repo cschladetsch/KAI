@@ -9,6 +9,7 @@ namespace method_detail
 {
 	using namespace std;
 	using namespace meta;
+	using namespace detail;
 
 	// a method that returns something and is const
 	template <class T, class R, class... Args>
@@ -18,14 +19,14 @@ namespace method_detail
 		typedef ConstMethodBase<MethodType> Parent;
 		MethodType meth;
 		tuple<Args...> _args;
-		static size_t constexpr arity = sizeof...(Args);
+		static int constexpr arity = (int)sizeof...(Args);
 
-		MethodConst(MethodType m, const Label &N) : meth(m), Parent(N) { }
+		MethodConst(MethodType m, const Label &N) : meth(m), Parent(m, N) { }
 
-		void Invoke(const Object &servant, Stack &stack)
+		void ConstInvoke(const Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			stack.Push(servant.New(CallMethod(servant, meth, _args)));
+			stack.Push(servant.New(CallMethod(ConstDeref<T>(servant), meth, _args)));
 		}
 	};
 
@@ -39,12 +40,12 @@ namespace method_detail
 		MethodType meth;
 		tuple<Args...> _args;
 		VoidMethodConst(MethodBase m, const Label &N) 
-			: meth(m), Parent(N) { }
+			: meth(m), Parent(m, N) { }
 
-		void Invoke(const Object& servant, Stack &stack)
+		void ConstInvoke(const Object& servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			CallMethod(servant, meth, _args);
+			CallMethod(ConstDeref<T>(servant), meth, _args);
 		}
 	};
 
@@ -58,12 +59,12 @@ namespace method_detail
 		MethodType meth;
 		tuple<Args...> _args;
 
-		VoidMethod(MethodType m, const Label &N) : meth(m), Parent(N) { }
+		VoidMethod(MethodType m, const Label &N) : meth(m), Parent(m, N) { }
 
 		void Invoke(Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			CallMethod(servant, meth, _args);
+			CallMethod(Deref<T>(servant), meth, _args);
 		}
 	};
 
@@ -82,7 +83,7 @@ namespace method_detail
 		void Invoke(Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			stack.Push(servant.New(CallMethod(servant, meth, _args)));
+			stack.Push(servant.New(Deref<T>(servant)(CallMethod(servant, meth, _args))));
 		}
 	};
 

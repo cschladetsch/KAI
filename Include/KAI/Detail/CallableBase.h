@@ -22,17 +22,18 @@ namespace detail
 	}
 
 	template <class Q, typename F, typename Tuple, size_t... I>
-	decltype(auto) CallMethodImpl(Q &&q, F f, Tuple&& t, index_sequence<I...>)
+	decltype(auto) CallMethodImpl(Q &q, F f, Tuple&& t, index_sequence<I...>)
 	{
-		return forward<F>(f)(q, get<I>(forward<Tuple>(t))...);
+		auto m = forward<F>(f);
+		return (q.*m)(get<I>(forward<Tuple>(t))...);
 	}
 
 	// invoke a method of any arity given arguments in a tuple
 	template <class Q, typename F, typename Tuple>
-	decltype(auto) CallMethod(Q &&q, F f, Tuple&& t)
+	decltype(auto) CallMethod(Q &q, F f, Tuple&& t)
 	{
 		using idx = make_index_sequence<tuple_size<decay_t<Tuple>>::value>;
-		return CallMethodImple(q, forward<F>(f), forward<Tuple>(t), idx{});
+		return CallMethodImpl(q, forward<F>(f), forward<Tuple>(t), idx{});
 	}
 
 	// pull arguments into a tuple, recursively
@@ -42,7 +43,7 @@ namespace detail
 		template <class... Args>
 		static void Arg(Stack &input, tuple<Args...> &args)
 		{
-			typedef decltype(get<N>(args)) Ty;
+			typedef decltype(std::get<N>(args)) Ty;
 			Object back = input.Top();
 			input.Pop();
 			get<N>(args) = Deref<Ty>(back);
@@ -57,7 +58,7 @@ namespace detail
 		template <class...Args>
 		static void Arg(Stack &input, tuple<Args...> &args)
 		{
-			typedef decltype(get<0>(args)) Ty;
+			typedef decltype(std::get<0>(args)) Ty;
 			Object back = input.Top();
 			input.Pop();
 			get<0>(args) = Deref<Ty>(back);
