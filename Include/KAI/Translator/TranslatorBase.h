@@ -4,10 +4,10 @@
 
 KAI_BEGIN
 
-template <class Parser>
+template <class EParser>
 struct TranslatorBase : TranslatorCommon
 {
-	typedef Parser Parser;
+	typedef EParser Parser;
 	typedef typename Parser::TokenNode TokenNode;
 	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename Parser::Lexer Lexer;

@@ -17,7 +17,7 @@ public:
 
 	const std::string &GetLine(size_t n) const
 	{
-		if (lines.empty() || n < 0 || n >= lines.size())
+		if (lines.empty() || n >= lines.size())
 			KAI_THROW_2(OutOfBounds, n, 0);
 		return lines[n];
 	}

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "KAI/Type/Traits.h"
-
 KAI_BEGIN
 
 struct Void
@@ -21,11 +19,7 @@ namespace Type
 	template <> struct Traits<void> 
 		: TraitsBase<void, Number::Void, 0,/*TODO Properties::Streaming,*/ Void, Void &, const Void&> 
 	{ 
-		static const char *Name() 
-		{ 
-			typedef TraitsBase<void, Number::Void, Properties::Streaming, Void, Void &, const Void&> Tr;
-			return Tr::Name();
-		}
+		static const char *Name;
 	};
 
 	template <> struct Traits<meta::Null> : Traits<void> { };

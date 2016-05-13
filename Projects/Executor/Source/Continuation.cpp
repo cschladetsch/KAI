@@ -1,5 +1,6 @@
-
 #include "KAI/ExecutorPCH.h"
+#include "KAI/ClassBuilder.h"
+
 KAI_BEGIN
 
 void Continuation::Create()

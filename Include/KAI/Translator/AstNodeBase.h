@@ -7,11 +7,11 @@ KAI_BEGIN
 
 // A common AST Node, given the enumeration type Enum that
 // indicates what type of AST not it is
-template <class Token, class AstEnumType>
-class AstNodeBase : public HierarchicalPrinter<AstNodeBase<Token, AstEnumType> >
+template <class EToken, class AstEnumType>
+class AstNodeBase : public HierarchicalPrinter<AstNodeBase<EToken, AstEnumType> >
 {
 public:
-	typedef Token Token;
+	typedef EToken Token;
 	typedef AstNodeBase<Token, AstEnumType> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 	typedef typename AstEnumType::Enum Enum;
@@ -39,7 +39,8 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")";
 #else
-		out << KAI_NAMESPACE(ToString(_astType)) << ": " << _token.ToString();
+		out << _astType;
+		//MUST out << KAI_NAMESPACE(ToString(_astType)) << ": " << _token.ToString();
 #endif
 		return out.str();
 	}

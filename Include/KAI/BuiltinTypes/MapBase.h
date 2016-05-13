@@ -22,12 +22,15 @@ public:
 	iterator begin() { return map.begin(); }
 	iterator end() { return map.end(); }
 
+	const_iterator begin() const { return map.begin(); }
+	const_iterator end() const { return map.end(); }
+
 	iterator Begin() { return map.begin(); }
 	iterator End() { return map.end(); }
 	const_iterator Begin() const { return map.begin(); }
 	const_iterator End() const { return map.end(); }
-
 	int Size() const { return (int)map.size(); }
+	
 	bool Empty() const { return map.empty(); }
 	void Clear() { map.clear(); }
 	void Insert(Object key, Object value) { map[key] = value; }
