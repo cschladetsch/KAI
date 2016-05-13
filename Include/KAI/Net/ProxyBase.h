@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Kai/Net/Base.h"
-#include "Kai/Net/ProxyCommon.h"
+#include "KAI/Net/Base.h"
+#include "KAI/Net/ProxyCommon.h"
 
 KAI_NET_BEGIN
 
