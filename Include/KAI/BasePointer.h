@@ -37,6 +37,7 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 };
 
 KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer
-	, Properties::StringStreamInsert | Properties::Reflected);
+	, Properties::StringStreamInsert
+	);
 
 KAI_END

@@ -51,6 +51,15 @@ namespace detail
 		}
 	};
 
+	template <class T>
+	struct BaseType { typedef T type; };
+
+	template <class T>
+	struct BaseType<T&> { typedef T type; };
+
+	template <class T> 
+	struct BaseType<T&&> { typedef T type; };
+
 	// pull last argument
 	template <>
 	struct Add<0>
@@ -58,10 +67,18 @@ namespace detail
 		template <class...Args>
 		static void Arg(Stack &input, tuple<Args...> &args)
 		{
-			typedef decltype(std::get<0>(args)) Ty;
+			typedef typename BaseType<decltype(std::get<0>(args))>::type Ty;
 			Object back = input.Top();
 			input.Pop();
 			get<0>(args) = Deref<Ty>(back);
+		}
+	};
+	template <>
+	struct Add<-1>
+	{
+		template <class...Args>
+		static void Arg(Stack &input, tuple<Args...> &args)
+		{
 		}
 	};
 } 

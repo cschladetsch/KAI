@@ -1,3 +1,6 @@
+#include "KAI/KAI.h"
+
+KAI_BEGIN
 
 String Label::ToString() const
 {
@@ -43,4 +46,5 @@ void Label::Register(Registry &R)
 		;
 }
 
-//EOF
+KAI_END
+
