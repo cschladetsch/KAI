@@ -1,4 +1,0 @@
-results = Tests.Run(TestOutput());
-
-results.Print();
-
