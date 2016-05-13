@@ -4,6 +4,7 @@
 *.userprefs
 KAI.VC.*
 *.i
+*.a
 /Intermediate/
 
 *.orig
