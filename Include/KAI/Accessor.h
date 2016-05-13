@@ -132,7 +132,7 @@ namespace property_detail
 	template <class K, class C, class T, class S>
 	struct Mutator<K,C,true,T,S> : SystemProperty<MutatorBase, K, T, S (C::*)>
 	{
-		typedef NonsystemProperty<MutatorBase, K, T, T (C::*)> Parent;
+		typedef SystemProperty<MutatorBase, K, T, T (C::*)> Parent;
 		typedef typename Parent::Field Field;
 		using Parent::field;
 

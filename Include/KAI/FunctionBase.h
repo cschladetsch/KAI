@@ -16,7 +16,7 @@ StringStream &operator<<(StringStream &, FunctionBase const &);
 
 KAI_TYPE_TRAITS(BasePointer<FunctionBase>, Number::Function
 	, Properties::StringStreamInsert 
-	| Properties::Reflected);
+	);//| Properties::Reflected);
 
 KAI_END
 

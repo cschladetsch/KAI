@@ -268,7 +268,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
+				for (Entry const &entry : std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke();
 			}
 		};
@@ -287,7 +287,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
+				for (Entry const &entry : std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0);
 			}
 		};
@@ -306,7 +306,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
+				for (Entry const &entry : std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0, t1);
 			}
 		};
@@ -325,7 +325,7 @@ namespace event_detail_sys
 			{
 				if (sinks.empty())
 					return;
-				foreach (Entry const &entry, std::vector<Entry>(sinks.begin(), sinks.end()))
+				for (Entry const &entry : std::vector<Entry>(sinks.begin(), sinks.end()))
 					entry.delegate->Invoke(t0,t1,t2);
 			}
 		};
