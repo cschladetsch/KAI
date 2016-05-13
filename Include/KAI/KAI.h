@@ -78,8 +78,8 @@ KAI_END
 #include "KAI/AccessorBase.h"
 #include "KAI/Accessor.h"
 
-/*
 #include "KAI/KAIClassBuilder.h"
+/*
 #include "KAI/BuiltinTypes/All.h"
 #include "KAI/Function.h"
 */
