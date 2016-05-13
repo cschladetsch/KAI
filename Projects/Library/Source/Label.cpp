@@ -1,4 +1,7 @@
 #include "KAI/KAI.h"
+#include "KAI/Label.h"
+#include "KAI/ClassBuilder.h"
+
 
 KAI_BEGIN
 
