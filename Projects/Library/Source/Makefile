@@ -16,7 +16,7 @@ LIBRARIES :=
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 # -fdiagnostics-show-category=B
 
-CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g --std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
+CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
@@ -33,8 +33,8 @@ clean:
 	@- $(RM) $(OBJS)
 
 $(LIBNAME): $(OBJS)
-	@- echo $(OBJS)
-	@- echo $(CXX_SRCS)
+	#@- echo $(OBJS)
+	#@- echo $(CXX_SRCS)
 	clang++ $(OBJS) -o $(LIBNAME)
 	cp $(LIBNAME) /$(HOME)/christian/lib
 

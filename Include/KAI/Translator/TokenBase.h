@@ -10,7 +10,7 @@ class TokenBase
 {
 public:
 	typedef TokenBase<EnumType> Self;
-	typedef typename EnumType EnumType;
+	typedef EnumType EnumType;
 	typedef typename EnumType::Enum Enum;
 
 	Enum type;
