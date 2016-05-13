@@ -7,8 +7,6 @@ INSTALL = /usr/bin/install
 INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
-default: Coneole
-
 # Add your generic Compiler and Linker flags in here
 include Makefile.conf
 
