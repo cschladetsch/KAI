@@ -1,5 +1,5 @@
 #include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Signed32.h"
+#include "KAI/ClassBuilder.h"
 #include <iostream>
 
 KAI_BEGIN
@@ -312,6 +312,7 @@ Dictionary &Object::GetDictionaryRef()
 
 void Object::Register(Registry &R)
 {
+	KAI_UNUSED_1(R);
 	ClassBuilder<Object>(R, "Object")
 		;
 }

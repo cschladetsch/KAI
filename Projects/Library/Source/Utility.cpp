@@ -1,6 +1,7 @@
 
 #include "KAI/KAI.h"
 #include "KAI/Operation.h"
+#include "KAI/BuiltinTypes/Map.h"
 #include "KAI/BuiltinTypes/Array.h"
 #include "KAI/Continuation.h"
 #include "KAI/Value.h"
