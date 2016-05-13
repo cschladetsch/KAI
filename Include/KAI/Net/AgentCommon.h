@@ -8,7 +8,7 @@ KAI_NET_BEGIN
 
 struct AgentCommon : Representative
 {
-	AgentCommon(Node &node, Object const &servant)
+	AgentCommon(Node &node, Object servant)
 		: Representative(node, servant) 
 	{ 
 	}
