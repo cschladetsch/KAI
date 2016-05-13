@@ -9,13 +9,6 @@
 
 KAI_BEGIN
 
-#include "BuiltinTypes/Label.inl"
-#include "BuiltinTypes/Set.inl"
-#include "String.inl"
-#include "Stack.inl"
-#include "List.inl"
-#include "Array.inl"
-
 StringStream &operator >> (StringStream &S, float &F)
 {
 	//return S >> F;

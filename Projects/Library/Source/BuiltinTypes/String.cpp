@@ -1,4 +1,6 @@
+#include "KAI/KAIClassBuilder.h"
 
+KAI_BEGIN
 
 String String::LowerCase() const
 {
@@ -88,4 +90,15 @@ BinaryPacket &operator>>(BinaryPacket &S, String &T)
 	return S;
 }
 
-//EOF
+void String::Register(Registry &R)
+{
+	ClassBuilder<String>(R, "String")
+		.Methods
+			("Size", &String::Size)
+			("Empty", &String::Empty)
+			("Clear", &String::Clear)
+		;
+}
+
+KAI_END
+

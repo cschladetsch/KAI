@@ -1,4 +1,6 @@
+#include "KAI/KAI.h"
 
+KAI_BEGIN
 
 void ObjectSet::Register(Registry &R)
 {
@@ -73,4 +75,5 @@ BinaryPacket &operator>>(BinaryPacket &S, ObjectSet &T)
 	KAI_NOT_IMPLEMENTED();
 }
 
-//EOF
+KAI_END
+

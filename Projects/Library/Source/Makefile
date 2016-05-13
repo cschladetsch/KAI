@@ -6,7 +6,8 @@ C_OBJS := ${C_SRCS:.c=.o}
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(C_OBJS) $(CXX_OBJS)
 
-HOME=Users
+#HOME=Users
+HOME=home
 BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
 
 INCLUDE_DIRS := /$(HOME)/christian/dev/KAI/Include /usr/include /opt/local/include $(BOOST_DIR)
