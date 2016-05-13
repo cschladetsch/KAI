@@ -6,11 +6,16 @@ C_OBJS := ${C_SRCS:.c=.o}
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(C_OBJS) $(CXX_OBJS)
 
-INCLUDE_DIRS := /home/christian/dev/KAI/Include /usr/include /opt/local/include
+HOME=Users
+BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+
+INCLUDE_DIRS := /$(HOME)/christian/dev/KAI/Include /usr/include /opt/local/include $(BOOST_DIR)
 LIBRARY_DIRS :=
 LIBRARIES :=
-CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type
-CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -fmax-errors=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g --std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
+CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
+# -fdiagnostics-show-category=B
+
+CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g --std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
