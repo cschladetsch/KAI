@@ -91,7 +91,7 @@ namespace method_detail
 	struct Select
 	{
 		typedef typename If<V,
-				typename If<C, T11, T01>::Type,
+				typename If<C, T11, T10>::Type,
 				typename If<C, T01, T00>::Type>::Type Type;
 	};
 
