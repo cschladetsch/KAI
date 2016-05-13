@@ -52,6 +52,9 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 	{
 		switch (A->type)
 		{
+		case Pathname::Element::None: 
+			break;
+
 		case Pathname::Element::Seperator: 
 			break;
 
@@ -136,6 +139,9 @@ Object Get(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
+		case Pathname::Element::None: 
+			break;
+
 		case Pathname::Element::Seperator: 
 			break;
 
@@ -195,6 +201,9 @@ void Remove(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
+		case Pathname::Element::None: 
+			break;
+
 		case Pathname::Element::Seperator:
 			break;
 		

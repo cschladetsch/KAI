@@ -1,4 +1,6 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Function.h"
+#include "KAI/BuiltinTypes/Pair.h"
 
 #include <iostream>
 #include <fstream>
@@ -167,50 +169,6 @@ namespace Bin
 		exit(N);
 	}
 
-#ifdef KAI_UNIT_TESTS
-	Object RunOne(Object object)
-	{
-		Test::Module module;
-		module.AddSuite<Tests::TestExample>("TestExample");
-	
-		Pointer<Test::BasicOutput> out = object.New<Test::BasicOutput>();
-		
-		module.Run(out);
-
-		return object.New(out->GetSummary());
-	}
-
-	#define ADD_TEST(Name) \
-		module.AddSuite<Tests::Name>(#Name);
-
-	Object RunAllTests(Object object)
-	{
-		Test::Module module;
-		ADD_TEST(TestBinaryStream);
-		ADD_TEST(TestCompiler);
-		//ADD_TEST(TestDerivation);
-		ADD_TEST(TestDotGraph);
-		ADD_TEST(TestEvents);
-		ADD_TEST(TestExample);
-		ADD_TEST(TestExecutor);
-		ADD_TEST(TestMap);
-		ADD_TEST(TestMethod);
-		ADD_TEST(TestObject);
-		ADD_TEST(TestProperties);
-		ADD_TEST(TestRegistry);
-		ADD_TEST(TestStringStream);
-		ADD_TEST(TestPathname);
-		ADD_TEST(TestTree);
-		ADD_TEST(TestTriColor);
-
-		Pointer<Test::BasicOutput> out = object.New<Test::BasicOutput>();
-		//Pointer<Test::XmlOutput> out = object.New<Test::XmlOutput>();
-		module.Run(out);
-		return object.New(Pair(out, object.New(out->GetSummary())));
-		//return object.New(out->ToString());
-	}
-#endif
-
 	/*Pointer<ClassBase const *> */Object TypeNumberToClass(Object tn)
 	{
 		Pointer<int> type_number = tn;
@@ -240,6 +198,7 @@ namespace Bin
 		return text.ToString();
 	}
 
+	#ifdef BIN_FIXED
 	void AddFunctions(Object Q)
 	{
 		#define ADD_FUN(N, D) \
@@ -268,6 +227,11 @@ namespace Bin
 		ADD_FUN(AddVector3, "Adds two Vector3s together.")
 		ADD_FUN(Help, "LOL");
 	}
+	#else
+	void AddFunctions(Object Q)
+	{
+	}
+	#endif
 }
 
 KAI_END

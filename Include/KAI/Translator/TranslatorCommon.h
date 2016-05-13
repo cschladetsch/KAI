@@ -37,11 +37,13 @@ public:
 		return reg.New<T>(val);
 	}
 
+	/*
 	template <>
 	void AppendNew<Operation::Type>(Operation::Type op)
 	{
 		AppendOp(op);
 	}
+	*/
 
 	void AppendOp(Operation::Type op);
 

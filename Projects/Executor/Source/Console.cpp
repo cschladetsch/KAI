@@ -1,4 +1,9 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/FunctionBase.h"
+#include "KAI/Function.h"
+#include "KAI/BuiltinTypes/Pair.h"
+#include "KAI/BuiltinTypes/List.h"
+#include "KAI/BuiltinTypes/Map.h"
 #include "KAI/ConsoleColor.h"
 
 using namespace std;
@@ -272,7 +277,7 @@ void Console::RegisterTypes()
 	registry->AddClass<Vector4>("Vector4");
 
 	// system types
-	ObjectSet::Register(*registry);
+	//ObjectSet::Register(*registry);
 	String::Register(*registry);
 	Object::Register(*registry);
 	Handle::Register(*registry);

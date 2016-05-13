@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FunctionBase.h"
 #include "Detail/CallableBase.h"
 
 KAI_BEGIN

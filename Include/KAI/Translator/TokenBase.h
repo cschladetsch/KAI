@@ -5,12 +5,12 @@
 KAI_BEGIN
 
 // common to all Tokens
-template <class EnumType>
+template <class EEnumType>
 class TokenBase
 {
 public:
+	typedef EEnumType EnumType;
 	typedef TokenBase<EnumType> Self;
-	typedef EnumType EnumType;
 	typedef typename EnumType::Enum Enum;
 
 	Enum type;
@@ -34,7 +34,7 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
-		out << KAI_NAMESPACE(ToString(type));
+		//MUST out << KAI_NAMESPACE(ToString(type));
 		switch (type)
 		{
 		case EnumType::Ident:
@@ -63,7 +63,6 @@ public:
 	{
 		return out << node.ToString();
 	}
-
 };
 
 KAI_END

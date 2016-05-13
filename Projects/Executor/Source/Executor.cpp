@@ -1,5 +1,8 @@
 #include "KAI/ExecutorPCH.h"
 #include "KAI/StringStream.h"
+#include "KAI/BuiltinTypes/Pair.h"
+#include "KAI/BuiltinTypes/List.h"
+#include "KAI/BuiltinTypes/Map.h"
 
 #include <fstream>
 
@@ -592,9 +595,11 @@ void Executor::Perform(Operation::Type op)
 				Push(ForEach(ConstDeref<Map>(C), F));
 				break;
 
+			/* TODO
 			case Type::Number::HashMap:
 				Push(ForEach(ConstDeref<HashMap>(C), F));
 				break;
+				*/
 			}
 		}
 		break;
