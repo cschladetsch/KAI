@@ -29,6 +29,7 @@ KAI_END
 #include "KAI/Type/ContainerOperations.h"
 #include "KAI/Type/Traits.h"
 #include "KAI/Type/TraitMacros.h"
+#include "KAI/BuiltinTypes/Void.h"
 #include "KAI/Label.h"
 #include "KAI/Constness.h"
 #include "KAI/ObjectConstructParams.h"
@@ -38,6 +39,7 @@ KAI_END
 #include "KAI/StringStream.h"
 #include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/StorageBase.h"
+#include "KAI/BuiltinTypes/Float.h"
 #include "KAI/Pointer.h"
 #include "KAI/Algorithm.h"
 #include "KAI/Type/Deref.h"
@@ -78,10 +80,9 @@ KAI_END
 
 /*
 #include "KAI/KAIClassBuilder.h"
-
 #include "KAI/BuiltinTypes/All.h"
-p*/
-//#include "KAI/Function.h"
+#include "KAI/Function.h"
+*/
 
 
 

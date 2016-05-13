@@ -1,19 +1,24 @@
 #pragma once
 
+#include "KAI/KAI.h"
 #include "KAI/Translator/Structure.h"
 #include "KAI/Translator/LexerCommon.h"
 #include "KAI/Translator/AstNodeBase.h"
 #include "KAI/Translator/ParserBase.h"
 
+#include <boost/lexical_cast.hpp>
+
 KAI_BEGIN
+
+//using lexical_cast = boost::lexical_cast;
 
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
-template <class Lexer, class AstEnumStruct>
-class ParserCommon : public CommonBase, public HierarchicalPrinter<ParserCommon<Lexer, AstEnumStruct> >
+template <class ELexer, class AstEnumStruct>
+class ParserCommon : public CommonBase, public HierarchicalPrinter<ParserCommon<ELexer, AstEnumStruct> >
 {
 public:
-	typedef Lexer Lexer;
+	typedef ELexer Lexer;
 	typedef typename Lexer::Token TokenNode;
 	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename AstEnumStruct::Enum AstEnum;
@@ -36,7 +41,9 @@ public:
 	template <class T>
 	AstNodePtr AppendLexicalValue(TokenNode const &tok)
 	{
-		return Append(registry.New(std::lexical_cast<T>(tok.Text())));
+		return nullptr;
+		// why is registry not defined here?
+		//MUST return Append(registry.New(boost::lexical_cast<T>(tok.Text())));
 	}
 
 	template <class T>
@@ -105,7 +112,7 @@ protected:
 
 	void Append(Object Q)
 	{
-		Top()->Children.push_back(make_shared<AstNode>(AstEnum::Object, Q));
+		Top()->Children.push_back(std::make_shared<AstNode>(AstEnum::Object, Q));
 	}
 
 	AstNodePtr Pop()

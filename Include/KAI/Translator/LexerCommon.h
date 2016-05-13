@@ -132,11 +132,19 @@ public:
 		char buff0[2000];
 		va_list ap;
 		va_start(ap, fmt);
+		#ifdef WIN32
 		vsprintf_s(buff0, fmt, ap);
+		#else
+		vsprintf(buff0, fmt, ap);
+		#endif
 
 		const char *fmt1 = "%s(%d):[%d]: %s\n";
 		char buff[2000];
+		#if WIN32
 		sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
+		#else
+		sprintf(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
+		#endif
 		int beforeContext = 1;
 		int afterContext = 0;
 

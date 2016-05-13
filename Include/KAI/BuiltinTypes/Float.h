@@ -1,6 +1,4 @@
-
-#ifndef KAI_BUILTIN_TYPES_FLOAT_H
-#define KAI_BUILTIN_TYPES_FLOAT_H
+#pragma once
 
 KAI_BEGIN
 
@@ -28,9 +26,4 @@ KAI_TYPE_TRAITS(double, Number::Double
 
 KAI_END
 
-#include KAI_TEST(X)
-
-#endif // KAI_BUILTIN_TYPES_FLOAT_H
-
-//EOF
 

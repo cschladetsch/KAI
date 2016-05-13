@@ -39,7 +39,7 @@ public:
 	void SetLanguage(int);
 	int GetLanguage() const;
 
-	Pointer<Continuation> Compiler::Translate(const String &text, Structure st = Structure::Statement) const
+	Pointer<Continuation> Translate(const String &text, Structure st = Structure::Statement) const
 	{
 		switch (_language)
 		{
@@ -49,13 +49,15 @@ public:
 			return Compile<PiTranslator>(text, st);
 		case Language::Rho:
 			return Compile<RhoTranslator>(text, st);
-			return Object();
+		case Language::Tau:
+			KAI_NOT_IMPLEMENTED();
+			break;
 		}
 		return Object();
 	}
 
 	template <class Trans>
-	Pointer<Continuation> Compiler::Compile(const String &text, Structure st) const
+	Pointer<Continuation> Compile(const String &text, Structure st) const
 	{
 		if (text.empty())
 			return Object();
@@ -71,7 +73,7 @@ public:
 		return result;
 	}
 
-	Pointer<Continuation> Compiler::CompileFile(const String &fileName, Structure st) const
+	Pointer<Continuation> CompileFile(const String &fileName, Structure st) const
 	{
 		std::ifstream t(fileName.c_str());
 		std::stringstream buffer;
