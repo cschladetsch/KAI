@@ -32,7 +32,7 @@ clean:
 	@- $(RM) $(OBJS)
 
 $(LIBNAME): $(OBJS)
-	clang++ -v $(OBJS) -lm -o $(LIBNAME)
+	ar cr $(LIBNAME) $(OBJS)
 	cp $(LIBNAME) /$(HOME)/christian/lib
 
 distclean: clean
