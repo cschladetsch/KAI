@@ -1,7 +1,6 @@
-LIBNAME := core
+LIBNAME := builtins
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-CXX_SRCS += $(wildcard Builtin/*.cpp)
 
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 

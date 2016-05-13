@@ -1,8 +1,0 @@
-
-#include "KAI/KAI.h"
-
-KAI_PLATFORM_BEGIN
-
-KAI_PLATFORM_END
-
-//EOF

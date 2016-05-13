@@ -1,3 +1,7 @@
+#include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/Array.h"
+
+KAI_BEGIN
 
 void Array::RemoveAt(int index)
 {
@@ -109,4 +113,5 @@ void Array::Register(Registry &R)
 		;
 }
 
-//EOF
+KAI_END
+

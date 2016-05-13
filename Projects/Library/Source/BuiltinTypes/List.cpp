@@ -1,3 +1,7 @@
+#include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/List.h"
+
+KAI_BEGIN
 
 void List::Append(Object const &Q) 
 { 
@@ -99,4 +103,5 @@ void List::Register(Registry &R)
 }
 
 
-//EOF
+KAI_END
+

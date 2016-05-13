@@ -1,4 +1,6 @@
 #include "KAI/KAI.h"
+#include "KAI/BuiltinTypes/MapBase.h"
+#include "KAI/BuiltinTypes/Map.h"
 
 KAI_BEGIN
 
@@ -37,4 +39,4 @@ HashValue GetHash(const String &S)
 
 KAI_END
 
-//EOF
+
