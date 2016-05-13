@@ -73,6 +73,8 @@ KAI_END
 #include "KAI/BuiltinTypes/Stack.h"
 #include "KAI/StdContainers.h"
 #include "KAI/Pathname.h"
+#include "KAI/AccessorBase.h"
+#include "KAI/Accessor.h"
 
 /*
 #include "KAI/KAIClassBuilder.h"
