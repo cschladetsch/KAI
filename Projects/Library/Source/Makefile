@@ -1,4 +1,4 @@
-LIBNAME := core
+LIBNAME := core.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 CXX_SRCS += $(wildcard Builtin/*.cpp)
@@ -15,8 +15,6 @@ INCLUDE_DIRS := /$(HOME)/christian/dev/KAI/Include /usr/include /opt/local/inclu
 LIBRARY_DIRS :=
 LIBRARIES :=
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
-# -fdiagnostics-show-category=B
-
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
@@ -34,7 +32,7 @@ clean:
 	@- $(RM) $(OBJS)
 
 $(LIBNAME): $(OBJS)
-	clang++ $(OBJS) -lm -o $(LIBNAME)
+	clang++ -v $(OBJS) -lm -o $(LIBNAME)
 	cp $(LIBNAME) /$(HOME)/christian/lib
 
 distclean: clean

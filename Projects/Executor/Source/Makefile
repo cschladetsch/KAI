@@ -1,10 +1,11 @@
-LIBNAME := executor
+LIBNAME := exec.a
 CC = clang++
-C_SRCS := $(wildcard *.c)
 CXX_SRCS := $(wildcard *.cpp)
-C_OBJS := ${C_SRCS:.c=.o}
+CXX_SRCS += $(wildcard Builtin/*.cpp)
+
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
-OBJS := $(C_OBJS) $(CXX_OBJS)
+
+OBJS := $(CXX_OBJS)
 
 #HOME=Users
 HOME=home
@@ -14,8 +15,6 @@ INCLUDE_DIRS := /$(HOME)/christian/dev/KAI/Include /usr/include /opt/local/inclu
 LIBRARY_DIRS :=
 LIBRARIES :=
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
-# -fdiagnostics-show-category=B
-
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -ferror-limit=3 -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
@@ -33,9 +32,7 @@ clean:
 	@- $(RM) $(OBJS)
 
 $(LIBNAME): $(OBJS)
-	#@- echo $(OBJS)
-	#@- echo $(CXX_SRCS)
-	clang++ $(OBJS) -o $(LIBNAME)
+	ar cr $(LIBNAME) $(OBJS)
 	cp $(LIBNAME) /$(HOME)/christian/lib
 
 distclean: clean
