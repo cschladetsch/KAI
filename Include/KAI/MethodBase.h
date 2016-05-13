@@ -12,6 +12,8 @@ public:
 	MethodBase(Constness C, const Label &N) 
 		: constness(C), CallableBase<MethodBase>(N) { }
 
+	virtual ~MethodBase() { }
+
 	Type::Number GetClassType() const { return class_type; }
 	Constness GetConstness() const { return constness; }
 

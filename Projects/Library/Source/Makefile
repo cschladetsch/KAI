@@ -35,8 +35,8 @@ clean:
 $(LIBNAME): $(OBJS)
 	@- echo $(OBJS)
 	@- echo $(CXX_SRCS)
-	$(LINK.cc) $(OBJS) -o $(NAME)
-	cp $(LIBNAME) /home/christian/lib
+	clang++ $(OBJS) -o $(LIBNAME)
+	cp $(LIBNAME) /$(HOME)/christian/lib
 
 distclean: clean
 
