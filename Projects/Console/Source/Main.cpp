@@ -1,11 +1,7 @@
-#include <iostream>
 #include "KAI/KAI.h"
-#include "KAI/GetStorageBase.h"
-#include "KAI/StringStream.h"
-#include "KAI/Object.h"
-#include "KAI/GetStorageBase.h"
-#include "KAI/Registry.h"
 #include "KAI/ExecutorPCH.h"
+
+#include <iostream>
 
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
