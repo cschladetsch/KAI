@@ -1,0 +1,4 @@
+CXX_SRCS += $(wildcard Translator/*.cpp)
+CXX_SRCS += $(wildcard Translator/Pi/*.cpp)
+CXX_SRCS += $(wildcard Translator/Rho/*.cpp)
+
