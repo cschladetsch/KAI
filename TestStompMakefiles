@@ -1,9 +1,15 @@
 
-projs="Library Executor Console"
+projs="Library Executor Console Network NetworkGen"
 
 for i in $projs
 do
+	local="Tests/$i/Makefile.local"
 	cat Makefile.TestGeneric | sed "s/XXX/$i/" > Tests/$i/Makefile
+	if [ ! -e $local ] 
+	then
+		echo $local
+		touch $local
+	fi
 done
 
 

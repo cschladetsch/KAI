@@ -1,4 +1,5 @@
-TESTNAME = testLibrary
+
+LIBNAME := libLibrary.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
@@ -30,27 +31,25 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-tests: $(PCH) $(TESTNAME)
+all: $(LIBNAME)
 
 $(PCH):
 	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
-	@- echo "Made PCH"
+	@- echo "Making PCH"
 
 .cpp.o:
 	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
 	@- echo $<
-
-$(TESTNAME): $(OBJS) $(PCH)
-	$(CC) -o Test $(OBJS)
-	./Test
-
 
 clean:
 	@- $(RM) $(NAME)
 	@- $(RM) $(OBJS)
 	@- $(RM) $(PCH).pch
 
-	
+$(LIBNAME): $(OBJS) $(PCH).pch
+	@- ar cr $(LIBNAME) $(OBJS)
+	@- echo '--->'
+	cp $(LIBNAME) $(HOME)/lib
 
 depend:
 	@- echo Making dependancies
