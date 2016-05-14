@@ -30,11 +30,11 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-tests: $(TESTNAME)
+tests: $(PCH) $(TESTNAME)
 
 $(PCH):
 	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
-	@- echo "Making PCH"
+	@- echo "Made PCH"
 
 .cpp.o:
 	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
