@@ -83,7 +83,8 @@ namespace method_detail
 		void Invoke(Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			stack.Push(servant.New(Deref<T>(servant)(CallMethod(servant, meth, _args))));
+			stack.Push(servant.New(Deref<T>(servant)(CallMethod(servant, 
+				meth, _args))));
 		}
 	};
 
