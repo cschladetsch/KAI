@@ -13,11 +13,6 @@ struct Traits
 
 typedef int TypeNumber;
 
-template <typename T>
-struct Traits<const T> : Traits<T>
-{
-};
-
 template <class T>
 struct StorageType
 {
@@ -25,7 +20,7 @@ struct StorageType
 };
 
 template <class T, int E, int Q, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
-struct TraitsBase
+struct RootTraitsBase
 {
 	enum { Number = (E) };
 	enum { Props = (Q) };
