@@ -1,5 +1,4 @@
-
-LIBNAME := libNetwork.a
+TESTNAME = tests
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
@@ -31,7 +30,7 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-all: $(LIBNAME)
+all: $(TESTNAME)
 
 $(PCH):
 	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
@@ -46,15 +45,16 @@ clean:
 	@- $(RM) $(OBJS)
 	@- $(RM) $(PCH).pch
 
-$(LIBNAME): $(OBJS) $(PCH).pch
-	@- ar cr $(LIBNAME) $(OBJS)
-	@- echo '--->'
-	cp $(LIBNAME) $(HOME)/lib
+$(TESTNAME): $(OBJS) $(PCH).pch
+	@- Made $(TESTNAME)
 
 depend:
 	@- echo Making dependancies
 	@- makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
 
 distclean: clean
+
+test_run: $(TESTNAME)
+	./$(TESTNAME)
 
 # DO NOT DELETE
