@@ -8,11 +8,13 @@ CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
 OBJS := $(CXX_OBJS)
 
-#HOME=Users
-HOME=home
-BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+# For OSX
+#HOME=/Users/christian
+#BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
 
-INCLUDE_DIRS := /$(HOME)/christian/dev/KAI/Include /usr/include /opt/local/include $(BOOST_DIR)
+HOME=/home/christian
+
+INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(HOME)/dev/KAI/Include $(BOOST_DIR) 
 LIBRARY_DIRS :=
 LIBRARIES :=
 #CPPFLAGS += -fpic 
@@ -20,8 +22,9 @@ CPPFLAGS += -ferror-limit=3
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
-PCH = Precompiled.pch
-CPPFLAGS_USE_PCH = -include-pch $(PCH)
+PCH = Precompiled.h
+CPPFLAGS_USE_PCH = -include $(PCH)
+#CPPFLAGS += $(CPPFLAGS_USE_PCH)
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
@@ -29,10 +32,11 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 .PHONY: all clean distclean
 
 
-all: $(PCH) $(LIBNAME)
+#all: $(PCH) $(LIBNAME)
+all: $(LIBNAME)
 
 $(PCH):
-	$(CC) $(CPPFLAGS) -cc1 "KAI/KAI.h" -emit-pch -o $(PCH)
+	$(CC) $(CPPFLAGS) -x c-header "Precompiled.h" -o $(PCH).pch
 
 .cpp.o:
 	@ $(CC) $(CPPFLAGS) -c $< -o $@ 
@@ -45,7 +49,7 @@ clean:
 $(LIBNAME): $(OBJS)
 	@- ar cr $(LIBNAME) $(OBJS)
 	@- echo '--->'
-	cp $(LIBNAME) /$(HOME)/christian/lib
+	cp $(LIBNAME) $(HOME)/lib
 
 distclean: clean
 

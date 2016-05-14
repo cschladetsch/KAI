@@ -1,5 +1,3 @@
-#pragma once
-
 #include "KAI/ExecutorPCH.h"
 
 KAI_BEGIN

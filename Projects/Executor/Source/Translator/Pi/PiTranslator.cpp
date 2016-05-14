@@ -1,4 +1,5 @@
 #include "KAI/ExecutorPCH.h"
+#include "KAI/Operation.h"
 #include "KAI/Translator/Pi/PiTranslator.h"
 
 #include <boost/lexical_cast.hpp>
@@ -71,31 +72,31 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		break;
 
 	case PiTokenEnumType::Equiv:
-		AppendNew(Operation::Equiv);
+		AppendOp(Operation::Equiv);
 		break;
 
 	case PiTokenEnumType::Greater:
-		AppendNew(Operation::Greater);
+		AppendOp(Operation::Greater);
 		break;
 
 	case PiTokenEnumType::Rot:
-		AppendNew(Operation::Rot);
+		AppendOp(Operation::Rot);
 		break;
 
 	case PiTokenEnumType::PickN:
-		AppendNew(Operation::Pick);
+		AppendOp(Operation::Pick);
 		break;
 
 	case PiTokenEnumType::Clear:
-		AppendNew(Operation::Clear);
+		AppendOp(Operation::Clear);
 		break;
 
 	case PiTokenEnumType::GarbageCollect:
-		AppendNew(Operation::GarbageCollect);
+		AppendOp(Operation::GarbageCollect);
 		break;
 
 	case PiTokenEnumType::ToRho:
-		AppendNew(Operation::ToRho);
+		AppendOp(Operation::ToRho);
 		break;
 	}
 }
