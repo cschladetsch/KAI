@@ -15,6 +15,7 @@ namespace meta
 	struct If
 	{
 		typedef A Type;
+		typedef A type;
 	};
 
 	template <class A, class B>

@@ -1,5 +1,5 @@
 
-LIBNAME := libNetworkGen.a
+LIBNAME := libTestCore.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 

@@ -35,18 +35,7 @@ int main(int argc, char **argv)
 
 	cout << "pyro v0.1" << endl;
 
-	Registry reg(make_shared<Memory::StandardAllocator>());
-	reg.Clear();
-
-	cout << "&reg=" << &reg << endl;
-
-	cout << "add int\n";
-	auto label = Label("Signed32");
-	reg.AddClass<int>(label);
-
-	cout << "add Console\n";
-	reg.AddClass<Console>(Label("Console"));
-	Console &console = Deref<Console>(reg.New<Console>());
+	Console console;
 	console.SetLanguage(Language::Pi);
 
 	Process::trace = 0;
