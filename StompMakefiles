@@ -3,7 +3,7 @@ projs="Library Executor Console Network NetworkGen"
 
 for i in $projs
 do
-	cat Makefile.Generic | sed "s/XXX/$i/" > Projects/$i/Makefile
+	cat Makefile.Generic | sed "s/XXX/$i/" > Projects/$i/Source/Makefile
 done
 
 
