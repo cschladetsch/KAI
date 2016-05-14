@@ -1,11 +1,5 @@
 
 projs="Library Executor Console Network NetworkGen"
-test_projs="TestCore TestExecutor"
-
-for i in $test_projs
-do
-	cat Makefile.Generic | sed "s/XXX/$i/" > Tests/$i/Makefile
-done
 
 for i in $projs
 do

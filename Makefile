@@ -12,12 +12,13 @@ INSTALL_DATA = $(INSTALL) -m 644
 
 Projects = Library Executor Console 
 DIRS = $(foreach proj, $(Projects), Projects/$(proj)/Source)
+TEST_DIRS = $(foreach proj, $(Projects), Tests/$(proj))
 
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
 INSTALLDIRS = $(DIRS:%=install-%)
 CLEANDIRS = $(DIRS:%=clean-%)
-TESTDIRS = $(DIRS:%=test-%)
+TESTDIRS = $(TEST_DIRS)
 DEPENDDIRS = $(DIRS:%=depend-%)
 
 all: $(BUILDDIRS)
@@ -34,9 +35,9 @@ install: $(INSTALLDIRS) all
 $(INSTALLDIRS):
 	$(MAKE) -C $(@:install-%=%) install
 
-test: $(TESTDIRS) all
+tests: $(TESTDIRS) all
 $(TESTDIRS): 
-	$(MAKE) -C $(@:test-%=%) test
+	$(MAKE) -C $(@:test-%=%) tests
 
 clean: $(CLEANDIRS)
 $(CLEANDIRS): 
