@@ -12,7 +12,8 @@ protected:
 	Store stored;
 
 public:
-	ConstStorage(const ObjectConstructParams &P) : StorageBase(P) { SetClean(); }
+	ConstStorage(const ObjectConstructParams &P) 
+	: StorageBase(P) {}//{ SetClean(); }
 
 	typename Tr::ConstReference GetConstReference() const 
 	{ 

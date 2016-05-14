@@ -1,0 +1,9 @@
+set first=MakeFile.Generic
+
+echo $(first) | cp $(first) Project/Library/Source
+cp $(first) Project/Library/Executor
+cp $(first) Project/Library/Console
+cp $(first) Project/Library/Network
+cp $(first) Project/Library/NetworkGenerator
+
+
