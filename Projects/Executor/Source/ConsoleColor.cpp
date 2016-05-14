@@ -41,6 +41,23 @@ void Color::SetColor(Type c)
 	SetConsoleTextAttribute(hstdout, colors[c]);
 }
 
+#else
+
+// WTF this is an error with Clang++
+//#pragma message Color is not suported on this platform
+
+Color::Color()
+{
+}
+
+Color::~Color()
+{
+}
+
+void Color::SetColor(Type c)
+{
+}
+
 #endif
 
 KAI_END

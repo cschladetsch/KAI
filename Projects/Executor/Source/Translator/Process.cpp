@@ -18,7 +18,11 @@ bool Process::Fail(const char *fmt, ...)
 	va_list ap;
 	va_start(ap, fmt);
 	char buffer[1000];
+	#ifdef WIN32
 	vsprintf_s(buffer, fmt, ap);
+	#else
+	vsprintf(buffer, fmt, ap);
+	#endif
 
 	return Fail(std::string(buffer));
 }

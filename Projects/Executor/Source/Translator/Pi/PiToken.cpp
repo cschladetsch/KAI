@@ -20,6 +20,9 @@ const char *ToString(PiTokenEnumType::Enum t)
 
 		CASE_LOWER(None)
 		CASE_LOWER(Whitespace)
+		CASE_LOWER(Bool)
+		CASE_LOWER(Greater)
+		CASE_LOWER(Debug)
 		CASE_LOWER(Int)
 		CASE_LOWER(Float)
 		CASE_LOWER(String)
@@ -135,9 +138,7 @@ const char *ToString(PiTokenEnumType::Enum t)
 		CASE_REPLACE(ToRhoSequence, "rho{")
 	}
 	
-	static char b[100];
-	_itoa_s(t, b, 100, 10);
-	return b;
+	return "nocase";
 }
 
 std::ostream &operator<<(std::ostream &out, PiToken const &node)

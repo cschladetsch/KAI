@@ -2,6 +2,9 @@
 #include "KAI/Translator/Pi/PiToken.h"
 #include "KAI/Translator/Pi/PiAstNode.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+
 KAI_BEGIN
 
 const char *ToString(PiAstNodeEnumType::Enum ty)
@@ -9,6 +12,7 @@ const char *ToString(PiAstNodeEnumType::Enum ty)
 	switch (ty)
 	{
 		#define CASE(X) case PiAstNodeEnumType::Enum::X: return #X;
+		CASE(Program)
 		CASE(None)
 		CASE(Operation)
 		CASE(List)
@@ -20,7 +24,7 @@ const char *ToString(PiAstNodeEnumType::Enum ty)
 	}
 
 	static char b[100];
-	_itoa_s(ty, b, 100, 10);
+	sprintf(b, "%d", (int)ty);
 	return b;
 }
 
