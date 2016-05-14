@@ -1,5 +1,5 @@
 
-LIBNAME := libNetwork.a
+LIBNAME := libXXX.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
@@ -31,10 +31,11 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-all: $(PCH) $(LIBNAME)
+all: $(LIBNAME)
 
 $(PCH):
-	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS)
+	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
+	@- echo "Making PCH"
 
 .cpp.o:
 	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
@@ -45,7 +46,7 @@ clean:
 	@- $(RM) $(OBJS)
 	@- $(RM) $(PCH).pch
 
-$(LIBNAME): $(OBJS)
+$(LIBNAME): $(OBJS) $(PCH).pch
 	@- ar cr $(LIBNAME) $(OBJS)
 	@- echo '--->'
 	cp $(LIBNAME) $(HOME)/lib
