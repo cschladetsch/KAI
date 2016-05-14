@@ -1,0 +1,10 @@
+
+projs="Library Executor Console"
+
+for i in $projs
+do
+	cat Makefile.TestGeneric | sed "s/XXX/$i/" > Tests/$i/Makefile
+done
+
+
+
