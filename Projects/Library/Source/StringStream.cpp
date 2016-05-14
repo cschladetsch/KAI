@@ -107,6 +107,7 @@ StringStream &operator<<(StringStream &S, const String::Char C)
 	return S;
 }
 
+
 StringStream &operator<<(StringStream &stream, const Object &object)
 {
 	if (!object.Exists())
@@ -122,7 +123,7 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	{
 		if (klass->GetTypeNumber() == Type::Number::Operation)
 		{
-			stream << ConstDeref<Operation>(object).ToString();
+			stream << "anop";//ConstDeref<Operation>(object).ToString();
 		}
 		else
 		{
@@ -180,15 +181,6 @@ StringStream &operator>>(StringStream &S, bool &N)
 	S >> value;
 	N = value == "true";
 	return S;
-}
-
-
-const char *Operation::ToString(void)const
-{
-	//String T;
-	//S >> T;
-	//N = (float)atof(T.c_str());
-	return "";// S;
 }
 
 void Ends(EndsArgument)

@@ -139,10 +139,12 @@ BinaryPacket &operator>>(BinaryPacket &S, Continuation &C)
 
 void Continuation::Register(Registry &R)
 {
-	ClassBuilder<Continuation>(R, "Continuation")
-		.Methods
-		.Properties
-		// TODO ("code", &Continuation::code)
+	// TODO
+	KAI_UNUSED_1(R);
+	//ClassBuilder<Continuation>(R, "Continuation")
+		//.Methods
+		//.Properties
+		// ("code", &Continuation::code)
 		//("args", &Continuation::args)
 		//("scope", &Continuation::scope)
 		//("source_code", &Continuation::source_code)

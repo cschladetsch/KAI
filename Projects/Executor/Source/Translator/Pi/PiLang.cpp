@@ -1,6 +1,7 @@
 #include "KAI/ExecutorPCH.h"
 #include "KAI/Translator/Pi/Pi.h"
 
+#if 0
 #include <fstream>
 
 using namespace std;
@@ -66,3 +67,4 @@ bool PiLang::Translate(const char *text, Parser::Structure st)
 }
 
 KAI_END
+#endif

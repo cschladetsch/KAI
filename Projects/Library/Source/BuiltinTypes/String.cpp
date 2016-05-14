@@ -73,8 +73,6 @@ BinaryStream &operator<<(BinaryStream &S, const String &T)
 
 BinaryPacket &operator>>(BinaryPacket &S, String &T)
 {
-#error "e=herer{}}"
-	
 	int length = 0;
 	S >> length;
 	if (length == 0)

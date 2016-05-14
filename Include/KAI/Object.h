@@ -12,7 +12,7 @@ template <class T>
 typename DerefType<T>::Reference Deref(StorageBase &base);
 
 template <class T>
-typename DerefType<T>::ConstReference ConstDeref(StorageBase &base);
+typename DerefType<T>::ConstReference ConstDeref(StorageBase const &base);
 
 class Object
 {
