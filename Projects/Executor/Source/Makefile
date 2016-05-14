@@ -1,5 +1,5 @@
 
-LIBNAME := libConsole.a
+LIBNAME := libExecutor.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
