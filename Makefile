@@ -10,7 +10,7 @@ INSTALL_DATA = $(INSTALL) -m 644
 # Add your generic Compiler and Linker flags in here
 #include Makefile.conf
 
-Projects = Library Executor Console Network NetworkGenerator
+Projects = Library Executor Console 
 DIRS = $(foreach proj, $(Projects), Projects/$(proj)/Source)
 
 # the sets of directories to do various things in
@@ -18,12 +18,17 @@ BUILDDIRS = $(DIRS:%=build-%)
 INSTALLDIRS = $(DIRS:%=install-%)
 CLEANDIRS = $(DIRS:%=clean-%)
 TESTDIRS = $(DIRS:%=test-%)
+DEPENDDIRS = $(DIRS:%=depend-%)
 
 all: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
 $(BUILDDIRS):
 	$(MAKE) -C $(@:build-%=%)
 
+depend: $(DEPENDDIRS)
+$(DIRS): $(DEPENDDIRS)
+$(DEPENDDIRS):
+	$(MAKE) -C $(@:depend-%=%) depend
 
 install: $(INSTALLDIRS) all
 $(INSTALLDIRS):

@@ -33,8 +33,11 @@ public:
 	// Lifetime management
 	StorageBase *NewStorage(Registry *registry, Handle handle) const
 	{
-		return registry->GetMemorySystem().Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
-		//return Allocate<Storage<T> >(ObjectConstructParams(registry, this, handle));
+		auto born = registry->GetMemorySystem().
+			Allocate<Storage<T> >(
+				ObjectConstructParams(registry, this, handle));
+		born->SetClean();
+		return born;
 	}
 
 	void Create(StorageBase &storage) const
@@ -253,6 +256,13 @@ public:
 		return &Q.GetObject().GetStorageBase();
 	}
 };
+
+template <class T>
+Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
+{
+	auto klass = new Class<T>(name);
+	return R.AddClass(Type::Traits<T>::Number, klass);
+}
 
 #pragma warning(pop)
 
