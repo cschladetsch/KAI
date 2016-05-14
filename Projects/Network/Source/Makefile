@@ -50,6 +50,7 @@ $(LIBNAME): $(OBJS) $(PCH).pch
 	@- ar cr $(LIBNAME) $(OBJS)
 	@- echo '--->'
 	cp $(LIBNAME) $(HOME)/lib
+	@- echo '<----'
 
 depend:
 	@- echo Making dependancies
