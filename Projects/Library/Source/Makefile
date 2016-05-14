@@ -1,12 +1,13 @@
 
-LIBNAME := libcore.a
+LIBNAME := libLibrary.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-CXX_SRCS += $(wildcard BuiltinTypes/*.cpp)
 
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
 OBJS := $(CXX_OBJS)
+
+include Makefile.local
 
 # For OSX
 #HOME=/Users/christian
@@ -50,7 +51,8 @@ $(LIBNAME): $(OBJS)
 	cp $(LIBNAME) $(HOME)/lib
 
 depend:
-	makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
+	@- echo Making dependancies
+	@- makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
 
 distclean: clean
 
@@ -133,82 +135,6 @@ StringStream.o: /home/christian/dev/KAI/Include/KAI/Detail/CallableBase.h
 StringStream.o: /home/christian/dev/KAI/Include/KAI/Method.h
 StringStream.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
 StringStream.o: /home/christian/dev/KAI/Include/KAI/Operation.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/KAI.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Base.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Options.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Compiler.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Platform.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/IntegralTypes.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Utility.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Boost.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/StdContainers.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Meta/Base.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FwdDeclarations.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Base.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Net/Config.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/HierarchicalPrinter.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Handle.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/String.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FileLocation.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Common.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Properties.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Number.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/ContainerOperations.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Traits.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/TraitMacros.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Void.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Label.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Constness.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ObjectConstructParams.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Dictionary.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/IObject.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Object.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StringStream.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/ExceptionsExtended.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Pathname.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StorageBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Float.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Pointer.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Algorithm.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Deref.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Debug.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Argument.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BinaryPacket.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BinaryStream.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/TypeInfo.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory/IAllocator.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory/BaseAllocator.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BasePointer.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Storage.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/CallableBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/PropertyBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ClassBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Signed32.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Bool.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Vector4.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Registry.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/GetStorageBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Value.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Class.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Reflected.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Container.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Array.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Stack.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StdContainers.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/AccessorBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Accessor.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/KAIClassBuilder.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ClassBuilder.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Function.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Detail/CallableBase.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Method.h
-BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
 StorageBase.o: /home/christian/dev/KAI/Include/KAI/KAI.h
 StorageBase.o: /home/christian/dev/KAI/Include/KAI/Config/Base.h
 StorageBase.o: /home/christian/dev/KAI/Include/KAI/Config/Options.h
@@ -1147,6 +1073,82 @@ Label.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
 Label.o: /home/christian/dev/KAI/Include/KAI/Detail/CallableBase.h
 Label.o: /home/christian/dev/KAI/Include/KAI/Method.h
 Label.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/KAI.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Base.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Options.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Compiler.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/Platform.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/IntegralTypes.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Utility.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Boost.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Config/StdContainers.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Meta/Base.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FwdDeclarations.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Base.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Net/Config.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/HierarchicalPrinter.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Handle.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/String.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FileLocation.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Common.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Properties.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Number.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/ContainerOperations.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Traits.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/TraitMacros.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Void.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Label.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Constness.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ObjectConstructParams.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Dictionary.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/IObject.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Object.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StringStream.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/ExceptionsExtended.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Pathname.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StorageBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Float.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Pointer.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Algorithm.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Type/Deref.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Debug.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Argument.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BinaryPacket.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BinaryStream.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/TypeInfo.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory/IAllocator.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Memory/BaseAllocator.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BasePointer.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Storage.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/CallableBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/PropertyBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ClassBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Signed32.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Bool.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Vector4.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Registry.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/GetStorageBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Value.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Class.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Reflected.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Container.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Array.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Stack.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/StdContainers.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/AccessorBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Accessor.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/KAIClassBuilder.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/ClassBuilder.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Function.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Detail/CallableBase.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/Method.h
+BinaryPacket.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
 Debug.o: /home/christian/dev/KAI/Include/KAI/KAI.h
 Debug.o: /home/christian/dev/KAI/Include/KAI/Config/Base.h
 Debug.o: /home/christian/dev/KAI/Include/KAI/Config/Options.h
