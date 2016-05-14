@@ -8,6 +8,8 @@
 #include <Windows.h>
 #endif
 
+using namespace std;
+
 KAI_BEGIN
 
 void DebugTrace(const char *text)
@@ -17,12 +19,13 @@ void DebugTrace(const char *text)
 	OutputDebugStringA("\n");
 #endif
 
-	std::cerr << text << std::endl;
+	cerr << text << endl;
 }
 
 KAI_END
 
 USING_NAMESPACE_KAI
+
 
 static Color _color;
 
@@ -30,8 +33,19 @@ int main(int argc, char **argv)
 {
 	KAI_UNUSED_2(argc, argv);
 
-	Registry reg(std::make_shared<Memory::StandardAllocator>());
-	reg.AddClass<Console>("Console");
+	cout << "pyro v0.1" << endl;
+
+	Registry reg(make_shared<Memory::StandardAllocator>());
+	reg.Clear();
+
+	cout << "&reg=" << &reg << endl;
+
+	cout << "add int\n";
+	auto label = Label("Signed32");
+	reg.AddClass<int>(label);
+
+	cout << "add Console\n";
+	reg.AddClass<Console>(Label("Console"));
 	Console &console = Deref<Console>(reg.New<Console>());
 	console.SetLanguage(Language::Pi);
 

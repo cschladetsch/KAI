@@ -33,7 +33,7 @@ clean:
 
 $(EXENAME): $(OBJS) 
 	clang++ Main.o $(LDFLAGS) -o $(EXENAME)
-	rm -f $(HOME)/bin/$(EXENAME) $(HOME)/bin/old
+	#rm -f $(HOME)/bin/$(EXENAME) $(HOME)/bin/old
 	cp $(EXENAME) $(HOME)/bin
 
 distclean: clean

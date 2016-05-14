@@ -19,7 +19,8 @@ private:
 	ObjectColor::Color color;
 
 public:
-	StorageBase(const ObjectConstructParams &P) : Object(P), switches(DefaultSwitches) { }
+	StorageBase(const ObjectConstructParams &P) 
+		: Object(P), switches(DefaultSwitches) { }
 
 	virtual ~StorageBase() { }
 

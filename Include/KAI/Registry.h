@@ -14,6 +14,9 @@ class Tree;
 //#define KAI_HASH_TABLE_REGISTRY
 #define KAI_BOOST_UNORDERED_REGISTRY
 
+template <class T>
+Pointer<ClassBase const *> NewClass(Registry &R, const Label &name);
+
 class Registry
 {
 public:
@@ -70,9 +73,11 @@ public:
 	const Classes &GetClasses() const { return classes; }
 
 	template <class T>
-	void AddClass(const Label &N)
+	Pointer<ClassBase const *> AddClass(const Label &N)
 	{
-		AddClass<T>(N);
+		//typedef Type::Traits<T> Tr;
+		//AddClass(Tr, new Class<T>());
+		return NewClass<T>(*this, N);
 	}
 
 	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);

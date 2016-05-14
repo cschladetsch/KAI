@@ -155,7 +155,8 @@ void StorageBase::SetColorRecursive(ObjectColor::Color color, HandleSet& handles
 
 bool StorageBase::SetColor(ObjectColor::Color color)
 {
-	if (!GetRegistry()->SetColor(*this, color))
+	auto reg = GetRegistry();
+	if (!reg->SetColor(*this, color))
 		return false;
 
 	this->color = color;
