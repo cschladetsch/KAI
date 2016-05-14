@@ -74,9 +74,7 @@ const char *ToString(RhoTokenEnumType::Enum val)
 		CASE(Debug)
 	}
 
-	static char b[100] = "UnnamedRhoToken #";
-	_itoa_s(val, b + strlen(b), 100 - strlen(b), 10);
-	return b;
+	return "Unnamed";
 }
 
 std::ostream &operator<<(std::ostream &out, RhoToken const &node)

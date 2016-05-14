@@ -122,7 +122,7 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 		return;
 	}
 
-	Fail("Unsupported node %s", node->ToString());
+	Fail("Unsupported node %s", node->ToString().c_str());
 	KAI_NOT_IMPLEMENTED();
 }
 
@@ -200,7 +200,7 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 		return;
 	}
 
-	Fail("Unsupported node %s", node->ToString());
+	Fail("Unsupported node %s", node->ToString().c_str());
 	KAI_NOT_IMPLEMENTED();
 }
 

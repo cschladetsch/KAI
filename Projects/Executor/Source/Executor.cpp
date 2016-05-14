@@ -889,7 +889,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Object arg = Pop();
 			Object from = Pop();
-			Object result = from.GetClass()->Minus(result, arg);
+			Object result = from.GetClass()->Minus(from, arg);
 			from.GetClass()->Assign(from, result);
 		}
 		break;
@@ -898,7 +898,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Object arg = Pop();
 			Object from = Pop();
-			Object result = from.GetClass()->Multiply(result, arg);
+			Object result = from.GetClass()->Multiply(from, arg);
 			from.GetClass()->Assign(from, result);
 		}
 		break;
@@ -907,7 +907,7 @@ void Executor::Perform(Operation::Type op)
 		{
 			Object arg = Pop();
 			Object from = Pop();
-			Object result = from.GetClass()->Divide(result, arg);
+			Object result = from.GetClass()->Divide(from, arg);
 			from.GetClass()->Assign(from, result);
 		}
 		break;

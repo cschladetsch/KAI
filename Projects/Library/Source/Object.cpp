@@ -711,6 +711,11 @@ Object operator/(Object const &A, Object const &B)
 	return A.GetClass()->Divide(A,B);
 }
 
+Object Object::NewFromTypeNumber(Type::Number N) const
+{
+	return registry->NewFromTypeNumber(N);
+}
+
 KAI_END
 
 //EOF

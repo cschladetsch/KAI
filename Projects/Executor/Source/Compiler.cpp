@@ -35,9 +35,13 @@ void Compiler::AddOperation(int N, const String &S)
 
 void Compiler::Register(Registry &R, const char *name)
 {
+	KAI_UNUSED_2(R, name);
+	/*
 	ClassBuilder<Compiler>(R, name)
 		.Methods
 		;
+*/
+
 }
 
 void Compiler::SetLanguage(int n)

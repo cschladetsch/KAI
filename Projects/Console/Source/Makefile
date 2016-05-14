@@ -32,8 +32,8 @@ clean:
 	@- $(RM) $(OBJS)
 
 $(EXENAME): $(OBJS) 
-	clang++ Main.o $(LDFLAGS) -o console
-	cp conole /$(HOME)/bin
+	clang++ Main.o $(LDFLAGS) -o $(EXENAME)
+	cp $(EXENAME) $(HOME)/bin
 
 distclean: clean
 
