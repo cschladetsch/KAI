@@ -19,7 +19,7 @@ KAI_INCLUDE = $(HOME)/dev/KAI/Include
 INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
 LIBRARY_DIRS :=
 LIBRARIES :=
-CPPFLAGS += -ferror-limit=3 
+CPPFLAGS += -ferror-limit=5 
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
@@ -35,7 +35,7 @@ all: $(PCH) $(LIBNAME)
 
 $(PCH):
 	@- echo "Making PCH"
-	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
+	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
 
 .cpp.o:
 	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
