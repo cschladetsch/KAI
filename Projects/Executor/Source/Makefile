@@ -2,7 +2,6 @@
 LIBNAME := libexec.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-CXX_SRCS += $(wildcard BuiltinTypes/*.cpp)
 
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
