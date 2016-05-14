@@ -1,5 +1,7 @@
 #pragma once
 
+#include <assert.h>
+
 KAI_BEGIN
 
 #pragma warning(push)
@@ -36,6 +38,8 @@ public:
 		auto born = registry->GetMemorySystem().
 			Allocate<Storage<T> >(
 				ObjectConstructParams(registry, this, handle));
+		assert(born != nullptr);
+
 		born->SetClean();
 		return born;
 	}
