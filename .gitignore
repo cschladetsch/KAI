@@ -10,6 +10,8 @@ KAI.VC.*
 
 *.orig
 *.swp
+*.bak
+*.pch.*
 
 Projects/Console/Source/console
 
