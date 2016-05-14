@@ -31,10 +31,11 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-all: $(PCH) $(LIBNAME)
+all: $(LIBNAME)
 
 $(PCH):
-	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS)
+	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 2> /dev/null
+	@- echo "Making PCH"
 
 .cpp.o:
 	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
@@ -45,7 +46,7 @@ clean:
 	@- $(RM) $(OBJS)
 	@- $(RM) $(PCH).pch
 
-$(LIBNAME): $(OBJS)
+$(LIBNAME): $(OBJS) $(PCH).pch
 	@- ar cr $(LIBNAME) $(OBJS)
 	@- echo '--->'
 	cp $(LIBNAME) $(HOME)/lib
@@ -57,122 +58,3 @@ depend:
 distclean: clean
 
 # DO NOT DELETE
-
-Main.o: /home/christian/dev/KAI/Include/KAI/KAI.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/Base.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/Options.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/Compiler.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/Platform.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/IntegralTypes.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Utility.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Boost.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Config/StdContainers.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Meta/Base.h
-Main.o: /home/christian/dev/KAI/Include/KAI/FwdDeclarations.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Base.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Net/Config.h
-Main.o: /home/christian/dev/KAI/Include/KAI/HierarchicalPrinter.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Handle.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/String.h
-Main.o: /home/christian/dev/KAI/Include/KAI/FileLocation.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Exception/Common.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/Properties.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/Number.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/ContainerOperations.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/Traits.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/TraitMacros.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Void.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Label.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Constness.h
-Main.o: /home/christian/dev/KAI/Include/KAI/ObjectConstructParams.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Dictionary.h
-Main.o: /home/christian/dev/KAI/Include/KAI/IObject.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Object.h
-Main.o: /home/christian/dev/KAI/Include/KAI/StringStream.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Exception/ExceptionsExtended.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Pathname.h
-Main.o: /home/christian/dev/KAI/Include/KAI/StorageBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Float.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Pointer.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Algorithm.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Type/Deref.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Debug.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Argument.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BinaryPacket.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BinaryStream.h
-Main.o: /home/christian/dev/KAI/Include/KAI/TypeInfo.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Memory.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Memory/IAllocator.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Memory/BaseAllocator.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BasePointer.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Storage.h
-Main.o: /home/christian/dev/KAI/Include/KAI/CallableBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/PropertyBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/ClassBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Exception/Exceptions.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Signed32.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Bool.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Vector4.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Registry.h
-Main.o: /home/christian/dev/KAI/Include/KAI/GetStorageBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Value.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Class.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Reflected.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Container.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Array.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BuiltinTypes/Stack.h
-Main.o: /home/christian/dev/KAI/Include/KAI/StdContainers.h
-Main.o: /home/christian/dev/KAI/Include/KAI/AccessorBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Accessor.h
-Main.o: /home/christian/dev/KAI/Include/KAI/KAIClassBuilder.h
-Main.o: /home/christian/dev/KAI/Include/KAI/ClassBuilder.h
-Main.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Function.h
-Main.o: /home/christian/dev/KAI/Include/KAI/FunctionBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Detail/CallableBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Method.h
-Main.o: /home/christian/dev/KAI/Include/KAI/MethodBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/ExecutorPCH.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Tree.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Continuation.h
-Main.o: /home/christian/dev/KAI/Include/KAI/SignedContinuation.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Operation.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Executor.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Compiler.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Base.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Config.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Common.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Slice.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Process.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/LexerBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/CommonBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/TokenBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/AstNodeBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/LexerCommon.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/ParserBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/ParserCommon.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Structure.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Language.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Console.h
-Main.o: /home/christian/dev/KAI/Include/KAI/ConsoleColor.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/Pi.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiToken.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiAstNode.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiLexer.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiParser.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiTranslator.h
-Main.o: /home/christian/dev/KAI/Include/KAI/KAICommon.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/TranslatorBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/TranslatorCommon.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Pi/PiLang.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/Rho.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoToken.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoLexer.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoAstNode.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoParser.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoTranslator.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Rho/RhoLang.h
-Main.o: /home/christian/dev/KAI/Include/KAI/BinBase.h
-Main.o: /home/christian/dev/KAI/Include/KAI/Translator/Precompiled.h
