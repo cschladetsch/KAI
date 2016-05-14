@@ -1,5 +1,5 @@
 
-LIBNAME := libcore.a
+LIBNAME := XXX
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 CXX_SRCS += $(wildcard BuiltinTypes/*.cpp)

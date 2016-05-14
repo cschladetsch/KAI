@@ -15,7 +15,7 @@ private:
 	Storage _string;
 
 public:
-	String() = default;
+	String() { }
 	template <class II>
 	String(II A, II B) { _string.assign(A,B); }
 	String(const Char *S) { if (S != 0) _string = S; }

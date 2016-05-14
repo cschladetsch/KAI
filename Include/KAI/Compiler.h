@@ -1,16 +1,10 @@
 #pragma once
 
-#include <string>
-#include <fstream>
-#include <streambuf>
-
 #include "KAI/ExecutorPCH.h"
 #include "KAI/Translator/Base.h"
 #include "KAI/Translator/Common.h"
 #include "KAI/Translator/Structure.h"
 #include "KAI/Translator/Language.h"
-//#include "KAI/Translator/Pi/PiTranslator.h"
-//#include "KAI/Translator/Rho/RhoTranslator.h"
 
 KAI_BEGIN
 
