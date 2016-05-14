@@ -20,6 +20,9 @@ INSTALLDIRS = $(DIRS:%=install-%)
 CLEANDIRS = $(DIRS:%=clean-%)
 TESTDIRS = $(TEST_DIRS)
 DEPENDDIRS = $(DIRS:%=depend-%)
+DEPENDDIRS += $(TEST_DIRS:%=depend-%)
+
+#MAKE = make -s
 
 all: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
@@ -30,6 +33,7 @@ depend: $(DEPENDDIRS)
 $(DIRS): $(DEPENDDIRS)
 $(DEPENDDIRS):
 	$(MAKE) -C $(@:depend-%=%) depend
+	$(MAKE) -C $(@:test-%=%) depend
 
 install: $(INSTALLDIRS) all
 $(INSTALLDIRS):
