@@ -1,0 +1,8 @@
+
+projs="Library Exectutor Console Network NetworkGen"
+
+for i in $proj
+do
+	copy Generic.Makefile | sed 's/XXX/$i > Project/$i/Source/Makefile
+done
+

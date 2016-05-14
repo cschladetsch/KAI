@@ -1,8 +1,0 @@
-
-projs="Core Exec Console Network NetworkGenerator"
-
-for i in $projs
-do
-	cat Makefile.Generic | sed 's/XXX/$i' > Project/Source/Makefile
-done
-
