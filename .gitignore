@@ -5,10 +5,13 @@
 KAI.VC.*
 *.i
 *.a
+*.so
 /Intermediate/
 
 *.orig
 *.swp
+
+Projects/Console/Source/console
 
 # User-specific files
 *.suo
