@@ -3,11 +3,11 @@ LIBNAME := libNetwork.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
-CXX_OBJS := ${CXX_SRCS:.cpp=.o}
+include Makefile.local
 
+CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(CXX_OBJS)
 
-include Makefile.local
 
 # For OSX
 #HOME=/Users/christian
