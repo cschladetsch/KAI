@@ -1,3 +1,4 @@
+# used to create libs only
 
 LIBNAME := libLibrary.a
 CC = clang++
@@ -43,23 +44,20 @@ $(PCH):
 	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
 
 .cpp.o:
-	@+ echo $<
-	@- $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
+	$(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
 
 clean:
-	@- $(RM) $(NAME)
-	@- $(RM) $(OBJS)
-	@- $(RM) $(PCH).pch
+	$(RM) $(NAME)
+	$(RM) $(OBJS)
+	$(RM) $(PCH).pch
 
 $(LIBNAME): $(OBJS) $(PCH).pch
-	@- ar cr $(LIBNAME) $(OBJS)
-	echo '--->'
-	@+ cp $(LIBNAME) $(HOME)/lib
-	echo '<----'
+	ar cr $(LIBNAME) $(OBJS)
+	cp $(LIBNAME) $(HOME)/lib
 
 depend:
 	@- echo Making dependancies
-	@- makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
+	makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
 
 distclean: clean
 
