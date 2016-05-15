@@ -15,7 +15,7 @@ CPPFLAGS += -ferror-limit=3 -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(
 BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
 INCLUDE_DIRS := $(HOME)/dev/KAI/Include /usr/include /opt/local/include $(BOOST_DIR)
 
-LIBS = Library Executor 
+LIBS = Executor Library 
 KAI_LIBRARY_DIR = $(HOME)/lib
 LDFLAGS += -L$(KAI_LIBRARY_DIR)
 LDFLAGS += $(foreach library,$(LIBS),-l$(library))

@@ -8,7 +8,7 @@ INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
 # Add your generic Compiler and Linker flags in here
-#include Makefile.conf
+include Makefile.conf
 
 Projects = Library Executor Console 
 DIRS = $(foreach proj, $(Projects), Projects/$(proj)/Source)
