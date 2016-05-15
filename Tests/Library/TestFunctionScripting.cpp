@@ -1,5 +1,6 @@
 #include "TestBase.h"
 #include "KAI/Console.h"
+#include "KAI/Function.h"
 
 using namespace kai;
 using namespace std;
@@ -33,8 +34,8 @@ Object Function_3(Object object)
 
 TEST(TestFunctionScripting, Test)
 {
-	// we can give the KAI runtime a custom allocator to use. we will just use
-	// the standard one which uses malloc and free
+	// we can give the KAI runtime a custom allocator to use. 
+	// we will just use the standard one which uses malloc and free
 	Console console;
 	console.SetLanguage(Language::Rho);
 

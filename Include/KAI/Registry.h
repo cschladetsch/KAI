@@ -73,10 +73,13 @@ public:
 	const Classes &GetClasses() const { return classes; }
 
 	template <class T>
+	Pointer<ClassBase const *> AddClass()
+	{
+		return NewClass<T>(*this, Label(String(Type::Traits<T>::Name())));
+	}
+	template <class T>
 	Pointer<ClassBase const *> AddClass(const Label &N)
 	{
-		//typedef Type::Traits<T> Tr;
-		//AddClass(Tr, new Class<T>());
 		return NewClass<T>(*this, N);
 	}
 
@@ -290,3 +293,4 @@ Storage<T> *NewStorage(Registry &R)
 #	endif
 
 KAI_END
+

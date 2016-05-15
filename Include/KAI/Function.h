@@ -2,11 +2,12 @@
 
 #include "FunctionBase.h"
 #include "Detail/CallableBase.h"
+#include "Meta/Base.h"
 
 KAI_BEGIN
 
-namespace function_detail
-{
+//namespace function_detail
+//{
 	using namespace detail;
 
 	template <class... Args>
@@ -27,14 +28,14 @@ namespace function_detail
 	};
 
 	template <class Ret, class... Args>
-	struct Fun : FunctionBase
+	struct NonVoidFun : FunctionBase
 	{
 		typedef Ret (*Func)(Args...);
 		Func fun;
 		tuple<Args...> _args;
 		static constexpr int arity = sizeof...(Args);
 
-		Fun(Func f, const Label &N) : fun(f), FunctionBase(N) { }
+		NonVoidFun(Func f, const Label &N) : fun(f), FunctionBase(N) { }
 
 		void Invoke(Registry &reg, Stack &stack)
 		{
@@ -44,19 +45,20 @@ namespace function_detail
 	};
 
 	template <class Ret, class... Args>
-	struct Func
+	struct FunctionSelect
 	{
+		typedef Ret (*Fun)(Args...);
 		enum { VoidRet = SameType<Ret, void>::value };
 		typedef typename If<VoidRet
 			, VoidFun<Args...>
-			, Fun<Ret , Args...> >::type Type;
+			, NonVoidFun<Ret , Args...> >::Type Type;
 	};
-} // function_detail
+//} // function_detail
 
 template <class R, class... Args>
-struct Function : function_detail::Func<R,Args...>::Type
+struct Function : FunctionSelect<R, Args...>::Type
 {
-	typedef typename function_detail::Func<R,Args...>::Type Parent;
+	typedef typename FunctionSelect<R,Args...>::Type Parent;
 	Function(typename Parent::Func M, const Label &N) : Parent(M, N) { }
 };
 
@@ -70,9 +72,19 @@ inline FunctionBase *AddDescription(FunctionBase *F, const char *D)
 }
 
 template <class R, class... Args>
-FunctionBase *MakeFunction(R (*func)(Args...), const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
+FunctionBase *MakeFunction(R (*Fun)(Args...), const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
 {
-	return AddDescription(new Function<R, Args...>(func, L), D);
+	return AddDescription(new Function<R, Args...>(Fun, L), D);
+}
+
+/// Make a new function object, add it to the given object
+template <class R, class... Args>
+Pointer<BasePointer<FunctionBase> > AddFunction(Object &root, R(*Fun)(Args...), const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
+{
+	auto fun = MakeFunction(Fun, L, D);
+	auto ptr = root.New<BasePointer<FunctionBase> >(fun);
+	root.SetChild(L, ptr);
+	return ptr;
 }
 
 KAI_END
