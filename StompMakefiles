@@ -1,5 +1,5 @@
 
-projs="Library Executor Console Network NetworkGen"
+projs="Library Executor Network NetworkGen"
 
 for i in $projs
 do

@@ -1,5 +1,6 @@
 #include "TestBase.h"
 #include "KAI/Tree.h"
+#include "KAI/BuiltinTypes/List.h"
 #include "KAI/DotGraph.h"
 
 using namespace kai;
@@ -19,6 +20,11 @@ struct TriColor : ::testing::Test
 			;
 	}
 
+protected:
+	void SetUp() override { }
+	void TearDown() override { }
+
+public:
 	void Test();
 	void TestNested();
 	void TestMultipleReferences();
@@ -39,11 +45,11 @@ struct TriColorStruct
 };
 
 KAI_BEGIN
-KAI_TYPE_TRAITS(TriColorStruct, 666, Properties::Nothing);
-KAI_TYPE_TRAITS(TriColor, 777, Properties::Nothing);
+KAI_TYPE_TRAITS(TriColorStruct, 666, 0);
+KAI_TYPE_TRAITS(TriColor, 777, 0);
 KAI_END
 
-TEST_F(TestTriColor, TestRegistration)
+TEST_F(TriColor, TestRegistration)
 {
 	Registry R;
 	Tree tree;
@@ -113,7 +119,7 @@ TEST_F(TestTriColor, TestRegistration)
 
 	root.RemoveChild("tcs");
 
-	TriColor(R);
+	R.TriColor();
 
 	ASSERT_TRUE(root.Exists());
 	ASSERT_FALSE(tcs.Exists());
@@ -200,7 +206,7 @@ TEST_F(TestTriColor, TestRegistration)
 	ASSERT_FALSE(tcs.Exists());
 }
 
-TEST_F(TestTriColor, TestNested)
+TEST_F(TriColor, TestNested)
 {
 	Registry R;
 	Tree tree;
@@ -279,7 +285,7 @@ TEST_F(TestTriColor, TestNested)
 	ASSERT_TRUE(!T1.Exists());
 }
 
-TEST_F(TestTriColor, TestMultipleReferences)
+TEST_F(TriColor, TestMultipleReferences)
 {
 	Registry R;
 	Tree tree;
@@ -389,7 +395,7 @@ TEST_F(TestTriColor, TestMultipleReferences)
 	ASSERT_TRUE(C);
 }
 
-TEST_F(TestTriColor, TestOverride)
+TEST_F(TriColor, TestOverride)
 {
 	Registry R;
 	Tree tree;
@@ -445,7 +451,7 @@ TEST_F(TestTriColor, TestOverride)
 	ASSERT_TRUE(N2);
 }
 
-TEST_F(TestTriColor, TestContainers)
+TEST_F(TriColor, TestContainers)
 {
 	Registry R;
 	Tree tree;
@@ -488,10 +494,5 @@ TEST_F(TestTriColor, TestContainers)
 	//{
 	//	int N = *num;
 	//}
-}
-
-void TestTriColor::TriColor(Registry &R)
-{
-	R.TriColor();
 }
 

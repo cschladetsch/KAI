@@ -1,5 +1,7 @@
 #pragma once
 
+#include "KAI/RootType.h"
+
 KAI_BEGIN
 
 namespace detail
@@ -36,6 +38,27 @@ namespace detail
 		return CallMethodImpl(q, forward<F>(f), forward<Tuple>(t), idx{});
 	}
 
+	template <class T>
+	struct MakeAssignment
+	{
+		static void Perform(T &A, const Object &B)
+		{
+			A = Deref<T>(B);
+		}
+	};
+
+	template <class T>
+	struct MakeAssignment<Pointer<T> >
+	{
+		static void Perform(Pointer<T> &A, const Object &B)
+		{
+			A = B;
+		}
+	};
+
+	template <class T>
+	struct MakeAssignment<ConstPointer<T> > : MakeAssignment<T> { };
+
 	// pull arguments into a tuple, recursively
 	template <int N>
 	struct Add
@@ -43,22 +66,13 @@ namespace detail
 		template <class... Args>
 		static void Arg(Stack &input, tuple<Args...> &args)
 		{
-			typedef decltype(std::get<N>(args)) Ty;
+			typedef typename RootType<decltype(std::get<N>(args))>::Type Ty;
 			Object back = input.Top();
 			input.Pop();
-			get<N>(args) = Deref<Ty>(back);
+			MakeAssignment<Ty>::Perform(get<N>(args), back);
 			Add<N-1>::Arg(input, args);
 		}
 	};
-
-	template <class T>
-	struct BaseType { typedef T type; };
-
-	template <class T>
-	struct BaseType<T&> { typedef T type; };
-
-	template <class T> 
-	struct BaseType<T&&> { typedef T type; };
 
 	// pull last argument
 	template <>
@@ -67,10 +81,10 @@ namespace detail
 		template <class...Args>
 		static void Arg(Stack &input, tuple<Args...> &args)
 		{
-			typedef typename BaseType<decltype(std::get<0>(args))>::type Ty;
+			typedef typename RootType<decltype(std::get<0>(args))>::Type Ty;
 			Object back = input.Top();
 			input.Pop();
-			get<0>(args) = Deref<Ty>(back);
+			MakeAssignment<Ty>::Perform(get<0>(args), back);
 		}
 	};
 	template <>
