@@ -19,7 +19,12 @@ KAI_INCLUDE = $(HOME)/dev/KAI/Include
 INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
 LIBRARY_DIRS :=
 LIBRARIES :=
-CPPFLAGS += -ferror-limit=5 
+
+# only needed for testing
+CPPFLAGS += -frtti -fexceptions
+
+#  this is all generic
+CPPFLAGS += -ferror-limit=5
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
@@ -35,11 +40,11 @@ all: $(PCH) $(LIBNAME)
 
 $(PCH):
 	@- echo "Making PCH"
-	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
+	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
 
 .cpp.o:
-	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
-	@- echo $<
+	@+ echo $<
+	@- $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
 
 clean:
 	@- $(RM) $(NAME)
@@ -48,9 +53,9 @@ clean:
 
 $(LIBNAME): $(OBJS) $(PCH).pch
 	@- ar cr $(LIBNAME) $(OBJS)
-	@- echo '--->'
-	cp $(LIBNAME) $(HOME)/lib
-	@- echo '<----'
+	echo '--->'
+	@+ cp $(LIBNAME) $(HOME)/lib
+	echo '<----'
 
 depend:
 	@- echo Making dependancies
