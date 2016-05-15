@@ -38,12 +38,11 @@ $(INSTALLDIRS):
 
 tests: $(TESTDIRS) all
 $(TESTDIRS):
-	$(MAKE) -C $(@:test-%=%) tests
+	$(MAKE) -C $(@:tests-%=%) test
 
 clean: $(CLEANDIRS)
 $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
-
 
 .PHONY: subdirs $(DIRS)
 .PHONY: subdirs $(BUILDDIRS)

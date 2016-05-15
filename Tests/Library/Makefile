@@ -1,10 +1,11 @@
 TESTNAME := TestLibrary
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-CXX_OBJS := ${CXX_SRCS:.cpp=.o}
-OBJS := $(CXX_OBJS)
 
 include Makefile.local
+
+CXX_OBJS := ${CXX_SRCS:.cpp=.o}
+OBJS := $(CXX_OBJS)
 
 # For OSX
 #HOME=/Users/christian
@@ -20,9 +21,14 @@ INCLUDE_DIRS += /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR)
 LIBRARY_DIRS := $(HOME)/lib /usr/local/lib
 LIBRARIES := Executor Library gtest
 
+
+#only needed for tests
+CPPFLAGS += i-fexceptions -frtti
+
+#these are general
 CPPFLAGS += -g
 CPPFLAGS += -std=c++1y
-CPPFLAGS += -ferror-limit=5 -fpermisive
+CPPFLAGS += -ferror-limit=5 -fpermissive
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE 
 CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
@@ -35,7 +41,7 @@ LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
 
 .PHONY: all clean distclean
 
-all: $(PCH) $(LIBNAME)
+all: $(PCH).pch $(TESTNAME)
 
 $(PCH).pch: $(PCH).h
 	@- echo "Making PCH"
@@ -51,7 +57,7 @@ clean:
 	@- $(RM) $(PCH).pch
 
 $(TESTNAME): $(OBJS) 
-	cp $(CC) -o Main $(OBJS) $(LDFLAGS) -o $(TESTNAME)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(TESTNAME)
 
 depend:
 	@- echo Making dependancies
