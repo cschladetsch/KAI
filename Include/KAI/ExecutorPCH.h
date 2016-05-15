@@ -15,3 +15,4 @@
 #include "KAI/Console.h"
 #include "KAI/BinBase.h"
 #include "KAI/Translator/Precompiled.h"
+#include "KAI/BinBase.h"

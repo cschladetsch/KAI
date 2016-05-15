@@ -53,6 +53,7 @@ public:
 		Methods.builder = this;
 		Methods.Properties.builder = this;
 	}
+
 	ClassBuilder(Registry &R, const Label &N, Object const &Q, const Pathname &P) : registry(&R), root(Q), path(P), klass(new Class<T>(N))
 	{ 
 		Methods.builder = this;

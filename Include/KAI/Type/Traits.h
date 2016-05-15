@@ -20,7 +20,7 @@ struct StorageType
 };
 
 template <class T, int E, int Q, class St = typename StorageType<T>::Type, class Ref = T &, class ConstRef = T const &>
-struct RootTraitsBase
+struct TraitsBase
 {
 	enum { Number = (E) };
 	enum { Props = (Q) };
@@ -334,7 +334,7 @@ struct RootTraitsBase
 		{
 		}
 		template <class A, class B>
-		static void ForEachContained(A, B)
+		static void ForEachContained(A , B )
 		{
 			//KAI_NOT_IMPLEMENTED();
 		}
@@ -404,21 +404,4 @@ struct RootTraitsBase
 
 KAI_TYPE_END
 
-
-namespace boost
-{
-	/*
-	inline size_t hash_value(KAI_NAMESPACE(Handle) const &H)
-	{
-		throw;
-		//return H.GetValue();
-	}
-
-	inline size_t hash_value(::kai::Number const &H)
-	{
-		throw;
-		//return H.GetValue();
-	}
-	*/
-}
 
