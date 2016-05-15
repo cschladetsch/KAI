@@ -1,4 +1,6 @@
+#include "Precompiled.h"
 #include "TestBase.h"
+#include "KAI/BuiltinTypes/List.h"
 #include "KAI/Console.h"
 
 using namespace kai;

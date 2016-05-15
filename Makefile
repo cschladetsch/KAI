@@ -20,7 +20,6 @@ INSTALLDIRS = $(DIRS:%=install-%)
 CLEANDIRS = $(DIRS:%=clean-%)
 TESTDIRS = $(TEST_DIRS)
 DEPENDDIRS = $(DIRS:%=depend-%)
-DEPENDDIRS += $(TEST_DIRS:%=depend-%)
 
 #MAKE = make -s
 
@@ -44,9 +43,8 @@ $(TESTDIRS):
 	$(MAKE) -C $(@:test-%=%) tests
 
 clean: $(CLEANDIRS)
-$(CLEANDIRS): 
 	$(MAKE) -C $(@:clean-%=%) clean
-
+	
 .PHONY: subdirs $(DIRS)
 .PHONY: subdirs $(BUILDDIRS)
 .PHONY: subdirs $(INSTALLDIRS)

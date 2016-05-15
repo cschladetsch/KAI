@@ -1,61 +1,40 @@
-
-LIBNAME := libConsole.a
+EXENAME := console
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
 OBJS := $(CXX_OBJS)
 
-include Makefile.local
-
-# For OSX
-#HOME=/Users/christian
-#BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
-
+#HOME=Users
 HOME=/home/christian
 
-KAI_INCLUDE = $(HOME)/dev/KAI/Include
-INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
-LIBRARY_DIRS :=
-LIBRARIES :=
-CPPFLAGS += -ferror-limit=5 
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
-CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
+CPPFLAGS += -DKAI_NAMESPACE_NAME=kai  -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g 
+CPPFLAGS += -ferror-limit=3 -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
-PCH = Precompiled
-USE_PCH = -include-pch $(PCH).pch
+BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+INCLUDE_DIRS := $(HOME)/dev/KAI/Include /usr/include /opt/local/include $(BOOST_DIR)
 
-LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
-LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
+LIBS = Library Executor 
+KAI_LIBRARY_DIR = $(HOME)/lib
+LDFLAGS += -L$(KAI_LIBRARY_DIR)
+LDFLAGS += $(foreach library,$(LIBS),-l$(library))
 
 .PHONY: all clean distclean
 
-all: $(PCH) $(LIBNAME)
-
-$(PCH):
-	@- echo "Making PCH"
-	@- $(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
+all: $(EXENAME)
 
 .cpp.o:
-	@ $(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
-	@- echo $<
+	$(CC) $(CPPFLAGS) -c $< -o $@ 
 
 clean:
 	@- $(RM) $(NAME)
 	@- $(RM) $(OBJS)
-	@- $(RM) $(PCH).pch
 
-$(LIBNAME): $(OBJS) $(PCH).pch
-	@- ar cr $(LIBNAME) $(OBJS)
-	@- echo '--->'
-	cp $(LIBNAME) $(HOME)/lib
-	@- echo '<----'
-
-depend:
-	@- echo Making dependancies
-	@- makedepend -I$(KAI_INCLUDE) -Y/std -DKAI_NAMESPACE_NAME=KAI -KAI_USE_NAMESPACES $(CXX_SRCS) 2> /dev/null
+$(EXENAME): $(OBJS) 
+	clang++ Main.o $(LDFLAGS) -o $(EXENAME)
+	cp $(EXENAME) $(HOME)/bin
 
 distclean: clean
 
-# DO NOT DELETE
+

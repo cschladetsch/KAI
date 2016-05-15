@@ -11,7 +11,6 @@ KAI_BEGIN
 
 void MarkGrey(Object const &);
 
-/// A Class<T> manages instances of T
 template <class T>
 class Class : public ClassBase
 {
@@ -149,7 +148,8 @@ public:
 	void MakeReachableGrey(StorageBase &base) const
 	{
 		ClassBase::MakeReachableGrey(base);
-		Traits::ContainerOps::ForEachContained(CleanDeref<T>(base), MakeReachableGreyFun<T>());
+		Traits::ContainerOps::ForEachContained(
+			CleanDeref<T>(base), MakeReachableGreyFun<T>());
 	}
 	/// @endgroup container operations
 

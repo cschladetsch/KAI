@@ -1,5 +1,5 @@
 #include "TestBase.h"
-#include "Kai/Net/Net.h"
+#include "KAI/Net/Net.h"
 
 using namespace kai;
 using namespace kai::net;
