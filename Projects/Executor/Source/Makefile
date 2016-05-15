@@ -2,15 +2,12 @@
 LIBNAME := libExecutor.a
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
-CXX_SRCS += $(wildcard Translator/*.cpp)
-CXX_SRCS += $(wildcard Translator/Pi/*.cpp)
-CXX_SRCS += $(wildcard Translator/Rho/*.cpp)
 
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
 OBJS := $(CXX_OBJS)
 
-#include Makefile.local
+include Makefile.local
 
 # For OSX
 #HOME=/Users/christian
@@ -26,8 +23,8 @@ CPPFLAGS += -ferror-limit=5
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
 
-#PCH = Precompiled
-#USE_PCH = -include-pch $(PCH).pch
+PCH = Precompiled
+USE_PCH = -include-pch $(PCH).pch
 
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS += $(foreach library,$(LIBRARIES),-l$(library))
@@ -49,7 +46,7 @@ clean:
 	@- $(RM) $(OBJS)
 	@- $(RM) $(PCH).pch
 
-$(LIBNAME): $(OBJS) 
+$(LIBNAME): $(OBJS) $(PCH).pch
 	@- ar cr $(LIBNAME) $(OBJS)
 	@- echo '--->'
 	cp $(LIBNAME) $(HOME)/lib
