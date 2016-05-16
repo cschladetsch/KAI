@@ -11,7 +11,7 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 include_directories($ENV{HOME}/Include $ENV{HOME}/dev/KAI/Include usr/local/Cellar/boost/1.60.0_2/include)
 
 # add some default C++ compiler flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wno-deprecation -fpermissive")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wno-deprecated -fpermissive")
 
 # set output directories
 set(dir $ENV{HOME})
