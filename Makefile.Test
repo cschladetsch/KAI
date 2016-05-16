@@ -1,6 +1,4 @@
-# used to create libs only
-
-LIBNAME := libExecutor.a
+TESTNAME := TestXXX
 CC = clang++
 CXX_SRCS := $(wildcard *.cpp)
 
@@ -9,30 +7,26 @@ include Makefile.local
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(CXX_OBJS)
 
-<<<<<<< HEAD
-include Makefile.local
-=======
->>>>>>> d48dcfad7715231b684b79223c6b2b28a24818be
 
 # For OSX
-HOME=/Users/christian
-BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+#HOME=/Users/christian
+#BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
 
-# For Ubuntu
-#HOME=/home/christian
+HOME=/home/christian
 
 KAI_INCLUDE = $(HOME)/dev/KAI/Include
-INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
-LIBRARY_DIRS :=
-LIBRARIES :=
+INCLUDE_DIRS := /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
+LIBRARY_DIRS := /usr/inclue/lib $(HOME)/lib
+LIBRARIES := Executor Linraryu gtest
 
 # only needed for testing
 CPPFLAGS += -frtti -fexceptions
 
 #  this is all generic
 CPPFLAGS += -ferror-limit=5
-CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
-CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g -std=c++1y $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir)) 
+CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type
+CPPFLAGS += -DKAI_NAMESPACE_NAME=kai -DKAI_HAVE_PRAGMA_ONCE
+CPPFLAGS += -fpermissive -g -std=c++1y
 
 PCH = Precompiled
 USE_PCH = -include-pch $(PCH).pch
@@ -49,16 +43,15 @@ $(PCH):
 	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
 
 .cpp.o:
-	@+ echo $<
 	$(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
 
 clean:
 	$(RM) $(NAME)
 	$(RM) $(OBJS)
-	$(RM) $(PCH).pch
+	 $(RM) $(PCH).pch
 
 $(LIBNAME): $(OBJS) $(PCH).pch
-	@- ar cr $(LIBNAME) $(OBJS)
+	ar cr $(LIBNAME) $(OBJS)
 	cp $(LIBNAME) $(HOME)/lib
 
 depend:

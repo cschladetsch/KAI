@@ -24,6 +24,8 @@ KAI_BEGIN
 Registry::Registry()
 {
 	allocator = std::shared_ptr<Memory::IAllocator>();
+	std::cout << "make with allocator :" << &allocator;
+	auto bytes = allocator->Allocate<char>(64);
 	Construct();
 }
 
