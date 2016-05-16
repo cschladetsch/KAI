@@ -13,20 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d804547c-fcb5-4caa-9ea8-09e183c7d822" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/Library/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../CMakeLists.common.txt" afterPath="$PROJECT_DIR$/../../CMakeLists.common.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Config/Options.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Config/Options.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Exception/Extended.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Exception/Extended.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Pathname.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Pathname.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Type/Traits.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Type/Traits.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Console/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Console/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Executor.cpp" afterPath="$PROJECT_DIR$/Source/Executor.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Library/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/Source/BuiltinTypes/Array.cpp" afterPath="$PROJECT_DIR$/../Library/Source/BuiltinTypes/Array.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/Source/Exception.cpp" afterPath="$PROJECT_DIR$/../Library/Source/Exception.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Exception/Common.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Exception/Common.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h" afterPath="$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Translator/Pi/PiLang.cpp" afterPath="$PROJECT_DIR$/Source/Translator/Pi/PiLang.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/CMakeLists.txt" afterPath="$PROJECT_DIR$/../Library/CMakeLists.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/Source/Registry.cpp" afterPath="$PROJECT_DIR$/../Library/Source/Registry.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Tests/Library/.idea/workspace.xml" />
     </list>
     <ignored path="Executor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -340,21 +332,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="Base.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+            <state relative-caret-position="162">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding>
+                <element signature="e#14#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Debug.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Debug.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Console.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Console.cpp">
+      <file leaf-file-name="TranslatorBase.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Translator/TranslatorBase.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5418">
-              <caret line="301" column="7" selection-start-line="301" selection-start-column="7" selection-end-line="301" selection-end-column="7" />
+            <state relative-caret-position="151">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Base.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KAI.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExecutorPCH.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/ExecutorPCH.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PiAstNode.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiAstNode.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -362,12 +406,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Executor.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Source/Executor.cpp">
+      <file leaf-file-name="HierarchicalPrinter.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="1284" column="20" selection-start-line="1284" selection-start-column="20" selection-end-line="1284" selection-end-column="20" />
+            <state relative-caret-position="144">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Compiler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Compiler.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding>
+                <element signature="e#14#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PiLexer.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiLexer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-432">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -382,15 +450,16 @@
       <list>
         <option value="$PROJECT_DIR$/../../Include/KAI/Translator/AstNodeBase.h" />
         <option value="$PROJECT_DIR$/Source/Translator/Pi/PiTranslator.cpp" />
-        <option value="$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h" />
         <option value="$PROJECT_DIR$/../../Include/KAI/Translator/ParserCommon.h" />
         <option value="$PROJECT_DIR$/../../Include/KAI/Translator/Pi/PiParser.h" />
         <option value="$PROJECT_DIR$/../../Include/KAI/Translator/Rho/RhoParser.h" />
         <option value="$PROJECT_DIR$/Source/Translator/Rho/RhoLang.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Source/Continuation.cpp" />
         <option value="$PROJECT_DIR$/../../Include/KAI/Boost.h" />
         <option value="$PROJECT_DIR$/Source/Executor.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Source/Translator/Pi/PiLang.cpp" />
+        <option value="$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h" />
       </list>
     </option>
   </component>
@@ -401,10 +470,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="405" />
-    <option name="y" value="149" />
-    <option name="width" value="1295" />
-    <option name="height" value="744" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1535" />
+    <option name="height" value="904" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -446,20 +515,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Executor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Executor" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Executor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -655,14 +710,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="405" y="149" width="1295" height="744" extended-state="0" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27044025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22751322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277027" sideWeight="0.49685535" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4510135" sideWeight="0.7515723" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3550532" sideWeight="0.7526455" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36129034" sideWeight="0.49213836" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4510135" sideWeight="0.24842767" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3550532" sideWeight="0.24735449" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32580644" sideWeight="0.4913522" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981844" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -708,7 +763,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1463399498672" expanded="false" signature="9:182" placeholder="..." />
+            <marker date="1463399498672" expanded="true" signature="421:526" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="553:570" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="609:724" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="782:834" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="866:899" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="924:948" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="988:1006" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1061:1149" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1206:1346" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1361:1420" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1394:1418" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1449:1904" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="1641:1707" placeholder="..." />
+            <marker date="1463399498672" expanded="true" signature="1953:1990" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2026:2238" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2287:2302" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2341:2738" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="2740:2761" placeholder="&lt;Cont&gt;" />
+            <marker date="1463399498672" expanded="true" signature="2803:2930" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3004:3129" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3161:3212" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3256:3316" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3342:3791" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3823:4119" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4146:4323" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4348:4446" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4508:4814" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4867:4994" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="5054:5514" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="5559:20112" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="20114:20132" placeholder="&lt;D&gt;" />
+            <marker date="1463399498672" expanded="true" signature="20193:20398" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20435:20459" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20490:20515" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20562:20732" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20788:21307" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="21360:21473" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="21528:22195" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22272:22514" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22571:22676" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22716:22776" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22808:22858" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22886:23478" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="23525:24020" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24085:24110" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24148:24169" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24207:24231" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24286:24575" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24614:25036" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="25079:25349" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="26477:26664" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -740,41 +848,6 @@
         <state relative-caret-position="94">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Base.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Compiler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/ExecutorPCH.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiLang.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -827,31 +900,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiLexer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiTranslator.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -867,12 +919,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Console.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5418">
+        <state relative-caret-position="122">
           <caret line="301" column="7" selection-start-line="301" selection-start-column="7" selection-end-line="301" selection-end-column="7" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -883,7 +944,156 @@
     <entry file="file://$PROJECT_DIR$/Source/Executor.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
-          <caret line="1284" column="20" selection-start-line="1284" selection-start-column="20" selection-end-line="1284" selection-end-column="20" />
+          <caret line="1283" column="20" selection-start-line="1283" selection-start-column="20" selection-end-line="1283" selection-end-column="20" />
+          <folding>
+            <marker date="1463399498672" expanded="false" signature="9:182" placeholder="..." />
+            <marker date="1463399498672" expanded="true" signature="421:526" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="553:570" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="609:724" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="782:834" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="866:899" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="924:948" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="988:1006" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1061:1149" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1206:1346" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1361:1420" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1394:1418" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="1449:1904" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="1641:1707" placeholder="..." />
+            <marker date="1463399498672" expanded="true" signature="1953:1990" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2026:2238" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2287:2302" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="2341:2738" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="2740:2761" placeholder="&lt;Cont&gt;" />
+            <marker date="1463399498672" expanded="true" signature="2803:2930" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3004:3129" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3161:3212" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3256:3316" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3342:3791" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="3823:4119" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4146:4323" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4348:4446" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4508:4814" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="4867:4994" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="5054:5514" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="5559:20112" placeholder="{...}" />
+            <marker date="1463399498672" expanded="false" signature="20114:20132" placeholder="&lt;D&gt;" />
+            <marker date="1463399498672" expanded="true" signature="20193:20398" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20435:20459" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20490:20515" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20562:20732" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="20788:21307" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="21360:21473" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="21528:22195" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22272:22514" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22571:22676" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22716:22776" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22808:22858" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="22886:23478" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="23525:24020" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24085:24110" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24148:24169" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24207:24231" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24286:24575" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="24614:25036" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="25079:25349" placeholder="{...}" />
+            <marker date="1463399498672" expanded="true" signature="26477:26664" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiLexer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiLang.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Compiler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Debug.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Translator/TranslatorBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/ExecutorPCH.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Translator/Pi/PiAstNode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/HierarchicalPrinter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
           <folding />
         </state>
       </provider>

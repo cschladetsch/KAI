@@ -5,23 +5,23 @@
 template <class T, class Str = std::string, class Stream = std::stringstream>
 struct HierarchicalPrinter
 {
-	Str Print(const T& root) const
+	Str PrintTree(const T& root) const
 	{
 		Stream str;
-		Print(str, 0, root);
+		PrintTree(str, 0, root);
 		str << std::ends;
 		return std::move(str.str());
 	}
 
 private:
-	void Print(Stream &str, int level, const T& root) const
+	void PrintTree(Stream &str, int level, const T& root) const
 	{
 		str << *root << "\n";
 		Str indent = Str(' ', 4 * level);
 		for (const auto  &ch : root->GetChildren())
 		{
 			str << indent;
-			Print(str, level + 1, ch);
+			PrintTree(str, level + 1, ch);
 		}
 	}
 };

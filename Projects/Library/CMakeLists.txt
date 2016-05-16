@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(Library)
 
+include($ENV{HOME}/dev/KAI/CMakeLists.common.txt)
 
 set(SOURCE_FILES
     Source/BuiltinTypes/Array.cpp
@@ -30,7 +31,6 @@ set(SOURCE_FILES
     Source/Utility.cpp
         )
 
-add_definitions(-DKAI_USE_NAMESPACES -DKAI_NAMESPACE_NAME=kai)
 include_directories($ENV{HOME}/Include $ENV{HOME}/dev/KAI/Include ) #usr/local/Cellar/boost/1.60.0_2/include)
 set(dir $ENV{HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
