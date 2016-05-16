@@ -15,6 +15,7 @@ RhoLang::RhoLang(Registry &r)
 
 void RhoLang::Print()
 {
+	/*
 	cout << "Input--" << endl;
 	cout << lex->GetInput() << endl;
 
@@ -26,6 +27,7 @@ void RhoLang::Print()
 
 	cout << "Trans--" << endl;
 	cout << trans->Result() << endl;
+	 */
 }
 
 bool RhoLang::TranslateFile(const char *name, Structure st)

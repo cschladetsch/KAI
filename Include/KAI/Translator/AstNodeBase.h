@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/KAI.h"
 #include "KAI/Translator/Common.h"
 #include "KAI/HierarchicalPrinter.h"
 
@@ -22,7 +23,7 @@ public:
 	AstNodeBase() { }
 	AstNodeBase(Enum e) : _astType(e) { }
 	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
-	AstNodeBase(Enum e, Object const &Q) : _astType(e), Object(Q) { }
+	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q) { }
 	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
 
 	const Child &GetChild(size_t n) const { return GetChildren()[n]; }
@@ -74,7 +75,7 @@ protected:
 	Enum _astType;
 	Token _token;
 	ChildrenType _children;
-	Object Object;
+	Object _object;
 };
 
 KAI_END
