@@ -23,7 +23,7 @@ DEPENDDIRS = $(DIRS:%=depend-%)
 
 MAKE = make -s
 
-all: $(BUILDDIRS)
+all: logo $(BUILDDIRS) 
 $(DIRS): $(BUILDDIRS)
 $(BUILDDIRS):
 	$(MAKE) -C $(@:build-%=%)
@@ -40,6 +40,9 @@ tests: $(TESTDIRS) all
 $(TESTDIRS):
 	$(MAKE) -C $(@:tests-%=%) test
 
+logo:
+	@- cat logo
+
 clean: $(CLEANDIRS)
 $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
@@ -49,5 +52,6 @@ $(CLEANDIRS):
 .PHONY: subdirs $(INSTALLDIRS)
 .PHONY: subdirs $(TESTDIRS)
 .PHONY: subdirs $(CLEANDIRS)
-.PHONY: all install clean test depend
+.PHONY: all install clean test depend logo
+
 
