@@ -11,10 +11,11 @@ OBJS := $(CXX_OBJS)
 
 
 # For OSX
-#HOME=/Users/christian
-#BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+HOME=/Users/christian
+BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
 
-HOME=/home/christian
+# For Ubuntu
+#HOME=/home/christian
 
 KAI_INCLUDE = $(HOME)/dev/KAI/Include
 INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
@@ -44,6 +45,7 @@ $(PCH):
 	$(CC) -x c++-header $(PCH).h -emit-pch -o $(PCH).pch $(CPPFLAGS) 
 
 .cpp.o:
+	@+ echo $<
 	$(CC) $(USE_PCH) $(CPPFLAGS) -c $< -o $@ 
 
 clean:
@@ -52,7 +54,7 @@ clean:
 	$(RM) $(PCH).pch
 
 $(LIBNAME): $(OBJS) $(PCH).pch
-	ar cr $(LIBNAME) $(OBJS)
+	@- ar cr $(LIBNAME) $(OBJS)
 	cp $(LIBNAME) $(HOME)/lib
 
 depend:
