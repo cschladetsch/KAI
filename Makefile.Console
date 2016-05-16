@@ -5,8 +5,11 @@ CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 
 OBJS := $(CXX_OBJS)
 
-#HOME=Users
-HOME=/home/christian
+# OSX
+HOME=/Users/christian
+
+# Ubuntu
+#HOME=/home/christian
 
 CPPFLAGS += -fdiagnostics-show-template-tree -fno-elide-type 
 CPPFLAGS += -DKAI_NAMESPACE_NAME=kai  -DKAI_HAVE_PRAGMA_ONCE -fpermissive -g 
