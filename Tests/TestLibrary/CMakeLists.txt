@@ -4,7 +4,7 @@ project(TestLibrary)
 
 include($ENV{HOME}/dev/KAI/CMakeLists.common.txt)
 
-file(GLOB SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/Source/*.cpp)
+file(GLOB SOURCE_FILES $ENV{HOME}/dev/KAI/Tests/Library/Source/*cpp)
 
 link_libraries(Executor Library gtest)
 
