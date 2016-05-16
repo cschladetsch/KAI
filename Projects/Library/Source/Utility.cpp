@@ -22,11 +22,6 @@ const char *ToLower(const char *text)
 	return out;
 }
 
-bool MapCompare::operator()(const Object &A, const Object &B) const
-{
-	return A.GetClass()->Less(A, B);
-}
-
 #if 0
 namespace debug
 {
