@@ -5,7 +5,7 @@
 template <class T, class Str = std::string, class Stream = std::stringstream>
 struct HierarchicalPrinter
 {
-	Str Print(T root) const
+	Str Print(const T& root) const
 	{
 		Stream str;
 		Print(str, 0, root);
@@ -14,7 +14,7 @@ struct HierarchicalPrinter
 	}
 
 private:
-	void Print(Stream &str, int level, T root)
+	void Print(Stream &str, int level, const T& root) const
 	{
 		str << *root << "\n";
 		Str indent = Str(' ', 4 * level);
