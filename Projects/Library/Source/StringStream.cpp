@@ -190,19 +190,17 @@ void Ends(EndsArgument)
 
 bool operator<(const String &A, const String &B)
 {
-	return std::lexicographical_compare(A.begin(), A.end(), B.begin(), B.end());
+	return A._string == B._string;
 }
 
 bool operator>(const String &A, const String &B)
 {
-	return B < A;
+	return A._string > B._string;
 }
 
 bool operator==(const String &A, const String &B)
 {
-	if (A.size() != B.size())
-		return false;
-	return std::equal(A.begin(), A.end(), B.begin());
+	return A._string == B._string;
 }
 
 // WTF These already defined in Object.cpp
