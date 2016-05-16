@@ -13,15 +13,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd7e76b1-aa03-4b00-9145-18c59ad0ecad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Console/.idea/Console.iml" afterPath="$PROJECT_DIR$/../Console/.idea/Console.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/TestLibrary.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/InstanceMap.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/Main.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/Makefile.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/Precompiled.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestBase.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestBinaryStream.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestClassScripting.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestCompilerBasic.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestDotGraph.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestFunction.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestFunctionScripting.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestPi.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestPiExecutor.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestPiParser.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestPiString.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestPiTokeniser.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestRhoScripting.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/TestTriColorGarbageCollection.cpp.not" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Console/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Console/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Console/CMakeLists.txt" afterPath="$PROJECT_DIR$/../Console/CMakeLists.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Executor/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Executor/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Executor/Source/Compiler.cpp" afterPath="$PROJECT_DIR$/../Executor/Source/Compiler.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Executor/Source/Continuation.cpp" afterPath="$PROJECT_DIR$/../Executor/Source/Continuation.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Utility.cpp" afterPath="$PROJECT_DIR$/Source/Utility.cpp" />
     </list>
     <ignored path="Library.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -268,18 +286,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InstanceMap.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <element signature="e#3#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -431,7 +437,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -958,18 +964,18 @@
         <state relative-caret-position="774">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <marker date="1463384605768" expanded="true" signature="107:3178" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="337:789" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="658:786" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="942:1379" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="1273:1376" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="1529:1937" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="1836:1934" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="2093:2533" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="2393:2530" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="3319:3473" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="3583:3637" placeholder="{...}" />
-            <marker date="1463384605768" expanded="true" signature="3751:3804" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="107:3178" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="337:789" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="658:786" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="942:1379" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="1273:1376" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="1529:1937" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="1836:1934" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="2093:2533" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="2393:2530" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="3319:3473" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="3583:3637" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="3751:3804" placeholder="{...}" />
           </folding>
         </state>
       </provider>
