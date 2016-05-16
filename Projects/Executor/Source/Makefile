@@ -9,17 +9,7 @@ include Makefile.local
 CXX_OBJS := ${CXX_SRCS:.cpp=.o}
 OBJS := $(CXX_OBJS)
 
-<<<<<<< HEAD
 include Makefile.local
-=======
->>>>>>> d48dcfad7715231b684b79223c6b2b28a24818be
-
-# For OSX
-HOME=/Users/christian
-BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
-
-# For Ubuntu
-#HOME=/home/christian
 
 KAI_INCLUDE = $(HOME)/dev/KAI/Include
 INCLUDE_DIRS := /usr/include /usr/include /opt/local/include $(KAI_INCLUDE) $(BOOST_DIR) 
