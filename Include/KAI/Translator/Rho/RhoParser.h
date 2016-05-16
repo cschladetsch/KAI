@@ -6,7 +6,7 @@
 KAI_BEGIN
 
 // parser specific to the in-fix Rho language
-class RhoParser : public ParserCommon<RhoLexer, RhoAstNodeEnumType>
+class RhoParser : public ParserCommon<RhoLexer, RhoAstNodeEnumType>, HierarchicalPrinter<RhoParser>
 {
 public:
 	typedef ParserCommon<RhoLexer, RhoAstNodeEnumType> Parent;

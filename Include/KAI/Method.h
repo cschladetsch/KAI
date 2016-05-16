@@ -35,12 +35,12 @@ namespace method_detail
 	struct VoidMethodConst : ConstMethodBase<void (T::*)(Args...) const>
 	{
 		typedef void (T::*MethodType)(Args...) const;
-		typedef MutatingMethodBase<MethodType> Parent;
+		typedef ConstMethodBase<MethodType> Parent;
 		static size_t constexpr arity = sizeof...(Args);
 		MethodType meth;
 		tuple<Args...> _args;
-		VoidMethodConst(MethodBase m, const Label &N) 
-			: meth(m), Parent(m, N) { }
+		VoidMethodConst(MethodType mb, const Label &N)
+			: meth(mb), Parent(mb, N) { }
 
 		void ConstInvoke(const Object& servant, Stack &stack)
 		{
