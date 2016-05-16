@@ -13,11 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c94cbe9-36a6-4bd4-b70a-a3e11b393849" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Executor/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Projects/Executor/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Projects/Library/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp" afterPath="$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/Source/StringStream.cpp" afterPath="$PROJECT_DIR$/../../Projects/Library/Source/StringStream.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestLibrary/CMakeLists.txt" afterPath="$PROJECT_DIR$/../TestLibrary/CMakeLists.txt" />
     </list>
     <ignored path="Library.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -164,8 +160,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="263" />
-    <option name="y" value="109" />
+    <option name="x" value="110" />
+    <option name="y" value="133" />
     <option name="width" value="1295" />
     <option name="height" value="693" />
   </component>
@@ -263,7 +259,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Projects/Library" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
@@ -444,7 +440,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="263" y="109" width="1295" height="693" extended-state="1" />
+    <frame x="110" y="133" width="1295" height="693" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27044025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
