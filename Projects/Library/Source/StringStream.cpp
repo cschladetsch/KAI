@@ -190,14 +190,13 @@ void Ends(EndsArgument)
 
 bool operator<(const String &A, const String &B)
 {
-	return A._string == B._string;
+	return A._string < B._string;
 }
 
 bool operator>(const String &A, const String &B)
 {
 	return A._string > B._string;
 }
-
 bool operator==(const String &A, const String &B)
 {
 	return A._string == B._string;
