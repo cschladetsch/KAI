@@ -3,6 +3,7 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
       <config projectName="Core" targetName="Core" />
+      <config projectName="Library" targetName="Library" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
@@ -12,7 +13,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd7e76b1-aa03-4b00-9145-18c59ad0ecad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Console/.idea/Console.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Console/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Console/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Console/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Executor/.idea/Executor.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Executor/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Executor/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Executor/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Tests/Library/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Executor/Source/Precompiled.pch-97a9b231" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Makefile.Console" afterPath="$PROJECT_DIR$/../../Makefile.Console" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Makefile.Library" afterPath="$PROJECT_DIR$/../../Makefile.Library" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Console/Source/Makefile" afterPath="$PROJECT_DIR$/../Console/Source/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Executor/Source/Makefile" afterPath="$PROJECT_DIR$/../Executor/Source/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Library.iml" afterPath="$PROJECT_DIR$/.idea/Library.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Makefile" afterPath="$PROJECT_DIR$/Source/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Registry.cpp" afterPath="$PROJECT_DIR$/Source/Registry.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Network/Source/Makefile" afterPath="$PROJECT_DIR$/../Network/Source/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NetworkGen/Source/Makefile" afterPath="$PROJECT_DIR$/../NetworkGen/Source/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/TestBinaryStream.cpp" afterPath="$PROJECT_DIR$/../../Tests/Library/TestBinaryStream.cpp" />
     </list>
     <ignored path="Library.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -259,20 +281,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="Registry.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/Registry.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Base.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IAllocator.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Memory/IAllocator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+              <folding>
+                <element signature="e#668#677#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="60">
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
@@ -282,7 +316,7 @@
       <file leaf-file-name="KAI.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
+            <state relative-caret-position="255">
               <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
@@ -292,7 +326,7 @@
       <file leaf-file-name="Traits.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/Traits.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="30">
               <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding>
                 <element signature="e#1637#1639#0" expanded="true" />
@@ -301,40 +335,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="or.hpp" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="type_index.hpp" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/boost/type_index.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4536">
-              <caret line="252" column="18" selection-start-line="252" selection-start-column="18" selection-end-line="252" selection-end-column="18" />
-              <folding>
-                <element signature="e#676#922#0" expanded="true" />
-                <element signature="e#1173#1413#0" expanded="true" />
-                <element signature="e#1470#1547#0" expanded="true" />
-                <element signature="e#1578#1829#0" expanded="true" />
-                <element signature="e#2014#6131#0" expanded="true" />
-                <element signature="e#6864#8543#0" expanded="true" />
-                <element signature="e#9026#9035#0" expanded="true" />
-                <element signature="e#9722#9731#0" expanded="true" />
-                <element signature="e#10555#10564#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InstanceMap.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="45">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="e#3#23#0" expanded="true" />
@@ -346,28 +350,18 @@
       <file leaf-file-name="TraitMacros.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/TraitMacros.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
+            <state relative-caret-position="600">
               <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stl_type_index.hpp" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/boost/type_index/stl_type_index.hpp">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2196">
-              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Precompiled.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Precompiled.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="570">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -409,14 +403,20 @@
         <option value="$PROJECT_DIR$/../../Include/KAI/AutoPointer.h" />
         <option value="$PROJECT_DIR$/InstanceMap.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Source/Registry.cpp" />
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-27" />
-    <option name="y" value="275" />
-    <option name="width" value="1515" />
-    <option name="height" value="848" />
+    <option name="y" value="23" />
+    <option name="width" value="1400" />
+    <option name="height" value="833" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -451,16 +451,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Library" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -476,6 +466,9 @@
     </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Core" TARGET_NAME="Core" CONFIG_NAME="Debug">
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -505,6 +498,22 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Library" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
@@ -616,17 +625,32 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="Core" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://~/dev/KAI/CLion" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Core" TARGET_NAME="Core" CONFIG_NAME="Debug">
+    <configuration default="false" name="Core" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://~/dev/KAI/CLion" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Library" TARGET_NAME="Library" CONFIG_NAME="Debug">
       <envs />
       <method />
     </configuration>
-    <list size="2">
+    <configuration default="false" name="Library" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Library" TARGET_NAME="Library" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Library" RUN_TARGET_NAME="Library">
+      <envs />
+      <method />
+    </configuration>
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.Core" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Library" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd7e76b1-aa03-4b00-9145-18c59ad0ecad" name="Default" comment="" />
+      <created>1463379113637</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1463379113637</updated>
+    </task>
+    <servers />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -638,27 +662,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-27" y="275" width="1515" height="848" extended-state="0" />
+    <frame x="0" y="23" width="1400" height="833" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6566092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32591623" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38074714" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.491453" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14005236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.508547" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31020942" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -669,6 +693,120 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Memory/IAllocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+          <folding>
+            <element signature="e#668#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/Traits.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#1637#1639#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/TraitMacros.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/Traits.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#1637#1639#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/TraitMacros.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -681,9 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,50 +834,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2088">
           <caret line="116" column="5" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/5/bits/unordered_map.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8226">
-          <caret line="457" column="7" selection-start-line="457" selection-start-column="7" selection-end-line="457" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/5/bits/range_access.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Network/Tcp.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/c++/5/bits/unordered_map.h" />
+    <entry file="file:///usr/include/c++/5/bits/range_access.h" />
+    <entry file="file://$PROJECT_DIR$/Source/Network/Tcp.cpp" />
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Label.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Network/Platform/PC/Network/TcpClientImpl.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Network/Platform/PC/Network/TcpClientImpl.cpp" />
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/Traits.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1098">
@@ -759,9 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,19 +882,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Test/BasicOutput.cpp" />
-    <entry file="file://$PROJECT_DIR$/Source/Network/Platform/PC/Network/TcpClientImpl.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Network/Platform/PC/Network/TcpClientImpl.cpp" />
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Label.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,9 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,49 +901,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2088">
           <caret line="116" column="5" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/5/bits/unordered_map.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8226">
-          <caret line="457" column="7" selection-start-line="457" selection-start-column="7" selection-end-line="457" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/5/bits/range_access.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1548">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Network/Tcp.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Array.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/c++/5/bits/unordered_map.h" />
+    <entry file="file:///usr/include/c++/5/bits/range_access.h" />
+    <entry file="file://$PROJECT_DIR$/Source/Network/Tcp.cpp" />
+    <entry file="file://$PROJECT_DIR$/Source/Array.cpp" />
     <entry file="file://$PROJECT_DIR$/Source/Class.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,57 +919,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/boost/type_index.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4536">
-          <caret line="252" column="18" selection-start-line="252" selection-start-column="18" selection-end-line="252" selection-end-column="18" />
-          <folding>
-            <element signature="e#676#922#0" expanded="true" />
-            <element signature="e#1173#1413#0" expanded="true" />
-            <element signature="e#1470#1547#0" expanded="true" />
-            <element signature="e#1578#1829#0" expanded="true" />
-            <element signature="e#2014#6131#0" expanded="true" />
-            <element signature="e#6864#8543#0" expanded="true" />
-            <element signature="e#9026#9035#0" expanded="true" />
-            <element signature="e#9722#9731#0" expanded="true" />
-            <element signature="e#10555#10564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#3#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/boost/type_index.hpp" />
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/TraitMacros.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
+        <state relative-caret-position="600">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp" />
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Type/Traits.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
+        <state relative-caret-position="30">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="e#1637#1639#0" expanded="true" />
@@ -920,40 +944,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/KAI.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
+        <state relative-caret-position="255">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Precompiled.cpp">
+    <entry file="file://$PROJECT_DIR$/Source/Precompiled.cpp" />
+    <entry file="file:///usr/include/boost/type_index/stl_type_index.hpp" />
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/boost/type_index/stl_type_index.hpp">
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Memory/IAllocator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2196">
-          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+        <state relative-caret-position="720">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+          <folding>
+            <element signature="e#668#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Registry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InstanceMap.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#3#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Base.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="570">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
