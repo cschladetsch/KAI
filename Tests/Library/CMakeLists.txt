@@ -1,32 +1,27 @@
 cmake_minimum_required(VERSION 3.5)
+project(Testibrary)
 
-project(TestLibrary)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+include($ENV{HOME}/dev/KAI/CMakeLists.common.txt)
 
 set(SOURCE_FILES
-    Main.cpp
-    Precompiled.h
-    TestBase.h
-    TestBinaryStream.cpp
-    TestClassScripting.cpp
-    TestCompilerBasic.cpp
-    TestDotGraph.cpp
-    TestFunction.cpp
-    TestFunctionScripting.cpp
-    TestPi.cpp
-    TestPiExecutor.cpp
-    TestPiParser.cpp
-    TestPiString.cpp
-    TestPiTokeniser.cpp
-    TestRhoScripting.cpp)
+    Source/Main.cpp
+    Source/TestBinaryStream.cpp
+    Source/TestClassScripting.cpp
+    Source/TestCompilerBasic.cpp
+    Source/TestDotGraph.cpp
+    Source/TestFunction.cpp
+    Source/TestFunctionScripting.cpp
+    Source/TestPi.cpp
+    Source/TestPiExecutor.cpp
+    Source/TestPiParser.cpp
+    Source/TestPiString.cpp
+    Source/TestPiTokeniser.cpp
+    Source/TestRhoScripting.cpp)
 
-link_directories($(HOME)/lib)
+link_directories($ENV{HOME}/lib /usr/local/lib)
 
-target_link_libraries(Library Executable gtest)
+link_libraries(Executor Library gtest)
+find_package (Threads)
+add_executable(TestLibrary ${SOURCE_FILES})
 
-include_directories($(HOME)/include $(HOME)/dev/KAI/Include)
-
-add_executable(Library ${SOURCE_FILES})
-
-
+target_link_libraries (TestLibrary ${CMAKE_THREAD_LIBS_INIT})
