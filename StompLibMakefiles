@@ -1,0 +1,11 @@
+
+projs="Library Executor Network NetworkGen"
+
+for i in $projs
+do
+	echo Replacing Projects/$i/Source/Makefile
+	cat Makefile.Library | sed "s/XXX/$i/" > Projects/$i/Source/Makefile
+done
+
+
+

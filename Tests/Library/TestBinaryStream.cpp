@@ -28,7 +28,7 @@ TEST(TestBinaryStream, Builtins)
 
 TEST(TestBinaryStream, TestObject)
 {
-	Registry R;
+	Registry R();//std::shared_ptr<Memory::BaseAllocator>());
 	R.AddClass<int>("int");
 
 	BinaryStream S;
