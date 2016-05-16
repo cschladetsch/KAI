@@ -13,19 +13,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c94cbe9-36a6-4bd4-b70a-a3e11b393849" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/1$" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Makefile.local" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../CMakeLists.common.txt" afterPath="$PROJECT_DIR$/../../CMakeLists.common.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Pointer.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Pointer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Config/Options.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Config/Options.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Exception/Extended.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Exception/Extended.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Pathname.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Pathname.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Type/Traits.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Type/Traits.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Console/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Projects/Console/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Executor/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Projects/Executor/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Executor/Source/Executor.cpp" afterPath="$PROJECT_DIR$/../../Projects/Executor/Source/Executor.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Projects/Library/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Library.iml" afterPath="$PROJECT_DIR$/.idea/Library.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/Source/BuiltinTypes/Array.cpp" afterPath="$PROJECT_DIR$/../../Projects/Library/Source/BuiltinTypes/Array.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/Source/Exception.cpp" afterPath="$PROJECT_DIR$/../../Projects/Library/Source/Exception.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp" afterPath="$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/TestBinaryStream.cpp" afterPath="$PROJECT_DIR$/Source/TestBinaryStream.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestLibrary/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../TestLibrary/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../TestLibrary/CMakeLists.txt" afterPath="$PROJECT_DIR$/../TestLibrary/CMakeLists.txt" />
     </list>
     <ignored path="Library.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,21 +47,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+            <state relative-caret-position="72">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Options.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IAllocator.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Include/KAI/Memory/IAllocator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Executor.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Projects/Executor/Source/Executor.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7">
+              <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+              <folding>
+                <element signature="e#1718#1757#0" expanded="true" />
+                <marker date="1463398331635" expanded="true" signature="421:526" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="553:570" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="609:724" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="782:834" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="866:899" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="924:948" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="988:1006" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="1061:1149" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="1206:1346" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="1394:1418" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="1449:1904" placeholder="{...}" />
+                <marker date="1463398331635" expanded="true" signature="26478:26665" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Registry.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Options.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Options.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -149,6 +194,9 @@
         <option value="$PROJECT_DIR$/../../Include/KAI/Pointer.h" />
         <option value="$PROJECT_DIR$/Source/TestBinaryStream.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp" />
+        <option value="$PROJECT_DIR$/../../Projects/Executor/Source/Executor.cpp" />
+        <option value="$PROJECT_DIR$/../../Include/KAI/Config/Options.h" />
       </list>
     </option>
   </component>
@@ -159,10 +207,41 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1665" />
-    <option name="y" value="-4" />
+    <option name="x" value="1683" />
+    <option name="y" value="36" />
     <option name="width" value="1295" />
-    <option name="height" value="772" />
+    <option name="height" value="878" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralC/C++</id>
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+          <State>
+            <id>Unused codeC/C++</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>EqualityInConditionalOperator</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -227,8 +306,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Projects/Library" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.TestLibrary">
+  <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Library" TARGET_NAME="Library" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -407,20 +489,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1665" y="-4" width="1295" height="772" extended-state="6" />
+    <frame x="1683" y="36" width="1295" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27044025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36935484" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.630854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39864865" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -502,14 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Options.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Include/KAI/Pointer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1908">
@@ -558,10 +632,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../Projects/Library/Source/Registry.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Memory/IAllocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Projects/Executor/Source/Executor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+          <folding>
+            <element signature="e#1718#1757#0" expanded="true" />
+            <marker date="1463398331635" expanded="true" signature="421:526" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="553:570" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="609:724" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="782:834" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="866:899" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="924:948" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="988:1006" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="1061:1149" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="1206:1346" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="1394:1418" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="1449:1904" placeholder="{...}" />
+            <marker date="1463398331635" expanded="true" signature="26478:26665" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        <state relative-caret-position="72">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Include/KAI/Config/Options.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -12,19 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0fa7051-7b8c-4f19-9a21-15e1fe0b3d06" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/1$" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Tests/Library/Makefile.local" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../CMakeLists.common.txt" afterPath="$PROJECT_DIR$/../../CMakeLists.common.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Include/KAI/Pointer.h" afterPath="$PROJECT_DIR$/../../Include/KAI/Pointer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Executor/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Executor/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Library/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/.idea/Library.iml" afterPath="$PROJECT_DIR$/../../Tests/Library/.idea/Library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Tests/Library/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/CMakeLists.txt" afterPath="$PROJECT_DIR$/../../Tests/Library/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/Library/Source/TestBinaryStream.cpp" afterPath="$PROJECT_DIR$/../../Tests/Library/Source/TestBinaryStream.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Tests/TestLibrary/CMakeLists.txt" afterPath="$PROJECT_DIR$/../../Tests/TestLibrary/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Library/Source/Registry.cpp" afterPath="$PROJECT_DIR$/../Library/Source/Registry.cpp" />
     </list>
     <ignored path="Console.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -146,8 +134,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="134" />
-    <option name="y" value="160" />
+    <option name="x" value="120" />
+    <option name="y" value="207" />
     <option name="width" value="1295" />
     <option name="height" value="658" />
   </component>
@@ -366,7 +354,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="134" y="160" width="1295" height="658" extended-state="0" />
+    <frame x="120" y="207" width="1295" height="658" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17851959" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
