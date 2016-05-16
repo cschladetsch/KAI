@@ -33,6 +33,12 @@ set(SOURCE_FILES
 
 add_definitions(-DKAI_USE_NAMESPACES -DKAI_NAMESPACE_NAME=kai)
 
-include_directories(/Users/christian/Include /Users/christian/dev/KAI/Include /usr/local/Cellar/boost/1.60.0_2/include)
+include_directories($ENV{HOME}/Include $ENV{HOME}/dev/KAI/Include ) #usr/local/Cellar/boost/1.60.0_2/include)
+
+set(dir $ENV{HOME})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
 add_library(Library ${SOURCE_FILES})
+

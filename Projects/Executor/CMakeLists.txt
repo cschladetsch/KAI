@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(Executor)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fpermissive -Wno-deprecated")
 
 set(SOURCE_FILES
     Source/Translator/Pi/PiAstNode.cpp
@@ -33,8 +33,11 @@ set(SOURCE_FILES
 
 add_definitions(-DKAI_USE_NAMESPACES -DKAI_NAMESPACE_NAME=kai)
 
-include_directories(/Users/christian/Include /Users/christian/dev/KAI/Include /usr/local/Cellar/boost/1.60.0_2/include)
+include_directories($ENV{HOME}/Include $ENV{HOME}/dev/KAI/Include /usr/local/Cellar/boost/1.60.0_2/include)
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "/Users/christian/lib")
+set(dir $ENV{HOME})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
-add_library(Library ${SOURCE_FILES})
+add_library(Executor ${SOURCE_FILES})

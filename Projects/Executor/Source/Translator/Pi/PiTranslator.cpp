@@ -1,8 +1,4 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Operation.h"
-#include "KAI/Translator/Pi/PiTranslator.h"
-
-#include <boost/lexical_cast.hpp>
 
 using namespace boost;
 using namespace std;
