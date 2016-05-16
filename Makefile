@@ -14,6 +14,14 @@ Projects := Library Executor Console
 DIRS = $(foreach proj, $(Projects), Projects/$(proj)/Source)
 TEST_DIRS = $(foreach proj, $(Projects), Tests/$(proj))
 
+# For OSX
+#HOME=/Users/christian
+#BOOST_DIR=/usr/local/Cellar/boost/1.60.0_2/include
+
+# For Ubuntu
+HOME=/home/christian
+
+
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
 INSTALLDIRS = $(DIRS:%=install-%)
@@ -41,7 +49,7 @@ $(TESTDIRS):
 	$(MAKE) -C $(@:tests-%=%) test
 
 logo:
-	@- cat logo
+	@- cat .logo
 
 clean: $(CLEANDIRS)
 $(CLEANDIRS):
@@ -53,5 +61,4 @@ $(CLEANDIRS):
 .PHONY: subdirs $(TESTDIRS)
 .PHONY: subdirs $(CLEANDIRS)
 .PHONY: all install clean test depend logo
-
 
