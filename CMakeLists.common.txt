@@ -4,6 +4,7 @@ add_definitions(-DKAI_USE_CPP1Y)
 add_definitions(-DKAI_USE_NAMESPACES -DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
+add_definitions(-DKAI_USE_EXCEPTIONS)
 
 # don't need the Cellar/boost directory, except for OSX, 
 # and doesn't hurt otherwise
