@@ -30,4 +30,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fpermissive")
 include(Projects/Library/CMakeLists.txt)
 include(Projects/Executor/CMakeLists.txt)
 include(Projects/Console/CMakeLists.txt)
-#include(Tests/TestLibary/CMakeLists.txt)
+include(Tests/TestLibrary/CMakeLists.txt)
+

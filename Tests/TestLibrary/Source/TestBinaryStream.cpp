@@ -1,3 +1,5 @@
+#if 0
+#include <KAI/BuiltinTypes/List.h>
 #include "TestBase.h"
 
 using namespace kai;
@@ -28,7 +30,7 @@ TEST(TestBinaryStream, Builtins)
 
 TEST(TestBinaryStream, TestObject)
 {
-	Registry R();//std::shared_ptr<Memory::BaseAllocator>());
+	Registry R;
 	R.AddClass<int>("int");
 
 	BinaryStream S;
@@ -183,3 +185,4 @@ TEST(TestBinaryStream, TestStreams)
 {
 }
 
+#endif

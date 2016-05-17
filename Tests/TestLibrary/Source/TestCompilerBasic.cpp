@@ -1,7 +1,5 @@
-
+#if 0
 #include "TestBase.h"
-
-#ifdef TEST_COMPILER_BASIC
 
 USING_NAMESPACE_KAI
 using namespace std;
@@ -36,7 +34,7 @@ protected:
 
 	Value<Stack> Exec(const char *script)
 	{
-		continuation = compiler->Compile(reg, script);
+		continuation = compiler->Compile(script, Structure::Expression);
 		executor->Continue(continuation);
 		return executor->GetDataStack();
 	}
@@ -44,7 +42,7 @@ protected:
 	template <class T>
 	bool Eval(const char *script, const T& val)
 	{
-		continuation = compiler->Compile(reg, script);
+		continuation = compiler->Compile(script, Structure::Expression);
 		executor->Continue(continuation);
 		Value<Stack> stack = executor->GetDataStack();
 		if (stack->Size() != 1)
@@ -70,7 +68,7 @@ TEST_F(TestExecutor, TestArithmetic)
 
 TEST_F(TestExecutor, TestStringLiterals)
 {
-	continuation = compiler->Compile(reg, "'foo.'bar");
+	continuation = compiler->Compile("'foo.'bar");
 	ASSERT_TRUE(continuation->HasCode());
 	executor->Continue(continuation);
 
@@ -82,4 +80,5 @@ TEST_F(TestExecutor, TestStringLiterals)
 }
 
 #endif
+
 

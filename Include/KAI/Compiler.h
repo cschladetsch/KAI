@@ -51,7 +51,7 @@ public:
 	}
 
 	template <class Trans>
-	Pointer<Continuation> Compile(const String &text, Structure st) const
+	Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
 	{
 		if (text.empty())
 			return Object();
@@ -67,7 +67,7 @@ public:
 		return result;
 	}
 
-	Pointer<Continuation> CompileFile(const String &fileName, Structure st) const
+	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const
 	{
 		std::ifstream t(fileName.c_str());
 		std::stringstream buffer;
