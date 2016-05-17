@@ -1,4 +1,5 @@
 
+#if 0
 void RegisterTestSuites(Test::Module &module)
 {
 	module.AddSuite<Tests::TestRegistry>("TestRegistry");
@@ -14,3 +15,4 @@ void RegisterTestSuites(Test::Module &module)
 }
 
 //EOF
+#endif

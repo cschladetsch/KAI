@@ -12,7 +12,7 @@ KAI_BEGIN
 
 bool Compiler::Destroy()
 {
-	// these are unmanaged while the compiler is alive, to avoid them being part
+	// these are un-managed while the compiler is alive, to avoid them being part
 	// of the GC process. probably an overkill for performance. in any case,
 	// when the compiler goes out of scope, we want to ensure the operation objects
 	// are returned to the pool for GC.
