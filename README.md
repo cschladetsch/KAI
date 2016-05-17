@@ -23,6 +23,13 @@ A REPL console application is also supplied.
 
 To test, run the Console application.
 
+Installing
+----------
+You can do the old cmake thing: from top-level do:
+	# mkdir build && cd build && cmake ..
+
+Or, you can use CLiom and get the job done faster. I'm sure there's a way to do it 'manually' faster by passing -j7 to the generated makefiles, but I don't know how at the moment.
+
 Examples
 --------
 
