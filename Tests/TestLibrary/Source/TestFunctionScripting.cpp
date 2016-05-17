@@ -18,7 +18,7 @@ void Function_1(int )
 	funCalled[1] = true;
 }
 
-String Function_2(int , int , String p)
+String Function_2(int n, int f, String p)
 {
 	funCalled[2] = true;
 	KAI_TRACE_3(n, f, p);

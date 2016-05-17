@@ -81,7 +81,22 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Utility.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Debug.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StorageBase.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/Main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPi.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiParser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestBinaryStream.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestRhoScripting.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiTokeniser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestClassScripting.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunction.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiString.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiExecutor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/Executor/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/Library/.idea" />
     </content>
