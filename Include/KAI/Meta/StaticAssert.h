@@ -1,16 +1,6 @@
+#pragma once
 
+#include "boost/static_assert.hpp"
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
+#define KAI_STATIC_ASSERT BOOST_STATIC_ASSERT
 
-#ifndef KAI_META_STATIC_ASSERT_H
-#	define KAI_META_STATIC_ASSERT_H
-
-#	include "boost/static_assert.hpp"
-
-#	define KAI_STATIC_ASSERT BOOST_STATIC_ASSERT
-
-#endif // KAI_META_STATIC_ASSERT_H
-
-//EOF

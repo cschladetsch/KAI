@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Exception/Exceptions.h"
+#include "KAI/Exception/ExceptionMacros.h"
 
 KAI_BEGIN
 

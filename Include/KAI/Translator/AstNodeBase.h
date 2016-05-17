@@ -3,6 +3,7 @@
 #include "KAI/KAI.h"
 #include "KAI/Translator/Common.h"
 #include "KAI/HierarchicalPrinter.h"
+#include "Language.h"
 
 KAI_BEGIN
 
@@ -32,7 +33,7 @@ public:
 	Enum GetType() const { return _astType; }
 	const Token &GetToken() const { return _token; }
 	std::string GetTokenText() const { return std::move(_token.Text()); }
-	Enum GetEnum() const { return _astType; }
+	//Enum GetEnum() const { return _astType; }
 
 	std::string ToString() const
 	{
@@ -40,8 +41,10 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")";
 #else
-		out << _astType;
-		//MUST out << KAI_NAMESPACE(ToString(_astType)) << ": " << _token.ToString();
+		out << (int)_astType << ": " << _token.ToString();
+		// TODO can't do this because AstType not defined yetL
+		// out << KAI_NAMESPACE(ToString(_astType)) << ": " << _token.ToString();
+		return std::move(out.str());
 #endif
 		return out.str();
 	}
