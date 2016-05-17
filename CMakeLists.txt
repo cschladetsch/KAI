@@ -6,6 +6,8 @@ add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
+
+# These are defined in KAI/Base/Config.h if KAI_DEBUG is defined
 #add_definitions(-DKAI_POINTER_HAS_STORAGEBASE)
 #add_definitions(-DKAI_USE_EXCEPTIONS)
 
@@ -27,8 +29,17 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fpermissive")
 
+#include the projects
 include(Projects/Library/CMakeLists.txt)
 include(Projects/Executor/CMakeLists.txt)
+
+# REPL console
 include(Projects/Console/CMakeLists.txt)
+
+# and tests
 include(Tests/TestLibrary/CMakeLists.txt)
+#include(Tests/TestExecutor/CMakeLists.txt)
+#include(Tests/TestConsole/CMakeLists.txt)
+#include(Tests/TestNetwork/CMakeLists.txt)
+#include(Tests/TestNetworkGen/CMakeLists.txt)
 
