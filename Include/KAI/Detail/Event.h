@@ -1,5 +1,11 @@
+#pragma once
+
+#include <KAI/Meta/Base.h>
+
+// TODO: replace with variadic templates
 
 /// Hide implementation detail to avoid polluting global scope
+
 namespace event_detail
 {
 	using namespace meta;

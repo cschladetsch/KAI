@@ -60,7 +60,8 @@ public:
 		auto result = p->Translate(text.c_str(), st);
 		if (p->Failed)
 		{
-			std::cerr << p->Error;
+			//std::cerr << p->Error;
+			KAI_TRACE_ERROR_1(p->Error);
 			return Object();
 		}
 
