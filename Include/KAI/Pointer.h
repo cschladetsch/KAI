@@ -62,6 +62,7 @@ struct ConstPointer : PointerBase<T>, Object
 	typedef typename PointerBase<T>::ConstReference ConstReference;
 	typedef typename PointerBase<T>::ConstPointerType ConstPointerType;
 	using PointerBase<T>::CanAssign;
+	using PointerBase<T>::pointer;
     //typedef typename PointerBase<T>::PointerType;
     
 protected:
