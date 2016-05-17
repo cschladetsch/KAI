@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.4)
 
-project(TestLinbrary)
+project(TestLibrary)
 
-set(SOURCE_FILES
-		Source/TestObjectc.pp
-        )
+set(SOURCE_ROOT ${KAI_HOME}/Tests/TestLibrary/Source/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
+add_executable(TestLibrary ${SOURCE_FILES})
 
-add_executable(TestLibraru ${SOURCE_FILES})
-
+link_libraries(TestLibrary gtest pthread)
+target_link_libraries(TestLibrary Executor Library)
 
 
