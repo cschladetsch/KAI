@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.4)
-
 project(Library)
 
 set(SOURCE_ROOT ${KAI_HOME}/Projects/Library/Source/*.cpp)

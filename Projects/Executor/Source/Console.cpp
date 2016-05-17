@@ -1,3 +1,4 @@
+#include <iostream>
 #include "KAI/ExecutorPCH.h"
 #include "KAI/FunctionBase.h"
 #include "KAI/Function.h"
@@ -45,7 +46,8 @@ void Console::Create()
 	}
 	KAI_CATCH(exception, e)
 	{
-		cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
+		KAI_TRACE_1(e.what());
+		//std::cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
 	}
 }
 

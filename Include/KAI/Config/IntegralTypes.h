@@ -1,9 +1,4 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CONFIG_INTEGRAL_TYPES_H
-#	define KAI_CONFIG_INTEGRAL_TYPES_H
+#pragma once
 
 #include <boost/integer.hpp>
 
@@ -21,6 +16,3 @@ typedef boost::uint_t<64> uint64;
 
 KAI_END
 
-#endif // KAI_CONFIG_INTEGRAL_TYPES_H
-
-// EOF

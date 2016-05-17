@@ -1,5 +1,9 @@
 #include "KAI/KAI.h"
 
+#ifndef KAI_TRACE_VERBOSE
+#   include <iostream>
+#endif
+
 KAI_BEGIN
 
 namespace debug
