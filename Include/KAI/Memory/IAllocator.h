@@ -7,6 +7,11 @@ namespace Memory
 	/// interface for all memory allocation systems
 	struct IAllocator
 	{
+	protected:
+		IAllocator() { }
+		virtual ~IAllocator() { }
+
+	public:
 		typedef void *VoidPtr;
 		typedef char *BytePtr;
 

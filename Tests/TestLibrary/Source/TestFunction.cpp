@@ -72,6 +72,7 @@ protected:
 		_reg.AddClass<String>("String");
 		_reg.AddClass<Stack>("stack");
 		_reg.AddClass<BasePointer<FunctionBase> >("Function");
+		auto n = _reg.New<int>();
 		_stack = _reg.New<Stack>();
 		std::fill(called, called + sizeof(called) / sizeof(called[0]), false);
 	}
@@ -108,6 +109,7 @@ TEST_F(FunctionTest, TestConstruction)
 	EXPECT_EQ(vf2->GetArgumentTypes().size(), std::size_t(2));
 	EXPECT_EQ(vf3->GetArgumentTypes().size(), std::size_t(3));
 
+	EXPECT_EQ(vf1->GetArgumentTypes()[0], Type::Traits<int>::Number);
 	EXPECT_EQ(vf1->GetArgumentType(0), Type::Traits<int>::Number);
 
 	EXPECT_EQ(vf2->GetArgumentType(0), Type::Traits<int>::Number);
@@ -158,7 +160,7 @@ TEST_F(FunctionTest, TestConstruction)
 	EXPECT_EQ(ConstDeref<int>(_stack->Pop()), 3);
 
 	_stack->Push(_reg.New(456));
-	g0->Invoke(_reg, *_stack);
+	//TODO g0->Invoke(_reg, *_stack);
 }
 
 // TODO: Test leaking of base pointers
