@@ -94,11 +94,11 @@ public:
 	void Insert(Char const *);
 
 	static void Register(Registry &);
-};
 
-bool operator<(const String &A, const String &B);
-bool operator==(const String &A, const String &B);
-bool operator>(const String &A, const String &B);
+	friend bool operator<(const String &A, const String &B);
+	friend bool operator==(const String &A, const String &B);
+	friend bool operator>(const String &A, const String &B);
+};
 
 StringStream &operator<<(StringStream &, const String &);
 StringStream &operator>>(StringStream &, String &);
