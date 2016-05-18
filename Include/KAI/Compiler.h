@@ -51,7 +51,7 @@ public:
 	}
 
 	template <class Trans>
-	Pointer<Continuation> Compile(const String &text, Structure st) const
+	Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
 	{
 		if (text.empty())
 			return Object();
@@ -60,14 +60,15 @@ public:
 		auto result = p->Translate(text.c_str(), st);
 		if (p->Failed)
 		{
-			std::cerr << p->Error;
+			//std::cerr << p->Error;
+			KAI_TRACE_ERROR_1(p->Error);
 			return Object();
 		}
 
 		return result;
 	}
 
-	Pointer<Continuation> CompileFile(const String &fileName, Structure st) const
+	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const
 	{
 		std::ifstream t(fileName.c_str());
 		std::stringstream buffer;
