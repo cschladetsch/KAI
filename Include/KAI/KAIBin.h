@@ -11,7 +11,7 @@
 #include "KAI/BuiltinTypes/Signed32.h"
 #include "KAI/BuiltinTypes/Bool.h"
 
-#include "KAI/Exception/Extended.h"
+#include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/Reflected.h"
 #include "KAI/Pointer.h"
 #include "KAI/Continuation.h"
@@ -24,7 +24,7 @@
 #include "KAI/BasePointer.h"
 #include "KAI/CallableBase.h"
 #include "KAI/MethodBase.h"
-#include "KAI/Exception/Extended.h"
+#include "KAI/Exception/ExceptionsExtended.h"
 #include "KAI/PropertyBase.h"
 #include "KAI/ClassBase.h"
 

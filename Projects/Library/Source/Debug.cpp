@@ -1,10 +1,18 @@
 #include "KAI/KAI.h"
-#include <iostream>
+
+#ifndef KAI_TRACE_VERBOSE
+#   include <iostream>
+#endif
 
 KAI_BEGIN
 
 namespace debug
 {
+	StringStream& Trace::operator<<(kai::Object const&Q)
+	{
+		return *this << Q.ToString();
+	}
+
 	const char *TypeToString(Trace::Type t)
 	{
 		switch (t)

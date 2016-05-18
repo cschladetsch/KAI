@@ -1,9 +1,12 @@
 #pragma once
 
+#include "KAI/KAI.h"
+
 KAI_BEGIN
 
 namespace detail
 {
+	// TODO: make this redundant with CallableableBase.h
 	template <int N>
 	struct Add
 	{

@@ -1,3 +1,4 @@
+#if 0
 
 #include "KAI/Test/Base.h"
 #include "KAI/AccessorBase.h"
@@ -139,3 +140,4 @@ KAI_TESTS_END
 #endif // KAI_UNIT_TESTS
 
 //EOF
+#endif

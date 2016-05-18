@@ -1,5 +1,7 @@
 #pragma once
 
+#include "KAI/Net.h"
+
 KAI_NET_BEGIN
 
 struct MacAddress
