@@ -1,4 +1,5 @@
 
+#if 0
 #include "KAI/KAICommon.h"
 #include "KAI/Test/Base.h"
 #include "KAI/Class.h"
@@ -117,3 +118,4 @@ KAI_TEST_END
 #endif // KAI_UNIT_TESTS
 
 //EOF
+#endif

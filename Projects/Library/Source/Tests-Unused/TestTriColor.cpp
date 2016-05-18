@@ -1,9 +1,7 @@
+#if 0
 
-#include "KAI/Test/Base.h"
-#	include "KAI/Tree.h"
-#	include "KAI/Test/Base.h"
+#	include "KAI/KAI.h"
 #	include "KAI/BuiltinTypes/List.h"
-#	include "KAI/Tests/TestTriColor.h"
 #	include "KAI/DotGraph.h"
 
 KAI_BEGIN

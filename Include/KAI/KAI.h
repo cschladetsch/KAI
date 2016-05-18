@@ -11,7 +11,7 @@
 
 #include "KAI/BuiltinTypes/String.h"
 #include "KAI/FileLocation.h"
-#include "KAI/Exception/Exceptions.h"
+#include "KAI/Exception/ExceptionMacros.h"
 
 #include "KAI/Type/Properties.h"
 #include "KAI/Type/Number.h"
