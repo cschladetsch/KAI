@@ -1,3 +1,5 @@
+#pragma once
+
 #include "KAI/Meta/Base.h"
 #include <boost/type_index.hpp>
 
@@ -440,6 +442,8 @@ namespace Type
 	};
 }
 
+#if 0
+
 #define KAI_TYPE_TRAITS_NOASSIGN(T, N, Ops) \
 	namespace Type \
 	{ \
@@ -480,6 +484,7 @@ namespace Type
 		struct Traits<T> : TraitsBase<T, N,#T, P,R> { static const char *Name; }; \
 		const char *Traits<T>::Name = #T; \
 	}
+#endif // 0
 
 class String;
 

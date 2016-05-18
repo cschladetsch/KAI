@@ -27,11 +27,12 @@ set(dir $ENV{HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -fpermissive")
 
 #include the projects
 include(Projects/Library/CMakeLists.txt)
 include(Projects/Executor/CMakeLists.txt)
+
+#if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 
 # REPL console
 include(Projects/Console/CMakeLists.txt)
