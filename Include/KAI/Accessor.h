@@ -46,7 +46,8 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		SystemProperty(Field G, Label const &L, CreateParams::Params create_params) : CommonBase<Base,C,T,F>(G,L,true,create_params) { }
+		SystemProperty(Field G, Label const &L, CreateParams::Params create_params)
+			: CommonBase<Base,C,T,F>(G,L,true,create_params) { }
 
 		Object GetObject(Object const &Q) const
 		{
@@ -79,7 +80,8 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Accessor(Field F, Label const &L, CreateParams::Params create_params) : NonsystemProperty<AccessorBase, C, T, T (K::*)>(F,L,create_params) { }
+		Accessor(Field F, Label const &L, CreateParams::Params create_params)
+			: NonsystemProperty<AccessorBase, C, T, T (K::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
 			return Q.New(ConstDeref<C>(Q).*field);
@@ -94,7 +96,8 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Accessor(Field F, Label const &L, CreateParams::Params create_params) : SystemProperty<AccessorBase, C, T, S (K::*)>(F,L,create_params) { }
+		Accessor(Field F, Label const &L, CreateParams::Params create_params)
+			: SystemProperty<AccessorBase, C, T, S (K::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
 			return ConstDeref<C>(Q).*field;
@@ -165,7 +168,8 @@ namespace property_detail
 		typedef Accessor<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType> Parent;
 		typedef typename Parent::Field Field;
 
-		MakeAccessor(Field F, Label const &L, CreateParams::Params create_params) : Accessor<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
+		MakeAccessor(Field F, Label const &L, CreateParams::Params create_params)
+			: Accessor<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
 	};
 
 	/// make a mutator (read-write) property
@@ -175,7 +179,8 @@ namespace property_detail
 		typedef Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType> Parent;
 		typedef typename Parent::Field Field;
 
-		MakeMutator(Field F, Label const &L, CreateParams::Params create_params) : Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
+		MakeMutator(Field F, Label const &L, CreateParams::Params create_params)
+			X: Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
 	};
 
 } // namespace property_detail
