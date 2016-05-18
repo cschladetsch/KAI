@@ -1,11 +1,13 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.4)
 
 project(TestLibrary)
 
-include($ENV{HOME}/dev/KAI/CMakeLists.common.txt)
-
-file(GLOB SOURCE_FILES $ENV{HOME}/dev/KAI/Tests/Library/Source/*cpp)
-
-link_libraries(Executor Library gtest)
+set(SOURCE_ROOT ${KAI_HOME}/Tests/TestLibrary/Source/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
 add_executable(TestLibrary ${SOURCE_FILES})
+
+target_link_libraries(TestLibrary Library Executor)
+link_libraries(TestLibrary gtest pthread)
+
+

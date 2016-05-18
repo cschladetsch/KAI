@@ -1,12 +1,8 @@
 #pragma once
 
-#include "KAI/Exception/Common.h"
+#include "KAI/Exception/ExceptionBase.h"
 
 KAI_BEGIN
-
-namespace Exception
-{
-}
 
 #define KAI_FILE_LOCATION \
 	KAI_NAMESPACE(FileLocation)(__FILE__, __LINE__)

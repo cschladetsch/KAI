@@ -2,22 +2,74 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
+      <config projectName="TestLinbrary" targetName="TestLibraru" />
       <config projectName="KAI" targetName="KAI" />
+      <config projectName="Library" targetName="STATIC" />
+      <config projectName="TestLibrary" targetName="Console" />
+      <config projectName="TestLibrary" targetName="TestLibrary" />
+      <config projectName="TestLinbrary" targetName="TestLibrary" />
+      <config projectName="Console" targetName="Console" />
     </generated>
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
+  <component name="CMakeSettings" AUTO_RELOAD="true" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
     <ADDITIONAL_GENERATION_ENVIRONMENT>
       <envs />
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b6514e1-b42d-46a9-9f54-8be590e82d54" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Include/KAI/Config/Utility.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Include/KAI/Memory/MonotonicAllocator.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Include/KAI/BuiltinTypes/Label.inl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Include/KAI/Config/Compiler.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Include/KAI/Exception/.Exceptions.h.swn" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Include/KAI/Exception/.Exceptions.h.swo" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Include/KAI/Exception/Extended.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Console/Source/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Executor/Source/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Library/Source/BuiltinTypes/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Network/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Network/Network.vcxproj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Network/Network.vcxproj.filters" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Network/Source/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGen/Source/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/NetworkGenerator.vcxproj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/NetworkGenerator.vcxproj.filters" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/NetworkGeneratorTestSuite/NetworkGeneratorTestSuite.vcxproj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/NetworkGeneratorTestSuite/NetworkGeneratorTestSuite.vcxproj.filters" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenAstNode.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenLexer.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenParser.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenToken.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenTokens.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Lang/NetGenTranslator.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/NetworkGenerator/Source/Makefile" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Include/KAI/Exception/Common.h" afterPath="$PROJECT_DIR$/Include/KAI/Exception/ExceptionBase.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Include/KAI/Exception/Exceptions.h" afterPath="$PROJECT_DIR$/Include/KAI/Exception/ExceptionMacros.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/KAI.iml" afterPath="$PROJECT_DIR$/.idea/KAI.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Method.h" afterPath="$PROJECT_DIR$/Include/KAI/Method.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Library/.idea/Library.iml" afterPath="$PROJECT_DIR$/Projects/Library/.idea/Library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Library/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Projects/Library/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/ClassBase.h" afterPath="$PROJECT_DIR$/Include/KAI/ClassBase.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Compiler.h" afterPath="$PROJECT_DIR$/Include/KAI/Compiler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Config/Base.h" afterPath="$PROJECT_DIR$/Include/KAI/Config/Base.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Config/Compiler.h" afterPath="$PROJECT_DIR$/Include/KAI/Config/Compiler.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Config/IntegralTypes.h" afterPath="$PROJECT_DIR$/Include/KAI/Config/IntegralTypes.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Config/Platform.h" afterPath="$PROJECT_DIR$/Include/KAI/Config/Platform.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Config/StdContainers.h" afterPath="$PROJECT_DIR$/Include/KAI/Config/StdContainers.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Detail/Arity.h" afterPath="$PROJECT_DIR$/Include/KAI/Detail/Arity.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Detail/Event.h" afterPath="$PROJECT_DIR$/Include/KAI/Detail/Event.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Exception/ExceptionsExtended.h" afterPath="$PROJECT_DIR$/Include/KAI/Exception/ExceptionsExtended.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/KAI.h" afterPath="$PROJECT_DIR$/Include/KAI/KAI.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/KAIBin.h" afterPath="$PROJECT_DIR$/Include/KAI/KAIBin.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Memory/IAllocator.h" afterPath="$PROJECT_DIR$/Include/KAI/Memory/IAllocator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Memory/Memory.h" afterPath="$PROJECT_DIR$/Include/KAI/Memory/Memory.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Meta/StaticAssert.h" afterPath="$PROJECT_DIR$/Include/KAI/Meta/StaticAssert.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Net/Address.h" afterPath="$PROJECT_DIR$/Include/KAI/Net/Address.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Translator/AstNodeBase.h" afterPath="$PROJECT_DIR$/Include/KAI/Translator/AstNodeBase.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Tree.h" afterPath="$PROJECT_DIR$/Include/KAI/Tree.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Executor/Source/Console.cpp" afterPath="$PROJECT_DIR$/Projects/Executor/Source/Console.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Executor/Source/Executor.cpp" afterPath="$PROJECT_DIR$/Projects/Executor/Source/Executor.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Library/CMakeLists.txt" afterPath="$PROJECT_DIR$/Projects/Library/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Library/Source/Debug.cpp" afterPath="$PROJECT_DIR$/Projects/Library/Source/Debug.cpp" />
     </list>
     <ignored path="KAI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,10 +89,92 @@
     <favorites_list name="KAI" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Projects/Executor/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Projects/Library/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Debug.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Projects/Library/Source/Debug.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+              <folding>
+                <element signature="e#468#591#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Projects/Executor/Source/Compiler.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Executor/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Projects/Console/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Include/KAI/Pointer.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/HierarchicalPrinter.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/Options.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Class.h" />
+        <option value="$PROJECT_DIR$/Projects/Library/Source/Test-Unused/BasicOutput.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Library/Source/Tests-Unused/TestProperties.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Library/Source/Tests-Unused/MakeTestModule.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Library/Source/Tests-Unused/TestTriColor.cpp" />
+        <option value="$PROJECT_DIR$/Tests/TestLibrary/Source/Main.cpp" />
+        <option value="$PROJECT_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp" />
+        <option value="$PROJECT_DIR$/Tests/TestLibrary/Source/TestBinaryStream.cpp" />
+        <option value="$PROJECT_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" />
+        <option value="$PROJECT_DIR$/Tests/TestLibrary/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Include/KAI/BuiltinTypes/All.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/IntegralTypes.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/Platform.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/StdContainers.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/Utility.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/Base.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Config/Compiler.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Detail/Arity.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Detail/Event.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Exception/Exceptions.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/KAIBin.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Memory/IAllocator.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Memory/Memory.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Memory/MonotonicAllocator.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Meta/Arity.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Meta/Base.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Meta/StaticAssert.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Net/Address.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Exception/ExceptionsExtended.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Compiler.h" />
+        <option value="$PROJECT_DIR$/Include/KAI/Translator/AstNodeBase.h" />
+        <option value="$PROJECT_DIR$/Projects/Executor/Source/Console.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Executor/Source/Executor.cpp" />
+        <option value="$PROJECT_DIR$/Projects/Executor/Source/Makefile" />
+        <option value="$PROJECT_DIR$/Projects/Library/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Projects/Library/Source/Debug.cpp" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -49,10 +183,35 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="88" />
-    <option name="y" value="24" />
-    <option name="width" value="1400" />
-    <option name="height" value="833" />
+    <option name="x" value="1665" />
+    <option name="y" value="38" />
+    <option name="width" value="1295" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>Declaration orderC/C++</id>
+          </State>
+          <State>
+            <id>Type checksC/C++</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>C/C++</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -87,6 +246,66 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Library" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Executor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -94,8 +313,11 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Projects/Library/Source" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="comment&#9;ACTION&#9;CommentByBlockComment" />
   </component>
-  <component name="RunManager" selected="Application.Executor">
+  <component name="RunManager" selected="Application.Library">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KAI" TARGET_NAME="KAI" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="KAI" RUN_TARGET_NAME="KAI" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -241,30 +463,44 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Executor" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/Projects/Executor" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KAI" TARGET_NAME="KAI" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="Library" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/Projects/Library" PASS_PARENT_ENVS_2="true" PROJECT_NAME="KAI" TARGET_NAME="KAI" CONFIG_NAME="Debug">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Library" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/Projects/Library" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Executor" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/Projects/Executor" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestLibrary" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TestLibrary" TARGET_NAME="TestLibrary" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TestLibrary" RUN_TARGET_NAME="TestLibrary">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Console" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TestLibrary" TARGET_NAME="Console" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TestLibrary" RUN_TARGET_NAME="Console">
       <envs />
       <method />
     </configuration>
     <configuration default="false" name="Library" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.Executor" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.Library" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Build All" />
-      <item index="3" class="java.lang.String" itemvalue="Compound.Library" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Executor" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TestLibrary" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Console" />
+      <item index="5" class="java.lang.String" itemvalue="Compound.Library" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",INHERITORS_AND_CATEGORIES" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -276,18 +512,29 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="88" y="24" width="1400" height="833" extended-state="0" />
+    <frame x="1665" y="38" width="1295" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981844" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23427673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38006756" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277027" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -295,19 +542,48 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38006756" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3277027" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23427673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -315,7 +591,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -323,26 +599,509 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/Include/KAI/BuiltinTypes/All.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="126">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding>
+            <element signature="e#251#288#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/Include/KAI/BuiltinTypes/Array.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/BuiltinTypes/Bool.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/BuiltinTypes/Label.inl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Compiler.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/IntegralTypes.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Options.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Platform.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/StdContainers.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Utility.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="e#415#536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Config/Compiler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Detail/Arity.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="e#130#137#0" expanded="false" />
+            <element signature="e#407#409#0" expanded="false" />
+            <element signature="e#439#453#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Detail/CallableBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-954">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <marker date="1463391845886" expanded="true" signature="69:1355" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="118:168" placeholder="&lt;F,Tuple,size_t...I&gt;" />
+            <marker date="1463391845886" expanded="true" signature="236:294" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="361:398" placeholder="&lt;F,Tuple&gt;" />
+            <marker date="1463391845886" expanded="true" signature="440:577" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="580:639" placeholder="&lt;Q,F,Tuple,size_t...I&gt;" />
+            <marker date="1463391845886" expanded="true" signature="716:793" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="856:902" placeholder="&lt;Q,F,Tuple&gt;" />
+            <marker date="1463391845886" expanded="true" signature="953:1096" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1099:1117" placeholder="&lt;T&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1142:1219" placeholder="{...}" />
+            <marker date="1463391845886" expanded="true" signature="1191:1216" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1223:1241" placeholder="&lt;T&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1337:1352" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1359:1377" placeholder="&lt;T&gt;" />
+            <marker date="1463391845886" expanded="false" signature="1491:1507" placeholder="&lt;int N&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1521:1811" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1525:1549" placeholder="&lt;...Args&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1606:1808" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1838:1849" placeholder="&lt;&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1866:2124" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="1870:1893" placeholder="&lt;...Args&gt;" />
+            <marker date="1463391845886" expanded="true" signature="1950:2121" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="2127:2138" placeholder="&lt;&gt;" />
+            <marker date="1463391845886" expanded="true" signature="2156:2248" placeholder="{...}" />
+            <marker date="1463391845886" expanded="false" signature="2160:2183" placeholder="&lt;...Args&gt;" />
+            <marker date="1463391845886" expanded="true" signature="2240:2245" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Detail/Event.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding>
+            <marker date="1463498718042" expanded="true" signature="171:12995" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1403:1629" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1500:1625" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1604:1621" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1672:1905" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1767:1901" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1878:1897" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="1948:2194" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2042:2190" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2163:2186" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2237:2496" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2330:2492" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2461:2488" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2907:3558" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="2959:3554" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3034:3227" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3189:3222" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3309:3549" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3471:3544" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3599:4289" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3668:4285" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3745:3947" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="3907:3942" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4031:4280" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4200:4275" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4330:5050" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4395:5046" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4475:4691" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4647:4686" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4778:5041" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="4957:5036" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5091:5841" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5152:5837" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5235:5465" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5417:5460" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5555:5832" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5744:5827" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="5901:6181" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="6701:7052" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="6770:7048" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="6857:7044" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7108:7394" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7163:7390" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7257:7386" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7450:7753" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7508:7749" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7612:7745" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7809:8129" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7870:8125" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="7984:8121" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="8598:12992" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="8800:12988" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="8818:8837" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="9000:9168" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="9637:9890" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="9957:10059" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="10137:10505" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="10818:10926" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="11026:11141" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="11241:11362" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="11954:12360" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="12458:12514" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="12607:12658" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="12755:12817" placeholder="{...}" />
+            <marker date="1463498718042" expanded="true" signature="12917:12984" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Exception/ExceptionBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/KAIBin.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Exception/Extended.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Meta/Arity.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Net/Address.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Meta/StaticAssert.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Meta/Base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/MonotonicAllocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/Memory.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/IAllocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/BaseAllocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Exception/ExceptionsExtended.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#2168#2190#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Exception/ExceptionMacros.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Threads/Barrier.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Threads/CriticalSection.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Threads/Mutex.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Threads/Thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Translator/Rho/RhoLexer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Compiler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Translator/Rho/RhoToken.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#28#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Network/Source/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Library/Source/BuiltinTypes/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/NetworkGen/Source/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/NetworkGenerator/Source/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Console/Source/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Executor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Console.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-806">
+          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Translator/AstNodeBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+          <folding>
+            <element signature="e#14#34#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Translator/Rho/RhoTranslator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Include/KAI/Translator/Rho/RhoAstNode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-653">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Projects/Executor/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="126">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Library/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Projects/Library/Source/Debug.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding>
+            <element signature="e#468#591#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

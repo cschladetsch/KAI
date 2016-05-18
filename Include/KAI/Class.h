@@ -1,7 +1,5 @@
 #pragma once
 
-#include <assert.h>
-
 KAI_BEGIN
 
 #pragma warning(push)
