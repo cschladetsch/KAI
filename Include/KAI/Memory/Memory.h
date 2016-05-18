@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KAI/KAI.h"
+#include "StandardAllocator.h"
 
 KAI_BEGIN
 

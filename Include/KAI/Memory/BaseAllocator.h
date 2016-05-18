@@ -13,9 +13,12 @@ namespace Memory
 		Allocator alloc;
 		DeAllocator free;
 
+	protected:
 		BaseAllocator() : alloc(0), free(0) 
 		{ 
 		}
+
+	public:
 		VoidPtr AllocateBytes(size_t N)
 		{
 			if (!alloc)
@@ -30,23 +33,6 @@ namespace Memory
 		}
 	};
 
-	/// Standard allocator - use ::malloc and ::free
-	struct StandardAllocator : BaseAllocator
-	{
-		StandardAllocator()
-		{
-			alloc = &StandardAllocator::sys_malloc;
-			free = &StandardAllocator::sys_free;
-		}
-		static VoidPtr sys_malloc(size_t N)
-		{
-			return ::malloc(N);
-		}
-		static void sys_free(VoidPtr P, size_t /*N*/)
-		{
-			return ::free(P);
-		}
-	};
 }
 
 KAI_END

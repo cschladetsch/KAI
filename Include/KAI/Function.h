@@ -1,13 +1,14 @@
 #pragma once
 
+#include "Meta/Base.h"
 #include "FunctionBase.h"
 #include "Detail/CallableBase.h"
-#include "Meta/Base.h"
+#include "Detail/AddArgType.h"
 
 KAI_BEGIN
 
-//namespace function_detail
-//{
+namespace function_detail
+{
 	using namespace detail;
 
 	template <class... Args>
@@ -15,13 +16,20 @@ KAI_BEGIN
 	{
 		typedef void (*Func)(Args...);
 		Func fun;
-		tuple<Args...> _args;
+		using FunctionBase::arguments;
+		using FunctionBase::return_type;
+
 		static constexpr int arity = sizeof...(Args);
 
-		VoidFun(Func f, const Label &N) : fun(f), FunctionBase(N) { }
+		VoidFun(Func f, const Label &N) : fun(f), FunctionBase(N)
+		{
+			AddArgType<arity, Args...>::Add(arguments);
+			return_type =  Type::Traits<void>::Number;
+		}
 
 		void Invoke(Registry &reg, Stack &stack)
 		{
+			tuple<Args...> _args;
 			Add<arity - 1>::Arg(stack, _args);
 			CallFun(fun, _args);
 		}
@@ -34,8 +42,14 @@ KAI_BEGIN
 		Func fun;
 		tuple<Args...> _args;
 		static constexpr int arity = sizeof...(Args);
+		using FunctionBase::arguments;
+		using FunctionBase::return_type;
 
-		NonVoidFun(Func f, const Label &N) : fun(f), FunctionBase(N) { }
+		NonVoidFun(Func f, const Label &N) : fun(f), FunctionBase(N)
+		{
+			AddArgType<arity, Args...>::Add(arguments);
+			return_type = Type::Traits<Ret>::Number;
+		}
 
 		void Invoke(Registry &reg, Stack &stack)
 		{
@@ -53,16 +67,18 @@ KAI_BEGIN
 			, VoidFun<Args...>
 			, NonVoidFun<Ret , Args...> >::Type Type;
 	};
-//} // function_detail
+} // function_detail
 
 template <class R, class... Args>
-struct Function : FunctionSelect<R, Args...>::Type
+struct Function : function_detail::FunctionSelect<R, Args...>::Type
 {
-	typedef typename FunctionSelect<R,Args...>::Type Parent;
+	typedef typename function_detail::FunctionSelect<R,Args...>::Type Parent;
 	Function(typename Parent::Func M, const Label &N) : Parent(M, N) { }
 };
 
-#define KAI_UNNAMED_FUNCTION_NAME "UnnamedFunction"
+#ifndef KAI_UNNAMED_FUNCTION_NAME
+#   define KAI_UNNAMED_FUNCTION_NAME "UnnamedFunction"
+#endif
 
 inline FunctionBase *AddDescription(FunctionBase *F, const char *D)
 {
