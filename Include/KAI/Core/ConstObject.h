@@ -1,14 +1,11 @@
+#pragma once
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_CONST_OBJECT_H
-#	define KAI_CONST_OBJECT_H
+#include <KAI/Core/Base.h>
 
 KAI_BEGIN
 
+// Never used?
+/*
 struct ConstObject : Object
 {
 	ConstObject();
@@ -23,9 +20,7 @@ struct ConstObject : Object
 	template <class T>
 	ConstObject GetValue(Label const &) const;
 };
+*/
 
 KAI_END
 
-#endif // KAI_CONST_OBJECT_H
-
-//EOF

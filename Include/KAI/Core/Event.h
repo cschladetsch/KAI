@@ -1,12 +1,7 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_EVENT_H
-#	define KAI_EVENT_H
-
-#	include "KAI/BuiltinTypes/Void.h"
+#include <KAI/Language/Tau/Tau.h>
+#include "KAI/Core/BuiltinTypes/Void.h"
 
 // DESCRIPTION
 // This file contains a definition for a multi-cast Event.
@@ -39,8 +34,8 @@
 
 KAI_BEGIN
 
-#	include "KAI/Detail/Event.h"
-#	include "KAI/Detail/SystemEvent.h"
+#	include "KAI/Core/Detail/Event.h"
+#	include "KAI/Core/Detail/SystemEvent.h"
 
 template <class T0 = event_detail::Null, class T1 = event_detail::Null, class T2 = event_detail::Null>
 struct Event : event_detail::EventType<event_detail::Arity<T0, T1, T2>:: Value>::template Create<T0, T1, T2> { };

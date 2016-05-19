@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "CallableBase.h"
+
 KAI_BEGIN
 
 struct FunctionBase : CallableBase<FunctionBase>

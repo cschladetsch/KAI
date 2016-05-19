@@ -1,12 +1,6 @@
+#pragma once
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_UTILITY_H
-#	define KAI_UTILITY_H
-
+#include <KAI/Core/Config/Base.h>
 KAI_BEGIN
 
 template <class T>

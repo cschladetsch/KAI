@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+
 KAI_BEGIN
 
 namespace function_detail

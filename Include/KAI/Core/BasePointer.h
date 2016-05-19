@@ -1,5 +1,11 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Traits.h>
+#include "Registry.h"
+#include "StringStream.h"
+#include "Base.h"
+
 KAI_BEGIN
 
 struct BasePointerBase //: Reflected

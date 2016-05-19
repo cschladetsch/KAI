@@ -1,5 +1,14 @@
 #pragma once
 
+#include <utility>
+
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include "Object.h"
+#include "StorageBase.h"
+#include "Base.h"
+#include "Handle.h"
+
 KAI_BEGIN
 
 template <class Cont, class Fun>

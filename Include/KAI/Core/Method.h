@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Meta/Base.h>
+#include <KAI/Core/Detail/Arity.h>
 #include "MethodBase.h"
 #include "Detail/CallableBase.h"
 

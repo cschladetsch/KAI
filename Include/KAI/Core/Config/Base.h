@@ -1,8 +1,8 @@
 #pragma once
 
-#include "KAI/Config/Options.h"
-#	include "KAI/Config/Compiler.h"
-#	include "KAI/Config/Platform.h"
+#include "KAI/Core/Config/Options.h"
+#include "KAI/Core/Config/Compiler.h"
+#include "KAI/Core/Config/Platform.h"
 
 #ifdef KAI_OPTION_USE_NAMESPACES
 #	define KAI_BEGIN namespace KAI_NAMESPACE_NAME {
@@ -17,6 +17,7 @@
 #	define KAI_BEGIN
 #	define KAI_END
 #	define USING_NAMESPACE_KAI
+#   pragma error "nah use namespaces"
 #endif
 
 // use gc-count based caching system for object validity and value lookups
@@ -37,6 +38,9 @@
 #define KAI_UNUSED_2(A,B) KAI_UNUSED(A), KAI_UNUSED(B)
 #define KAI_UNUSED_3(A,B,C) KAI_UNUSED(A), KAI_UNUSED(B), KAI_UNUSED(C)
 
-#include "KAI/Config/Platform.h"
-#include "KAI/Config/IntegralTypes.h"
-#include "KAI/Utility.h"
+#include "KAI/Core/Config/Platform.h"
+#include "KAI/Core/Config/IntegralTypes.h"
+#include "KAI/Core/Utility.h"
+#include "KAI/Core/FwdDeclarations.h"
+
+

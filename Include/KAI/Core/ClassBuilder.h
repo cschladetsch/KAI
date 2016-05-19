@@ -1,5 +1,13 @@
 #pragma once
 
+#include <KAI/Core/KAI.h>
+
+#include "Pathname.h"
+#include "Class.h"
+#include "PropertyBase.h"
+#include "Accessor.h"
+#include "Method.h"
+
 KAI_BEGIN
 
 void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path);
@@ -67,3 +75,4 @@ public:
 };
 
 KAI_END
+

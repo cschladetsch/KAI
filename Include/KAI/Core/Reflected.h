@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "Base.h"
+#include "Pointer.h"
+
 KAI_BEGIN
 
 /// A Reflected type has a Self pointer. This is semantically same as C++'s 'this' pointer,

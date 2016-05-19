@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Base.h>
+#include <KAI/Core/Algorithm.h>
+
 KAI_TYPE_BEGIN
 
 template <typename Reference, bool IsContainer>
@@ -52,11 +56,6 @@ struct ContainerOperations<Reference, false>
 	template <class Fun, class Ref>
 	static Fun ForEachContained(Ref, Fun const &F) { return F; }
 };
-
-/* How did this ever comp[pile
-typedef typename ContainerOperations<Reference, HasProperty<Properties::Container>::Value> ContainerOps;
-*/
-
 
 KAI_TYPE_END
 

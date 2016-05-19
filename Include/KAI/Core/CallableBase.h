@@ -1,5 +1,10 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+#include "BasePointer.h"
+#include "Label.h"
+
 KAI_BEGIN
 
 // TODO: this does not need to be a template
@@ -39,7 +44,7 @@ namespace Type
 {
 	template <class T>
 	struct Traits<CallableBase<T> > : 
-	TraitsBase<CallableBase<T> *, Type::Number::Callable, 0> { };
+	TraitsBase<CallableBase<T> *, Number::Callable, 0> { };
 };
 
 KAI_END
