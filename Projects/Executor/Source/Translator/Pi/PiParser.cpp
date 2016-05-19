@@ -22,7 +22,10 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 	lexer = lex;
 
 	if (lexer->Failed)
+	{
+		Failed = true;
 		return;
+	}
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
