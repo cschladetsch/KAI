@@ -18,8 +18,10 @@ set(PROJECTS_HOME ${KAI_HOME}/Projects)
 set(TESTS_HOME $ENV{HOME}/Tests)
 
 include_directories($ENV{HOME}/Include ${KAI_HOME}/Include)
-# only needed for OSX
-#include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
+endif()
 
 set(GLOB_RECURSE HEADER_FILES ${KAI_HOME}/Include/KAI/*.h)
 
@@ -31,8 +33,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 #include the projects
 include(Projects/Library/CMakeLists.txt)
 include(Projects/Executor/CMakeLists.txt)
-
-#if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 
 # REPL console
 include(Projects/Console/CMakeLists.txt)
