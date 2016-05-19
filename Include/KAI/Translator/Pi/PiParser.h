@@ -7,7 +7,7 @@
 KAI_BEGIN
 
 // parser specific to the in-fix Pi language
-struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>, HierarchicalPrinter<PiParser>
+struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 {
 	typedef ParserCommon<PiLexer, PiAstNodeEnumType> Parent;
 	using typename Parent::Lexer;

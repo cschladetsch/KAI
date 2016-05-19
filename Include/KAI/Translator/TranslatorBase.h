@@ -39,7 +39,7 @@ struct TranslatorBase : TranslatorCommon
 			Fail(parse->Error);
 
 		if (trace)
-			KAI_TRACE_1(parse->Print());
+			KAI_TRACE_1(parse->PrintTree());
 
 		PushNew();
 		TranslateNode(parse->GetRoot());
@@ -52,7 +52,7 @@ struct TranslatorBase : TranslatorCommon
 
 		// TODO: don't want fudge around fact that the entire sequence is wrapped around
 		// a root continuation
-		auto root = ConstDeref<Continuation>(stack.back());
+		Continuation const &root = ConstDeref<Continuation>(stack.back());
 		auto inner = root.GetCode()->At(0);
 		return inner;
 	}

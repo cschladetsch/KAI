@@ -34,26 +34,8 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
-		//MUST out << KAI_NAMESPACE(ToString(type));
-		switch (type)
-		{
-			case EnumType::False:
-				out << "false";
-				break;
-			case EnumType::True:
-				out << "true";
-				break;
-			case EnumType::Ident:
-			case EnumType::Int:
-			case EnumType::Float:
-			case EnumType::Pathname:
-				out << "=" << Text().c_str();
-				break;
-			default:
-				out << "Token#" << (int)type;
-		}
+		out << EEnumType::ToString(type) << "'" << lexer->GetString(slice) << "'";
 #endif
-		//ENDS out << std::ends;
 		return std::move(out.str());
 	}
 
