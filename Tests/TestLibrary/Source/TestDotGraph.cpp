@@ -41,12 +41,11 @@ TEST(TestDotGraph, Test)
 	root.SetChild("test_owned", to);
 	root.SetChild("n", n);
 
+	to->list = R.New<List>();
 	to->list->PushBack(R.New(42));
 	to->list->PushBack(R.New(123));
 	to->num = R.New(456);
 
-	String filename("\\tmp\\test.graph");
+	String filename("test.graph");
 	DotGraph(root, filename);
-
-	//KAI_TEST_TRUE(File("\\test.graph").CanRead());
 }

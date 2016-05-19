@@ -12,7 +12,8 @@ namespace property_detail
 	{
 		typedef F Field;
 		Field field;
-		CommonBase(Field G, Label L, bool B, CreateParams::Params create_params) : Base(L, Type::Traits<C>::Number, Type::Traits<T>::Number, B,create_params), field(G) { }
+		CommonBase(Field G, Label L, bool B, CreateParams::Params create_params)
+			: Base(L, Type::Traits<C>::Number, Type::Traits<T>::Number, B,create_params), field(G) { }
 	};
 
 	/// common functionality for accessors and mutators of non-system types.
@@ -22,7 +23,8 @@ namespace property_detail
 		typedef CommonBase<Base,C,T,F> Parent;
 		using typename Parent::Field;
 
-		NonsystemProperty(Field G, Label const &L, CreateParams::Params create_params) : CommonBase<Base,C,T,F>(G, L, false, create_params) { }
+		NonsystemProperty(Field G, Label const &L, CreateParams::Params create_params)
+			: CommonBase<Base,C,T,F>(G, L, false, create_params) { }
 
 		// cannot get or set the property object for non-system types
 		Object GetObject(Object const &) const 
@@ -51,7 +53,8 @@ namespace property_detail
 
 		Object GetObject(Object const &Q) const
 		{
-			return Parent::GetValue(Q); // the 'value' of a property is the same as its object for system types
+			//return Parent::GetValue(Q); // the 'value' of a property is the same as its object for system types
+			return Deref<C>(Q).*field;
 		}
 		void SetObject(Object const &Q, Object const &V) const
 		{
@@ -180,7 +183,7 @@ namespace property_detail
 		typedef typename Parent::Field Field;
 
 		MakeMutator(Field F, Label const &L, CreateParams::Params create_params)
-			X: Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
+			: Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
 	};
 
 } // namespace property_detail
