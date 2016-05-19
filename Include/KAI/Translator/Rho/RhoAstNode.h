@@ -9,36 +9,36 @@ struct RhoAstNodeEnumType
 {
 	enum Enum : int
 	{
-		None,
-		Program,
-		Ident,
-		GetMember,
-		Function,
-		Block,
-		Conditional,
-		Assignment,
-		Call,
-		Increment,
-		Decrement,
-		TokenType,
-		Positive,
-		Negative,
-		ArgList,
-		IndexOp,
-		ForEach,
-		For,
-		List,
-		Map,
-		Plus,
-		Minus,
-		Mul,
-		Divide,
-		Less,
-		Equiv,
-		NotEquiv,
-		Greater,
-		Object,
-		Continuation,
+		None = 0,
+		Program = 1,
+		Ident = 2,
+		GetMember = 3,
+		Function = 4,
+		Block = 5,
+		Conditional = 6,
+		Assignment = 7,
+		Call = 8,
+		Increment = 9,
+		Decrement = 10,
+		TokenType = 11,
+		Positive = 12,
+		Negative = 13,
+		ArgList = 14,
+		IndexOp = 15,
+		ForEach = 16,
+		For = 17,
+		List = 18,
+		Map = 19,
+		Plus = 20,
+		Minus = 21,
+		Mul = 22,
+		Divide = 23,
+		Less = 24,
+		Equiv = 25,
+		NotEquiv = 26,
+		Greater= 27,
+		Object = 28,
+		Continuation = 29,
 	};
 
 	struct Node : AstNodeBase<RhoToken, RhoAstNodeEnumType>
@@ -52,11 +52,12 @@ struct RhoAstNodeEnumType
 		Node(Enum e, Token &tok) : Parent(e, tok) { }
 		Node(Parent::Token tok) : Parent(tok) { }
 	};
+
+	static const char *ToString(Enum val);
 };
 
 typedef RhoAstNodeEnumType RhoAstNodes;
 typedef RhoAstNodes::Node RhoAstNode;
 
-const char *ToString(RhoAstNodes::Enum val);
 
 KAI_END

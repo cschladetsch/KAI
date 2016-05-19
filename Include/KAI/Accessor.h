@@ -38,7 +38,7 @@ namespace property_detail
 
 		// non-system types cannot be marked 
 		void SetMarked(Object &, bool) { }
-	}AccessorAccessorAccessorAccessorAccessor;
+	};
 
 	/// common functionality for accessors and mutators of properties which are system types.
 	template <class Base, class C, class T, class F>

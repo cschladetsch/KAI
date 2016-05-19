@@ -9,39 +9,68 @@ struct PiTokenEnumType
 {
 	enum Enum
 	{
-		None, Null = None,
+		None,
+		Null = None,
 		Whitespace,
-		Int, Float, String, Bool,
-		True, False,
-		Suspend, Resume, Replace,
+		Int,
+		Float,
+		String,
+		Bool,
+		True,
+		False,
+		Suspend,
+		Resume,
+		Replace,
 		Ident,
 		QuotedIdent,
 		Store,
 		Dot,
 		Comma,
-		If, IfElse,
-		For, While,
-		OpenBrace, CloseBrace,
-		OpenParan, CloseParan,
-		Plus, Minus, Mul, Divide,
+		If,
+		IfElse,
+		For,
+		While,
+		OpenBrace,
+		CloseBrace,
+		OpenParan,
+		CloseParan,
+		Plus,
+		Minus,
+		Mul,
+		Divide,
 		Assign,
-		Less, Equiv, NotEquiv, Greater, LessEquiv, GreaterEquiv,
-		Not, And, Or, Xor,
-		OpenSquareBracket, CloseSquareBracket,
-		Increment, Decrement,
-		BitAnd, BitOr, BitXor,
+		Less,
+		Equiv,
+		NotEquiv,
+		Greater,
+		LessEquiv,
+		GreaterEquiv,
+		Not,
+		And,
+		Or,
+		Xor,
+		OpenSquareBracket,
+		CloseSquareBracket,
+		Increment,
+		Decrement,
+		BitAnd,
+		BitOr,
+		BitXor,
 		Self,
 		Lookup,
-		Tab, NewLine,
+		Tab,
+		NewLine,
 		Comment,
-		PlusAssign, MinusAssign, MulAssign, DivAssign,
-		In, Colon,
+		PlusAssign,
+		MinusAssign,
+		MulAssign,
+		DivAssign,
+		In,
+		Colon,
 		Assert,
 		Pathname,
 		ToRho,
 		ToRhoSequence,
-
-		// RPN specific
 		Dup,
 		Drop,
 		Over,
@@ -53,9 +82,19 @@ struct PiTokenEnumType
 		RotN,
 		Clear,
 		Expand,
-		ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, ToQuaternion,
+		ToArray,
+		ToList,
+		ToMap,
+		ToSet,
+		ToHashMap,
+		ToPair,
+		ToVector2,
+		ToVector3,
+		ToVector4,
+		ToQuaternion,
 		RunScript,
-		Name, Fullname,
+		Name,
+		Fullname,
 		GetProperty,
 		SetProperty,
 		GarbageCollect,
@@ -79,18 +118,14 @@ struct PiTokenEnumType
 		GetSignature,
 		StringtoType,
 		TypeToString,
-
 		Version,
-
 		DateNowSimple,
 		DateNow,
 		DurationSinceStart,
 		DeltaTime,
-
 		PushFolder,
 		PopFolder,
 		History,
-
 		Jobs,
 		Debug,
 
@@ -99,17 +134,17 @@ struct PiTokenEnumType
 	struct Type : TokenBase<PiTokenEnumType>
 	{
 		Type() { }
-		Type(Enum val, const LexerBase &lexer, int ln, Slice slice) 
+		Type(Enum val, const LexerBase &lexer, int ln, Slice slice)
 			: TokenBase<PiTokenEnumType>(val, lexer, ln, slice) { }
 
 		friend std::ostream &operator<<(std::ostream &out, Type const &node);
 	};
+
+	static const char *ToString(Enum t);
 };
 
 typedef PiTokenEnumType PiTokens;
 typedef PiTokenEnumType::Type PiToken;
-
-const char *ToString(PiTokens::Enum t);
 
 KAI_END
 

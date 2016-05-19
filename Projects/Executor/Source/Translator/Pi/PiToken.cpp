@@ -10,7 +10,7 @@ using namespace std;
 
 KAI_BEGIN
 
-const char *ToString(PiTokenEnumType::Enum t)
+const char *PiTokenEnumType::ToString(Enum t)
 {
 	switch (t)
 	{
@@ -152,7 +152,7 @@ std::ostream &operator<<(std::ostream &out, PiToken const &node)
 	case PiTokenEnumType::False: { out << "false"; return out; }
 	}
 
-	out << ToString(node.type);
+	out << PiTokenEnumType::ToString(node.type);
 
 	switch (node.type)
 	{

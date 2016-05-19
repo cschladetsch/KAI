@@ -1,9 +1,4 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Pi/PiLexer.h"
-
-#include <strstream>
-#include <stdarg.h>
-#include <algorithm>
 
 using namespace std;
 

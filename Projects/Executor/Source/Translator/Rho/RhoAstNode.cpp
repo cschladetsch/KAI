@@ -4,7 +4,7 @@
 
 KAI_BEGIN
 
-const char *ToString(RhoAstNodes::Enum ty)
+const char *RhoAstNodes::ToString(Enum ty)
 {
 	switch (ty)
 	{
