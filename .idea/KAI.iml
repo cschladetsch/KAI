@@ -2,36 +2,24 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/Executor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/NetworkGen" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/Console/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/Console/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/Library" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Libraries/Network" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestConsole" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Apps/Console" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestConsole" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/App/Console" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/Libraries/Executor/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/Libraries/Library/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/Library/Core/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/Library/Executor/.idea" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
-        <CLASSES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
-          <root url="file:///usr/include" />
-          <root url="file:///usr/local/include" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
-          <root url="file:///usr/include" />
-          <root url="file:///usr/local/include" />
-        </SOURCES>
+        <CLASSES />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
