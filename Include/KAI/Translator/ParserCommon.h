@@ -38,13 +38,12 @@ public:
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
 
-	template <class T>
-	AstNodePtr AppendLexicalValue(TokenNode const &tok)
-	{
-		return nullptr;
-		// why is registry not defined here?
-		//MUST return Append(registry.New(boost::lexical_cast<T>(tok.Text())));
-	}
+//	template <class T>
+//	AstNodePtr AppendLexicalValue(TokenNode const &tok)
+//	{
+//		Pointer<T> val = reg.New(boost::lexical_cast<T>(tok.Text()));
+//		return std::make_shared<
+//	}
 
 	template <class T>
 	Pointer<T> New(T const &val)
