@@ -1,5 +1,10 @@
 #pragma once
 
+#include <string>
+#include <memory>
+
+#include <KAI/Core/Config/Base.h>
+
 KAI_BEGIN
 
 class String

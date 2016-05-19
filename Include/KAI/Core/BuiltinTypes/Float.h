@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+
 KAI_BEGIN
 
 StringStream &operator<<(StringStream &, float);

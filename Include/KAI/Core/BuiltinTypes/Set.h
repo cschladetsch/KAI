@@ -1,5 +1,13 @@
 #pragma once
 
+#include <unordered_set>
+
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Core/Algorithm.h>
+
+#include "Container.h"
+
 KAI_BEGIN
 
 struct CompareHandles

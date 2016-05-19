@@ -1,6 +1,11 @@
 #pragma once
 
-#include "KAI/BuiltinTypes/MapBase.h"
+#include <map>
+
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/BuiltinTypes/MapBase.h"
+#include <KAI/Core/StringStream.h>
+#include <KAI/Core/Type/Type.h>
 
 KAI_BEGIN
 

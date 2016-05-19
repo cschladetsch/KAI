@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Exception/ExceptionBase.h"
+#include "KAI/Core/Exception/ExceptionBase.h"
 
 KAI_BEGIN
 
@@ -54,3 +54,4 @@ KAI_BEGIN
 #endif
 
 KAI_END
+

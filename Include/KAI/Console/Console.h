@@ -28,6 +28,7 @@
 KAI_BEGIN
 
 struct Coloriser;
+struct Compiler;
 
 class Console : public Reflected
 {
@@ -82,4 +83,4 @@ private:
 KAI_TYPE_TRAITS(Console, Number::Console, Properties::Reflected);
 
 KAI_END
-`
+

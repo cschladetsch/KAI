@@ -1,16 +1,13 @@
-
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Signed32.h"
-#include "KAI/BuiltinTypes/Bool.h"
-#include "KAI/BuiltinTypes/MapBase.h"
-#include "KAI/BuiltinTypes/HashMap.h"
-#include "KAI/BuiltinTypes/Map.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/KAIClassBuilder.h"
+#include <KAI/Core/BuiltinTypes/MapBase.h>
+#include "KAI/Core/Object.h".h"
+#include "KAI/Core/BuiltinTypes/HashMap.h"
+#include "KAI/Core/BuiltinTypes/Map.h"
+#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Core/KAIClassBuilder.h"
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &S, Map::const_iterator const &P)
+StringStream &operator<<(StringStream &S, typename Map::const_iterator const &P)
 {
 	KAI_UNUSED(P);
 	return S << "MapConstIterator";

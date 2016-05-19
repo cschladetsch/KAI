@@ -1,10 +1,8 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_WIDE_STRING_H
-#	define KAI_WIDE_STRING_H
+#include <string>
+#include <KAI/Core/Config/Base.h>
+#include "String.h"
 
 KAI_BEGIN
 
@@ -73,6 +71,3 @@ BinaryPacket &operator>>(BinaryPacket &, WideString &);
 
 KAI_END
 
-#endif // KAI_WIDE_STRING_H
-
-//EOF

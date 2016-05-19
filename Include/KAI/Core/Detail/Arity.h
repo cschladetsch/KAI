@@ -1,5 +1,6 @@
 #pragma once
 
+#include <KAI/Core/BuiltinTypes/Stack.h>
 #include "KAI/KAI.h"
 
 KAI_BEGIN
@@ -11,12 +12,12 @@ namespace detail
 	struct Add
 	{
 		template <class... Args>
-		static void Arg(Stack &input, tuple<Args...> &args)
+		static void Arg(Stack &input, std::tuple<Args...> &args)
 		{
-			typedef decltype(get<N>(args)) Ty;
+			typedef decltype(std::get<N>(args)) Ty;
 			Object back = input.Top();
 			input.Pop();
-			get<N>(args) = Deref<Ty>(back);
+			std::get<N>(args) = Deref<Ty>(back);
 			Add<N-1>::Arg(input, args);
 		}
 	};
@@ -25,9 +26,9 @@ namespace detail
 	struct Add<0>
 	{
 		template <class...Args>
-		static void Arg(Stack &input, tuple<Args...> &args)
+		static void Arg(Stack &input, std::tuple<Args...> &args)
 		{
-			typedef decltype(get<0>(args)) Ty;
+			typedef decltype(std::get<0>(args)) Ty;
 			Object back = input.Top();
 			input.Pop();
 			get<0>(args) = Deref<Ty>(back);

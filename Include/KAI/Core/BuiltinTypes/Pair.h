@@ -1,16 +1,14 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_PAIR_H
-#	define KAI_BUILTIN_TYPES_PAIR_H
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object.h>
 
 KAI_BEGIN
 
 struct Pair
 {
 	Object first, second;
+
 	Pair() {}
 	Pair(const Object &A, const Object &B) : first(A), second(B) { }
 	Pair(std::pair<Object, Object> const &P) : first(P.first), second(P.second) { }
@@ -41,8 +39,4 @@ KAI_TYPE_TRAITS(Pair, Number::Pair
 	| Properties::Less);
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_PAIR_H
-
-//EOF
 

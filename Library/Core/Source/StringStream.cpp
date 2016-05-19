@@ -1,6 +1,5 @@
 #include "KAI/KAI.h"
-#include "KAI/FunctionBase.h"
-#include "KAI/Operation.h"
+#include "KAI/Core/FunctionBase.h"
 
 KAI_BEGIN
 
@@ -42,11 +41,6 @@ StringStream &operator<<(StringStream &S, const BasePointer<FunctionBase> &F)
 {
 	return S << "Function: " << F->ToString();
 }
-
-//StringStream &operator<<(StringStream &S, const FunctionBase *F)
-//{
-//	return S << "Function: " << F->ToString();
-//}
 
 String StringStream::ToString() const
 {
@@ -202,31 +196,5 @@ bool operator==(const String &A, const String &B)
 	return A._string == B._string;
 }
 
-// WTF These already defined in Object.cpp
-//StringStream &operator<<(StringStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-
-//StringStream &operator >> (StringStream &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryStream &operator<<(BinaryStream &S, const Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-//
-//BinaryPacket &operator >> (BinaryPacket &S, Object &Q)
-//{
-//	KAI_UNUSED(Q);
-//	return S;
-//}
-
 KAI_END
 
-//EOF

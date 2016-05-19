@@ -1,4 +1,6 @@
-#include "KAI/KAI.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BasePointer.h>
+#include <KAI/Core/Exception/ExceptionMacros.h>
 
 KAI_BEGIN
 

@@ -1,6 +1,8 @@
 #pragma once
 
-#include "KAI/RootType.h"
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/RootType.h"
+#include "KAI/Core/Meta/Base.h"
 
 KAI_BEGIN
 

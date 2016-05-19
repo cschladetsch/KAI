@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Reflected.h>
+#include <KAI/Core/ObjectConstructParams.h>
+
 KAI_BEGIN
 
 template <class T>
@@ -43,7 +47,8 @@ protected:
 	Stored stored;
 
 public:
-	ConstStorage(const ObjectConstructParams &P) : StorageBase(P), stored(5/*P.registry->GetAllocator().GetHeap()*/) 
+	ConstStorage(const ObjectConstructParams &P)
+		: StorageBase(P)//, stored(P.registry->GetAllocator().GetHeap()*/)
 	{ 
 		SetClean(); 
 	}
@@ -54,3 +59,4 @@ public:
 };
 
 KAI_END
+

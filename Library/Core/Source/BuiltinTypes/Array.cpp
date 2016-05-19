@@ -1,5 +1,7 @@
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Array.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/Array.h>
+#include <KAI/Core/FileLocation.h>
+#include <KAI/Core/Exception/ExceptionBase.h>
 
 KAI_BEGIN
 
@@ -9,6 +11,7 @@ void Array::RemoveAt(int index)
 	{
 		KAI_THROW_1(BadIndex, index);
 	}
+
 	objects.erase(begin() + index);
 }
 

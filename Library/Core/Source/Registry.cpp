@@ -1,20 +1,18 @@
-// (C) 2014 christian.schladetsch@gmail.com
 
-#include "KAI/KAI.h"
-#include "KAI/Algorithm.h"
-#include "KAI/Tree.h"
-
-#include "KAI/BuiltinTypes/Stack.h"
-
-#ifdef WIN32
-#	define WIN32_LEAN_AND_MEAN
-#	include <windows.h>
-#	undef GetObject
-#endif
+#undef GetObject
+#undef GetObjectA
 
 #include <iostream>
 #include <fstream>
 #include <assert.h>
+
+#include "KAI/Core/Algorithm.h"
+#include "KAI/Core/Tree.h"
+#include <KAI/Core/Memory/StandardAllocator.h>
+#include <KAI/Core/Debug.h>
+#include <KAI/Core/IObject.h>
+#include <KAI/Core/ClassBase.h"
+#include <KAI/Core/Class.h"
 
 // use tri-color generational gc.
 #define KAI_USE_TRICOLOR

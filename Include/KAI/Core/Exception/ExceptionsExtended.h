@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Pathname.h"
+#include "KAI/Core/Pathname.h"
 
 KAI_BEGIN
 
