@@ -8,6 +8,6 @@ file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 add_executable(TestConsole ${SOURCE_FILES})
 
 target_link_libraries(TestConsole gtest pthread)
-link_libraries(TestConsole Library Executor)
+link_libraries(TestConsole Library Console)
 
 
