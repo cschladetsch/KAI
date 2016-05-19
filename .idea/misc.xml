@@ -4,10 +4,6 @@
   <component name="CidrRootsConfiguration">
     <sourceRoots>
       <file path="$PROJECT_DIR$/Include" />
-      <file path="$PROJECT_DIR$/Projects/Network" />
-      <file path="$PROJECT_DIR$/Projects/NetworkGen" />
-      <file path="$PROJECT_DIR$/Tests/TestConsole" />
-      <file path="$PROJECT_DIR$/Tests/TestExecutor" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots>

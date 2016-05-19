@@ -42,6 +42,6 @@ include(Projects/Console/CMakeLists.txt)
 include(Tests/TestLibrary/CMakeLists.txt)
 include(Tests/TestExecutor/CMakeLists.txt)
 include(Tests/TestConsole/CMakeLists.txt)
-include(Tests/TestNetworkGen/CMakeLists.txt)
-include(Tests/TestNetwork/CMakeLists.txt)
+#include(Tests/TestNetworkGen/CMakeLists.txt)
+#include(Tests/TestNetwork/CMakeLists.txt)
 
