@@ -22,8 +22,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b6514e1-b42d-46a9-9f54-8be590e82d54" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Include/KAI/Accessor.h" afterPath="$PROJECT_DIR$/Include/KAI/Accessor.h" />
     </list>
     <ignored path="KAI.iws" />
@@ -48,8 +46,50 @@
       <file leaf-file-name="TestFunctionScripting.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="291">
+              <caret line="51" column="59" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestPi.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPi.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestPiExecutor.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiExecutor.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestPiString.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiString.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestPiTokeniser.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiTokeniser.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -65,16 +105,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Function.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/KAI/Function.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Pointer.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/KAI/Pointer.h">
           <provider selected="true" editor-type-id="text-editor">
@@ -85,63 +115,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Accessor.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Accessor.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Include/KAI/Accessor.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="247">
+              <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
               <folding>
+                <element signature="e#328#367#0" expanded="true" />
                 <element signature="e#686#725#0" expanded="true" />
-                <element signature="e#1414#1453#0" expanded="true" />
-                <element signature="e#2267#2311#0" expanded="true" />
-                <element signature="e#2793#2829#0" expanded="true" />
-                <element signature="e#4223#4259#0" expanded="true" />
-                <element signature="e#5294#5321#0" expanded="true" />
-                <element signature="e#5884#5911#0" expanded="true" />
-                <element signature="e#6524#6551#0" expanded="true" />
-                <element signature="e#6822#6849#0" expanded="true" />
-                <element signature="e#7141#7168#0" expanded="true" />
+                <element signature="e#1454#1493#0" expanded="true" />
+                <element signature="e#2307#2351#0" expanded="true" />
+                <element signature="e#2833#2869#0" expanded="true" />
+                <element signature="e#4263#4299#0" expanded="true" />
+                <element signature="e#5334#5361#0" expanded="true" />
+                <element signature="e#5924#5951#0" expanded="true" />
+                <element signature="e#6564#6591#0" expanded="true" />
+                <element signature="e#6862#6889#0" expanded="true" />
+                <element signature="e#7181#7208#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shared_ptr_base.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/5/bits/shared_ptr_base.h">
+      <file leaf-file-name="TestDotGraph.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13715">
-              <caret line="1055" column="0" selection-start-line="1055" selection-start-column="0" selection-end-line="1055" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetStorageBase.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/KAI/GetStorageBase.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Object.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Projects/Library/Source/Object.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3250">
-              <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Handle.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Include/KAI/Handle.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,9 +229,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1665" />
-    <option name="y" value="-4" />
-    <option name="width" value="1295" />
-    <option name="height" value="772" />
+    <option name="y" value="24" />
+    <option name="width" value="1285" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -309,6 +312,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KAI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TestLibrary" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -533,8 +576,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1665" y="-4" width="1295" height="772" extended-state="6" />
-    <editor active="true" />
+    <frame x="1665" y="24" width="1285" height="744" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -544,7 +587,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Floobits" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11731844" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22043443" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -641,35 +684,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/StandardAllocator.cpp" />
-    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/BaseAllocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/IAllocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory/StandardAllocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Include/KAI/Memory.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Include/KAI/Console.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -963,14 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Projects/Executor/Source/Console.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2158">
@@ -997,20 +1003,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Include/KAI/Accessor.h">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+          <folding>
+            <element signature="e#328#367#0" expanded="true" />
+            <element signature="e#686#725#0" expanded="true" />
+            <element signature="e#1454#1493#0" expanded="true" />
+            <element signature="e#2307#2351#0" expanded="true" />
+            <element signature="e#2833#2869#0" expanded="true" />
+            <element signature="e#4263#4299#0" expanded="true" />
+            <element signature="e#5334#5361#0" expanded="true" />
+            <element signature="e#5924#5951#0" expanded="true" />
+            <element signature="e#6564#6591#0" expanded="true" />
+            <element signature="e#6862#6889#0" expanded="true" />
+            <element signature="e#7181#7208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#686#725#0" expanded="true" />
-            <element signature="e#1414#1453#0" expanded="true" />
-            <element signature="e#2267#2311#0" expanded="true" />
-            <element signature="e#2793#2829#0" expanded="true" />
-            <element signature="e#4223#4259#0" expanded="true" />
-            <element signature="e#5294#5321#0" expanded="true" />
-            <element signature="e#5884#5911#0" expanded="true" />
-            <element signature="e#6524#6551#0" expanded="true" />
-            <element signature="e#6822#6849#0" expanded="true" />
-            <element signature="e#7141#7168#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="51" column="59" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPi.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiExecutor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiString.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/TestLibrary/Source/TestPiTokeniser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="38" column="60" selection-start-line="38" selection-start-column="60" selection-end-line="38" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
