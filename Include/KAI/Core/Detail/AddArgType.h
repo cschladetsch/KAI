@@ -34,7 +34,6 @@ namespace function_detail
 	{
 		static void Add(std::vector<Type::Number> &) { }
 	};
-
 }
 
 KAI_END

@@ -2,6 +2,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
+
 #include "Handle.h"
 #include "Base.h"
 #include "Constness.h"
@@ -171,7 +172,6 @@ public:
 	void Detach(const Label &L) const { Remove(L); }
 	void Detach(const Object &Q) const;
 	Dictionary const &GetDictionary() const;
-
 	void SetChild(const Label &L, const Object &Q) const { Set(L, Q); }
 	Object GetChild(const Label &L) const { return Get(L); }
 	void RemoveChild(const Label &L) const { Remove(L); }

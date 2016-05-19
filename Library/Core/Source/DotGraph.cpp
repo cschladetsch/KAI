@@ -1,7 +1,7 @@
 #include "KAI/KAI.h"
-#include "KAI/DotGraph.h"
-#include "KAI/Continuation.h"
+#include "KAI/Executor/Continuation.h"
 #include <fstream>
+#include <KAI/Core/DotGraph.h>
 
 using namespace std;
 using namespace kai;

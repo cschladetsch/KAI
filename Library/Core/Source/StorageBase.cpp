@@ -1,7 +1,13 @@
-#include "KAI/KAI.h"
-#include <algorithm>
+#include <map>
+
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/StorageBase.h>
+#include <KAI/Core/Exception/ExceptionMacros.h>
+#include <KAI/Core/BuiltinTypes/Dictionary.h>
+#include <KAI/Core/GetStorageBase.h>
 
 KAI_BEGIN
+
 
 void StorageBase::Detach(Object const &Q)
 {
