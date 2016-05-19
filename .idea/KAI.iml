@@ -94,6 +94,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiString.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiExecutor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/Executor/.idea" />
