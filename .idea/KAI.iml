@@ -82,20 +82,20 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StorageBase.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPi.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiParser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestBinaryStream.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestRhoScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiTokeniser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestClassScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunction.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestPiExecutor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunction.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/Main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiParser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestRhoScripting.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiExecutor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiTokeniser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiString.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPi.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/Executor/.idea" />
