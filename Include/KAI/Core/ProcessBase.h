@@ -1,10 +1,7 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_PROCESS_BASE_H
-#	define KAI_PROCESS_BASE_H
+#include <KAI/Core/Config/Base.h>
+#include "Event.h"
 
 KAI_BEGIN
 
@@ -28,6 +25,3 @@ public:
 
 KAI_END
 
-#endif // KAI_PROCESS_BASE_H
-
-//EOF

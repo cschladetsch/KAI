@@ -1,6 +1,9 @@
 #pragma once
 
-#include "KAI/Exception/ExceptionMacros.h"
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/Exception/ExceptionMacros.h"
+#include "Pathname.h"
+#include <list>
 
 KAI_BEGIN
 

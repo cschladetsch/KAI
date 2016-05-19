@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+
 KAI_TYPE_BEGIN
 
 // Describes the properties of a promoted type

@@ -1,5 +1,11 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <list>
+#include "Handle.h"
+#include "Label.h"
+#include "Base.h"
+
 KAI_BEGIN
 
 // Base for all object instances. The value stored with an object is placed
@@ -88,3 +94,4 @@ public:
 KAI_END
 
 //EOF
+

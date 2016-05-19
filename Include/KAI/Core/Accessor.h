@@ -1,5 +1,10 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "PropertyBase.h"
+#include "Label.h"
+#include "Pointer.h"
+
 KAI_BEGIN
 
 namespace property_detail
@@ -210,3 +215,4 @@ PropertyBase *MakeProperty(T (C::*F), Label const &N, CreateParams::Params creat
 }
 
 KAI_END
+

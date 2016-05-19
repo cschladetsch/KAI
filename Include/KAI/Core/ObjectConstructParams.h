@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "Handle.h"
+#include "Constness.h"
+
 KAI_BEGIN
 
 struct ObjectConstructParams

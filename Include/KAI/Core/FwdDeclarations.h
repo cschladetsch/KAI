@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+
 KAI_BEGIN
 
 template <class T> class Storage;
@@ -14,7 +16,6 @@ class Stack;
 class Registry;
 class Handle;
 class Label;
-
-//typedef boost::unordered_set<Handle> StorageBaseHandles;
+class ObjectConstructParams;
 
 KAI_END

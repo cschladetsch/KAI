@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+#include "Label.h"
+
 KAI_BEGIN
 
 namespace CreateParams 

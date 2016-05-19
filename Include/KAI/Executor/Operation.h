@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+
 KAI_BEGIN
 
 // An Operation represents an action to be taken by and Executor
@@ -127,3 +129,4 @@ public:
 KAI_TYPE_TRAITS(Operation, Number::Operation, 0);
 
 KAI_END
+

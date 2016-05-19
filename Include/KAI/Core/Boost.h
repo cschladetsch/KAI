@@ -9,6 +9,7 @@
 
 #include <boost/unordered_set.hpp>
 #include <boost/unordered_map.hpp>
+#include <KAI/Core/Config/Base.h>
 
 KAI_BEGIN
 
@@ -16,9 +17,9 @@ using boost::numeric_cast;
 
 namespace numeric
 {
-   using boost::numeric::bad_numeric_cast;
-   using boost::numeric::positive_overflow;
-   using boost::numeric::negative_overflow;
+	using boost::numeric::bad_numeric_cast;
+	using boost::numeric::positive_overflow;
+	using boost::numeric::negative_overflow;
 }
 
 KAI_END

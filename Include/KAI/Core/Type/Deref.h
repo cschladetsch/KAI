@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "Traits.h"
+
 KAI_BEGIN
 
 template <class T>
@@ -13,9 +16,6 @@ struct DerefType
 
 template <class T>
 Storage<T> *Clone(StorageBase const &);
-
-template <class T>
-typename DerefType<T>::Reference Deref(StorageBase &);
 
 template <class T>
 typename DerefType<T>::ConstReference ConstDeref(StorageBase const &);

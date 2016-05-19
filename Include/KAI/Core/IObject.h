@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+
 KAI_BEGIN
 
 class IObject
@@ -40,19 +43,21 @@ public:
 	virtual bool IsMarked() const = 0;
 	virtual bool IsClean() const = 0;
 
-	virtual void SetSwitch(int, bool) = 0;
-	virtual void SetSwitches(int) = 0;
 	virtual void SetMarked(bool = true) const = 0;
-	virtual void SetConst() = 0;
+	virtual void SetSwitch(int, bool) = 0;
 	virtual void SetManaged(bool = true) = 0;
 	virtual void SetClean(bool = true) = 0;
+
+	/* apparently, none of these methods are used...
+	virtual void SetSwitches(int) = 0;
+	virtual void SetConst() = 0;
 	virtual int GetSwitches() const = 0;
-
 	void SetDirty() { SetClean(false); }
-
 	bool IsMutable() const { return !IsConst(); }
 	bool IsUnmanaged() const { return !IsManaged(); }
 	bool IsUnmarked() const { return !IsMarked(); }
+	*/
+
 	bool IsDirty() const { return !IsClean(); }
 
 	virtual void Set(const Label &, const Object &) = 0;

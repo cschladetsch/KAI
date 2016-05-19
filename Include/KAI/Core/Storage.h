@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Traits.h>
+#include "StorageBase.h"
+
 KAI_BEGIN
 
 template <class T>

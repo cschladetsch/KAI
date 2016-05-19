@@ -1,6 +1,8 @@
 #pragma once
 
-#include "KAI/Argument.h"
+#include "KAI/Core/Base.h"
+#include "KAI/Core/Argument.h"
+#include "FileLocation.h"
 
 KAI_BEGIN
 

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Traits.h>
+
 KAI_BEGIN
 
 // A ConstValue<> has direct access to the storage of an object.

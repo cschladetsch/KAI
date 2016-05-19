@@ -1,12 +1,21 @@
 #pragma once
 
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Base.h"
-#include "KAI/Translator/Common.h"
-#include "KAI/Translator/Structure.h"
-#include "KAI/Translator/Language.h"
+#include <map>
+#include <fstream>
+#include <sstream>
 
-KAI_BEGIN
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Executor/Operation.h>
+#include <KAI/Language/Common/Language.h>
+#include <KAI/Executor/Continuation.h>
+#include <KAI/Language/Common/Structure.h>
+#include <KAI/Core/Exception/Extended.h>
+
+#include "KAI/KAI.h"
+
+#include "StringStream.h"
+#include "BinaryStream.h"
+#include "Debug.h"
 
 class Compiler;
 
