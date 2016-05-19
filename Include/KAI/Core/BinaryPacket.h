@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "Registry.h"
+
 KAI_BEGIN
 
 /// A Binary-packet is a fixed-size sequence of bytes which allows only extraction

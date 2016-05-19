@@ -1,5 +1,12 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <vector>
+#include <KAI/Core/Type/Properties.h>
+#include <KAI/Core/Type/Type.h>
+#include "BinaryPacket.h"
+#include "StringStream.h"
+
 KAI_BEGIN
 
 // A BinaryStream is-a BinaryPacket which can also resize and allows insertion

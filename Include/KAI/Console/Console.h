@@ -1,9 +1,29 @@
 #pragma once
 
-#include "KAI/ConsoleColor.h"
-#include "KAI/Translator/Pi/Pi.h"
-#include "KAI/Translator/Rho/Rho.h"
-#include "KAI/Type/Traits.h"
+#include <memory>
+#include <KAI/Core/Reflected.h>
+#include <KAI/Core/Tree.h>
+#include <KAI/Core/Registry.h>
+#include <KAI/Core/Executor.h>
+#include <KAI/Core/Pointer.h>
+#include <KAI/Core/Compiler.h>
+#include <KAI/Core/Memory/IAllocator.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include "KAI/Core/Config/Base.h"
+#include "KAI/Core/Type/Traits.h"
+#include <KAI/Core/Object.h>
+#include <KAI/Core/Type/Number.h>
+#include <KAI/Core/Type/TraitMacros.h>
+#include <KAI/Core/Type/Properties.h>
+
+#include <KAI/Executor/Continuation.h>
+
+#include <KAI/Language/Common/Structure.h>
+#include <KAI/Language/Common/Language.h>
+#include "KAI/Language/Pi/Pi.h"
+#include "KAI/Language/Rho/Rho.h"
+
+#include "KAI/Console/ConsoleColor.h"
 
 KAI_BEGIN
 
@@ -25,7 +45,7 @@ public:
 
 	void SetLanguage(Language lang);
 	void SetLanguage(int lang);
-	int GetLanguage() const;
+	Language GetLanguage() const;
 
 	String GetPrompt() const;
 	String Process(const String&);
@@ -38,7 +58,7 @@ public:
 	Pointer<Compiler> GetCompiler() const { return compiler; }
 
 	Pointer<Continuation> Compile(const char *, Structure);
-	void Execute(const String &text, Structure st = Structure::Statement);
+	void Execute(const String &text, Structure st = (Structure) Structure::Statement);
 	void ExecuteFile(const char *);
 	void Execute(Pointer<Continuation> cont);
 
@@ -62,3 +82,4 @@ private:
 KAI_TYPE_TRAITS(Console, Number::Console, Properties::Reflected);
 
 KAI_END
+`

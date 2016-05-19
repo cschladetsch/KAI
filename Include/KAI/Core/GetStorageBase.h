@@ -1,5 +1,10 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+#include "StorageBase.h"
+#include "Object.h"
+
 KAI_BEGIN
 
 StorageBase &GetStorageBase(Object const &Q);
@@ -83,3 +88,4 @@ Storage<T> *Clone(StorageBase const &Q)
 }
 
 KAI_END
+

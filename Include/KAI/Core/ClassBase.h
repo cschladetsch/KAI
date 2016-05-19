@@ -1,6 +1,16 @@
 #pragma once
 
-#include "KAI/Exception/ExceptionMacros.h"
+#include <list>
+#include <unordered_map>
+
+#include <KAI/Core/Type/Properties.h>
+#include <KAI/Core/Type/Number.h>
+#include <KAI/Core/Exception/Extended.h>
+#include "KAI/Core/Base.h"
+#include "KAI/Core/Exception/ExceptionMacros.h"
+
+#include "Label.h"
+#include "StringStream.h"
 
 KAI_BEGIN
 

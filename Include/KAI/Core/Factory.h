@@ -1,14 +1,12 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_FACTORY_H
-#	define KAI_FACTORY_H
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <map>
 
 KAI_BEGIN
 
-/// Toplevel interface common to all creator functors sharing a common
+/// Top-level interface common to all creator functors sharing a common
 /// instance interface
 template <class Base>
 struct CreatorBase
@@ -78,6 +76,3 @@ public:
 
 KAI_END
 
-#endif // KAI_FACTORY_H
-
-//EOF

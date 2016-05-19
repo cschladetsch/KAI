@@ -1,9 +1,11 @@
 #pragma once
 
-#include "Meta/Base.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Detail/Arity.h>
+#include <KAI/Core/Detail/AddArgType.h>
+#include <KAI/Core/Meta/Base.h>
+
 #include "FunctionBase.h"
-#include "Detail/CallableBase.h"
-#include "Detail/AddArgType.h"
 
 KAI_BEGIN
 
@@ -29,7 +31,7 @@ namespace function_detail
 
 		void Invoke(Registry &reg, Stack &stack)
 		{
-			tuple<Args...> _args;
+			std::tuple<Args...> _args;
 			Add<arity - 1>::Arg(stack, _args);
 			CallFun(fun, _args);
 		}
@@ -40,7 +42,7 @@ namespace function_detail
 	{
 		typedef Ret (*Func)(Args...);
 		Func fun;
-		tuple<Args...> _args;
+		std::tuple<Args...> _args;
 		static constexpr int arity = sizeof...(Args);
 		using FunctionBase::arguments;
 		using FunctionBase::return_type;
@@ -63,7 +65,7 @@ namespace function_detail
 	{
 		typedef Ret (*Fun)(Args...);
 		enum { VoidRet = SameType<Ret, void>::value };
-		typedef typename If<VoidRet
+		typedef typename meta::If<VoidRet
 			, VoidFun<Args...>
 			, NonVoidFun<Ret , Args...> >::Type Type;
 	};

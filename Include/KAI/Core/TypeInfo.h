@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Pointer.h?
+
 KAI_BEGIN
 
 /// helper structure to switch on system and non-system types

@@ -1,5 +1,10 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Type/Type.h>
+#include "Label.h"
+
 KAI_BEGIN
 
 /// A Pathname represents a qualified name for an Object

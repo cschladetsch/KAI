@@ -1,7 +1,9 @@
 #pragma once
 
-#include "KAI/Core/KAI.h"
-//#include "KAI/Executor/Exectutor.h"
+#include "KAI/KAI.h"
+#include "KAI/Executor/Executor.h"
+#include "KAI/Console/Console.h"
 #include "KAI/Network/Network.h"
-//#include "KAI/NetworkGen/NetworkGen.h"
+#include "KAI/Language/Language.h"
+
 

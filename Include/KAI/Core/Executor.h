@@ -1,5 +1,15 @@
 #pragma once
-#include <KAI/Value.h>
+
+#include <KAI/Core/Value.h>
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Type.h>
+
+#include <KAI/Executor/Continuation.h>
+#include <KAI/Executor/Operation.h>
+
+#include "Reflected.h"
+#include "Value.h"
+#include "Pathname.h"
 
 KAI_BEGIN
 
@@ -68,9 +78,21 @@ public:
 	Object Top() const;
 
 	Value<Stack> GetDataStack();
-	Value<const Stack> GetDataStack() const { return Value<const Stack>(_data.GetConstObject()); }	// TODO: automate
+	Value<const Stack> GetDataStack() const
+	{
+		// TODO: automate
+		return Value<const Stack>(_data.GetConstObject());
+	}
+
 	Value<const Stack> GetContextStack() const;
-	void ClearStacks() { _data->Clear(); _context->Clear(); }
+
+	/// This resets the entire process, other than static state stored
+	/// in referenced objects
+	void ClearStacks()
+	{
+		_data->Clear();
+		_context->Clear();
+	}
 
 	static void Register(Registry &, const char * = "Executor");
 
@@ -122,3 +144,4 @@ BinaryStream &operator<<(BinaryStream &, Executor const &);
 BinaryPacket &operator>>(BinaryPacket &, Executor &);
 
 KAI_END
+
