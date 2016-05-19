@@ -287,6 +287,8 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 		_context->Push(NewContinuation(Pop()).GetObject());
 	case Operation::Resume:
 		_break = true;
+		default:
+			KAI_NOT_IMPLEMENTED();
 		break;
 	}
 }

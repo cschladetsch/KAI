@@ -26,7 +26,7 @@ namespace detail
 			return A == B;
 		}
 
-		inline std::size_t operator()(KAI_NAMESPACE(Label) const &label) const
+		inline std::size_t operator()(Label const &label) const
 		{
 			const std::string &string = label.GetValue().GetStorage();
 
