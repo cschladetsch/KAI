@@ -3,16 +3,20 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/Apps/Console" />
       <file path="$PROJECT_DIR$/Include" />
-      <file path="$PROJECT_DIR$/Projects/Network" />
-      <file path="$PROJECT_DIR$/Projects/NetworkGen" />
+      <file path="$PROJECT_DIR$/Libraries/Executor" />
+      <file path="$PROJECT_DIR$/Libraries/Library" />
+      <file path="$PROJECT_DIR$/Libraries/Network" />
+      <file path="$PROJECT_DIR$/Libraries/NetworkGen" />
       <file path="$PROJECT_DIR$/Tests/TestConsole" />
       <file path="$PROJECT_DIR$/Tests/TestExecutor" />
+      <file path="$PROJECT_DIR$/Tests/TestLibrary" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots>
-      <file path="$PROJECT_DIR$/Projects/Executor/.idea" />
-      <file path="$PROJECT_DIR$/Projects/Library/.idea" />
+      <file path="$PROJECT_DIR$/Libraries/Executor/.idea" />
+      <file path="$PROJECT_DIR$/Libraries/Library/.idea" />
     </excludeRoots>
   </component>
   <component name="IdProvider" IDEtalkID="5ED845A716267B8889488D593F0CDA56" />
