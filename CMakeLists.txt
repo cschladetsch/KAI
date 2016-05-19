@@ -30,18 +30,18 @@ set(dir $ENV{HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
-
+#
 #include the projects
-include(Projects/Library/CMakeLists.txt)
-include(Projects/Executor/CMakeLists.txt)
+include(Libraries/Library/CMakeLists.txt)
+include(Libraries/Executor/CMakeLists.txt)
 
 # REPL console
-include(Projects/Console/CMakeLists.txt)
+include(Libraries/Console/CMakeLists.txt)
 
 # and tests
 include(Tests/TestLibrary/CMakeLists.txt)
-include(Tests/TestExecutor/CMakeLists.txt)
+#include(Tests/TestExecutor/CMakeLists.txt)
 include(Tests/TestConsole/CMakeLists.txt)
-include(Tests/TestNetworkGen/CMakeLists.txt)
-include(Tests/TestNetwork/CMakeLists.txt)
+#include(Tests/TestNetworkGen/CMakeLists.txt)
+#include(Tests/TestNetwork/CMakeLists.txt)
 
