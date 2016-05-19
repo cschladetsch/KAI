@@ -1,10 +1,7 @@
+#pragma once
 
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_SYSTEM_TYPE_H
-#	define KAI_BUILTIN_TYPES_SYSTEM_TYPE_H
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
 
 KAI_BEGIN
 

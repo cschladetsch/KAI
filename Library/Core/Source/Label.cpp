@@ -1,6 +1,6 @@
 #include "KAI/KAI.h"
-#include "KAI/Label.h"
-#include "KAI/ClassBuilder.h"
+#include "KAI/Core/Label.h"
+#include "KAI/Core/ClassBuilder.h"
 
 
 KAI_BEGIN

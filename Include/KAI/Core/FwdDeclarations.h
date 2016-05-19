@@ -4,18 +4,18 @@
 
 KAI_BEGIN
 
-template <class T> class Storage;
 class StorageBase;
+template <class T> class Storage;
+
 class ClassBase;
+template <class T> class Class;
+
 class Object;
 class String;
 class StringStream;
 class BinaryStream;
 class BinaryPacket;
-class Stack;
 class Registry;
-class Handle;
-class Label;
-class ObjectConstructParams;
+//class ObjectConstructParams;
 
 KAI_END

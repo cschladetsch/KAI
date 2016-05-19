@@ -1,5 +1,5 @@
 #include "KAI/KAI.h"
-#include "KAI/KAIClassBuilder.h"
+#include "KAI/Core/KAIClassBuilder.h"
 
 KAI_BEGIN
 

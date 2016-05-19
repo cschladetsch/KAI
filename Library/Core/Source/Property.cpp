@@ -1,4 +1,7 @@
-#include "KAI/KAI.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Core/PropertyBase.h>
+#include <KAI/Core/ClassBase.h>
 
 KAI_BEGIN
 

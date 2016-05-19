@@ -1,14 +1,17 @@
-
-#include "KAI/KAI.h"
-#include "KAI/Operation.h"
-#include "KAI/BuiltinTypes/Map.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/Continuation.h"
-#include "KAI/Value.h"
-#include "KAI/Reflected.h"
-
 #include <iostream>
 #include <fstream>
+
+#include "KAI/Core/BuiltinTypes/Map.h"
+#include "KAI/Core/BuiltinTypes/Array.h"
+#include "KAI/Core/Value.h"
+#include "KAI/Core/Reflected.h"
+
+#include "KAI/Executor/Operation.h"
+#include "KAI/Executor/Continuation.h"
+
+#include <KAI/Core/BuiltinTypes/Dictionary.h>
+#include <KAI/Core/PropertyBase.h>
+#include <KAI/Core/ClassBase.h>
 
 KAI_BEGIN
 
@@ -21,44 +24,6 @@ const char *ToLower(const char *text)
 	out[n] = 0;
 	return out;
 }
-
-#if 0
-namespace debug
-{
-	/*
-	struct Trace : StringStream
-	{
-		Trace::~Trace()
-		{
-			/*
-			const char *type_str = "";
-			switch (type)
-			{
-			case Warn: type_str = "Warning: ";
-				break;
-
-			case Error: type_str = "Error: ";
-				break;
-
-			case Fatal: type_str = "Fatal: ";
-				break;
-			}
-
-			String text = (file_location.ToString(false) + type_str + ToString());
-			text.RemoveAll("sif::sh::");
-			DebugTrace(text.c_str());
-			*/
-		}
-
-		StringStream &Trace::operator<<(const Object& X)
-		{
-			static_cast<StringStream &>(*this) << X.GetHandle() << ": " << X;
-			return *this;
-		}
-	};
-	*/
-}
-#endif // 0
 
 StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 {
@@ -79,7 +44,7 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 
 void ToStringStream(const Object &Q, StringStream &S, int level)
 {
-	S << std::string(4, ' ');
+	S << std::string(4, ' ').c_str();
 
 	if (!Q.Valid())
 	{
@@ -149,3 +114,4 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 }
 
 KAI_END
+

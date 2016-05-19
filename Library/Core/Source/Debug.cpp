@@ -1,14 +1,15 @@
-#include "KAI/KAI.h"
+#pragma once
 
-#ifndef KAI_TRACE_VERBOSE
-#   include <iostream>
-#endif
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Core/Debug.h>
+#include <iostream>
 
 KAI_BEGIN
 
 namespace debug
 {
-	StringStream& Trace::operator<<(kai::Object const&Q)
+	StringStream& Trace::operator<<(Object const&Q)
 	{
 		return *this << Q.ToString();
 	}
@@ -41,3 +42,4 @@ namespace debug
 }
 
 KAI_END
+

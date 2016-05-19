@@ -1,18 +1,10 @@
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-
-#ifndef KAI_BUILTIN_TYPES_DICTIONARY_H
-#	define KAI_BUILTIN_TYPES_DICTIONARY_H
+#include <map>
+#include <KAI/Core/Config/Base.h>
 
 KAI_BEGIN
 
+// TODO: USE unordered-mao
 typedef std::map<Label, Object> Dictionary;
 
 KAI_END
-
-#endif // KAI_BUILTIN_TYPES_DICTIONARY_H
-
-//EOF
 

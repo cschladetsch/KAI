@@ -1,8 +1,9 @@
 #pragma once
 
+#include <vector>
+
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
-#include <vector>
 
 KAI_BEGIN
 

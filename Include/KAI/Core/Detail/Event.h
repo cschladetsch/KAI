@@ -1,6 +1,6 @@
 #pragma once
 
-#include <KAI/Meta/Base.h>
+#include <KAI/Core/Meta/Base.h>
 
 // TODO: replace with variadic templates
 

@@ -1,4 +1,4 @@
-#include "KAI/KAIClassBuilder.h"
+#include "KAI/Core/ClassBuilder.h"
 #include <ctype.h>
 
 KAI_BEGIN
