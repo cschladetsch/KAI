@@ -12,4 +12,3 @@ int main(int argc, char **argv) {
 	KAI_TRACE_1(result);
 	return result;
 }
-
