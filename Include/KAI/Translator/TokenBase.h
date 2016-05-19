@@ -37,11 +37,20 @@ public:
 		//MUST out << KAI_NAMESPACE(ToString(type));
 		switch (type)
 		{
-		case EnumType::Ident:
-		case EnumType::Int:
-		case EnumType::Float:
-		case EnumType::Pathname:
-			out << "=" << Text();
+			case EnumType::False:
+				out << "false";
+				break;
+			case EnumType::True:
+				out << "true";
+				break;
+			case EnumType::Ident:
+			case EnumType::Int:
+			case EnumType::Float:
+			case EnumType::Pathname:
+				out << "=" << Text().c_str();
+				break;
+			default:
+				out << "Token#" << (int)type;
 		}
 #endif
 		//ENDS out << std::ends;

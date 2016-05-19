@@ -4,12 +4,11 @@
 using namespace kai;
 using namespace std;
 
-TEST(TestFunctionScripting, TestAssignment)
+TEST(TestRhoScripting, TestAssignment)
 {
 	Console console;
-
-	console.Execute("a=1;");
 	console.SetLanguage(Language::Rho);
+	console.Execute("a=1;");
 
 	Object root = console.GetRoot();
 	ASSERT_TRUE(root.HasChild("a"));
