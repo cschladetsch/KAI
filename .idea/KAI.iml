@@ -27,6 +27,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/SignedContinuation.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Console.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Executor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Projects/NetworkGen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Console/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Console/Source/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/CMakeLists.txt" isTestSource="false" />
@@ -80,6 +81,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StringStream.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Debug.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StorageBase.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Projects/Network" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp" isTestSource="false" />
@@ -88,14 +90,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunction.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestRhoScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiExecutor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiTokeniser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPi.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestConsole" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Projects/Executor/.idea" />
