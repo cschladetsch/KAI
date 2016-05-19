@@ -18,7 +18,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
 		parse->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		KAI_TRACE_1(parse->PrintTree());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_FALSE(parse->Failed);
 
@@ -39,24 +39,24 @@ namespace
 		if (lex->Failed)
 			KAI_TRACE_1(lex->Error);
 
-		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
-		parse->Process(lex, Structure::Sequence);
+		shared_ptr<PiParser> parser = make_shared<PiParser>(reg);
+		parser->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
 		ASSERT_FALSE(lex->Failed);
-		ASSERT_FALSE(parse->Failed);
+		ASSERT_FALSE(parser->Failed);
 
-		auto root = parse->GetRoot();
+		parser->PrintTree();
+
+		auto root = parser->GetRoot();
 		ASSERT_EQ(root->GetChildren().size(), 2);
 
 		auto ch0 = root->GetChildren()[0];
 		auto ch1 = ch0->GetChildren()[0];
 		auto ch2 = ch1->GetChildren()[0];
 
-		// CBF
-		//ASSERT_EQ(ch0->GetTye(), PiAstNodes::Array);
-		//ASSERT_EQ(ch1->GetTye(), PiAstNodes::Array);
-		//ASSERT_EQ(ch2->GetTye(), PiAstNodes::Array);
+		ASSERT_EQ(ch0->GetType(), PiAstNodes::Array);
+		ASSERT_EQ(ch1->GetType(), PiAstNodes::Array);
+		ASSERT_EQ(ch2->GetType(), PiAstNodes::Array);
 	}
 
 	TEST(PiParser, TestMixedCompound)
@@ -73,7 +73,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
 		parse->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		KAI_TRACE_1(parse->PrintTree());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_FALSE(parse->Failed);
 	}
@@ -91,7 +91,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
 		parse->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		KAI_TRACE_1(parse->PrintTree());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
@@ -110,7 +110,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
 		parse->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		KAI_TRACE_1(parse->PrintTree());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
@@ -129,7 +129,7 @@ namespace
 		shared_ptr<PiParser> parse = make_shared<PiParser>(reg);
 		parse->Process(lex, Structure::Sequence);
 
-		KAI_TRACE_1(parse->Print());
+		KAI_TRACE_1(parse->PrintTree());
 		ASSERT_FALSE(lex->Failed);
 		ASSERT_TRUE(parse->Failed);
 	}
