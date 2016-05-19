@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Memory/IAllocator.h>
+
 KAI_BEGIN
 
 namespace Memory
@@ -10,8 +13,8 @@ namespace Memory
 		typedef char Byte;
 		typedef char *BytePtr;
 
-		Allocator alloc;
-		DeAllocator free;
+		typename IAllocator::Allocator alloc;
+		typename IAllocator::DeAllocator free;
 
 	protected:
 		BaseAllocator() : alloc(0), free(0) 
@@ -32,7 +35,6 @@ namespace Memory
 			free(ptr, num_bytes);
 		}
 	};
-
 }
 
 KAI_END

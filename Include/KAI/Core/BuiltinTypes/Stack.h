@@ -1,9 +1,12 @@
 
 #pragma once
 
-KAI_BEGIN
+#include <vector>
 
-class Stack;
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/Container.h>
+
+KAI_BEGIN
 
 class Stack : public Container<Stack>
 {

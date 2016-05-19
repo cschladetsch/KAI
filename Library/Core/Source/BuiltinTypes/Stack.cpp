@@ -1,5 +1,8 @@
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Stack.h"
+#include <KAI/Core/ClassBuilder.h>
+
+#include "KAI/Core/BuiltinTypes/Stack.h"
+#include "KAI/Core/StringStream.h"
+#include "KAI/Core/BinaryStream.h"
 
 KAI_BEGIN
 

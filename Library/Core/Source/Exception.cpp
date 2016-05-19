@@ -1,6 +1,7 @@
-
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Signed32.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Exception/ExceptionBase.h>
+#include <KAI/Core/StringStream.h>
+#include <KAI/Core/Type/Number.h>
 
 KAI_BEGIN
 
@@ -11,7 +12,7 @@ namespace Exception
 		StringStream S;
 		std::string loc = location.ToString().c_str();
 		loc = loc.substr(loc.find_last_of('/') + 1);
-		S << loc.c_str() << text << ": ";
+		S << loc << text << ": ";
 		WriteExtendedInformation(S);
 		return S.ToString().c_str(); 
 	}

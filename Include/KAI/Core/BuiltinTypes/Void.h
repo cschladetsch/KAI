@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Meta/Base.h>
+
 KAI_BEGIN
 
 struct Void

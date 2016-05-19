@@ -1,9 +1,6 @@
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
+#pragma onmce
 
-#ifndef KAI_BUILTIN_TYPES_VECTOR4_H
-#	define KAI_BUILTIN_TYPES_VECTOR4_H
+#include <KAI/Core/Config/Base.h>
 
 KAI_BEGIN
 

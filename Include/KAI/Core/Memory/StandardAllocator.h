@@ -1,7 +1,7 @@
 #pragma once
 
-#include <KAI/Config/Base.h>
-#include "KAI/Memory/BaseAllocator.h"
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/Memory/BaseAllocator.h"
 #include "BaseAllocator.h"
 
 #include <cstdlib>
@@ -34,7 +34,4 @@ namespace Memory
 	};
 }
 
-
 KAI_END
-
-

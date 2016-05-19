@@ -1,4 +1,7 @@
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Meta/Base.h>
 
+KAI_BEGIN
 
 namespace event_detail_sys
 {
@@ -476,4 +479,4 @@ namespace event_detail_sys
 	};
 } // end namespace event_detail_sys
 
-//EOF
+KAI_END

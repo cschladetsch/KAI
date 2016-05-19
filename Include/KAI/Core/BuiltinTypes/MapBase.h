@@ -1,6 +1,9 @@
 #pragma once
 
-#include "KAI/KAIClassBuilder.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Exception/ExceptionMacros.h>
+#include <KAI/Core/Base.h>
+#include "Container.h"
 
 KAI_BEGIN
 

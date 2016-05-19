@@ -1,5 +1,6 @@
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/List.h"
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Core/Object.h"
 
 KAI_BEGIN
 
