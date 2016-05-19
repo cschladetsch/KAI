@@ -1,12 +1,6 @@
 #include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Structure.h"
-#include "KAI/Translator/Rho/RhoParser.h"
-
-#include <memory>
 #include <iostream>
-#include <algorithm>
 #include <strstream>
-#include <stdarg.h>
 
 using namespace std;
 

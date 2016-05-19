@@ -7,7 +7,7 @@
 
 KAI_BEGIN
 
-const char *ToString(PiAstNodeEnumType::Enum ty)
+const char *PiAstNodeEnumType::ToString(Enum ty)
 {
 	switch (ty)
 	{

@@ -27,6 +27,11 @@ public:
 	int GetOffset() const { return offset; }
 	int GetLineNumber() const { return offset; }
 	const std::string &Line() const;
+	std::string GetString(Slice const &slice) const
+	{
+		int length = slice.Length();
+		return length == 0 ? "" : std::move(input.substr(slice.Start, length));
+	}
 
 protected:
 	Lines lines;

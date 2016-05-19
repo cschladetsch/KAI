@@ -31,12 +31,13 @@ struct PiAstNodeEnumType
 		Node(Enum e, Token &tok) : Parent(e, tok) { }
 		Node(Parent::Token tok) : Parent(tok) { }
 	};
+
+	static const char *ToString(Enum val);
 };
 
 typedef PiAstNodeEnumType PiAstNodes;
 typedef PiAstNodeEnumType::Node PiAstNode;
 
-const char *ToString(PiAstNodes::Enum val);
 
 KAI_END
 

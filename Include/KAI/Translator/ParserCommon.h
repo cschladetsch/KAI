@@ -75,22 +75,27 @@ public:
 		}
 	}
 
-	std::string Print()
+	std::string PrintTree() const
 	{
 		std::stringstream str;
-		Print(str, 0, root);
-		//ENDS str << std::endl << std::ends;
-		return str.str();
+		PrintTree(str, 0, root);
+		return std::move(str.str());
+	}
+
+	std::string ToString() const
+	{
+		return std::move(root->ToString());
 	}
 
 protected:
-	void Print(std::stringstream &str, int level, AstNodePtr root)
+	void PrintTree(std::ostream &str, int level, AstNodePtr root) const
 	{
+		str << root->ToString().c_str() << std::endl;
 		std::string indent(4*level, ' ');
-		str << indent << *root << "\n";
 		for (auto const &ch : root->GetChildren())
 		{
-			Print(str, level + 1, ch);
+			str << indent << *root << "\n";
+			PrintTree(str, level + 1, ch);
 		}
 	}
 

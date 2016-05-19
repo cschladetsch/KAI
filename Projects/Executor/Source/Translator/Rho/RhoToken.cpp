@@ -3,7 +3,7 @@
 
 KAI_BEGIN
 
-const char *ToString(RhoTokenEnumType::Enum val)
+const char *RhoTokenEnumType::ToString(Enum val)
 {
 	switch (val)
 	{
@@ -82,7 +82,7 @@ std::ostream &operator<<(std::ostream &out, RhoToken const &node)
 	if (node.type == RhoTokenEnumType::None)
 		return out;
 
-	out << ToString(node.type);
+	out << RhoTokenEnumType::ToString(node.type);
 	switch (node.type)
 	{
 	case RhoTokenEnumType::Int:
