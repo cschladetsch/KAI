@@ -1,5 +1,7 @@
 #pragma once
 
+/// Strip all qualifiers from a given type.
+
 template <class T>
 struct RootType
 {
