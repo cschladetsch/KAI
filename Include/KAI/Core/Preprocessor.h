@@ -1,9 +1,5 @@
+#pragma once
 
-
-#ifdef KAI_HAVE_PRAGMA_ONCE
-#	pragma once
-#endif
-#
 #ifndef KAI_PRE_PROCESSOR_H
 #	define KAI_PRE_PROCESSOR_H
 #
@@ -26,4 +22,4 @@
 #	
 #endif // KAI_PRE_PROCESSOR_H
 
-//EOF
+

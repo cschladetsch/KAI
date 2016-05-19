@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost/integer.hpp>
+#include "Base.h"
 
 KAI_BEGIN
 

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "KAI/Core/Type/Type.h"
+#include "KAI/Core/Type/Number.h"
+
 KAI_TYPE_BEGIN
 
 struct Number

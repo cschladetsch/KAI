@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Base.h>
+
 KAI_BEGIN
 
 /// Specify the constness of a thing
@@ -15,3 +17,4 @@ struct Constness
 };
 
 KAI_END
+

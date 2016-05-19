@@ -1,5 +1,15 @@
 #pragma once
 
+#include <KAI/Language/Tau/Tau.h>
+#include <KAI/Core/Type/Traits.h>
+#include "Object.h"
+#include "ClassBase.h"
+#include "Label.h"
+#include "ObjectConstructParams.h"
+#include "GetStorageBase.h"
+#include "Algorithm.h"
+#include "Value.h"
+
 KAI_BEGIN
 
 #pragma warning(push)
@@ -35,7 +45,6 @@ public:
 		auto born = registry->GetMemorySystem().
 			Allocate<Storage<T> >(
 				ObjectConstructParams(registry, this, handle));
-		assert(born != nullptr);
 
 		born->SetClean();
 		return born;
@@ -269,3 +278,4 @@ Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
 #pragma warning(pop)
 
 KAI_END
+

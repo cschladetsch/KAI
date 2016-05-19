@@ -1,6 +1,7 @@
 
-#ifndef KAI_XML_SCOPED_ELEMENT_H
-#define KAI_XML_SCOPED_ELEMENT_H
+#pragma once
+
+#include <KAI/Core/Config/Base.h>
 
 KAI_BEGIN
 
@@ -57,6 +58,3 @@ private:
 
 KAI_END
 
-#endif // KAI_XML_SCOPED_ELEMENT_H
-
-//EOF

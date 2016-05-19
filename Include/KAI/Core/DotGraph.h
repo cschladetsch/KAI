@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Base.h>
+
 KAI_BEGIN
 
 // Generates GraphViz script showing the depedancy graph given an object root

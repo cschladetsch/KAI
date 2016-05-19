@@ -1,5 +1,12 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Handle.h>
+
+#include "Properties.h"
+#include "Type.h"
+
 KAI_BEGIN
 
 #define KAI_TYPE_TRAITS_NAMED(T, N, M, Ops) \
@@ -43,6 +50,6 @@ KAI_TYPE_TRAITS(::kai::Type::Number, ::kai::Type::Number::TypeNumber, ::kai::Typ
 
 StringStream &operator<<(StringStream &, Type::Number);
 BinaryStream &operator<<(BinaryStream &, Type::Number);
-BinaryPacket &operator >> (BinaryPacket &, Type::Number &);
+BinaryPacket &operator>>(BinaryPacket &, Type::Number &);
 
 KAI_END

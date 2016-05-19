@@ -1,5 +1,11 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
+#include "Handle.h"
+#include "Base.h"
+#include "Constness.h"
+
 KAI_BEGIN
 
 template <class T>

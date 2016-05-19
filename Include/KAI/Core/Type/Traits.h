@@ -1,5 +1,22 @@
 #pragma once
 
+#include <boost/type_index.hpp>
+
+#include <KAI/Core/Exception/ExceptionMacros.h>
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/FileLocation.h>
+#include <KAI/Core/Exception/ExceptionBase.h>
+#include <KAI/Core/Base.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Core/Storage.h>
+#include <KAI/Core/StorageBase.h>
+#include <KAI/Core/BinaryPacket.h>
+#include <KAI/Core/BinaryStream.h>
+#include <KAI/Core/StringStream.h>
+
+#include "Type.h"
+#include "Properties.h"
+
 KAI_TYPE_BEGIN
 
 template <typename T>
@@ -271,8 +288,8 @@ struct TraitsBase
 		static void Create(Storage<T> *storage)
 		{
 			UnReflectedLifetimeManagement::Create(storage);
-			ReflectedBase *reflected = &storage->GetCleanReference();
-			reflected->Self = storage;
+			ReflectedBase *reflected = (ReflectedBase *) &storage->GetCleanReference();
+			reflected->Self = (StorageBase *) storage;
 			reflected->Create();
 		}
 		static bool Destroy(Storage<T> *storage)

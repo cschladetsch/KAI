@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+
 KAI_BEGIN
 
 class Handle
@@ -42,3 +44,5 @@ StringStream &operator<<(StringStream &, Handle);
 typedef std::unordered_set<Handle, HashHandle> HandleSet;
 
 KAI_END
+
+

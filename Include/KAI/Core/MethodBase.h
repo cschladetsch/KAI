@@ -1,5 +1,9 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include "CallableBase.h"
+#include "Constness.h"
+
 KAI_BEGIN
 
 /// Common for all methods that return void or not, and are const or not

@@ -1,3 +1,6 @@
+// TODO:
+// this is one of the worst files in the project, and shows why
+
 #pragma once
 
 #include <functional>
@@ -7,8 +10,8 @@
 #include <utility>
 #include <boost/type_index.hpp>
 
-#include "KAI/Net/Config.h"
-#include "KAI/HierarchicalPrinter.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/FwdDeclarations.h>
 
 KAI_BEGIN
 
@@ -50,8 +53,10 @@ template <class T>
 struct FwdBasePointer { };
 
 template <class T>
+struct Storage<T>;
+
+template <class T>
 Storage<T> *NewStorage(Registry &);
 
 KAI_END
 
-//#include "KAI/Type/TypeAll.h"

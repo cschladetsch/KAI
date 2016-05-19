@@ -1,5 +1,22 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Reflected.h>
+#include <KAI/Core/Pointer.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Core/Label.h>
+#include <KAI/Core/StringStream.h>
+#include <KAI/Core/BinaryStream.h>
+
+#include <KAI/Core/Type/Number.h>
+#include <KAI/Core/Type/Properties.h>
+#include <KAI/Core/Type/TraitMacros.h>
+#include <KAI/Core/Type/Traits.h>
+
+#include <KAI/Core/BuiltinTypes/Array.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Registry.h>
+
 KAI_BEGIN
 
 class Executor;
@@ -57,7 +74,7 @@ public:
 StringStream &operator<<(StringStream &, const Continuation &);
 StringStream &operator>>(StringStream &, Continuation &);
 BinaryStream &operator<<(BinaryStream &, const Continuation &);
-BinaryPacket &operator>>(BinaryPacket &, Continuation &);
+BinaryStream &operator>>(BinaryPacket &, Continuation &);
 
 KAI_TYPE_TRAITS(Continuation, Number::Continuation, Properties::Streaming | Properties::Reflected);
 
