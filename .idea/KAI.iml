@@ -8,11 +8,14 @@
       <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestTau" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Core" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Window" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Rho" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Pi" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Core" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/TauGen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/Console" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/Window" isTestSource="false" />

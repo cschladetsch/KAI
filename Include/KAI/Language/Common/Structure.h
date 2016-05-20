@@ -7,6 +7,7 @@ enum class Structure
 	None,
 	Single,
 	Sequence,
+	Modulue,
 	Statement,
 	Expression,
 	Function,

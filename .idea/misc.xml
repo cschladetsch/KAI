@@ -10,6 +10,8 @@
       <file path="$PROJECT_DIR$/Install" />
       <file path="$PROJECT_DIR$/Library/Core" />
       <file path="$PROJECT_DIR$/Library/Executor" />
+      <file path="$PROJECT_DIR$/Library/Language/Pi" />
+      <file path="$PROJECT_DIR$/Library/Language/Rho" />
       <file path="$PROJECT_DIR$/Library/Language/Tau" />
       <file path="$PROJECT_DIR$/Library/Network" />
       <file path="$PROJECT_DIR$/Library/Window" />

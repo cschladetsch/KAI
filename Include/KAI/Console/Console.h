@@ -2,20 +2,20 @@
 
 #include <memory>
 
-#include <KAI/Core/Reflected.h>
-#include <KAI/Core/Tree.h>
-#include <KAI/Core/Registry.h>
-#include <KAI/Core/Pointer.h>
-#include <KAI/Core/Compiler.h>
-#include <KAI/Core/Memory/IAllocator.h>
-#include <KAI/Core/BuiltinTypes/String.h>
 #include "KAI/Core/Config/Base.h"
+#include <KAI/Core/Memory/IAllocator.h>
 #include "KAI/Core/Type/Traits.h"
-#include <KAI/Core/Object.h>
 #include <KAI/Core/Type/Number.h>
 #include <KAI/Core/Type/TraitMacros.h>
 #include <KAI/Core/Type/Properties.h>
+#include <KAI/Core/Object/Reflected.h>
+#include <KAI/Core/Object/Object.h>
+#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Tree.h>
+#include <KAI/Core/Registry.h>
+#include <KAI/Core/Pointer.h>
 
+#include <KAI/Executor/Compiler.h>
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Executor.h>
 
