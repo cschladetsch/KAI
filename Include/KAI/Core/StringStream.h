@@ -49,7 +49,7 @@ void Ends(EndsArgument);
 
 StringStream &operator<<(StringStream &, void (*)(EndsArgument));
 StringStream &operator<<(StringStream &, const String::Char *);
-StringStream &operator<<(StringStream &, const String::Char);
+//StringStream &operator<<(StringStream &, const String::Char);
 
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }

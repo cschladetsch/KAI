@@ -1,15 +1,15 @@
 #pragma once
 
-#include "KAI/Translator/Base.h"
-#include "KAI/Translator/Process.h"
-#include "KAI/Translator/ParserCommon.h"
+#include "KAI/Language/Common/Base.h"
+#include "KAI/Language/Common/Process.h"
+#include "KAI/Language/Common/ParserCommon.h"
 
-#include "KAI/Translator/Rho/RhoToken.h"
-#include "KAI/Translator/Rho/RhoLexer.h"
-#include "KAI/Translator/Rho/RhoParser.h"
-#include "KAI/Translator/Rho/RhoTranslator.h"
+#include "KAI/Language/Rho/RhoToken.h"
+#include "KAI/Language/Rho/RhoLexer.h"
+#include "KAI/Language/Rho/RhoParser.h"
+#include "KAI/Language/Rho/RhoTranslator.h"
 
-#include "KAI/Executor.h"
+#include "KAI/Executor/Executor.h"
 
 KAI_BEGIN
 

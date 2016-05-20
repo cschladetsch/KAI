@@ -1,8 +1,12 @@
 #pragma once
 
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Structure.h>
+#include <KAI/Executor/Continuation.h>
+
 KAI_BEGIN
 
-struct TranslatorCommon : CommonBase
+struct TranslatorCommon : ProcessCommon
 {
 public:
 	TranslatorCommon(Registry &r);
@@ -22,19 +26,19 @@ public:
 	template <class T>
 	void AppendNew(T val)
 	{
-		Append(reg.New<T>(val));
+		Append(_reg.New<T>(val));
 	}
 
 	template <class T>
 	Value<T> NewObject()
 	{
-		return reg.New<T>();
+		return _reg.New<T>();
 	}
 
 	template <class T>
 	Value<T> NewObject(const T &val)
 	{
-		return reg.New<T>(val);
+		return _reg.New<T>(val);
 	}
 
 	/*

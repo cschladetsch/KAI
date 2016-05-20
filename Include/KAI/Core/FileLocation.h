@@ -1,6 +1,5 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 
 KAI_BEGIN

@@ -34,6 +34,7 @@ struct ObjectColor
 };
 
 /// Base for all fully Reflected<T> types
+/// TODO: Now that Reflected is not a template, we don't need this at all
 class ReflectedBase
 {
 public:

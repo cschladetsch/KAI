@@ -1,55 +1,28 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
-#include "Label.h"
+#include "KAI/Core/Label.h"
+#include "KAI/Core/BasePointer.h"
+#include "KAI/Core/MemberCreateParams.h"
 
 KAI_BEGIN
-
-namespace CreateParams 
-{
-	enum Params 
-	{
-		Create = 1,
-
-		//< when supplied to a ClassBuilder<>'s property list, this indicates that the associated property will
-		//< not be created when the owning object instance is created. for example:
-		/*
-		struct Foo
-		{
-			Pointer<Bar> bar;
-		};
-		ClassBuilder<Foo>("Foo", R)
-			.Methods
-			.Properties
-				("bar", &Foo::bar, "a bar")
-			;
-		// in this case, when a new Foo object is created via Pointer<Foo> foo = New<Foo>(), the
-		// encapsulated bar object will also be created via New<Bar>.
-		//
-		// however, if the `bar` property was added using the line:
-		//		("bar", &Foo::bar, "a bar", Create::NoDefault)
-		//									^^^^^^^^^^^^^^^^^
-		// then the `bar` object in a new foo will be Null.
-		*/
-		NoCreate = 2,
-
-		// default to no creation
-		Default = NoCreate,
-	};
-}
 
 /// nominates a field in an instance of a class. commonality for all accessors and mutators.
 class PropertyBase
 {
-	Label field_name;
 	Type::Number class_type;
 	Type::Number field_type;
+	Label field_name;
+
+	/// True if this field is an Object or a Pointer<T> or convertable to either
 	bool is_system;
-	int create_params;	// bitfield created from CreateParams::Params enumeration
+
+	int create_params;
 
 public:
-	PropertyBase(Label const &F, Type::Number C, Type::Number N, bool B, CreateParams::Params CP) : field_name(F), class_type(C), field_type(N), is_system(B), create_params(CP) { }
+	PropertyBase(Label const &F, Type::Number C, Type::Number N, bool B, MemberCreateParams::Enum CP)
+			: field_name(F), class_type(C), field_type(N), is_system(B), create_params(CP) { }
+
 	virtual ~PropertyBase() { }
 
 	String Description;
@@ -58,7 +31,7 @@ public:
 	bool IsSystemType() const { return is_system; }
 
 	/// if true, this property should be created when its containing object is created
-	bool CreateDefaultValue() const { return (create_params & CreateParams::Create) == CreateParams::Create; }
+	bool CreateDefaultValue() const { return (create_params & MemberCreateParams::Create) == MemberCreateParams::Create; }
 
 	virtual void SetMarked(Object &, bool) = 0;
 

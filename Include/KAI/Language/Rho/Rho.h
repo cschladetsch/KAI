@@ -1,9 +1,8 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
-#include "KAI/Translator/Rho/RhoToken.h"
-#include "KAI/Translator/Rho/RhoLexer.h"
-#include "KAI/Translator/Rho/RhoAstNode.h"
-#include "KAI/Translator/Rho/RhoParser.h"
-#include "KAI/Translator/Rho/RhoTranslator.h"
-#include "KAI/Translator/Rho/RhoLang.h"
+#include "KAI/Language/Rho/RhoToken.h"
+#include "KAI/Language/Rho/RhoLexer.h"
+#include "KAI/Language/Rho/RhoAstNode.h"
+#include "KAI/Language/Rho/RhoParser.h"
+#include "KAI/Language/Rho/RhoTranslator.h"
+#include "KAI/Language/Rho/RhoLang.h"

@@ -1,40 +1,11 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/Traits.h>
-#include "KAI/Core/StorageBase.h"
+#include "KAI/Core/ConstStorage.h"
 
 KAI_BEGIN
 
 template <class T>
-class ConstStorage : public StorageBase//, IConstStorage<T>
-{
-	typedef typename Type::Traits<T> Tr;
-	typedef typename Tr::Store Store;
-
-protected:
-	Store stored;
-
-public:
-	ConstStorage(const ObjectConstructParams &P) 
-	: StorageBase(P) {}//{ SetClean(); }
-
-	typename Tr::ConstReference GetConstReference() const 
-	{ 
-		return stored; 
-	}
-	typename Tr::ConstReference operator*() const 
-	{ 
-		return stored; 
-	}
-	typename Tr::ConstPointer operator->() const 
-	{ 
-		return &stored; 
-	}
-};
-
-template <class T>
-class Storage : public ConstStorage<T>//, IStorage<T>
+class Storage : public ConstStorage<T>
 {
 public:
 	Storage(const ObjectConstructParams &P) : ConstStorage<T>(P) { }
@@ -59,7 +30,6 @@ public:
 template <class T>
 class Storage<const T> : ConstStorage<T>
 {
-	Storage() { }
 	Storage(const ObjectConstructParams &P) : ConstStorage<T>(P) { }
 	typedef typename ConstStorage<T>::Traits Tr;
 

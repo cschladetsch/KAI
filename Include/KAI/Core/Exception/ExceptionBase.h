@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/FileLocation.h>
 #include <KAI/Core/Handle.h>
 
