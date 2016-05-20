@@ -15,7 +15,7 @@
 
 #include "KAI/Core/BuiltinTypes/Void.h"
 #include "KAI/Core/FunctionBase.h"
-#include "KAI/Core/Algorithm.h"
+#include "KAI/Core/TriColor.h"
 #include "KAI/Core/Function.h"
 #include "KAI/Core/MethodBase.h"
 #include "KAI/Core/Method.h"

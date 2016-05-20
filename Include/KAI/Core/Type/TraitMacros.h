@@ -1,8 +1,8 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object/Handle.h>
 #include <KAI/Core/BuiltinTypes/String.h>
-#include <KAI/Core/Handle.h>
 
 #include "KAI/Core/Type/Properties.h"
 #include "KAI/Core/Type/Number.h"

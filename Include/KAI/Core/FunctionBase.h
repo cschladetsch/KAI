@@ -1,7 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include "CallableBase.h"
+#include <KAI/Core/Object/Label.h>
+#include <KAI/Core/Object/CallableBase.h>
 
 KAI_BEGIN
 
@@ -15,11 +15,9 @@ struct FunctionBase : CallableBase<FunctionBase>
 };
 
 StringStream &operator<<(StringStream &, FunctionBase const &);
-//StringStream &operator<<(StringStream &, const BasePointer<FunctionBase> &);
 
 KAI_TYPE_TRAITS(BasePointer<FunctionBase>, Number::Function
 	, Properties::StringStreamInsert 
-	);//| Properties::Reflected);
+	);
 
 KAI_END
-

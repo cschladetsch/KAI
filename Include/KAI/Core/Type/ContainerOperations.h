@@ -2,7 +2,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Base.h>
-#include <KAI/Core/Algorithm.h>
+#include <KAI/Core/TriColor.h>
 
 KAI_TYPE_BEGIN
 
