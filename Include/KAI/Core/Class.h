@@ -2,13 +2,14 @@
 
 #include <KAI/Language/Tau/Tau.h>
 #include <KAI/Core/Type/Traits.h>
-#include "Object.h"
-#include "ClassBase.h"
-#include "Label.h"
-#include "ObjectConstructParams.h"
-#include "GetStorageBase.h"
-#include "Algorithm.h"
-#include "Value.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/ClassBase.h"
+#include "KAI/Core/Label.h"
+#include "KAI/Core/ObjectConstructParams.h"
+#include "KAI/Core/GetStorageBase.h"
+#include "KAI/Core/Algorithm.h"
+#include "KAI/Core/Value.h"
+#include <KAI/Core/Type/Deref.h>
 
 KAI_BEGIN
 
@@ -274,6 +275,14 @@ Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
 	auto klass = new Class<T>(name);
 	return R.AddClass(Type::Traits<T>::Number, klass);
 }
+
+	template <class T>
+	Storage<T> *Clone(StorageBase const &Q)
+	{
+		auto dup = Q.GetRegistry()->NewStorage<T>();
+		dup->GetClass()->Clone(*dup, Q);
+		return dup;
+	}
 
 #pragma warning(pop)
 

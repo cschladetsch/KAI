@@ -31,19 +31,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
+macro(def_library name)
+    project(${name})
+    set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Library/${name}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+    add_library(${name} ${SOURCE_FILES})
+endmacro()
+
 #include the projects
-include(Libraries/Core/CMakeLists.txt)
-include(Libraries/Executor/CMakeLists.txt)
-include(Libraries/Network/CMakeLists.txt)
-include(Libraries/NetworkGen/CMakeLists.txt)
-
-# Aps
-include(Apps/Console/CMakeLists.txt)
-
-# and tests
-include(Tests/TestLibrary/CMakeLists.txt)
-include(Tests/TestExecutor/CMakeLists.txt)
-include(Tests/TestConsole/CMakeLists.txt)
-#include(Tests/TestNetworkGen/CMakeLists.txt)
-#include(Tests/TestNetwork/CMakeLists.txt)
+include(Library/CMakeLists.txt)
+include(App/CMakeLists.txt)
+include(Test/CMakeLists.txt)
 

@@ -1,7 +1,5 @@
 #include "KAI/KAI.h"
-#include "KAI/Core/Label.h"
 #include "KAI/Core/ClassBuilder.h"
-
 
 KAI_BEGIN
 
@@ -44,8 +42,8 @@ BinaryPacket &operator>>(BinaryPacket &S, Label &L)
 void Label::Register(Registry &R)
 {
 	ClassBuilder<Label>(R, Label("Label"))
-		//.Methods
-			//(&Label::ToString, "ToString")
+		.Methods
+			(&Label::ToString, "ToString")
 		;
 }
 

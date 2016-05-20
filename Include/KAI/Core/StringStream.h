@@ -4,6 +4,8 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Exception/ExceptionBase.h>
+#include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
 
@@ -22,7 +24,7 @@ private:
 
 public:
 	StringStream() : read_offset(0), registry(0) { }
-	StringStream(String const &S) : read_offset(0), registry(0) { Append(S); }
+	explicit StringStream(String const &S) : read_offset(0), registry(0) { Append(S); }
 
 	String ToString() const;
 	bool Empty() const { return stream.empty(); }
@@ -49,8 +51,6 @@ StringStream &operator<<(StringStream &, void (*)(EndsArgument));
 StringStream &operator<<(StringStream &, const String::Char *);
 StringStream &operator<<(StringStream &, const String::Char);
 
-inline StringStream &operator<<(StringStream &S, const StringStream &T) { return S << T.ToString().c_str(); }
-inline StringStream &operator<<(StringStream &S, const std::string &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
 inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
 

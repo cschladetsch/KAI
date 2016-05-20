@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KAI/Core/Type/Type.h"
-#include "KAI/Core/Type/Number.h"
+#include <type_traits>
+#include <string>
 
 KAI_TYPE_BEGIN
 

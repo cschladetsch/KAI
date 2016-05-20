@@ -2,8 +2,10 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
-#include "StorageBase.h"
-#include "Object.h"
+#include <KAI/Core/Type/Deref.h>
+#include "KAI/Core/StorageBase.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/Storage.h"
 
 KAI_BEGIN
 
@@ -78,14 +80,6 @@ inline const Object &ConstDeref<Object>(const Object &Q)
 }
 
 StorageBase &GetStorageBase(Object const &Q);
-
-template <class T>
-Storage<T> *Clone(StorageBase const &Q)
-{
-	auto dup = Q.GetRegistry()->NewStorage<T>();
-	dup->GetClass()->Clone(*dup, Q);
-	return dup;
-}
 
 KAI_END
 

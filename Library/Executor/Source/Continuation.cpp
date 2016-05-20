@@ -1,5 +1,8 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/ClassBuilder.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Executor/Continuation.h>
+#include <KAI/Core/Debug.h>
+#include <KAI/Core/BuiltinTypes/Stack.h>
+#include <KAI/Core/ClassBuilder.h>
 
 KAI_BEGIN
 

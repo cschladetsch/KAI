@@ -1,11 +1,10 @@
-#include "KAI/KAI.h"
 #include <algorithm>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/erase.hpp>
 #include <boost/lexical_cast.hpp>
+
 #include <KAI/Core/FunctionBase.h>
 #include <KAI/Core/ClassBuilder.h>
-
 #include "KAI/Core/BuiltinTypes/All.h"
 #include "KAI/Core/BuiltinTypes/List.h"
 

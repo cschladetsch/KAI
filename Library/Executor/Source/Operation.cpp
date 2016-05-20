@@ -1,4 +1,4 @@
-#include "KAI/ExecutorPCH.h"
+#include "KAI/Executor/Operation.h"
 
 KAI_BEGIN
 
@@ -131,16 +131,13 @@ const char *Operation::ToString(int value)
 		CASE(GarbageCollect)
 	}
 
-	static std::stringstream str;
-	str << "UnnamedOp#" << value;
-	return str.str().c_str();
+	return "UnnnamedOp";
 }
 
 char const *Operation::ToString() const
 {
 	return Operation::ToString(value);
 }
-
 
 KAI_END
 

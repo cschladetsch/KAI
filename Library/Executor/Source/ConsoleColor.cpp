@@ -1,5 +1,4 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/ConsoleColor.h"
+#include "KAI/Console/ConsoleColor.h"
 
 KAI_BEGIN
 
@@ -61,3 +60,4 @@ void Color::SetColor(Type c)
 #endif
 
 KAI_END
+

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <KAI/Core/Config/Base.h>
+#include <string>
+
 KAI_BEGIN
 
 struct Process

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <unordered_set>
 #include <KAI/Core/Config/Base.h>
 
 KAI_BEGIN
