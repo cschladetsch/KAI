@@ -1,5 +1,7 @@
 #pragma once
 
+#include <list>
+
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
 #include <KAI/Core/Type/Deref.h>
@@ -277,10 +279,10 @@ public:
 	static void Register(Registry &);
 
 	/// detach from container
-	void RemovedFromContainer(Object const &container) const;
+	void RemovedFromContainer(Object container) const;
 	
 	/// attach to container
-	void AddedToContainer(Object const &container) const;
+	void AddedToContainer(Object container) const;
 
 	StorageBase *GetBasePtr() const;
 	StorageBase *GetParentBasePtr() const;

@@ -9,7 +9,8 @@
 
 #include <KAI/Core/Memory/IAllocator.h>
 #include <KAI/Core/Type/Traits.h>
-#include "Pointer.h"
+#include "KAI/Core/Pointer.h"
+#include "KAI/Core/ClassBase.h"
 
 KAI_BEGIN
 
@@ -288,15 +289,15 @@ Storage<T> *NewStorage(Registry &R)
 }
 
 #	ifdef KAI_DEBUG_REGISTRY
-//#		define KAI_REGISTRY_TRACE(Q) \
-//			do { \
-//				if (!Q.GetRegistry()) \
-//				{ \
-//					KAI_TRACE() << "Empty registry"; \
-//				} \
-//				else \
-//				{ \
-//					Q.GetRegistry().TraceObject(Q)
+#		define KAI_REGISTRY_TRACE(Q) \
+			do { \
+				if (!Q.GetRegistry()) \
+				{ \
+					KAI_TRACE() << "Empty registry"; \
+				} \
+				else \
+				{ \
+					Q.GetRegistry().TraceObject(Q)
 #		define KAI_DEBUG_WATCH_OBJECT(object) \
 			if (object) object.GetRegistry()->WatchObject(object)
 #	else
@@ -304,4 +305,6 @@ Storage<T> *NewStorage(Registry &R)
 #	endif
 
 KAI_END
+
+#include "KAI/Core/Reflected.h"
 

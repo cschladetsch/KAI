@@ -5,7 +5,7 @@
 KAI_BEGIN
 
 TranslatorCommon::TranslatorCommon(Registry &r)
-	: CommonBase(r)
+	: ProcessCommon(r)
 {
 }
 
@@ -26,8 +26,8 @@ Pointer<Continuation> TranslatorCommon::Top()
 
 void TranslatorCommon::PushNew()
 {
-	Pointer<Continuation> c = reg.New<Continuation>();
-	c->SetCode(reg.New<Array>());
+	Pointer<Continuation> c = _reg.New<Continuation>();
+	c->SetCode(_reg.New<Array>());
 	stack.push_back(c);
 }
 

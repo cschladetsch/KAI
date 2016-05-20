@@ -1,8 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/ClassBase.h>
 #include <KAI/Core/Type/Traits.h>
-#include <KAI/Core/StorageBase.h>
 #include <KAI/Core/GetStorageBase.h>
 
 KAI_BEGIN
@@ -182,7 +181,7 @@ protected:
 	{
 		if (!PointerBase<T>::CanAssign(Q))
 			return;
-		if (Q.GetHandle() != 0 && Q.Exists() && Q.IsConst())
+		if (Q.GetHandle() != Handle(0) && Q.Exists() && Q.IsConst())
 			KAI_THROW_0(ConstError);
 		Object::operator=(Q);
 #	ifdef KAI_POINTER_HAS_STORAGEBASE

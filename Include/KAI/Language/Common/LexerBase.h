@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "KAI/Language/Common/CommonBase.h"
+#include "KAI/Language/Common/ProcessCommon.h"
 #include "KAI/Language/Common/Slice.h"
 
 KAI_BEGIN
@@ -11,7 +11,7 @@ KAI_BEGIN
 int IsSpaceChar(int ch);
 
 // Common to all lexers with different token types
-class LexerBase: public CommonBase
+class LexerBase: public ProcessCommon
 {
 public:
 	typedef std::vector<std::string> Lines;

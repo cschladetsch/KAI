@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
+#include "KAI/Language/Common/TokenBase.h"
 
 KAI_BEGIN
 
@@ -87,5 +87,5 @@ struct RhoTokenEnumType
 typedef RhoTokenEnumType::Type RhoToken;
 typedef RhoTokenEnumType RhoTokens;
 
-
 KAI_END
+

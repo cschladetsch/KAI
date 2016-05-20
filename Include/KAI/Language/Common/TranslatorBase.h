@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/TranslatorCommon.h"
+#include "KAI/Language/Common/TranslatorCommon.h"
 
 KAI_BEGIN
 
@@ -33,7 +33,7 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_1(lex->Print());
 
-		auto parse = std::make_shared<Parser>(reg);
+		auto parse = std::make_shared<Parser>(_reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
 			Fail(parse->Error);

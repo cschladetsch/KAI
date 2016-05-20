@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KAI/Core/Pathname.h"
+#include "KAI/Core/Object.h"
 
 KAI_BEGIN
 

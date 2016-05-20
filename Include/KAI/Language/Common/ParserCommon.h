@@ -15,7 +15,7 @@ KAI_BEGIN
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class ELexer, class AstEnumStruct>
-class ParserCommon : public CommonBase
+class ParserCommon : public ProcessCommon
 {
 public:
 	typedef ELexer Lexer;
@@ -29,7 +29,7 @@ public:
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() { return root; }
 	
-	ParserCommon(Registry& r) : CommonBase(r)
+	ParserCommon(Registry& r) : ProcessCommon(r)
 	{ 
 		current = 0;
 		indent = 0;
@@ -48,7 +48,7 @@ public:
 	template <class T>
 	Pointer<T> New(T const &val)
 	{
-		return reg.New<T>(val);
+		return _reg.New<T>(val);
 	}
 
 	void Run(Structure st)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <KAI/Core/KAI.h>
+#include <KAI/Core/SetGCFlagFwd.h>
 
 #include "Pathname.h"
 #include "Class.h"
