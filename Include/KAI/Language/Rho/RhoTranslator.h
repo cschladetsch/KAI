@@ -1,10 +1,7 @@
 #pragma once
 
-#include "KAI/KAICommon.h"
-#include "KAI/Operation.h"
-#include "KAI/BuiltinTypes/Array.h"
-#include "KAI/Continuation.h"
-#include "KAI/Translator/Rho/Rho.h"
+#include "KAI/Core/BuiltinTypes/Array.h"
+#include "KAI/Language/Rho/RhoParser.h"
 
 KAI_BEGIN
 

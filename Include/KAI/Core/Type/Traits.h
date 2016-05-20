@@ -6,6 +6,8 @@
 #include <KAI/Core/Exception/ExceptionMacros.h>
 #include <KAI/Core/Meta/Base.h>
 #include "KAI/Core/Type/Properties.h"
+#include "KAI/Core/ReflectedBase.h"
+#include "KAI/Core/SetAbsValue.h"
 
 KAI_TYPE_BEGIN
 

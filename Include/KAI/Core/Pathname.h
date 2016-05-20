@@ -4,7 +4,7 @@
 
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Type/Traits.h>
-#include "KAI/Core/Label.h"
+#include "KAI/Core/Object/Label.h"
 
 KAI_BEGIN
 

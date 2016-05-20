@@ -4,7 +4,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Object.h>
-#include <KAI/Core/Algorithm.h>
+#include <KAI/Core/TriColor.h>
 
 #include "Container.h"
 

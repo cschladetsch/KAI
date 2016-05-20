@@ -7,12 +7,10 @@ KAI_BEGIN
 
 struct Process
 {
-	bool Failed;
-	std::string Error;
-
-	Process() : Failed(false) { }
-
+	bool Failed = false;
 	static int trace;
+
+	std::string Error;
 
 protected:
 	bool Fail(const char *fmt, ...);
@@ -20,3 +18,4 @@ protected:
 };
 
 KAI_END
+

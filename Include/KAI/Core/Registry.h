@@ -9,8 +9,9 @@
 
 #include <KAI/Core/Memory/IAllocator.h>
 #include <KAI/Core/Type/Traits.h>
+#include "KAI/Core/Object/ClassBase.h"
+#include "KAI/Core/Object/Object.h"
 #include "KAI/Core/Pointer.h"
-#include "KAI/Core/ClassBase.h"
 
 KAI_BEGIN
 
@@ -306,5 +307,5 @@ Storage<T> *NewStorage(Registry &R)
 
 KAI_END
 
-#include "KAI/Core/Reflected.h"
+#include "KAI/Core/Object/Reflected.h"
 

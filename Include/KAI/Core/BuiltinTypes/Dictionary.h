@@ -2,7 +2,7 @@
 
 #include <map>
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Label.h>
+#include <KAI/Core/Object/Label.h>
 
 KAI_BEGIN
 

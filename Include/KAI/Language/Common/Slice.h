@@ -1,10 +1,8 @@
 #pragma once
 
-//#include "KAI/Language/Config.h"
-
 KAI_BEGIN
 
-// A range
+// A Indicates a range of characters in a larger string
 struct Slice
 {
 	int Start, End;

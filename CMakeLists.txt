@@ -40,6 +40,7 @@ endmacro()
 
 #include the projects
 include(Library/CMakeLists.txt)
-include(App/CMakeLists.txt)
-include(Test/CMakeLists.txt)
+#include(Test/CMakeLists.txt)
+#include(App/CMakeLists.txt)
 
+#$

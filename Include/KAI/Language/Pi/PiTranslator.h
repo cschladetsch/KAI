@@ -12,11 +12,8 @@ class PiTranslator : public TranslatorBase<PiParser>
 {
 public:
 	typedef TranslatorBase<PiParser> Parent;
-	typedef typename Parent::Parser Parser;
 	typedef typename Parent::TokenNode TokenNode;
 	typedef typename Parent::AstNode AstNode;
-	typedef typename Parent::TokenEnum TokenEnum;
-	typedef typename Parent::AstEnum AstNodeEnum;
 	typedef typename Parent::AstNodePtr AstNodePtr;
 
 	PiTranslator() = delete;
@@ -34,3 +31,4 @@ private:
 };
 
 KAI_END
+`

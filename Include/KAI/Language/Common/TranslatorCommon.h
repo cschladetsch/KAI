@@ -6,6 +6,7 @@
 
 KAI_BEGIN
 
+/// Common to all systems that translate from one grammar to another
 struct TranslatorCommon : ProcessCommon
 {
 public:
