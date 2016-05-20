@@ -51,5 +51,4 @@ struct TauTokenEnumType
 
 typedef TauTokenEnumType::Type TauToken;
 
-
 KAI_END

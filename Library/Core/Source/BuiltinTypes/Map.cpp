@@ -1,5 +1,6 @@
+
 #include <KAI/Core/BuiltinTypes/MapBase.h>
-#include "KAI/Core/Object.h".h"
+#include "KAI/Core/Object/Object.h"
 #include "KAI/Core/BuiltinTypes/HashMap.h"
 #include "KAI/Core/BuiltinTypes/Map.h"
 #include "KAI/Core/BuiltinTypes/List.h"
@@ -7,11 +8,11 @@
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &S, typename Map::const_iterator const &P)
-{
-	KAI_UNUSED(P);
-	return S << "MapConstIterator";
-}
+//StringStream &operator<<(StringStream &S, typename Map::const_iterator const &P)
+//{
+//	KAI_UNUSED(P);
+//	return S << "MapConstIterator";
+//}
 
 std::size_t HashMapCompare::operator()(const Object &A) const
 {

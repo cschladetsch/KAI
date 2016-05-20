@@ -1,8 +1,6 @@
-#include "KAI/ExecutorPCH.h"
-#include <iostream>
-#include <strstream>
-
-using namespace std;
+#include <KAI/Language/Common/ParserCommon.h>
+#include <KAI/Language/Common/Structure.h>
+#include <KAI/Language/Rho/RhoParser.h>
 
 KAI_BEGIN
 

@@ -1,11 +1,11 @@
-#include "KAI/KAI.h"
-#include "KAI/BuiltinTypes/Set.h"
+#include <KAI/Core/Object/ClassBuilder.h>
+#include "KAI/Core/BuiltinTypes/Set.h"
 
 KAI_BEGIN
 
 void ObjectSet::Register(Registry &R)
 {
-	ClassBuilder<ObjectSet>(R, "Set")
+	ClassBuilder<ObjectSet>(R, Label("Set"))
 		;
 }
 
