@@ -9,7 +9,7 @@
 #include "KAI/Core/TriColor.h"
 #include "KAI/Core/Value.h"
 #include <KAI/Core/Type/Deref.h>
-#include <KAI/Core/Registry.h"
+#include <KAI/Core/Registry.h>
 
 KAI_BEGIN
 

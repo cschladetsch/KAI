@@ -1,10 +1,9 @@
 #pragma once
 
-#include "KAI/Core/Pointer.h"
 #include "KAI/Core/Object/StorageBase.h"
 #include "KAI/Core/Registry.h"
-#include "KAI/Core/Pointer.h"
 #include "KAI/Core/Object/ReflectedFwd.h"
+#include "KAI/Core/Pointer.h"
 
 KAI_BEGIN
 

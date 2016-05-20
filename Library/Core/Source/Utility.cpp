@@ -4,14 +4,14 @@
 #include "KAI/Core/BuiltinTypes/Map.h"
 #include "KAI/Core/BuiltinTypes/Array.h"
 #include "KAI/Core/Value.h"
-#include "KAI/Core/Reflected.h"
+#include "KAI/Core/Object/Reflected.h"
 
 #include "KAI/Executor/Operation.h"
 #include "KAI/Executor/Continuation.h"
 
 #include <KAI/Core/BuiltinTypes/Dictionary.h>
-#include <KAI/Core/PropertyBase.h>
-#include <KAI/Core/ClassBase.h>
+#include <KAI/Core/Object/PropertyBase.h>
+#include <KAI/Core/Object/ClassBase.h>
 
 KAI_BEGIN
 

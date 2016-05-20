@@ -2,7 +2,7 @@
 
 #include <list>
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object.h>
+#include <KAI/Core/Object/Object.h>
 #include "Container.h"
 
 KAI_BEGIN

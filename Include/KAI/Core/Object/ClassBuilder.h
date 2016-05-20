@@ -1,16 +1,15 @@
 #pragma once
 
 #include <KAI/Core/SetGCFlagFwd.h>
-
-#include "Pathname.h"
-#include "Class.h"
-#include "PropertyBase.h"
-#include "Accessor.h"
-#include "Method.h"
+#include "KAI/Core/Pathname.h"
+#include "KAI/Core/Object/Class.h"
+#include "KAI/Core/Object/PropertyBase.h"
+#include "KAI/Core/Object/Accessor.h"
+#include "KAI/Core/Object/Method.h"
 
 KAI_BEGIN
 
-void RegisterClass(Registry &, ClassBase const &klass, Object const &root, Pathname const &path);
+void RegisterClass(Registry &, ClassBase const &, Object const &, Pathname const &);
 
 template <class T>
 class ClassBuilder

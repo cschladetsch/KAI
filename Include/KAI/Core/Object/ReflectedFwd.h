@@ -1,15 +1,26 @@
 #pragma once
 
-#include <KAI/Core/ReflectedBase.h>
-#include "KAI/Core/Pointer.h"
+#include <KAI/Core/FwdDeclarations.h>
 
 KAI_BEGIN
 
-/// A Reflected type has a Self pointer. This is semantically same as C++'s 'this' pointer,
-/// but using the Object Model of the system
-class Reflected: public ReflectedBase
+struct StorageBase;
+class Registry;
+template <class T> struct Pointer;
+struct StorageBase;
+
+class Reflected
 {
 public:
+	StorageBase *Self;
+	//TODO Registry *Registry;
+
+	virtual ~Reflected() { }
+
+	virtual void Create() { }				// called after object constructed, but before first use
+	virtual bool Destroy() { return true; }	// called when object moved to deathrow, but before deleted
+	virtual void Delete() { }				// called immediately before resources are released
+
 	Registry &Reg() const;
 
 	template <class T>
