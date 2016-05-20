@@ -2,6 +2,7 @@
 
 #include <KAI/Language/Common/AstNodeBase.h>
 #include "KAI/Language/Tau/TauToken.h"
+#include "TauToken.h"
 
 KAI_BEGIN
 
@@ -20,7 +21,7 @@ struct TauAstEnumType
 
 	struct Node : AstNodeBase<TauToken, TauAstEnumType>
 	{
-		typedef AstNodeBase<TauAstEnumType, TauAstEnumType> Parent;
+		typedef AstNodeBase<TauToken, TauAstEnumType> Parent;
 		using typename Parent::Token;
 		KAI_NAMESPACE(Object) object;
 
@@ -29,6 +30,8 @@ struct TauAstEnumType
 		Node(Enum e, Token &tok) : Parent(e, tok) { }
 		Node(Parent::Token tok) : Parent(tok) { }
 	};
+
+	static const char *ToString(Enum);
 };
 
 

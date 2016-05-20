@@ -5,7 +5,6 @@
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Exception/ExceptionBase.h>
-#include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
 
@@ -52,13 +51,13 @@ StringStream &operator<<(StringStream &, const String::Char *);
 //StringStream &operator<<(StringStream &, const String::Char);
 
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
-inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
-
-StringStream& operator<<(StringStream&, ObjectColor::Color);
-
-KAI_TYPE_TRAITS(
-	StringStream, 
-	Number::StringStream, 
-	Properties::Equiv);
+//inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
+//
+//StringStream& operator<<(StringStream&, ObjectColor::Color);
+//
+//KAI_TYPE_TRAITS(
+//	StringStream,
+//	Number::StringStream,
+//	Properties::Equiv);
 
 KAI_END
