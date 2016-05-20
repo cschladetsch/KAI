@@ -8,7 +8,7 @@
 #include <KAI/Executor/Operation.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
 
-#include "KAI/Core/Reflected.h"
+#include "KAI/Core/Object/Reflected.h"
 #include "KAI/Core/Value.h"
 #include "KAI/Core/Pathname.h"
 

@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Base.h>
 
 KAI_BEGIN
 

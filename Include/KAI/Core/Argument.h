@@ -1,5 +1,7 @@
 #pragma once
 
+KAI_EGIN
+
 template <class T>
 struct Argument
 {

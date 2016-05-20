@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
-#include <KAI/Core/FileLocation.h>
-#include <KAI/Core/Handle.h>
+#include <KAI/Core/Exception/FileLocation.h>
+#include <KAI/Core/Object/Handle.h>
+#include <KAI/Core/StringStream.h>
 
 KAI_BEGIN
 

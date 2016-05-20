@@ -3,7 +3,7 @@
 #include <vector>
 
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Label.h>
+#include <KAI/Core/Object/Label.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
 #include <KAI/Core/Type/Number.h>
 #include "KAI/Executor/Continuation.h"

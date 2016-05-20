@@ -1,7 +1,7 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object.h>
+#include <KAI/Core/Object/Object.h>
 #include <KAI/Core/BuiltinTypes/Vector4.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/BuiltinTypes/Array.h>

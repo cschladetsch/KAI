@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/Core/Config/Base.h"
 #include "KAI/Language/Common/AstNodeBase.h"
 
 KAI_BEGIN
@@ -18,50 +19,25 @@ public:
 	typedef std::shared_ptr<Self> Child;
 	typedef std::vector<Child> ChildrenType;
 
-	AstNodeBase()
-	{
-	}
+	AstNodeBase() { }
 
-	AstNodeBase(Enum e) : _astType(e)
-	{
-	}
+	AstNodeBase(Enum e) : _astType(e) { }
 
-	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t)
-	{
-	}
+	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
 
-	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q)
-	{
-	}
+	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q) { }
 
-	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t)
-	{
-	}
+	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
 
-	const Child &GetChild(size_t n) const
-	{
-		return GetChildren()[n];
-	}
+	const Child &GetChild(size_t n) const { return GetChildren()[n]; }
 
-	const ChildrenType &GetChildren() const
-	{
-		return _children;
-	}
+	const ChildrenType &GetChildren() const { return _children; }
 
-	Enum GetType() const
-	{
-		return _astType;
-	}
+	Enum GetType() const { return _astType; }
 
-	const Token &GetToken() const
-	{
-		return _token;
+	const Token &GetToken() const { return _token;
 	}
-
-	std::string GetTokenText() const
-	{
-		return std::move(_token.Text());
-	}
+	std::string GetTokenText() const { return std::move(_token.Text()); }
 	//Enum GetEnum() const { return _astType; }
 
 	std::string PrintTree()
@@ -126,3 +102,4 @@ private:
 };
 
 KAI_END
+
