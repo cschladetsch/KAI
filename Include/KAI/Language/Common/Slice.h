@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/Config.h"
+//#include "KAI/Language/Config.h"
 
 KAI_BEGIN
 

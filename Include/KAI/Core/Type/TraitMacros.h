@@ -4,8 +4,9 @@
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Handle.h>
 
-#include "Properties.h"
-#include "Type.h"
+#include "KAI/Core/Type/Properties.h"
+#include "KAI/Core/Type/Number.h"
+#include "KAI/Core/Type/Traits.h"
 
 KAI_BEGIN
 
@@ -53,3 +54,4 @@ BinaryStream &operator<<(BinaryStream &, Type::Number);
 BinaryPacket &operator>>(BinaryPacket &, Type::Number &);
 
 KAI_END
+

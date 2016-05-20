@@ -3,9 +3,9 @@
 #include <KAI/Core/Config/Base.h>
 #include <vector>
 #include <KAI/Core/Type/Properties.h>
-#include <KAI/Core/Type/Type.h>
-#include "BinaryPacket.h"
-#include "StringStream.h"
+#include <KAI/Core/Type/TraitMacros.h>
+#include "KAI/Core/BinaryPacket.h"
+#include "KAI/Core/StringStream.h"
 
 KAI_BEGIN
 
@@ -46,5 +46,6 @@ BinaryPacket &operator >> (BinaryPacket &, BinaryStream &);
 KAI_TYPE_TRAITS(BinaryStream, Number::BinaryStream
 	, Properties::StringStreamInsert
 	| Properties::BinaryStreamExtract | Properties::BinaryStreamInsert)
+
 KAI_END
 

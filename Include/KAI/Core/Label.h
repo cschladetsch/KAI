@@ -1,7 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
 
@@ -14,7 +14,7 @@ private:
 
 public:
 	Label() { }
-	Label(const String::Char *S) { FromString(S); }
+	explicit Label(const String::Char *S) { FromString(S); }
 	Label(const Value &S) { FromString(S); }
 
 	bool Empty() const { return value.empty(); }

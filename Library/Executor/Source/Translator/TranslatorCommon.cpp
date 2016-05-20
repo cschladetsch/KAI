@@ -1,5 +1,6 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/TranslatorCommon.h"
+#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Registry.h>
+#include <KAI/Language/Common/TranslatorCommon.h>
 
 KAI_BEGIN
 

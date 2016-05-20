@@ -1,10 +1,10 @@
 #pragma once
 
 #include <memory>
+
 #include <KAI/Core/Reflected.h>
 #include <KAI/Core/Tree.h>
 #include <KAI/Core/Registry.h>
-#include <KAI/Core/Executor.h>
 #include <KAI/Core/Pointer.h>
 #include <KAI/Core/Compiler.h>
 #include <KAI/Core/Memory/IAllocator.h>
@@ -17,6 +17,7 @@
 #include <KAI/Core/Type/Properties.h>
 
 #include <KAI/Executor/Continuation.h>
+#include <KAI/Executor/Executor.h>
 
 #include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Common/Language.h>

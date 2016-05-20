@@ -1,5 +1,4 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Process.h"
+#include "KAI/Language/Common/Process.h"
 
 #include <stdarg.h>
 
@@ -28,3 +27,4 @@ bool Process::Fail(const char *fmt, ...)
 }
 
 KAI_END
+

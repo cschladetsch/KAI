@@ -1,7 +1,7 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-#include "Traits.h"
+#include "KAI/Core/Type/Traits.h"
 
 KAI_BEGIN
 

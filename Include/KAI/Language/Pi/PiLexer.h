@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Pi/PiToken.h"
+#include <KAI/Language/Common/LexerCommon.h>
+#include "KAI/Language/Pi/PiToken.h"
 
 KAI_BEGIN
 

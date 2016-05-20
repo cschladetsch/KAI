@@ -2,14 +2,15 @@
 
 #include <KAI/Core/Value.h>
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/Type.h>
+#include <KAI/Core/Type/TraitMacros.h>
 
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Operation.h>
+#include <KAI/Core/BuiltinTypes/Stack.h>
 
-#include "Reflected.h"
-#include "Value.h"
-#include "Pathname.h"
+#include "KAI/Core/Reflected.h"
+#include "KAI/Core/Value.h"
+#include "KAI/Core/Pathname.h"
 
 KAI_BEGIN
 

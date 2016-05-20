@@ -2,8 +2,6 @@
 
 // needed to build bin.cpp
 
-#include "KAI/Core/KAICommon.h"
-
 #include "KAI/Core/BuiltinTypes/Container.h"
 #include "KAI/Core/BuiltinTypes/Array.h"
 #include "KAI/Core/BuiltinTypes/Stack.h"
@@ -33,5 +31,5 @@
 #include "KAI/Executor/Executor.h"
 #include "KAI/Executor/Continuation.h"
 #include "KAI/Executor/Operation.h"
-#include "KAI/Executor/Compiler.h"
+#include "KAI/Core/Compiler.h"
 

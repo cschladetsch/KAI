@@ -1,7 +1,8 @@
 #pragma once
 
-#include "KAI/KAI.h"
-#include "KAI/Translator/Process.h"
+#include <KAI/Core/Value.h>
+#include "KAI/Core/Registry.h"
+#include "KAI/Language/Common/Process.h"
 
 KAI_BEGIN
 

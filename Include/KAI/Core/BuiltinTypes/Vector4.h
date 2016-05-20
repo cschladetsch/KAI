@@ -1,6 +1,7 @@
 #pragma onmce
 
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
 
@@ -122,7 +123,4 @@ KAI_TYPE_TRAITS(Vector4, Number::Vector4
 
 KAI_END
 
-#endif // KAI_BUILTIN_TYPES_VECTOR4_H
-
-//EOF
 

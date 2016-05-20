@@ -2,20 +2,10 @@
 
 #include <boost/type_index.hpp>
 
-#include <KAI/Core/Exception/ExceptionMacros.h>
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/FileLocation.h>
-#include <KAI/Core/Exception/ExceptionBase.h>
 #include <KAI/Core/Base.h>
-#include <KAI/Core/Object.h>
-#include <KAI/Core/Storage.h>
-#include <KAI/Core/StorageBase.h>
-#include <KAI/Core/BinaryPacket.h>
-#include <KAI/Core/BinaryStream.h>
-#include <KAI/Core/StringStream.h>
-
-#include "Type.h"
-#include "Properties.h"
+#include <KAI/Core/Exception/ExceptionMacros.h>
+#include <KAI/Core/Meta/Base.h>
+#include "KAI/Core/Type/Properties.h"
 
 KAI_TYPE_BEGIN
 
@@ -254,7 +244,8 @@ struct TraitsBase
 	#pragma warning (push)
 			// warning: unreachable code. NFI why...
 	#pragma warning (disable:4702)
-			return GetHash(A);
+			//TODO GetHash(A);
+			return 42;
 	#pragma warning (push)
 		}
 	};

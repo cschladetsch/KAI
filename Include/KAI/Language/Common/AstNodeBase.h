@@ -1,9 +1,6 @@
 #pragma once
 
-#include "KAI/KAI.h"
-#include "KAI/Translator/Common.h"
-#include "KAI/HierarchicalPrinter.h"
-#include "Language.h"
+#include "KAI/Language/Common/AstNodeBase.h"
 
 KAI_BEGIN
 

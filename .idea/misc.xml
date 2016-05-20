@@ -4,14 +4,19 @@
   <component name="CidrRootsConfiguration">
     <sourceRoots>
       <file path="$PROJECT_DIR$/App/Console" />
+      <file path="$PROJECT_DIR$/App/TauGen" />
+      <file path="$PROJECT_DIR$/App/Window" />
       <file path="$PROJECT_DIR$/Include" />
+      <file path="$PROJECT_DIR$/Installer" />
       <file path="$PROJECT_DIR$/Library/Core" />
       <file path="$PROJECT_DIR$/Library/Executor" />
       <file path="$PROJECT_DIR$/Library/Language/Tau" />
       <file path="$PROJECT_DIR$/Library/Network" />
+      <file path="$PROJECT_DIR$/Library/Window" />
       <file path="$PROJECT_DIR$/Test/TestConsole" />
       <file path="$PROJECT_DIR$/Test/TestCore" />
       <file path="$PROJECT_DIR$/Test/TestExecutor" />
+      <file path="$PROJECT_DIR$/TestAll" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots>
