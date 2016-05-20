@@ -2,10 +2,9 @@
 
 #include <list>
 
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Type/Traits.h>
-#include "Label.h"
+#include "KAI/Core/Label.h"
 
 KAI_BEGIN
 

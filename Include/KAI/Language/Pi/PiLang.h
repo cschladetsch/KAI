@@ -1,8 +1,7 @@
 #pragma once
 
-#include "KAI/Translator/Pi/PiParser.h"
-#include "KAI/Executor.h"
-//#include "KAI/Translator/Structure.h"
+#include "KAI/Language/Pi/PiParser.h"
+#include "KAI/Executor/Executor.h"
 
 KAI_BEGIN
 

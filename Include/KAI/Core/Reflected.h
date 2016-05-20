@@ -1,32 +1,24 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include "Base.h"
-#include "Pointer.h"
+#include "KAI/Core/Pointer.h"
+#include "KAI/Core/StorageBase.h"
+#include "KAI/Core/Registry.h"
+#include "KAI/Core/Pointer.h"
+#include "KAI/Core/ReflectedFwd.h"
 
 KAI_BEGIN
 
-/// A Reflected type has a Self pointer. This is semantically same as C++'s 'this' pointer,
-/// but using the Object Model of the system
-class Reflected : public ReflectedBase
+template <class T>
+Pointer<T> Reflected::New()
 {
-public:
-	Registry &Reg() const
-	{
-		return *Self->GetRegistry();
-	}
+	return Reg().New<T>();
+}
 
-	template <class T>
-	Pointer<T> New()
-	{
-		return Reg().New<T>();
-	}
-
-	template <class T>
-	Pointer<T> New(const T& val)
-	{
-		return Reg().New(val);
-	}
-};
+template <class T>
+Pointer<T> Reflected::New(const T& val)
+{
+	return Reg().New(val);
+}
 
 KAI_END
+

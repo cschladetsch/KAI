@@ -1,3 +1,4 @@
+#include "KAI/Core/ClassBase.h"
 #include "KAI/Executor/Executor.h"
 #include "KAI/Core/StringStream.h"
 #include "KAI/Core/BuiltinTypes/Pair.h"

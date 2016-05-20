@@ -16,6 +16,6 @@ class StringStream;
 class BinaryStream;
 class BinaryPacket;
 class Registry;
-//class ObjectConstructParams;
+class ReflectedBase;
 
 KAI_END

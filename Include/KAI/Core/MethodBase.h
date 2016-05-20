@@ -1,8 +1,9 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-#include "CallableBase.h"
-#include "Constness.h"
+#include <KAI/Core/BuiltinTypes/Stack.h>
+#include "KAI/Core/CallableBase.h"
+#include "KAI/Core/Constness.h"
 
 KAI_BEGIN
 
