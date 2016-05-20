@@ -1,0 +1,31 @@
+
+namespace MLB
+{
+	struct Test
+	{
+		void Pin() const;
+		void Pin();
+		sync void Pin();
+
+		DateTime Ping(DateTime sent) const;
+		DateTime Ping(DateTime sent);
+
+		int Twice(int) const;
+
+		void Mul(float T);
+
+		sync int Twice(int) const;
+
+		float Twice(float) const;
+
+		string Twice(string) const;
+
+		T twice_template<T>(T);
+		T twice_template<T>(T) const;
+		sync T twice_template<T>(T) const;
+
+
+		T twice_template<T>()(Proxy <T>);
+		sync T twice_template<T>()(Proxy <T>);
+	};
+}

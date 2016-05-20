@@ -1,5 +1,6 @@
-#include "KAI/KAI.h"
-#include "KAI/Core/ClassBuilder.h"
+#include "KAI/Core/Object/Label.h"
+#include "KAI/Core/Object/ClassBuilder.h"
+#include "KAI/Core/Registry.h"
 
 KAI_BEGIN
 

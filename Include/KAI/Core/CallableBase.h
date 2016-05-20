@@ -2,8 +2,9 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
-#include "BasePointer.h"
-#include "Label.h"
+#include "KAI/Core/BasePointer.h"
+#include "KAI/Core/Object/Label.h"
+#include "KAI/Core/BasePointerBase.h"
 
 KAI_BEGIN
 

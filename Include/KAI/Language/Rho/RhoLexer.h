@@ -1,7 +1,6 @@
 #pragma once
 
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Rho/RhoToken.h"
+#include "KAI/Language/Rho/RhoToken.h"
 
 KAI_BEGIN
 
@@ -12,9 +11,9 @@ struct RhoLexer : LexerCommon<RhoTokenEnumType>
 
 	RhoLexer(const char *text) : Parent(text) { }
 
-	virtual void AddKeyWords();
-	virtual bool NextToken();
-	virtual void Terminate();
+	void AddKeyWords() override ;
+	bool NextToken() override ;
+	void Terminate() override ;
 };
 
 KAI_END

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <assert.h>
 
-#include "KAI/Core/Algorithm.h"
+#include "KAI/Core/TriColor.h"
 #include "KAI/Core/Tree.h"
 #include <KAI/Core/Memory/StandardAllocator.h>
 #include <KAI/Core/Debug.h>

@@ -4,22 +4,20 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TestAll" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestConsole" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Window" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestTau" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Window" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/TauGen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/Console" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/App/Window" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/App/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Installer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Install" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Library/Core/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/Library/Executor/.idea" />
     </content>

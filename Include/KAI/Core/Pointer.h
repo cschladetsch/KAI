@@ -1,8 +1,8 @@
 #pragma once
 
-#include <KAI/Core/ClassBase.h>
+#include <KAI/Core/Object/ClassBase.h>
+#include <KAI/Core/Object/GetStorageBase.h>
 #include <KAI/Core/Type/Traits.h>
-#include <KAI/Core/GetStorageBase.h>
 
 KAI_BEGIN
 

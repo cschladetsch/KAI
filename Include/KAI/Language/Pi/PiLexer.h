@@ -14,9 +14,9 @@ public:
 
 	PiLexer(const char *text) : Parent(text) { }
 
-	virtual void AddKeyWords();
-	virtual bool NextToken();
-	virtual void Terminate();
+	void AddKeyWords() override;
+	bool NextToken() override ;
+	void Terminate() override ;
 
 private:
 	bool QuotedIdent();

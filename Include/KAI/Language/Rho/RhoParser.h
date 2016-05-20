@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
-#include "KAI/Translator/Rho/RhoAstNode.h"
+#include "KAI/Language/Rho/RhoAstNode.h"
+#include "KAI/Language/Rho/RhoLexer.h"
 
 KAI_BEGIN
 

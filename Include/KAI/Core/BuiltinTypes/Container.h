@@ -1,9 +1,9 @@
 #pragma once
 
-#include <KAI/Core/ObjectConstructParams.h>
-#include <KAI/Core/Object.h>
-#include <KAI/Core/ReflectedFwd.h>
-#include <KAI/Core/Storage.h>
+#include <KAI/Core/Object/ObjectConstructParams.h>
+#include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Object/ReflectedFwd.h>
+#include <KAI/Core/Object/Storage.h>
 
 KAI_BEGIN
 

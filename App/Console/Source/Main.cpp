@@ -1,5 +1,4 @@
 #include "KAI/KAI.h"
-#include "KAI/ExecutorPCH.h"
 
 #include <iostream>
 
@@ -17,15 +16,14 @@ void DebugTrace(const char *text)
 #ifdef WIN32
 	OutputDebugStringA(text);
 	OutputDebugStringA("\n");
-#endif
-
+#else
 	cerr << text << endl;
+#endif
 }
 
 KAI_END
 
 USING_NAMESPACE_KAI
-
 
 static Color _color;
 

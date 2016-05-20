@@ -1,7 +1,5 @@
 #pragma once
 
-#include "KAI/Translator/Config.h"
-
 KAI_BEGIN
 
 template <class AstEnumStruct>

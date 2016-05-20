@@ -1,11 +1,6 @@
 #pragma once
 
 #include <boost/lexical_cast.hpp>
-
-#include "KAI/KAI.h"
-#include "KAI/Language/Common/Structure.h"
-#include "KAI/Language/Common/LexerCommon.h"
-#include "KAI/Language/Common/AstNodeBase.h"
 #include "KAI/Language/Common/ParserBase.h"
 
 KAI_BEGIN
