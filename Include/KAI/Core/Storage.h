@@ -2,7 +2,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Traits.h>
-#include "StorageBase.h"
+#include "KAI/Core/StorageBase.h"
 
 KAI_BEGIN
 

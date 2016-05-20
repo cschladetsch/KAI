@@ -1,6 +1,6 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/ClassBuilder.h"
-#include "KAI/Compiler.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/Compiler.h"
+#include "KAI/Core/ClassBuilder.h"
 
 #include <iostream>
 #include <algorithm>

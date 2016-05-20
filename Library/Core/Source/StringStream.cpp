@@ -1,5 +1,6 @@
 #include "KAI/KAI.h"
 #include "KAI/Core/FunctionBase.h"
+#include "KAI/Core/StringStream.h"
 
 KAI_BEGIN
 

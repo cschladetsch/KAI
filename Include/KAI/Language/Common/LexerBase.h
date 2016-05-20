@@ -1,7 +1,10 @@
 #pragma once
 
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/CommonBase.h"
+#include <vector>
+#include <string>
+
+#include "KAI/Language/Common/CommonBase.h"
+#include "KAI/Language/Common/Slice.h"
 
 KAI_BEGIN
 

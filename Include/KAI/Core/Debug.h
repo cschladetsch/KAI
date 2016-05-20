@@ -2,7 +2,8 @@
 
 #include "KAI/Core/Base.h"
 #include "KAI/Core/Argument.h"
-#include "FileLocation.h"
+#include "KAI/Core/FileLocation.h"
+#include "KAI/Core/StringStream.h"
 
 KAI_BEGIN
 

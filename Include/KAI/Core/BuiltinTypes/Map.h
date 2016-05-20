@@ -5,7 +5,7 @@
 #include <KAI/Core/Config/Base.h>
 #include "KAI/Core/BuiltinTypes/MapBase.h"
 #include <KAI/Core/StringStream.h>
-#include <KAI/Core/Type/Type.h>
+#include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
 
@@ -24,7 +24,7 @@ KAI_TYPE_TRAITS(Map, Number::Map
 	| Properties::Reflected
 	| Properties::Container);
 
-StringStream &operator<<(StringStream &, Map::const_iterator const &);
+//hmmm StringStream &operator<<(StringStream &, Map::const_iterator const &);
 
 /* TODO or not?
 KAI_TYPE_TRAITS(Map::const_iterator, Number::MapConstIterator

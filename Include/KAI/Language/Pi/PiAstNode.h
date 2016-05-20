@@ -1,7 +1,6 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
-#include "KAI/Translator/AstNodeBase.h"
+#include "KAI/Language/Common/AstNodeBase.h"
 
 KAI_BEGIN
 

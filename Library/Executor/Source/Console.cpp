@@ -1,11 +1,16 @@
 #include <iostream>
-#include "KAI/ExecutorPCH.h"
-#include "KAI/FunctionBase.h"
-#include "KAI/Function.h"
-#include "KAI/BuiltinTypes/Pair.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/BuiltinTypes/Map.h"
-#include "KAI/ConsoleColor.h"
+
+#include <KAI/Core/Memory/StandardAllocator.h>
+#include <KAI/Core/IObject.h>
+#include <KAI/Core/MethodBase.h>
+#include <KAI/Core/PropertyBase.h>
+#include <KAI/Core/KAIBin.h>
+#include "KAI/Core/Compiler.h"
+#include "KAI/Core/FunctionBase.h"
+#include "KAI/Core/BuiltinTypes/Pair.h"
+#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Core/BuiltinTypes/Map.h"
+#include "KAI/Console/ConsoleColor.h"
 
 using namespace std;
 
