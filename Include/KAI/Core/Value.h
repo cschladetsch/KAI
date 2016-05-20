@@ -1,7 +1,9 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Type/Number.h>
 #include <KAI/Core/Type/Traits.h>
+#include <KAI/Core/GetStorageBase.h>
 
 KAI_BEGIN
 

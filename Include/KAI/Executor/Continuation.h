@@ -74,7 +74,7 @@ public:
 StringStream &operator<<(StringStream &, const Continuation &);
 StringStream &operator>>(StringStream &, Continuation &);
 BinaryStream &operator<<(BinaryStream &, const Continuation &);
-BinaryStream &operator>>(BinaryPacket &, Continuation &);
+BinaryPacket &operator>>(BinaryPacket &, Continuation &);
 
 KAI_TYPE_TRAITS(Continuation, Number::Continuation, Properties::Streaming | Properties::Reflected);
 

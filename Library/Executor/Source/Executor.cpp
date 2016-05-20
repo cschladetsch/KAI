@@ -1,8 +1,11 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/StringStream.h"
-#include "KAI/BuiltinTypes/Pair.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/BuiltinTypes/Map.h"
+#include "KAI/Executor/Executor.h"
+#include "KAI/Core/StringStream.h"
+#include "KAI/Core/BuiltinTypes/Pair.h"
+#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Core/BuiltinTypes/Map.h"
+#include "KAI/Core/StringStream.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/ClassBase.h"
 
 #include <fstream>
 #include <iostream>

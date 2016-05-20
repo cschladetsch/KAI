@@ -1,10 +1,12 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
 #include <list>
-#include "Handle.h"
-#include "Label.h"
-#include "Base.h"
+#include <KAI/Core/Config/Base.h>
+#include "KAI/Core/Handle.h"
+#include "KAI/Core/Label.h"
+#include "KAI/Core/Base.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/BuiltinTypes/Dictionary.h"
 
 KAI_BEGIN
 

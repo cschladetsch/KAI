@@ -1,6 +1,10 @@
-#include "KAI/ExecutorPCH.h"
-
 #include <iostream>
+
+#include "KAI/Core/Tree.h"
+#include <KAI/Core/Exception/Extended.h>
+#include <KAI/Core/GetStorageBase.h>
+#include <KAI/Core/Type/Deref.h>
+#include <KAI/Core/Registry.h>
 
 KAI_BEGIN
 

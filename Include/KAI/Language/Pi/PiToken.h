@@ -1,6 +1,7 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
+#include <ostream>
+#include <KAI/Language/Common/TokenBase.h>
 
 KAI_BEGIN
 

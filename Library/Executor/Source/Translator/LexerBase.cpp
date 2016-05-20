@@ -1,5 +1,4 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/LexerBase.h"
+#include "KAI/Language/Common/LexerBase.h"
 
 KAI_BEGIN
 
@@ -128,3 +127,4 @@ bool LexerBase::LexString()
 }
 
 KAI_END
+

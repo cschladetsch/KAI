@@ -1,8 +1,8 @@
 #pragma once
 
-#include "KAI/Translator/Slice.h"
-#include "KAI/Translator/Process.h"
-#include "KAI/Translator/LexerBase.h"
+#include "KAI/Language/Common/Slice.h"
+#include "KAI/Language/Common/Process.h"
+#include "KAI/Language/Common/LexerBase.h"
 
 #include <sstream>
 #include <stdarg.h>
@@ -201,3 +201,4 @@ public:
 };
 
 KAI_END
+

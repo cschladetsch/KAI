@@ -52,11 +52,13 @@ typedef ::std::size_t HashValue;
 template <class T>
 struct FwdBasePointer { };
 
+	/*
 template <class T>
 struct Storage<T>;
 
 template <class T>
-Storage<T> *NewStorage(Registry &);
+Storage<T> *NewStorage<T>(Registry &);
+	 */
 
 KAI_END
 

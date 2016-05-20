@@ -1,33 +1,9 @@
 #pragma once
 
-KAI_BEGIN
+#include <KAI/Core/Config/Base.h>
+#include "Container.h"
 
-//class Array;
-//
-//namespace Type
-//{
-//#define KAI_TRAITS_ARRAY_OPS Properties::StringStreamInsert \
-//	| Properties::BinaryStreaming \
-//	| Properties::Less \
-//	| Properties::Equiv \
-//	| Properties::Assign \
-//	| Properties::Reflected \
-//	| Properties::Container 
-//
-//	template <>
-//	struct Traits<Array> : TraitsBase<Array, Number::Array, KAI_TRAITS_ARRAY_OPS>
-//	{
-//		typedef TraitsBase<Array, Number::Array, KAI_TRAITS_ARRAY_OPS> Tr;
-//		using typename Tr::Store;
-//		using typename Tr::Reference;
-//		using typename Tr::ConstReference;
-//		static const char *Name()
-//		{
-//			return Tr::Name();
-//		} 
-//	};
-//}
-//
+KAI_BEGIN
 
 /// A vector of Objects
 class Array : public Container<Array>

@@ -2,10 +2,13 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
+#include <KAI/Core/Type/Deref.h>
 
-#include "Handle.h"
-#include "Base.h"
-#include "Constness.h"
+#include "KAI/Core/Handle.h"
+#include "KAI/Core/Base.h"
+#include "KAI/Core/Constness.h"
+#include "KAI/Core/ObjectConstructParams.h"
+#include <KAI/Core/BuiltinTypes/Dictionary.h>
 
 KAI_BEGIN
 

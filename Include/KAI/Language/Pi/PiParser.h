@@ -1,8 +1,8 @@
 #pragma once
 
-#include "KAI/Translator/Common.h"
-#include "KAI/Translator/Pi/PiAstNode.h"
-#include "KAI/Translator/Pi/PiLexer.h"
+#include <KAI/Language/Common/ParserCommon.h>
+#include "KAI/Language/Pi/PiAstNode.h"
+#include "KAI/Language/Pi/PiLexer.h"
 
 KAI_BEGIN
 
