@@ -18,6 +18,8 @@
       <file path="$PROJECT_DIR$/Test/TestConsole" />
       <file path="$PROJECT_DIR$/Test/TestCore" />
       <file path="$PROJECT_DIR$/Test/TestExecutor" />
+      <file path="$PROJECT_DIR$/Test/TestPi" />
+      <file path="$PROJECT_DIR$/Test/TestRho" />
       <file path="$PROJECT_DIR$/Test/TestTau" />
       <file path="$PROJECT_DIR$/TestAll" />
     </sourceRoots>

@@ -170,6 +170,11 @@ BinaryStream &operator<<(BinaryStream &, const Pathname &)
 	KAI_NOT_IMPLEMENTED();
 }
 
+StringStream &operator>>(StringStream &, Pathname &)
+{
+	KAI_NOT_IMPLEMENTED();
+}
+
 void Pathname::Register(Registry &R)
 {
 	ClassBuilder<Pathname>(R, Label("Pathname"))
