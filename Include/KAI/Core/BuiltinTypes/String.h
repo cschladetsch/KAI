@@ -26,12 +26,7 @@ public:
 	String(const Char *S) { if (S != 0) _string = S; }
 	String(const std::string &X) { _string = X; }
 	String(const String &X) { _string = X._string; }
-	String(int N, Char C) { _string = std::move(std::string(N, C)); }
-
-	int foo()
-	{
-		return 0;
-	}
+	String(int N, Char C) : _string(N, C) { }
 
 	friend String &operator+=(String &A, Char B)
 	{
@@ -108,14 +103,7 @@ public:
 StringStream &operator<<(StringStream &, const String &);
 StringStream &operator>>(StringStream &, String &);
 BinaryStream &operator<<(BinaryStream &, const String &);
-BinaryPacket &operator>>(BinaryPacket &, String &);
-
-//StringStream &operator<<(StringStream &, const char *);
-
-//StringStream &operator<<(StringStream &K, std::string const &S) { return K << S.c_str(); }
-
-//KAI_TYPE_TRAITS(String, Number::String
-//	, Properties::Plus | Properties::Equiv | Properties::Less)
+BinaryStream &operator>>(BinaryStream &, String &);
 
 KAI_END
 

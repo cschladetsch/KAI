@@ -94,10 +94,10 @@ public:
 	Object GetParent() const;
 
 	template <class T>
-	bool IsType() const ;
-//	{
-//		return Exists() && GetTypeNumber() == Type::Traits<T>::Number;
-//	}
+	bool IsType() const
+	{
+		return Exists() && GetTypeNumber() == Type::Traits<T>::Number;
+	}
 
 	void Delete() const;
 	bool Valid() const;

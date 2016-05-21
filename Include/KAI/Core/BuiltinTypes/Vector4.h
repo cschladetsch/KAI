@@ -85,17 +85,17 @@ struct Vector4
 StringStream &operator<<(StringStream &, Vector2 const &);
 StringStream &operator>>(StringStream &, Vector2 &);
 BinaryStream &operator<<(BinaryStream &, Vector2 const &);
-BinaryPacket &operator>>(BinaryPacket &, Vector2 &);
+BinaryStream &operator>>(BinaryStream &, Vector2 &);
 
 StringStream &operator<<(StringStream &, Vector3 const &);
 StringStream &operator>>(StringStream &, Vector3 &);
 BinaryStream &operator<<(BinaryStream &, Vector3 const &);
-BinaryPacket &operator>>(BinaryPacket &, Vector3 &);
+BinaryStream &operator>>(BinaryStream &, Vector3 &);
 
 StringStream &operator<<(StringStream &, Vector4 const &);
 StringStream &operator>>(StringStream &, Vector4 &);
 BinaryStream &operator<<(BinaryStream &, Vector4 const &);
-BinaryPacket &operator>>(BinaryPacket &, Vector4 &);
+BinaryStream &operator>>(BinaryStream &, Vector4 &);
 
 KAI_TYPE_TRAITS(Vector2, Number::Vector2
 	, Properties::Streaming

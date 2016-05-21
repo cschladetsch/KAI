@@ -24,11 +24,11 @@ public:
 	BinaryStream(Registry &R) : BinaryPacket(R) { }
 	//BinaryStream(int start_size) : bytes(start_size) { }
 
-	bool Write(int len, const Byte *src);
+	BinaryStream &Write(int len, const Byte *src);
 	void Clear();
 
 	template <class POD>
-	bool Write(const POD &pod)
+	BinaryStream &Write(const POD &pod)
 	{
 		return Write(sizeof(pod), reinterpret_cast<const Byte *>(&pod));
 	}
