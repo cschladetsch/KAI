@@ -1,1 +1,4 @@
-#include "KAI/Language/Common/ParserCommon.h"
+#pragma once
+
+#include <KAI/Language/Common/Process.h>
+

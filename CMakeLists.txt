@@ -31,6 +31,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
+macro(def_lang_library name)
+    project(${name}Lang)
+    set(lang_root ${KAI_ROOT_SOURCE_DIR}/Library/Language/${name})
+    include_directories(${lang_root}/include)
+    set(SOURCE_ROOT ${lang_root}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+    add_library(${name}Lang ${SOURCE_FILES})
+endmacro()
+
 macro(def_library name)
     project(${name})
     set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Library/${name}/Source/*.cpp)
@@ -38,6 +47,7 @@ macro(def_library name)
     add_library(${name} ${SOURCE_FILES})
 endmacro()
 
+#
 #include the projects
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)

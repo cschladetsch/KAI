@@ -1,7 +1,6 @@
-#include "KAI/ExecutorPCH.h"
 
-#include <iostream>
-#include <strstream>
+#include <KAI/Language/Pi/PiParser.h>
+#include <KAI/Language/Common/Structure.h>
 
 using namespace std;
 using namespace boost;
