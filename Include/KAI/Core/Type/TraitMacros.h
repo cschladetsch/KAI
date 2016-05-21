@@ -36,12 +36,6 @@ KAI_BEGIN
 #define KAI_TYPE_TRAITS_BASIC(T, N) \
 	KAI_TYPE_TRAITS(T,N,0)
 
-#define KAI_TYPE_TRAITS_REFLECTED(T, N) \
-	KAI_TYPE_TRAITS(T,N,Type::Properties::Reflected)
-
-#define KAI_TYPE_TRAITS_BASIC_STRING_STREAM_INSERT(T,N) \
-	KAI_TYPE_TRAITS(T,N,Type::Properties::StringStreamInsert)
-
 // need these defined before they are fully defined for forward references to their Traits
 KAI_TYPE_TRAITS(String, Number::String, Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
 
@@ -49,9 +43,6 @@ KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert)
 
 KAI_TYPE_TRAITS(::kai::Type::Number, ::kai::Type::Number::TypeNumber, ::kai::Type::Properties::StringStreamInsert);
 
-StringStream &operator<<(StringStream &, Type::Number);
-BinaryStream &operator<<(BinaryStream &, Type::Number);
-BinaryPacket &operator>>(BinaryPacket &, Type::Number &);
 
 KAI_END
 

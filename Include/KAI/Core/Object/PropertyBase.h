@@ -60,17 +60,6 @@ Object GetPropertyObject(Object const &owner, Label const &name);
 void SetPropertyValue(Object const &owner, Label const &name, Object value);
 Object GetPropertyValue(Object const &owner, Label const &name);
 
-template <class T>
-void SetProperty(Object const &owner, Label const &name, T const &value) 
-{ 
-	SetPropertyValue(owner, name, owner.New(value)); 
-}
 
-template <class T>
-T GetProperty(Object const &owner, Label const &name) 
-{ 
-	Object Q = GetPropertyValue(owner, name); 
-	return ConstDeref<T>(Q);
-}
 
 KAI_END

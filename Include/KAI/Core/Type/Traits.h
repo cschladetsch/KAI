@@ -6,8 +6,8 @@
 #include <KAI/Core/Exception/ExceptionMacros.h>
 #include <KAI/Core/Meta/Base.h>
 #include "KAI/Core/Type/Properties.h"
-#include "KAI/Core/ReflectedBase.h"
-#include "KAI/Core/SetAbsValue.h"
+#include "KAI/Core/Object/Reflected.h"
+//#include "KAI/Core/SetAbsValue.h"
 
 KAI_TYPE_BEGIN
 
@@ -110,7 +110,7 @@ struct TraitsBase
 	{
 		static void Perform(Reference value)
 		{
-			SetAbsoluteValue(value);
+			// TODO SetAbsoluteValue(value);
 		}
 	};
 
@@ -281,13 +281,13 @@ struct TraitsBase
 		static void Create(Storage<T> *storage)
 		{
 			UnReflectedLifetimeManagement::Create(storage);
-			ReflectedBase *reflected = (ReflectedBase *) &storage->GetCleanReference();
+			Reflected *reflected = (Reflected *) &storage->GetCleanReference();
 			reflected->Self = (StorageBase *) storage;
 			reflected->Create();
 		}
 		static bool Destroy(Storage<T> *storage)
 		{
-			ReflectedBase *reflected = &storage->GetReference();
+			Reflected *reflected = &storage->GetReference();
 			bool destroyed = reflected->Destroy();
 			if (destroyed)
 				UnReflectedLifetimeManagement::Destroy(storage);
@@ -295,7 +295,7 @@ struct TraitsBase
 		}
 		static void Delete(Storage<T> *storage)
 		{
-			ReflectedBase *reflected = &storage->GetReference();
+			Reflected *reflected = &storage->GetReference();
 			reflected->Delete();
 			UnReflectedLifetimeManagement::Delete(storage);
 		}

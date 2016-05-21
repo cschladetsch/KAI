@@ -4,24 +4,17 @@
 #include <fstream>
 #include <sstream>
 
-#include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Executor/Operation.h>
-#include <KAI/Language/Common/Language.h>
 #include <KAI/Executor/Continuation.h>
-#include <KAI/Language/Common/Structure.h>
+#include <KAI/Core/Exception.h>
 #include <KAI/Core/Exception/Extended.h>
+#include <KAI/Language/Common/Language.h>
+#include <KAI/Language/Common/Structure.h>
 
-#include "KAI/Core/StringStream.h"
-#include "KAI/Core/BinaryStream.h"
 #include "KAI/Core/Debug.h"
 
-class Compiler;
-
-StringStream &operator<<(StringStream &, Compiler const &);
-BinaryStream &operator<<(BinaryStream &, Compiler const &);
-BinaryPacket &operator>>(BinaryPacket &, Compiler &);
-
-KAI_TYPE_TRAITS(Compiler, Number::Compiler, Properties::Reflected);
+KAI_BEGIN
 
 class Compiler : public Reflected
 {
@@ -86,9 +79,8 @@ public:
 	static void Register(Registry &, const char * = "Compiler");
 
 	void AddOperation(int N, const String &S);
-
-	//friend bool operator<(const Compiler &A, const Compiler &B);
-	//friend bool operator==(const Compiler &A, const Compiler &B);
 };
+
+KAI_TYPE_TRAITS(Compiler, Number::Compiler, Properties::Reflected);
 
 KAI_END

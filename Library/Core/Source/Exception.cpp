@@ -1,7 +1,4 @@
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Exception/ExceptionBase.h>
-#include <KAI/Core/StringStream.h>
-#include <KAI/Core/Type/Number.h>
+#include <KAI/Core/BuiltinTypes.h>
 
 KAI_BEGIN
 
@@ -29,7 +26,7 @@ namespace Exception
 
 	void UnknownObject::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "handle=" << handle.GetValue();
+		S << "handle=" << (int)handle.GetValue();
 	}
 
 	void ObjectNotFound::WriteExtendedInformation(StringStream &S) const

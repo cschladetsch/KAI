@@ -31,4 +31,3 @@ private:
 };
 
 KAI_END
-`

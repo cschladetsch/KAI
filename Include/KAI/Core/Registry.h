@@ -9,6 +9,7 @@
 
 #include <KAI/Core/Memory/IAllocator.h>
 #include <KAI/Core/Type/Traits.h>
+#include <KAI/Core/Object/PropertyBase.h>
 #include "KAI/Core/Object/ClassBase.h"
 #include "KAI/Core/Object/Object.h"
 #include "KAI/Core/Pointer.h"
@@ -304,6 +305,12 @@ Storage<T> *NewStorage(Registry &R)
 #	else
 #		define KAI_DEBUG_WATCH_OBJECT(object) KAI_UNUSED_1(object)
 #	endif
+
+template <class T>
+void SetProperty(Object const &owner, Label const &name, T const &value)
+{
+	SetPropertyValue(owner, name, owner.GetRegistry()->New(value));
+}
 
 KAI_END
 

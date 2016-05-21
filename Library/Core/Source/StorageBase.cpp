@@ -2,9 +2,11 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Object/StorageBase.h>
-#include <KAI/Core/Exception/ExceptionMacros.h>
-#include <KAI/Core/BuiltinTypes/Dictionary.h>
+#include <KAI/Core/Exception.h>
 #include <KAI/Core/Object/GetStorageBase.h>
+#include <KAI/Core/Object/IObject.h>
+#include <KAI/Core/Object/ClassBase.h>
+#include <KAI/Core/Registry.h>
 
 KAI_BEGIN
 
@@ -70,7 +72,7 @@ void StorageBase::Set(const Label &name, Object const &child)
 	Remove(name);
 
 	// update the child object
-	if (!child)
+	if (!child.Exists())
 	{
 		Dictionary::iterator ch = dictionary.find(name);
 		if (ch != dictionary.end())
@@ -106,7 +108,7 @@ void StorageBase::Set(const Label &name, Object const &child)
 bool StorageBase::Has(const Label &L) const
 {
 	Dictionary::const_iterator object = dictionary.find(L);
-	return object != dictionary.end() && object->second;
+	return object != dictionary.end() && object->second.Exists();
 }
 
 void StorageBase::Remove(const Label &label)

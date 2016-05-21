@@ -72,7 +72,8 @@ public:
 				if (!prop.IsSystemType())
 					continue;
 				Object K = prop.GetObject(storage);
-				if (K)
+				if (K.Exists())
+				if (K.Exists())
 				{
 					K.RemovedFromContainer(storage);
 				}

@@ -1,10 +1,7 @@
 
-#include <KAI/Core/BuiltinTypes/MapBase.h>
+#include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Object/Object.h"
-#include "KAI/Core/BuiltinTypes/HashMap.h"
-#include "KAI/Core/BuiltinTypes/Map.h"
-#include "KAI/Core/BuiltinTypes/List.h"
-#include "KAI/Core/KAIClassBuilder.h"
+#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 
