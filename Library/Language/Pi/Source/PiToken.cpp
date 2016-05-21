@@ -1,10 +1,9 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Translator/Pi/PiToken.h"
-
 #include <string>
 #include <algorithm>
 #include <memory>
 #include <ctype.h>
+
+#include "KAI/Language/Pi/PiToken.h"
 
 using namespace std;
 

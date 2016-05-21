@@ -2,6 +2,10 @@
 
 #include <boost/lexical_cast.hpp>
 #include "KAI/Language/Common/ParserBase.h"
+#include "KAI/Language/Common/ProcessCommon.h"
+#include "KAI/Language/Common/Process.h"
+#include "KAI/Language/Common/AstNodeBase.h"
+#include "KAI/Language/Common/Structure.h"
 
 KAI_BEGIN
 

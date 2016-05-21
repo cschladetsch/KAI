@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Base.h>
+
 KAI_BEGIN
 
 // A Indicates a range of characters in a larger string

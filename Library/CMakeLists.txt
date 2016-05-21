@@ -5,5 +5,7 @@ set(Libs Core Executor Language Network NetworkGen)
 def_library(Core)
 def_library(Executor)
 
-include(Language/CMakeLists.txt)
+include(${KAI_ROOT_SOURCE_DIR}/Library/Language/CMakeLists.txt)
+
+#$
 
