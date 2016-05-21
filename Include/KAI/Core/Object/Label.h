@@ -40,7 +40,7 @@ public:
 
 StringStream &operator<<(StringStream &S, const Label &L);
 BinaryStream &operator<<(BinaryStream &, Label const &);
-BinaryPacket &operator>>(BinaryPacket &, Label &);
+BinaryStream &operator>>(BinaryStream &, Label &);
 
 KAI_TYPE_TRAITS(Label, Number::Label
 	, Properties::StringStreamInsert 

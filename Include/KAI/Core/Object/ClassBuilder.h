@@ -26,11 +26,12 @@ public:
 		struct PropertiesCollector
 		{
 			ClassBuilder<T> *builder;
+
 			PropertiesCollector &operator=(PropertiesCollector &);
 
-			template <class Property>
-			PropertiesCollector &operator()(const char *N, Property P, String const &D = ""
-					, MemberCreateParams::Enum create_params = MemberCreateParams::Default)
+			template<class Property>
+			PropertiesCollector &operator()(const char *N, Property P, String const &D = "",
+			                                MemberCreateParams::Enum create_params = MemberCreateParams::Default)
 			{
 				auto label = Label(N);
 				PropertyBase *Q = MakeProperty<T>(P, label, create_params);
@@ -43,9 +44,10 @@ public:
 
 		ClassBuilder<T> *builder;
 		PropertiesCollector Properties;
-		MethodsCollector &operator=(MethodsCollector&);
 
-		template <class Method>
+		MethodsCollector &operator=(MethodsCollector &);
+
+		template<class Method>
 		MethodsCollector &operator()(const char *name, Method method, String const &D = "")
 		{
 			auto label = Label(name);
@@ -56,7 +58,14 @@ public:
 			return *this;
 		}
 	};
+
 	MethodsCollector Methods;
+
+	ClassBuilder(Registry &R, const char *N) : registry(&R), klass(new Class<T>(Label(N)))
+	{
+		Methods.builder = this;
+		Methods.Properties.builder = this;
+	}
 
 	ClassBuilder(Registry &R, Label const &N) : registry(&R), klass(new Class<T>(N))
 	{ 

@@ -7,7 +7,7 @@ void BinaryPacket::Register(Registry &registry, const char *name)
 {
 	ClassBuilder<BinaryPacket>(registry, Label(name))
 		.Methods
-		(Label("Size"), &BinaryPacket::Size)
+		("Size", &BinaryPacket::Size)
 		;
 }
 
@@ -30,8 +30,8 @@ void BinaryStream::Register(Registry &registry)
 {
 	ClassBuilder<BinaryStream>(registry, Label(Type::Traits<BinaryStream>::Name()))
 		.Methods
-			(Label("Size"), &BinaryStream::Size)
-			(Label("Clear"), &BinaryStream::Clear)
+			("Size", &BinaryStream::Size)
+			("Clear", &BinaryStream::Clear)
 		;
 }
 

@@ -1,5 +1,8 @@
-#include "KAI/Core/ClassBuilder.h"
 #include <ctype.h>
+
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Core/Pathname.h"
+#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 
@@ -169,7 +172,7 @@ BinaryStream &operator<<(BinaryStream &, const Pathname &)
 
 void Pathname::Register(Registry &R)
 {
-	ClassBuilder<Pathname>(R, "Pathname")
+	ClassBuilder<Pathname>(R, Label("Pathname"))
 		.Methods
 			("Empty", &Pathname::Empty)
 			("ToString", &Pathname::ToString)

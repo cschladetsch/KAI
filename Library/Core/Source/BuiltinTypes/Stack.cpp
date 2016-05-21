@@ -1,4 +1,6 @@
 
+#include <algorithm>
+
 #include "KAI/Core/BuiltinTypes.h"
 
 KAI_BEGIN
