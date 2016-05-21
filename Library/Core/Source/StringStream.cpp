@@ -37,6 +37,12 @@ StringStream &operator<<(StringStream &S, const BinaryStream &T)
 	return S << "BinaryStream: size=" << T.Size();
 }
 
+StringStream &operator<<(StringStream &S, const BasePointerBase &M)
+{
+	KAI_NOT_IMPLEMENTED();
+	return S;
+}
+
 StringStream &operator<<(StringStream &S, const BasePointer<MethodBase> &M)
 {
 	return S << "Method: " << M->ToString();
@@ -146,34 +152,6 @@ StringStream &operator<<(StringStream &S, const ClassBase *C)
 	return S << "Class: " << C->GetName();
 }
 
-StringStream &operator>>(StringStream &S, String &T)
-{
-	T.clear();
-	char C = 0;
-	while (S.Extract(C))
-	{
-		if (!isspace(C))
-		{
-			T += C;
-			break;
-		}
-	}
-
-	while (S.Extract(C))
-	{
-		if (isspace(C))
-			break;
-		T += C;
-	}
-
-	return S;
-}
-
-StringStream &operator>>(StringStream &, Pathname &)
-{
-	KAI_NOT_IMPLEMENTED();
-}
-
 StringStream &operator>>(StringStream &S, bool &N)
 {
 	String value;
@@ -185,20 +163,6 @@ StringStream &operator>>(StringStream &S, bool &N)
 void Ends(EndsArgument)
 {
 	KAI_NOT_IMPLEMENTED_1("This is used to terminate string streams. Do not call it.");
-}
-
-bool operator<(const String &A, const String &B)
-{
-	return A._string < B._string;
-}
-
-bool operator>(const String &A, const String &B)
-{
-	return A._string > B._string;
-}
-bool operator==(const String &A, const String &B)
-{
-	return A._string == B._string;
 }
 
 KAI_END
