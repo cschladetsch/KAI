@@ -33,7 +33,7 @@ BinaryStream &operator<<(BinaryStream &S, Label const &L)
 	return S << L.GetValue();
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, Label &L)
+BinaryStream &operator>>(BinaryStream &S, Label &L)
 {
 	String value;
 	S >> value;
