@@ -1,14 +1,11 @@
-#include <KAI/Core/ClassBuilder.h>
 
-#include "KAI/Core/BuiltinTypes/Stack.h"
-#include "KAI/Core/StringStream.h"
-#include "KAI/Core/BinaryStream.h"
+#include "KAI/Core/BuiltinTypes.h"
 
 KAI_BEGIN
 
 void Stack::Register(Registry &R)
 {
-	ClassBuilder<Stack>(R, "Stack")
+	ClassBuilder<Stack>(R, Label("Stack"))
 		.Methods
 		("Pop", &Stack::Pop)
 		("Top", &Stack::Top)

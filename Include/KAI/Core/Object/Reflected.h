@@ -1,23 +1,43 @@
 #pragma once
 
-#include "KAI/Core/Object/StorageBase.h"
-#include "KAI/Core/Registry.h"
-#include "KAI/Core/Object/ReflectedFwd.h"
-#include "KAI/Core/Pointer.h"
-
 KAI_BEGIN
 
-template <class T>
-Pointer<T> Reflected::New()
-{
-	return Reg().New<T>();
-}
+struct StorageBase;
+class Registry;
+template <class T> struct Pointer;
+struct StorageBase;
 
-template <class T>
-Pointer<T> Reflected::New(const T& val)
+class Reflected
 {
-	return Reg().New(val);
-}
+public:
+	StorageBase *Self;
+
+	virtual ~Reflected() { }
+
+	virtual void Create() { }				// called after object constructed, but before first use
+	virtual bool Destroy() { return true; }	// called when object moved to deathrow, but before deleted
+	virtual void Delete() { }				// called immediately before resources are released
+
+	Registry &Reg() const;
+
+//	template <class T>
+//	Pointer<T> New();
+//
+//	template <class T>
+//	Pointer<T> New(const T& val);
+};
+
+//template <class T>
+//Pointer<T> Reflected::New()
+//{
+//	return Reg().New<T>();
+//}
+//
+//template <class T>
+//Pointer<T> Reflected::New(const T& val)
+//{
+//	return Reg().New(val);
+//}
 
 KAI_END
 

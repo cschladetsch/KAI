@@ -1,10 +1,8 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/Traits.h>
-#include "Registry.h"
-#include "StringStream.h"
-#include "Base.h"
+#include <KAI/Core/BasePointerBase.h>
+#include <KAI/Core/Type.h>
 
 KAI_BEGIN
 
@@ -32,8 +30,10 @@ struct BasePointer : BasePointerBase, FwdBasePointer<T>
 	}
 };
 
-KAI_TYPE_TRAITS(BasePointerBase, Number::BasePointer
+KAI_TYPE_TRAITS(BasePointerBase
+    , Number::BasePointer
 	, Properties::StringStreamInsert
 	);
 
 KAI_END
+

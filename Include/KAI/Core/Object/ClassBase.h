@@ -12,6 +12,7 @@
 #include "KAI/Core/Object/PropertyBase.h"
 #include "KAI/Core/Object/MethodBase.h"
 #include "KAI/Core/Object/Label.h"
+#include "KAI/Core/Object/LabelHash.h"
 #include "KAI/Core/StringStream.h"
 
 KAI_BEGIN

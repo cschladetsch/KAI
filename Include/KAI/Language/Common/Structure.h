@@ -10,7 +10,6 @@ enum class Structure
 	Modulue,
 	Statement,
 	Expression,
-	Function,
 	Program,
 };
 

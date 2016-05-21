@@ -1,9 +1,9 @@
 #pragma once
 
 #include <list>
-#include <KAI/Core/Config/Base.h>
+
 #include <KAI/Core/Object/Object.h>
-#include "Container.h"
+#include "KAI/Core/BuiltinTypes/Container.h"
 
 KAI_BEGIN
 
@@ -49,7 +49,7 @@ public:
 	iterator Erase(Object const &Q);
 	bool Contains(Object const &Q) const
 	{
-		for (auto const *element : objects)
+		for (auto const &element : objects)
 		{
 			if (element.GetHandle() == Q.GetHandle())
 				return true;

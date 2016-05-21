@@ -22,5 +22,13 @@ typename DerefType<T>::ConstReference ConstDeref(StorageBase const &);
 
 ::std::size_t GetHash(const ::kai::String &);
 
+	// TODO:  move to correct spot
+//template <class T>
+//T GetProperty(Object const &owner, Label const &name)
+//{
+//	Object Q = GetPropertyValue(owner, name);
+//	return ConstDeref<T>(Q);
+//}
+
 KAI_END
 

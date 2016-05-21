@@ -1,6 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object/AccessorBase.h>
+#include <KAI/Core/TypeInfo.h>
 
 KAI_BEGIN
 
@@ -51,7 +52,7 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		SystemProperty(Field G, Label const &L, CreateParams::Params create_params)
+		SystemProperty(Field G, Label const &L, MemberCreateParams::Enum create_params)
 			: CommonBase<Base,C,T,F>(G,L,true,create_params) { }
 
 		Object GetObject(Object const &Q) const
@@ -61,7 +62,7 @@ namespace property_detail
 		void SetObject(Object const &Q, Object const &V) const
 		{
 			Object &K = Deref<C>(Q).*field;
-			if (K)
+			if (K.Exists())
 			{
 				K.RemovedFromContainer(Q);
 			}
@@ -85,11 +86,11 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Accessor(Field F, Label const &L, CreateParams::Params create_params)
+		Accessor(Field F, Label const &L, MemberCreateParams::Enum create_params)
 			: NonsystemProperty<AccessorBase, C, T, T (K::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
-			return Q.New(ConstDeref<C>(Q).*field);
+			return Q.GetRegistry()->New(ConstDeref<C>(Q).*field);
 		}
 	};
 
@@ -101,7 +102,7 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Accessor(Field F, Label const &L, CreateParams::Params create_params)
+		Accessor(Field F, Label const &L, MemberCreateParams::Enum create_params)
 			: SystemProperty<AccessorBase, C, T, S (K::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
@@ -117,7 +118,7 @@ namespace property_detail
 		using typename Parent::Field;
 		using Parent::field;
 
-		Mutator(Field F, Label const &L, CreateParams::Params create_params)
+		Mutator(Field F, Label const &L, MemberCreateParams::Enum create_params)
 			: NonsystemProperty<MutatorBase, K, T, T (C::*)>(F,L,create_params)
 		{
 		}
@@ -144,7 +145,7 @@ namespace property_detail
 		typedef typename Parent::Field Field;
 		using Parent::field;
 
-		Mutator(Field F, Label const &L, CreateParams::Params create_params)
+		Mutator(Field F, Label const &L, MemberCreateParams::Enum  create_params)
 			: SystemProperty<MutatorBase, K, T, S (C::*)>(F,L,create_params) { }
 		Object GetValue(Object const &Q) const
 		{
@@ -153,7 +154,7 @@ namespace property_detail
 		void SetValue(Object const &Q, Object const &V) const
 		{
 			Object P = Deref<K>(Q).*field;	// get the containing object
-			if (!P)
+			if (!P.Exists())
 			{
 				Deref<K>(Q).*field = Q.GetRegistry()->New(ConstDeref<T>(V));
 				return;
@@ -174,7 +175,7 @@ namespace property_detail
 				, typename TypeInfo<T>::StorageType> Parent;
 		typedef typename Parent::Field Field;
 
-		MakeAccessor(Field F, Label const &L, MemberCreateFlags::Enum  create_params)
+		MakeAccessor(Field F, Label const &L, MemberCreateParams::Enum  create_params)
 			: Accessor<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType
 				, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
 	};
@@ -188,11 +189,10 @@ namespace property_detail
 				, typename TypeInfo<T>::StorageType> Parent;
 		typedef typename Parent::Field Field;
 
-		MakeMutator(Field F, Label const &L, MemberCreateFlags::Enum create_params)
+		MakeMutator(Field F, Label const &L, MemberCreateParams::Enum create_params)
 			: Mutator<K, C, TypeInfo<T>::IsSytem, typename TypeInfo<T>::ValueType
 				, typename TypeInfo<T>::StorageType>(F, L,create_params) { }
 	};
-
 }
 
 KAI_END

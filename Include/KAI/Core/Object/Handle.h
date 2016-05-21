@@ -28,7 +28,7 @@ public:
 
 struct HashHandle
 {
-//	enum { bucket_size = 8, min_buckets = 2048 };
+	enum { bucket_size = 8, min_buckets = 2048 };
 	std::size_t operator()(const Handle &A) const 
 	{ 
 		return A.GetValue(); 

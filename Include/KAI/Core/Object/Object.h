@@ -2,29 +2,27 @@
 
 #include <list>
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/Number.h>
-#include <KAI/Core/Type/Deref.h>
-
-#include "KAI/Core/Object/Handle.h"
 #include "KAI/Core/Base.h"
+#include "KAI/Core/ObjectColor.h"
+#include "KAI/Core/Object/Handle.h"
 #include "KAI/Core/Object/Constness.h"
 #include "KAI/Core/Object/ObjectConstructParams.h"
 #include <KAI/Core/BuiltinTypes/Dictionary.h>
+#include <KAI/Core/Type.h>
 
 KAI_BEGIN
 
-template <class T>
-struct Pointer;
+//template <class T>
+//struct Pointer;
 
-template <class T>
-struct DerefType;
-
-template <class T>
-typename DerefType<T>::Reference Deref(StorageBase &base);
-
-template <class T>
-typename DerefType<T>::ConstReference ConstDeref(StorageBase const &base);
+//template <class T>
+//struct DerefType;
+//
+//template <class T>
+//typename DerefType<T>::Reference Deref(StorageBase &base);
+//
+//template <class T>
+//typename DerefType<T>::ConstReference ConstDeref(StorageBase const &base);
 
 class Object
 {
@@ -58,7 +56,8 @@ public:
 
 	Object &operator=(Object const &);
 
-	operator bool() const { return Exists(); }
+//	operator bool() const { return Exists(); }
+
 
 	StorageBase &GetStorageBase() const;
 	int GetSwitches() const;
@@ -95,10 +94,10 @@ public:
 	Object GetParent() const;
 
 	template <class T>
-	bool IsType() const 
-	{
-		return Exists() && GetTypeNumber() == Type::Traits<T>::Number; 
-	}
+	bool IsType() const ;
+//	{
+//		return Exists() && GetTypeNumber() == Type::Traits<T>::Number;
+//	}
 
 	void Delete() const;
 	bool Valid() const;
@@ -129,50 +128,50 @@ public:
 	bool Has(const Label &) const;
 	void Remove(const Label &) const;
 
-	template <class T>
-	void SetValue(const Label &L, const T &V) const
-	{
-		if (!Valid())
-			KAI_THROW_0(NullObject);
+//	template <class T>
+//	void SetValue(const Label &L, const T &V) const;
+//	{
+//		if (!Valid())
+//			KAI_THROW_0(NullObject);
+//
+//		if (HasProperty(L))
+//			SetProperty<T>(L, V);
+//		else if (HasChild(L))
+//			Deref<T>(GetChild(L)) = V;
+//		else
+//			SetChild(L, New<T>(V));
+//	}
 
-		if (HasProperty(L))
-			SetProperty<T>(L, V);
-		else if (HasChild(L))
-			Deref<T>(GetChild(L)) = V;
-		else
-			SetChild(L, New<T>(V));
-	}
-
-	template <class T>
-	T const &GetValue(const Label &L) const
-	{
-		if (!Valid())
-			KAI_THROW_0(NullObject);
-
-		if (HasProperty(L))
-			return GetProperty<T>(L);
-
-		if (HasChild(L))
-			return ConstDeref<T>(GetChild(L));
-
-		KAI_THROW_1(ObjectNotFound, L.ToString());
-	}
-
-	template <class T>
-	T &GetValue(const Label &L)
-	{
-		if (!Valid())
-			KAI_THROW_0(NullObject);
-
-		if (HasProperty(L))
-			return GetProperty<T>(L);
-
-		if (HasChild(L))
-			return Deref<T>(GetChild(L));
-
-		//KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
-		KAI_THROW_1(ObjectNotFound, L.ToString());
-	}
+//	template <class T>
+//	T const &GetValue(const Label &L) const
+//	{
+//		if (!Valid())
+//			KAI_THROW_0(NullObject);
+//
+//		if (HasProperty(L))
+//			return GetProperty<T>(L);
+//
+//		if (HasChild(L))
+//			return ConstDeref<T>(GetChild(L));
+//
+//		KAI_THROW_1(ObjectNotFound, L.ToString());
+//	}
+//
+//	template <class T>
+//	T &GetValue(const Label &L)
+//	{
+//		if (!Valid())
+//			KAI_THROW_0(NullObject);
+//
+//		if (HasProperty(L))
+//			return GetProperty<T>(L);
+//
+//		if (HasChild(L))
+//			return Deref<T>(GetChild(L));
+//
+//		//KAI_THROW_2(UnknownProperty, GetClass()->GetLabel(), L);
+//		KAI_THROW_1(ObjectNotFound, L.ToString());
+//	}
 
 	void Detach(const Label &L) const { Remove(L); }
 	void Detach(const Object &Q) const;
@@ -189,63 +188,63 @@ public:
 	String ToString() const;
 	String ToXmlString() const;
 
-	template <class T>
-	Object New() const
-	{
-		return NewFromTypeNumber(Type::Traits<T>::Number);
-	}
+//	template <class T>
+//	Object New() const
+//	{
+//		return NewFromTypeNumber(Type::Traits<T>::Number);
+//	}
 
 	// deref's Registry so must be in source file
 	Object NewFromTypeNumber(Type::Number N) const;
 	Object NewFromClassName(String const &type_name) const;
 
-	template <class T>
-	Object New(const T &X) const
-	{
-		auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
-		Deref<T>(Q) = X;
-		return Q;
-	}
+//	template <class T>
+//	Object New(const T &X) const
+//	{
+//		auto Q = NewFromTypeNumber(Type::Traits<T>::Number);
+//		Deref<T>(Q) = X;
+//		return Q;
+//	}
 
 	void Assign(StorageBase &, StorageBase const &);
 
 	/// return the storage of the given other object within the registry that made this object
 	StorageBase *GetStorageBase(Handle other) const;
 
-	template <class T>
-	T const &GetAttribute(Label const &label) const
-	{
-		return ConstDeref<T>(Get(label));
-	}
-
-	template <class T>
-	T &GetAttribute(Label const &label)
-	{
-		return Deref<T>(Get(label));
-	}
-
-	bool HasAttribute(Label const &label)
-	{
-		return Get(label).Exists();
-	}
-
-	template <class T>
-	void SetAttribute(Label const &label, T const &value)
-	{
-		Deref<T>(Get(label)) = value;
-	}
-
-	template <class T>
-	T const &GetChildValue(Label const &label)
-	{
-		return ConstDeref<T>(GetChild(label));
-	}
-
-	template <class T>
-	void SetChildValue(Label const &label, T const &value)
-	{
-		Deref<T>(GetChild(label)) = value;
-	}
+//	template <class T>
+//	T const &GetAttribute(Label const &label) const
+//	{
+//		return ConstDeref<T>(Get(label));
+//	}
+//
+//	template <class T>
+//	T &GetAttribute(Label const &label)
+//	{
+//		return Deref<T>(Get(label));
+//	}
+//
+//	bool HasAttribute(Label const &label)
+//	{
+//		return Get(label).Exists();
+//	}
+//
+//	template <class T>
+//	void SetAttribute(Label const &label, T const &value)
+//	{
+//		Deref<T>(Get(label)) = value;
+//	}
+//
+//	template <class T>
+//	T const &GetChildValue(Label const &label)
+//	{
+//		return ConstDeref<T>(GetChild(label));
+//	}
+//
+//	template <class T>
+//	void SetChildValue(Label const &label, T const &value)
+//	{
+//		Deref<T>(GetChild(label)) = value;
+//	}
 
 
 	void SetPropertyValue(Label const &, Object const &) const;
@@ -256,22 +255,22 @@ public:
 
 	bool HasProperty(Label const &name) const;
 
-	template <class T>
-	T const &GetProperty(Label const &L) const
-	{
-		return ConstDeref<T>(GetPropertyValue(L));
-	}
-	template <class T>
-	T &GetProperty(Label const &L)
-	{
-		return Deref<T>(GetPropertyValue(L));
-	}
-
-	template <class T>
-	void SetProperty(Label const &name, T const &value) const
-	{ 
-		SetPropertyValue(name, New(value)); 
-	}
+//	template <class T>
+//	T const &GetProperty(Label const &L) const
+//	{
+//		return ConstDeref<T>(GetPropertyValue(L));
+//	}
+//	template <class T>
+//	T &GetProperty(Label const &L)
+//	{
+//		return Deref<T>(GetPropertyValue(L));
+//	}
+//
+//	template <class T>
+//	void SetProperty(Label const &name, T const &value) const
+//	{
+//		SetPropertyValue(name, New(value));
+//	}
 
 	/// detach from parent
 	void Detach();
@@ -293,53 +292,53 @@ public:
 	void GetChildObjects(ObjectList &contained) const;
 	void GetAllReferencedObjects(ObjectList &contained) const;
 
-	class ChildProxy
-	{
-		friend class Object;
-		Registry *registry;
-		Handle handle;
-		Label label;
-		Constness konst;
-		ChildProxy(Object const &Q, const char *);
-		ChildProxy(Object const &Q, Label const &L);
-		Object GetObject() const;
-	public:
-		template <class T>
-		ChildProxy &operator=(T const &value)
-		{
-			GetObject().SetValue(label, value);
-			return *this;
-		}
-
-		template <class T>
-		ChildProxy &operator=(Pointer<T> const &value)
-		{
-			GetObject().Set(label, value);
-			return *this;
-		}
-		ChildProxy &operator=(Object const &child)
-		{
-			GetObject().Set(label, child);
-			return *this;
-		}
-		operator Object() const
-		{
-			return GetObject().Get(label);
-		}
-		operator bool() const
-		{
-			return GetObject();
-		}
-	};
-
-	ChildProxy operator[](const char *L) 
-	{ 
-		return ChildProxy(*this, L);
-	}
-	ChildProxy operator[](Label const &L)
-	{
-		return ChildProxy(*this, L);
-	}
+//	class ChildProxy
+//	{
+//		friend class Object;
+//		Registry *registry;
+//		Handle handle;
+//		Label label;
+//		Constness konst;
+//		ChildProxy(Object const &Q, const char *);
+//		ChildProxy(Object const &Q, Label const &L);
+//		Object GetObject() const;
+//	public:
+//		template <class T>
+//		ChildProxy &operator=(T const &value)
+//		{
+//			GetObject().SetValue(label, value);
+//			return *this;
+//		}
+//
+//		template <class T>
+//		ChildProxy &operator=(Pointer<T> const &value)
+//		{
+//			GetObject().Set(label, value);
+//			return *this;
+//		}
+//		ChildProxy &operator=(Object const &child)
+//		{
+//			GetObject().Set(label, child);
+//			return *this;
+//		}
+//		operator Object() const
+//		{
+//			return GetObject().Get(label);
+//		}
+//		operator bool() const
+//		{
+//			return GetObject();
+//		}
+//	};
+//
+//	ChildProxy operator[](const char *L)
+//	{
+//		return ChildProxy(*this, L);
+//	}
+//	ChildProxy operator[](Label const &L)
+//	{
+//		return ChildProxy(*this, L);
+//	}
 
 protected:
 	Dictionary &GetDictionaryRef();
@@ -348,7 +347,7 @@ protected:
 StringStream &operator<<(StringStream &S, const Object &Q);
 StringStream &operator>>(StringStream &S, Object &Q);
 BinaryStream &operator<<(BinaryStream &S, const Object &Q);
-BinaryPacket &operator>>(BinaryPacket &S, Object &Q);
+BinaryStream &operator>>(BinaryStream &S, Object &Q);
 
 Object operator*(Object const &A);
 bool operator<(Object const &A, Object const &B);
@@ -360,17 +359,17 @@ Object operator+(Object const &A, Object const &B);
 // WTF Object operator-(Object const &Object Absolute(Object const &A);
 
 KAI_TYPE_TRAITS(Object, Number::Object
-	, Properties::StringStreamInsert 
-	| Properties::BinaryStreamInsert 
+	, Properties::StringStreamInsert
+	| Properties::BinaryStreamInsert
 	| Properties::BinaryStreamExtract);
 
 /// hash function which can be overridden for any type.
 /// default to using the type number.
-template <class T>
-HashValue GetHash(const T &)
-{
-	return Type::Traits<T>::Number;
-}
+//template <class T>
+//HashValue GetHash(const T &)
+//{
+//	return Type::Traits<T>::Number;
+//}
 
 HashValue GetHash(Object const  &);
 
@@ -381,16 +380,16 @@ void MarkObject(StorageBase &, bool = true);
 void MarkObjectAndChildren(StorageBase &, bool = true);
 
 Object Duplicate(Object const &);
-Object Duplicate_(Object const &);
+//Object Duplicate_(Object const &);
 
-template <class T>
-T const &GetDefaultValue(Object const &object, Label const &name, T const &default_value)
-{
-	if (!object)
-		return default_value;
-	Pointer<const T> override = object.Get(name);
-	return override ? *override : default_value;
-}
+//template <class T>
+//T const &GetDefaultValue(Object const &object, Label const &name, T const &default_value)
+//{
+//	if (!object)
+//		return default_value;
+//	Pointer<const T> override = object.Get(name);
+//	return override ? *override : default_value;
+//}
 
 KAI_END
 

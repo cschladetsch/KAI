@@ -2,8 +2,8 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
-#include "PropertyBase.h"
-#include "Label.h"
+#include "KAI/Core/Object/PropertyBase.h"
+#include "KAI/Core/Object/Label.h"
 
 KAI_BEGIN
 

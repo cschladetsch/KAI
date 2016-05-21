@@ -1,7 +1,7 @@
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/BuiltinTypes/Array.h>
-#include <KAI/Core/FileLocation.h>
-#include <KAI/Core/Exception/ExceptionBase.h>
+#include <KAI/Core/BuiltinTypes.h>
+#include <KAI/Core/Exception.h>
+#include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Object/ClassBuilder.h>
 
 KAI_BEGIN
 
@@ -85,7 +85,7 @@ BinaryStream &operator<<(BinaryStream &S, const Array &Q)
 	return S;
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, Array &Q)
+BinaryStream &operator>>(BinaryStream &S, Array &Q)
 {
 	Q.Clear();
 	int length = 0;
@@ -103,9 +103,9 @@ void Array::Register(Registry &R)
 {
 	void (Array::*remove_method)(Object) = &Array::Erase2;
 
-	ClassBuilder<Array>(R, Type::Traits<Array>::Name())
+	ClassBuilder<Array>(R, Label(Type::Traits<Array>::Name()))
 		.Methods
-			("Append", &Array::Append2, "Add an Object to the end")
+			//TODO ("Append", &Array::Append2, "Add an Object to the end")
 			("Erase", remove_method, "Remove an object from the sequence")
 			("RemoveAt", &Array::RemoveAt, "Remove the object at the given index from the sequence")
 			("PopBack", &Array::PopBack, "Remove last object from the sequence")
