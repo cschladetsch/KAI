@@ -150,7 +150,7 @@ public:
 	virtual void ExtractValue(Object &object, StringStream &strstream) const = 0;
 
 	virtual void Insert(BinaryStream &, const StorageBase &) const = 0;
-	virtual StorageBase *Extract(Registry &, BinaryPacket &) const = 0;
+	virtual StorageBase *Extract(Registry &, BinaryStream &) const = 0;
 	
 	//virtual void Insert(XmlStream &, const StorageBase &) = 0;
 	//virtual StorageBase *Extract(Registry &, XmlStream &) = 0;

@@ -1,6 +1,6 @@
-#include "KAI/KAI.h"
-#include "KAI/Executor/Continuation.h"
 #include <fstream>
+
+#include "KAI/Core/BuiltinTypes.h"
 #include <KAI/Core/DotGraph.h>
 
 using namespace std;
@@ -19,7 +19,7 @@ DotGraph::DotGraph(Object root, String const &filename)
 
 void DotGraph::Generate(Object root, String const &filename)
 {
-	this->Clear();
+	Clear();
 	WriteHeader();
 	*this << root;
 	WriteFooter();
@@ -48,17 +48,15 @@ String DotGraph::GetText()
 
 DotGraph &operator<<(DotGraph &graph, Object const &object)
 {
-	bool excluded = !object || graph.IsExcluded(object);
+	bool excluded = !object.Exists() || graph.IsExcluded(object);
 	if (excluded)
 		return graph;
 
 	int object_id = object.GetHandle().GetValue();
 	StringStream label;
 	label << object.GetLabel().ToString() << "[" << object.GetClass()->GetName() << "]";
-	if (excluded)
-		label << " (excl.)";
 
-	graph << object_id << " [shape=box label=\"" << label << "\"";
+	graph << object_id << " [shape=box label=\"" << label.ToString().c_str() << "\"";
 	graph << " color=";
 	switch (object.GetColor())
 	{
@@ -68,8 +66,6 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 	}
 
 	graph << "]\n";
-	if (excluded)
-		return graph;
 
 	if (object.IsType<Continuation>())
 	{
@@ -89,7 +85,6 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 
 	for (auto const &prop : props)
 	{
-		//graph << object_id << "[label=\"" << prop.GetLabel() << "\"]\n";
 		graph << object_id << " -> " << prop.GetHandle().GetValue() << "[style=dashed]\n";
 		graph << prop;
 	}
@@ -105,9 +100,10 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 
 bool DotGraph::IsExcluded(Object const&object) const
 {
-	if (!object)
+	if (!object.Exists())
 		return true;
-	return excluded_types.find(object.GetTypeNumber()) != excluded_types.end() || excluded_names.find(object.GetLabel()) != excluded_names.end();
+	return excluded_types.find(object.GetTypeNumber()) != excluded_types.end()
+	       || excluded_names.find(object.GetLabel()) != excluded_names.end();
 }
 
 void DotGraph::WriteToFile(const char *filename)

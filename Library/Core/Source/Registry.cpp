@@ -9,10 +9,10 @@
 #include "KAI/Core/TriColor.h"
 #include "KAI/Core/Tree.h"
 #include <KAI/Core/Memory/StandardAllocator.h>
-#include <KAI/Core/Debug.h>
-#include <KAI/Core/IObject.h>
-#include <KAI/Core/ClassBase.h"
-#include <KAI/Core/Class.h"
+#include <KAI/Core/Object/IObject.h>
+#include <KAI/Core/Object/Class.h>
+#include <KAI/Core/BuiltinTypes/Signed32.h>
+#include <KAI/Core/Registry.h>
 
 // use tri-color generational gc.
 #define KAI_USE_TRICOLOR
@@ -83,7 +83,7 @@ Object Registry::NewFromTypeNumber(Type::Number type_number)
 
 Object Registry::NewFromClassName(const char *classname_str)
 {
-	Label classname = classname_str;
+	Label classname(classname_str);
 	const ClassBase *klass = GetClass(classname);
 	if (klass == 0)
 		KAI_THROW_1(UnknownClass<>, String(classname_str));
@@ -219,7 +219,7 @@ const ClassBase *Registry::GetClass(Type::Number type_number)
 
 StorageBase *Registry::GetStorageBase(Handle handle) const
 {
-	if (handle == 0)
+	if (handle == Handle(0))
 		return 0;
 
 	auto obj = instances.find(handle);
@@ -252,7 +252,7 @@ Object Registry::GetObject(Handle handle) const
 		KAI_TRACE() << handle;
 #endif
 
-	if (handle == 0)
+	if (handle == Handle(0))
 		return Object();
 
 	Instances::const_iterator A = instances.find(handle);
@@ -319,7 +319,7 @@ void Registry::Sweep()
 
 	Instances::iterator A = instances.begin(), B = instances.end();
 	// the handle of the next object created
-	Handle last = next_handle.GetValue();
+	Handle last = Handle(next_handle.GetValue());
 	for (; A != B; ++A)
 	{
 		StorageBase *base = A->second;
@@ -410,7 +410,7 @@ Object Registry::NewFromClass(const ClassBase *klass)
 	if (klass == 0)
 		KAI_THROW_1(UnknownClass<>, "NULL Class");
 
-	Handle handle = next_handle.NextValue();
+	Handle handle(next_handle.NextValue());
 	StorageBase *base = 0;
 	base = klass->NewStorage(this, handle);
 
@@ -606,7 +606,7 @@ bool SameHandle(Object const &A, Object const &B)
 
 void Registry::AddRoot(Object const &root)
 {
-	if (!root)
+	if (!root.Exists())
 		return;
 
 	if (find(roots.begin(), roots.end(), root, SameHandle) == roots.end())

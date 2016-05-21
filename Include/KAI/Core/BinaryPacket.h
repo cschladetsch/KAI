@@ -48,7 +48,7 @@ public:
 
 StringStream &operator<<(StringStream &, BinaryPacket const &);
 BinaryStream &operator<<(BinaryStream &, BinaryPacket const &);
-BinaryPacket &operator >> (BinaryPacket &, BinaryPacket &);
+BinaryPacket &operator>>(BinaryPacket &, BinaryPacket &);
 
 KAI_TYPE_TRAITS(BinaryPacket, Number::BinaryPacket
 	, Properties::StringStreamInsert

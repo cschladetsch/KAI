@@ -74,7 +74,7 @@ BinaryStream &operator<<(BinaryStream &S, const String &T)
 	return S;
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, String &T)
+BinaryStream &operator>>(BinaryStream &S, String &T)
 {
 	int length = 0;
 	S >> length;
@@ -95,7 +95,7 @@ BinaryPacket &operator>>(BinaryPacket &S, String &T)
 
 void String::Register(Registry &R)
 {
-	ClassBuilder<String>(R, "String")
+	ClassBuilder<String>(R, Label("String"))
 		.Methods
 			("Size", &String::Size)
 			("Empty", &String::Empty)
