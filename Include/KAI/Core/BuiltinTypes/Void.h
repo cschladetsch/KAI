@@ -2,6 +2,8 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Meta/Base.h>
+#include <KAI/Core/Type/Number.h>
+#include <KAI/Core/Type/Traits.h>
 
 KAI_BEGIN
 
@@ -52,5 +54,4 @@ namespace Type
 
 KAI_END
 
-//EOF
 

@@ -8,14 +8,12 @@
 
 KAI_BEGIN
 
+/// Defines what goes into the /bin folder at runtime setup
 namespace Bin
 {
-	Object GetMethods(Object Q);
-
 	void Help();
-
+	Object GetMethods(Object Q);
 	Object GetProperties(Object Q);
-
 	Vector3 ScaleVector3(Vector3 vec, float scalar);
 	Vector3 AddVector3(Vector3 vec, Vector3 addition);
 	void WriteToFile(String filename, Object Q);
@@ -33,11 +31,11 @@ namespace Bin
 	Object Thaw(Object Q);
 	String ToString(Object Q);
 	String ToXmlString(Object Q);
+	String Version();
+	void Quit();
 	void ExitToOS(int N);
-
 	Object RunOne(Object object);
 	Object RunAllTests(Object object);
-
 	Object TypeNumberToClass(Object tn);
 	Object Describe(Object Q);
 	String info(Object object);
