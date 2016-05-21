@@ -1,6 +1,4 @@
-#include <unordered_map>
-#include <bits/unordered_map.h>
-#include "KAI/KAI.h"
+#include <KAI/Core/Object/Class.h>
 
 KAI_BEGIN
 

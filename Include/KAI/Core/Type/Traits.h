@@ -403,10 +403,15 @@ struct TraitsBase
 		}
 	};
 
-	typedef StreamInsertOp<HasProperty<Properties::StringStreamInsert>::Value != 0, KAI_NAMESPACE(StringStream)> StringStreamInsert;
-	typedef StreamExtractOp<HasProperty<Properties::StringStreamExtract>::Value != 0, KAI_NAMESPACE(StringStream)> StringStreamExtract;
-	typedef StreamInsertOp<HasProperty<Properties::BinaryStreamInsert>::Value != 0, KAI_NAMESPACE(BinaryStream)> BinaryStreamInsert;
-	typedef StreamExtractOp<HasProperty<Properties::BinaryStreamExtract>::Value != 0, KAI_NAMESPACE(BinaryPacket)> BinaryPacketExtract;
+	typedef StreamInsertOp<HasProperty<Properties::StringStreamInsert>::Value != 0
+			, KAI_NAMESPACE(StringStream)> StringStreamInsert;
+	typedef StreamExtractOp<HasProperty<Properties::StringStreamExtract>::Value != 0
+			, KAI_NAMESPACE(StringStream)> StringStreamExtract;
+	typedef StreamInsertOp<HasProperty<Properties::BinaryStreamInsert>::Value != 0
+			, KAI_NAMESPACE(BinaryStream)> BinaryStreamInsert;
+	typedef StreamExtractOp<HasProperty<Properties::BinaryStreamExtract>::Value != 0
+			, KAI_NAMESPACE(BinaryStream)> BinaryPacketExtract;
+
 	//typedef typename StreamInsert<HasProperty<Properties::XmlStreamInsert>::Value, XmlStream> XmlStreamInsert;
 
 	typedef HashOp<D, HasProperty<Properties::NoHashValue>::Value != 0> HashFunction;

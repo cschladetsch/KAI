@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/Core/Type.h"
 #include <KAI/Core/BuiltinTypes/All.h>
 #include "KAI/Core/StringStream.h"
 #include "KAI/Core/BinaryStream.h"

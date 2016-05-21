@@ -1,8 +1,9 @@
 #pragma once
 
 #include <KAI/Core/Object/Label.h>
-#include <KAI/Core/CallableBase.h>
+#include <KAI/Core/CallableBase.h.notused>
 #include <KAI/Core/Type.h>
+#include <KAI/Core/BuiltinTypes/Stack.h>
 
 KAI_BEGIN
 
