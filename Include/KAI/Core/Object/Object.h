@@ -123,8 +123,11 @@ public:
 	bool IsDirty() const { return !IsClean(); }
 
 	// use these to get/set/remove a property or a child of a given name
+	void Set(const char *N, const Object &Q) const { Set(Label(N), Q); }
+	Object Get(const char *N) const { return Get(Label(N)); }
 	void Set(const Label &, const Object &) const;
 	Object Get(const Label &) const;
+
 	bool Has(const Label &) const;
 	void Remove(const Label &) const;
 

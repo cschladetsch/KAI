@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/Core/BuiltinTypes/Void.h"
 #include "KAI/Core/BuiltinTypes/Signed32.h"
 #include "KAI/Core/BuiltinTypes/Float.h"
 #include "KAI/Core/BuiltinTypes/Array.h"

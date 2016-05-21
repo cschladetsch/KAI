@@ -5,7 +5,9 @@
 #include <KAI/Core/Detail/AddArgType.h>
 #include <KAI/Core/Meta/Base.h>
 
-#include "FunctionBase.h"
+#include "KAI/Core/Type.h"
+#include "KAI/Core/FunctionBase.h"
+#include "KAI/Core/Detail/CallableBase.h"
 
 KAI_BEGIN
 
@@ -79,7 +81,7 @@ struct Function : function_detail::FunctionSelect<R, Args...>::Type
 };
 
 #ifndef KAI_UNNAMED_FUNCTION_NAME
-#   define KAI_UNNAMED_FUNCTION_NAME "UnnamedFunction"
+#   define KAI_UNNAMED_FUNCTION_NAME Label("UnnamedFunction")
 #endif
 
 inline FunctionBase *AddDescription(FunctionBase *F, const char *D)
@@ -100,7 +102,7 @@ template <class R, class... Args>
 Pointer<BasePointer<FunctionBase> > AddFunction(Object &root, R(*Fun)(Args...), const Label &L = KAI_UNNAMED_FUNCTION_NAME, const char *D = 0)
 {
 	auto fun = MakeFunction(Fun, L, D);
-	auto ptr = root.New<BasePointer<FunctionBase> >(fun);
+	auto ptr = root.GetRegistry()->New<BasePointer<FunctionBase> >(fun);
 	root.SetChild(L, ptr);
 	return ptr;
 }
