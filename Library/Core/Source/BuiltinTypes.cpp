@@ -3,10 +3,8 @@
 #include <boost/algorithm/string/erase.hpp>
 #include <boost/lexical_cast.hpp>
 
-#include <KAI/Core/FunctionBase.h>
-#include <KAI/Core/ClassBuilder.h>
-#include "KAI/Core/BuiltinTypes/All.h"
-#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Core/FunctionBase.h"
 
 KAI_BEGIN
 
@@ -26,13 +24,13 @@ StringStream &operator<<(StringStream &S, const BasePointerBase &B)
 
 void BasePointerBase::Register(Registry &R)
 {
-	ClassBuilder<BasePointerBase>(R, "BasePointerBase")
+	ClassBuilder<BasePointerBase>(R, Label("BasePointerBase"))
 		;
 }
 
 void Handle::Register(Registry &R)
 {
-	ClassBuilder<Handle>(R, "Handle")
+	ClassBuilder<Handle>(R, Label("Handle"))
 		.Methods
 		("GetValue", &Handle::GetValue)
 		;
@@ -245,7 +243,7 @@ BinaryStream &operator<<(BinaryStream &S, Pair const &P)
 	return S << P.first << P.second;
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, Pair &P)
+BinaryStream &operator>>(BinaryStream &S, Pair &P)
 {
 	return S >> P.first >> P.second;
 }

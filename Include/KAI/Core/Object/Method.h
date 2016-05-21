@@ -3,7 +3,7 @@
 #include <KAI/Core/Meta/Base.h>
 #include <KAI/Core/Detail/Arity.h>
 #include "MethodBase.h"
-#include "KAI/Core/CallableBase.h"
+#include "KAI/Core/Detail/CallableBase.h"
 
 KAI_BEGIN
 

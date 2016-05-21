@@ -262,7 +262,7 @@ public:
 		Traits::BinaryStreamInsert::Insert(S, ConstDeref<T>(Q));
 	}
 
-	StorageBase *Extract(Registry &R, BinaryPacket &S) const
+	StorageBase *Extract(Registry &R, BinaryStream &S) const
 	{
 		Value<T> Q = R.New<T>();
 		Traits::BinaryPacketExtract::Extract(S, *Q);

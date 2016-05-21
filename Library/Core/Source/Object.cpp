@@ -1,6 +1,6 @@
-#include "KAI/KAI.h"
-#include "KAI/Core/ClassBuilder.h"
 #include <iostream>
+
+#include "KAI/Core/BuiltinTypes.h"
 
 KAI_BEGIN
 
@@ -31,7 +31,6 @@ void Object::Assign(StorageBase &A, StorageBase const &B)
 {
 	GetClass()->Assign(A, B);
 }
-
 
 Object &Object::operator=(Object const &Q)
 {
@@ -223,7 +222,7 @@ Object Object::GetParent() const
 
 Type::Number GetTypeNumber(Object const &Q)
 {
-	if (Q.GetHandle() == 0)
+	if (Q.GetHandle() == Handle(0))
 		return Type::Number::None;
 
 	const ClassBase *klass = Q.GetClass();
@@ -386,12 +385,12 @@ ObjectColor::Color Object::GetColor() const
 	return GetStorageBase().GetColor();
 }
 
-void Object::RemovedFromContainer(Object const &Q) const
+void Object::RemovedFromContainer(Object Q) const
 {
 	GetStorageBase().RemovedFromContainer(Q);
 }
 
-void Object::AddedToContainer(Object const &Q) const
+void Object::AddedToContainer(Object Q) const
 {
 	GetStorageBase().AddedToContainer(Q);
 }
@@ -418,7 +417,7 @@ StorageBase *Object::GetParentBasePtr() const
 
 void Object::GetPropertyObjects(ObjectList &contained) const
 {
-	if (!*this)
+	if (!Exists())
 		return;
 
 	GetClass()->GetPropertyObjects(GetStorageBase(), contained);
@@ -426,7 +425,7 @@ void Object::GetPropertyObjects(ObjectList &contained) const
 
 void Object::GetContainedObjects(ObjectList &contained) const
 {
-	if (!*this)
+	if (!Exists())
 		return;
 
 	GetClass()->GetContainedObjects(GetStorageBase(), contained);
@@ -434,7 +433,7 @@ void Object::GetContainedObjects(ObjectList &contained) const
 
 void Object::GetChildObjects(ObjectList &contained) const
 {
-	if (!*this)
+	if (!Exists())
 		return;
 
 	for (auto &child : GetDictionary())
@@ -462,7 +461,7 @@ HashValue GetHash(Object const &Q)
 
 BinaryStream &operator<<(BinaryStream &stream, const Object &object)
 {
-	if (!object)
+	if (!object.Exists())
 		return stream << 0;
 
 	const StorageBase &base = GetStorageBase(object);
@@ -489,18 +488,18 @@ BinaryStream &operator<<(BinaryStream &stream, const Object &object)
 	return stream;
 }
 
-BinaryPacket &operator>>(BinaryPacket &packet, Object &extracted)
+BinaryStream &operator>>(BinaryStream &stream, Object &extracted)
 {
-	if (packet.GetRegistry() == 0)
+	if (stream.GetRegistry() == 0)
 		KAI_THROW_1(Base, "NullRegistry");
 
-	Registry &registry = *packet.GetRegistry();
+	Registry &registry = *stream.GetRegistry();
 	int type_number = 0;
-	packet >> type_number;
+	stream >> type_number;
 	if (type_number == 0)
 	{
 		extracted = Object();
-		return packet;
+		return stream;
 	}
 
 	ClassBase const *klass = registry.GetClass(Type::Number(type_number));
@@ -511,7 +510,7 @@ BinaryPacket &operator>>(BinaryPacket &packet, Object &extracted)
 
 	// extract the object value
 	if (klass->HasOperation(Type::Properties::BinaryStreamExtract))
-		extracted = *klass->Extract(registry, packet);
+		extracted = *klass->Extract(registry, stream);
 	else
 		extracted = registry.NewFromTypeNumber(type_number);
 
@@ -519,22 +518,22 @@ BinaryPacket &operator>>(BinaryPacket &packet, Object &extracted)
 	for (ClassBase::Properties::value_type const &prop_iter : klass->GetProperties())
 	{
 		Object prop_value;
-		packet >> prop_value;
+		stream >> prop_value;
 		prop_iter.second->SetValue(extracted, prop_value);
 	}
 	
 	// extract sub-objects
 	int num_children = 0;
-	packet >> num_children;
+	stream >> num_children;
 	for (int N = 0; N < num_children; ++N)
 	{
 		Label label;
 		Object child;
-		packet >> label >> child;
+		stream >> label >> child;
 		extracted.Set(label, child);
 	}
 
-	return packet;
+	return stream;
 }
 
 Object::ChildProxy::ChildProxy(Object const &Q, const char *P) : registry(Q.GetRegistry()), handle(Q.GetHandle()), label(P)
@@ -548,7 +547,7 @@ Object::ChildProxy::ChildProxy(Object const &Q, Label const &L) : registry(Q.Get
 Object Object::ChildProxy::GetObject() const
 {
 	if (!registry)
-		KAI_THROW_1(UnknownObject, 0);
+		KAI_THROW_1(UnknownObject, Handle(0));
 
 	StorageBase *base = registry->GetStorageBase(handle);
 	if (!base)
@@ -559,7 +558,7 @@ Object Object::ChildProxy::GetObject() const
 
 Object Absolute(Object const &A)
 {
-	if (!A)
+	if (!A.Exists())
 		return A;
 
 	return A.GetClass()->Absolute(A);
@@ -574,10 +573,10 @@ Object operator*(Object const &/*A*/)
 // or if the first object's class compares them as less
 bool operator<(Object const &A, Object const &B)
 {
-	if (!A)
-		return B;
+	if (!A.Exists())
+		return B.Exists();
 
-	if (!B)
+	if (!B.Exists())
 		return false;
 
 	// test value
@@ -627,10 +626,10 @@ bool operator<(Object const &A, Object const &B)
 /// sub-objects are equivalent
 bool operator==(Object const &A, Object const &B)
 {
-	if (!A)
-		return !B;
+	if (!A.Exists())
+		return !B.Exists();
 
-	if (!B)
+	if (!B.Exists())
 		return false;
 
 	// test value
@@ -667,11 +666,11 @@ bool operator==(Object const &A, Object const &B)
 
 bool operator>(Object const &A, Object const &B)
 {
-	if (!A)
+	if (!A.Exists())
 		return false;
 
-	if (!B)
-		return A;
+	if (!B.Exists())
+		return A.Exists();
 	
 	if (A.GetClass()->HasOperation(Type::Properties::Greater))
 		return A.GetClass()->Greater(A,B);
@@ -681,7 +680,7 @@ bool operator>(Object const &A, Object const &B)
 
 Object operator+(Object const &A, Object const &B)
 {
-	if (!A || !B)
+	if (!A.Exists() || !B.Exists())
 		KAI_THROW_0(NullObject);
 
 	return A.GetClass()->Plus(A,B);
@@ -689,7 +688,7 @@ Object operator+(Object const &A, Object const &B)
 
 Object operator-(Object const &A, Object const &B)
 {
-	if (!A || !B)
+	if (!A.Exists() || !B.Exists())
 		KAI_THROW_0(NullObject);
 
 	return A.GetClass()->Minus(A,B);
@@ -697,7 +696,7 @@ Object operator-(Object const &A, Object const &B)
 
 Object operator*(Object const &A, Object const &B)
 {
-	if (!A || !B)
+	if (!A.Exists() || !B.Exists())
 		KAI_THROW_0(NullObject);
 
 	return A.GetClass()->Multiply(A,B);
@@ -705,7 +704,7 @@ Object operator*(Object const &A, Object const &B)
 
 Object operator/(Object const &A, Object const &B)
 {
-	if (!A || !B)
+	if (!A.Exists() || !B.Exists())
 		KAI_THROW_0(NullObject);
 
 	return A.GetClass()->Divide(A,B);

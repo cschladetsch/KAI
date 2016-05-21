@@ -26,8 +26,9 @@ struct Properties
 		StringStreamExtract = 1 << 10,
 		BinaryStreamInsert = 1 << 11,
 		BinaryStreamExtract = 1 << 12,
-		Streaming = StringStreamInsert | StringStreamExtract | BinaryStreamInsert | BinaryStreamExtract,
+		StringStreaming = StringStreamInsert | StringStreamExtract,
 		BinaryStreaming = BinaryStreamInsert | BinaryStreamExtract,
+		Streaming = StringStreaming | BinaryStreaming,
 
 		NoHashValue = 1 << 13,
 		CalcHashValue = 1 << 14,

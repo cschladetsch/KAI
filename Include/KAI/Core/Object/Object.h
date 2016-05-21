@@ -128,8 +128,8 @@ public:
 	bool Has(const Label &) const;
 	void Remove(const Label &) const;
 
-//	template <class T>
-//	void SetValue(const Label &L, const T &V) const;
+	template <class T>
+	void SetValue(const Label &L, const T &V) const;
 //	{
 //		if (!Valid())
 //			KAI_THROW_0(NullObject);
@@ -142,8 +142,8 @@ public:
 //			SetChild(L, New<T>(V));
 //	}
 
-//	template <class T>
-//	T const &GetValue(const Label &L) const
+	template <class T>
+	T const &GetValue(const Label &L) const;
 //	{
 //		if (!Valid())
 //			KAI_THROW_0(NullObject);
@@ -156,9 +156,9 @@ public:
 //
 //		KAI_THROW_1(ObjectNotFound, L.ToString());
 //	}
-//
-//	template <class T>
-//	T &GetValue(const Label &L)
+
+	template <class T>
+	T &GetValue(const Label &L);
 //	{
 //		if (!Valid())
 //			KAI_THROW_0(NullObject);
@@ -246,7 +246,6 @@ public:
 //		Deref<T>(GetChild(label)) = value;
 //	}
 
-
 	void SetPropertyValue(Label const &, Object const &) const;
 	Object GetPropertyValue(Label const &) const;
 
@@ -292,53 +291,49 @@ public:
 	void GetChildObjects(ObjectList &contained) const;
 	void GetAllReferencedObjects(ObjectList &contained) const;
 
-//	class ChildProxy
-//	{
-//		friend class Object;
-//		Registry *registry;
-//		Handle handle;
-//		Label label;
-//		Constness konst;
-//		ChildProxy(Object const &Q, const char *);
-//		ChildProxy(Object const &Q, Label const &L);
-//		Object GetObject() const;
-//	public:
-//		template <class T>
-//		ChildProxy &operator=(T const &value)
-//		{
-//			GetObject().SetValue(label, value);
-//			return *this;
-//		}
-//
-//		template <class T>
-//		ChildProxy &operator=(Pointer<T> const &value)
-//		{
-//			GetObject().Set(label, value);
-//			return *this;
-//		}
-//		ChildProxy &operator=(Object const &child)
-//		{
-//			GetObject().Set(label, child);
-//			return *this;
-//		}
-//		operator Object() const
-//		{
-//			return GetObject().Get(label);
-//		}
-//		operator bool() const
-//		{
-//			return GetObject();
-//		}
-//	};
-//
-//	ChildProxy operator[](const char *L)
-//	{
-//		return ChildProxy(*this, L);
-//	}
-//	ChildProxy operator[](Label const &L)
-//	{
-//		return ChildProxy(*this, L);
-//	}
+	class ChildProxy
+	{
+		friend class Object;
+		Registry *registry;
+		Handle handle;
+		Label label;
+		Constness konst;
+		ChildProxy(Object const &Q, const char *);
+		ChildProxy(Object const &Q, Label const &L);
+		Object GetObject() const;
+	public:
+		template <class T>
+		ChildProxy &operator=(T const &value)
+		{
+			GetObject().SetValue(label, value);
+			return *this;
+		}
+
+		template <class T>
+		ChildProxy &operator=(Pointer<T> const &value)
+		{
+			GetObject().Set(label, value);
+			return *this;
+		}
+		ChildProxy &operator=(Object const &child)
+		{
+			GetObject().Set(label, child);
+			return *this;
+		}
+		operator Object() const
+		{
+			return GetObject().Get(label);
+		}
+	};
+
+	ChildProxy operator[](const char *L)
+	{
+		return ChildProxy(*this, L);
+	}
+	ChildProxy operator[](Label const &L)
+	{
+		return ChildProxy(*this, L);
+	}
 
 protected:
 	Dictionary &GetDictionaryRef();
@@ -347,7 +342,7 @@ protected:
 StringStream &operator<<(StringStream &S, const Object &Q);
 StringStream &operator>>(StringStream &S, Object &Q);
 BinaryStream &operator<<(BinaryStream &S, const Object &Q);
-BinaryStream &operator>>(BinaryStream &S, Object &Q);
+BinaryStream &operator>>(BinaryStream &stream, Object &Q);
 
 Object operator*(Object const &A);
 bool operator<(Object const &A, Object const &B);
