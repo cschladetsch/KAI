@@ -1,5 +1,6 @@
+
+#include "KAI/Core/BuiltinTypes/All.h"
 #include "KAI/Core/Object/Label.h"
-#include "KAI/Core/Object/ClassBuilder.h"
 #include "KAI/Core/Registry.h"
 
 KAI_BEGIN
@@ -44,7 +45,7 @@ void Label::Register(Registry &R)
 {
 	ClassBuilder<Label>(R, Label("Label"))
 		.Methods
-			(&Label::ToString, "ToString")
+			("ToString", &Label::ToString, "ToString")
 		;
 }
 

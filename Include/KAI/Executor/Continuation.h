@@ -16,7 +16,7 @@
 #include <KAI/Core/BuiltinTypes/Array.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Registry.h>
-#include <KAI/Core/Object/ReflectedFwd.h>
+#include <KAI/Core/Object/Reflected.h>
 
 KAI_BEGIN
 
@@ -48,7 +48,7 @@ public:
 
 	Pointer<const Array> GetCode() const { return code; }
 
-	void AddArg(Label const &arg) { args->Append(New(arg)); }
+	void AddArg(Label const &arg);// { args->Append(New(arg)); }
 
 	Code &GetCode() { return code; }
 

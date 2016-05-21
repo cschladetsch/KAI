@@ -4,7 +4,6 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
-#include <KAI/Core/Exception/ExceptionBase.h>
 
 KAI_BEGIN
 

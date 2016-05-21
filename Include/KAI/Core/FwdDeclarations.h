@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/Core/Object/ReflectedFwd.h"
+#include <KAI/Core/Base.h>
 
 KAI_BEGIN
 
@@ -16,6 +16,11 @@ class StringStream;
 class BinaryStream;
 class BinaryPacket;
 class Registry;
-class ReflectedBase;
+class Reflected;
+
+template <class T>
+struct FwdBasePointer { };
 
 KAI_END
+
+#include "KAI/Core/Object/Reflected.h"

@@ -3,7 +3,7 @@
 #include <KAI/Core/Meta/Base.h>
 #include <KAI/Core/Detail/Arity.h>
 #include "MethodBase.h"
-#include "Detail/CallableBase.h"
+#include "KAI/Core/CallableBase.h"
 
 KAI_BEGIN
 
@@ -28,7 +28,7 @@ namespace method_detail
 		void ConstInvoke(const Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			stack.Push(servant.New(CallMethod(ConstDeref<T>(servant), meth, _args)));
+			stack.Push(servant.GetRegistry()->New(CallMethod(ConstDeref<T>(servant), meth, _args)));
 		}
 	};
 
@@ -85,7 +85,7 @@ namespace method_detail
 		void Invoke(Object &servant, Stack &stack)
 		{
 			detail::Add<arity - 1>::Arg(stack, _args);
-			stack.Push(servant.New(Deref<T>(servant)(CallMethod(servant, 
+			stack.Push(servant.GetRegistry()->New(Deref<T>(servant)(CallMethod(servant,
 				meth, _args))));
 		}
 	};
