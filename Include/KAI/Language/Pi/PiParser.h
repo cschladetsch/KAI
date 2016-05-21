@@ -1,6 +1,7 @@
 #pragma once
 
 #include <KAI/Language/Common/ParserCommon.h>
+#include <KAI/Language/Common/Structure.h>
 #include "KAI/Language/Pi/PiAstNode.h"
 #include "KAI/Language/Pi/PiLexer.h"
 
