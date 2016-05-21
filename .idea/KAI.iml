@@ -15,6 +15,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Library/Language/Rho" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Language/Pi" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />

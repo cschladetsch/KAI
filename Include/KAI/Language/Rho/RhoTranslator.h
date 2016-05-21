@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KAI/Core/BuiltinTypes/Array.h"
+#include "KAI/Language/Common/TranslatorBase.h"
 #include "KAI/Language/Rho/RhoParser.h"
 
 KAI_BEGIN

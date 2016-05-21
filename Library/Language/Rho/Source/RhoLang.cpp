@@ -1,17 +1,11 @@
-#include "KAI/ExecutorPCH.h"
-
 #include <fstream>
-#include <iostream>
 
+#include "KAI/Executor/Executor.h"
+#include "KAI/Language/Rho/RhoLang.h"
 
 using namespace std;
 
 KAI_BEGIN
-
-RhoLang::RhoLang(Registry &r)
-	: reg(r)
-{
-}
 
 void RhoLang::Print()
 {
@@ -30,11 +24,11 @@ void RhoLang::Print()
 	 */
 }
 
-bool RhoLang::TranslateFile(const char *name, Structure st)
+Pointer<Continuation> RhoLang::TranslateFile(const char *name, Structure st)
 {
 	ifstream file(name, ios::binary);
 	if (!file)
-		return false;
+		return Object();
 
 	file.seekg(0, ios::end);
 	int len = (int)file.tellg();
@@ -46,10 +40,10 @@ bool RhoLang::TranslateFile(const char *name, Structure st)
 	return Translate(text, st);
 }
 
-bool RhoLang::Translate(const char *text, Structure st)
+Pointer<Continuation> RhoLang::Translate(const char *text, Structure st)
 {
 	KAI_UNUSED_2(text, st);
-	return false;
+	return Object();
 
 	//trans = std::make_shared<Translator>(reg);
 	//trans->Translate(text);
