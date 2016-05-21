@@ -3,6 +3,7 @@
 #include <KAI/Language/Common/ProcessCommon.h>
 #include <KAI/Language/Common/Structure.h>
 #include <KAI/Executor/Continuation.h>
+#include <KAI/Executor/Operation.h>
 
 KAI_BEGIN
 

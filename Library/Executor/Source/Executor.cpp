@@ -1,12 +1,11 @@
-#include "KAI/Core/ClassBase.h"
-#include "KAI/Executor/Executor.h"
-#include "KAI/Core/StringStream.h"
-#include "KAI/Core/BuiltinTypes/Pair.h"
-#include "KAI/Core/BuiltinTypes/List.h"
-#include "KAI/Core/BuiltinTypes/Map.h"
-#include "KAI/Core/StringStream.h"
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Core/FunctionBase.h"
 #include "KAI/Core/Object.h"
-#include "KAI/Core/ClassBase.h"
+#include "KAI/Core/Tree.h"
+#include "KAI/Executor/Continuation.h"
+#include "KAI/Executor/SignedContinuation.h"
+#include "KAI/Executor/Compiler.h"
+#include "KAI/Executor/Executor.h"
 
 #include <fstream>
 #include <iostream>
@@ -167,7 +166,7 @@ void Executor::Eval(Object const &Q)
 	case Type::Number::Label:
 		{
 			auto found = TryResolve(ConstDeref<Label>(Q));
-			if (found)
+			if (found.Exists())
 				Push(found);
 			else
 				Push(Q);
@@ -1117,7 +1116,7 @@ Object Executor::TryResolve(Label const &label) const
 	if (_continuation.Exists())
 	{
 		Object scope = _continuation->GetScope();
-		if (scope && scope.Has(label))
+		if (scope.Exists() && scope.Has(label))
 			return scope.Get(label);
 	}
 

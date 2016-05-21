@@ -1,6 +1,9 @@
-#include "KAI/ExecutorPCH.h"
-#include "KAI/Function.h"
-#include "KAI/BuiltinTypes/Pair.h"
+#include "KAI/Core/BuiltinTypes/Void.h"
+#include "KAI/Core/BuiltinTypes/Pair.h"
+#include "KAI/Core/Exception.h"
+#include "KAI/Core/Detail/Function.h"
+#include "KAI/Executor/Executor.h"
+#include "KAI/Executor/Compiler.h"
 
 #include <iostream>
 #include <fstream>
@@ -88,7 +91,9 @@ namespace Bin
 			if (ch == '#')
 			{
 				int num = fmt[++n] - '0';
-				std::cout << items.At(num);
+				StringStream str;
+				str << items.At(num);
+				std::cout << str.ToString().c_str();
 				continue;
 			}
 

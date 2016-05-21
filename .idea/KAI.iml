@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Test/TestConsole" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestTau" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Window" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Library/Language/Rho" isTestSource="false" />

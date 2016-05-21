@@ -11,6 +11,7 @@
 #include <KAI/Core/Memory/StandardAllocator.h>
 #include <KAI/Core/Object/IObject.h>
 #include <KAI/Core/Object/Class.h>
+#include <KAI/Core/FunctionBase.h>
 #include <KAI/Core/BuiltinTypes/Signed32.h>
 #include <KAI/Core/Registry.h>
 
@@ -490,7 +491,7 @@ void Registry::TriColor()
 	const int max_cycles = 17;
 	if (gc_trace_level >= 1)
 	{
-		KAI_TRACE_3(instances.size(), grey.size(), white.size());
+		KAI_TRACE_3((int)instances.size(), (int)grey.size(), (int)white.size());
 	}
 
 	int cycle = 0;
@@ -692,7 +693,7 @@ void Registry::TraceTriColor() const
 
 void Registry::TraceGCCounts() const
 {
-	KAI_TRACE_3(instances.size(), grey.size(), white.size());
+	KAI_TRACE_3((int)instances.size(), (int)grey.size(), (int)white.size());
 }
 
 void Registry::TraceGrey() const

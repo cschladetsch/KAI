@@ -3,6 +3,8 @@
 #include "KAI/Core/Base.h"
 #include "KAI/Core/Argument.h"
 #include "KAI/Core/Exception/FileLocation.h"
+#include "KAI/Core/Exception/ExceptionBase.h"
+#include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/StringStream.h"
 
 KAI_BEGIN

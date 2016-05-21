@@ -43,6 +43,18 @@ public:
 	void Create();
 	bool Destroy();
 
+	template <class T>
+	Pointer<T> New() const
+	{
+		return Self->GetRegistry()->New<T>();
+	}
+
+	template <class T>
+	Pointer<T> New(const T &val) const
+	{
+		return Self->GetRegistry()->New<T>(val);
+	}
+
 	void SetCode(Code);
 	void SetCode(Code, String const *source);
 
