@@ -2,12 +2,8 @@
 
 #include <memory>
 
-#include "KAI/Core/Config/Base.h"
 #include <KAI/Core/Memory/IAllocator.h>
-#include "KAI/Core/Type/Traits.h"
-#include <KAI/Core/Type/Number.h>
-#include <KAI/Core/Type/TraitMacros.h>
-#include <KAI/Core/Type/Properties.h>
+#include "KAI/Core/Type.h"
 #include <KAI/Core/Object/Reflected.h>
 #include <KAI/Core/Object/Object.h>
 #include <KAI/Core/BuiltinTypes/String.h>
@@ -19,8 +15,6 @@
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Executor.h>
 
-#include <KAI/Language/Common/Structure.h>
-#include <KAI/Language/Common/Language.h>
 #include "KAI/Language/Pi/Pi.h"
 #include "KAI/Language/Rho/Rho.h"
 
@@ -29,7 +23,6 @@
 KAI_BEGIN
 
 struct Coloriser;
-struct Compiler;
 
 class Console : public Reflected
 {

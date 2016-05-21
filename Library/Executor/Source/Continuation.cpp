@@ -1,8 +1,11 @@
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/BuiltinTypes/Void.h>
+#include <KAI/Core/BuiltinTypes/Bool.h>
+#include <KAI/Core/BuiltinTypes/Signed32.h>
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Core/Debug.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
-#include <KAI/Core/ClassBuilder.h>
+#include <KAI/Core/Object/ClassBuilder.h>
 
 KAI_BEGIN
 
@@ -61,7 +64,7 @@ bool Continuation::Next() const
 
 bool Continuation::Next(Object &next) const
 { 
-	if (!code)
+	if (!code.Exists())
 		return false;
 
 	if (!*entered)
@@ -131,7 +134,7 @@ BinaryStream &operator<<(BinaryStream &S, const Continuation &C)
 	return S << C.GetCode();
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, Continuation &C)
+BinaryStream &operator>>(BinaryStream &S, Continuation &C)
 {
 	Object code;
 	// TODO: instruction pointer and scope!

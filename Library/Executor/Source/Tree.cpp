@@ -1,8 +1,9 @@
 #include <iostream>
 
+#include "KAI/Core/BuiltinTypes/Void.h"
 #include "KAI/Core/Tree.h"
 #include <KAI/Core/Exception/Extended.h>
-#include <KAI/Core/GetStorageBase.h>
+#include <KAI/Core/Object/GetStorageBase.h>
 #include <KAI/Core/Type/Deref.h>
 #include <KAI/Core/Registry.h>
 
@@ -152,7 +153,7 @@ Object Get(Object scope, const Pathname &path)
 		case Pathname::Element::Name: 
 			{
 				scope = scope.Get(A->name);
-				if (!scope)
+				if (!scope.Exists())
 					return scope;
 			}
 			break;
@@ -249,7 +250,7 @@ void Remove(Object const &root, Object const &scope, Object const &ident)
 
 Label GetName(const Object &object)
 {
-	if (!object)
+	if (!object.Exists())
 		return Label();
 
 	return object.GetLabel();
@@ -291,20 +292,21 @@ void Tree::AddSearchPath(const Pathname &P)
 
 Object Tree::Resolve(const Label &label) const
 {
-	if (scope)
+	if (scope.Exists())
 	{
 		Object found = scope.Get(label);
-		if (found)
+		if (found.Exists())
 			return found;
 	}
 
 	for (Object const &object : path)
 	{
-		if (!object)
+		if (!object.Exists())
 			continue;
 
 		Object found = object.Get(label);
-		if (found)
+		if (found.Exists())
+		if (found.Exists())
 			return found;
 	}
 

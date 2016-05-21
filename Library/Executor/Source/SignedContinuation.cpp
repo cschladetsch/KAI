@@ -1,6 +1,7 @@
+#include "KAI/Core/BuiltinTypes/Signed32.h"
 #include "KAI/Executor/Executor.h"
 #include "KAI/Executor/SignedContinuation.h"
-#include "KAI/Core/ClassBuilder.h"
+#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 

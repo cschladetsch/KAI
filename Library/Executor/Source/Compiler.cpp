@@ -1,10 +1,11 @@
-#include "KAI/Core/Object.h"
-#include "KAI/Core/Compiler.h"
-#include "KAI/Core/ClassBuilder.h"
-
 #include <iostream>
 #include <algorithm>
 #include <assert.h>
+
+#include "KAI/Core/Object.h"
+#include "KAI/Core/Type.h"
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Executor/Compiler.h"
 
 KAI_BEGIN
 
@@ -64,7 +65,7 @@ BinaryStream &operator<<(BinaryStream &S, Operation const &P)
 	return S << (int)(P.GetTypeNumber());
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, Operation &P)
+BinaryStream &operator>>(BinaryStream &S, Operation &P)
 {
 	int val;
 	S >> val;

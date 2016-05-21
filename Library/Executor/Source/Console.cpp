@@ -1,16 +1,12 @@
 #include <iostream>
 
 #include <KAI/Core/Memory/StandardAllocator.h>
-#include <KAI/Core/IObject.h>
-#include <KAI/Core/MethodBase.h>
-#include <KAI/Core/PropertyBase.h>
-#include <KAI/Core/KAIBin.h>
-#include "KAI/Core/Compiler.h"
-#include "KAI/Core/FunctionBase.h"
+#include <KAI/Core/Object.h>
 #include "KAI/Core/BuiltinTypes/Pair.h"
 #include "KAI/Core/BuiltinTypes/List.h"
 #include "KAI/Core/BuiltinTypes/Map.h"
-#include "KAI/Console/ConsoleColor.h"
+#include "KAI/Console/Console.h"
+#include "KAI/Executor/BinBase.h"
 
 using namespace std;
 
@@ -83,9 +79,10 @@ void Console::ControlC()
 	executor->ClearContext();
 }
 
-int Console::GetLanguage() const
+Language Console::GetLanguage() const
 {
-	return static_cast<int>(language);
+//	return static_cast<int>(language);
+	return language;
 }
 
 void Console::CreateTree()
@@ -170,7 +167,7 @@ void Console::Execute(Pointer<Continuation> cont)
 void Console::Execute(String const &text, Structure st)
 {
 	auto cont = compiler->Translate(text.c_str(), st);
-	if (!cont)
+	if (!cont.Exists())
 		return;
 	executor->Continue(cont);
 }
@@ -182,7 +179,7 @@ String Console::Process(const String& text)
 	{
 		cout << Color::Error;
 		auto cont = compiler->Translate(text.c_str());
-		if (cont)
+		if (cont.Exists())
 		{
 			cont->SetScope(tree.GetScope());
 			cout << Color::Trace;
@@ -275,13 +272,13 @@ int Console::Run()
 void Console::RegisterTypes()
 {
 	// built-ins
-	registry->AddClass<const ClassBase *>("Class");		// TODO: add methods
-	registry->AddClass<void>("Void");
-	registry->AddClass<bool>("Bool");
-	registry->AddClass<int>("Int");
-	registry->AddClass<float>("Float");
-	registry->AddClass<Vector3>("Vector3");
-	registry->AddClass<Vector4>("Vector4");
+	registry->AddClass<const ClassBase *>(Label("Class"));		// TODO: add methods
+	registry->AddClass<void>(Label("Void"));
+	registry->AddClass<bool>(Label("Bool"));
+	registry->AddClass<int>(Label("Int"));
+	registry->AddClass<float>(Label("Float"));
+	registry->AddClass<Vector3>(Label("Vector3"));
+	registry->AddClass<Vector4>(Label("Vector4"));
 
 	// system types
 	//ObjectSet::Register(*registry);
