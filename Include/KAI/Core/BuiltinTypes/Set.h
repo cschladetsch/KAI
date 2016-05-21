@@ -3,7 +3,7 @@
 #include <unordered_set>
 
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object.h>
+#include <KAI/Core/Object/Object.h>
 #include <KAI/Core/TriColor.h>
 
 #include "Container.h"

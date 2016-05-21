@@ -1,6 +1,6 @@
 #pragma once
 
-KAI_EGIN
+KAI_BEGIN
 
 template <class T>
 struct Argument
@@ -26,3 +26,4 @@ struct Argument<const T&>
 	typedef const T &Type;
 };
 
+	KAI_END

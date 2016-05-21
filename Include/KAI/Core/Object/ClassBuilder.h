@@ -29,12 +29,14 @@ public:
 			PropertiesCollector &operator=(PropertiesCollector &);
 
 			template <class Property>
-			PropertiesCollector &operator()(Label const &N, Property P, String const &D = "", CreateParams::Params create_params = CreateParams::Default)
+			PropertiesCollector &operator()(const char *N, Property P, String const &D = ""
+					, MemberCreateParams::Enum create_params = MemberCreateParams::Default)
 			{
-				PropertyBase *Q = MakeProperty<T>(P, N, create_params);
+				auto label = Label(N);
+				PropertyBase *Q = MakeProperty<T>(P, label, create_params);
 				if (!D.empty())
 					Q->Description = D;
-				builder->klass->AddProperty(N, Q);
+				builder->klass->AddProperty(label, Q);
 				return *this;
 			}
 		};
@@ -44,12 +46,13 @@ public:
 		MethodsCollector &operator=(MethodsCollector&);
 
 		template <class Method>
-		MethodsCollector &operator()(Label const &name, Method method, String const &D = "")
+		MethodsCollector &operator()(const char *name, Method method, String const &D = "")
 		{
-			MethodBase *M = MakeMethod(method, name);
+			auto label = Label(name);
+			MethodBase *M = MakeMethod(method, label);
 			if (!D.empty())
 				M->Description = D;
-			builder->klass->AddMethod(name, M);
+			builder->klass->AddMethod(label, M);
 			return *this;
 		}
 	};
@@ -61,7 +64,8 @@ public:
 		Methods.Properties.builder = this;
 	}
 
-	ClassBuilder(Registry &R, const Label &N, Object const &Q, const Pathname &P) : registry(&R), root(Q), path(P), klass(new Class<T>(N))
+	ClassBuilder(Registry &R, const Label &N, Object const &Q, const Pathname &P)
+		: registry(&R), root(Q), path(P), klass(new Class<T>(N))
 	{ 
 		Methods.builder = this;
 		Methods.Properties.builder = this;

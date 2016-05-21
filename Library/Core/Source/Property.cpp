@@ -1,7 +1,7 @@
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object.h>
-#include <KAI/Core/PropertyBase.h>
-#include <KAI/Core/ClassBase.h>
+#include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Object/PropertyBase.h>
+#include <KAI/Core/Object/ClassBase.h>
 
 KAI_BEGIN
 

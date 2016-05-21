@@ -3,6 +3,8 @@
 #include <type_traits>
 #include <string>
 
+#include <KAI/Core/Base.h>
+
 KAI_TYPE_BEGIN
 
 struct Number
@@ -81,7 +83,7 @@ struct Number
 
 	Value value;
 
-	Number(Value V = None) : value(V) { }
+	Number() : value(None) { }
 	Number(int N) : value(Value(N)) { }
 	friend bool operator<(Number A, Number B) { return A.value < B.value; }
 	friend bool operator==(Number A, Number B) { return A.value == B.value; }
@@ -95,20 +97,25 @@ KAI_TYPE_END
 
 KAI_BEGIN
 
+//	StringStream &operator<<(StringStream &, Number""::Number);
+//	StringStream &operator>>(StringStream &, Type::Number &);
+//	BinaryStream &operator<<(BinaryStream &, Type::Number);
+//	BinaryStream &operator>>(BinaryStream &, Type::Number &);
+
 typedef int TypeNumber;
 
-struct HashType
-{
-	enum { bucket_size = 4, min_buckets = 16 };
-	std::size_t operator()(const Type::Number::Value &A) const 
-	{ 
-		return static_cast<std::size_t>(std::underlying_type<Type::Number::Value>::type(A)); 
-	}
-
-	bool operator()(const Type::Number::Value &A, const Type::Number::Value &B) const
-	{
-		return A == B;
-	}
-};
+//struct HashType
+//{
+//	enum { bucket_size = 4, min_buckets = 16 };
+//	std::size_t operator()(const Type::Number::Value &A) const
+//	{
+//		return static_cast<std::size_t>(std::underlying_type<Type::Number::Value>::type(A));
+//	}
+//
+//	bool operator()(const Type::Number::Value &A, const Type::Number::Value &B) const
+//	{
+//		return A == B;
+//	}
+//};
 
 KAI_END

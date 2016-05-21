@@ -2,7 +2,7 @@
 
 #include <KAI/Core/Object/ObjectConstructParams.h>
 #include <KAI/Core/Object/Object.h>
-#include <KAI/Core/Object/ReflectedFwd.h>
+#include <KAI/Core/Object/Reflected.h>
 #include <KAI/Core/Object/Storage.h>
 
 KAI_BEGIN
@@ -17,7 +17,7 @@ struct Container : Reflected
 			// it is wrong to try to attach to a null container
 			KAI_THROW_0(NullObject);
 		}
-		if (!Q)
+		if (!Q.Exists())
 		{
 			// it is wrong to try to attach a null object to a container
 			KAI_THROW_0(NullObject);
@@ -31,7 +31,7 @@ struct Container : Reflected
 	}
 	void Detach(Object const &Q)
 	{
-		if (!Self || !Q)
+		if (!Self || !Q.Exists())
 			return;
 
 		//TODO: Q.RemovedFromContainer(*Self);

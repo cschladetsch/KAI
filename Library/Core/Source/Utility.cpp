@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "KAI/Core/BuiltinTypes/Map.h"
-#include "KAI/Core/BuiltinTypes/Array.h"
+#include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Value.h"
 #include "KAI/Core/Object/Reflected.h"
 
@@ -12,6 +11,7 @@
 #include <KAI/Core/BuiltinTypes/Dictionary.h>
 #include <KAI/Core/Object/PropertyBase.h>
 #include <KAI/Core/Object/ClassBase.h>
+#include <KAI/Core/Exception.h>
 
 KAI_BEGIN
 

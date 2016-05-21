@@ -1,6 +1,4 @@
-#include <KAI/Core/Config/Base.h>
-#include "KAI/Core/BuiltinTypes/List.h"
-#include "KAI/Core/Object.h"
+#include "KAI/Core/BuiltinTypes.h"
 
 KAI_BEGIN
 
@@ -59,7 +57,7 @@ BinaryStream &operator<<(BinaryStream &stream, List const &list)
 	return stream;
 }
 
-BinaryPacket &operator>>(BinaryPacket &stream, List &list)
+	BinaryStream &operator>>(BinaryStream &stream, List &list)
 {
 	int size = 0;
 	stream >> size;
@@ -92,7 +90,7 @@ size_t GetHash(List const &)
 
 void List::Register(Registry &R)
 {
-	ClassBuilder<List>(R, Type::Traits<List>::Name())
+	ClassBuilder<List>(R, Label(Type::Traits<List>::Name()))
 		.Methods
 			("PopBack", &List::PopBack, "Remove last object from the sequence")
 			("PushBack", &List::Append2, "Add an Object to the end")

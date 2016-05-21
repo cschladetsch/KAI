@@ -31,7 +31,7 @@ namespace detail
 			typedef decltype(std::get<0>(args)) Ty;
 			Object back = input.Top();
 			input.Pop();
-			get<0>(args) = Deref<Ty>(back);
+			std::get<0>(args) = Deref<Ty>(back);
 		}
 	};
 } 

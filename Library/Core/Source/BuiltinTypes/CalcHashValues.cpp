@@ -1,9 +1,6 @@
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Base.h>
 #include <KAI/Core/Type/Number.h>
-#include <KAI/Core/BuiltinTypes/Array.h>
-#include "KAI/Core/BuiltinTypes/MapBase.h"
-#include "KAI/Core/BuiltinTypes/Map.h"
+#include <KAI/Core/BuiltinTypes.h>
 
 KAI_BEGIN
 

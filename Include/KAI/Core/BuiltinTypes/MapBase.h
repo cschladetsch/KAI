@@ -1,8 +1,8 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Exception/ExceptionMacros.h>
-#include <KAI/Core/Base.h>
+#include <KAI/Core/Object/ClassBuilder.h>
+#include <KAI/Core/Exception.h>
+#include <KAI/Core/BuiltinTypes/Signed32.h>
 #include "Container.h"
 
 KAI_BEGIN
@@ -70,14 +70,14 @@ public:
 
 	static void Register(Registry &R, const char *N)
 	{
-		ClassBuilder<This>(R, N)
-			.Methods
-			("Size", &This::Size)
-			("Empty", &This::Empty)
-			("Insert", &This::Insert)
-			("Erase", &This::Erase)
-			("Find", &This::Find)
-			;
+//		ClassBuilder<This>(R, Label(N))
+//			.Methods
+//			("Size", &This::Size)
+//			("Empty", &This::Empty)
+//			("Insert", &This::Insert)
+//			("Erase", &This::Erase)
+//			("Find", &This::Find)
+//			;
 	}
 };
 
@@ -106,7 +106,7 @@ BinaryStream &operator<<(BinaryStream &S, MapBase<Map> const &M)
 }
 
 template <class Map>
-BinaryPacket &operator>>(BinaryPacket &S, MapBase<Map> &M)
+BinaryStream &operator>>(BinaryStream &S, MapBase<Map> &M)
 {
 	int length = 0;
 	S >> length;

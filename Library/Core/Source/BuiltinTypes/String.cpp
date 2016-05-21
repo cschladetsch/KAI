@@ -1,4 +1,7 @@
-#include "KAI/KAIClassBuilder.h"
+#include <algorithm>
+
+#include "KAI/Core/BuiltinTypes.h"
+#include <KAI/Core/Object/ClassBuilder.h>
 
 KAI_BEGIN
 
@@ -66,7 +69,7 @@ BinaryStream &operator<<(BinaryStream &S, const String &T)
 	int length = T.Size();
 	S << length;
 	if (length > 0)
-		S.Write(length, &*T.Begin());
+		S.Write(length, (char *)&*T.Begin());
 
 	return S;
 }

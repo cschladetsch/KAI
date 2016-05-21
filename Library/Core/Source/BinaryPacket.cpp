@@ -1,13 +1,13 @@
-#include "KAI/KAI.h"
-#include "KAI/Core/KAIClassBuilder.h"
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 
 void BinaryPacket::Register(Registry &registry, const char *name)
 {
-	ClassBuilder<BinaryPacket>(registry, name)
+	ClassBuilder<BinaryPacket>(registry, Label(name))
 		.Methods
-		("Size", &BinaryPacket::Size)
+		(Label("Size"), &BinaryPacket::Size)
 		;
 }
 
@@ -28,10 +28,10 @@ bool BinaryPacket::CanRead(int len) const
 
 void BinaryStream::Register(Registry &registry)
 {
-	ClassBuilder<BinaryStream>(registry, Type::Traits<BinaryStream>::Name())
+	ClassBuilder<BinaryStream>(registry, Label(Type::Traits<BinaryStream>::Name()))
 		.Methods
-			("Size", &BinaryStream::Size)
-			("Clear", &BinaryStream::Clear)
+			(Label("Size"), &BinaryStream::Size)
+			(Label("Clear"), &BinaryStream::Clear)
 		;
 }
 
