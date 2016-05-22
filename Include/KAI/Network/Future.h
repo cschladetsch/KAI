@@ -1,10 +1,11 @@
 #pragma once
 
-#include "KAI/Net/Base.h"
+#include "KAI/Network/Config.h"
 
 #include "boost/date_time/posix_time/posix_time_types.hpp"
 #include "boost/date_time/time_zone_base.hpp"
 #include "boost/date_time/local_time/local_time.hpp"
+#include "NetHandle.h"
 
 KAI_NET_BEGIN
 
