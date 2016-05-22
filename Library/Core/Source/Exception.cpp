@@ -124,6 +124,11 @@ namespace Exception
 
 }
 
+	StringStream &operator<<(StringStream &S, Exception::Base const &E)
+	{
+		return S << E.ToString();
+	}
+
 KAI_END
 
 //EOF
