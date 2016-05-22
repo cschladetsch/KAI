@@ -8,6 +8,8 @@ add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_USE_EXCEPTIONS)
 
+#add_definitions(-DKAI_TRACE_VERBOSE)
+
 # These are defined in KAI/Base/Config.h if KAI_DEBUG is defined
 #add_definitions(-DKAI_POINTER_HAS_STORAGEBASE)
 #add_definitions(-DKAI_USE_EXCEPTIONS)

@@ -1,10 +1,10 @@
-
 #include "KAI/Core/BasePointer.h"
 #include "KAI/Core/StringStream.h"
 #include "KAI/Core/BinaryPacket.h"
 #include "KAI/Core/BinaryStream.h"
 #include "KAI/Core/FunctionBase.h"
 #include "KAI/Core/BuiltinTypes/Signed32.h"
+#include <KAI/Executor/Operation.h>
 
 KAI_BEGIN
 
@@ -128,7 +128,7 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	{
 		if (klass->GetTypeNumber() == Type::Number::Operation)
 		{
-			stream << "anop";//ConstDeref<Operation>(object).ToString();
+			stream << ConstDeref<Operation>(object).ToString();
 		}
 		else
 		{

@@ -1,5 +1,7 @@
-//
-// Created by christian on 22/05/16.
-//
-
 #include "Main.h"
+
+int main(int argc, char **argv)
+{
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}

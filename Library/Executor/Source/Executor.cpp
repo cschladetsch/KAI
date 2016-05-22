@@ -66,7 +66,6 @@ Value<const Stack> Executor::GetContextStack() const
 	return Value<const Stack>(_data.GetConstObject()); // TODO: automatereturn context;
 }
 
-
 void Executor::SetContinuation(Value<Continuation> C)
 {
 	_continuation = C;
@@ -87,6 +86,9 @@ struct Trace
 
 void Executor::Continue()
 {
+	if (_traceLevel > 2)
+		KAI_TRACE_2("Entering", _continuation);
+
 	Object next;
 	for (;;)
 	{
@@ -95,6 +97,12 @@ void Executor::Continue()
 		{
 			KAI_TRY
 			{
+				if (_traceLevel > 0)
+					KAI_TRACE_1(_data);
+
+				if (_traceLevel > 1)
+					KAI_TRACE_2(_continuation, next.ToString());
+
 				Eval(next);
 			}
 			KAI_CATCH(Exception::Base, E)
@@ -113,6 +121,9 @@ void Executor::Continue()
 
 		if (_break)
 		{
+			if (_traceLevel > 0)
+				KAI_TRACE_1(_data);
+
 			NextContinuation();
 			if (!_continuation.Exists())
 				return;
