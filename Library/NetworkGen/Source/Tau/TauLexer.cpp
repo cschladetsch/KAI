@@ -1,4 +1,4 @@
-#include "KAI/Language/Rho/TauLexer.h"
+#include "Tau/TauLexer.h"
 
 #include <strstream>
 #include <stdarg.h>
@@ -8,25 +8,14 @@ using namespace std;
 
 KAI_BEGIN
 
-void RhoLexer::AddKeyWords() 
+void TauLexer::AddKeyWords()
 {
-	keyWords["if"] = Enum::If;
-	keyWords["else"] = Enum::Else;
-	keyWords["for"] = Enum::For;
-	keyWords["true"] = Enum::True;
-	keyWords["false"] = Enum::False;
-	keyWords["return"] = Enum::Return;
-	keyWords["self"] = Enum::Self;
-	keyWords["fun"] = Enum::Fun;
-	keyWords["yield"] = Enum::Yield;
-	keyWords["in"] = Enum::In;
-	keyWords["while"] = Enum::While;
-	keyWords["assert"] = Enum::Assert;
-	keyWords["pi"] = Enum::ToPi;
-	keyWords["pi{"] = Enum::PiSequence;
+	keyWords["class"] = Enum::Class;
+	keyWords["sync"] = Enum::Sync;
+	keyWords["Proxy"] = Enum::Proxy;
 }
 
-bool RhoLexer::NextToken()
+bool TauLexer::NextToken()
 {
 	char current = Current();
 	if (current == 0)
@@ -45,10 +34,11 @@ bool RhoLexer::NextToken()
 	case '}': return Add(Enum::CloseBrace);
 	case '(': return Add(Enum::OpenParan);
 	case ')': return Add(Enum::CloseParan);
+	case ',': return Add(Enum::Comma);
 	//case ':': return Add(Enum::Colon);
+			/*
 	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
 	case '@': return Add(Enum::Lookup);
-	case ',': return Add(Enum::Comma);
 	case '*': return Add(Enum::Mul);
 	case '[': return Add(Enum::OpenSquareBracket);
 	case ']': return Add(Enum::CloseSquareBracket);
@@ -99,6 +89,7 @@ bool RhoLexer::NextToken()
 			return Add(Enum::Comment, offset - start);
 		}
 		return Add(Enum::Divide);
+			 */
 	}
 
 	LexError("Unrecognised %c");
@@ -106,7 +97,7 @@ bool RhoLexer::NextToken()
 	return false;
 }
 
-void RhoLexer::Terminate()
+void TauLexer::Terminate()
 {
 	Add(Enum::None, 0);
 }

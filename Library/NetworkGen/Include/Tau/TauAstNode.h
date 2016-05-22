@@ -2,7 +2,6 @@
 
 #include <KAI/Language/Common/AstNodeBase.h>
 #include "KAI/Language/Tau/TauToken.h"
-#include "TauToken.h"
 
 KAI_BEGIN
 
@@ -16,7 +15,6 @@ struct TauAstEnumType
 		Class = 3,
 		Ctor = 4,
 		Dtor = 5,
-
 	};
 
 	struct Node : AstNodeBase<TauToken, TauAstEnumType>

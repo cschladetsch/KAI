@@ -1,7 +1,7 @@
 #pragma once
 
 #include "KAI/Language/Rho/RhoAstNode.h"
-#include "KAI/Language/Rho/RhoLexer.h"
+#include "KAI/Language/Rho/TauLexer.h"
 
 KAI_BEGIN
 

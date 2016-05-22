@@ -1,25 +1,21 @@
 #pragma once
 
-#include "KAI/Network/Config.h"
 #include "KAI/Network/NetHandle.h"
-#include "Network.h"
+#include "KAI/Network/Representative.h"
+#include "KAI/Network/FwdDeclarations.h"
+#include "KAI/Network/NetObject.h"
 
 KAI_NET_BEGIN
 
-template <class T>
-struct AgentBase : AgentCommon
+struct AgentBase : Representative
 {
-	typedef T  Servant;
-
-	AgentBase(Node &node, Pointer<Servant> server)
-		: AgentCommon(node, server)
-	{
+	AgentBase(Node &node, NetObject servant)
+		: Representative(node, servant.GetNetHandle())
+	{ 
 	}
 
-	Future Respond(NetHandle handle, TypeNumber ty, Object request);
-
-private:
-	Pointer<Servant> _servant;
+protected:
+//	using Representative::_object;
 };
 
 KAI_NET_END

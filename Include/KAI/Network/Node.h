@@ -18,17 +18,19 @@ struct Node
 
 	void Connect(IpAddress const &, int port);
 
-	Future Send(NetHandle, Object);
+	template <class T = void>
+	Future<T> Send(NetHandle, Object);
 
-	Future Receive(NetHandle, Object);
+	template <class T = void>
+	Future<T> Receive(NetHandle, Object);
 
 private:
 	std::shared_ptr<Registry> _reg;
 	std::shared_ptr<boost::asio::io_service> _io;
 
 private:
-	typedef std::unordered_map<NetHandle, std::shared_ptr<ProxyCommon>, HashNetHandle> Proxies;
-	typedef std::unordered_map<NetHandle, std::shared_ptr<AgentCommon>, HashNetHandle> Agents;
+	typedef std::unordered_map<NetHandle, std::shared_ptr<ProxyBase>, HashNetHandle> Proxies;
+	typedef std::unordered_map<NetHandle, std::shared_ptr<AgentBase>, HashNetHandle> Agents;
 
 	Agents _agents;
 	Proxies _proxies;
