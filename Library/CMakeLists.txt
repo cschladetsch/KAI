@@ -9,5 +9,8 @@ endforeach()
 # language libs are a bit different
 include(${KAI_ROOT_SOURCE_DIR}/Library/Language/CMakeLists.txt)
 
+
+#include(${KAI_ROOT_SOURCE_DIR}/Library/NetworkGen/CMakeLists.txt)
+
 #$
 

@@ -2,7 +2,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Language/Common/TokenBase.h>
-#include "TauAstNode.h"
+
 
 KAI_BEGIN
 
@@ -36,6 +36,9 @@ struct TauTokenEnumType
 		QuotedIdent = 28,
 		Array = 29,
 		Container = 30,
+		Sync = 31,
+		Class = 32,
+		Comma = 33,
 	};
 
 	struct Type : TokenBase<TauTokenEnumType>

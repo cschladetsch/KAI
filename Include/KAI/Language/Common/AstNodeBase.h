@@ -1,6 +1,12 @@
 #pragma once
 
+#include <memory>
+#include <vector>
+#include <string>
+#include <sstream>
+
 #include "KAI/Core/Config/Base.h"
+#include "KAI/Core/Object.h"
 #include "KAI/Language/Common/AstNodeBase.h"
 
 KAI_BEGIN
@@ -25,7 +31,7 @@ public:
 
 	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
 
-	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q) { }
+//	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q) { }
 
 	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
 
@@ -86,7 +92,7 @@ protected:
 	Enum _astType;
 	Token _token;
 	ChildrenType _children;
-	Object _object;
+//	Object _object;
 
 private:
 	void PrintTree(std::ostream &out, int level, Self const &self)

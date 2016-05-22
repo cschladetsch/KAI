@@ -1,14 +1,14 @@
-#include "KAI/Language/Rho/TauToken.h"
+#include "Tau/TauToken.h"
 
 KAI_BEGIN
 
-const char *RhoTokenEnumType::ToString(Enum val)
+const char *TauTokenEnumType::ToString(Enum val)
 {
 	switch (val)
 	{
-		#define CASE(N) case RhoTokens::N : return #N;
-		#define CASE_LOWER(N) case RhoTokens::N : return ToLower(#N);
-		#define CASE_REPLACE(N, M) case RhoTokens::N : return M;
+		#define CASE(N) case TauTokens::N : return #N;
+		#define CASE_LOWER(N) case TauTokens::N : return ToLower(#N);
+		#define CASE_REPLACE(N, M) case TauTokens::N : return M;
 
 		CASE(None)
 		CASE(Whitespace)
@@ -76,17 +76,17 @@ const char *RhoTokenEnumType::ToString(Enum val)
 	return "Unnamed";
 }
 
-std::ostream &operator<<(std::ostream &out, RhoToken const &node)
+std::ostream &operator<<(std::ostream &out, TauToken const &node)
 {
-	if (node.type == RhoTokenEnumType::None)
+	if (node.type == TauTokenEnumType::None)
 		return out;
 
-	out << RhoTokenEnumType::ToString(node.type);
+	out << TauTokenEnumType::ToString(node.type);
 	switch (node.type)
 	{
-	case RhoTokenEnumType::Int:
-	case RhoTokenEnumType::String:
-	case RhoTokenEnumType::Ident:
+	case TauTokenEnumType::Int:
+	case TauTokenEnumType::String:
+	case TauTokenEnumType::Ident:
 		out << "=" << node.Text();
 	}
 
