@@ -1,12 +1,12 @@
 #pragma once
 
-#include "KAI/Net/Net.h"
-
 #include <memory>
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/bind.hpp>
+
+#include "KAI/Network/Network.h"
 
 KAI_NET_BEGIN
 
@@ -15,9 +15,11 @@ struct Node
 	Node();
 
 	void Listen(int listen);
+
 	void Connect(IpAddress const &, int port);
 
 	Future Send(NetHandle, Object);
+
 	Future Receive(NetHandle, Object);
 
 private:
@@ -30,7 +32,7 @@ private:
 
 	Agents _agents;
 	Proxies _proxies;
-
 };
 
 KAI_NET_END
+
