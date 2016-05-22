@@ -1,4 +1,8 @@
+#include <KAI/Core/FunctionBase.h>
+#include <KAI/Core/BuiltinTypes/Void.h>
+#include <KAI/Core/Object/Class.h>
 #include "TestBase.h"
+#include "KAI/Core/Detail/Function.h"
 
 using namespace kai;
 using namespace std;
@@ -67,11 +71,11 @@ struct FunctionTest : public ::testing::Test
 protected:
 	virtual void SetUp()
 	{
-		_reg.AddClass<void>("void");
-		_reg.AddClass<int>("int");
-		_reg.AddClass<String>("String");
-		_reg.AddClass<Stack>("stack");
-		_reg.AddClass<BasePointer<FunctionBase> >("Function");
+		_reg.AddClass<void>(Label("void"));
+		_reg.AddClass<int>(Label("int"));
+		_reg.AddClass<String>(Label("String"));
+		_reg.AddClass<Stack>(Label("stack"));
+		_reg.AddClass<BasePointer<FunctionBase> >(Label("Function"));
 		auto n = _reg.New<int>();
 		_stack = _reg.New<Stack>();
 		std::fill(called, called + sizeof(called) / sizeof(called[0]), false);
@@ -87,7 +91,7 @@ protected:
 
 TEST_F(FunctionTest, TestConstruction)
 {
-	FunctionBase *vf0 = MakeFunction(VF0, "VF0");
+	FunctionBase *vf0 = MakeFunction(VF0, Label("VF0"));
 	FunctionBase *vf1 = MakeFunction(VF1);
 	FunctionBase *vf2 = MakeFunction(VF2);
 	FunctionBase *vf3 = MakeFunction(VF3);

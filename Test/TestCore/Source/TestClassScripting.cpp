@@ -1,6 +1,6 @@
 #include "TestBase.h"
-#include "KAI/BuiltinTypes/List.h"
-#include "KAI/Console.h"
+#include "KAI/Core/BuiltinTypes/List.h"
+#include "KAI/Console/Console.h"
 
 using namespace kai;
 using namespace std;

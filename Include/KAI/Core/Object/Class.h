@@ -270,12 +270,12 @@ public:
 	}
 };
 
-template <class T>
-Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
-{
-	auto klass = new Class<T>(name);
-	return R.AddClass(Type::Traits<T>::Number, klass);
-}
+	template <class T>
+	Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
+	{
+		auto klass = new Class<T>(name);
+		return R.AddClass(Type::Traits<T>::Number, klass);
+	}
 
 	template <class T>
 	Storage<T> *Clone(StorageBase const &Q)

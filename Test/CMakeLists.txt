@@ -11,6 +11,6 @@ endforeach()
 #    add_network_test({$test} ${partner})
 #endforeach()
 
-
+include(Test/TestCore/CMakeLists.txt)
 
 #$

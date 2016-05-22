@@ -49,23 +49,8 @@ endmacro()
 
 #
 #include the projects
-<<<<<<< HEAD
-include(Projects/Library/CMakeLists.txt)
-include(Projects/Executor/CMakeLists.txt)
-
-# REPL console
-include(Projects/Console/CMakeLists.txt)
-
-# and tests
-include(Tests/TestLibrary/CMakeLists.txt)
-include(Tests/TestExecutor/CMakeLists.txt)
-include(Tests/TestConsole/CMakeLists.txt)
-#include(Tests/TestNetworkGen/CMakeLists.txt)
-#include(Tests/TestNetwork/CMakeLists.txt)
-=======
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)
->>>>>>> 6261f820c68e82a073f92add07ca310635ef70c6
 
 #$
