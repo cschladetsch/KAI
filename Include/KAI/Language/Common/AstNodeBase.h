@@ -56,7 +56,7 @@ public:
 	{
 		std::stringstream out;
 #ifdef KAI_TRACE_VERBOSE
-		out << "(AstNode " << KAI_NAMESPACE(ToString(type)) << ", token:" << token << ")";
+		out << "(AstNode " << AstEnumType::ToString(_astType)  << ", token:" << _token.ToString() << ")";
 #else
 		out << AstEnumType::ToString(_astType) << ": " << _token.ToString() << std::ends;
 		return std::move(out.str());
