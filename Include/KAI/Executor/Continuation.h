@@ -60,7 +60,7 @@ public:
 
 	Pointer<const Array> GetCode() const { return code; }
 
-	void AddArg(Label const &arg);// { args->Append(New(arg)); }
+	void AddArg(Label const &arg) { args->Append(New(arg)); }
 
 	Code &GetCode() { return code; }
 
