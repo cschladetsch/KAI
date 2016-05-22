@@ -1,17 +1,17 @@
-#include "TestBase.h"
-#include "KAI/Console.h"
+#include "Main.h"
 
 using namespace kai;
 using namespace std;
 
-TEST(TestPiScripting, TestAssignment)
+TEST(TestPi, TestAssignment)
 {
 	Console console;
 	console.SetLanguage(Language::Pi);
 	console.Execute("'a 1 :=");
 
 	Object root = console.GetRoot();
-	ASSERT_TRUE(root.HasChild("a"));
-	ASSERT_EQ(Deref<int>(root.GetChild("a")), 3);
+	Label name("a");
+	ASSERT_TRUE(root.HasChild(name));
+	ASSERT_EQ(Deref<int>(root.GetChild(name)), 3);
 }
 
