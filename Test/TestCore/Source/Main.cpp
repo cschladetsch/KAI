@@ -1,6 +1,4 @@
-#include "../../TestBase.h"
-
-#include <string>
+#include "TestBase.h"
 
 using namespace std;
 using namespace kai;

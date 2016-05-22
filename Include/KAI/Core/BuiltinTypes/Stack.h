@@ -5,6 +5,8 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/Container.h>
+#include "KAI/Core/Exception/ExceptionBase.h"
+#include "KAI/Core/Exception/ExceptionMacros.h"
 
 KAI_BEGIN
 
@@ -23,17 +25,6 @@ private:
 public:
 	friend bool operator==(const Stack &A, const Stack &B) { return A.stack == B.stack; }
 	friend bool operator<(const Stack &A, const Stack &B) { return A.stack < B.stack; }
-
-	void Invke(Object &Q, Stack &)
-	{
-		KAI_NOT_IMPLEMENTED();
-	}
-
-	void ConstInvke(const Object &Q, Stack &) const
-	{
-		KAI_NOT_IMPLEMENTED();
-	}
-
 
 	bool Destroy();
 
