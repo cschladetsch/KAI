@@ -21,7 +21,7 @@ struct ProcessCommon : Process
 		return _reg.New<T>(val);
 	}
 
-	ProcessCommon() : _reg(*std::shared_ptr<Registry>()) { }
+//	ProcessCommon() : _reg(*std::shared_ptr<Registry>()) { }
 	ProcessCommon(Registry &r) : _reg(r) { }
 
 protected:

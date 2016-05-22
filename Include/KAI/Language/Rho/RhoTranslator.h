@@ -22,6 +22,7 @@ public:
 
 protected:
 	virtual void TranslateNode(AstNodePtr node) override;
+	using Parent::_reg;
 
 private:
 	void TranslateToken(AstNodePtr node);

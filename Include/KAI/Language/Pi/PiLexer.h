@@ -12,7 +12,7 @@ public:
 	typedef Parent Lexer;
 	typedef TokenBase<PiTokenEnumType> TokenNode;
 
-	PiLexer(const char *text) : Parent(text) { }
+	PiLexer(const char *text, Registry &r) : Parent(text, r) { }
 
 	void AddKeyWords() override;
 	bool NextToken() override ;
@@ -20,6 +20,9 @@ public:
 
 private:
 	bool QuotedIdent();
+
+protected:
+	using Parent::_reg;
 };
 
 KAI_END
