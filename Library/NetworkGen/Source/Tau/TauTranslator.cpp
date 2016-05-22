@@ -3,15 +3,15 @@
 
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Executor/Executor.h"
-#include "KAI/Language/Rho/Rho.h"
-#include "KAI/Language/Rho/TauTranslator.h"
+#include "Tau/Tau.h"
+#include "Tau/TauTranslator.h"
 
 
 KAI_BEGIN
 
 #pragma warning (disable:4063)
 
-void RhoTranslator::TranslateToken(AstNodePtr node)
+void TauTranslator::TranslateToken(AstNodePtr node)
 {
 	switch (node->GetToken().type)
 	{
@@ -129,7 +129,7 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 	KAI_NOT_IMPLEMENTED();
 }
 
-void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
+void TauTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 {
 	TranslateNode(node->GetChild(0));
 	TranslateNode(node->GetChild(1));
@@ -137,7 +137,7 @@ void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 	AppendNew<Operation>(Operation(op));
 }
 
-void RhoTranslator::TranslateNode(AstNodePtr node)
+void TauTranslator::TranslateNode(AstNodePtr node)
 {
 	if (!node)
 	{
@@ -207,13 +207,13 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 	KAI_NOT_IMPLEMENTED();
 }
 
-void RhoTranslator::TranslateBlock(AstNodePtr node)
+void TauTranslator::TranslateBlock(AstNodePtr node)
 {
 	for (auto st : node->GetChildren())
 		TranslateNode(st);
 }
 
-void RhoTranslator::TranslateFunction(AstNodePtr node)
+void TauTranslator::TranslateFunction(AstNodePtr node)
 {
 	// child 0: ident
 	// child 1: args
@@ -236,7 +236,7 @@ void RhoTranslator::TranslateFunction(AstNodePtr node)
 	AppendOp(Operation::Store);
 }
 
-void RhoTranslator::TranslateCall(AstNodePtr node)
+void TauTranslator::TranslateCall(AstNodePtr node)
 {
 	typename AstNode::ChildrenType const &children = node->GetChildren();
 	for (auto a : children[1]->GetChildren())
@@ -249,7 +249,7 @@ void RhoTranslator::TranslateCall(AstNodePtr node)
 		AppendNew(Operation(Operation::Suspend));
 }
 
-void RhoTranslator::TranslateIf(AstNodePtr node)
+void TauTranslator::TranslateIf(AstNodePtr node)
 {
 	typename AstNode::ChildrenType const &ch = node->GetChildren();
 	bool hasElse = ch.size() > 2;
@@ -261,12 +261,12 @@ void RhoTranslator::TranslateIf(AstNodePtr node)
 	AppendOp(hasElse ? Operation::IfThenSuspendElseSuspend : Operation::IfThenSuspend);
 }
 
-void RhoTranslator::TranslateFor(AstNodePtr node)
+void TauTranslator::TranslateFor(AstNodePtr node)
 {
 	AppendOp(Operation::None);
 }
 
-void RhoTranslator::TranslateWhile(AstNodePtr node)
+void TauTranslator::TranslateWhile(AstNodePtr node)
 {
 	AppendOp(Operation::None);
 }

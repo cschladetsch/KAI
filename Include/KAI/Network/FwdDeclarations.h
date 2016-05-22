@@ -8,10 +8,8 @@ struct Address;
 struct NetHandle;
 struct Node;
 struct Representative;
+struct Domain;
 
 KAI_NET_END
-
-
-
 
 

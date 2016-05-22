@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KAI/KAI.h"
+#include "KAI/Core/BuiltinTypes.h"
 
 #ifndef KAI_NET_NAMESPACE_NAME
 #	define KAI_NET_NAMESPACE_NAME net
