@@ -47,8 +47,19 @@ macro(def_library name)
     add_library(${name} ${SOURCE_FILES})
 endmacro()
 
-#
-#include the projects
+macro(create_test name)
+    project(${name})
+
+    set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Test/${name}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+
+    link_directories($ENV{HOME}/lib /usr/local/lib)
+    link_libraries(Executor Core Executor PiLang RhoLang)
+
+    add_executable(${name} ${SOURCE_FILES})
+    target_link_libraries(${name} gtest pthread)
+endmacro()
+
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)

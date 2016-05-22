@@ -1,7 +1,5 @@
-
 #include "TestBase.h"
-#include "KAI/Console.h"
-#include "KAI/Translator/Pi/Pi.h"
+#include "KAI/Console/Console.h"
 
 using namespace kai;
 using namespace std;
@@ -24,18 +22,10 @@ TEST(TestPiExec, ExecArith)
 	auto trans = make_shared<PiTranslator>(r);
 	auto cont = trans->Translate(input, Structure::Sequence);
 	auto code = cont->GetCode();
-	cout << code->Size() << endl;
-	Array::iterator A = code->Begin(), B = code->End();
-	for (; A != B;  ++A)
-		cout << *A << endl;
+	KAI_TRACE_1(code);
 
 	Pointer<Executor> e = r.New<Executor>();
 	e->Continue(cont);
 	auto stack = e->GetDataStack();
 	//ASSERT_EQ(e->GetDataStack())
-
-}
-
-TEST(TestPiExec, TestConsole)
-{
 }

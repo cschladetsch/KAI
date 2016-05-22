@@ -1,4 +1,5 @@
 #include "TestBase.h"
+#include "KAI/Language/Pi/Pi.h"
 
 using namespace kai;
 using namespace std;
@@ -40,7 +41,8 @@ namespace
 			PiTokens::None,
 		};
 
-		auto lex = make_shared<PiLexer>(input);
+		Registry r;
+		auto lex = make_shared<PiLexer>(input, r);
 		lex->Process();
 		auto tokens = lex->GetTokens();
 

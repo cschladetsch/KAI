@@ -1,5 +1,5 @@
 #include "TestBase.h"
-#include "KAI/Registry.h"
+#include "KAI/Language/Pi/Pi.h"
 
 using namespace kai;
 using namespace std;
@@ -11,7 +11,7 @@ namespace
 		auto input = "1";
 		Registry reg;
 
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 
@@ -33,7 +33,7 @@ namespace
 	{
 		auto input = "[[[]]]";
 		Registry reg;
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
@@ -64,7 +64,7 @@ namespace
 		auto input = "{ [ 1 2 3 ] 'a # }";
 		Registry reg;
 
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
@@ -82,7 +82,7 @@ namespace
 	{
 		auto input = "[";
 		Registry reg;
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
@@ -101,7 +101,7 @@ namespace
 		auto input = "[[]";
 		Registry reg;
 
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
@@ -120,7 +120,7 @@ namespace
 		auto input = "]";
 		Registry reg;
 
-		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input);
+		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		KAI_TRACE_1(lex->Print());
 		if (lex->Failed)
