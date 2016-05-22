@@ -1,10 +1,10 @@
 #include <KAI/Language/Common/ParserCommon.h>
 #include <KAI/Language/Common/Structure.h>
-#include <KAI/Language/Rho/TauParser.h>
+#include <Tau/TauParser.h>
 
 KAI_BEGIN
 
-void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	current = 0;
 	indent = 0;
@@ -24,7 +24,7 @@ void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 	Run(Structure::Program);
 }
 
-void RhoParser::Run(Structure st)
+void TauParser::Run(Structure st)
 {
 	switch (st)
 	{
@@ -58,7 +58,7 @@ void RhoParser::Run(Structure st)
 		Fail("Internal error: Stack not empty after parsing");
 }
 
-bool RhoParser::Program()
+bool TauParser::Program()
 {
 	while (!Try(TokenType::None) && !Failed)
 	{
@@ -69,13 +69,13 @@ bool RhoParser::Program()
 	return true;
 }
 
-void RhoParser::Function(AstNodePtr node)
+void TauParser::Function(AstNodePtr node)
 {
 	ConsumeNewLines();
 
 	Expect(TokenType::Fun);
 	Expect(TokenType::Ident);
-	RhoToken name = Last();
+	TauToken name = Last();
 	std::shared_ptr<AstNode> fun = NewNode(AstEnum::Function);
 	fun->Add(name);
 	Expect(TokenType::OpenParan);
@@ -99,7 +99,7 @@ void RhoParser::Function(AstNodePtr node)
 	node->Add(fun);
 }
 
-void RhoParser::Block(AstNodePtr node)
+void TauParser::Block(AstNodePtr node)
 {
 	ConsumeNewLines();
 
@@ -143,7 +143,7 @@ void RhoParser::Block(AstNodePtr node)
 	}
 }
 
-bool RhoParser::Statement(AstNodePtr block)
+bool TauParser::Statement(AstNodePtr block)
 {
 	switch (Current().type)
 	{
@@ -212,7 +212,7 @@ finis:
 	return true;
 }
 
-bool RhoParser::Expression()
+bool TauParser::Expression()
 {
 	bool paran = Try(TokenType::OpenParan);
 	if (paran)
@@ -246,7 +246,7 @@ bool RhoParser::Expression()
 	return true;
 }
 
-bool RhoParser::Logical()
+bool TauParser::Logical()
 {
 	if (!Relational())
 		return false;
@@ -265,7 +265,7 @@ bool RhoParser::Logical()
 	return true;
 }
 
-bool RhoParser::Relational()
+bool TauParser::Relational()
 {
 	if (!Additive())
 		return false;
@@ -285,7 +285,7 @@ bool RhoParser::Relational()
 	return true;
 }
 
-bool RhoParser::Additive()
+bool TauParser::Additive()
 {
 	// unary +/- operator
 	if (Try(TokenType::Plus) || Try(TokenType::Minus))
@@ -317,7 +317,7 @@ bool RhoParser::Additive()
 	return true;
 }
 
-bool RhoParser::Term()
+bool TauParser::Term()
 {
 	if (!Factor())
 		return false;
@@ -336,7 +336,7 @@ bool RhoParser::Term()
 	return true;
 }
 
-bool RhoParser::Factor()
+bool TauParser::Factor()
 {
 	if (Try(TokenType::OpenParan))
 	{
@@ -389,7 +389,7 @@ bool RhoParser::Factor()
 //warning C4127: conditional expression is constant
 #pragma warning (disable:4127)
 
-bool RhoParser::ParseFactorIdent()
+bool TauParser::ParseFactorIdent()
 {
 	PushConsume();
 
@@ -419,7 +419,7 @@ bool RhoParser::ParseFactorIdent()
 	return true;
 }
 
-void RhoParser::ParseMethodCall()
+void TauParser::ParseMethodCall()
 {
 	Consume();
 	auto call = NewNode(NodeType::Call);
@@ -450,7 +450,7 @@ void RhoParser::ParseMethodCall()
 		call->Add(Consume());
 }
 
-void RhoParser::ParseGetMember()
+void TauParser::ParseGetMember()
 {
 	Consume();
 	auto get = NewNode(NodeType::GetMember);
@@ -459,7 +459,7 @@ void RhoParser::ParseGetMember()
 	Push(get);
 }
 
-void RhoParser::IfCondition(AstNodePtr block)
+void TauParser::IfCondition(AstNodePtr block)
 {
 	if (!Try(TokenType::If))
 		return;
@@ -497,7 +497,7 @@ void RhoParser::IfCondition(AstNodePtr block)
 	block->Add(cond);
 }
 
-void RhoParser::ParseIndexOp()
+void TauParser::ParseIndexOp()
 {
 	Consume();
 	auto index = NewNode(NodeType::IndexOp);
@@ -513,14 +513,14 @@ void RhoParser::ParseIndexOp()
 	Push(index);
 }
 
-void RhoParser::For(AstNodePtr block)
+void TauParser::For(AstNodePtr block)
 {
 	if (!Try(TokenType::For))
 		return;
 
 	Consume();
 
-	auto f = NewNode(RhoAstNodeEnumType::For);
+	auto f = NewNode(TauAstNodeEnumType::For);
 	if (!Expression())
 	{
 		CreateError("For what?");
@@ -568,7 +568,7 @@ void RhoParser::For(AstNodePtr block)
 	block->Add(f);
 }
 
-void RhoParser::While(AstNodePtr block)
+void TauParser::While(AstNodePtr block)
 {
 	auto w = NewNode(Consume());
 	if (!Expression())
@@ -581,19 +581,19 @@ void RhoParser::While(AstNodePtr block)
 	block->Add(w);
 }
 
-bool RhoParser::CreateError(const char *text)
+bool TauParser::CreateError(const char *text)
 {
 	return Fail(Lexer::CreateErrorMessage(Current(), text));
 }
 
-void RhoParser::AddBlock(AstNodePtr fun)
+void TauParser::AddBlock(AstNodePtr fun)
 {
-	auto block = NewNode(RhoAstNodeEnumType::Block);
+	auto block = NewNode(TauAstNodeEnumType::Block);
 	Block(block);
 	fun->Add(block);
 }
 
-void RhoParser::ConsumeNewLines()
+void TauParser::ConsumeNewLines()
 {
 	while (Try(TokenType::NewLine))
 		Consume();

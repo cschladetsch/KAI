@@ -2,55 +2,19 @@
 
 #include "KAI/Network/Config.h"
 
-#include "boost/date_time/posix_time/posix_time_types.hpp"
-#include "boost/date_time/time_zone_base.hpp"
-#include "boost/date_time/local_time/local_time.hpp"
 #include "NetHandle.h"
+#include "DateTime.h"
+#include "ResponseType.h"
 
 KAI_NET_BEGIN
 
-enum class ResponseType
-{
-	None,
-	Pending,
-	Failed,
-	Delivered,
-	BadRequest,
-	UnkownAgent,
-};
-
-struct DateTime
-{
-	boost::local_time::local_date_time Now;
-
-	void test()
-	{
-		//Now.time_of_day.utc_time;
-	}
-};
-
-struct TimeSpan
-{
-};
-
-struct Message
-{
-	ResponseType ResultType;
-
-	DateTime Sent;
-	DateTime Received;
-
-	NetHandle Sender;
-	NetHandle Recipient;
-
-	Object Request;
-	Object Result;
-};
-
+template <class T = void>
 struct Future
 {
-	bool Arrived;
-	Object Response;
+	ResponseType Response;
+	bool Complete;
+	DateTime When;
+	Pointer<T> Result;
 };
 
 KAI_NET_END
