@@ -1,6 +1,7 @@
 #pragma once
 
 #include "KAI/Language/Common/AstNodeBase.h"
+#include "KAI/Language/Pi/PiToken.h"
 
 KAI_BEGIN
 
