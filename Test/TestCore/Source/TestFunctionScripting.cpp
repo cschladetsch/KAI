@@ -1,6 +1,6 @@
 #include "TestBase.h"
-#include "KAI/Console.h"
-#include "KAI/Function.h"
+#include "KAI/Console/Console.h"
+#include "KAI/Core/Detail/Function.h"
 
 using namespace kai;
 using namespace std;
@@ -44,10 +44,10 @@ TEST(TestFunctionScripting, Test)
 	//Registry &reg = console.GetRegistry();
 
 	// add general functions to the root of the tree
-	AddFunction(root, Function_0, "Function0"); 
-	AddFunction(root, Function_1, "Function1"); 
-	AddFunction(root, Function_2, "Function2");
-	AddFunction(root, Function_3, "Function3");
+	AddFunction(root, Function_0, Label("Function0"));
+	AddFunction(root, Function_1, Label("Function1"));
+	AddFunction(root, Function_2, Label("Function2"));
+	AddFunction(root, Function_3, Label("Function3"));
 
 	// invoke the functions; take copies of the resultant stacks after each function completes
 	console.Execute("Function0();");

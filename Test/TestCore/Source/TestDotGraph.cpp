@@ -1,7 +1,8 @@
 #include "TestBase.h"
-#include "KAI/Tree.h"
-#include "KAI/DotGraph.h"
-#include "KAI/BuiltinTypes/List.h"
+#include "KAI/Core/Tree.h"
+#include "KAI/Core/DotGraph.h"
+#include "KAI/Core/Object/ClassBuilder.h"
+#include "KAI/Core/BuiltinTypes.h"
 
 using namespace kai;
 using namespace std;
@@ -38,8 +39,8 @@ TEST(TestDotGraph, Test)
 	Pointer<TestOwned> to = R.New<TestOwned>();
 	Pointer<int> n = R.New<int>();
 
-	root.SetChild("test_owned", to);
-	root.SetChild("n", n);
+	root.SetChild(Label("test_owned"), to);
+	root.SetChild(Label("n"), n);
 
 	to->list = R.New<List>();
 	to->list->PushBack(R.New(42));

@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.4)
 
-project(TestLibrary)
+project(TestCore)
 
-set(SOURCE_ROOT ${KAI_HOME}/Tests/TestLibrary/Source/*.cpp)
+set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Test/TestCore/Source/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
-add_executable(TestLibrary ${SOURCE_FILES} ../../Include/KAI/KAI.h)
+link_directories($ENV{HOME}/lib /usr/local/lib)
+link_libraries(Executor Core Executor PiLang RhoLang)
 
-target_link_libraries(TestLibrary gtest pthread)
-link_libraries(TestLibrary Library)
+add_executable(TestCore ${SOURCE_FILES})
+target_link_libraries(TestCore gtest pthread)
 
 
