@@ -97,6 +97,8 @@ public:
 		return NewClass<T>(*this, N);
 	}
 
+
+
 	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
 
 	/// create a new instance of a given known type
@@ -311,6 +313,7 @@ void SetProperty(Object const &owner, Label const &name, T const &value)
 {
 	SetPropertyValue(owner, name, owner.GetRegistry()->New(value));
 }
+
 
 KAI_END
 

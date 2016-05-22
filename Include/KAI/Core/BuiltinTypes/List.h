@@ -75,7 +75,7 @@ public:
 
 StringStream &operator<<(StringStream &, const List &);
 BinaryStream &operator<<(BinaryStream &, const List &);
-BinaryPacket &operator>>(BinaryPacket &, List &);
+BinaryStream &operator>>(BinaryStream &, List &);
 
 HashValue GetHash(const List &A);
 

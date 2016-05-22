@@ -1,4 +1,5 @@
 #pragma once
 
-#include "../../TestBase.h"
+#include "KAI/Executor/Executor.h"
+#include <gtest/gtest.h>
 
