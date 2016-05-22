@@ -17,6 +17,9 @@ class RhoLang : Lang<RhoTranslator>
 	Pointer<Continuation> TranslateFile(const char *name, Structure st = Structure::Program);
 
 	void Print();
+
+protected:
+	using Parent::reg;
 };
 
 KAI_END

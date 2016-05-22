@@ -9,6 +9,7 @@ enum class Structure
 	Sequence,
 	Modulue,
 	Statement,
+	Function,
 	Expression,
 	Program,
 };

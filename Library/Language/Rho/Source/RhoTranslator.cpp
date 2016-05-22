@@ -1,8 +1,11 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
+#include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Executor/Executor.h"
 #include "KAI/Language/Rho/Rho.h"
+#include "KAI/Language/Rho/RhoTranslator.h"
+
 
 KAI_BEGIN
 
@@ -93,19 +96,19 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 		return;
 
 	case TokenEnum::Int:
-		Append(reg.New<int>(boost::lexical_cast<int>(node->GetTokenText())));
+		Append(_reg.New<int>(boost::lexical_cast<int>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::Float:
-		Append(reg.New<float>(boost::lexical_cast<float>(node->GetTokenText())));
+		Append(_reg.New<float>(boost::lexical_cast<float>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::String:
-		Append(reg.New<String>(node->Text()));
+		Append(_reg.New<String>(node->Text()));
 		return;
 
 	case TokenEnum::Ident:
-		Append(reg.New<Label>(Label(node->Text())));
+		Append(_reg.New<Label>(Label(node->Text())));
 		return;
 
 	case TokenEnum::Yield:

@@ -23,7 +23,7 @@ struct TranslatorBase : TranslatorCommon
 		if (text == 0 || text[0] == 0)
 			return Object();
 
-		auto lex = std::make_shared<Lexer>(text);
+		auto lex = std::make_shared<Lexer>(text, _reg);
 		lex->Process();
 		if (lex->GetTokens().empty())
 			return Object();
