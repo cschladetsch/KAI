@@ -1,18 +1,19 @@
 #pragma once
 
-#include "KAI/Net/Net.h"
+#include "KAI/Core/Object/Handle.h"
+#include "KAI/Network/Address.h"
 
 KAI_NET_BEGIN
 
 struct NetHandle
 {
-	MacAddress MacAddress;
-	Handle Handle;
+	MacAddress LocalMacAddress;
+	Handle LocalHandle;
 	int TypeNumber;
 
 	friend bool operator==(NetHandle const &A, NetHandle const & B)
 	{
-		return A.MacAddress == B.MacAddress && A.Handle == B.Handle && A.TypeNumber == B.TypeNumber;
+		return A.LocalMacAddress == B.LocalMacAddress && A.LocalHandle == B.LocalHandle && A.TypeNumber == B.TypeNumber;
 	}
 };
 
@@ -20,7 +21,7 @@ struct HashNetHandle
 {
 	size_t operator()(NetHandle const &h) const
 	{
-		return h.MacAddress.Hash() ^ h.Handle.GetValue() ^ h.TypeNumber;
+		return h.LocalMacAddress.Hash() ^ h.LocalHandle.GetValue() ^ h.TypeNumber;
 	}
 };
 

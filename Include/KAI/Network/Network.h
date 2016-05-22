@@ -1,5 +1,14 @@
 #pragma once
 
-KAI_NET_BEGIN
 
-KAI_NET_END
+#include "KAI/Network/Config.h"
+#include "KAI/Network/Address.h"
+#include "KAI/Network/NetHandle.h"
+#include "KAI/Network/Future.h"
+#include "KAI/Network/Connection.h"
+#include "KAI/Network/Representative.h"
+#include "KAI/Network/ProxyCommon.h"
+#include "KAI/Network/AgentCommon.h"
+#include "KAI/Network/Node.h"
+#include "KAI/Network/ProxyBase.h"
+#include "KAI/Network/AgentBase.h"

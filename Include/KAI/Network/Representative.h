@@ -1,6 +1,8 @@
 #pragma once
 
-#include "KAI/Net/Base.h"
+#include "KAI/Network/Config.h"
+#include "KAI/Network/FwdDeclarations.h"
+#include "KAI/Network/NetHandle.h"
 
 KAI_NET_BEGIN
 
@@ -12,7 +14,7 @@ struct Representative : Reflected
 	NetHandle Handle;
 
 	Representative(Node &node, Object const &ob)
-		: _node(node), _netHandle(GetNetHandle(ob, node))
+		: _node(node), _netHandle(GetNetHandle(ob, node)), _object(ob)
 	{
 	}
 
@@ -22,6 +24,7 @@ struct Representative : Reflected
 protected:
 	Node &_node;
 	NetHandle _netHandle;
+	Object _object;
 };
 
 KAI_NET_END

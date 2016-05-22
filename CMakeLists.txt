@@ -12,7 +12,7 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 #add_definitions(-DKAI_POINTER_HAS_STORAGEBASE)
 #add_definitions(-DKAI_USE_EXCEPTIONS)
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -fpermissive -Wno-deprecated")
+set(CMAKE_CXX_FLAGS "-std=c++1y -Wno-deprecated")
 
 set(KAI_HOME $ENV{HOME}/dev/KAI)
 set(PROJECTS_HOME ${KAI_HOME}/Projects)
