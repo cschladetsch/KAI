@@ -1,5 +1,6 @@
 #include "TestBase.h"
-#include "KAI/Translator/Language.h"
+#include <KAI/Console/Console.h>
+//#include "KAI/Language/Pi/Pi.h"
 
 KAI_BEGIN
 
