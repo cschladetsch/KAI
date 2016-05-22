@@ -16,7 +16,7 @@ class LexerBase: public ProcessCommon
 public:
 	typedef std::vector<std::string> Lines;
 
-	LexerBase(const char *);
+	LexerBase(const char *, Registry &r);
 
 	const std::string &GetLine(size_t n) const
 	{
@@ -40,6 +40,7 @@ protected:
 	Lines lines;
 	std::string input;
 	int offset, lineNumber;
+	using ProcessCommon::_reg;
 
 	void CreateLines();
 	bool LexString();

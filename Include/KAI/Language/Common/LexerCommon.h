@@ -30,7 +30,7 @@ public:
 	typedef std::map<std::string, Enum> Keywords;
 #endif
 
-	LexerCommon(const char *input) : LexerBase(input) { }
+	LexerCommon(const char *input, Registry &r) : LexerBase(input, r) { }
 
 	void Process()
 	{
@@ -48,6 +48,7 @@ public:
 protected:
 	Tokens tokens;
 	Keywords keyWords;
+	using LexerBase::_reg;
 
 	bool Run()
 	{

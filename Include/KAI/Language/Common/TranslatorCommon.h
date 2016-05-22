@@ -58,6 +58,7 @@ public:
 
 protected:
 	std::vector<Pointer<Continuation> > stack;
+	using ProcessCommon::_reg;
 };
 
 KAI_END
