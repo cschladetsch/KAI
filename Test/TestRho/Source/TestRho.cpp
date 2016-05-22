@@ -1,10 +1,9 @@
-#include "TestBase.h"
-#include "KAI/Console.h"
+#include "Main.h"
 
 using namespace kai;
 using namespace std;
 
-TEST(TestRhoScripting, TestAssignment)
+TEST(TestRho, TestAssignment)
 {
 	Console console;
 	console.SetLanguage(Language::Rho);
