@@ -53,7 +53,7 @@ public:
 	Pointer<Compiler> GetCompiler() const { return compiler; }
 
 	Pointer<Continuation> Compile(const char *, Structure);
-	void Execute(const String &text, Structure st = (Structure) Structure::Statement);
+	void Execute(const String &text, Structure st = Structure::Statement);
 	void ExecuteFile(const char *);
 	void Execute(Pointer<Continuation> cont);
 

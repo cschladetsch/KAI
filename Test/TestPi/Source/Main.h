@@ -1,8 +1,6 @@
-//
-// Created by christian on 22/05/16.
-//
+#pragma once
 
-#ifndef CONSOLE_MAIN_H
-#define CONSOLE_MAIN_H
+#include "KAI/Core/BuiltinTypes.h"
+#include "KAI/Console/Console.h"
+#include <gtest/gtest.h>
 
-#endif //CONSOLE_MAIN_H

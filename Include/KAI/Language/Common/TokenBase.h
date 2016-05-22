@@ -35,7 +35,7 @@ public:
 	{
 		std::stringstream out;
 #ifdef KAI_TRACE_VERBOSE
-		out << "[Token " << KAI_NAMESPACE(ToString(type)) << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
+		out << "[Token " << EEnumType::ToString(type)  << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
 		out << EEnumType::ToString(type) << "'" << lexer->GetString(slice) << "'";
 #endif
