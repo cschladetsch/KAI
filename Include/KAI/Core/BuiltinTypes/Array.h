@@ -59,7 +59,7 @@ public:
 
 StringStream &operator<<(StringStream &, const Array &);
 BinaryStream &operator<<(BinaryStream &, const Array &);
-BinaryPacket &operator>>(BinaryPacket &, Array &);
+BinaryStream &operator>>(BinaryStream &, Array &);
 
 HashValue GetHash(const Array &A);
 
