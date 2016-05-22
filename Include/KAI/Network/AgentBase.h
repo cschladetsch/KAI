@@ -1,7 +1,8 @@
 #pragma once
 
-#include "KAI/Net/Base.h"
-#include "KAI/Net/NetHandle.h"
+#include "KAI/Network/Config.h"
+#include "KAI/Network/NetHandle.h"
+#include "Network.h"
 
 KAI_NET_BEGIN
 
@@ -10,15 +11,15 @@ struct AgentBase : AgentCommon
 {
 	typedef T  Servant;
 
-	AgentBase(Node &node, std::shared_ptr<Servant> server)
-		: AgentCommon(node), _server(server)
+	AgentBase(Node &node, Pointer<Servant> server)
+		: AgentCommon(node, server)
 	{
 	}
 
 	Future Respond(NetHandle handle, TypeNumber ty, Object request);
 
 private:
-	std::shared_ptr<Servant> _servant;
+	Pointer<Servant> _servant;
 };
 
 KAI_NET_END

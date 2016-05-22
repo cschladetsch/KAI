@@ -1,4 +1,4 @@
-#include "KAI/Net/Net.h"
+#include "KAI/Network/ProxyCommon.h"
 
 KAI_NET_BEGIN
 

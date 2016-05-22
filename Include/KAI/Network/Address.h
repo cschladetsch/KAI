@@ -1,6 +1,7 @@
 #pragma once
 
-#include "KAI/Net.h"
+#include <string>
+#include "KAI/Network/Config.h"
 
 KAI_NET_BEGIN
 
@@ -24,8 +25,6 @@ private:
 	std::string _text;
 };
 
-
-
 struct IpAddress
 {
 	const std::string &Text() const;
@@ -38,3 +37,4 @@ struct IpAddress
 };
 
 KAI_NET_END
+
