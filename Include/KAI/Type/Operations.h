@@ -1,5 +1,0 @@
-#pragma once
-
-KAI_TYPE_BEGIN
-
-KAI_TYPE_END

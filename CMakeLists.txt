@@ -31,7 +31,25 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
+macro(def_lang_library name)
+    project(${name}Lang)
+    set(lang_root ${KAI_ROOT_SOURCE_DIR}/Library/Language/${name})
+    include_directories(${lang_root}/include)
+    set(SOURCE_ROOT ${lang_root}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+    add_library(${name}Lang ${SOURCE_FILES})
+endmacro()
+
+macro(def_library name)
+    project(${name})
+    set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Library/${name}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+    add_library(${name} ${SOURCE_FILES})
+endmacro()
+
+#
 #include the projects
+<<<<<<< HEAD
 include(Projects/Library/CMakeLists.txt)
 include(Projects/Executor/CMakeLists.txt)
 
@@ -44,4 +62,10 @@ include(Tests/TestExecutor/CMakeLists.txt)
 include(Tests/TestConsole/CMakeLists.txt)
 #include(Tests/TestNetworkGen/CMakeLists.txt)
 #include(Tests/TestNetwork/CMakeLists.txt)
+=======
+include(Library/CMakeLists.txt)
+include(Test/CMakeLists.txt)
+include(App/CMakeLists.txt)
+>>>>>>> 6261f820c68e82a073f92add07ca310635ef70c6
 
+#$
