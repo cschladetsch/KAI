@@ -35,6 +35,14 @@ protected:
 		return ConstDeref<Continuation>(_context->At(0));
 	}
 
+	template <class T>
+	void AsssertResult(const char *text, T const &val)
+	{
+		_data->Clear();
+		_console->Execute(text);
+		ASSERT_EQ(AtData<T>(0), val);
+	}
+
 	unique_ptr<Console> _console;
 	Object _root;
 	Registry *_reg;

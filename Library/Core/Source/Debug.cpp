@@ -28,8 +28,8 @@ namespace debug
 
 	Trace::~Trace()
 	{
-#ifdef KAI_TRACE_VERBOSE
-		std::cerr << file_location.ToString(true).c_str() << ": " << TypeToString(type) << ": " << ToString().c_str() << std::endl;
+#if defined(KAI_TRACE_VERBOSE) || defined(KAI_TRACE_FILE_LOCATION)
+		std::cout << file_location.ToString(true).c_str() << ": " << TypeToString(type) << ": " << ToString().c_str() << std::endl;
 #else
 		auto lead = TypeToString(type);
 		if (lead != 0)
