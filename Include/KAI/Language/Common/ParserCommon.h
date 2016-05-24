@@ -76,7 +76,8 @@ public:
 	std::string PrintTree() const
 	{
 		std::stringstream str;
-		PrintTree(str, 0, root);
+		str << "Parser:" << std::endl;
+		PrintTree(str, 1, root);
 		return std::move(str.str());
 	}
 

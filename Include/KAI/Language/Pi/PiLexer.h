@@ -23,6 +23,8 @@ private:
 
 protected:
 	using Parent::_reg;
+
+	bool ParsePathname();
 };
 
 KAI_END

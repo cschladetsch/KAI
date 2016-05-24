@@ -74,7 +74,6 @@ bool PiParser::NextSingle(AstNodePtr root)
 	case PiTokens::Minus:
 	case PiTokens::Mul:
 	case PiTokens::Divide:
-
 	case PiTokens::PlusAssign:
 	case PiTokens::MinusAssign:
 	case PiTokens::MulAssign:
@@ -83,8 +82,6 @@ bool PiParser::NextSingle(AstNodePtr root)
 		root->Add(Consume());
 		return true;
 	}
-
-	return false;
 }
 
 bool PiParser::ParseArray(AstNodePtr root)
