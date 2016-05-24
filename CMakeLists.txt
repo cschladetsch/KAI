@@ -7,6 +7,8 @@ add_definitions(-DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_USE_EXCEPTIONS)
+add_definitions(-DKAI_TRACE_FILE_LOCATION)
+
 
 #add_definitions(-DKAI_TRACE_VERBOSE)
 
@@ -14,7 +16,7 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 #add_definitions(-DKAI_POINTER_HAS_STORAGEBASE)
 #add_definitions(-DKAI_USE_EXCEPTIONS)
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -Wno-deprecated")
+set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 
 set(KAI_HOME $ENV{HOME}/dev/KAI)
 set(PROJECTS_HOME ${KAI_HOME}/Projects)
