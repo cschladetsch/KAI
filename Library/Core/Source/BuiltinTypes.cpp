@@ -58,7 +58,11 @@ String FileLocation::ToString(bool strip_path) const
 	}
 
 	if (!loc.empty())
+#ifdef __MSVC__
 		S << loc.c_str() << "(" << line << "): ";
+#else
+		S << loc.c_str() << ":" << line << ": ";
+#endif
 
 	if (!function.Empty())
 		S << function << ": ";

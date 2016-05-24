@@ -13,6 +13,7 @@ void PiLexer::AddKeyWords()
 	keyWords["self"] = Enum::Self;
 	keyWords["while"] = Enum::While;
 	keyWords["assert"] = Enum::Assert;
+	keyWords["div"] = Enum::Divide;
 	keyWords["rho"] = Enum::ToRho;
 	keyWords["rho{"] = Enum::ToRhoSequence;
 }
@@ -103,7 +104,7 @@ bool PiLexer::NextToken()
 				;
 			return Add(Enum::Comment, offset - start);
 		}
-		return Add(Enum::Divide);
+		return ParsePathname();
 	}
 
 	LexError("Unrecognised %c");
@@ -115,5 +116,11 @@ void PiLexer::Terminate()
 {
 	Add(Enum::None, 0);
 }
+
+	bool PiLexer::ParsePathname()
+	{
+		return false;
+	}
+
 
 KAI_END
