@@ -231,15 +231,15 @@ struct Gamma
 	EState _state;
 	std::shared_ptr<IHandler> _handler;
 
-	Gamma()
-	{
-		Escape();
-	}
-
-	Gamma(const String &contents, int line, int col)
-		: _text(Split(contents, '\n"')
-	{
-	}
+//	Gamma()
+//	{
+//		Escape();
+//	}
+////
+//	Gamma(const String &contents, int line, int col)
+//		: _text(Split(contents, '\n'))
+//	{
+//	}
 
 	std:vector<String> Split(String const &inout)
 	{
