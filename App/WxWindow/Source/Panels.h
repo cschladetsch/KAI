@@ -3,6 +3,7 @@
 #include "Main.h"
 #include <wx/panel.h>
 #include <Rx/rx.hpp>
+#include <Rx/rx-observable.hpp>
 
 class LeftPanel : public wxPanel
 {
