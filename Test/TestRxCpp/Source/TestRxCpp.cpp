@@ -1,16 +1,20 @@
 #include "Main.h"
+#include <Rx/rx.hpp>
 
-struct MyTest : ::testing::test
+using namespace rxcpp;
+
+struct TestRx : ::testing::Test
 {
 	virtual void SetUp() override
 	{
 	}
 
-	virtual void Teardown() override
+	virtual void TearDown() override
 	{
 	}
 };
 
-TEST_F(MyTest, Test)
+TEST_F(TestRx, Test)
 {
+	//auto sub = new
 }

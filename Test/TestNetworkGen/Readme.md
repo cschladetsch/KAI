@@ -1,5 +1,5 @@
-Tests the ability to:
-* Read from a common interface language. Preferably C++.
-* Generate abstract bases for **Agents**.
-* Generate concrete implementations for **Nodes**
+#  Tests the ability to:
+1. Read from a common interface language. Preferably C++.
+1. Generate abstract bases for **Agents**.
+1. Generate concrete implementations for **Nodes**
 
