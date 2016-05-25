@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 {
 	observable<int> num;
 	num.subscribe([](int n) { cout << n << endl; });
-	num. 
+//	num.
 
 
 
