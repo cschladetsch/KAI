@@ -1,9 +1,9 @@
-#include "Main.h"
-#include <Rx/rx.hpp>
+ #include "Main.h"
 
-using namespace rxcpp;
+namespace rx = rxcpp;
+using namespace std;
 
-struct TestRx : ::testing::Test
+struct MyTest : ::testing::Test
 {
 	virtual void SetUp() override
 	{
@@ -14,7 +14,7 @@ struct TestRx : ::testing::Test
 	}
 };
 
-TEST_F(TestRx, Test)
+TEST_F(MyTest, Test)
 {
-	//auto sub = new
+	// I have no idea what I am doing with RxCpp
 }

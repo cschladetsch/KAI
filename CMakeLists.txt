@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4)
 
-project(KAI_ROOT)
+project(KAI)
 
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
@@ -8,8 +8,6 @@ add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
-
-
 #add_definitions(-DKAI_TRACE_VERBOSE)
 
 # These are defined in KAI/Base/Config.h if KAI_DEBUG is defined
@@ -34,6 +32,14 @@ set(dir $ENV{HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
+
+link_directories($ENV{HOME}/lib /usr/local/lib)
+
+macro(add_wxWidgets app)
+    find_package(wxWidgets REQUIRED net gl core base)
+    include(${wxWidgets_USE_FILE})
+    target_link_libraries(${app} ${wxWidgets_LIBRARIES})
+endmacro()
 
 macro(def_lang_library name)
     project(${name}Lang)
@@ -64,8 +70,6 @@ endmacro()
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)
-
 include(App/RxCpp/CMakeLists.txt)
-
 
 #$
