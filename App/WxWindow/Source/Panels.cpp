@@ -1,7 +1,5 @@
 #include "Panels.h"
 #include "Communicate.h"
-#include <wx/stattext.h>
-#include <Rx/rx.hpp>
 
 LeftPanel::LeftPanel(wxPanel * parent)
 	: wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN)
