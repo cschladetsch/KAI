@@ -20,13 +20,13 @@ set(KAI_HOME $ENV{HOME}/dev/KAI)
 set(PROJECTS_HOME ${KAI_HOME}/Projects)
 set(TESTS_HOME $ENV{HOME}/Tests)
 
-include_directories($ENV{HOME}/Include ${KAI_HOME}/Include)
+include_directories($ENV{HOME}/Window ${KAI_HOME}/Include)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
 endif()
 
-set(GLOB_RECURSE HEADER_FILES ${KAI_HOME}/Include/KAI/*.h)
+set(GLOB_RECURSE HEADER_FILES ${KAI_HOME}/Window/KAI/*.h)
 
 set(dir $ENV{HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
