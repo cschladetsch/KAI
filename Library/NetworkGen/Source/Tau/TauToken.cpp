@@ -6,10 +6,36 @@ const char *TauTokenEnumType::ToString(Enum val)
 {
 	switch (val)
 	{
-		#define CASE(N) case TauToken::N : return #N;
-		#define CASE_LOWER(N) case TauToken::N : return ToLower(#N);
-		#define CASE_REPLACE(N, M) case TauToken::N : return M;
+		#define CASE(N) case TauTokenEnum::N : return #N;
+		#define CASE_LOWER(N) case TauTokenEnum::N : return ToLower(#N);
+		#define CASE_REPLACE(N, M) case TauTokenEnum::N : return M;
 
+		CASE(None)
+		CASE(Ident)
+		CASE(OpenParan)
+		CASE(CloseParan)
+		CASE(Value)
+		CASE(Const)
+		CASE(Reference)
+		CASE(Proxy)
+		CASE(Agent)
+		CASE(Semi)
+		CASE(NewLine)
+		CASE(OpenBrace)
+		CASE(CloseBrace)
+		CASE(Module)
+		CASE(Namespace)
+		CASE(ConstProxy)
+		CASE(ConstAgent)
+		CASE(ArrayProxy)
+		CASE(QuotedIdent)
+		CASE(Array)
+		CASE(Sync)
+		CASE(Class)
+		CASE(Comma)
+		CASE(Whitespace)
+		CASE(Comment)
+		CASE(Async)
 	}
 
 	return "Unnamed";
@@ -23,8 +49,6 @@ std::ostream &operator<<(std::ostream &out, TauToken const &node)
 	out << TauTokenEnumType::ToString(node.type);
 	switch (node.type)
 	{
-	case TauTokenEnumType::Int:
-	case TauTokenEnumType::String:
 	case TauTokenEnumType::Ident:
 		out << "=" << node.Text();
 	}

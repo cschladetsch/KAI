@@ -1,6 +1,5 @@
 #pragma once
 
-#include <KAI/Language/Tau/Tau.h>
 #include "KAI/Core/BuiltinTypes/Void.h"
 
 // DESCRIPTION

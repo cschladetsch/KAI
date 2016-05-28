@@ -12,6 +12,9 @@ enum class Structure
 	Function,
 	Expression,
 	Program,
+
+	Namespace,
+	Class,
 };
 
 KAI_END

@@ -1,5 +1,4 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include <KAI/Language/Common/Structure.h>
 #include <Tau/TauParser.h>
 
 TAU_BEGIN
@@ -18,11 +17,18 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
 			tokens.push_back(tok);
 
-	root = NewNode(AstEnum::Program);
+	root = NewNode(AstEnum::Namespace);
 
-	TAU_UNUSED_1(st);
-	Run(Structure::Program);
+	KAI_UNUSED_1(st);
+	Run(Structure::Namespace);
 }
+
+void TauParser::Run(Structure st)
+{
+}
+
+
+#if 0
 
 void TauParser::Run(Structure st)
 {
@@ -598,4 +604,7 @@ void TauParser::ConsumeNewLines()
 	while (Try(TokenType::NewLine))
 		Consume();
 }
+
+#endif
+
 TAU_END
