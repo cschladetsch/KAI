@@ -6,7 +6,7 @@
 
 using namespace std;
 
-KAI_BEGIN
+TAU_BEGIN
 
 void TauLexer::AddKeyWords()
 {
@@ -102,4 +102,4 @@ void TauLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
-KAI_END
+TAU_END
