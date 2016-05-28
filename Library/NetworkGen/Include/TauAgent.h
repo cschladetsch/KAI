@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Tau/Config.h"
-#include "Tau/TauAstNode.h"
+#include <Tau/TauParser.h>
 
 TAU_BEGIN
 
-		struct GenerateProxy
-		{
-			GenerateProxy(const char * file, NodeType root);
-		};
+struct GenerateAgent
+{
+	void Generate(TauParser const * p, const char *output);
+};
 
 TAU_END
 
