@@ -1,6 +1,6 @@
 #include "Tau/TauAstNode.h"
 
-KAI_BEGIN
+TAU_BEGIN
 
 const char *TauAstEnumType::ToString(Enum ty)
 {
@@ -13,4 +13,4 @@ const char *TauAstEnumType::ToString(Enum ty)
 	return "???";
 }
 
-KAI_END
+TAU_END
