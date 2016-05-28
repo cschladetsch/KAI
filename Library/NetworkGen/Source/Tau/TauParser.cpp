@@ -10,7 +10,11 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 	lexer = lex;
 
 	if (lexer->Failed)
+	{
+		Failed = true;
+		Error = lexer->Error;
 		return;
+	}
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
@@ -25,8 +29,40 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 void TauParser::Run(Structure st)
 {
+	switch (st)
+	{
+		case Structure::Namespace:
+		{
+			auto ns = Expect(TokenEnum::Namespace);
+			Namespace(ns);
+			root->Add(ns);
+			break;
+		}
+	}
 }
 
+void TauParser::Namespace(AstNodePtr root)
+{
+	Expect(TokenEnum::Ident);
+	root->Add(Consume());
+	Expect(TokenEnum::NewLine);
+	Expect(TokenEnum::Tab);
+
+	while (Peek().type == TokenEnum::Class)
+	{
+		Class(root);
+	}
+}
+
+void TauParser::Class(AstNodePtr root)
+{
+	root->Add(Consume());
+}
+
+void TauParser::Method(AstNodePtr rent)
+{
+
+}
 
 #if 0
 

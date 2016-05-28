@@ -2,7 +2,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Language/Common/TokenBase.h>
-#include <Tau/Options.h>
+#include <Tau/Config.h>
 
 TAU_BEGIN
 

@@ -6,6 +6,7 @@ KAI_BEGIN
 
 void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
+	// TODO: low-priority: this code basically the same in Pi Rho and Tau
 	current = 0;
 	indent = 0;
 	lexer = lex;
