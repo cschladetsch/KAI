@@ -195,7 +195,7 @@ protected:
 		TokenNode tok = Current();
 		if (tok.type != type)
 		{
-			//MUST Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
+			//TODO Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 
