@@ -4,7 +4,7 @@
 
 KAI_BEGIN
 
-bool Process::Fail(const std::string &err)
+bool Process::Fail(const std::string &err) const
 {
 	Failed = true;
 	Error = err;
@@ -12,7 +12,7 @@ bool Process::Fail(const std::string &err)
 	return false;
 }
 
-bool Process::Fail(const char *fmt, ...)
+bool Process::Fail(const char *fmt, ...) const
 {
 	va_list ap;
 	va_start(ap, fmt);

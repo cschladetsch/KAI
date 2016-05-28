@@ -161,6 +161,11 @@ protected:
 
 	bool Current(TokenNode node) const
 	{
+		if (current >= tokens.size())
+		{
+			return false;
+		}
+
 		return tokens[current] == node;
 	}
 
@@ -195,7 +200,7 @@ protected:
 		TokenNode tok = Current();
 		if (tok.type != type)
 		{
-			//TODO Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", Token::ToString(type), Token::ToString(tok.type)));
+			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 
