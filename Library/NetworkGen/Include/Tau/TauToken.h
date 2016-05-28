@@ -2,9 +2,9 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Language/Common/TokenBase.h>
+#include <Tau/Options.h>
 
-
-KAI_BEGIN
+TAU_BEGIN
 
 struct TauTokenEnumType
 {
@@ -51,4 +51,4 @@ struct TauTokenEnumType
 
 typedef TauTokenEnumType::Type TauToken;
 
-KAI_END
+TAU_END

@@ -3,7 +3,7 @@
 #include <KAI/Language/Common/AstNodeBase.h>
 #include "Tau/TauToken.h"
 
-KAI_BEGIN
+TAU_BEGIN
 
 struct TauAstEnumType
 {
@@ -32,5 +32,4 @@ struct TauAstEnumType
 	static const char *ToString(Enum);
 };
 
-
-KAI_END
+TAU_END

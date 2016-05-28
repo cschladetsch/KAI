@@ -1,6 +1,6 @@
 #include "Tau/TauToken.h"
 
-KAI_BEGIN
+TAU_BEGIN
 
 const char *TauTokenEnumType::ToString(Enum val)
 {
@@ -32,4 +32,4 @@ std::ostream &operator<<(std::ostream &out, TauToken const &node)
 	return out;
 }
 
-KAI_END
+TAU_END
