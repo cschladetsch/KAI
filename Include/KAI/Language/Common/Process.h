@@ -7,14 +7,14 @@ KAI_BEGIN
 
 struct Process
 {
-	bool Failed = false;
 	static int trace;
 
-	std::string Error;
+	mutable bool Failed = false;
+	mutable std::string Error;
 
 protected:
-	bool Fail(const char *fmt, ...);
-	bool Fail(const std::string &);
+	bool Fail(const char *fmt, ...) const;
+	bool Fail(const std::string &) const;
 };
 
 KAI_END
