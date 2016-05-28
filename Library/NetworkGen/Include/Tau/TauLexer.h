@@ -3,7 +3,7 @@
 #include <KAI/Language/Common/LexerCommon.h>
 #include "Tau/TauToken.h"
 
-KAI_BEGIN
+TAU_BEGIN
 
 struct TauLexer : LexerCommon<TauTokenEnumType>
 {
@@ -17,5 +17,5 @@ struct TauLexer : LexerCommon<TauTokenEnumType>
 	virtual void Terminate();
 };
 
-KAI_END
+TAU_END
 

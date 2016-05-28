@@ -2,7 +2,7 @@
 #include <KAI/Language/Common/Structure.h>
 #include <Tau/TauParser.h>
 
-KAI_BEGIN
+TAU_BEGIN
 
 void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
@@ -20,7 +20,7 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Program);
 
-	KAI_UNUSED_1(st);
+	TAU_UNUSED_1(st);
 	Run(Structure::Program);
 }
 
@@ -598,4 +598,4 @@ void TauParser::ConsumeNewLines()
 	while (Try(TokenType::NewLine))
 		Consume();
 }
-KAI_END
+TAU_END

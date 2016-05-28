@@ -7,7 +7,7 @@
 #include "Tau/TauAstNode.h"
 #include "Tau/TauLexer.h"
 
-KAI_BEGIN
+TAU_BEGIN
 
 // parser specific to the IDL Tau language
 class TauParser : public ParserCommon<TauLexer, TauAstEnumType>
@@ -31,4 +31,4 @@ protected:
 	void Process(Structure);
 };
 
-KAI_END
+TAU_END

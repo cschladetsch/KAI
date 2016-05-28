@@ -2,11 +2,11 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Language/Common/TranslatorBase.h>
-
 #include "KAI/Core/BuiltinTypes/Array.h"
-#include "KAI/Language/Tau/TauParser.h"
 
-KAI_BEGIN
+#include "Tau/TauParser.h"
+
+TAU_BEGIN
 
 	class TauTranslator : public TranslatorBase<TauParser>
 	{
@@ -31,4 +31,4 @@ KAI_BEGIN
 		void TranslateIndex(AstNodePtr node);
 	};
 
-KAI_END
+TAU_END

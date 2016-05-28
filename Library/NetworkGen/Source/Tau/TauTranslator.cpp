@@ -7,7 +7,7 @@
 #include "Tau/TauTranslator.h"
 
 
-KAI_BEGIN
+TAU_BEGIN
 
 #pragma warning (disable:4063)
 
@@ -115,7 +115,7 @@ KAI_BEGIN
 //		//for (auto ch : node->Children)
 //		//	Translate(ch);
 //		//AppendNewOp(Operation::PushContext);
-//		KAI_NOT_IMPLEMENTED();
+//		TAU_NOT_IMPLEMENTED();
 //		return;
 //
 //	case TokenEnum::Return:
@@ -126,7 +126,7 @@ KAI_BEGIN
 //	}
 //
 //	Fail("Unsupported node %s", node->ToString().c_str());
-//	KAI_NOT_IMPLEMENTED();
+//	TAU_NOT_IMPLEMENTED();
 //}
 //
 //void TauTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
@@ -186,7 +186,7 @@ KAI_BEGIN
 //			TranslateNode(ch);
 //		AppendNew<int>(node->GetChildren().size());
 //		//AppendNewOp(Operation::ToArray);
-//		KAI_NOT_IMPLEMENTED();
+//		TAU_NOT_IMPLEMENTED();
 //		return;
 //
 //	case AstEnum::For:
@@ -204,7 +204,7 @@ KAI_BEGIN
 //	}
 //
 //	Fail("Unsupported node %s", node->ToString().c_str());
-//	KAI_NOT_IMPLEMENTED();
+//	TAU_NOT_IMPLEMENTED();
 //}
 //
 //void TauTranslator::TranslateBlock(AstNodePtr node)
@@ -271,5 +271,5 @@ KAI_BEGIN
 //	AppendOp(Operation::None);
 //}
 
-KAI_END
+TAU_END
 
