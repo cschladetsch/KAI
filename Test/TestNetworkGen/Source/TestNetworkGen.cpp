@@ -13,4 +13,5 @@ struct MyTest : ::testing::Test
 
 TEST_F(MyTest, Test)
 {
+	ASSERT_TRUE(false);
 }

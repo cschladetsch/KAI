@@ -2,9 +2,9 @@
 
 #include <KAI/Core/Config/Base.h>
 
-KAI_BEGIN
+#define TAU_BEGIN namespace tau {
+#define TAU_END }
 
-KAI_END
 
 
 
