@@ -28,7 +28,7 @@ public:
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
-	void Process(Structure);
+	void Run(Structure);
 };
 
 TAU_END

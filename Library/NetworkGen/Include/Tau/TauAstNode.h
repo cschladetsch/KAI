@@ -10,11 +10,13 @@ struct TauAstEnumType
 	enum Enum
 	{
 		None = 0,
-		Property = 1,
-		Method = 2,
-		Class = 3,
-		Ctor = 4,
-		Dtor = 5,
+		Namespace = 1,
+		Class = 2,
+		Property = 3,
+		Method = 4,
+
+		// req.
+		TokenType = 5,
 	};
 
 	struct Node : AstNodeBase<TauToken, TauAstEnumType>
