@@ -32,7 +32,7 @@ typedef TauTokenEnumType Tok;
 
 TEST_F(MyTest, Test)
 {
-	auto input = "namespace Foo\n\tclass Bar\n\t\tint Method()";
+	auto input = "namespace Foo\n\tclass Bar\n\t\tint Method()\n";
 	Registry r;
 	TauLexer l(input, r);
 	l.Process();
@@ -40,10 +40,15 @@ TEST_F(MyTest, Test)
 		cerr << l.Error << endl;
 	ASSERT_FALSE(l.Failed);
 
-	TauTokenEnumType::Enum res[] = { Tok::Namespace, Tok::Ident, Tok::Class, Tok::NewLine,Tok::Tab,Tok::Tab,Tok::Ident,Tok::OpenParan,Tok::CloseParan };
+	TauTokenEnumType::Enum res[] = {
+		Tok::Namespace, Tok::Whitespace, Tok::Ident, Tok::NewLine,
+		Tok::Tab, Tok::Class, Tok::Whitespace, Tok::Ident, Tok::NewLine,
+		Tok::Tab, Tok::Tab, Tok::Ident, Tok::Whitespace, Tok::Ident, Tok::OpenParan,Tok::CloseParan, Tok::NewLine };
 	int n = 0;
 	for (auto t : l.GetTokens())
-		ASSERT_EQ(t.type, res[n]);
+	{
+		ASSERT_EQ(t.type, res[n++]);
+	}
 }
 
 
