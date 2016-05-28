@@ -10,8 +10,10 @@ TAU_BEGIN
 
 void TauLexer::AddKeyWords()
 {
+	keyWords["namespace"] = Enum::Namespace;
 	keyWords["class"] = Enum::Class;
 	keyWords["sync"] = Enum::Sync;
+	keyWords["async"] = Enum::Async;
 	keyWords["Proxy"] = Enum::Proxy;
 }
 
@@ -25,7 +27,7 @@ bool TauLexer::NextToken()
 		return LexAlpha();
 
 	if (isdigit(current))
-		return Add(Enum::Int, Gather(isdigit));
+		return Fail("Number not expected");
 
 	switch (current)
 	{

@@ -36,10 +36,19 @@ struct TauTokenEnumType
 		Whitespace  = 34,
 		Comment = 35,
 		Async = 36,
+		Tab = 37,
+
+		String = 38,
 	};
 
 	struct Type : TokenBase<TauTokenEnumType>
 	{
+		typedef TokenBase<TauTokenEnumType> Parent;
+
+		using Parent::type;
+		using Parent::slice;
+		using Parent::lexer;
+
 		Type() { }
 
 		Type(Enum val, const LexerBase &lexer, int ln, Slice slice)
@@ -50,5 +59,6 @@ struct TauTokenEnumType
 };
 
 typedef TauTokenEnumType::Type TauToken;
+typedef TauTokenEnumType::Enum TauTokenEnum;
 
 TAU_END
