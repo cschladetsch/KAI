@@ -3,12 +3,14 @@
 #include "Tau/TauLexer.h"
 
 #include <array>
+#include <fstream>
+#include <Tau/TauParser.h>
 
 using namespace std;
 using namespace kai;
 using namespace kai::tau;
 
-struct MyTest : ::testing::Test
+struct TauTest : ::testing::Test
 {
 	virtual void SetUp() override
 	{
@@ -30,7 +32,7 @@ typedef TauTokenEnumType Tok;
 //	return std::move(result);
 //}
 
-TEST_F(MyTest, Test)
+TEST_F(TauTest, TestLex1)
 {
 	auto input = "namespace Foo\n\tclass Bar\n\t\tint Method()\n";
 	Registry r;
@@ -51,4 +53,16 @@ TEST_F(MyTest, Test)
 	}
 }
 
+TEST_F(TauTest, TestParse1)
+{
+	ifstream file("First.tau");
+	ASSERT_TRUE(file);
+	string str((istreambuf_iterator<char>(file)),
+	           istreambuf_iterator<char>());
+	Registry r;
+	auto l = make_shared<TauLexer>(str.c_str(), r);
+	cout << str << endl;
+	TauParser p(r);
+	p.Process(l, Structure::Namespace);
+}
 
