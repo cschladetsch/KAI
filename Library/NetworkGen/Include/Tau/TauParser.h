@@ -20,6 +20,8 @@ public:
 	using typename Parent::AstNode;
 	using typename Parent::AstNodePtr;
 
+	typedef TauAstEnumType::Enum AstType;
+
 	typedef TauAstEnumType NodeType;
 	typedef TauTokenEnumType TokenType;
 
@@ -29,6 +31,10 @@ public:
 
 protected:
 	void Run(Structure);
+
+	void Namespace(AstNodePtr rent);
+	void Class(AstNodePtr rent);
+	void Method(AstNodePtr rent);
 };
 
 TAU_END
