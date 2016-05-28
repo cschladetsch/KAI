@@ -27,18 +27,15 @@ struct TauTokenEnumType
 		Namespace = 18,
 		ConstProxy = 19,
 		ConstAgent = 20,
-		Int = 21,
-		Float = 22,
-		String = 23,
-		Void = 24,
-		Bool = 25,
 		ArrayProxy = 27,
 		QuotedIdent = 28,
 		Array = 29,
-		Container = 30,
 		Sync = 31,
 		Class = 32,
 		Comma = 33,
+		Whitespace  = 34,
+		Comment = 35,
+		Async = 36,
 	};
 
 	struct Type : TokenBase<TauTokenEnumType>

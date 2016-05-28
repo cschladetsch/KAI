@@ -26,7 +26,6 @@ namespace MLB
 		T twice_template<T>(T) const;
 		sync T twice_template<T>(T) const;
 
-
 		T twice_template<T>()(Proxy <T>);
 		sync T twice_template<T>()(Proxy <T>);
 

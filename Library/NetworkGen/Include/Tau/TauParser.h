@@ -3,12 +3,13 @@
 
 #include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Common/ParserCommon.h>
-#include "KAI/Language/Tau/TauAstNode.h"
-#include "KAI/Language/Tau/TauLexer.h"
+#include "Tau/TauToken.h"
+#include "Tau/TauAstNode.h"
+#include "Tau/TauLexer.h"
 
 KAI_BEGIN
 
-// parser specific to the in-fix Tau language
+// parser specific to the IDL Tau language
 class TauParser : public ParserCommon<TauLexer, TauAstEnumType>
 {
 public:

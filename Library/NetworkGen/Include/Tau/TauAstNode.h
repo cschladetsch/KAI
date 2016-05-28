@@ -1,7 +1,7 @@
 #pragma once
 
 #include <KAI/Language/Common/AstNodeBase.h>
-#include "KAI/Language/Tau/TauToken.h"
+#include "Tau/TauToken.h"
 
 KAI_BEGIN
 
