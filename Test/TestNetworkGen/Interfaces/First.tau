@@ -1,0 +1,11 @@
+namespace Foo
+	class Bar
+		int AsyncMethod() // returns IFuture<int>
+		sync int BlockingMethod(string s) ///  returns int
+	class Spam
+		void grok(proxy int other)  // pass a network-wide reference to another thing
+		int plug(string s, List list) // return IFuture<int>, takes values, and containers supported
+
+
+
+
