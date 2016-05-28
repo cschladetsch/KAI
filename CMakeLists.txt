@@ -17,7 +17,7 @@ add_definitions(-DKAI_TRACE_FILE_LOCATION)
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 
 set(KAI_HOME $ENV{HOME}/dev/KAI)
-set(PROJECTS_HOME ${KAI_HOME}/Projects)
+set(LIBRARY_HOME ${KAI_HOME}/Library)
 set(TESTS_HOME $ENV{HOME}/Tests)
 
 include_directories($ENV{HOME}/Window ${KAI_HOME}/Include)
@@ -70,6 +70,5 @@ endmacro()
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)
-include(App/RxCpp/CMakeLists.txt)
 
 #$
