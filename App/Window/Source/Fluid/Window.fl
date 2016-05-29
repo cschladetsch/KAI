@@ -8,19 +8,21 @@ Function {callback(Fl_Widget* o, void*)} {private return_type void
 fflush(stdout);} {}
 } 
 
-Function {} {open selected
+Function {} {open
 } {
   Fl_Window {} {
     label {KAI Console} open
-    xywh {297 133 510 330} type Double visible
+    xywh {159 117 510 330} type Double visible
   } {
     Fl_Input KaiInput {
-      label {input:}
-      xywh {10 296 390 24} labeltype NO_LABEL
+      label {input:} user_data_type {void*}
+      callback {printf("ch %d\\n", *(long *)ch);} selected
+      xywh {10 296 390 24} labeltype NO_LABEL when 1
     }
     Fl_Button KaiEnter {
       label Enter
-      xywh {430 295 70 20}
+      callback {printf("ENTER\\n")}
+      xywh {430 295 70 20} when 8
     }
     Fl_Text_Display KaiOutputData {
       xywh {10 5 240 285}
