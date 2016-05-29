@@ -9,7 +9,15 @@ static void callback(Fl_Widget* o, void*) {
 
 Fl_Input *KaiInput=(Fl_Input *)0;
 
+static void cb_KaiInput(Fl_Input*, void*) {
+  printf("ch %d\n",ch);
+}
+
 Fl_Button *KaiEnter=(Fl_Button *)0;
+
+static void cb_KaiEnter(Fl_Button*, void*) {
+  printf("ENTER\n");
+}
 
 Fl_Text_Display *KaiOutputData=(Fl_Text_Display *)0;
 
@@ -21,8 +29,12 @@ int main(int argc, char **argv) {
     w = o;
     { KaiInput = new Fl_Input(10, 296, 390, 24, "input:");
       KaiInput->labeltype(FL_NO_LABEL);
+      KaiInput->callback((Fl_Callback*)cb_KaiInput);
+      KaiInput->when(FL_WHEN_CHANGED);
     } // Fl_Input* KaiInput
     { KaiEnter = new Fl_Button(430, 295, 70, 20, "Enter");
+      KaiEnter->callback((Fl_Callback*)cb_KaiEnter);
+      KaiEnter->when(FL_WHEN_ENTER_KEY);
     } // Fl_Button* KaiEnter
     { KaiOutputData = new Fl_Text_Display(10, 5, 240, 285);
     } // Fl_Text_Display* KaiOutputData
