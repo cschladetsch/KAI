@@ -3,37 +3,16 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
-      <file path="$PROJECT_DIR$/App/Console" />
-      <file path="$PROJECT_DIR$/App/TauGen" />
-      <file path="$PROJECT_DIR$/App/Window" />
+      <file path="$PROJECT_DIR$/App" />
       <file path="$PROJECT_DIR$/Include" />
-<<<<<<< HEAD
-=======
       <file path="$PROJECT_DIR$/Install" />
-      <file path="$PROJECT_DIR$/Library/Core" />
-      <file path="$PROJECT_DIR$/Library/Executor" />
-      <file path="$PROJECT_DIR$/Library/Language/Include" />
-      <file path="$PROJECT_DIR$/Library/Language/Pi" />
-      <file path="$PROJECT_DIR$/Library/Language/Rho" />
-      <file path="$PROJECT_DIR$/Library/Language/Tau" />
-      <file path="$PROJECT_DIR$/Library/Network" />
-      <file path="$PROJECT_DIR$/Library/Window" />
-      <file path="$PROJECT_DIR$/Test/TestConsole" />
-      <file path="$PROJECT_DIR$/Test/TestCore" />
-      <file path="$PROJECT_DIR$/Test/TestExecutor" />
-      <file path="$PROJECT_DIR$/Test/TestPi" />
-      <file path="$PROJECT_DIR$/Test/TestRho" />
-      <file path="$PROJECT_DIR$/Test/TestTau" />
+      <file path="$PROJECT_DIR$/Library" />
+      <file path="$PROJECT_DIR$/Test" />
       <file path="$PROJECT_DIR$/TestAll" />
->>>>>>> 6261f820c68e82a073f92add07ca310635ef70c6
     </sourceRoots>
     <libraryRoots />
-    <excludeRoots>
-      <file path="$PROJECT_DIR$/Library/Core/.idea" />
-      <file path="$PROJECT_DIR$/Library/Executor/.idea" />
-    </excludeRoots>
+    <excludeRoots />
   </component>
-  <component name="IdProvider" IDEtalkID="5ED845A716267B8889488D593F0CDA56" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
