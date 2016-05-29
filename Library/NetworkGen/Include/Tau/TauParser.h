@@ -3,6 +3,7 @@
 
 #include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Common/ParserCommon.h>
+
 #include "Tau/TauToken.h"
 #include "Tau/TauAstNode.h"
 #include "Tau/TauLexer.h"

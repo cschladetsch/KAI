@@ -1,5 +1,7 @@
 #pragma once
 
+#include <KAI/Core/Base.h>
+
 KAI_BEGIN
 
 enum class Structure

@@ -2,132 +2,13 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-<<<<<<< HEAD
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Tree.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Bin.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Operation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/ConsoleColor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoTranslator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoToken.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoAstNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoLang.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Rho/RhoLexer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/TokenBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/LexerBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Process.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/TranslatorCommon.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Pi/PiAstNode.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Pi/PiLexer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Pi/PiParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Pi/PiToken.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Translator/Pi/PiTranslator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Compiler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Continuation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/SignedContinuation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Console.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Executor/Source/Executor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Console/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Console/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Registry.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Class.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Test-Unused/XmlOutput.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Test-Unused/BasicOutput.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Test-Unused/Module.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Utility.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BinaryPacket.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Pathname.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Property.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Object.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Label.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestTriColor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestMap.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestTree.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestStringStream.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestFunction.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestRegistry.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestClosure.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestSignedContinuation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestsPrecompiled.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/MakeTestModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestExample.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestArray.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestPathname.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestMethod.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestExecutor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestObjectIndexing.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestBinaryStream.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestTemplate.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestProperties.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestDotGraph.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestCompiler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestEvents.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestObject.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Tests-Unused/TestTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/CalcHashValues.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/Set.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/Stack.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/Map.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/List.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/Array.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BuiltinTypes/String.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Documentation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/DotGraph.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Exception.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/BasePointerBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StringStream.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/Debug.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Projects/Library/Source/StorageBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunctionScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestBinaryStream.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestClassScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestDotGraph.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestFunction.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestLibrary/Source/TestCompilerBasic.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestConsole/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestConsole/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/Main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestRhoScripting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiExecutor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiTokeniser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPiString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Tests/TestExecutor/Source/TestPi.cpp" isTestSource="false" />
-=======
->>>>>>> 6261f820c68e82a073f92add07ca310635ef70c6
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TestAll" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestPi" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestConsole" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestRho" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestExecutor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestCore" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Test/TestTau" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Window" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Rho" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Tau" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Pi" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Language/Include" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Executor" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Network" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Library/Core" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/App/TauGen" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/App/Console" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/App/Window" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/App/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Library" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/App" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Include" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Install" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/Library/Core/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/Library/Executor/.idea" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
