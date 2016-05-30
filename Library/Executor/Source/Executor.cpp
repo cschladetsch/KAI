@@ -105,14 +105,11 @@ void Executor::Continue()
 
 				Eval(next);
 			}
-			KAI_CATCH(Exception::Base, E)
+			catch (Exception::Base &E)
 			{
-#if defined(KAI_DEBUG_TRACE)
 				//KAI_TRACE_3(_data, _context, _continuation);
 				KAI_TRACE_1(E);
-#else
-				std::cerr << E.ToString() << std::endl;
-#endif
+				_data->Push(Reg().New<String>("Exception: " + E.ToString()));
 				throw;
 			}
 		}
