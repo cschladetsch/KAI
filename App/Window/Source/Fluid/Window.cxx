@@ -9,19 +9,18 @@ static void callback(Fl_Widget* o, void*) {
 
 Fl_Input *KaiInput=(Fl_Input *)0;
 
-static void cb_KaiInput(Fl_Input*, void*) {
-  printf("ch %d\n",ch);
-}
-
-Fl_Button *KaiEnter=(Fl_Button *)0;
-
-static void cb_KaiEnter(Fl_Button*, void*) {
-  printf("ENTER\n");
-}
-
 Fl_Text_Display *KaiOutputData=(Fl_Text_Display *)0;
 
 Fl_Text_Display *KaiOutputContext=(Fl_Text_Display *)0;
+
+Fl_Return_Button *KaiEnter=(Fl_Return_Button *)0;
+
+Fl_Menu_Item menu_[] = {
+ {"File", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
+ {"&Quit", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
+ {"Network", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
+ {0,0,0,0,0,0,0,0,0}
+};
 
 int main(int argc, char **argv) {
   Fl_Double_Window* w;
@@ -29,19 +28,20 @@ int main(int argc, char **argv) {
     w = o;
     { KaiInput = new Fl_Input(10, 296, 390, 24, "input:");
       KaiInput->labeltype(FL_NO_LABEL);
-      KaiInput->callback((Fl_Callback*)cb_KaiInput);
       KaiInput->when(FL_WHEN_CHANGED);
     } // Fl_Input* KaiInput
-    { KaiEnter = new Fl_Button(430, 295, 70, 20, "Enter");
-      KaiEnter->callback((Fl_Callback*)cb_KaiEnter);
-      KaiEnter->when(FL_WHEN_ENTER_KEY);
-    } // Fl_Button* KaiEnter
-    { KaiOutputData = new Fl_Text_Display(10, 5, 240, 285);
+    { KaiOutputData = new Fl_Text_Display(10, 20, 240, 270);
     } // Fl_Text_Display* KaiOutputData
-    { KaiOutputContext = new Fl_Text_Display(260, 5, 240, 285);
+    { KaiOutputContext = new Fl_Text_Display(260, 20, 240, 270);
     } // Fl_Text_Display* KaiOutputContext
+    { KaiEnter = new Fl_Return_Button(420, 295, 72, 25, "Enter");
+    } // Fl_Return_Button* KaiEnter
+    { Fl_Menu_Bar* o = new Fl_Menu_Bar(0, 0, 510, 20);
+      o->menu(menu_);
+    } // Fl_Menu_Bar* o
     o->end();
   } // Fl_Double_Window* o
+  StartKai();
   w->show(argc, argv);
   return Fl::run();
 }
