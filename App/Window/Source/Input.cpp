@@ -1,5 +1,9 @@
 #include <KAI/Console/Console.h>
+#include <KAI/Core/Exception.h>
+#include <KAI/Core/BuiltinTypes.h>
+
 #include "Fluid/Window.h"
+
 #include <iostream>
 
 using namespace std;
@@ -17,6 +21,7 @@ struct FluidConsole
 	Value<Stack> _context;
 	Fl_Text_Buffer *_dataOutput;
 	Fl_Text_Buffer *_contextOutput;
+	Registry *_reg;
 
 	static FluidConsole *self;
 
@@ -29,6 +34,7 @@ struct FluidConsole
 		_exec = console->GetExecutor();
 		_data = _exec->GetDataStack();
 		_context = _exec->GetContextStack();
+		_reg =& console->GetRegistry();
 
 		auto d = new Fl_Text_Buffer();
 		auto c = new Fl_Text_Buffer();
@@ -41,7 +47,24 @@ struct FluidConsole
 
 	static void EnterPressed(Fl_Widget *, void *)
 	{
-		console->Process(KaiInput->value());
+		Stack &stack = *self->_data;
+		try
+		{
+			console->Process(KaiInput->value());
+		}
+		catch (kai::Exception::Base &e)
+		{
+			stack.Push(self->_data.GetRegistry()->New<String>(e.ToString()));
+		}
+		catch (std::exception& e)
+		{
+			stack.Push(self->_data.GetRegistry()->New<String>(e.what()));
+		}
+		catch (...)
+		{
+			stack.Push(self->_reg->New<String>("Exceptional!"));
+		}
+
 		KaiInput->value("");
 
 		Refresh();
