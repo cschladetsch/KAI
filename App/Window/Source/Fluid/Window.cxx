@@ -17,22 +17,21 @@ Fl_Return_Button *KaiEnter=(Fl_Return_Button *)0;
 
 Fl_Menu_Item menu_[] = {
  {"File", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
- {"&Quit", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {"Network", 0,  0, 0, 0, FL_NORMAL_LABEL, 0, 14, 0},
  {0,0,0,0,0,0,0,0,0}
 };
 
 int main(int argc, char **argv) {
   Fl_Double_Window* w;
-  { Fl_Double_Window* o = new Fl_Double_Window(510, 330, "KAI Console");
+  { Fl_Double_Window* o = new Fl_Double_Window(505, 330, "KAI Console");
     w = o;
     { KaiInput = new Fl_Input(10, 296, 390, 24, "input:");
       KaiInput->labeltype(FL_NO_LABEL);
       KaiInput->when(FL_WHEN_CHANGED);
     } // Fl_Input* KaiInput
-    { KaiOutputData = new Fl_Text_Display(10, 20, 240, 270);
+    { KaiOutputData = new Fl_Text_Display(10, 55, 240, 235);
     } // Fl_Text_Display* KaiOutputData
-    { KaiOutputContext = new Fl_Text_Display(260, 20, 240, 270);
+    { KaiOutputContext = new Fl_Text_Display(260, 55, 240, 235);
     } // Fl_Text_Display* KaiOutputContext
     { KaiEnter = new Fl_Return_Button(420, 295, 72, 25, "Enter");
     } // Fl_Return_Button* KaiEnter

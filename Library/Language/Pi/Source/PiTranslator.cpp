@@ -7,6 +7,12 @@ KAI_BEGIN
 
 void PiTranslator::TranslateNode(AstNodePtr node)
 {
+	if (!node)
+	{
+		Fail("Empty input");
+		return;
+	}
+
 	switch (node->GetType())
 	{
 		case PiAstNodeEnumType::Continuation:
