@@ -1,10 +1,6 @@
-#include <KAI/Console/Console.h>
-#include <KAI/Core/Exception.h>
-#include <KAI/Core/BuiltinTypes.h>
-
-#include "Fluid/Window.h"
-
 #include <iostream>
+#include <KAI/Console/Console.h>
+#include "Fluid/Window.h"
 
 using namespace std;
 using namespace kai;
@@ -27,14 +23,13 @@ struct FluidConsole
 
 	FluidConsole()
 	{
-		KaiInput->callback(ButtonPressed, 0);
 		KaiEnter->callback(EnterPressed, 0);
 
 		self = this;
 		_exec = console->GetExecutor();
 		_data = _exec->GetDataStack();
 		_context = _exec->GetContextStack();
-		_reg =& console->GetRegistry();
+		_reg = &console->GetRegistry();
 
 		auto d = new Fl_Text_Buffer();
 		auto c = new Fl_Text_Buffer();
@@ -48,20 +43,16 @@ struct FluidConsole
 	static void EnterPressed(Fl_Widget *, void *)
 	{
 		Stack &stack = *self->_data;
-		try
-		{
+		try {
 			console->Process(KaiInput->value());
 		}
-		catch (kai::Exception::Base &e)
-		{
+		catch (kai::Exception::Base &e) {
 			stack.Push(self->_data.GetRegistry()->New<String>(e.ToString()));
 		}
-		catch (std::exception& e)
-		{
+		catch (std::exception &e) {
 			stack.Push(self->_data.GetRegistry()->New<String>(e.what()));
 		}
-		catch (...)
-		{
+		catch (...) {
 			stack.Push(self->_reg->New<String>("Exceptional!"));
 		}
 
@@ -72,29 +63,30 @@ struct FluidConsole
 
 	static void Refresh()
 	{
-		RefreshDataView();
-		RefreshContextView();
+		RefreshData();
+		RefreshContext();
 	}
 
-	static void RefreshContextView()
+	static void RefreshData()
 	{
+		RefreshView(self->_data, self->_dataOutput);
 	}
 
-	static void RefreshDataView()
+	static void RefreshContext()
+	{
+		RefreshView(self->_context, self->_contextOutput);
+	}
+
+	static void RefreshView(Value<Stack> &stack, Fl_Text_Buffer *text)
 	{
 		StringStream str;
-		int n = self->_data->Size() - 1;
+		int n = stack->Size() - 1;
 		for (const auto &obj : *self->_data)
 		{
 			str << "[" << n-- << "] "  << obj << "\n";
 		}
 
-		self->_dataOutput->text(str.ToString().c_str());
-	}
-
-	static void ButtonPressed(Fl_Widget *input, void *ptr)
-	{
-		//cout << "Button pressed" << endl;
+		text->text(str.ToString().c_str());
 	}
 };
 
@@ -102,7 +94,7 @@ FluidConsole *FluidConsole::self;
 
 void StartKai()
 {
-	cout << "Started Kai" << endl;
+	cout << "Starting Kai" << endl;
 	console = make_shared<kai::Console>();
 	console->SetLanguage(Language::Pi);
 	fluidConsole = make_shared<FluidConsole>();

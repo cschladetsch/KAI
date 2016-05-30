@@ -100,6 +100,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::ToRho:
 		AppendOp(Operation::ToRho);
 		break;
+
+	default:
+		KAI_NOT_IMPLEMENTED();
+		break;
 	}
 }
 
