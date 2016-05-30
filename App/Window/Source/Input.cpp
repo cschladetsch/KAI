@@ -43,17 +43,23 @@ struct FluidConsole
 	static void EnterPressed(Fl_Widget *, void *)
 	{
 		Stack &stack = *self->_data;
-		try {
+		auto &reg = *self->_reg;
+
+		try
+		{
 			console->Process(KaiInput->value());
 		}
-		catch (kai::Exception::Base &e) {
-			stack.Push(self->_data.GetRegistry()->New<String>(e.ToString()));
+		catch (kai::Exception::Base &e)
+		{
+			stack.Push(reg.New<String>(e.ToString()));
 		}
-		catch (std::exception &e) {
-			stack.Push(self->_data.GetRegistry()->New<String>(e.what()));
+		catch (std::exception &e)
+		{
+			stack.Push(reg.New<String>(e.what()));
 		}
-		catch (...) {
-			stack.Push(self->_reg->New<String>("Exceptional!"));
+		catch (...)
+		{
+			stack.Push(reg.New<String>("Exceptional!"));
 		}
 
 		KaiInput->value("");
