@@ -74,10 +74,12 @@ struct FluidConsole
 	static void RefreshView(Value<Stack> &stack, Fl_Text_Buffer *text)
 	{
 		StringStream str;
-		int n = stack->Size() - 1;
-		for (const auto &obj : *stack)
+		int n = 0;
+		auto end = stack->GetStack().rend();
+		auto begin = stack->GetStack().rbegin();
+		for (; end != begin; ++begin)
 		{
-			str << "[" << n-- << "] "  << obj << "\n";
+			str << "[" << n++ << "] "  << *begin << "\n";
 		}
 
 		text->text(str.ToString().c_str());
