@@ -21,18 +21,18 @@ Fl_Return_Button *KaiEnter=(Fl_Return_Button *)0;
 
 int main(int argc, char **argv) {
   Fl_Double_Window* w;
-  { Fl_Double_Window* o = new Fl_Double_Window(510, 330, "KAI Console");
+  { Fl_Double_Window* o = new Fl_Double_Window(510, 315, "KAI Console");
     w = o;
-    { KaiInput = new Fl_Input(10, 296, 390, 24, "input:");
+    { KaiInput = new Fl_Input(15, 6, 390, 24, "input:");
       KaiInput->labeltype(FL_NO_LABEL);
       KaiInput->callback((Fl_Callback*)cb_KaiInput);
       KaiInput->when(FL_WHEN_CHANGED);
     } // Fl_Input* KaiInput
-    { KaiOutputData = new Fl_Text_Display(10, 5, 240, 285);
+    { KaiOutputData = new Fl_Text_Display(10, 40, 240, 265);
     } // Fl_Text_Display* KaiOutputData
-    { KaiOutputContext = new Fl_Text_Display(260, 5, 240, 285);
+    { KaiOutputContext = new Fl_Text_Display(260, 40, 240, 265);
     } // Fl_Text_Display* KaiOutputContext
-    { KaiEnter = new Fl_Return_Button(410, 295, 72, 20, "Enter");
+    { KaiEnter = new Fl_Return_Button(420, 10, 72, 20, "Enter");
     } // Fl_Return_Button* KaiEnter
     o->end();
   } // Fl_Double_Window* o
