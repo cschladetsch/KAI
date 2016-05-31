@@ -1,8 +1,8 @@
 # KAI
 
-KAI is .NET for C++, without the overhead or runtime cost.
+KAI provides a distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection. 
 
-KAI provides a distributed Object Model for C++ with full reflection, persistence, and incremental garbage collection. You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
+You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
 The system comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant 60fps with tens of thousands of objects, with hundreds of objects being created each frame on a gaming console from 2008.
 
