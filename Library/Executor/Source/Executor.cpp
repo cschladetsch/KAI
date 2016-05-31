@@ -173,11 +173,20 @@ void Executor::Eval(Object const &Q)
 
 	case Type::Number::Label:
 		{
-			auto found = TryResolve(ConstDeref<Label>(Q));
+			Label const &label = ConstDeref<Label>(Q);
+			if (label.Quoted)
+			{
+				Push(Q);
+				return;
+			}
+
+			auto found = TryResolve(label);
 			if (found.Exists())
 				Push(found);
 			else
-				Push(Q);
+			{
+				KAI_THROW_1(ObjectNotFound, label.ToString());
+			}
 		}
 		break;
 
