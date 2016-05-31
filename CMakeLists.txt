@@ -30,18 +30,12 @@ endif()
 
 #set(GLOB_RECURSE HEADER_FILES ${KAI_HOME}/Window/KAI/*.h)
 
-set(dir ${HOME})
+set(dir ${HOME}/kai)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
-
-macro(add_wxWidgets app)
-    find_package(wxWidgets REQUIRED net gl core base)
-    include(${wxWidgets_USE_FILE})
-    target_link_libraries(${app} ${wxWidgets_LIBRARIES})
-endmacro()
 
 macro(def_lang_library name)
     project(${name}Lang)
