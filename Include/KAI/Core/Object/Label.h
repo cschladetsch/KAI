@@ -8,7 +8,7 @@ KAI_BEGIN
 struct Label
 {
 	typedef String Value;
-	bool Quoted;
+	bool Quoted = false;
 
 private:
 	Value value;
