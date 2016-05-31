@@ -9,7 +9,7 @@ file(GLOB_RECURSE WINDOW_FILES ${Root}/*.cxx)
 #include_directories(/usr/local/include/)
 #message(WARNING -- ${SOURCE_FILES} -- ${WINDOW_FILES} --)
 
-add_executable(Window ${SOURCE_FILES} ${WINDOW_FILES} Fluid/Window.h)
+add_executable(Window ${SOURCE_FILES} ${WINDOW_FILES})
 
 link_directories(/usr/lib/x86_64-linux-gnu)
 

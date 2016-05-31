@@ -81,7 +81,6 @@ public:
 	Value<Stack> GetDataStack();
 	Value<const Stack> GetDataStack() const
 	{
-		// TODO: automate
 		return Value<const Stack>(_data.GetConstObject());
 	}
 
