@@ -15,15 +15,17 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 
 	switch (node->GetType())
 	{
+		case PiAstNodeEnumType::Array:
+		{
+			KAI_NOT_IMPLEMENTED();
+			break;
+		}
+
 		case PiAstNodeEnumType::Continuation:
 		{
 			PushNew();
 			for (auto ch : node->GetChildren())
-			{
-				//cout << *ch << endl;
-				if (ch->GetToken().type != PiTokenEnumType::NewLine)
-					TranslateNode(ch);
-			}
+				TranslateNode(ch);
 			Append(Pop());
 			break;
 		}
@@ -44,6 +46,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::String:
 		AppendNew(String(tok.Text()));
 		break;
+
 		case PiTokenEnumType::QuotedIdent:
 		{
 			auto label = Label(tok.Text().c_str());
@@ -57,6 +60,14 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 
 		case PiTokenEnumType::GetType:
 			AppendOp(Operation::TypeOf);
+			break;
+
+		case PiTokenEnumType::Store:
+			AppendOp(Operation::Store);
+			break;
+
+		case PiTokenEnumType::Lookup:
+			AppendOp(Operation::Retreive);
 			break;
 
 	case PiTokenEnumType::Int:
@@ -82,6 +93,14 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::Dup:
 		AppendOp(Operation::Dup);
 		break;
+
+		case PiTokenEnumType::Assign:
+			AppendOp(Operation::Assign);
+			break;
+
+		case PiTokenEnumType::Swap:
+			AppendOp(Operation::Swap);
+			break;
 
 	case PiTokenEnumType::Plus:
 		AppendOp(Operation::Plus);
@@ -119,11 +138,13 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		AppendOp(Operation::GarbageCollect);
 		break;
 
+		case PiTokenEnumType::Ident:
+			AppendNew(Label(tok.Text()));
+			break;
+
 	case PiTokenEnumType::ToRho:
 		AppendOp(Operation::ToRho);
 		break;
-
-
 
 	default:
 		KAI_NOT_IMPLEMENTED();

@@ -32,7 +32,7 @@ void Label::FromString(const Value &S)
 StringStream &operator<<(StringStream &S, const Label &L)
 {
 	if (L.Quoted)
-		S << '\'';
+		S << "'";
 	return S << L.GetValue();
 }
 
