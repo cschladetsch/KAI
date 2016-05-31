@@ -2,36 +2,35 @@
 version 1.0303 
 header_name {.h} 
 code_name {.cxx}
-Function {callback(Fl_Widget* o, void*)} {private return_type void
+Function {callback(Fl_Widget* o, void*)} {open private return_type void
 } {
   code {printf("%g     \\r", ((Fl_Valuator*)o)->value());
 fflush(stdout);} {}
 } 
 
-Function {StartKai()} {open selected
+Function {StartKai()} {open
 } {} 
 
 Function {} {open
 } {
   Fl_Window {} {
     label {KAI Console} open
-    xywh {318 227 510 330} type Double visible
+    xywh {318 226 510 330} type Double hide
   } {
     Fl_Input KaiInput {
       label {input:} user_data_type {void*}
-      callback {printf("ch %d\\n", *(long *)ch);}
+      callback {;}
       xywh {10 296 390 24} labeltype NO_LABEL when 1
-    }
-    Fl_Button KaiEnter {
-      label Enter
-      callback {printf("ENTER\\n")}
-      xywh {430 295 70 20} when 8
     }
     Fl_Text_Display KaiOutputData {
       xywh {10 5 240 285}
     }
     Fl_Text_Display KaiOutputContext {
       xywh {260 5 240 285}
+    }
+    Fl_Return_Button KaiEnter {
+      label Enter selected
+      xywh {410 295 72 20}
     }
   }
   code {StartKai();} {}
