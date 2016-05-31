@@ -11,6 +11,6 @@ KAI_TYPE_TRAITS(bool, Number::Bool
 StringStream &operator<<(StringStream &, bool);
 StringStream &operator>>(StringStream &, bool &);
 BinaryStream &operator<<(BinaryStream &, bool);
-BinaryPacket &operator>>(BinaryPacket &, bool &);
+BinaryStream &operator>>(BinaryStream &, bool &);
 
 KAI_END

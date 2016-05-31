@@ -44,14 +44,36 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::String:
 		AppendNew(String(tok.Text()));
 		break;
+		case PiTokenEnumType::QuotedIdent:
+		{
+			auto label = Label(tok.Text().c_str());
+			AppendNew(label);
+			break;
+		}
 
 	case PiTokenEnumType::Bool:
 		AppendNew(boost::lexical_cast<bool>(tok.Text()));
 		break;
 
+		case PiTokenEnumType::GetType:
+			AppendOp(Operation::TypeOf);
+			break;
+
 	case PiTokenEnumType::Int:
 		AppendNew(boost::lexical_cast<int>(tok.Text()));
 		break;
+
+		case PiTokenEnumType::Replace:
+			AppendOp(Operation::Replace);
+			break;
+
+		case PiTokenEnumType::Suspend:
+			AppendOp(Operation::Suspend);
+			break;
+
+		case PiTokenEnumType::Resume:
+			AppendOp(Operation::Resume);
+			break;
 
 	case PiTokenEnumType::Drop:
 		AppendOp(Operation::Drop);
@@ -100,6 +122,8 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::ToRho:
 		AppendOp(Operation::ToRho);
 		break;
+
+
 
 	default:
 		KAI_NOT_IMPLEMENTED();
