@@ -12,7 +12,7 @@ There is also an Interface Definition Language (IDL) called Tau, which is used t
 
 ## PI
 
-	{ 1 + } 'add # print 2 add & &
+	{ 1 + } 'add # 2 add & print &
 
 ## Rho
 
@@ -22,7 +22,7 @@ There is also an Interface Definition Language (IDL) called Tau, which is used t
 
 These two examples are functionally equivalent, and both return **3**. 
 
-The first is prefix Pi. It creates a coroutine { 1 + } which adds 1 to whatever is on the stack. It then stores this to an object called add with __'add #__. It then pushes 2 onto the stack, then the add coroutine, then invokes it with __&__.  It then prints whatever is on the stack with __print &__.
+The first is prefix Pi. It creates a coroutine __{ 1 + }__ which adds 1 to whatever is on the stack. It then stores this to an object called add with __'add #__. It then pushes 2 and the coro onto the stack, resumes the coro with __&__, pushes **print** onto the stack and resumes that. The result is **3**.
 
 The **Rho** example is more familiar. Define a function that takes one argument and return it plus 1. Then print the result of calling that function with the argument 2.
 
