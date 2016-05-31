@@ -8,6 +8,7 @@ KAI_BEGIN
 struct Label
 {
 	typedef String Value;
+	bool Quoted;
 
 private:
 	Value value;
@@ -27,25 +28,26 @@ public:
 
 	friend bool operator<(const Label &A, const Label &B) 
 	{
-	   	return A.value < B.value; 
+	   	return A.Quoted < B.Quoted || (A.Quoted == B.Quoted && A.value < B.value);
 	}
 
 	friend bool operator==(const Label &A, const Label &B) 
 	{
-	   	return A.value == B.value; 
+	   	return A.Quoted == B.Quoted && A.value == B.value;
 	}
 
 	static void Register(Registry &);
 };
 
 StringStream &operator<<(StringStream &S, const Label &L);
+StringStream &operator>>(StringStream &S, Label &L);
 BinaryStream &operator<<(BinaryStream &, Label const &);
 BinaryStream &operator>>(BinaryStream &, Label &);
 
 KAI_TYPE_TRAITS(Label, Number::Label
-	, Properties::StringStreamInsert 
+	, Properties::Streaming
 	| Properties::Relational
-	| Properties::BinaryStreaming);
+);
 
 KAI_END
 

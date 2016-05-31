@@ -63,7 +63,7 @@ Value<Stack> Executor::GetDataStack()
 
 Value<const Stack> Executor::GetContextStack() const
 {
-	return Value<const Stack>(_data.GetConstObject()); // TODO: automatereturn context;
+	return Value<const Stack>(_context.GetConstObject());
 }
 
 void Executor::SetContinuation(Value<Continuation> C)
@@ -109,7 +109,7 @@ void Executor::Continue()
 			{
 				//KAI_TRACE_3(_data, _context, _continuation);
 				KAI_TRACE_1(E);
-				_data->Push(Reg().New<String>("Exception: " + E.ToString()));
+				_data->Push(Reg().New<String>(E.ToString()));
 				throw;
 			}
 		}

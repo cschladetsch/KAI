@@ -38,6 +38,7 @@ public:
 
 	bool Extract(int length, String &);
 	bool Extract(Char &);
+	char Peek() const;
 
 	static void Register(Registry &);
 };
