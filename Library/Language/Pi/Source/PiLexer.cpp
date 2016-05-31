@@ -16,6 +16,21 @@ void PiLexer::AddKeyWords()
 	keyWords["div"] = Enum::Divide;
 	keyWords["rho"] = Enum::ToRho;
 	keyWords["rho{"] = Enum::ToRhoSequence;
+
+	keyWords["drop"] = Enum::Drop;
+	keyWords["dup"] = Enum::Dup;
+	keyWords["pick"] = Enum::PickN;
+	keyWords["over"] = Enum::Over;
+	keyWords["swap"] = Enum::Swap;
+	keyWords["rot"] = Enum::Rot;
+	keyWords["rotn"] = Enum::RotN;
+	keyWords["toarray"] = Enum::ToArray;
+	keyWords["gc"] = Enum::GarbageCollect;
+	keyWords["clear"] = Enum::Clear;
+	keyWords["expand"] = Enum::Expand;
+	keyWords["cd"] = Enum::ChangeFolder;
+	keyWords["pwd"] = Enum::PrintFolder;
+	keyWords["type"] = Enum::GetType;
 }
 
 bool PiLexer::QuotedIdent()
@@ -60,8 +75,10 @@ bool PiLexer::NextToken()
 	case '[': return Add(Enum::OpenSquareBracket);
 	case ']': return Add(Enum::CloseSquareBracket);
 	case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
-	case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
-	case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
+		case '!': return Add(Enum::Replace);
+	//case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
+	//case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
+		case '&': return Add(Enum::Suspend);
 	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
@@ -82,7 +99,7 @@ bool PiLexer::NextToken()
 			if (Peek() == '.')
 			{
 				Next();
-				return Add(Enum::Replace, 3);
+				return Add(Enum::Resume, 3);
 			}
 			return Fail("Two dots doesn't work");
 		}

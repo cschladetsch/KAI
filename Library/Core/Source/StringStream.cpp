@@ -85,6 +85,13 @@ bool StringStream::Extract(int, String &)
 	KAI_NOT_IMPLEMENTED();
 }
 
+char StringStream::Peek() const
+{
+	if (!CanRead(1))
+		return 0;
+	return stream[read_offset];
+}
+
 bool StringStream::Extract(Char &C)
 {
 	if (read_offset > (int)stream.size() - 1)
@@ -137,11 +144,6 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	}
 
 	return stream;
-}
-
-StringStream &operator<<(StringStream &S, const Label &L)
-{
-	return S << L.ToString();
 }
 
 StringStream &operator<<(StringStream &S, const ClassBase *C)

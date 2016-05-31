@@ -30,14 +30,6 @@ KAI_BEGIN
 		return S;
 	}
 
-	BinaryStream &operator>>(BinaryStream &S, float &N)
-	{
-		if (!S.Read(N))
-			KAI_THROW_0(PacketExtraction);
-
-		return S;
-	}
-
 	BinaryStream &operator>>(BinaryStream &S, double &N)
 	{
 		if (!S.Read(N))
@@ -46,7 +38,7 @@ KAI_BEGIN
 		return S;
 	}
 
-	BinaryPacket &operator>>(BinaryPacket &S, float &N)
+	BinaryStream &operator>>(BinaryStream &S, float &N)
 	{
 		if (!S.Read(N))
 			KAI_THROW_0(PacketExtraction);
@@ -54,7 +46,7 @@ KAI_BEGIN
 		return S;
 	}
 
-	BinaryPacket &operator>>(BinaryPacket &S, bool &N)
+	BinaryStream &operator>>(BinaryStream &S, bool &N)
 	{
 		if (!S.Read(N))
 			KAI_THROW_0(PacketExtraction);

@@ -31,13 +31,11 @@ struct FluidConsole
 		_context = _exec->GetContextStack();
 		_reg = &console->GetRegistry();
 
-		auto d = new Fl_Text_Buffer();
-		auto c = new Fl_Text_Buffer();
+		_dataOutput = new Fl_Text_Buffer();
+		_contextOutput = new Fl_Text_Buffer();
 
-		KaiOutputData->buffer(d);
-		KaiOutputContext->buffer(c);
-		_dataOutput = KaiOutputData->buffer();
-		_contextOutput = KaiOutputContext->buffer();
+		KaiOutputData->buffer(_dataOutput);
+		KaiOutputContext->buffer(_contextOutput);
 	}
 
 	static void EnterPressed(Fl_Widget *, void *)
@@ -69,17 +67,7 @@ struct FluidConsole
 
 	static void Refresh()
 	{
-		RefreshData();
-		RefreshContext();
-	}
-
-	static void RefreshData()
-	{
 		RefreshView(self->_data, self->_dataOutput);
-	}
-
-	static void RefreshContext()
-	{
 		RefreshView(self->_context, self->_contextOutput);
 	}
 
@@ -87,7 +75,7 @@ struct FluidConsole
 	{
 		StringStream str;
 		int n = stack->Size() - 1;
-		for (const auto &obj : *self->_data)
+		for (const auto &obj : *stack)
 		{
 			str << "[" << n-- << "] "  << obj << "\n";
 		}
