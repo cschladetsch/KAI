@@ -44,10 +44,10 @@ bool PiParser::NextSingle(AstNodePtr root)
 	auto tok = Current();
 	switch (tok.type)
 	{
-	//case PiTokens::CloseSquareBracket:
-	//case PiTokens::CloseBrace:
-	//	Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
-	//	return false;
+	case PiTokens::CloseSquareBracket:
+	case PiTokens::CloseBrace:
+		Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
+		return false;
 
 	case PiTokens::OpenSquareBracket:
 		Consume();
@@ -87,7 +87,7 @@ bool PiParser::NextSingle(AstNodePtr root)
 bool PiParser::ParseArray(AstNodePtr root)
 {
 	auto node = NewNode(PiAstNodes::Array);
-	while (!Failed && !PeekIs(PiTokens::CloseSquareBracket))
+	while (!Failed && !Try(PiTokens::CloseSquareBracket))
 	{
 		if (!NextSingle(node))
 		{
