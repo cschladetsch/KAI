@@ -10,14 +10,8 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
 #add_definitions(-DKAI_TRACE_VERBOSE)
 
-# These are defined in KAI/Base/Config.h if KAI_DEBUG is defined
-#add_definitions(-DKAI_POINTER_HAS_STORAGEBASE)
-#add_definitions(-DKAI_USE_EXCEPTIONS)
-
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
-
 set(HOME $ENV{HOME})
-
 set(KAI_HOME ${HOME}/dev/KAI)
 set(LIBRARY_HOME ${KAI_HOME}/Library)
 set(TESTS_HOME ${KAI_HOME}/Tests)
@@ -27,8 +21,6 @@ include_directories(${KAI_HOME}/Include)
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
 endif()
-
-#set(GLOB_RECURSE HEADER_FILES ${KAI_HOME}/Window/KAI/*.h)
 
 set(dir ${HOME}/kai)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
@@ -62,9 +54,6 @@ macro(create_test name)
     add_executable(${name} ${SOURCE_FILES})
     target_link_libraries(${name} gtest pthread)
 endmacro()
-
-#file(READ .logo LOGO)
-#message(WARNING ${LOGO})
 
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
