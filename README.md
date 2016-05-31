@@ -22,7 +22,7 @@ There is also an Interface Definition Language (IDL) called Tau, which is used t
 
 These two examples are functionally equivalent, and both return **3**. 
 
-The first is prefix Pi. It creates a coroutine __{ 1 + }__ which adds 1 to whatever is on the stack. It then stores this to an object called add with __'add #__. It then pushes 2 and the coro onto the stack, resumes the coro with __&__, pushes **print** onto the stack and resumes that. The result is **3**.
+The first is post-fix **Pi** and will not be too strange that those that have used Forth or HP48 calculators. It creates a coroutine __{ 1 + }__ which adds 1 to whatever is on the stack. It then stores this to an object called add with __'add #__. It then pushes 2 and the coro onto the stack, resumes the coro with __&__, pushes **print** onto the stack and resumes that. The result is **3**.
 
 The **Rho** example is more familiar. Define a function that takes one argument and return it plus 1. Then print the result of calling that function with the argument 2.
 
