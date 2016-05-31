@@ -10,14 +10,16 @@ struct FluidConsole;
 shared_ptr<Console> console;
 shared_ptr<FluidConsole> fluidConsole;
 
+/// The console for KAI provided bu Fluid
 struct FluidConsole
 {
+	Registry *_reg;
 	Value<Executor> _exec;
 	Value<Stack> _data;
 	Value<Stack> _context;
+
 	Fl_Text_Buffer *_dataOutput;
 	Fl_Text_Buffer *_contextOutput;
-	Registry *_reg;
 
 	static FluidConsole *self;
 
@@ -96,4 +98,3 @@ void StartKai()
 	console->SetLanguage(Language::Pi);
 	fluidConsole = make_shared<FluidConsole>();
 }
-
