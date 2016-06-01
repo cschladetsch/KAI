@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(tests Pipe String Tcp)
+project(TestNetwork)
 
-macro(add_netork_test name parter)
-    project(${name})
-    set(SOURCE_ROOT ${KAI_ROOT_SOURCE_DIR}/Test/Test${name}/Source/*.cpp)
-    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    add_library(${name} ${SOURCE_FILES})
-endmacro()
+set(SOURCE_ROOT ${KAI_HOME}/Test/TestNetwork/Source/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
-foreach(test in ${tests)
-    add_network_test(${test})
-endforeach()
+add_executable(TestNetwork ${SOURCE_FILES})
+
+target_link_libraries(TestNetwork gtest pthread RakNetLibStatic)
+
 
