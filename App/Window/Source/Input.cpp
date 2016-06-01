@@ -10,14 +10,16 @@ struct FluidConsole;
 shared_ptr<Console> console;
 shared_ptr<FluidConsole> fluidConsole;
 
+/// The console for KAI provided bu Fluid
 struct FluidConsole
 {
+	Registry *_reg;
 	Value<Executor> _exec;
 	Value<Stack> _data;
 	Value<Stack> _context;
+
 	Fl_Text_Buffer *_dataOutput;
 	Fl_Text_Buffer *_contextOutput;
-	Registry *_reg;
 
 	static FluidConsole *self;
 
@@ -75,8 +77,14 @@ struct FluidConsole
 	{
 		StringStream str;
 		int n = 0;
+<<<<<<< HEAD
 		auto end = stack->GetStack().rend();
 		auto begin = stack->GetStack().rbegin();
+=======
+		auto const &st = stack->GetStack();
+		auto end = st.rend();
+		auto begin = st.rbegin();
+>>>>>>> master
 		for (; end != begin; ++begin)
 		{
 			str << "[" << n++ << "] "  << *begin << "\n";
@@ -95,4 +103,3 @@ void StartKai()
 	console->SetLanguage(Language::Pi);
 	fluidConsole = make_shared<FluidConsole>();
 }
-
