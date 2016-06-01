@@ -77,14 +77,9 @@ struct FluidConsole
 	{
 		StringStream str;
 		int n = 0;
-<<<<<<< HEAD
-		auto end = stack->GetStack().rend();
-		auto begin = stack->GetStack().rbegin();
-=======
 		auto const &st = stack->GetStack();
 		auto end = st.rend();
 		auto begin = st.rbegin();
->>>>>>> master
 		for (; end != begin; ++begin)
 		{
 			str << "[" << n++ << "] "  << *begin << "\n";
