@@ -6,5 +6,5 @@ file(GLOB_RECURSE WINDOW_FILES ${Root}/*.cxx)
 add_executable(Window ${SOURCE_FILES} ${WINDOW_FILES})
 link_directories(/usr/lib/x86_64-linux-gnu)
 set(x11libs Xcursor Xfixes Xext Xft Xinerama fontconfig X11 pthread)
-target_link_libraries(Window fltk fltk_forms fltk_gl fltk_images z dl ${x11libs})
+target_link_libraries(Window fltk fltk_forms fltk_gl fltk_images z dl ${x11libs} RakNetStaticLib)
 
