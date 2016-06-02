@@ -7,6 +7,8 @@ static void callback(Fl_Widget* o, void*) {
   fflush(stdout);
 }
 
+Fl_Double_Window *Output=(Fl_Double_Window *)0;
+
 Fl_Input *KaiInput=(Fl_Input *)0;
 
 static void cb_KaiInput(Fl_Input*, void*) {
@@ -19,24 +21,26 @@ Fl_Text_Display *KaiOutputContext=(Fl_Text_Display *)0;
 
 Fl_Return_Button *KaiEnter=(Fl_Return_Button *)0;
 
+Fl_Text_Display *KaiOurpur=(Fl_Text_Display *)0;
+
 int main(int argc, char **argv) {
-  Fl_Double_Window* w;
-  { Fl_Double_Window* o = new Fl_Double_Window(510, 330, "KAI Console");
-    w = o;
-    { KaiInput = new Fl_Input(10, 296, 390, 24, "input:");
+  { Output = new Fl_Double_Window(505, 445, "KAI Console");
+    { KaiInput = new Fl_Input(10, 6, 430, 28, "input:");
       KaiInput->labeltype(FL_NO_LABEL);
       KaiInput->callback((Fl_Callback*)cb_KaiInput);
       KaiInput->when(FL_WHEN_CHANGED);
     } // Fl_Input* KaiInput
-    { KaiOutputData = new Fl_Text_Display(10, 5, 240, 285);
+    { KaiOutputData = new Fl_Text_Display(10, 40, 240, 250);
     } // Fl_Text_Display* KaiOutputData
-    { KaiOutputContext = new Fl_Text_Display(260, 5, 240, 285);
+    { KaiOutputContext = new Fl_Text_Display(260, 40, 240, 250);
     } // Fl_Text_Display* KaiOutputContext
-    { KaiEnter = new Fl_Return_Button(410, 295, 72, 20, "Enter");
+    { KaiEnter = new Fl_Return_Button(445, 5, 45, 30);
     } // Fl_Return_Button* KaiEnter
-    o->end();
-  } // Fl_Double_Window* o
+    { KaiOurpur = new Fl_Text_Display(10, 295, 490, 145);
+    } // Fl_Text_Display* KaiOurpur
+    Output->end();
+  } // Fl_Double_Window* Output
   StartKai();
-  w->show(argc, argv);
+  Output->show(argc, argv);
   return Fl::run();
 }

@@ -7,6 +7,7 @@
       <file path="$PROJECT_DIR$/Include" />
       <file path="$PROJECT_DIR$/Install" />
       <file path="$PROJECT_DIR$/Library" />
+      <file path="$PROJECT_DIR$/Root" />
       <file path="$PROJECT_DIR$/Test" />
       <file path="$PROJECT_DIR$/TestAll" />
     </sourceRoots>
