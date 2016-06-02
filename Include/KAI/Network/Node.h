@@ -6,6 +6,11 @@ KAI_NET_BEGIN
 
 struct Node
 {
+private:
+	struct Impl;
+	std::shared_ptr<Impl> _impl;
+
+public:
 	Node();
 
 	void Listen(int listen);
