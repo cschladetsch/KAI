@@ -8,8 +8,8 @@ using namespace std;
 
 struct Node::Impl
 {
-	int constexpr NumSockets = 100;
-	int constexpr Port = 6666;
+	static const int constexpr NumSockets = 100;
+	static const int constexpr Port = 6666;
 
 	shared_ptr<RakPeerInterface> _peer;
 	SocketDescriptor _sockets[NumSockets];
