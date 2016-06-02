@@ -12,5 +12,4 @@
 #include "KAI/Network/Proxy.h"
 #include "KAI/Network/Agent.h"
 
-#include <raknet/RakPeerInterface.h>
 
