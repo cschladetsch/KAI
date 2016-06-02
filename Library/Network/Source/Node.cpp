@@ -1,5 +1,5 @@
 #include "KAI/Network/Node.h"
-#include <raknet/RakPeerInterface.h>
+#include <raknet/RakPeer.h>
 
 KAI_NET_BEGIN
 
@@ -15,7 +15,7 @@ struct Node::Impl
 	SocketDescriptor _sockets[NumSockets];
 
 	Impl()
-		: _peer(make_shared<RakPeerInterface>())
+		: _peer(make_shared<RakPeer>())
 	{
 		for (auto &sock : _sockets)
 		{
