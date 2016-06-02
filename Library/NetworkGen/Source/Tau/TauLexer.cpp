@@ -1,9 +1,5 @@
 #include "Tau/TauLexer.h"
 
-#include <strstream>
-#include <stdarg.h>
-#include <algorithm>
-
 using namespace std;
 
 TAU_BEGIN
