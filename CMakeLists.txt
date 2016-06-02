@@ -20,6 +20,7 @@ include_directories(${KAI_HOME}/Include)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
+    include_directories(/usr/local/include)
 endif()
 
 set(dir ${HOME}/kai)
