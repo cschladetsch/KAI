@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.4)
 
-project(TestNetwork)
+set(name TestNetwork)
+project(${name})
 
-set(SOURCE_ROOT ${KAI_HOME}/Test/TestNetwork/Source/*.cpp)
+set(SOURCE_ROOT ${KAI_HOME}/Test/${name}/Source/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
-add_executable(TestNetwork ${SOURCE_FILES})
+add_executable(${name} ${SOURCE_FILES})
 
-target_link_libraries(TestNetwork gtest pthread RakNetLibStatic)
+link_libraries(${name} Network Core)
+
+target_link_libraries(${name} gtest pthread )#RakNetLibStatic)
 
 
