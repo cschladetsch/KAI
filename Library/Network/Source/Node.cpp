@@ -8,22 +8,22 @@ using namespace std;
 
 struct Node::Impl
 {
-	int constexpr NumSockets = 100;
-	int constexpr Port = 6666;
+	static int constexpr NumSockets = 100;
+	static int constexpr Port = 6666;
 
 	shared_ptr<RakPeerInterface> _peer;
 	SocketDescriptor _sockets[NumSockets];
 
 	Impl()
-		: _peer(make_shared<RakPeerInterface>())
+//		: _peer(make_shared<RakPeerInterface>())
 	{
-		for (auto &sock : _sockets)
-		{
-			sock.port = Port;
-			sock.blockingSocket = false;
-		}
-
-		_peer->Startup(200, _sockets, NumSockets);
+//		for (auto &sock : _sockets)
+//		{
+//			sock.port = Port;
+//			sock.blockingSocket = false;
+//		}
+//
+//		_peer->Startup(200, _sockets, NumSockets);
 	}
 
 	void Something()
