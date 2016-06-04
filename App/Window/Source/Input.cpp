@@ -8,7 +8,6 @@ using namespace kai;
 struct FluidConsole;
 
 shared_ptr<Console> console;
-shared_ptr<FluidConsole> fluidConsole;
 
 /// The console for KAI provided bu Fluid
 struct FluidConsole
@@ -96,5 +95,4 @@ void StartKai()
 	cout << "Starting Kai" << endl;
 	console = make_shared<kai::Console>();
 	console->SetLanguage(Language::Pi);
-	fluidConsole = make_shared<FluidConsole>();
 }
