@@ -12,18 +12,6 @@
 
 KAI_BEGIN
 
-//template <class T>
-//struct Pointer;
-
-//template <class T>
-//struct DerefType;
-//
-//template <class T>
-//typename DerefType<T>::Reference Deref(StorageBase &base);
-//
-//template <class T>
-//typename DerefType<T>::ConstReference ConstDeref(StorageBase const &base);
-
 class Object
 {
 private:
@@ -55,9 +43,6 @@ public:
 	Object(ObjectConstructParams const &P);
 
 	Object &operator=(Object const &);
-
-//	operator bool() const { return Exists(); }
-
 
 	StorageBase &GetStorageBase() const;
 	int GetSwitches() const;
@@ -94,10 +79,7 @@ public:
 	Object GetParent() const;
 
 	template <class T>
-	bool IsType() const
-	{
-		return Exists() && GetTypeNumber() == Type::Traits<T>::Number;
-	}
+	bool IsType() const { return Exists() && GetTypeNumber() == Type::Traits<T>::Number; }
 
 	void Delete() const;
 	bool Valid() const;
@@ -125,6 +107,7 @@ public:
 	// use these to get/set/remove a property or a child of a given name
 	void Set(const char *N, const Object &Q) const { Set(Label(N), Q); }
 	Object Get(const char *N) const { return Get(Label(N)); }
+
 	void Set(const Label &, const Object &) const;
 	Object Get(const Label &) const;
 
