@@ -32,7 +32,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(/usr/local/)
 endif()
 
-set(dir ${HOME})
+set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
