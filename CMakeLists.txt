@@ -61,7 +61,7 @@ macro(create_test name)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     link_libraries(Executor Core Executor PiLang RhoLang NetworkGen)
     add_executable(${name} ${SOURCE_FILES})
-    target_link_libraries(${name} gtest pthread RakNetLibStatic)
+    target_link_libraries(${name} gtest pthread)
 endmacro()
 
 include(Library/CMakeLists.txt)
