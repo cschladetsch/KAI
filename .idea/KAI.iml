@@ -19,12 +19,20 @@
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
+<<<<<<< HEAD
+=======
+          <root url="file://$USER_HOME$/External/RakNet/include" />
+>>>>>>> 8242d38efdcbc3cfdffe7e6caa4cc85821afb279
         </CLASSES>
         <SOURCES>
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
           <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
+<<<<<<< HEAD
+=======
+          <root url="file://$USER_HOME$/External/RakNet/include" />
+>>>>>>> 8242d38efdcbc3cfdffe7e6caa4cc85821afb279
         </SOURCES>
       </library>
     </orderEntry>

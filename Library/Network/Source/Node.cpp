@@ -15,15 +15,15 @@ struct Node::Impl
 	SocketDescriptor _sockets[NumSockets];
 
 	Impl()
-		: _peer(make_shared<RakPeer>())
+//		: _peer(make_shared<RakPeerInterface>())
 	{
-		for (auto &sock : _sockets)
-		{
-			sock.port = Port;
-			sock.blockingSocket = false;
-		}
-
-		_peer->Startup(200, _sockets, NumSockets);
+//		for (auto &sock : _sockets)
+//		{
+//			sock.port = Port;
+//			sock.blockingSocket = false;
+//		}
+//
+//		_peer->Startup(200, _sockets, NumSockets);
 	}
 
 	void Something()
