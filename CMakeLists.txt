@@ -10,9 +10,18 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
 #add_definitions(-DKAI_TRACE_VERBOSE)
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(HOME $ENV{HOME})
+
+# THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
+# Source location.
 set(KAI_HOME ${HOME}/dev/KAI)
+# RakNet
+include_directories(${HOME}/External/RakNet/include)
+# for X11
+link_directories(/usr/lib/x86_64-linux-gnu)
+# END HARD-CODED
+
+set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
 set(TESTS_HOME ${KAI_HOME}/Tests)
 
@@ -23,7 +32,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include_directories(/usr/local/)
 endif()
 
-set(dir ${HOME}/kai)
+set(dir ${HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
@@ -33,7 +42,7 @@ link_directories(${HOME}/lib /usr/local/lib)
 macro(def_lang_library name)
     project(${name}Lang)
     set(lang_root ${KAI_HOME}/Library/Language/${name})
-    include_directories(${lang_root}/include)
+    include_directories(${lang_root}/Include)
     set(SOURCE_ROOT ${lang_root}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     add_library(${name}Lang ${SOURCE_FILES})
@@ -50,7 +59,6 @@ macro(create_test name)
     project(${name})
     set(SOURCE_ROOT ${KAI_HOME}/Test/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    link_directories(${HOME}/lib /usr/local/lib)
     link_libraries(Executor Core Executor PiLang RhoLang NetworkGen)
     add_executable(${name} ${SOURCE_FILES})
     target_link_libraries(${name} gtest pthread RakNetLibStatic)
