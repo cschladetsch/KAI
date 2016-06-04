@@ -23,7 +23,6 @@ namespace
 		ASSERT_FALSE(parse->Failed);
 
 		auto root = parse->GetRoot();
-		ASSERT_TRUE(root);
 		ASSERT_EQ(root->GetChildren().size(), 2);
 		ASSERT_EQ(root->GetChild(0)->GetToken().type, PiTokens::Int);
 		ASSERT_EQ(root->GetChild(1)->GetToken().type, PiTokens::NewLine);
