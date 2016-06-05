@@ -4,7 +4,7 @@ KAI_BEGIN
 
 class PiTranslator;
 class RhoTranslator;
-class TauTranslator;
+//class TauTranslator;
 
 enum class Language { None, Pi, Rho, Tau };
 const char *ToString(Language);
