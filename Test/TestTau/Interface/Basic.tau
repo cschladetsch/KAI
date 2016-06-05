@@ -1,7 +1,7 @@
 
 namespace MLB
 {
-	class Test
+	interface Test
 	{
 		void Pin() const;
 		void Pin();
@@ -40,6 +40,17 @@ namespace MLB
 	{
 		class TestProxy : Proxy<TestProxy>
 		{
+        public:
+            Future<string> Something()
+            {
+                return SendMessageWithResponse<string>("Get:Something");
+            }
+
+            void Something(string const &val)
+            {
+                return SendMessage<string>("Set:Something", val);
+            }
+
 			void Pin() const
 			{
 				SendMessage("Pin");
