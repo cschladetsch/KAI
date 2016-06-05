@@ -27,6 +27,11 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 	Run(Structure::Namespace);
 }
 
+void TauParser::Walk(std::function<bool(AstNodePtr)> fun)
+{
+
+}
+
 void TauParser::Run(Structure st)
 {
 	switch (st)
