@@ -206,7 +206,7 @@ protected:
 		{
 			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
 			Fail(Lexer::CreateErrorMessage(tok, "Unexpected token %s", TokenEnumType::ToString(tok.type)));
-			cerr << Error;
+			cerr << Error << endl;
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 
