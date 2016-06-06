@@ -6,7 +6,7 @@ TAU_BEGIN
 
 namespace Generate
 {
-	bool Agent::Generate(TauParser const &p, const char *fname) override
+	bool Agent::Generate(TauParser const &p, const char *fname)
 	{
 		return false;
 	}
@@ -36,7 +36,7 @@ namespace Generate
 		return move(text);
 	}
 
-	std::string ReturnType(std::string &&text) const
+	std::string Agent::ReturnType(std::string &&text) const
 	{
 		return move(text);
 	}
