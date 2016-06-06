@@ -1,127 +1,128 @@
 #include <Tau/TauParser.h>
 #include <Generate/Proxy.h>
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 
 TAU_BEGIN
 
-	namespace Generate
+namespace Generate
+{
+	bool Proxy::Generate(TauParser const &p, const char *fname)
 	{
-		bool Proxy::Generate(TauParser const &p, const char *fname)
+		TauParser::AstNodePtr root = p.GetRoot();
+		switch (root->GetType())
 		{
-			TauParser::AstNodePtr root = p.GetRoot();
-			switch (root->GetType())
+			case TauAstEnumType::Namespace:
 			{
-				case TauAstEnumType::Namespace:
-				{
-					if (!Namespace(*root))
-						return false;
+				if (!Namespace(*root))
+					return false;
 
-					fstream f(fname);
-					const string &s = _str.str();
-					return f.write(s.c_str(), s.size()).good();
-				}
+				fstream f(fname);
+				const string &s = _str.str();
+				return f.write(s.c_str(), s.size()).good();
 			}
-
-			return Fail("Namespace expected");
 		}
 
-		string Proxy::EndLine()
-		{
-			_str << "\n";
-			return move(string(_indentation, '\t'));
-		}
+		return Fail("Namespace expected");
+	}
 
-		bool Proxy::Namespace(TauParser::AstNode const &ns)
+	string Proxy::EndLine()
+	{
+		_str << "\n";
+		return move(string(_indentation, '\t'));
+	}
+
+	bool Proxy::Namespace(TauParser::AstNode const &ns)
+	{
+		_str << "namespace " << ns.GetToken().Text() << EndLine() << '{';
+		_indentation++;
+		for (auto const &ch : ns.GetChildren())
 		{
-			_str << "namespace " << ns.GetToken().Text() << EndLine() << '{';
-			_indentation++;
-			for (auto const &ch : ns.GetChildren())
+			switch (ch->GetType())
 			{
-				switch (ch->GetType())
-				{
-				case TauAstEnumType::Namespace:
-					return Namespace(*ch);
+			case TauAstEnumType::Namespace:
+				return Namespace(*ch);
 
-				case TauAstEnumType::Class:
-					return Class(*ch);
-				}
+			case TauAstEnumType::Class:
+				return Class(*ch);
 			}
-
-			_indentation--;
-			return false;
 		}
 
-		bool Proxy::Class(TauParser::AstNode const &cl)
+		_indentation--;
+		return false;
+	}
+
+	bool Proxy::Class(TauParser::AstNode const &cl)
+	{
+		_str << "class " << cl.GetToken().Text() << EndLine() << '{';
+		_indentation++;
+		for (const auto &member : cl.GetChildren())
 		{
-			_str << "class " << cl.GetToken().Text() << EndLine() << '{';
-			_indentation++;
-			for (const auto &member : cl.GetChildren())
+			switch (member->GetType())
 			{
-				switch (member->GetType())
-				{
-				case TauAstEnumType::Class:
-					return Class(*member);
+			case TauAstEnumType::Class:
+				return Class(*member);
 
-				case TauAstEnumType::Property:
-					if (!Property(*member))
-						return false;
+			case TauAstEnumType::Property:
+				if (!Property(*member))
+					return false;
 
-				case TauAstEnumType::Method:
-					if (!Method(*member))
-						return false;
+			case TauAstEnumType::Method:
+				if (!Method(*member))
+					return false;
 
-				default:
-					return Fail("Unknown class member: %s", TauAstEnumType::ToString(member->GetType()));
-				}
+			default:
+				return Fail("Unknown class member: %s", TauAstEnumType::ToString(member->GetType()));
 			}
-
-			_indentation--;
-			_str << '}' << EndLine();
 		}
 
-		bool Proxy::Property(TauParser::AstNode const &prop)
-		{
-			_str
-				<< "IFuture<" << prop.GetChild(0)->GetTokenText() << "> "
-				<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
-			return true;
-		}
+		_indentation--;
+		_str << '}' << EndLine();
+	}
 
-		bool Proxy::Method(TauParser::AstNode const &method)
-		{
-			auto const &rt = method.GetChild(0);
-			auto const &args = method.GetChild(2);
+	bool Proxy::Property(TauParser::AstNode const &prop)
+	{
+		_str
+			<< "IFuture<" << prop.GetChild(0)->GetTokenText() << "> "
+			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
+		return true;
+	}
+
+	bool Proxy::Method(TauParser::AstNode const &method)
+	{
+		auto const &rt = method.GetChild(0);
+		auto const &args = method.GetChild(2);
 //		auto const &konst = method.GetChild(3);
 
-			_str << ReturnType(method.GetTokenText()) << "(";
-			bool first = true;
-			for (auto const &a : args->GetChildren())
-			{
-				if (!first)
-					_str << ", ";
-
-				auto &ty = a->GetChild(0);
-				auto &id = a->GetChild(1);
-				_str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
-
-				first = false;
-			}
-
-			return (_str << ");" << EndLine()).good();
-		}
-
-		string Proxy::ReturnType(string &&text) const
+		_str << ReturnType(method.GetTokenText()) << "(";
+		bool first = true;
+		for (auto const &a : args->GetChildren())
 		{
-			return move(string("IFuture<") + text + "> ");
+			if (!first)
+				_str << ", ";
+
+			auto &ty = a->GetChild(0);
+			auto &id = a->GetChild(1);
+			_str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
+
+			first = false;
 		}
 
-		string Proxy::ArgType(string &&text) const
-		{
-			return move(text);
-		}
+		return (_str << ");" << EndLine()).good();
 	}
+
+	string Proxy::ReturnType(string &&text) const
+	{
+		return move(string("IFuture<") + text + "> ");
+	}
+
+	string Proxy::ArgType(string &&text) const
+	{
+		return move(text);
+	}
+}
 
 TAU_END
 
