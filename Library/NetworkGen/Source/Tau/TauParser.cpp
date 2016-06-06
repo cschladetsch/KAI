@@ -82,12 +82,10 @@ void TauParser::Class(AstNodePtr root)
 	{
 		// Expect a series of methods and properties.
 		// Either way, start with a type name and identifier.
-		Expect(TokenEnum::Ident);
-		auto ty = Consume();
-		Expect(TokenEnum::Ident);
-		auto id = Consume();
+		auto ty = Expect(TokenEnum::Ident)->GetToken();
+		auto id = Expect(TokenEnum::Ident)->GetToken();
 
-		if (Peek().type == TokenType::OpenParan)
+		if (Current().type == TokenType::OpenParan)
 		{
 			Consume();
 			Method(cl, ty, id);
@@ -108,18 +106,21 @@ void TauParser::Class(AstNodePtr root)
 
 void TauParser::Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
 {
-	auto method = make_shared<AstNode>(TauAstEnumType::Method, id);
+	auto method = NewNode(AstEnum::Method, id);
 	method->Add(ty);
 	method->Add(id);
 
 	auto args = make_shared<AstNode>();
 	method->Add(args);
 
-	do
+	while (true)
 	{
 		AddArg(args);
+		if (Current().type != TokenType::Comma)
+			break;
+
+		Consume();
 	}
-	while (Peek().type == TokenType::Comma);
 
 	Expect(TokenType::CloseParan);
 	Expect(TokenType::Semi);
@@ -131,23 +132,21 @@ void TauParser::Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
 
 void TauParser::AddArg(AstNodePtr parent)
 {
-	if (Peek().type != TokenType::Ident)
-		return;
-
 	auto ty = Consume();
-	Expect(TokenType::Ident);
 	auto name = Consume();
-
 	auto arg = make_shared<AstNode>();
+
 	arg->Add(ty);
 	arg->Add(name);
+
+	cout << "Addarg: "  << ty << name << endl;
 
 	parent->Add(arg);
 }
 
 void TauParser::Field(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
 {
-	auto field = make_shared<AstNode>(TauAstEnumType::Property);
+	auto field = NewNode(AstEnum::Property);
 	field->Add(ty);
 	field->Add(id);
 
