@@ -26,6 +26,9 @@ TAU_BEGIN
 			bool Class(TauParser::AstNode const &cl);
 			bool Property(TauParser::AstNode const &prop);
 			bool Method(TauParser::AstNode const &method);
+
+			std::string ArgType(std::string &&text) const;
+			std::string ReturnType(std::string &&text) const;
 		};
 	}
 
