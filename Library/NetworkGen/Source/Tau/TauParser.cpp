@@ -78,7 +78,7 @@ void TauParser::Class(AstNodePtr root)
 	cl->Add(Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (Peek().type != TokenEnum::CloseBrace)
+	while (Has() && Current().type != TokenEnum::CloseBrace)
 	{
 		// Expect a series of methods and properties.
 		// Either way, start with a type name and identifier.

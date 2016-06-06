@@ -112,6 +112,11 @@ protected:
 	std::shared_ptr<Lexer> lexer;
 
 protected:
+	bool Has() const
+	{
+		return current < tokens.size();
+	}
+
 	void Push(AstNodePtr node)
 	{
 		if (node)
