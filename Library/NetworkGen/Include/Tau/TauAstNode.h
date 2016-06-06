@@ -17,6 +17,9 @@ struct TauAstEnumType
 
 		// req.
 		TokenType = 5,
+
+		// a file containing a collection of one or more namespaces
+		Module = 6,
 	};
 
 	struct Node : AstNodeBase<TauToken, TauAstEnumType>

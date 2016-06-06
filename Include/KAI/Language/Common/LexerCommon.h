@@ -20,6 +20,7 @@ class LexerCommon : public LexerBase
 public:
 	typedef typename EnumType::Type Token;
 	typedef typename EnumType::Enum Enum;
+	typedef EnumType TokenEnumType;
 
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
 	typedef boost::monotonic::vector<Token> Tokens;
