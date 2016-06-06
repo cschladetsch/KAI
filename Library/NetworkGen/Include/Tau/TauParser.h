@@ -30,6 +30,8 @@ public:
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
+	void Walk(std::function<bool(AstNodePtr)> fun);
+
 protected:
 	void Run(Structure);
 
