@@ -190,10 +190,15 @@ protected:
 		return tokens[current + 1];
 	}
 
-	void PeekConsume(TokenEnum ty)
+	bool PeekConsume(TokenEnum ty)
 	{
-		if (tokens[current + 1] == ty)
+		if (tokens[current + 1].type == ty)
+		{
 			Consume();
+			return true;
+		}
+
+		return false;
 	}
 
 	bool PeekIs(TokenEnum ty) const
@@ -201,6 +206,16 @@ protected:
 		return Peek().type == ty;
 	}
 
+	bool Consume(TokenEnum ty)
+	{
+		if (Current().type == ty)
+		{
+			Consume();
+			return true;
+		}
+
+		return false;
+	}
 	TokenNode const &Consume()
 	{
 		return tokens[current++];
@@ -227,6 +242,7 @@ protected:
 	}
 
 	AstNodePtr NewNode(AstEnum t) { return std::make_shared<AstNode>(t); }
+	AstNodePtr NewNode(AstEnum e, TokenNode const &t) const { return std::make_shared<AstNode>(e,t); }
 	AstNodePtr NewNode(TokenNode const &t) { return std::make_shared<AstNode>(t); }
 };
 
