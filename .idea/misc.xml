@@ -12,7 +12,11 @@
       <file path="$PROJECT_DIR$/TestAll" />
     </sourceRoots>
     <libraryRoots />
-    <excludeRoots />
+    <excludeRoots>
+      <file path="$PROJECT_DIR$/bin" />
+      <file path="$PROJECT_DIR$/build" />
+      <file path="$PROJECT_DIR$/lib" />
+    </excludeRoots>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
