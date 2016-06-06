@@ -6,6 +6,9 @@
 #include "KAI/Language/Common/Process.h"
 #include "KAI/Language/Common/AstNodeBase.h"
 #include "KAI/Language/Common/Structure.h"
+#include <iostream>
+
+using namespace std;
 
 KAI_BEGIN
 
@@ -19,6 +22,7 @@ class ParserCommon : public ProcessCommon
 public:
 	typedef ELexer Lexer;
 	typedef typename Lexer::Token TokenNode;
+	typedef typename Lexer::TokenEnumType TokenEnumType;
 	typedef typename TokenNode::Enum TokenEnum;
 	typedef typename AstEnumStruct::Enum AstEnum;
 	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
@@ -26,7 +30,7 @@ public:
 
 	bool Passed() const { return passed;  }
 	const std::string &GetError() const { return error; }
-	AstNodePtr GetRoot() { return root; }
+	AstNodePtr GetRoot() const { return root; }
 	
 	ParserCommon(Registry& r) : ProcessCommon(r)
 	{ 
@@ -201,6 +205,8 @@ protected:
 		if (tok.type != type)
 		{
 			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
+			Fail(Lexer::CreateErrorMessage(tok, "Unexpected token %s", TokenEnumType::ToString(tok.type)));
+			cerr << Error;
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 

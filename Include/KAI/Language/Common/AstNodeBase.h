@@ -29,7 +29,7 @@ public:
 
 	AstNodeBase(Enum e) : _astType(e) { }
 
-	AstNodeBase(Enum e, Token &t) : _astType(e), _token(t) { }
+	AstNodeBase(Enum e, Token t) : _astType(e), _token(t) { }
 
 //	AstNodeBase(Enum e, Object const &Q) : _astType(e), _object(Q) { }
 

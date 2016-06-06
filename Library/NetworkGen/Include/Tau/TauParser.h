@@ -30,14 +30,16 @@ public:
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
-	void Walk(std::function<bool(AstNodePtr)> fun);
+//	void Walk(AstNodePtr node, std::function<bool(AstNodePtr)> fun) const;
 
 protected:
 	void Run(Structure);
 
 	void Namespace(AstNodePtr rent);
 	void Class(AstNodePtr rent);
-	void Method(AstNodePtr rent);
+	void Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id);
+	void Field(AstNodePtr cl, TokenNode const &ty, TokenNode const &id);
+	void AddArg(AstNodePtr parent);
 };
 
 TAU_END
