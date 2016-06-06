@@ -60,7 +60,7 @@ void TauParser::Namespace(AstNodePtr root)
 	auto ns = make_shared<AstNode>(TauAstEnumType::Namespace, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (Peek().type == TokenEnum::Class)
+	while (Current().type == TokenEnum::Class)
 	{
 		Consume();
 		Class(ns);
