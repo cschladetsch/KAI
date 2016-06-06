@@ -8,20 +8,20 @@ TAU_BEGIN
 
 	namespace Generate
 	{
-
 		bool Proxy::Generate(TauParser const &p, const char *fname)
 		{
 			TauParser::AstNodePtr root = p.GetRoot();
 			switch (root->GetType())
 			{
-			case TauAstEnumType::Namespace:
-			{
-				if (!Namespace(*root))
-					return false;
-				fstream f(fname);
-				const string &s = _str.str();
-				return f.write(s.c_str(), s.size()).good();
-			}
+				case TauAstEnumType::Namespace:
+				{
+					if (!Namespace(*root))
+						return false;
+
+					fstream f(fname);
+					const string &s = _str.str();
+					return f.write(s.c_str(), s.size()).good();
+				}
 			}
 
 			return Fail("Namespace expected");
@@ -41,10 +41,14 @@ TAU_BEGIN
 			{
 				switch (ch->GetType())
 				{
+				case TauAstEnumType::Namespace:
+					return Namespace(*ch);
+
 				case TauAstEnumType::Class:
 					return Class(*ch);
 				}
 			}
+
 			_indentation--;
 			return false;
 		}
@@ -57,6 +61,9 @@ TAU_BEGIN
 			{
 				switch (member->GetType())
 				{
+				case TauAstEnumType::Class:
+					return Class(*member);
+
 				case TauAstEnumType::Property:
 					if (!Property(*member))
 						return false;
@@ -77,19 +84,18 @@ TAU_BEGIN
 		bool Proxy::Property(TauParser::AstNode const &prop)
 		{
 			_str
-			<< "IFuture<" << prop.GetChild(0)->GetTokenText() << "> "
-			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
+				<< "IFuture<" << prop.GetChild(0)->GetTokenText() << "> "
+				<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
 			return true;
 		}
 
 		bool Proxy::Method(TauParser::AstNode const &method)
 		{
 			auto const &rt = method.GetChild(0);
-			auto const &name = method.GetChild(1);
 			auto const &args = method.GetChild(2);
 //		auto const &konst = method.GetChild(3);
 
-			_str << "IFuture<" << rt->GetTokenText() << "> " << name->GetTokenText() << "(";
+			_str << ReturnType(method.GetTokenText()) << "(";
 			bool first = true;
 			for (auto const &a : args->GetChildren())
 			{
@@ -98,14 +104,23 @@ TAU_BEGIN
 
 				auto &ty = a->GetChild(0);
 				auto &id = a->GetChild(1);
-				_str << ty->GetTokenText() << " " << id->GetTokenText();
+				_str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
 
 				first = false;
 			}
 
-			_str << ");" << EndLine();
+			return (_str << ");" << EndLine()).good();
 		}
 
+		string Proxy::ReturnType(string &&text) const
+		{
+			return move(string("IFuture<") + text + "> ");
+		}
+
+		string Proxy::ArgType(string &&text) const
+		{
+			return move(text);
+		}
 	}
 
 TAU_END
