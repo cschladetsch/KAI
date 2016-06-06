@@ -25,10 +25,6 @@ struct Node::Impl
 
 		_peer->Startup(200, _sockets, NumSockets);
 	}
-
-	void Something()
-	{
-	}
 };
 
 Node::Node()
