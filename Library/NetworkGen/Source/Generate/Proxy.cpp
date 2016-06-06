@@ -28,12 +28,6 @@ namespace Generate
 		return Fail("Namespace expected");
 	}
 
-	string Proxy::EndLine()
-	{
-		_str << "\n";
-		return move(string(_indentation, '\t'));
-	}
-
 	bool Proxy::Namespace(TauParser::AstNode const &ns)
 	{
 		_str << "namespace " << ns.GetToken().Text() << EndLine() << '{';
