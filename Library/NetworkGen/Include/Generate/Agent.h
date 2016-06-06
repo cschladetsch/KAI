@@ -6,7 +6,7 @@ TAU_BEGIN
 
 namespace Generate
 {
-	struct Proxy : GenerateProcess
+	struct Agent : GenerateProcess
 	{
 		virtual bool Generate(TauParser const &p, const char *fname) override;
 
