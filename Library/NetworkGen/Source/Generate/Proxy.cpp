@@ -10,7 +10,7 @@ namespace Generate
 {
 	bool Proxy::Generate(TauParser const &p, const char *fname)
 	{
-		TauParser::AstNodePtr root = p.GetRoot();
+		auto const &root = p.GetRoot();
 		if (root->GetType() != TauAstEnumType::Module)
 			return Fail("Expected a Module");
 
@@ -24,35 +24,39 @@ namespace Generate
 		}
 
 		fstream f(fname);
-		const string &s = _str.str();
+		const string &s = Prepend() + "\n" + _str.str();
 		return f.write(s.c_str(), s.size()).good();
 	}
 
 	bool Proxy::Namespace(TauParser::AstNode const &ns)
 	{
-		_str << "namespace " << ns.GetToken().Text() << EndLine() << '{';
-		_indentation++;
+		StartBlock(string("namespace ") + ns.GetToken().Text());
 		for (auto const &ch : ns.GetChildren())
 		{
 			switch (ch->GetType())
 			{
 			case TauAstEnumType::Namespace:
-				return Namespace(*ch);
+				if (!Namespace(*ch))
+					return false;
 
 			case TauAstEnumType::Class:
-				return Class(*ch);
+				if (!Class(*ch))
+					return false;
+
+			default:
+				KAI_TRACE_ERROR_1("Parser failed to fail");
+				Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
+				break;
 			}
 		}
 
-		_indentation--;
-		_str << EndLine() << '}';
-		return false;
+		EndBlock();
 	}
 
 	bool Proxy::Class(TauParser::AstNode const &cl)
 	{
-		_str << "struct " << cl.GetToken().Text() << EndLine() << '{';
-		_indentation++;
+		StartBlock(string("struct ") + cl.GetToken().Text());
+
 		for (const auto &member : cl.GetChildren())
 		{
 			switch (member->GetType())
@@ -73,8 +77,7 @@ namespace Generate
 			}
 		}
 
-		_indentation--;
-		_str << EndLine() << '}';
+		EndBlock();
 	}
 
 	bool Proxy::Property(TauParser::AstNode const &prop)
@@ -89,7 +92,7 @@ namespace Generate
 	{
 		auto const &rt = method.GetChild(0);
 		auto const &args = method.GetChild(1);
-//		auto const &konst = method.GetChild(3);
+//		auto const &konst = method.GetChild(2);
 
 		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
 		bool first = true;
