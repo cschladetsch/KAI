@@ -195,9 +195,13 @@ public:
 	std::string Print() const
 	{
 		std::stringstream str;
+		int n = 0;
 		for (auto tok : tokens)
+		{
 			str << tok << ", ";
-		//ENDS str << std::ends;
+			if (++n % 5 == 0)
+				str << "\n";
+		}
 		return str.str();
 	}
 };

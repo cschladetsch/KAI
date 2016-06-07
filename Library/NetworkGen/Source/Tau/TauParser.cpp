@@ -74,8 +74,7 @@ void TauParser::Namespace(AstNodePtr root)
 
 void TauParser::Class(AstNodePtr root)
 {
-	auto cl = make_shared<AstNode>(TauAstEnumType::Class);
-	cl->Add(Consume());
+	auto cl = make_shared<AstNode>(TauAstEnumType::Class, Consume());
 	Expect(TokenEnum::OpenBrace);
 
 	while (Has() && Current().type != TokenEnum::CloseBrace)
@@ -108,7 +107,6 @@ void TauParser::Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
 {
 	auto method = NewNode(AstEnum::Method, id);
 	method->Add(ty);
-	method->Add(id);
 
 	auto args = make_shared<AstNode>();
 	method->Add(args);
@@ -138,8 +136,6 @@ void TauParser::AddArg(AstNodePtr parent)
 
 	arg->Add(ty);
 	arg->Add(name);
-
-	cout << "Addarg: "  << ty << name << endl;
 
 	parent->Add(arg);
 }
