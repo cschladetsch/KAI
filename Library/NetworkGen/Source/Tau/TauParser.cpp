@@ -82,6 +82,10 @@ void TauParser::Namespace(AstNodePtr root)
 				Namespace(ns);
 				break;
 
+			case TokenEnum::CloseBrace:
+				Consume();
+				break;
+
 			default:
 			{
 				auto const &cur = Current();
@@ -119,6 +123,7 @@ void TauParser::Class(AstNodePtr root)
 		}
 	}
 
+	Expect(TokenEnum::CloseBrace);
 	root->Add(klass);
 }
 
@@ -146,7 +151,7 @@ void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode 
 
 void TauParser::OptionalSemi()
 {
-	if (PeekIs(TokenType::Semi))
+	if (Current().type == TokenType::Semi)
 		Consume();
 }
 
