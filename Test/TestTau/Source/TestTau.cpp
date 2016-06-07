@@ -47,7 +47,7 @@ TEST_F(TauTest, TestParse)
 		if (l->Failed)
 			cerr << l->Error << endl;
 		ASSERT_FALSE(l->Failed);
-		cout << l->Print();
+		cout << l->Print() << endl;
 
 		auto p = make_shared<TauParser>(r);
 		p->Process(l, Structure::Namespace);

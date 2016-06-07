@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Tau/TauToken.h"
 
 TAU_BEGIN
@@ -10,7 +11,9 @@ const char *TauTokenEnumType::ToString(Enum val)
 		#define CASE_LOWER(N) case TauTokenEnum::N : return ToLower(#N);
 		#define CASE_REPLACE(N, M) case TauTokenEnum::N : return M;
 
-		CASE(None)
+	case TauTokenEnumType::None:
+		return "";
+
 		CASE(Ident)
 		CASE(OpenParan)
 		CASE(CloseParan)
@@ -36,9 +39,10 @@ const char *TauTokenEnumType::ToString(Enum val)
 		CASE(Whitespace)
 		CASE(Comment)
 		CASE(Async)
+	default:
+		std::cerr << "TauToken: Case not used: " << val << std::endl;
+		return "??";
 	}
-
-	return "Unnamed";
 }
 
 std::ostream &operator<<(std::ostream &out, TauToken const &node)
