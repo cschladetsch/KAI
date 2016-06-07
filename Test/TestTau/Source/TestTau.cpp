@@ -3,6 +3,7 @@
 #include <iostream>
 #include <Tau/TauParser.h>
 #include <Generate/Proxy.h>
+#include <Generate/Agent.h>
 
 using namespace std;
 using namespace kai;
@@ -57,7 +58,10 @@ TEST_F(TauTest, TestParse)
 		cout << p->PrintTree();
 
 		Generate::Proxy g;
-		EXPECT_TRUE(g.Generate(*p, "TestParse.int"));
+		EXPECT_TRUE(g.Generate(*p, "TestParse.proxy.h"));
+
+		Generate::Agent a;
+		EXPECT_TRUE(a.Generate(*p, "TestParse.agent.h"));
 	}
 	catch (Exception::Base &e)
 	{
