@@ -75,10 +75,8 @@ bool PiLexer::NextToken()
 	case '[': return Add(Enum::OpenSquareBracket);
 	case ']': return Add(Enum::CloseSquareBracket);
 	case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
-		case '!': return Add(Enum::Replace);
-	//case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
-	//case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
-		case '&': return Add(Enum::Suspend);
+	case '!': return Add(Enum::Replace);
+	case '&': return Add(Enum::Suspend);
 	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
@@ -134,10 +132,9 @@ void PiLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
-	bool PiLexer::ParsePathname()
-	{
-		return false;
-	}
-
+bool PiLexer::ParsePathname()
+{
+	return false;
+}
 
 KAI_END
