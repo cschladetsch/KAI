@@ -1,7 +1,6 @@
 #include <Tau/TauParser.h>
 #include <Generate/Proxy.h>
 #include <fstream>
-#include <iostream>
 
 using namespace std;
 
@@ -50,7 +49,7 @@ namespace Generate
 
 	bool Proxy::Class(TauParser::AstNode const &cl)
 	{
-		_str << "class " << cl.GetToken().Text() << EndLine() << '{';
+		_str << "struct " << cl.GetToken().Text() << EndLine() << '{';
 		_indentation++;
 		for (const auto &member : cl.GetChildren())
 		{
@@ -68,7 +67,7 @@ namespace Generate
 					return false;
 
 			default:
-				return Fail("Unknown class member: %s", TauAstEnumType::ToString(member->GetType()));
+				return Fail("Invalid class member: %s", TauAstEnumType::ToString(member->GetType()));
 			}
 		}
 
@@ -90,7 +89,7 @@ namespace Generate
 		auto const &args = method.GetChild(2);
 //		auto const &konst = method.GetChild(3);
 
-		_str << ReturnType(method.GetTokenText()) << "(";
+		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
 		bool first = true;
 		for (auto const &a : args->GetChildren())
 		{

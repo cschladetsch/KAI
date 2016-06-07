@@ -33,7 +33,7 @@ public:
 	std::string GetString(Slice const &slice) const
 	{
 		int length = slice.Length();
-		return length == 0 ? "<empty-token>" : std::move(input.substr(slice.Start, length));
+		return length == 0 ? "" : std::move(input.substr(slice.Start, length));
 	}
 
 protected:

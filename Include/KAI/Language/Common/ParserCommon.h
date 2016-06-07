@@ -80,8 +80,7 @@ public:
 	std::string PrintTree() const
 	{
 		std::stringstream str;
-		str << "Parser:" << std::endl;
-		PrintTree(str, 1, root);
+		PrintTree(str, 0, root);
 		return std::move(str.str());
 	}
 
@@ -93,11 +92,10 @@ public:
 protected:
 	void PrintTree(std::ostream &str, int level, AstNodePtr root) const
 	{
-		str << root->ToString().c_str() << std::endl;
 		std::string indent(4*level, ' ');
+		str << indent << root->ToString().c_str() << std::endl;
 		for (auto const &ch : root->GetChildren())
 		{
-			str << indent << *root << "\n";
 			PrintTree(str, level + 1, ch);
 		}
 	}
