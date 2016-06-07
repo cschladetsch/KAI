@@ -1,25 +1,27 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include <Tau/TauParser.h>
+#include "Tau/TauParser.h"
 
 using namespace std;
 
 TAU_BEGIN
 
-void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+void TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 {
+	// Tau always starts at Module level (a series of namespaces)
+	KAI_UNUSED_1(st);
+
 	current = 0;
 	indent = 0;
 	lexer = lex;
 
 	if (lexer->Failed)
 	{
-		Failed = true;
-		Error = lexer->Error;
+		Fail("Lexer error: " + lexer->Error);
 		return;
 	}
 
 	// strip whitespace and comments
-	for (auto tok : lexer->GetTokens())
+	for (auto const &tok : lexer->GetTokens())
 	{
 		switch (tok.type)
 		{
@@ -34,17 +36,19 @@ void TauParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Module);
 
-	KAI_UNUSED_1(st);
 	Run(Structure::Namespace);
 }
 
 void TauParser::Run(Structure st)
 {
 	KAI_UNUSED_1(st);
-	if (tokens.empty())
+	if (Empty())
+	{
+		KAI_TRACE_WARN_1("Nothing to parse");
 		return;
+	}
 
-	while (Current().type == TokenType::Namespace)
+	while (!Empty() && Current().type == TokenType::Namespace)
 	{
 		Consume();
 		Namespace(root);
@@ -52,32 +56,52 @@ void TauParser::Run(Structure st)
 			return;
 	}
 
-	// TODO: check for invalid trailing text outside of a namespace
+	if (!Empty())
+	{
+		auto const &trail = Current();
+		Fail(Lexer::CreateErrorMessage(trail, "Unexpected token %s", TokenEnumType::ToString(trail.type)));
+	}
 }
 
 void TauParser::Namespace(AstNodePtr root)
 {
-	auto ns = make_shared<AstNode>(TauAstEnumType::Namespace, Consume());
+	auto ns = NewNode(TauAstEnumType::Namespace, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (Current().type == TokenEnum::Class)
+	while (!Empty())
 	{
-		Consume();
-		Class(ns);
+		switch (Current().type)
+		{
+			case TokenEnum::Class:
+				Consume();
+				Class(ns);
+				break;
+
+			case TokenEnum::Namespace:
+				Consume();
+				Namespace(ns);
+				break;
+
+			default:
+			{
+				auto const &cur = Current();
+				Fail(Lexer::CreateErrorMessage(cur, "Unexpected token %s", TokenEnumType::ToString(cur.type)));
+			}
+		}
+
 		if (Failed)
 			return;
 	}
 
-	Expect(TokenEnum::CloseBrace);
 	root->Add(ns);
 }
 
 void TauParser::Class(AstNodePtr root)
 {
-	auto cl = make_shared<AstNode>(TauAstEnumType::Class, Consume());
+	auto klass = NewNode(TauAstEnumType::Class, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (Has() && Current().type != TokenEnum::CloseBrace)
+	while (!Failed && !Empty() && Current().type != TokenEnum::CloseBrace)
 	{
 		// Expect a series of methods and properties.
 		// Either way, start with a type name and identifier.
@@ -87,28 +111,23 @@ void TauParser::Class(AstNodePtr root)
 		if (Current().type == TokenType::OpenParan)
 		{
 			Consume();
-			Method(cl, ty, id);
+			Method(klass, ty, id);
 		}
 		else
 		{
-			Field(cl, ty, id);
+			Field(klass, ty, id);
 		}
-
-		if (Failed)
-			return;
 	}
 
-	Expect(TokenEnum::CloseBrace);
-
-	root->Add(cl);
+	root->Add(klass);
 }
 
-void TauParser::Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
+void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &id)
 {
 	auto method = NewNode(AstEnum::Method, id);
-	method->Add(ty);
+	auto args = NewNode(AstEnum::Arglist);
 
-	auto args = make_shared<AstNode>();
+	method->Add(returnType);
 	method->Add(args);
 
 	while (true)
@@ -121,34 +140,31 @@ void TauParser::Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
 	}
 
 	Expect(TokenType::CloseParan);
-	Expect(TokenType::Semi);
+	OptionalSemi();
+	klass->Add(method);
+}
 
-	method->Add(make_shared<AstNode>());
-
-	cl->Add(method);
+void TauParser::OptionalSemi()
+{
+	if (PeekIs(TokenType::Semi))
+		Consume();
 }
 
 void TauParser::AddArg(AstNodePtr parent)
 {
-	auto ty = Consume();
-	auto name = Consume();
-	auto arg = make_shared<AstNode>();
-
-	arg->Add(ty);
-	arg->Add(name);
-
+	auto arg = NewNode(AstEnum::Argument);
+	arg->Add(Consume());    // type
+	arg->Add(Consume());    // name
 	parent->Add(arg);
 }
 
-void TauParser::Field(AstNodePtr cl, TokenNode const &ty, TokenNode const &id)
+void TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id)
 {
 	auto field = NewNode(AstEnum::Property);
 	field->Add(ty);
 	field->Add(id);
-
-	Expect(TokenType::Semi);
-
-	cl->Add(field);
+	OptionalSemi();
+	klass->Add(field);
 }
 
 TAU_END

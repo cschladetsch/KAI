@@ -37,9 +37,10 @@ protected:
 
 	void Namespace(AstNodePtr rent);
 	void Class(AstNodePtr rent);
-	void Method(AstNodePtr cl, TokenNode const &ty, TokenNode const &id);
-	void Field(AstNodePtr cl, TokenNode const &ty, TokenNode const &id);
+	void Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &id);
+	void Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
 	void AddArg(AstNodePtr parent);
+	void OptionalSemi();
 };
 
 TAU_END

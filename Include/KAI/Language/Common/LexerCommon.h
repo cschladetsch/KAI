@@ -121,9 +121,9 @@ protected:
 		return true;
 	}
 
-	void LexError(const char *text)
+	bool LexError(const char *text)
 	{
-		Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));
+		return Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));
 	}
 
 	//void SearchForKeyword(Token &tok) const;
