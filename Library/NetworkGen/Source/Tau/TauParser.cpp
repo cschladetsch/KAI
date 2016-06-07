@@ -55,12 +55,6 @@ void TauParser::Run(Structure st)
 		if (Failed)
 			return;
 	}
-
-	if (!Empty())
-	{
-		auto const &trail = Current();
-		Fail(Lexer::CreateErrorMessage(trail, "Unexpected token %s", TokenEnumType::ToString(trail.type)));
-	}
 }
 
 void TauParser::Namespace(AstNodePtr root)
@@ -82,10 +76,6 @@ void TauParser::Namespace(AstNodePtr root)
 				Namespace(ns);
 				break;
 
-			case TokenEnum::CloseBrace:
-				Consume();
-				break;
-
 			default:
 			{
 				auto const &cur = Current();
@@ -97,6 +87,8 @@ void TauParser::Namespace(AstNodePtr root)
 			return;
 	}
 
+	Expect(TokenEnumType::CloseBrace);
+	OptionalSemi();
 	root->Add(ns);
 }
 
@@ -124,6 +116,7 @@ void TauParser::Class(AstNodePtr root)
 	}
 
 	Expect(TokenEnum::CloseBrace);
+	OptionalSemi();
 	root->Add(klass);
 }
 
@@ -149,9 +142,18 @@ void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode 
 	klass->Add(method);
 }
 
+void TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id)
+{
+	auto field = NewNode(AstEnum::Property);
+	field->Add(ty);
+	field->Add(id);
+	OptionalSemi();
+	klass->Add(field);
+}
+
 void TauParser::OptionalSemi()
 {
-	if (Current().type == TokenType::Semi)
+	if (Current().type == TokenType::Semi || PeekIs(TokenType::Semi))
 		Consume();
 }
 
@@ -161,15 +163,6 @@ void TauParser::AddArg(AstNodePtr parent)
 	arg->Add(Consume());    // type
 	arg->Add(Consume());    // name
 	parent->Add(arg);
-}
-
-void TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id)
-{
-	auto field = NewNode(AstEnum::Property);
-	field->Add(ty);
-	field->Add(id);
-	OptionalSemi();
-	klass->Add(field);
 }
 
 TAU_END

@@ -28,7 +28,7 @@ namespace Generate
 		return f.write(s.c_str(), s.size()).good();
 	}
 
-	bool Proxy::Namespace(TauParser::AstNode const &ns)
+	bool Proxy::Namespace(Node const &ns)
 	{
 		StartBlock(string("namespace ") + ns.GetToken().Text());
 		for (auto const &ch : ns.GetChildren())
@@ -53,7 +53,7 @@ namespace Generate
 		EndBlock();
 	}
 
-	bool Proxy::Class(TauParser::AstNode const &cl)
+	bool Proxy::Class(Node const &cl)
 	{
 		StartBlock(string("struct ") + cl.GetToken().Text());
 
@@ -80,15 +80,15 @@ namespace Generate
 		EndBlock();
 	}
 
-	bool Proxy::Property(TauParser::AstNode const &prop)
+	bool Proxy::Property(Node const &prop)
 	{
 		_str
-			<< "IFuture<" << prop.GetChild(0)->GetTokenText() << "> "
+			<< ReturnType(prop.GetTokenText())
 			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
 		return true;
 	}
 
-	bool Proxy::Method(TauParser::AstNode const &method)
+	bool Proxy::Method(Node const &method)
 	{
 		auto const &rt = method.GetChild(0);
 		auto const &args = method.GetChild(1);
