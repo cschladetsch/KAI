@@ -185,7 +185,7 @@ protected:
 
 	bool Empty() const
 	{
-		return current == tokens.size();
+		return current >= tokens.size();
 	}
 
 	TokenNode const &Peek() const
