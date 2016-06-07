@@ -183,6 +183,11 @@ protected:
 		return tokens[current] == node;
 	}
 
+	bool Empty() const
+	{
+		return current == tokens.size();
+	}
+
 	TokenNode const &Peek() const
 	{
 		return tokens[current + 1];
@@ -214,6 +219,7 @@ protected:
 
 		return false;
 	}
+
 	TokenNode const &Consume()
 	{
 		return tokens[current++];

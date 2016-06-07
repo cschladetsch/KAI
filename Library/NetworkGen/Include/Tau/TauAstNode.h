@@ -20,6 +20,8 @@ struct TauAstEnumType
 
 		// a file containing a collection of one or more namespaces
 		Module = 6,
+		Argument = 7,
+		Arglist = 8,
 	};
 
 	struct Node : AstNodeBase<TauToken, TauAstEnumType>

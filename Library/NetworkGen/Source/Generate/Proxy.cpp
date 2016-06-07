@@ -11,20 +11,21 @@ namespace Generate
 	bool Proxy::Generate(TauParser const &p, const char *fname)
 	{
 		TauParser::AstNodePtr root = p.GetRoot();
-		switch (root->GetType())
-		{
-			case TauAstEnumType::Namespace:
-			{
-				if (!Namespace(*root))
-					return false;
+		if (root->GetType() != TauAstEnumType::Module)
+			return Fail("Expected a Module");
 
-				fstream f(fname);
-				const string &s = _str.str();
-				return f.write(s.c_str(), s.size()).good();
-			}
+		for (const auto &ch : root->GetChildren())
+		{
+			if (ch->GetType() != TauAstEnumType::Namespace)
+				return Fail("Namespace expected");
+
+			if (!Namespace(*ch))
+				return false;
 		}
 
-		return Fail("Namespace expected");
+		fstream f(fname);
+		const string &s = _str.str();
+		return f.write(s.c_str(), s.size()).good();
 	}
 
 	bool Proxy::Namespace(TauParser::AstNode const &ns)
@@ -44,6 +45,7 @@ namespace Generate
 		}
 
 		_indentation--;
+		_str << EndLine() << '}';
 		return false;
 	}
 
@@ -72,7 +74,7 @@ namespace Generate
 		}
 
 		_indentation--;
-		_str << '}' << EndLine();
+		_str << EndLine() << '}';
 	}
 
 	bool Proxy::Property(TauParser::AstNode const &prop)
@@ -86,7 +88,7 @@ namespace Generate
 	bool Proxy::Method(TauParser::AstNode const &method)
 	{
 		auto const &rt = method.GetChild(0);
-		auto const &args = method.GetChild(2);
+		auto const &args = method.GetChild(1);
 //		auto const &konst = method.GetChild(3);
 
 		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";

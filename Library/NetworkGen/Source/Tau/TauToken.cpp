@@ -11,9 +11,7 @@ const char *TauTokenEnumType::ToString(Enum val)
 		#define CASE_LOWER(N) case TauTokenEnum::N : return ToLower(#N);
 		#define CASE_REPLACE(N, M) case TauTokenEnum::N : return M;
 
-	case TauTokenEnumType::None:
-		return "";
-
+		case TauTokenEnumType::None: return "";
 		CASE(Ident)
 		CASE(OpenParan)
 		CASE(CloseParan)
