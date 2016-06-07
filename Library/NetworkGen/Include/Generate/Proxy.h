@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GenerateProcess.h"
+#include "./GenerateProcess.h"
 
 TAU_BEGIN
 
@@ -8,20 +8,20 @@ namespace Generate
 {
 	struct Proxy : GenerateProcess
 	{
-		virtual bool Generate(TauParser const &p, const char *fname) override;
+		using GenerateProcess::Node;
+
+		virtual bool Generate(TauParser const &p, const char *fileName) override;
 
 	protected:
-		virtual bool Namespace(TauParser::AstNode const &ns) override ;
-		virtual bool Class(TauParser::AstNode const &cl) override ;
-		virtual bool Property(TauParser::AstNode const &prop) override ;
-		virtual bool Method(TauParser::AstNode const &method) override ;
+		virtual bool Namespace(Node const &ns) override;
+		virtual bool Class(Node const &cl) override;
+		virtual bool Property(Node const &prop) override;
+		virtual bool Method(Node const &method) override;
 
-		std::string ArgType(std::string &&text) const;
-		std::string ReturnType(std::string &&text) const;
+		virtual std::string ArgType(std::string &&text) const override;
+		virtual std::string ReturnType(std::string &&text) const override;
 	};
 }
 
 TAU_END
-
-
 
