@@ -2,8 +2,8 @@
 
 #include <KAI/Core/Object/ClassBase.h>
 #include <KAI/Core/Value.h>
-#include "KAI/Core/Registry.h"
-#include "KAI/Language/Common/Process.h"
+#include <KAI/Core/Registry.h>
+#include <KAI/Language/Common/Process.h>
 
 KAI_BEGIN
 

@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <KAI/Language/Common/ParserCommon.h>
@@ -19,15 +18,12 @@ public:
 	using typename Parent::AstNodePtr;
 
 	typedef TauAstEnumType::Enum AstType;
-
 	typedef TauAstEnumType NodeType;
 	typedef TauTokenEnumType TokenType;
 
 	TauParser(Registry &r) : Parent(r) { }
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
-
-//	void Walk(AstNodePtr node, std::function<bool(AstNodePtr)> fun) const;
 
 protected:
 	void Run(Structure);
@@ -36,6 +32,7 @@ protected:
 	void Class(AstNodePtr rent);
 	void Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &id);
 	void Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
+
 	void AddArg(AstNodePtr parent);
 	void OptionalSemi();
 };

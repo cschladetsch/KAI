@@ -3,8 +3,8 @@
 #include <vector>
 #include <string>
 
-#include "KAI/Language/Common/ProcessCommon.h"
-#include "KAI/Language/Common/Slice.h"
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Slice.h>
 
 KAI_BEGIN
 
