@@ -61,10 +61,10 @@ TEST_F(TauTest, TestParse)
 		if (g.Failed)
 			cerr << g.Error << endl;
 
-		Generate::Agent a;
-		EXPECT_TRUE(a.Generate(*p, "TestParse.agent.h"));
-		if (a.Failed)
-			cerr << a.Error << endl;
+//		Generate::Agent a;
+//		EXPECT_TRUE(a.Generate(*p, "TestParse.agent.h"));
+//		if (a.Failed)
+//			cerr << a.Error << endl;
 	}
 	catch (Exception::Base &e)
 	{

@@ -3,7 +3,7 @@
 
 #include <KAI/Executor/Operation.h>
 #include <KAI/Core/BuiltinTypes.h>
-#include <KAI/Language/Rho/TauTranslator.h>
+#include <KAI/Language/Rho/RhoTranslator.h>
 #include <KAI/Language/Rho/RhoToken.h>
 #include "KAI/Executor/Executor.h"
 

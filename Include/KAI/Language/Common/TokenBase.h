@@ -1,7 +1,6 @@
 #pragma once
 
-#include "KAI/Language/Common/Slice.h"
-#include "KAI/Language/Common/LexerBase.h"
+#include <KAI/Language/Common/LexerBase.h>
 
 #include <sstream>
 

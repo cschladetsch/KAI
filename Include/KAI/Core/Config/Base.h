@@ -43,4 +43,3 @@
 #include "KAI/Core/Utility.h"
 #include "KAI/Core/FwdDeclarations.h"
 
-
