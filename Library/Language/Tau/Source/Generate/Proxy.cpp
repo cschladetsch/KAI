@@ -23,9 +23,14 @@ namespace Generate
 				return false;
 		}
 
-		fstream f(fname);
-		const string &s = Prepend() + "\n" + _str.str();
-		return f.write(s.c_str(), s.size()).good();
+		return (ofstream(fname) << Prepend() << ProxyPrepend() << _str.str() << endl).good();
+	}
+
+	string Proxy::ProxyPrepend() const
+	{
+		stringstream str;
+		str << "#include <KAI/Network/ProxyDecl.h>\n\n";
+		return move(str.str());
 	}
 
 	bool Proxy::Namespace(Node const &ns)
@@ -38,24 +43,53 @@ namespace Generate
 			case TauAstEnumType::Namespace:
 				if (!Namespace(*ch))
 					return false;
+				break;
 
 			case TauAstEnumType::Class:
 				if (!Class(*ch))
 					return false;
+				break;
 
 			default:
 				KAI_TRACE_ERROR_1("Parser failed to fail");
-				Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
-				break;
+				return Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
 			}
 		}
 
 		EndBlock();
+		return true;
+	}
+
+	struct Proxy::ProxyDecl
+	{
+		string RootName;
+		string ProxyName;
+
+		ProxyDecl(string const &root)
+			: RootName(root)
+		{
+			ProxyName = root + "Proxy";
+		}
+
+		string ToString() const
+		{
+			stringstream decl;
+			decl << "struct " << ProxyName << ": ProxyBase";
+			return move(decl.str());
+		}
+	};
+
+	void Proxy::AddProxyBoilerplate(ProxyDecl const &proxy)
+	{
+		_str << proxy.ProxyName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
 	}
 
 	bool Proxy::Class(Node const &cl)
 	{
-		StartBlock(string("struct ") + cl.GetToken().Text());
+		auto decl = ProxyDecl(cl.GetToken().Text());
+
+		StartBlock(decl.ToString());
+		AddProxyBoilerplate(decl);
 
 		for (const auto &member : cl.GetChildren())
 		{
@@ -67,10 +101,12 @@ namespace Generate
 			case TauAstEnumType::Property:
 				if (!Property(*member))
 					return false;
+				break;
 
 			case TauAstEnumType::Method:
 				if (!Method(*member))
 					return false;
+				break;
 
 			default:
 				return Fail("Invalid class member: %s", TauAstEnumType::ToString(member->GetType()));
@@ -78,6 +114,7 @@ namespace Generate
 		}
 
 		EndBlock();
+		return true;
 	}
 
 	bool Proxy::Property(Node const &prop)
@@ -113,7 +150,7 @@ namespace Generate
 
 	string Proxy::ReturnType(string &&text) const
 	{
-		return move(string("IFuture<") + text + "> ");
+		return move(string("Future<") + text + "> ");
 	}
 
 	string Proxy::ArgType(string &&text) const

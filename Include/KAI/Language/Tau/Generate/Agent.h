@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./GenerateProcess.h"
+#include <KAI/Language/Tau/Generate/GenerateProcess.h>
 
 TAU_BEGIN
 
@@ -24,6 +24,4 @@ namespace Generate
 }
 
 TAU_END
-
-
 

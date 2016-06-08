@@ -47,7 +47,7 @@ public:
 		if (lexer == 0)
 			return "";
 
-		if (slice.Start == slice.End)
+		if (slice.Length() == 0)
 			return "";
 
 		return std::move(lexer->GetLine(lineNumber).substr(slice.Start, slice.Length()));

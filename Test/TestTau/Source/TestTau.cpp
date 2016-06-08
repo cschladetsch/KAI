@@ -59,9 +59,13 @@ TEST_F(TauTest, TestParse)
 
 		Generate::Proxy g;
 		EXPECT_TRUE(g.Generate(*p, "TestParse.proxy.h"));
+		if (g.Failed)
+			cerr << g.Error << endl;
 
 		Generate::Agent a;
 		EXPECT_TRUE(a.Generate(*p, "TestParse.agent.h"));
+		if (a.Failed)
+			cerr << a.Error << endl;
 	}
 	catch (Exception::Base &e)
 	{
