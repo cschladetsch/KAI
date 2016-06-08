@@ -2,6 +2,7 @@
 
 #include "KAI/Language/Rho/RhoAstNode.h"
 #include "KAI/Language/Rho/RhoLexer.h"
+#include "KAI/Language/Common/ParserCommon.h"
 
 KAI_BEGIN
 

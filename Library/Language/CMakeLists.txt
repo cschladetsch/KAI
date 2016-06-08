@@ -7,5 +7,6 @@ include_directories(${lang_root_dir}/Window)
 
 def_lang_library(Pi)
 def_lang_library(Rho)
+def_lang_library(Tau)
 
 #$
