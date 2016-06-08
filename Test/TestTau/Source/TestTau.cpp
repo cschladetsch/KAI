@@ -1,9 +1,8 @@
 #include "Main.h"
-#include <strstream>
-#include <iostream>
-#include <Tau/TauParser.h>
-#include <Generate/Proxy.h>
-#include <Generate/Agent.h>
+#include <KAI/Language/Tau/TauParser.h>
+#include <KAI/Network/Proxy.h>
+#include <KAI/Language/Tau/Generate/Agent.h>
+#include <KAI/Language/Tau/Generate/Proxy.h>
 
 using namespace std;
 using namespace kai;
