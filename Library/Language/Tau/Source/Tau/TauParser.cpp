@@ -62,7 +62,7 @@ void TauParser::Namespace(AstNodePtr root)
 	auto ns = NewNode(TauAstEnumType::Namespace, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (!Empty())
+	while (!Empty() && Current().type != TokenEnum::CloseBrace)
 	{
 		switch (Current().type)
 		{

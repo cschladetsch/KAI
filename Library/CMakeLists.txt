@@ -10,10 +10,5 @@ endforeach()
 # this library contains the two languages, Pi and Rho (Rho translates to Pi)
 include(${KAI_HOME}/Library/Language/CMakeLists.txt)
 
-# The NetworkGen system uses the Tau language, which share common core
-# with both Pi and Rho, but is not executed: rather, it it is an
-# Interface Definition Languagee
-include(${KAI_HOME}/Library/NetworkGen/CMakeLists.txt)
-
 #$
 

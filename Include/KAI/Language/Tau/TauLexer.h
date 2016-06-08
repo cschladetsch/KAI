@@ -1,7 +1,7 @@
 #pragma once
 
 #include <KAI/Language/Common/LexerCommon.h>
-#include "Tau/TauToken.h"
+#include <KAI/Language/Tau/TauToken.h>
 
 TAU_BEGIN
 

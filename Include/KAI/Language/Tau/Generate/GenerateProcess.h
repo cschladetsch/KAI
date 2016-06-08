@@ -1,9 +1,7 @@
 #pragma once
 
-#include <KAI/Language/Common/Process.h>
-#include <Tau/TauParser.h>
+#include <KAI/Language/Tau/TauParser.h>
 
-// TODO: hide these under pimpl  (?)
 #include <strstream>
 #include <string>
 

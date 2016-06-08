@@ -8,15 +8,17 @@ namespace Generate
 {
 	string GenerateProcess::Prepend()
 	{
-		strstream str;
-		str << "// auto-generated on " << "Tuesday" << "; modify at own risk\n\n" << ends;
+		stringstream str;
+		str << "// auto-generated on " << "Tuesday" << "; modify at own risk\n";
 		return str.str();
 	}
 
 	stringstream &GenerateProcess::StartBlock(const string &name)
 	{
+		_str << EndLine();
 		_str << name << EndLine() << '{';
 		_indentation++;
+		_str << EndLine();
 		return _str;
 	}
 
