@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Tau/TauToken.h"
+#include <KAI/Language/Tau/TauToken.h>
 
 TAU_BEGIN
 
