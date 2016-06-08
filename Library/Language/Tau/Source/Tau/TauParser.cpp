@@ -1,5 +1,5 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include "Tau/TauParser.h"
+#include <KAI/Language/Tau/TauParser.h>
 
 using namespace std;
 
