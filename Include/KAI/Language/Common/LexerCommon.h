@@ -147,8 +147,8 @@ public:
 		#else
 		sprintf(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
 		#endif
-		int beforeContext = 1;
-		int afterContext = 0;
+		int beforeContext = 2;
+		int afterContext = 2;
 
 		const LexerBase &lex = *tok.lexer;
 		int start = std::max(0, tok.lineNumber - beforeContext);
@@ -186,8 +186,6 @@ public:
 				err << std::endl;
 			}
 		}
-
-		//ENDS err << std::ends;
 
 		return err.str();
 	}
