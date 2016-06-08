@@ -1,5 +1,5 @@
-#include <Tau/TauParser.h>
-#include <Generate/Proxy.h>
+#include <KAI/Language/Tau/Tau.h>
+#include <KAI/Language/Tau/Generate/Proxy.h>
 #include <fstream>
 
 using namespace std;

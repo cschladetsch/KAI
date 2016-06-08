@@ -1,4 +1,4 @@
-#include "Tau/TauLexer.h"
+#include <KAI/Language/Tau/TauLexer.h>
 
 using namespace std;
 
