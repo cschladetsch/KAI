@@ -1,8 +1,8 @@
 #pragma once
 
+#include "KAI/Language/Common/ParserCommon.h"
 #include "KAI/Language/Rho/RhoAstNode.h"
 #include "KAI/Language/Rho/RhoLexer.h"
-#include "KAI/Language/Common/ParserCommon.h"
 
 KAI_BEGIN
 
@@ -30,7 +30,7 @@ protected:
 private:
 	void Run(Structure st);
 	bool Program();
-	bool Statement(AstNodePtr );
+	bool Statement(AstNodePtr);
 	bool Expression();
 	bool Logical();
 	bool Relational();
@@ -44,12 +44,13 @@ private:
 	void ParseMethodCall();
 	void Function(AstNodePtr);
 	void AddBlock(AstNodePtr fun);
-	void IfCondition(AstNodePtr block);
+	void IfCondition(AstNodePtr);
 	void ParseIndexOp();
 	void Assignment(AstNodePtr);
-	void For(AstNodePtr block);
-	void While(AstNodePtr block);
-	bool CreateError(const char *text);
+	void For(AstNodePtr);
+	void While(AstNodePtr);
+
+	bool CreateError(const char *);
 };
 
 KAI_END

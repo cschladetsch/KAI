@@ -1,6 +1,5 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Language/Common/TokenBase.h>
 
 #ifndef TAU_NAMESPACE_NAME
