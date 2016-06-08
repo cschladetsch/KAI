@@ -1,1 +1,1 @@
-# Headers common but local to this library.
+# Headers local to this library.

@@ -20,6 +20,12 @@ namespace Generate
 
 		virtual std::string ArgType(std::string &&text) const override;
 		virtual std::string ReturnType(std::string &&text) const override;
+
+		struct ProxyDecl;
+
+		void AddProxyBoilerplate(ProxyDecl const &);
+
+		string ProxyPrepend() const;
 	};
 }
 
