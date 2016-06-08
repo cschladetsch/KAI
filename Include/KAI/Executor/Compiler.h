@@ -12,7 +12,7 @@
 #include <KAI/Language/Common/Language.h>
 #include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Pi/PiTranslator.h>
-#include <KAI/Language/Rho/TauTranslator.h>
+#include <KAI/Language/Rho/RhoTranslator.h>
 
 #include "KAI/Core/Debug.h"
 
