@@ -1,6 +1,7 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Language/Common/TokenBase.h>
 
 #ifndef TAU_NAMESPACE_NAME
 #   define TAU_NAMESPACE_NAME tau
@@ -8,3 +9,4 @@
 
 #define TAU_BEGIN KAI_BEGIN namespace TAU_NAMESPACE_NAME {
 #define TAU_END } KAI_END
+
