@@ -15,7 +15,6 @@ namespace Generate
 
 	stringstream &GenerateProcess::StartBlock(const string &name)
 	{
-		_str << EndLine();
 		_str << name << EndLine() << '{';
 		_indentation++;
 		_str << EndLine();

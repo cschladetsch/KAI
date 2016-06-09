@@ -13,7 +13,7 @@ context stack.
 Rho is a simple in-fix dynamically typed language.
 
 ## Tau
-Tau is an IDL - Interface Defintion Language. It is used to generate
+Tau is an Interface Definition Language (IDL). It is used to generate
 both consumer (Proxy) and producer (Agent) code.
 
 A single Network entity begins with a definition in the Tau language. 
@@ -21,9 +21,9 @@ From there, Proxies are used to access Agents.
 
 # Summary
 There are currently three different language systems used by the system:
-* Pi
-* Rho
-* Tau
+- Pi
+- Rho
+- Tau
 
 The first two are used to access C++ systems reflected at runtime. 
 The last, Tau, is used as an IDL to generate Proxt and Agent code

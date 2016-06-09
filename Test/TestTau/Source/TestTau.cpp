@@ -12,7 +12,14 @@ typedef TauTokenEnumType Tok;
 struct TauTest : ::testing::Test
 {
 	const char *input =
-		"namespace Foo { class Bar { int Method(string s, float c); string name; } }";
+		"namespace Foo { "
+				"class Bar { "
+				"void Simple();"
+				"string name; "
+				"int Method(string s, float c);"
+				"bool OtherMethod(int n, float c, string s);"
+				"float number; "
+		"} }";
 
 	virtual void SetUp() override
 	{

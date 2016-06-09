@@ -9,21 +9,22 @@ KAI_NET_BEGIN
 NetHandle GetNetHandle(Object const &t, Node const &);
 
 // common to either proxy or agent
-class Representative : Reflected
+struct Representative : Reflected
 {
-public:
+protected:
 	Representative(Node &node, NetHandle handle)
 		: _node(node), _netHandle(handle)
 	{
 	}
 
 protected:
-	virtual void Receive(NetHandle, BinaryPacket &packet) = 0;
-	virtual void Receive(NetHandle, StringStream &packet) = 0;
+	void Receive(NetHandle sender, BinaryStream &packet);
+	void Receive(NetHandle sender, StringStream &packet);
 
-	void Send(NetHandle, const char *);
-	void Send(NetHandle, BinaryPacket const &);
+	void Send(NetHandle recipient, const char *);
+	void Send(NetHandle recipient, BinaryPacket const &);
 
+private:
 	Node &_node;
 	NetHandle _netHandle;
 };
