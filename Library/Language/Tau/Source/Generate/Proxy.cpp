@@ -6,8 +6,39 @@ using namespace std;
 
 TAU_BEGIN
 
+string ReadTextFile(const char *fname)
+{
+	fstream file(fname);
+	return move(string(istreambuf_iterator<char>(file), istreambuf_iterator<char>()));
+}
+
 namespace Generate
 {
+	Proxy::Proxy(const char *inputFile, const char *outputFile)
+	{
+		Generate(inputFile, outputFile);
+	}
+
+	bool Proxy::Generate(const char *inputFile, const char *outputFile)
+	{
+		Registry r;
+		auto lex = make_shared<TauLexer>(ReadTextFile(inputFile).c_str(), r);
+		lex->Process();
+		if (lex->Failed)
+		{
+			return Fail(lex->Error);
+		}
+
+		auto parser = make_shared<TauParser>(r);
+		parser->Process(lex, Structure::Modulue);
+		if (parser->Failed)
+		{
+			return Fail(parser->Error);
+		}
+
+		return Generate(*parser, outputFile);
+	}
+
 	bool Proxy::Generate(TauParser const &p, const char *fname)
 	{
 		auto const &root = p.GetRoot();
