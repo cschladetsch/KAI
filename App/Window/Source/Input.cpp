@@ -79,9 +79,9 @@ struct FluidConsole
 		auto const &st = stack->GetStack();
 		auto end = st.rend();
 		auto begin = st.rbegin();
-		for (; end != begin; ++begin)
+		while (begin != end)
 		{
-			str << "[" << n++ << "] "  << *begin << "\n";
+			str << "[" << n++ << "] "  << *begin++ << "\n";
 		}
 
 		text->text(str.ToString().c_str());

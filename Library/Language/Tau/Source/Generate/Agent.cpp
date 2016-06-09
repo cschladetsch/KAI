@@ -6,6 +6,11 @@ TAU_BEGIN
 
 namespace Generate
 {
+	Agent::Agent(const char *in, const char *out)
+	{
+		Fail("Not Implemented");
+	}
+
 	bool Agent::Generate(TauParser const &p, const char *fname)
 	{
 		return false;
