@@ -30,7 +30,7 @@ namespace Generate
 
 		void AddProxyBoilerplate(ProxyDecl const &);
 
-		string ProxyPrepend() const;
+		std::string ProxyPrepend() const;
 	};
 }
 
