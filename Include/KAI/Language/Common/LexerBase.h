@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <string>
-
 #include <KAI/Language/Common/ProcessCommon.h>
 #include <KAI/Language/Common/Slice.h>
 
@@ -11,7 +8,7 @@ KAI_BEGIN
 int IsSpaceChar(int ch);
 
 // Common to all lexers with different token types
-class LexerBase: public ProcessCommon
+class LexerBase : public ProcessCommon
 {
 public:
 	typedef std::vector<std::string> Lines;

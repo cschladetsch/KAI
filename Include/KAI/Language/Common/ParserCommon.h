@@ -12,8 +12,6 @@ using namespace std;
 
 KAI_BEGIN
 
-//using lexical_cast = boost::lexical_cast;
-
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
 template <class ELexer, class AstEnumStruct>
@@ -39,13 +37,6 @@ public:
 	}
 
 	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
-
-//	template <class T>
-//	AstNodePtr AppendLexicalValue(TokenNode const &tok)
-//	{
-//		Pointer<T> val = reg.New(boost::lexical_cast<T>(tok.Text()));
-//		return std::make_shared<
-//	}
 
 	template <class T>
 	Pointer<T> New(T const &val)
