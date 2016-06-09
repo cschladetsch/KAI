@@ -1,14 +1,10 @@
 #pragma once
 
-#include <boost/lexical_cast.hpp>
-#include "KAI/Language/Common/ParserBase.h"
-#include "KAI/Language/Common/ProcessCommon.h"
-#include "KAI/Language/Common/Process.h"
-#include "KAI/Language/Common/AstNodeBase.h"
-#include "KAI/Language/Common/Structure.h"
-#include <iostream>
-
-using namespace std;
+#include <KAI/Language/Common/ParserBase.h>
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Process.h>
+#include <KAI/Language/Common/AstNodeBase.h>
+#include <KAI/Language/Common/Structure.h>
 
 KAI_BEGIN
 
@@ -231,7 +227,6 @@ protected:
 		{
 			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
 			Fail(Lexer::CreateErrorMessage(tok, "Unexpected token %s", TokenEnumType::ToString(tok.type)));
-			cerr << Error << endl;
 			KAI_THROW_1(LogicError, "Unexpected token");
 		}
 
