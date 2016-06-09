@@ -64,8 +64,7 @@ macro(create_test name)
     target_link_libraries(${name} gtest pthread)
 endmacro()
 
+include(App/CMakeLists.txt)
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
-include(App/CMakeLists.txt)
 
-#$
