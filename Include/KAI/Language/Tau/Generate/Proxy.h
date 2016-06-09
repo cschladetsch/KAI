@@ -10,6 +10,10 @@ namespace Generate
 	{
 		using GenerateProcess::Node;
 
+		Proxy(const char *inputFile, const char *outputFile);
+
+		bool Generate(const char *inputFile, const char *outputFile);
+
 		virtual bool Generate(TauParser const &p, const char *fileName) override;
 
 	protected:

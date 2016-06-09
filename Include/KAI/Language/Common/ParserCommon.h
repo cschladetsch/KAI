@@ -53,7 +53,7 @@ public:
 		return _reg.New<T>(val);
 	}
 
-	virtual void Run(Structure st)
+	void Run(Structure st)
 	{
 		try
 		{

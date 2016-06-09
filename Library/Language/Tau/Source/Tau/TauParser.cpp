@@ -26,6 +26,7 @@ void TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 		switch (tok.type)
 		{
 		case TokenEnum::Whitespace:
+		case TokenEnum::Tab:
 		case TokenEnum::Comment:
 		case TokenEnum::NewLine:
 			continue;
