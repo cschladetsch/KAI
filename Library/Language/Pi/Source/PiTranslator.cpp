@@ -1,3 +1,4 @@
+#include <boost/lexical_cast.hpp>
 #include "KAI/Language/Pi/PiTranslator.h"
 
 using namespace boost;
