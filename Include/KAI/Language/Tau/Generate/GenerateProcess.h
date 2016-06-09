@@ -29,8 +29,8 @@ namespace Generate
 		std::string EndLine() const;
 		void EndBlock();
 
-		virtual std::string ArgType(std::string &&text) const = 0;
-		virtual std::string ReturnType(std::string &&text) const = 0;
+		virtual std::string ArgType(std::string const &text) const = 0;
+		virtual std::string ReturnType(std::string const &text) const = 0;
 
 	protected:
 		std::stringstream _str;

@@ -18,8 +18,8 @@ namespace Generate
 		virtual bool Property(Node const &prop) override;
 		virtual bool Method(Node const &method) override;
 
-		virtual std::string ArgType(std::string &&text) const override;
-		virtual std::string ReturnType(std::string &&text) const override;
+		virtual std::string ArgType(std::string const &text) const override;
+		virtual std::string ReturnType(std::string const &text) const override;
 	};
 }
 

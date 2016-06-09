@@ -81,7 +81,9 @@ namespace Generate
 
 	void Proxy::AddProxyBoilerplate(ProxyDecl const &proxy)
 	{
+		_str << "using ProxyBase::StreamType;" << EndLine();
 		_str << proxy.ProxyName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
+		_str << EndLine();
 	}
 
 	bool Proxy::Class(Node const &cl)
@@ -119,21 +121,27 @@ namespace Generate
 
 	bool Proxy::Property(Node const &prop)
 	{
-		_str
-			<< ReturnType(prop.GetTokenText())
-			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
+		auto type = prop.GetChild(0)->GetTokenText();
+		auto name = prop.GetChild(1)->GetTokenText();
+		_str << ReturnType(type);
+		_str << " " << name << "()";
+		StartBlock("");
+		_str << "return Fetch<" << type << ">(\"" << name << "\");";
+		EndBlock();
+		_str << EndLine();
 		return true;
 	}
 
 	bool Proxy::Method(Node const &method)
 	{
-		auto const &rt = method.GetChild(0);
-		auto const &args = method.GetChild(1);
+		auto const &rt = method.GetChild(0)->GetTokenText();
+		auto const &args = method.GetChild(1)->GetChildren();
+		auto name = method.GetTokenText();
 //		auto const &konst = method.GetChild(2);
 
-		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
+		_str << ReturnType(rt) << " " << name << "(";
 		bool first = true;
-		for (auto const &a : args->GetChildren())
+		for (auto const &a : args)
 		{
 			if (!first)
 				_str << ", ";
@@ -145,15 +153,35 @@ namespace Generate
 			first = false;
 		}
 
-		return (_str << ");" << EndLine()).good();
+		_str << ")";
+		StartBlock("");
+		if (args.size() > 0)
+		{
+			_str << "StreamType args;" << EndLine();
+			_str << "args";
+			for (auto const &a : args)
+			{
+				_str << " << " << a->GetChild(1)->GetTokenText();
+			}
+			_str << ";" << EndLine();
+			_str << "return Exec<" << rt << ">(\"" << name << "\", args);" << EndLine();
+		}
+		else
+		{
+			_str << "return Exec<" << rt << ">(\"" << name << "\");" << EndLine();
+		}
+		EndBlock();
+		_str << EndLine();
+
+		return true;
 	}
 
-	string Proxy::ReturnType(string &&text) const
+	string Proxy::ReturnType(string const &text) const
 	{
-		return move(string("Future<") + text + "> ");
+		return move(string("Future<") + text + ">");
 	}
 
-	string Proxy::ArgType(string &&text) const
+	string Proxy::ArgType(string const &text) const
 	{
 		return move(text);
 	}
