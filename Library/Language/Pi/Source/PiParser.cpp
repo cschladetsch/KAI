@@ -126,5 +126,4 @@ bool PiParser::ParseContinuation(AstNodePtr root)
 	return true;
 }
 
-
 KAI_END
