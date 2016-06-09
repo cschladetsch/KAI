@@ -31,12 +31,12 @@ namespace Generate
 		return false;
 	}
 
-	std::string Agent::ArgType(std::string &&text) const
+	std::string Agent::ArgType(std::string const &text) const
 	{
 		return move(text);
 	}
 
-	std::string Agent::ReturnType(std::string &&text) const
+	std::string Agent::ReturnType(std::string const &text) const
 	{
 		return move(text);
 	}

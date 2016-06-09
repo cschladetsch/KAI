@@ -28,7 +28,6 @@ public:
 	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 
-	bool Passed() const { return passed;  }
 	const std::string &GetError() const { return error; }
 	AstNodePtr GetRoot() const { return root; }
 	
@@ -54,7 +53,7 @@ public:
 		return _reg.New<T>(val);
 	}
 
-	void Run(Structure st)
+	virtual void Run(Structure st)
 	{
 		try
 		{
@@ -104,7 +103,6 @@ protected:
 	std::vector<AstNodePtr> stack;
 	size_t current;
 	AstNodePtr root;
-	bool passed;
 	std::string error;
 	int indent;
 	std::shared_ptr<Lexer> lexer;
@@ -202,6 +200,11 @@ protected:
 		}
 
 		return false;
+	}
+
+	bool CurrentIs(TokenEnum ty) const
+	{
+		return Current().type == ty;
 	}
 
 	bool PeekIs(TokenEnum ty) const
