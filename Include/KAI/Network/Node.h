@@ -9,11 +9,15 @@ struct Node
 private:
 	struct Impl;
 	std::shared_ptr<Impl> _impl;
+	Node *_other;   // just for testing
 
 public:
 	Node();
 
 	void Listen(int listen);
+
+	/// this is just for testing
+	void Connect(Node &other);
 
 	void Connect(IpAddress const &, int port);
 
