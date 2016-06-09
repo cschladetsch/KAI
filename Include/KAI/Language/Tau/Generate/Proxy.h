@@ -10,6 +10,7 @@ namespace Generate
 	{
 		using GenerateProcess::Node;
 
+		Proxy() { }
 		Proxy(const char *inputFile, const char *outputFile);
 
 		bool Generate(const char *inputFile, const char *outputFile);

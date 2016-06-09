@@ -38,12 +38,6 @@ public:
 	const Token &GetToken() const { return _token; }
 	std::string GetTokenText() const { return std::move(_token.Text()); }
 
-//	std::string PrintTree()
-//	{
-//		std::stringstream out;
-//		PrintTree(out, 0, *this);
-//	}
-
 	std::string ToString() const
 	{
 		std::stringstream out;

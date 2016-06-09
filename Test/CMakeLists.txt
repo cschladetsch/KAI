@@ -7,7 +7,7 @@ foreach (test ${tests})
 endforeach()
 
 # special case the network test, as it needs RakNet
-#include(${KAI_HOME}/Test/TestNetwork/CMakeLists.txt)
+include(${KAI_HOME}/Test/TestNetwork/CMakeLists.txt)
 
 include(${KAI_HOME}/Test/TestTau/CMakeLists.txt)
 
