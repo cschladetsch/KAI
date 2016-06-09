@@ -9,7 +9,7 @@ struct FluidConsole;
 
 shared_ptr<Console> console;
 
-/// The console for KAI provided bu Fluid
+/// The console for KAI provided by Fluid
 struct FluidConsole
 {
 	Registry *_reg;
@@ -95,4 +95,5 @@ void StartKai()
 	cout << "Starting Kai" << endl;
 	console = make_shared<kai::Console>();
 	console->SetLanguage(Language::Pi);
+	new FluidConsole();
 }

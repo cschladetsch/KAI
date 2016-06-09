@@ -107,7 +107,6 @@ void Executor::Continue()
 			}
 			catch (Exception::Base &E)
 			{
-				//KAI_TRACE_3(_data, _context, _continuation);
 				KAI_TRACE_1(E);
 				_data->Push(Reg().New<String>(E.ToString()));
 				throw;
