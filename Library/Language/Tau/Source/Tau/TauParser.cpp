@@ -128,10 +128,10 @@ void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode 
 	method->Add(returnType);
 	method->Add(args);
 
-	while (true)
+	while (!CurrentIs(TokenType::CloseParan))
 	{
 		AddArg(args);
-		if (Current().type != TokenType::Comma)
+		if (!CurrentIs(TokenType::Comma))
 			break;
 
 		Consume();
