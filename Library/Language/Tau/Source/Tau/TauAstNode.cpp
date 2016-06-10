@@ -1,5 +1,5 @@
-#include <iostream>
 #include <KAI/Language/Tau/TauAstNode.h>
+#include <iostream>
 
 TAU_BEGIN
 

@@ -48,7 +48,7 @@ bool TauLexer::NextToken()
 			return Add(Enum::Comment, offset - start);
 		}
 
-		Fail("Expected comment start");
+		return Fail("Expected comment start");
 	}
 
 	return LexError("Unrecognised %c");
