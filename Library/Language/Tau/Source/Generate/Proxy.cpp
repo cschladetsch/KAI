@@ -1,6 +1,5 @@
 #include <KAI/Language/Tau/Tau.h>
 #include <KAI/Language/Tau/Generate/Proxy.h>
-#include <fstream>
 
 using namespace std;
 
@@ -51,27 +50,7 @@ namespace Generate
 		StartBlock(decl.ToString());
 		AddProxyBoilerplate(decl);
 
-		for (const auto &member : cl.GetChildren())
-		{
-			switch (member->GetType())
-			{
-			case TauAstEnumType::Class:
-				return Class(*member);
-
-			case TauAstEnumType::Property:
-				if (!Property(*member))
-					return false;
-				break;
-
-			case TauAstEnumType::Method:
-				if (!Method(*member))
-					return false;
-				break;
-
-			default:
-				return Fail("Invalid class member: %s", TauAstEnumType::ToString(member->GetType()));
-			}
-		}
+		GenerateProcess::Class(cl);
 
 		EndBlock();
 		return true;
@@ -122,9 +101,17 @@ namespace Generate
 		_str << ")";
 	}
 
+	string ReturnLead(string const &rt, string const &name)
+	{
+		stringstream str;
+		str << "return Exec<" << rt << ">(\"" << name << "\"";
+		return move(str.str());
+	}
+
 	void Proxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
 	{
 		StartBlock();
+		auto ret = ReturnLead(returnType, name);
 		if (args.size() > 0)
 		{
 			_str << "StreamType args;" << EndLine();
@@ -134,12 +121,14 @@ namespace Generate
 				_str << " << " << a->GetChild(1)->GetTokenText();
 			}
 			_str << ";" << EndLine();
-			_str << "return Exec<" << returnType << ">(\"" << name << "\", args);" << EndLine();
+			_str << ret << ", args);";
 		}
 		else
 		{
-			_str << "return Exec<" << returnType << ">(\"" << name << "\");" << EndLine();
+			_str << ret << ");";
 		}
+
+		_str << EndLine();
 		EndBlock();
 	}
 
