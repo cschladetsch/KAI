@@ -10,18 +10,17 @@ namespace Generate
 	{
 		using GenerateProcess::Node;
 
+		Agent() { }
 		Agent(const char *in, const char *out);
 
-		virtual bool Generate(TauParser const &p, const char *fileName) override;
-
 	protected:
-		virtual bool Namespace(Node const &ns) override;
 		virtual bool Class(Node const &cl) override;
 		virtual bool Property(Node const &prop) override;
 		virtual bool Method(Node const &method) override;
+		virtual string Prepend() const override;
 
-		virtual std::string ArgType(std::string const &text) const override;
-		virtual std::string ReturnType(std::string const &text) const override;
+		virtual string ArgType(string const &text) const override;
+		virtual string ReturnType(string const &text) const override;
 	};
 }
 

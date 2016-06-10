@@ -23,10 +23,10 @@ public:
 
 	TauParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
-	void Run(Structure);
+	bool Run(Structure);
 
 	void Namespace(AstNodePtr rent);
 	void Class(AstNodePtr rent);

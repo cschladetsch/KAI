@@ -32,7 +32,7 @@ public:
 		lexer.reset();
 	}
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
 
 	template <class T>
 	Pointer<T> New(T const &val)
@@ -40,7 +40,7 @@ public:
 		return _reg.New<T>(val);
 	}
 
-	void Run(Structure st)
+	bool Run(Structure st)
 	{
 		try
 		{
@@ -61,6 +61,8 @@ public:
 			if (!Failed)
 				Fail(Lexer::CreateErrorMessage(Current(), "internal error"));
 		}
+
+		return !Failed;
 	}
 
 	std::string PrintTree() const

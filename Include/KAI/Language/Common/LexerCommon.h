@@ -33,11 +33,11 @@ public:
 
 	LexerCommon(const char *input, Registry &r) : LexerBase(input, r) { }
 
-	void Process()
+	bool Process()
 	{
 		AddKeyWords();
 		CreateLines();
-		Run();
+		return Run();
 	}
 
 	virtual void AddKeyWords() = 0;
