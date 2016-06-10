@@ -2,6 +2,7 @@
 
 #include "KAI/Network/Config.h"
 #include "KAI/Network/FwdDeclarations.h"
+#include "KAI/Network/NetObject.h"
 #include "KAI/Network/NetHandle.h"
 
 KAI_NET_BEGIN

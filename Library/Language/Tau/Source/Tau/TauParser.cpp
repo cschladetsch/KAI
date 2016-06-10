@@ -1,5 +1,6 @@
 #include <KAI/Language/Common/ParserCommon.h>
 #include <KAI/Language/Tau/TauParser.h>
+#include <assert.h>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ TAU_BEGIN
 bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 {
 	// Tau always starts at Module level (a series of namespaces)
+	assert(st == Structure::Module);
 	KAI_UNUSED_1(st);
 
 	current = 0;
@@ -34,7 +36,7 @@ bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Module);
 
-	return Run(Structure::Namespace);
+	return Run(Structure::Module);
 }
 
 bool TauParser::Run(Structure st)
@@ -62,7 +64,7 @@ void TauParser::Namespace(AstNodePtr root)
 	auto ns = NewNode(TauAstEnumType::Namespace, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (!Empty() && Current().type != TokenEnum::CloseBrace)
+	while (!Empty() && !CurrentIs(TokenEnum::CloseBrace))
 	{
 		switch (Current().type)
 		{
@@ -97,21 +99,21 @@ void TauParser::Class(AstNodePtr root)
 	auto klass = NewNode(TauAstEnumType::Class, Consume());
 	Expect(TokenEnum::OpenBrace);
 
-	while (!Failed && !Empty() && Current().type != TokenEnum::CloseBrace)
+	while (!Failed && !Empty() && !CurrentIs(TokenEnum::CloseBrace))
 	{
 		// Expect a series of methods and properties.
 		// Either way, start with a type name and identifier.
 		auto ty = Expect(TokenEnum::Ident)->GetToken();
-		auto id = Expect(TokenEnum::Ident)->GetToken();
+		auto name = Expect(TokenEnum::Ident)->GetToken();
 
-		if (Current().type == TokenType::OpenParan)
+		if (CurrentIs(TokenType::OpenParan))
 		{
 			Consume();
-			Method(klass, ty, id);
+			Method(klass, ty, name);
 		}
 		else
 		{
-			Field(klass, ty, id);
+			Field(klass, ty, name);
 		}
 	}
 
@@ -120,9 +122,9 @@ void TauParser::Class(AstNodePtr root)
 	root->Add(klass);
 }
 
-void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &id)
+void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name)
 {
-	auto method = NewNode(AstEnum::Method, id);
+	auto method = NewNode(AstEnum::Method, name);
 	auto args = NewNode(AstEnum::Arglist);
 
 	method->Add(returnType);
@@ -153,7 +155,7 @@ void TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id
 
 void TauParser::OptionalSemi()
 {
-	if (Current().type == TokenType::Semi || PeekIs(TokenType::Semi))
+	if (CurrentIs(TokenType::Semi) || PeekIs(TokenType::Semi))
 		Consume();
 }
 

@@ -6,7 +6,6 @@ KAI_BEGIN
 
 bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
-	// TODO: low-priority: this code basically the same in Pi Rho and Tau
 	current = 0;
 	indent = 0;
 	lexer = lex;
@@ -598,4 +597,5 @@ void RhoParser::ConsumeNewLines()
 	while (Try(TokenType::NewLine))
 		Consume();
 }
+
 KAI_END
