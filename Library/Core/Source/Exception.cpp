@@ -121,13 +121,12 @@ namespace Exception
 	{
 		S << "class=" << klass << ", property=" << prop;
 	}
-
 }
 
-	StringStream &operator<<(StringStream &S, Exception::Base const &E)
-	{
-		return S << E.ToString();
-	}
+StringStream &operator<<(StringStream &S, Exception::Base const &E)
+{
+	return S << E.ToString();
+}
 
 KAI_END
 
