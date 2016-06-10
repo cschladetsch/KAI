@@ -1,4 +1,5 @@
 #include <KAI/Language/Tau/Generate/Agent.h>
+#include <fstream>
 
 using namespace std;
 
@@ -8,17 +9,12 @@ namespace Generate
 {
 	Agent::Agent(const char *in, const char *out)
 	{
-		Fail("Not Implemented");
+		GenerateProcess::Generate(in, out);
 	}
 
-	bool Agent::Generate(TauParser const &p, const char *fname)
+	string Agent::Prepend() const
 	{
-		return false;
-	}
-
-	bool Agent::Namespace(TauParser::AstNode const &ns)
-	{
-		return false;
+		return move(string("#include <KAI/Network/AgentDecl.h"));
 	}
 
 	bool Agent::Class(TauParser::AstNode const &cl)

@@ -6,89 +6,16 @@ using namespace std;
 
 TAU_BEGIN
 
-string ReadTextFile(const char *fname)
-{
-	fstream file(fname);
-	return move(string(istreambuf_iterator<char>(file), istreambuf_iterator<char>()));
-}
-
 namespace Generate
 {
-	Proxy::Proxy(const char *inputFile, const char *outputFile)
+	Proxy::Proxy(const char *in, const char *out)
 	{
-		Generate(inputFile, outputFile);
+		GenerateProcess::Generate(in, out);
 	}
 
-	bool Proxy::Generate(const char *inputFile, const char *outputFile)
+	string Proxy::Prepend() const
 	{
-		Registry r;
-		auto lex = make_shared<TauLexer>(ReadTextFile(inputFile).c_str(), r);
-		lex->Process();
-		if (lex->Failed)
-		{
-			return Fail(lex->Error);
-		}
-
-		auto parser = make_shared<TauParser>(r);
-		parser->Process(lex, Structure::Modulue);
-		if (parser->Failed)
-		{
-			return Fail(parser->Error);
-		}
-
-		return Generate(*parser, outputFile);
-	}
-
-	bool Proxy::Generate(TauParser const &p, const char *fname)
-	{
-		auto const &root = p.GetRoot();
-		if (root->GetType() != TauAstEnumType::Module)
-			return Fail("Expected a Module");
-
-		for (const auto &ch : root->GetChildren())
-		{
-			if (ch->GetType() != TauAstEnumType::Namespace)
-				return Fail("Namespace expected");
-
-			if (!Namespace(*ch))
-				return false;
-		}
-
-		return (ofstream(fname) << Prepend() << ProxyPrepend() << _str.str() << endl).good();
-	}
-
-	string Proxy::ProxyPrepend() const
-	{
-		stringstream str;
-		str << "#include <KAI/Network/ProxyDecl.h>\n\n";
-		return move(str.str());
-	}
-
-	bool Proxy::Namespace(Node const &ns)
-	{
-		StartBlock(string("namespace ") + ns.GetToken().Text());
-		for (auto const &ch : ns.GetChildren())
-		{
-			switch (ch->GetType())
-			{
-			case TauAstEnumType::Namespace:
-				if (!Namespace(*ch))
-					return false;
-				break;
-
-			case TauAstEnumType::Class:
-				if (!Class(*ch))
-					return false;
-				break;
-
-			default:
-				KAI_TRACE_ERROR_1("Parser failed to fail");
-				return Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
-			}
-		}
-
-		EndBlock();
-		return true;
+		return move(string("#include <KAI/Network/ProxyDecl.h>\n\n"));
 	}
 
 	struct Proxy::ProxyDecl
@@ -156,7 +83,7 @@ namespace Generate
 		auto name = prop.GetChild(1)->GetTokenText();
 		_str << ReturnType(type);
 		_str << " " << name << "()";
-		StartBlock("");
+		StartBlock();
 		_str << "return Fetch<" << type << ">(\"" << name << "\");";
 		EndBlock();
 		_str << EndLine();
@@ -165,12 +92,21 @@ namespace Generate
 
 	bool Proxy::Method(Node const &method)
 	{
-		auto const &rt = method.GetChild(0)->GetTokenText();
+		auto const &returnType = method.GetChild(0)->GetTokenText();
 		auto const &args = method.GetChild(1)->GetChildren();
 		auto name = method.GetTokenText();
-//		auto const &konst = method.GetChild(2);
 
-		_str << ReturnType(rt) << " " << name << "(";
+		MethodDecl(returnType, args, name);
+		MethodBody(returnType, args, name);
+
+		_str << EndLine();
+
+		return true;
+	}
+
+	void Proxy::MethodDecl(const string &returnType, const Node::ChildrenType &args, const string &name)
+	{
+		_str << ReturnType(returnType) << " " << name << "(";
 		bool first = true;
 		for (auto const &a : args)
 		{
@@ -183,9 +119,12 @@ namespace Generate
 
 			first = false;
 		}
-
 		_str << ")";
-		StartBlock("");
+	}
+
+	void Proxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
+	{
+		StartBlock();
 		if (args.size() > 0)
 		{
 			_str << "StreamType args;" << EndLine();
@@ -195,16 +134,13 @@ namespace Generate
 				_str << " << " << a->GetChild(1)->GetTokenText();
 			}
 			_str << ";" << EndLine();
-			_str << "return Exec<" << rt << ">(\"" << name << "\", args);" << EndLine();
+			_str << "return Exec<" << returnType << ">(\"" << name << "\", args);" << EndLine();
 		}
 		else
 		{
-			_str << "return Exec<" << rt << ">(\"" << name << "\");" << EndLine();
+			_str << "return Exec<" << returnType << ">(\"" << name << "\");" << EndLine();
 		}
 		EndBlock();
-		_str << EndLine();
-
-		return true;
 	}
 
 	string Proxy::ReturnType(string const &text) const
