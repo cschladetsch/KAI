@@ -5,8 +5,9 @@ KAI_BEGIN
 
 bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
-//	if (!ParserCommon::Process(lex, st))
-//		return false;
+	lexer = lex;
+	if (lex->Failed)
+		return Fail(lex->Error);
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
@@ -47,7 +48,7 @@ bool RhoParser::Run(Structure st)
 	}
 
 	if (!stack.empty())
-		return Fail("Internal error: Stack not empty after parsing");
+		return Fail("[Internal] Error: Stack not empty after parsing");
 
 	return true;
 }
@@ -336,11 +337,7 @@ bool RhoParser::Factor()
 	{
 		Consume();
 		if (!Expression())
-		{
-			CreateError("Expected an expression for a factor in parenthesis");
-
-			return false;
-		}
+			return CreateError("Expected an expression for a factor in parenthesis");
 
 		Expect(TokenType::CloseParan);
 		return true;
@@ -380,14 +377,11 @@ bool RhoParser::Factor()
 	return false;
 }
 
-//warning C4127: conditional expression is constant
-#pragma warning (disable:4127)
-
 bool RhoParser::ParseFactorIdent()
 {
 	PushConsume();
 
-	while (true)
+	while (!Failed)
 	{
 		if (Try(TokenType::Dot))
 		{
@@ -429,7 +423,7 @@ void RhoParser::ParseMethodCall()
 			Consume();
 			if (!Expression())
 			{
-				Fail("What is the next argument?");
+				CreateError("What is the next argument?");
 				return;
 			}
 
