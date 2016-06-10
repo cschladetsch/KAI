@@ -14,7 +14,7 @@ StringStream &operator>>(StringStream &S, Pair& P)
 
 BinaryStream &operator<<(BinaryStream &S, const Pair& P)
 {
-	return S << P.first <<  P.second;
+	return S << P.first << P.second;
 }
 
 BinaryStream &operator>>(BinaryStream &S, Pair& P)

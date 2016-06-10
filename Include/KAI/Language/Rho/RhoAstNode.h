@@ -59,5 +59,4 @@ struct RhoAstNodeEnumType
 typedef RhoAstNodeEnumType RhoAstNodes;
 typedef RhoAstNodes::Node RhoAstNode;
 
-
 KAI_END
