@@ -22,9 +22,6 @@ public:
 	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 
-	const std::string &GetError() const { return error; }
-	AstNodePtr GetRoot() const { return root; }
-	
 	ParserCommon(Registry& r) : ProcessCommon(r)
 	{ 
 		current = 0;
@@ -33,6 +30,10 @@ public:
 	}
 
 	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
+
+	const std::string &GetError() const { return error; }
+	AstNodePtr GetRoot() const { return root; }
+	bool Process();
 
 	template <class T>
 	Pointer<T> New(T const &val)

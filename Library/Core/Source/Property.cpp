@@ -8,9 +8,8 @@ KAI_BEGIN
 void SetPropertyValue(Object const &owner, Label const &name, Object value)
 {
 	if (!owner.Valid())
-	{
 		KAI_THROW_0(NullObject);
-	}
+
 	ClassBase const *klass = owner.GetClass();
 	PropertyBase const &prop = klass->GetProperty(name);
 	prop.SetValue(owner, value);
@@ -38,6 +37,7 @@ Object GetPropertyObject(Object const &owner, Label const &name)
 {
 	if (!owner.Exists())
 		return Object();
+
 	ClassBase const *klass = owner.GetClass();
 	PropertyBase const &prop = klass->GetProperty(name);
 	return prop.GetObject(owner);
