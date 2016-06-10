@@ -38,6 +38,5 @@ struct PiAstNodeEnumType
 typedef PiAstNodeEnumType PiAstNodes;
 typedef PiAstNodeEnumType::Node PiAstNode;
 
-
 KAI_END
 

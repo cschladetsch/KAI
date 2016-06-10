@@ -1,17 +1,12 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Rho/RhoParser.h>
 
 KAI_BEGIN
 
 bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
-	current = 0;
-	indent = 0;
-	lexer = lex;
-
-	if (lexer->Failed)
-		return false;
+//	if (!ParserCommon::Process(lex, st))
+//		return false;
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
