@@ -1,8 +1,5 @@
 #include <ctype.h>
-
 #include "KAI/Core/BuiltinTypes.h"
-#include "KAI/Core/Pathname.h"
-#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 

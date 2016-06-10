@@ -1,5 +1,4 @@
 #include "KAI/Core/BuiltinTypes.h"
-#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 
@@ -7,7 +6,7 @@ void BinaryPacket::Register(Registry &registry, const char *name)
 {
 	ClassBuilder<BinaryPacket>(registry, Label(name))
 		.Methods
-		("Size", &BinaryPacket::Size)
+			("Size", &BinaryPacket::Size)
 		;
 }
 

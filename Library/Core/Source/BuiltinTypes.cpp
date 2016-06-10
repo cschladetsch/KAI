@@ -219,34 +219,6 @@ BinaryStream &operator>>(BinaryStream &S, Vector2 &V)
 	return S >> V.x >> V.y;
 }
 
-//BinaryStream &operator<<(BinaryStream &S, String const &V)
-//{
-//	S << (int)V.Size() << S.Write(V.size(), (char *)V.c_str());
-//}
-//
-//BinaryStream &operator>>(BinaryStream &S, String &V)
-//{
-//	int len;
-//	S >> len;
-//	String str(len, ' ');
-//	if (!S.Read(len, (char *)&*str.begin()))
-//		KAI_THROW_1(PacketExtraction, (int)Type::Traits<String>::Number);
-//	return S;
-//}
-//BinaryStream &operator<<(BinaryStream &S, String const &V)
-//{
-//	S << (int)V.Size() << S.Write(V.size(), (char *)V.c_str());
-//}
-//
-//BinaryStream &operator>>(BinaryStream &S, String &V)
-//{
-//	int len;
-//	S >> len;
-//	String str(len, ' ');
-//	if (!S.Read(len, (char *)&*str.begin()))
-//		KAI_THROW_1(PacketExtraction, (int)Type::Traits<String>::Number);
-//	return S;
-//}
 
 StringStream &operator<<(StringStream &S, Vector3 const &V)
 {
