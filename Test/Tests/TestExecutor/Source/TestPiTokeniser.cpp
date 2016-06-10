@@ -1,5 +1,6 @@
-#include "TestBase.h"
 #include "KAI/Language/Pi/Pi.h"
+#include "TestBase.h"
+#include <algorithm>
 
 using namespace kai;
 using namespace std;

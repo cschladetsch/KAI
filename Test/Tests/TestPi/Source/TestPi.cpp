@@ -1,8 +1,11 @@
-#include "Main.h"
+#include "Test/TestLangCommon.h"
 
 using namespace kai;
 using namespace std;
 
+struct TestPi : TestLangCommon
+{
+};
 
 TEST_F(TestPi, TestArithmetic)
 {
