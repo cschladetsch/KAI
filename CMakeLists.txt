@@ -66,5 +66,5 @@ endmacro()
 
 include(App/CMakeLists.txt)
 include(Library/CMakeLists.txt)
-#include(Test/CMakeLists.txt)
+include(Test/CMakeLists.txt)
 

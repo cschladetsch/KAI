@@ -21,6 +21,10 @@ namespace Generate
 
 		virtual string ArgType(string const &text) const override;
 		virtual string ReturnType(string const &text) const override;
+
+	private:
+		struct Decl;
+		void AddAgentBoilerplate(Decl const &agent);
 	};
 }
 

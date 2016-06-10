@@ -54,11 +54,6 @@ public:
 		return std::move(_token.Text());
 	}
 
-	friend std::ostream &operator<<(std::ostream &out, Self const &node)
-	{
-		return out << node.ToString();
-	}
-
 	void Add(AstNodePtr node)
 	{
 		_children.push_back(node);
@@ -72,6 +67,11 @@ public:
 	void Add(Token const &tok)
 	{
 		Add(std::make_shared<Self>(tok));
+	}
+
+	friend std::ostream &operator<<(std::ostream &out, Self const &node)
+	{
+		return out << node.ToString();
 	}
 
 protected:

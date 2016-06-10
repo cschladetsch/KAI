@@ -74,6 +74,33 @@ namespace Generate
 		return true;
 	}
 
+	bool GenerateProcess::Class(Node const &cl)
+	{
+		for (const auto &member : cl.GetChildren())
+		{
+			switch (member->GetType())
+			{
+			case TauAstEnumType::Class:
+				return Class(*member);
+
+			case TauAstEnumType::Property:
+				if (!Property(*member))
+					return false;
+				break;
+
+			case TauAstEnumType::Method:
+				if (!Method(*member))
+					return false;
+				break;
+
+			default:
+				return Fail("Invalid class member: %s", TauAstEnumType::ToString(member->GetType()));
+			}
+		}
+
+		return true;
+	}
+
 	bool GenerateProcess::Generate(const char *inputFile, const char *outputFile)
 	{
 		auto parser = Parse(inputFile);
@@ -93,7 +120,7 @@ namespace Generate
 		}
 
 		auto parser = make_shared<TauParser>(r);
-		if (!parser->Process(lex, Structure::Modulue))
+		if (!parser->Process(lex, Structure::Module))
 		{
 			Fail(parser->Error);
 			return nullptr;
