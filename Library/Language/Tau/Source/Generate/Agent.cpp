@@ -1,7 +1,4 @@
 #include <KAI/Language/Tau/Generate/Agent.h>
-#include <fstream>
-
-using namespace std;
 
 TAU_BEGIN
 
@@ -17,9 +14,42 @@ namespace Generate
 		return move(string("#include <KAI/Network/AgentDecl.h"));
 	}
 
+	struct Agent::Decl
+	{
+		string RootName;
+		string AgentName;
+
+		Decl(string const &root)
+				: RootName(root)
+		{
+			AgentName = root + "Agent";
+		}
+
+		string ToString() const
+		{
+			stringstream decl;
+			decl << "struct " << AgentName << ": AgentBase<" << RootName << ">";
+			return move(decl.str());
+		}
+	};
+
+	void Agent::AddAgentBoilerplate(Decl const &agent)
+	{
+		_str << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
+		_str << EndLine();
+	}
+
 	bool Agent::Class(TauParser::AstNode const &cl)
 	{
-		return false;
+		auto decl = Decl(cl.GetToken().Text());
+
+		StartBlock(decl.ToString());
+		AddAgentBoilerplate(decl);
+
+		GenerateProcess::Class(cl);
+
+		EndBlock();
+		return true;
 	}
 
 	bool Agent::Property(TauParser::AstNode const &prop)
