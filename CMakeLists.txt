@@ -57,7 +57,7 @@ endmacro()
 
 macro(create_test name)
     project(${name})
-    set(SOURCE_ROOT ${KAI_HOME}/Test/${name}/Source/*.cpp)
+    set(SOURCE_ROOT ${KAI_HOME}/Test/Tests/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     link_libraries(Executor Core Executor PiLang RhoLang TauLang)
     add_executable(${name} ${SOURCE_FILES})
