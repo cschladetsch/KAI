@@ -79,6 +79,7 @@ int main(int argc,const char* const argv[])
 			cerr << "AgentGenError: " << agent.Error << endl;
 			return 1;
 		}
+		cout << "Wrote agent code to " << outputAgent << endl;
 	}
 
 	return 0;
