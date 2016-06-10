@@ -13,24 +13,23 @@ namespace Generate
 		Proxy() { }
 		Proxy(const char *inputFile, const char *outputFile);
 
-		bool Generate(const char *inputFile, const char *outputFile);
-
-		virtual bool Generate(TauParser const &p, const char *fileName) override;
-
 	protected:
-		virtual bool Namespace(Node const &ns) override;
 		virtual bool Class(Node const &cl) override;
 		virtual bool Property(Node const &prop) override;
 		virtual bool Method(Node const &method) override;
+		virtual string Prepend() const override;
 
-		virtual std::string ArgType(std::string const &text) const override;
-		virtual std::string ReturnType(std::string const &text) const override;
+		virtual string ArgType(string const &text) const override;
+		virtual string ReturnType(string const &text) const override;
 
+	private:
 		struct ProxyDecl;
 
 		void AddProxyBoilerplate(ProxyDecl const &);
+		string ProxyPrepend() const;
 
-		std::string ProxyPrepend() const;
+		void MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name);
+		void MethodDecl(const string &returnType, const Node::ChildrenType &args, const string &name);
 	};
 }
 

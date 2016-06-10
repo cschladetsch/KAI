@@ -7,7 +7,7 @@ using namespace boost;
 
 KAI_BEGIN
 
-void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+bool PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	current = 0;
 	indent = 0;
@@ -15,8 +15,7 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	if (lexer->Failed)
 	{
-		Failed = true;
-		return;
+		return Fail(lexer->Error);
 	}
 
 	// strip whitespace and comments
@@ -26,14 +25,16 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Continuation);
 
-	Run(st);
+	return Run(st);
 }
 
-void PiParser::Run(Structure st)
+bool PiParser::Run(Structure st)
 {
 	KAI_UNUSED_1(st);
 	while (!Failed && NextSingle(root))
 		;
+
+	return !Failed;
 }
 
 bool PiParser::NextSingle(AstNodePtr root)

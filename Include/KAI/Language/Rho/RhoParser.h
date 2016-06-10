@@ -22,13 +22,13 @@ public:
 
 	RhoParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
 	void Process(Structure);
 
 private:
-	void Run(Structure st);
+	bool Run(Structure st);
 	bool Program();
 	bool Statement(AstNodePtr);
 	bool Expression();

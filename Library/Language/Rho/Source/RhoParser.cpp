@@ -4,7 +4,7 @@
 
 KAI_BEGIN
 
-void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	// TODO: low-priority: this code basically the same in Pi Rho and Tau
 	current = 0;
@@ -12,7 +12,7 @@ void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 	lexer = lex;
 
 	if (lexer->Failed)
-		return;
+		return false;
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
@@ -21,26 +21,24 @@ void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Program);
 
-	Run(st);
+	return Run(st);
 }
 
-void RhoParser::Run(Structure st)
+bool RhoParser::Run(Structure st)
 {
 	switch (st)
 	{
 	case Structure::Statement:
 		if (!Statement(root))
 		{
-			CreateError("Statement expected");
-			return;
+			return CreateError("Statement expected");
 		}
 		break;
 
 	case Structure::Expression:
 		if (!Expression())
 		{
-			CreateError("Expression expected");
-			return;
+			return CreateError("Expression expected");
 		}
 		root->Add(Pop());
 		break;
@@ -55,7 +53,9 @@ void RhoParser::Run(Structure st)
 	}
 
 	if (!stack.empty())
-		Fail("Internal error: Stack not empty after parsing");
+		return Fail("Internal error: Stack not empty after parsing");
+
+	return true;
 }
 
 bool RhoParser::Program()
