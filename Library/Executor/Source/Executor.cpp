@@ -250,6 +250,7 @@ void Executor::Expand()
 	}
 }
 
+
 void Executor::GetChildren()
 {
 	Value<Array> children = New<Array>();
@@ -285,10 +286,52 @@ void Executor::DropN()
 		Pop();
 }
 
+void Executor::ConditionalContextSwitch(Operation::Type op)
+{
+	if (!ConstDeref<bool>(Pop()))
+	{
+		Pop();
+		return;
+	}
+
+	switch (op)
+	{
+	case Operation::Suspend:
+		_continuation->Next();
+		_context->Push(_continuation.GetObject());
+	case Operation::Replace:
+		_context->Push(NewContinuation(Pop()).GetObject());
+	case Operation::Resume:
+		_break = true;
+		default:
+			KAI_NOT_IMPLEMENTED();
+		break;
+	}
+}
+
 void Executor::ContinueOnly(Value<Continuation> C)
 {
 	_context->Push(Object());	// add an empty context to break. this forces exection to stop after C is finished
 	Continue(C);
+}
+
+void Executor::ContinueTestCode(Value<Continuation> test)
+{
+	// preserve the stack depth going into the test
+	int start_depth = _data->Size();
+
+	// execute the test code
+	ContinueOnly(test);
+
+	// ensure we have at least one extra argument on the stack
+	int new_depth = _data->Size();
+	if (new_depth < start_depth + 1)
+		KAI_THROW_1(Base, "Corrupted stack");
+
+	// pop off the extraneous left-overs from the conditional
+	int num_pops = _data->Size() - new_depth - 1;
+	for (int N = 0; N < num_pops; ++N)
+		_data->Pop();
 }
 
 template <class D>
