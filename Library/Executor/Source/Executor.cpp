@@ -315,24 +315,24 @@ void Executor::ContinueOnly(Value<Continuation> C)
 	Continue(C);
 }
 
-void Executor::ContinueTestCode(Value<Continuation> test)
-{
-	// preserve the stack depth going into the test
-	int start_depth = _data->Size();
-
-	// execute the test code
-	ContinueOnly(test);
-
-	// ensure we have at least one extra argument on the stack
-	int new_depth = _data->Size();
-	if (new_depth < start_depth + 1)
-		KAI_THROW_1(Base, "Corrupted stack");
-
-	// pop off the extraneous left-overs from the conditional
-	int num_pops = _data->Size() - new_depth - 1;
-	for (int N = 0; N < num_pops; ++N)
-		_data->Pop();
-}
+//void Executor::ContinueTestCode(Value<Continuation> test)
+//{
+//	// preserve the stack depth going into the test
+//	int start_depth = _data->Size();
+//
+//	// execute the test code
+//	ContinueOnly(test);
+//
+//	// ensure we have at least one extra argument on the stack
+//	int new_depth = _data->Size();
+//	if (new_depth < start_depth + 1)
+//		KAI_THROW_1(Base, "Corrupted stack");
+//
+//	// pop off the extraneous left-overs from the conditional
+//	int num_pops = _data->Size() - new_depth - 1;
+//	for (int N = 0; N < num_pops; ++N)
+//		_data->Pop();
+//}
 
 template <class D>
 Value<Array> Executor::ForEach(D const &C, Object const &F)

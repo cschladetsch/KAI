@@ -10,7 +10,6 @@ namespace Generate
 	{
 		using GenerateProcess::Node;
 
-		Agent() { }
 		Agent(const char *in, const char *out);
 
 	protected:
