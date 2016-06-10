@@ -3,6 +3,7 @@
 using namespace kai;
 using namespace std;
 
+
 TEST(TestRho, TestAssignment)
 {
 	Console console;

@@ -6,7 +6,7 @@ project(${name})
 find_package(Boost 1.40 COMPONENTS program_options system REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
-message(WARNING *** BD=${Boost_INCLUDE_DIR})
+#message(WARNING *** BD=${Boost_INCLUDE_DIR})
 
 include_directories(${name}/Include)
 set(SOURCE_ROOT ${KAI_HOME}/App/${name}/Source/*.cpp)

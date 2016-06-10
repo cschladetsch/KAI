@@ -9,7 +9,7 @@ KAI_NET_BEGIN
 
 struct DateTime
 {
-	boost::local_time::local_date_time Now;
+	static boost::local_time::local_date_time Now();
 };
 
 KAI_NET_END
