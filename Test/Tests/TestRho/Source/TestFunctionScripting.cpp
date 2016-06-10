@@ -1,4 +1,4 @@
-#include "TestBase.h"
+#include "../../TestCore/Source/TestBase.h"
 #include "KAI/Console/Console.h"
 #include "KAI/Core/Detail/Function.h"
 
@@ -51,7 +51,6 @@ TEST(TestFunctionScripting, Test)
 
 	// invoke the functions; take copies of the resultant stacks after each function completes
 	console.Execute("Function0();");
-	console.Execute("Function1(42);");
 	console.Execute("Function1(42);");
 	console.Execute("Function2(123, 3, \"bar\");");
 	console.Execute("Function3(mystruct);");
