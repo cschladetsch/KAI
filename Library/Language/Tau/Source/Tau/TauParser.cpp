@@ -5,7 +5,7 @@ using namespace std;
 
 TAU_BEGIN
 
-void TauParser::Process(shared_ptr<Lexer> lex, Structure st)
+bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 {
 	// Tau always starts at Module level (a series of namespaces)
 	KAI_UNUSED_1(st);
@@ -15,10 +15,7 @@ void TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 	lexer = lex;
 
 	if (lexer->Failed)
-	{
-		Fail("Lexer error: " + lexer->Error);
-		return;
-	}
+		return Fail("Lexer error: " + lexer->Error);
 
 	// strip whitespace and comments
 	for (auto const &tok : lexer->GetTokens())
@@ -37,16 +34,16 @@ void TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Module);
 
-	Run(Structure::Namespace);
+	return Run(Structure::Namespace);
 }
 
-void TauParser::Run(Structure st)
+bool TauParser::Run(Structure st)
 {
 	KAI_UNUSED_1(st);
 	if (Empty())
 	{
 		KAI_TRACE_WARN_1("Nothing to parse");
-		return;
+		return true;
 	}
 
 	while (!Empty() && Current().type == TokenType::Namespace)
@@ -54,8 +51,10 @@ void TauParser::Run(Structure st)
 		Consume();
 		Namespace(root);
 		if (Failed)
-			return;
+			return false;
 	}
+
+	return true;
 }
 
 void TauParser::Namespace(AstNodePtr root)

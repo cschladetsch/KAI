@@ -9,34 +9,47 @@ TAU_BEGIN
 
 namespace Generate
 {
+	using std::string;
+	using std::stringstream;
+	using std::shared_ptr;
+
 	// common base for proxy and agent generation
 	struct GenerateProcess : Process
 	{
 		typedef TauParser::AstNode Node;
 
 	public:
-		virtual bool Generate(TauParser const &p, const char *fname) = 0;
+		virtual ~GenerateProcess()  { }
+
+		shared_ptr<TauParser> Parse(const char *fileName) const;
+		bool Generate(const char *inputFile, const char *outputFile);
+		bool Generate(TauParser const &p, const char *fileName);
 
 	protected:
-		virtual bool Namespace(Node const &ns) = 0;
+		bool Module(TauParser const &);
+		virtual bool Namespace(Node const &ns);
+
 		virtual bool Class(Node const &cl) = 0;
 		virtual bool Property(Node const &prop) = 0;
-		virtual bool Method(Node const &method)  = 0;
+		virtual bool Method(Node const &method) = 0;
+		virtual string Prepend() const = 0;
 
 	protected:
-		std::string Prepend();
-		std::stringstream &StartBlock(const std::string &text);
-		std::string EndLine() const;
+		string CommonPrepend();
+		stringstream &StartBlock(const string &text = "");
+		string EndLine() const;
 		void EndBlock();
 
-		virtual std::string ArgType(std::string const &text) const = 0;
-		virtual std::string ReturnType(std::string const &text) const = 0;
+		virtual string ArgType(string const &text) const = 0;
+		virtual string ReturnType(string const &text) const = 0;
 
 	protected:
-		std::stringstream _str;
+		stringstream _str;
 		int _indentation = 0;
 	};
 }
+
+std::string ReadTextFile(const char *fileName);
 
 TAU_END
 
