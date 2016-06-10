@@ -9,7 +9,7 @@
       <file path="$PROJECT_DIR$/Library" />
       <file path="$PROJECT_DIR$/Root" />
       <file path="$PROJECT_DIR$/Test" />
-      <file path="$PROJECT_DIR$/TestAll" />
+      <file path="$PROJECT_DIR$/Test/TestAll" />
     </sourceRoots>
     <libraryRoots />
     <excludeRoots>
