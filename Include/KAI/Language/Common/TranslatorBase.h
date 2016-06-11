@@ -65,17 +65,7 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_1(stack.back());
 
-		// TODO: don't want fudge around fact that the entire sequence is wrapped around
-		// a root continuation
-		Continuation const &root = ConstDeref<Continuation>(stack.back());
-		if (trace)
-			KAI_TRACE_1(root);
-
-		auto inner = root.GetCode()->At(0);
-		if (trace)
-			KAI_TRACE_1(inner);
-
-		return inner;
+		return stack.back();
 	}
 
 protected:
