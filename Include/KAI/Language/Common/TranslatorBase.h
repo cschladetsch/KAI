@@ -21,14 +21,25 @@ struct TranslatorBase : TranslatorCommon
 	virtual Pointer<Continuation> Translate(const char *text, Structure st) override
 	{
 		if (text == 0 || text[0] == 0)
+		{
+			KAI_TRACE_WARN_1("No input");
 			return Object();
+		}
 
 		auto lex = std::make_shared<Lexer>(text, _reg);
 		lex->Process();
 		if (lex->GetTokens().empty())
+		{
+			KAI_TRACE_WARN_1("No tokens");
 			return Object();
+		}
+
 		if (lex->Failed)
+		{
+			KAI_TRACE_WARN_1(lex->Error);
 			Fail(lex->Error);
+			return Object();
+		}
 
 		if (trace)
 			KAI_TRACE_1(lex->Print());
@@ -36,10 +47,14 @@ struct TranslatorBase : TranslatorCommon
 		auto parse = std::make_shared<Parser>(_reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
+		{
+			KAI_TRACE_1(parse->Error);
 			Fail(parse->Error);
+			return Object();
+		}
 
 		if (trace)
-			KAI_TRACE_1(parse->PrintTree());
+			KAI_TRACE_2("AST\n", parse->PrintTree());
 
 		PushNew();
 		TranslateNode(parse->GetRoot());
