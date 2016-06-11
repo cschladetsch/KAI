@@ -16,7 +16,7 @@ namespace Exception
 
 	void TypeMismatch::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "first=" << Type::Number(first).ToString() << ", second=" << Type::Number(second).ToString();
+		S << "expected=" << Type::Number(first).ToString() << ", got=" << Type::Number(second).ToString();
 	}
 
 	void UnknownTypeNumber::WriteExtendedInformation(StringStream &S) const
