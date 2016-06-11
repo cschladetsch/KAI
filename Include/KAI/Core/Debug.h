@@ -64,17 +64,17 @@ namespace debug
 
 #	ifdef KAI_DEBUG_TRACE
 #		define KAI_TRACE() \
-			KAI_TRACER(__FILE__, __LINE__, "Func", Information)
+			KAI_TRACER(__FILE__, __LINE__, __FUNCTION__, Information)
 
 #		define KAI_TRACER(F, L, N, T) \
 			KAI_NAMESPACE(debug::Trace)(FileLocation(F,L,N), KAI_NAMESPACE(debug::Trace::T))
 
 #		define KAI_TRACE_WARN() \
-			KAI_TRACER(__FILE__, __LINE__, "Func", Warn)
+			KAI_TRACER(__FILE__, __LINE__, __FUNCTION__, Warn)
 #		define KAI_TRACE_ERROR() \
-			KAI_TRACER(__FILE__, __LINE__, "Func", Error)
+			KAI_TRACER(__FILE__, __LINE__, __FUNCTION__, Error)
 #		define KAI_TRACE_FATAL() \
-			KAI_TRACER(__FILE__, __LINE__, "Func", Fatal)
+			KAI_TRACER(__FILE__, __LINE__, __FUNCTION__, Fatal)
 
 #		define KAI_TRACE_0() \
 			KAI_TRACE()
