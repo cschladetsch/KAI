@@ -71,6 +71,8 @@ const char *RhoTokenEnumType::ToString(Enum val)
 		CASE(ToPi)
 		CASE(PiSequence)
 		CASE(Debug)
+		CASE(Quote)
+		CASE(Sep)
 	}
 
 	return "Unnamed";

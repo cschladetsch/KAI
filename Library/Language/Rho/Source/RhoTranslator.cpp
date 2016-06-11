@@ -1,16 +1,10 @@
-#include <boost/lexical_cast.hpp>
-#include <boost/range/adaptor/reversed.hpp>
-
 #include <KAI/Executor/Operation.h>
 #include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Language/Rho/RhoTranslator.h>
-#include <KAI/Language/Rho/RhoToken.h>
-#include "KAI/Executor/Executor.h"
-
+#include <boost/lexical_cast.hpp>
+#include <boost/range/adaptor/reversed.hpp>
 
 KAI_BEGIN
-
-//#pragma warning (disable:4063)
 
 void RhoTranslator::TranslateToken(AstNodePtr node)
 {
