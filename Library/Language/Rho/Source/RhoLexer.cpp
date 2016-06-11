@@ -26,7 +26,6 @@ void RhoLexer::AddKeyWords()
 	keyWords["pi{"] = Enum::PiSequence;
 }
 
-
 bool RhoLexer::NextToken()
 {
 	char current = Current();
@@ -39,53 +38,28 @@ bool RhoLexer::NextToken()
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));
 
-
-
 	switch (current)
 	{
-	case ';':
-		return Add(Enum::Semi);
-	case '{':
-		return Add(Enum::OpenBrace);
-	case '}':
-		return Add(Enum::CloseBrace);
-	case '(':
-		return Add(Enum::OpenParan);
-	case ')':
-		return Add(Enum::CloseParan);
-		//case ':': return Add(Enum::Colon);
-	case ' ':
-		return Add(Enum::Whitespace, Gather(IsSpaceChar));
-	case '@':
-		return Add(Enum::Lookup);
-	case ',':
-		return Add(Enum::Comma);
-	case '*':
-		return Add(Enum::Mul);
-	case '[':
-		return Add(Enum::OpenSquareBracket);
-	case ']':
-		return Add(Enum::CloseSquareBracket);
-	case '=':
-		return AddIfNext('=', Enum::Equiv, Enum::Assign);
-	case '!':
-		return AddIfNext('=', Enum::NotEquiv, Enum::Not);
-	case '&':
-		return AddIfNext('&', Enum::And, Enum::BitAnd);
-	case '|':
-		return AddIfNext('|', Enum::Or, Enum::BitOr);
-	case '<':
-		return AddIfNext('=', Enum::LessEquiv, Enum::Less);
-	case '>':
-		return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
-	case '"':
-		return LexString();
-	case '\t':
-		return Add(Enum::Tab);
-	case '\n':
-		return Add(Enum::NewLine);
-	case '\'':
-		return Add(Enum::Quote);
+	case ';': return Add(Enum::Semi);
+	case '{': return Add(Enum::OpenBrace);
+	case '}': return Add(Enum::CloseBrace);
+	case '(': return Add(Enum::OpenParan);
+	case ')': return Add(Enum::CloseParan);
+	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
+	case '@': return Add(Enum::Lookup);
+	case ',': return Add(Enum::Comma);
+	case '*': return Add(Enum::Mul);
+	case '[': return Add(Enum::OpenSquareBracket);
+	case ']': return Add(Enum::CloseSquareBracket);
+	case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
+	case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
+	case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
+	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
+	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less); case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
+	case '"': return LexString();
+	case '\t': return Add(Enum::Tab);
+	case '\n': return Add(Enum::NewLine);
+	case '\'': return Add(Enum::Quote);
 	case '/':
 		if (Peek() == '/')
 		{

@@ -1,4 +1,5 @@
 #include <fstream>
+#include <KAI/Core/File.h>
 
 #include "KAI/Executor/Executor.h"
 #include "KAI/Language/Rho/RhoLang.h"
@@ -30,15 +31,7 @@ Pointer<Continuation> RhoLang::TranslateFile(const char *name, Structure st)
 	if (!file)
 		return Object();
 
-	// TODO: use common ReadTextFile
-	file.seekg(0, ios::end);
-	int len = (int)file.tellg();
-	char *text = new char[len + 1];
-	file.seekg(0, ios::beg);
-	file.read(text, len);
-	text[len] = 0;
-
-	return Translate(text, st);
+	return Translate(ReadTextFile(name).c_str(), st);
 }
 
 Pointer<Continuation> RhoLang::Translate(const char *text, Structure st)
