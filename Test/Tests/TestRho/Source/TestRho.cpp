@@ -6,6 +6,8 @@ using namespace std;
 
 TEST(TestRho, TestAssignment)
 {
+	TranslatorCommon::trace = 2;
+
 	Console console;
 	console.SetLanguage(Language::Rho);
 	console.Execute("a=1;");
