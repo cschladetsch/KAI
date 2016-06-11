@@ -11,12 +11,11 @@ TEST(TestRho, TestAssignment)
 
 		Console console;
 		console.SetLanguage(Language::Rho);
-		console.Execute("a=1;");
+		console.Execute("'/a=1+2;");
 
 		Object root = console.GetRoot();
-		Label name("a");
-		ASSERT_TRUE(root.HasChild(name));
-		ASSERT_EQ(Deref<int>(root.GetChild(name)), 3);
+		auto a = root.GetChild(Label("a"));
+		ASSERT_EQ(Deref<int>(a), 3);
 	}
 	catch (Exception::Base &e)
 	{
