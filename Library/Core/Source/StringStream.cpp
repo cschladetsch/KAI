@@ -136,9 +136,9 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	{
 		if (klass->GetTypeNumber() == Type::Number::Operation)
 		{
-			Operation op = ConstDeref<Operation>(object);
-			stream << "Op: " << op.GetTypeNumber();
-			//stream << Operation::ToString((int)ConstDeref<Operation>(object).GetTypeNumber());
+			//Operation op = ConstDeref<Operation>(object);
+			//stream << "Op: " << op.GetTypeNumber();
+			stream << Operation::ToString(ConstDeref<Operation>(object).GetTypeNumber());
 		}
 		else
 		{
