@@ -32,7 +32,7 @@ namespace debug
 	{
 #if defined(KAI_TRACE_VERBOSE) || defined(KAI_TRACE_FILE_LOCATION)
 		auto val = ToString();
-		cout << file_location.ToString(true).c_str() << ": " << TypeToString(type) << ": " << val.c_str() << endl;
+		cout << file_location.ToString(true).c_str() << TypeToString(type) << ": " << val.c_str() << endl;
 #else
 		auto lead = TypeToString(type);
 		if (lead != 0)
