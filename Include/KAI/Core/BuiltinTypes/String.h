@@ -11,8 +11,8 @@ class String
 {
 public:
 	typedef char Char;
-	//typedef typename std::basic_string<Char> Storage;
-	typedef std::string Storage;
+	typedef typename std::basic_string<Char> Storage;
+	//typedef std::string Storage;
 	typedef typename Storage::const_iterator const_iterator;
 	typedef typename Storage::iterator iterator;
 
@@ -26,7 +26,8 @@ public:
 	String(const Char *S) { if (S != 0) _string = S; }
 	String(const std::string &X) { _string = X; }
 	String(const String &X) { _string = X._string; }
-	String(int N, Char C) : _string(N, C) { }
+//	String(String &&X) { _string = std::move(X._string); }
+	explicit String(int N, Char C) : _string(N, C) { }
 
 	friend String &operator+=(String &A, Char B)
 	{

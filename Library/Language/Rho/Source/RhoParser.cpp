@@ -147,7 +147,7 @@ bool RhoParser::Statement(AstNodePtr block)
 			Consume();
 			if (!Expression())
 			{
-				Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
+				CreateError("Assert needs an expression to test");
 				return false;
 			}
 
