@@ -71,6 +71,8 @@ struct RhoTokenEnumType
 		PiSequence = 67,
 		Pathname = 68,
 		Debug = 69,
+		Quote = 70,
+		Sep = 71,
 	};
 
 	struct Type : TokenBase<RhoTokenEnumType>
