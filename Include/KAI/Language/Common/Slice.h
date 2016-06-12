@@ -4,7 +4,8 @@
 
 KAI_BEGIN
 
-// A Indicates a range of characters in a larger string
+// Indicates a range of characters in a larger string.
+// Another humble but extremely useful structure.
 struct Slice
 {
 	int Start, End;

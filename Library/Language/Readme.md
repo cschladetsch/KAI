@@ -26,7 +26,8 @@ There are currently three different language systems used by the system:
 - Tau
 
 The first two are used to access C++ systems reflected at runtime. 
-The last, Tau, is used as an IDL to generate Proxt and Agent code
+
+The last, Tau, is used as an IDL to generate Proxy and Agent code
 that can be statically linked to executables that interact via a Node 
-system based on RakNet.
+system.
 

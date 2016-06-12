@@ -1,9 +1,6 @@
-#include <string>
+#include <KAI/Language/Pi/PiToken.h>
 #include <algorithm>
-#include <memory>
 #include <ctype.h>
-
-#include "KAI/Language/Pi/PiToken.h"
 
 using namespace std;
 
