@@ -12,14 +12,14 @@ add_definitions(-DKAI_TRACE_FILE_LOCATION)
 
 set(HOME $ENV{HOME})
 
-# THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
+# *** THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
 # Source location.
 set(KAI_HOME ${HOME}/dev/KAI)
 # RakNet
 include_directories(${HOME}/External/RakNet/include)
 # for X11
 link_directories(/usr/lib/x86_64-linux-gnu)
-# END HARD-CODED
+# *** END HARD-CODED
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
