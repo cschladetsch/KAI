@@ -7,12 +7,18 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	lexer = lex;
 	if (lex->Failed)
+	{
 		return Fail(lex->Error);
+	}
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
+	{
 		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+		{
 			tokens.push_back(tok);
+		}
+	}
 
 	root = NewNode(AstEnum::Program);
 
@@ -371,10 +377,28 @@ bool RhoParser::Factor()
 	while (Try(TokenType::Lookup))
 		PushConsume();
 
+	if (Try(TokenType::Quote) || Try(TokenType::Sep))
+		return ParsePathname();
+
 	if (Try(TokenType::Ident))
 		return ParseFactorIdent();
 
 	return false;
+}
+
+bool RhoParser::ParsePathname()
+{
+	auto node = NewNode(NodeType::Pathname);
+	return ParsePathname(node);
+}
+
+bool RhoParser::ParsePathname(AstNodePtr path)
+{
+	// '/foo // legal
+	// '/foo.bar/spam << illegal
+	// foo.bar << legal
+	// ~ // legal
+	//
 }
 
 bool RhoParser::ParseFactorIdent()
