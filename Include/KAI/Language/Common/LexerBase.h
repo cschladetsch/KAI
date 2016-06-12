@@ -50,7 +50,7 @@ protected:
 	virtual void LexErrorBase(const char *msg) = 0;
 	virtual void AddStringToken(int lineNumber, Slice slice) = 0;
 
-	Slice Gather(int(*filt)(int ch));
+	Slice Gather(int(*filter)(int ch));
 };
 
 KAI_END
