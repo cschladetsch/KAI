@@ -26,7 +26,7 @@ struct TranslatorBase : TranslatorCommon
 			return Object();
 		}
 
-		auto lex = std::make_shared<Lexer>(text, _reg);
+		auto lex = std::make_shared<Lexer>(text, *_reg);
 		lex->Process();
 		if (lex->GetTokens().empty())
 		{
@@ -44,7 +44,7 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_1(lex->Print());
 
-		auto parse = std::make_shared<Parser>(_reg);
+		auto parse = std::make_shared<Parser>(*_reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
 		{
