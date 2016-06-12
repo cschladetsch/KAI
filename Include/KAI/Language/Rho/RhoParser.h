@@ -39,6 +39,8 @@ private:
 	bool Factor();
 	void ConsumeNewLines();
 	void Block(AstNodePtr block);
+	bool ParsePathname();
+	bool ParsePathname(AstNodePtr path);
 	bool ParseFactorIdent();
 	void ParseGetMember();
 	void ParseMethodCall();

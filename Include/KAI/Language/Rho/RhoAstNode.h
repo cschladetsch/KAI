@@ -39,6 +39,8 @@ struct RhoAstNodeEnumType
 		Greater= 27,
 		Object = 28,
 		Continuation = 29,
+		Pathname = 30,
+		Home = 31,
 	};
 
 	struct Node : AstNodeBase<RhoToken, RhoAstNodeEnumType>

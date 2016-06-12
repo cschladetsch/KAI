@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include <assert.h>
 
 #include "KAI/Core/Object.h"
