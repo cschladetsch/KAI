@@ -39,7 +39,7 @@ bool PiParser::Run(Structure st)
 
 bool PiParser::NextSingle(AstNodePtr root)
 {
-	if (current == tokens.size() - 1)
+	if (Empty())
 		return false;
 
 	auto tok = Current();
@@ -64,13 +64,11 @@ bool PiParser::NextSingle(AstNodePtr root)
 	case PiTokens::Rot:
 	case PiTokens::PickN:
 	case PiTokens::Pathname:
-
 	case PiTokens::String:
 	case PiTokens::Int:
 	case PiTokens::Float:
 	case PiTokens::True:
 	case PiTokens::False:
-
 	case PiTokens::Plus:
 	case PiTokens::Minus:
 	case PiTokens::Mul:
