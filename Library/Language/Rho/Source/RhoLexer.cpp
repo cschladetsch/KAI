@@ -1,8 +1,4 @@
-#include "KAI/Language/Rho/RhoLexer.h"
-
-#include <strstream>
-#include <stdarg.h>
-#include <algorithm>
+#include <KAI/Language/Rho/RhoLexer.h>
 
 using namespace std;
 

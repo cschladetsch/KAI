@@ -126,8 +126,6 @@ protected:
 		return Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));
 	}
 
-	//void SearchForKeyword(Token &tok) const;
-
 public:
 	static std::string CreateErrorMessage(Token tok, const char *fmt, ...)
 	{
