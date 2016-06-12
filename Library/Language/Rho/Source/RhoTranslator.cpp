@@ -91,19 +91,19 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 		return;
 
 	case TokenEnum::Int:
-		Append(_reg.New<int>(boost::lexical_cast<int>(node->GetTokenText())));
+		Append(New<int>(boost::lexical_cast<int>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::Float:
-		Append(_reg.New<float>(boost::lexical_cast<float>(node->GetTokenText())));
+		Append(New<float>(boost::lexical_cast<float>(node->GetTokenText())));
 		return;
 
 	case TokenEnum::String:
-		Append(_reg.New<String>(node->Text()));
+		Append(New<String>(node->Text()));
 		return;
 
 	case TokenEnum::Ident:
-		Append(_reg.New<Label>(Label(node->Text())));
+		Append(New<Label>(Label(node->Text())));
 		return;
 
 	case TokenEnum::Yield:
