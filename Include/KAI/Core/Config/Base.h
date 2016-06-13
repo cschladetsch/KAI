@@ -1,7 +1,6 @@
 #pragma once
 
 #include "KAI/Core/Config/Options.h"
-#include "KAI/Core/Config/Compiler.h"
 #include "KAI/Core/Config/Platform.h"
 
 #ifdef KAI_OPTION_USE_NAMESPACES

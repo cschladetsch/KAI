@@ -16,14 +16,14 @@ public:
 	{
 		static const String::Char Parent;
 		static const String::Char This;
-		static const String::Char Seperator;
+		static const String::Char Separator;
 		static const String::Char Quote;
 		static const String::Char All[];
 		static const String::Char AllButQuote[];
 	};
 	struct Element
 	{
-		enum Type { None, Seperator, Parent, This, Name };
+		enum Type { None, Quote, Separator, Parent, This, Name };
 		Type type;
 		Label name;
 		Element(Type T = None) : type(T) { }
@@ -31,16 +31,18 @@ public:
 		friend bool operator<(const Element &A, const Element &B) { return A.type < B.type || (A.type == B.type && A.name < B.name); }
 		friend bool operator==(const Element &A, const Element &B) { return A.type == B.type && A.name == B.name; }
 	};
-	typedef std::list<Element> Elements;
+	typedef std::vector<Element> Elements;
 
 private:
 	Elements elements;
 
 public:
-	Pathname() : Absolute(false) { }
+	Pathname() { }
 	Pathname(const String &);
+	Pathname(const Elements &);
 
-	bool Absolute;
+	bool Quoted() const;
+	bool Absolute() const;
 
 	Elements GetElements() const { return elements; }
 
