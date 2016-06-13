@@ -5,13 +5,13 @@ KAI_BEGIN
 
 StringStream &operator<<(StringStream &S, Structure T)
 {
-	return S << (int)T;
+	return S;//TODO << (int)T;
 }
 
 StringStream &operator>>(StringStream &S, Structure& T)
 {
 	int num;
-	S >> num;
+//TODO	S >> num;
 	T = (Structure)num;
 	return S;
 }
