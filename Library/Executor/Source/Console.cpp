@@ -26,19 +26,19 @@ Console::Console(shared_ptr<Memory::IAllocator> alloc)
 
 Console::~Console()
 {
-	alloc->DeAllocate(registry);
+	alloc->DeAllocate(_reg);
 }
 
 void Console::Create()
 {
 	try
 	{
-		registry = alloc->Allocate<Registry>(alloc);
+		_reg = alloc->Allocate<Registry>(alloc);
 
 		RegisterTypes();
 
-		executor = registry->New<Executor>();
-		compiler = registry->New<Compiler>();
+		executor = _reg->New<Executor>();
+		compiler = _reg->New<Compiler>();
 
 		executor.SetManaged(false);
 		compiler.SetManaged(false);
@@ -56,10 +56,10 @@ void Console::ExposeTypesToTree(Object types)
 {
 	for (int N = 0; N < Type::Number::Last; ++N)
 	{
-		const ClassBase *K = registry->GetClass(N);
+		const ClassBase *K = _reg->GetClass(N);
 		if (K == 0)
 			continue;
-		types.Set(K->GetName(), registry->New(K));
+		types.Set(K->GetName(), _reg->New(K));
 	}
 }
 
@@ -87,16 +87,11 @@ Language Console::GetLanguage() const
 
 void Console::CreateTree()
 {
-	Object root = registry->New<void>();
-	Object types = registry->New<void>();
-	Object sys = registry->New<void>();
-	Object bin = registry->New<void>();
-	Object home = registry->New<void>();
-
-	//types.SetSwitch(IObject::NoRecurse, true);
-	//sys.SetSwitch(IObject::NoRecurse, true);
-	//root.SetSwitch(IObject::NoRecurse, true);
-	//bin.SetSwitch(IObject::NoRecurse, true);
+	Object root = _reg->New<void>();
+	Object types = _reg->New<void>();
+	Object sys = _reg->New<void>();
+	Object bin = _reg->New<void>();
+	Object home = _reg->New<void>();
 
 	types.SetSwitch(IObject::Managed, false);
 	sys.SetSwitch(IObject::Managed, false);
@@ -120,7 +115,7 @@ void Console::CreateTree()
 	tree.AddSearchPath(Pathname("/Types"));
 
 	executor->SetTree(&tree);
-	registry->SetTree(tree);
+	_reg->SetTree(tree);
 
 	root.Set("Home", home);
 	tree.SetScope(Pathname("/Home"));
@@ -136,7 +131,6 @@ void Console::Execute(Pointer<Continuation> cont)
 			cont->SetScope(tree.GetRoot());
 
 		executor->Continue(cont);
-		//cout << WriteStack().c_str() << endl;
 	}
 	KAI_CATCH(Exception::Base, E)
 	{
@@ -272,36 +266,36 @@ int Console::Run()
 void Console::RegisterTypes()
 {
 	// built-ins
-	registry->AddClass<const ClassBase *>(Label("Class"));		// TODO: add methods
-	registry->AddClass<void>(Label("Void"));
-	registry->AddClass<bool>(Label("Bool"));
-	registry->AddClass<int>(Label("Int"));
-	registry->AddClass<float>(Label("Float"));
-	registry->AddClass<Vector3>(Label("Vector3"));
-	registry->AddClass<Vector4>(Label("Vector4"));
+	_reg->AddClass<const ClassBase *>(Label("Class"));		// TODO: add methods
+	_reg->AddClass<void>(Label("Void"));
+	_reg->AddClass<bool>(Label("Bool"));
+	_reg->AddClass<int>(Label("Int"));
+	_reg->AddClass<float>(Label("Float"));
+	_reg->AddClass<Vector3>(Label("Vector3"));
+	_reg->AddClass<Vector4>(Label("Vector4"));
 
 	// system types
 	//ObjectSet::Register(*registry);
-	String::Register(*registry);
-	Object::Register(*registry);
-	Handle::Register(*registry);
-	Stack::Register(*registry);
-	Continuation::Register(*registry);
-	Label::Register(*registry);
-	Operation::Register(*registry);
-	Compiler::Register(*registry);
-	Executor::Register(*registry);
-	Pathname::Register(*registry);
-	BasePointerBase::Register(*registry);
-	Pair::Register(*registry);
-	FunctionBase::Register(*registry);
-	BasePointer<MethodBase>::Register(*registry);
-	BasePointer<PropertyBase>::Register(*registry);
-	BinaryStream::Register(*registry);
-	StringStream::Register(*registry);
-	Array::Register(*registry);
-	List::Register(*registry);
-	Map::Register(*registry, "Map");
+	String::Register(*_reg);
+	Object::Register(*_reg);
+	Handle::Register(*_reg);
+	Stack::Register(*_reg);
+	Continuation::Register(*_reg);
+	Label::Register(*_reg);
+	Operation::Register(*_reg);
+	Compiler::Register(*_reg);
+	Executor::Register(*_reg);
+	Pathname::Register(*_reg);
+	BasePointerBase::Register(*_reg);
+	Pair::Register(*_reg);
+	FunctionBase::Register(*_reg);
+	BasePointer<MethodBase>::Register(*_reg);
+	BasePointer<PropertyBase>::Register(*_reg);
+	BinaryStream::Register(*_reg);
+	StringStream::Register(*_reg);
+	Array::Register(*_reg);
+	List::Register(*_reg);
+	Map::Register(*_reg, "Map");
 	
 	// TODO: remove less-than comparable trait for hash maps: 
 	//HashMap::Register(*registry, "HashMap");

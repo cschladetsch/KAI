@@ -43,7 +43,6 @@ TEST(TestFunctionScripting, Test)
 
 		// a registry is a factory for classes and instances
 		Object root = console.GetRoot();
-		//Registry &reg = console.GetRegistry();
 
 		// add general functions to the root of the tree
 		AddFunction(root, Function_0, Label("Function0"));
