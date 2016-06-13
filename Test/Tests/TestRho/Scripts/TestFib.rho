@@ -1,0 +1,18 @@
+
+// what type of comments do I want?
+# why not both?
+
+fun fib(n)
+    if n <= 0
+        return 0
+    if n == 1
+        return 1
+    return n + fib(n - 1)!      # bang at end means `replace`; so no call stack to unwind
+
+fun testFib()
+    assert(fib(0) == 0)
+    assert(fib(1) == 1)
+    assert(fib(2) == 2+1)
+    assert(fib(3) == 3+2+1)
+    assert(fib(4) == 4+3+2+1)   // can use different comments
+    return true;                // semis at end of statements are ignored

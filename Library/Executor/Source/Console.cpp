@@ -2,9 +2,7 @@
 
 #include <KAI/Core/Memory/StandardAllocator.h>
 #include <KAI/Core/Object.h>
-#include "KAI/Core/BuiltinTypes/Pair.h"
-#include "KAI/Core/BuiltinTypes/List.h"
-#include "KAI/Core/BuiltinTypes/Map.h"
+#include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Console/Console.h"
 #include "KAI/Executor/BinBase.h"
 

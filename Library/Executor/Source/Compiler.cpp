@@ -1,10 +1,11 @@
-#include <iostream>
-#include <assert.h>
-
 #include "KAI/Core/Object.h"
-#include "KAI/Core/Type.h"
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Executor/Compiler.h"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 KAI_BEGIN
 
@@ -31,6 +32,14 @@ void Compiler::AddOperation(int N, const String &S)
 	Q.SetManaged(false);
 	string_to_op[S] = Q;
 	op_to_string[T] = S;
+}
+
+Pointer<Continuation> Compiler::CompileFile(const String &fileName, Structure st) const
+{
+	fstream t(fileName.c_str());
+	stringstream buffer;
+	buffer << t.rdbuf();
+	return Translate(buffer.str().c_str(), st);
 }
 
 void Compiler::Register(Registry &R, const char *name)
