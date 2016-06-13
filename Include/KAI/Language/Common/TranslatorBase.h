@@ -48,7 +48,7 @@ struct TranslatorBase : TranslatorCommon
 		parse->Process(lex, st);
 		if (parse->Failed)
 		{
-			KAI_TRACE_1(parse->Error);
+//			KAI_TRACE_1(parse->Error);
 			Fail(parse->Error);
 			return Object();
 		}
@@ -77,7 +77,7 @@ protected:
 
 		try
 		{
-			TranslateNode(p->GetRoot());
+			TranslateNode(p);
 		}
 		catch (Exception &)
 		{
