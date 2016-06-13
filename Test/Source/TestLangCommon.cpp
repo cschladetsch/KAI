@@ -15,7 +15,7 @@ void TestLangCommon::SetUp()
 	_context = &*_exec->GetContextStack();
 
 	_exec->SetTraceLevel(10);
-	TranslatorCommon::trace = 2;
+	TranslatorCommon::trace = 5;
 }
 
 void TearDown()
