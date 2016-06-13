@@ -34,41 +34,52 @@ Object Function_3(Object object)
 
 TEST(TestFunctionScripting, Test)
 {
-	// we can give the KAI runtime a custom allocator to use. 
-	// we will just use the standard one which uses malloc and free
-	Console console;
-	console.SetLanguage(Language::Rho);
-
-	// a registry is a factory for classes and instances
-	Object root = console.GetRoot();
-	//Registry &reg = console.GetRegistry();
-
-	// add general functions to the root of the tree
-	AddFunction(root, Function_0, Label("Function0"));
-	AddFunction(root, Function_1, Label("Function1"));
-	AddFunction(root, Function_2, Label("Function2"));
-	AddFunction(root, Function_3, Label("Function3"));
-
-	// invoke the functions; take copies of the resultant stacks after each function completes
-	console.Execute("Function0();");
-	console.Execute("Function1(42);");
-	console.Execute("Function2(123, 3, \"bar\");");
-	console.Execute("Function3(mystruct);");
-
-	for (int n = 0; n < 2; ++n)
-		ASSERT_TRUE(funCalled[n]);
-
-	Value<Stack> stack = console.GetExecutor()->GetDataStack();
-	EXPECT_EQ(stack->Size(), 0);
-	for (auto val : *stack)
+	try
 	{
-		KAI_TRACE_1(val);
-	}
+		// we can give the KAI runtime a custom allocator to use.
+		// we will just use the standard one which uses malloc and free
+		Console console;
+		console.SetLanguage(Language::Rho);
 
-	//// show results and 
-	//ASSERT_TRUE(stack_A->Empty());
-	//ASSERT_TRUE(stack_B->Empty());
-	//EXPECT_EQ(ConstDeref<String>(stack_C->Pop()), "barfoo");
-	//EXPECT_EQ(ConstDeref<int>(stack_D->Pop()), 345);
+		// a registry is a factory for classes and instances
+		Object root = console.GetRoot();
+		//Registry &reg = console.GetRegistry();
+
+		// add general functions to the root of the tree
+		AddFunction(root, Function_0, Label("Function0"));
+		AddFunction(root, Function_1, Label("Function1"));
+		AddFunction(root, Function_2, Label("Function2"));
+		AddFunction(root, Function_3, Label("Function3"));
+
+		// invoke the functions; take copies of the resultant stacks after each function completes
+		console.Execute("Function0();");
+		console.Execute("Function1(42);");
+		console.Execute("Function2(123, 3, \"bar\");");
+		console.Execute("Function3(mystruct);");
+
+		for (int n = 0; n < 2; ++n)
+			ASSERT_TRUE(funCalled[n]);
+
+		Value<Stack> stack = console.GetExecutor()->GetDataStack();
+		EXPECT_EQ(stack->Size(), 0);
+		for (auto val : *stack)
+		{
+			KAI_TRACE_1(val);
+		}
+
+		//// show results and
+		//ASSERT_TRUE(stack_A->Empty());
+		//ASSERT_TRUE(stack_B->Empty());
+		//EXPECT_EQ(ConstDeref<String>(stack_C->Pop()), "barfoo");
+		//EXPECT_EQ(ConstDeref<int>(stack_D->Pop()), 345);
+	}
+	catch (kai::Exception::Base &e)
+	{
+		cerr << e.ToString() << endl;
+	}
+	catch (std::exception &e)
+	{
+		cerr << e.what() << endl;
+	}
 }
 
