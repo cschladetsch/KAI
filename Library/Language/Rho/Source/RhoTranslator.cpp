@@ -4,6 +4,8 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 
+using namespace std;
+
 KAI_BEGIN
 
 void RhoTranslator::TranslateToken(AstNodePtr node)
@@ -129,7 +131,31 @@ void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 	TranslateNode(node->GetChild(0));
 	TranslateNode(node->GetChild(1));
 
-	AppendNew<Operation>(Operation(op));
+	AppendNew(Operation(op));
+}
+
+void RhoTranslator::TranslatePathname(AstNodePtr node)
+{
+	Pathname::Elements elements;
+	typedef Pathname::Element El;
+
+	for (auto ch : node->GetChildren())
+	{
+		switch (ch->GetToken().type)
+		{
+		case RhoTokenEnumType::Quote:
+			elements.push_back(El::Quote);
+			break;
+		case RhoTokenEnumType::Sep:
+			elements.push_back(El::Separator);
+			break;
+		case RhoTokenEnumType::Ident:
+			elements.push_back(Label(ch->GetTokenText()));
+			break;
+		}
+	}
+
+	AppendNew(Pathname(move(elements)));
 }
 
 void RhoTranslator::TranslateNode(AstNodePtr node)
@@ -142,6 +168,10 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 
 	switch (node->GetType())
 	{
+	case AstEnum::Pathname:
+		TranslatePathname(node);
+		return;
+
 	case AstEnum::IndexOp:
 		TranslateBinaryOp(node, Operation::Index);
 		return;
@@ -177,10 +207,6 @@ void RhoTranslator::TranslateNode(AstNodePtr node)
 		return;
 
 	case AstEnum::List:
-		for (auto ch : boost::adaptors::reverse(node->GetChildren()))
-			TranslateNode(ch);
-		AppendNew<int>(node->GetChildren().size());
-		//AppendNewOp(Operation::ToArray);
 		KAI_NOT_IMPLEMENTED();
 		return;
 

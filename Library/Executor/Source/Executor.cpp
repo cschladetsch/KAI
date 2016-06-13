@@ -409,7 +409,7 @@ Object Executor::Resolve(Label const &label) const
 Object Executor::Resolve(Pathname const &path) const
 {
 	// if its not an absolute path, search up the continuation scopes
-	if (!path.Absolute)
+	if (!path.Absolute())
 	{
 		// search in current scope
 		if (_continuation.Exists() && Exists(_continuation->GetScope(), path))

@@ -228,9 +228,9 @@ protected:
 		TokenNode tok = Current();
 		if (tok.type != type)
 		{
-			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
-			Fail(Lexer::CreateErrorMessage(tok, "Unexpected token %s", TokenEnumType::ToString(tok.type)));
-			KAI_THROW_1(LogicError, "Unexpected token");
+			Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnumType::ToString(type), TokenEnumType::ToString(tok.type)));
+			//KAI_THROW_1(LogicError, "Unexpected token");
+			return 0;
 		}
 
 		Next();

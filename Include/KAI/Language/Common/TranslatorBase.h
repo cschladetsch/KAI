@@ -56,6 +56,7 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_2("AST\n", parse->PrintTree());
 
+		PushNew();
 		TranslateNode(parse->GetRoot());
 
 		if (stack.empty())
