@@ -4,6 +4,7 @@
 
 KAI_BEGIN
 
+
 template <class EParser>
 struct TranslatorBase : TranslatorCommon
 {
@@ -48,7 +49,6 @@ struct TranslatorBase : TranslatorCommon
 		parse->Process(lex, st);
 		if (parse->Failed)
 		{
-//			KAI_TRACE_1(parse->Error);
 			Fail(parse->Error);
 			return Object();
 		}
@@ -65,7 +65,14 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_1(stack.back());
 
-		return stack.back();
+		auto ret = stack.back();
+		if (!ret.IsType<Continuation>())
+		{
+			Fail("Result is not a continuation");
+			return Object();
+		}
+
+		return ret;
 	}
 
 protected:
