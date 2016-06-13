@@ -6,6 +6,7 @@
 #include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/StringStream.h"
+#include "KAI/Language/Common/Structure.h"
 
 KAI_BEGIN
 
