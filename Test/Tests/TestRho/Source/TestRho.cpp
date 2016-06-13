@@ -31,3 +31,6 @@ TEST(TestRho, TestAssignment)
 	}
 }
 
+TEST(TestRho, TestFib)
+{
+}
