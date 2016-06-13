@@ -12,7 +12,10 @@ KAI_BEGIN
 
 extern void DebugTrace(const char *);
 
-namespace debug 
+	StringStream &operator<<(StringStream &S, Structure T);
+	StringStream &operator>>(StringStream &S, Structure T);
+
+namespace debug
 {
 	struct Trace : StringStream
 	{
