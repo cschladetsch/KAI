@@ -29,6 +29,7 @@ private:
 	void TranslateBlock(AstNodePtr node);
 	void TranslateBinaryOp(AstNodePtr node, Operation::Type);
 	void TranslateCall(AstNodePtr node);
+	void TranslatePathname(AstNodePtr node);
 	void TranslateIndex(AstNodePtr node);
 	void TranslateIf(AstNodePtr node);
 	void TranslateFor(AstNodePtr node);
