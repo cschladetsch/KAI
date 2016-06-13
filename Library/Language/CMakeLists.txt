@@ -4,7 +4,7 @@ project(Languages)
 
 set(lang_root_dir ${KAI_SOURCE_ROOT_DIR}/Library/Language)
 
-set(langs Pi Rho Tau)
+set(langs Common Pi Rho Tau)
 foreach(l ${langs})
     def_lang_library(${l})
 endforeach()
