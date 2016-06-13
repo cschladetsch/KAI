@@ -377,11 +377,8 @@ bool RhoParser::Factor()
 	while (Try(TokenType::Lookup))
 		PushConsume();
 
-	if (Try(TokenType::Quote) || Try(TokenType::Sep))
+	if (Try(TokenType::Quote) || Try(TokenType::Sep) || Try(TokenType::Ident))
 		return ParsePathname();
-
-	if (Try(TokenType::Ident))
-		return ParseFactorIdent();
 
 	return false;
 }
@@ -389,16 +386,62 @@ bool RhoParser::Factor()
 bool RhoParser::ParsePathname()
 {
 	auto node = NewNode(NodeType::Pathname);
-	return ParsePathname(node);
+	if (ParsePathname(node))
+	{
+		Push(node);
+		return true;
+	}
+
+	return false;
 }
 
 bool RhoParser::ParsePathname(AstNodePtr path)
 {
-	// '/foo // legal
-	// '/foo.bar/spam << illegal
-	// foo.bar << legal
-	// ~ // legal
-	//
+	// foo          # legal
+	// 'foo          # legal
+	// '/foo        # legal
+	// foo/bar/     # legal
+	// foo//bar/    # illegal
+	// '            # illegal
+
+	if (CurrentIs(TokenType::Quote))
+		path->Add(Consume());
+	bool expectIdent;
+	switch (Current().type)
+	{
+	case TokenType::Sep:
+		expectIdent = true;
+		path->Add(Consume());
+		break;
+	case TokenType::Ident:
+		path->Add(Consume());
+		expectIdent = false;
+		break;
+	default:
+		return CreateError("Expected a separator or ident");
+	}
+
+	while (true)
+	{
+		switch (Current().type)
+		{
+		case TokenType::Ident:
+			if (!expectIdent)
+				return true;
+			path->Add(Consume());
+			expectIdent = false;
+			break;
+		case TokenType::Sep:
+			if (expectIdent)
+				return true;
+			path->Add(Consume());
+			expectIdent = true;
+			break;
+
+		default:
+			return true;
+		}
+	}
 }
 
 bool RhoParser::ParseFactorIdent()

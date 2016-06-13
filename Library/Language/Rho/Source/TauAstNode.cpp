@@ -26,6 +26,7 @@ const char *RhoAstNodes::ToString(Enum ty)
 		CASE(Map)
 		CASE(Continuation)
 		CASE(TokenType)
+		CASE(Pathname)
 	}
 
 	static char buff[BUFSIZ];

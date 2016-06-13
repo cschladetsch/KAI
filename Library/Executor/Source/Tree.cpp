@@ -60,7 +60,7 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 		case Pathname::Element::None: 
 			break;
 
-		case Pathname::Element::Seperator: 
+		case Pathname::Element::Separator:
 			break;
 
 		case Pathname::Element::This: 
@@ -110,7 +110,7 @@ void Set(Object const &root, Object const &scope, Object const &ident, Object co
 	case Type::Number::Pathname:
 		{
 			const Pathname &path = ConstDeref<Pathname>(ident);
-			if (path.Absolute)
+			if (path.Absolute())
 				Set(root, path, Q);
 			else
 				Set(scope, path, Q);
@@ -124,9 +124,9 @@ void Set(Object const &root, Object const &scope, Object const &ident, Object co
 Object Get(Object const &root, Object const &scope, const Pathname &path)
 {
 	if (path.Empty())
-		return path.Absolute ? root : Object();
+		return path.Absolute() ? root : Object();
 
-	if (path.Absolute)
+	if (path.Absolute())
 		return Get(root, path);
 
 	return Get(scope, path);
@@ -147,7 +147,7 @@ Object Get(Object scope, const Pathname &path)
 		case Pathname::Element::None: 
 			break;
 
-		case Pathname::Element::Seperator: 
+		case Pathname::Element::Separator:
 			break;
 
 		case Pathname::Element::Name: 
@@ -209,7 +209,7 @@ void Remove(Object scope, const Pathname &path)
 		case Pathname::Element::None: 
 			break;
 
-		case Pathname::Element::Seperator:
+		case Pathname::Element::Separator:
 			break;
 		
 		case Pathname::Element::Name: 
@@ -230,7 +230,7 @@ void Remove(Object scope, const Pathname &path)
 
 void Remove(Object const &root, Object const &scope, const Pathname &path)
 {
-	if (path.Absolute)
+	if (path.Absolute())
 		Remove(root, path);
 	else
 		Remove(scope, path);
@@ -319,7 +319,7 @@ Object Tree::Resolve(const Pathname &P) const
 	if (found.Exists())
 		return found;
 
-	if (P.Absolute)
+	if (P.Absolute())
 		return Object();
 	
 	for (auto const &A : path)
