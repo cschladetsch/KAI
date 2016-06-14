@@ -1,5 +1,6 @@
 #include <KAI/Core/File.h>
 #include <KAI/Core/Object.h>
+#include <fstream>
 
 using namespace std;
 
@@ -7,7 +8,9 @@ KAI_BEGIN
 
 string ReadTextFile(const char *fileName)
 {
-	KAI_NOT_IMPLEMENTED();
+	fstream file(fileName);
+	typedef istreambuf_iterator<char> iter;
+	return move(string(iter(file), iter()));
 }
 
 vector<byte> ReadBinaryFile(const char *fileName)

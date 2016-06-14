@@ -318,8 +318,12 @@ void Console::Register(Registry &)
 
 void Console::ExecuteFile(const char *fileName)
 {
-	auto c = compiler->CompileFile(fileName, Structure::Program);
-	executor->Continue(c);
+	Pointer<Continuation> c = compiler->CompileFile(fileName, Structure::Program);
+	KAI_TRACE_1(c);
+	if (c.Exists())
+	{
+		executor->Continue(c);
+	}
 }
 
 KAI_END

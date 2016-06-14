@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <KAI/Core/File.h>
 
 using namespace std;
 
@@ -36,10 +37,8 @@ void Compiler::AddOperation(int N, const String &S)
 
 Pointer<Continuation> Compiler::CompileFile(const String &fileName, Structure st) const
 {
-	fstream t(fileName.c_str());
-	stringstream buffer;
-	buffer << t.rdbuf();
-	return Translate(buffer.str().c_str(), st);
+	auto text = ReadTextFile(fileName.c_str());
+	return Translate(text.c_str(), st);
 }
 
 void Compiler::Register(Registry &R, const char *name)
