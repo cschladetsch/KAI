@@ -36,25 +36,19 @@ TEST(TestFunctionScripting, Test)
 {
 	try
 	{
-		// we can give the KAI runtime a custom allocator to use.
-		// we will just use the standard one which uses malloc and free
 		Console console;
 		console.SetLanguage(Language::Rho);
-
-		// a registry is a factory for classes and instances
 		Object root = console.GetRoot();
 
-		// add general functions to the root of the tree
 		AddFunction(root, Function_0, Label("Function0"));
 		AddFunction(root, Function_1, Label("Function1"));
 		AddFunction(root, Function_2, Label("Function2"));
 		AddFunction(root, Function_3, Label("Function3"));
 
-		// invoke the functions; take copies of the resultant stacks after each function completes
-		console.Execute("Function0();");
-		console.Execute("Function1(42);");
-		console.Execute("Function2(123, 3, \"bar\");");
-		console.Execute("Function3(mystruct);");
+		console.Execute("Function0()");
+		console.Execute("Function1(42)");
+		console.Execute("Function2(123, 3, \"bar\")");
+		console.Execute("Function3(mystruct)");
 
 		for (int n = 0; n < 2; ++n)
 			ASSERT_TRUE(funCalled[n]);
