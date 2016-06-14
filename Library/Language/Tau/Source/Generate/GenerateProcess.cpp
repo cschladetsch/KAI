@@ -5,12 +5,6 @@ using namespace std;
 
 TAU_BEGIN
 
-string ReadTextFile(const char *fname)
-{
-	fstream file(fname);
-	typedef istreambuf_iterator<char> iter;
-	return move(string(iter(file), iter()));
-}
 
 namespace Generate
 {
