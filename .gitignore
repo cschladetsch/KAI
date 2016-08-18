@@ -174,3 +174,6 @@ Projects/Console/CLRDebug/
 Projects/Controls/ConsoleView/CLRDebug/
 Lib/
 *.o
+App/GenerateEntity/Include/
+Library/Language/Tau/Include/
+lib/

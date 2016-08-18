@@ -1,0 +1,4 @@
+fun main()
+	'/a = 123
+	print(/a)
+

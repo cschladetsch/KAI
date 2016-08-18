@@ -33,11 +33,11 @@ public:
 
 	LexerCommon(const char *input, Registry &r) : LexerBase(input, r) { }
 
-	void Process()
+	bool Process()
 	{
 		AddKeyWords();
 		CreateLines();
-		Run();
+		return Run();
 	}
 
 	virtual void AddKeyWords() = 0;
@@ -126,8 +126,6 @@ protected:
 		return Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));
 	}
 
-	//void SearchForKeyword(Token &tok) const;
-
 public:
 	static std::string CreateErrorMessage(Token tok, const char *fmt, ...)
 	{
@@ -147,8 +145,8 @@ public:
 		#else
 		sprintf(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
 		#endif
-		int beforeContext = 1;
-		int afterContext = 0;
+		int beforeContext = 2;
+		int afterContext = 2;
 
 		const LexerBase &lex = *tok.lexer;
 		int start = std::max(0, tok.lineNumber - beforeContext);
@@ -186,8 +184,6 @@ public:
 				err << std::endl;
 			}
 		}
-
-		//ENDS err << std::ends;
 
 		return err.str();
 	}

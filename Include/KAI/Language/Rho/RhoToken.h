@@ -1,10 +1,10 @@
 #pragma once
 
-#include "KAI/Language/Common/TokenBase.h"
+#include <KAI/Language/Common/TokenBase.h>
 
 KAI_BEGIN
 
-// A token in the language
+// A token in the Rho language
 struct RhoTokenEnumType
 {
 	enum Enum
@@ -71,6 +71,8 @@ struct RhoTokenEnumType
 		PiSequence = 67,
 		Pathname = 68,
 		Debug = 69,
+		Quote = 70,
+		Sep = 71,
 	};
 
 	struct Type : TokenBase<RhoTokenEnumType>
@@ -88,4 +90,3 @@ typedef RhoTokenEnumType::Type RhoToken;
 typedef RhoTokenEnumType RhoTokens;
 
 KAI_END
-

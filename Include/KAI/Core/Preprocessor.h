@@ -21,5 +21,3 @@
 #	endif
 #	
 #endif // KAI_PRE_PROCESSOR_H
-
-

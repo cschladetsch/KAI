@@ -3,6 +3,8 @@
 #include <KAI/Core/Debug.h>
 #include <iostream>
 
+using namespace std;
+
 KAI_BEGIN
 
 namespace debug
@@ -17,24 +19,25 @@ namespace debug
 		switch (t)
 		{
 			#define CASE(V) case Trace::V: return #V;
-			case Trace::Information: return 0;
+		case Trace::Information: return "Info";
 			CASE(Warn);
 			CASE(Error);
 			CASE(Fatal);
 		}
 
-		return "Toshing";
+		return "??";
 	}
 
 	Trace::~Trace()
 	{
 #if defined(KAI_TRACE_VERBOSE) || defined(KAI_TRACE_FILE_LOCATION)
-		std::cout << file_location.ToString(true).c_str() << ": " << TypeToString(type) << ": " << ToString().c_str() << std::endl;
+		auto val = ToString();
+		cout << file_location.ToString(true).c_str() << TypeToString(type) << ": " << val.c_str() << endl;
 #else
 		auto lead = TypeToString(type);
 		if (lead != 0)
-			std::cerr << lead << ": ";
-		std::cerr << ToString().c_str() << std::endl;
+			cout << lead << ": ";
+		cout << ToString().c_str() << endl;
 #endif
 	}
 }

@@ -5,6 +5,8 @@
 
 KAI_BEGIN
 
+/// Common to all language processes. A simple and humble class with faults
+/// but crucial to the overall system.
 struct Process
 {
 	static int trace;

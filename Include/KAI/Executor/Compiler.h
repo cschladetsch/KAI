@@ -1,20 +1,10 @@
 #pragma once
 
-#include <map>
-#include <fstream>
-#include <sstream>
-
-#include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Executor/Operation.h>
-#include <KAI/Executor/Continuation.h>
-#include <KAI/Core/Exception.h>
-#include <KAI/Core/Exception/Extended.h>
 #include <KAI/Language/Common/Language.h>
-#include <KAI/Language/Common/Structure.h>
+#include <KAI/Language/Rho/RhoTranslator.h>
 #include <KAI/Language/Pi/PiTranslator.h>
-#include <KAI/Language/Rho/TauTranslator.h>
-
-#include "KAI/Core/Debug.h"
+#include <KAI/Core/Debug.h>
 
 KAI_BEGIN
 
@@ -58,25 +48,19 @@ public:
 		if (text.empty())
 			return Object();
 
-		std::shared_ptr<Trans> p = std::make_shared<Trans>(Reg());
+		auto p = std::make_shared<Trans>(Reg());
 		auto result = p->Translate(text.c_str(), st);
 		if (p->Failed)
 		{
-			//std::cerr << p->Error;
-			KAI_TRACE_ERROR_1(p->Error);
+			KAI_TRACE_ERROR_2(p->Error, st);
 			return Object();
 		}
 
 		return result;
 	}
 
-	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const
-	{
-		std::ifstream t(fileName.c_str());
-		std::stringstream buffer;
-		buffer << t.rdbuf();
-		return Translate(buffer.str().c_str(), st);
-	}
+	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const;
+
 
 	static void Register(Registry &, const char * = "Compiler");
 

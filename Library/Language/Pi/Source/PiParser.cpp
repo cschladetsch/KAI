@@ -7,7 +7,7 @@ using namespace boost;
 
 KAI_BEGIN
 
-void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+bool PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
 	current = 0;
 	indent = 0;
@@ -15,8 +15,7 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	if (lexer->Failed)
 	{
-		Failed = true;
-		return;
+		return Fail(lexer->Error);
 	}
 
 	// strip whitespace and comments
@@ -26,19 +25,21 @@ void PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 
 	root = NewNode(AstEnum::Continuation);
 
-	Run(st);
+	return Run(st);
 }
 
-void PiParser::Run(Structure st)
+bool PiParser::Run(Structure st)
 {
 	KAI_UNUSED_1(st);
 	while (!Failed && NextSingle(root))
 		;
+
+	return !Failed;
 }
 
 bool PiParser::NextSingle(AstNodePtr root)
 {
-	if (current == tokens.size() - 1)
+	if (Empty())
 		return false;
 
 	auto tok = Current();
@@ -63,13 +64,11 @@ bool PiParser::NextSingle(AstNodePtr root)
 	case PiTokens::Rot:
 	case PiTokens::PickN:
 	case PiTokens::Pathname:
-
 	case PiTokens::String:
 	case PiTokens::Int:
 	case PiTokens::Float:
 	case PiTokens::True:
 	case PiTokens::False:
-
 	case PiTokens::Plus:
 	case PiTokens::Minus:
 	case PiTokens::Mul:
@@ -125,6 +124,5 @@ bool PiParser::ParseContinuation(AstNodePtr root)
 
 	return true;
 }
-
 
 KAI_END

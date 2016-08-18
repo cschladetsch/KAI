@@ -16,7 +16,7 @@ namespace Exception
 
 	void TypeMismatch::WriteExtendedInformation(StringStream &S) const
 	{
-		S << "first=" << Type::Number(first).ToString() << ", second=" << Type::Number(second).ToString();
+		S << "expected=" << Type::Number(first).ToString() << ", got=" << Type::Number(second).ToString();
 	}
 
 	void UnknownTypeNumber::WriteExtendedInformation(StringStream &S) const
@@ -121,13 +121,12 @@ namespace Exception
 	{
 		S << "class=" << klass << ", property=" << prop;
 	}
-
 }
 
-	StringStream &operator<<(StringStream &S, Exception::Base const &E)
-	{
-		return S << E.ToString();
-	}
+StringStream &operator<<(StringStream &S, Exception::Base const &E)
+{
+	return S << E.ToString();
+}
 
 KAI_END
 

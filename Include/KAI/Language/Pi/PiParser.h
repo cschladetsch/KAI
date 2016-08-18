@@ -2,12 +2,12 @@
 
 #include <KAI/Language/Common/ParserCommon.h>
 #include <KAI/Language/Common/Structure.h>
-#include "KAI/Language/Pi/PiAstNode.h"
-#include "KAI/Language/Pi/PiLexer.h"
+#include <KAI/Language/Pi/PiAstNode.h>
+#include <KAI/Language/Pi/PiLexer.h>
 
 KAI_BEGIN
 
-// parser specific to the in-fix Pi language
+// parser specific to the post-fix Pi language
 struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 {
 	typedef ParserCommon<PiLexer, PiAstNodeEnumType> Parent;
@@ -21,10 +21,10 @@ struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 
 	PiParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 private:
-	void Run(Structure);
+	bool Run(Structure);
 	bool NextSingle(AstNodePtr context);
 	bool ParseArray(AstNodePtr context);
 	bool ParseContinuation(AstNodePtr context);
