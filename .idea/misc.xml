@@ -18,6 +18,11 @@
       <file path="$PROJECT_DIR$/lib" />
     </excludeRoots>
   </component>
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="id" value="1470803563250" />
+    <option name="name" value="default" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
