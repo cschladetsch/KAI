@@ -51,6 +51,7 @@ namespace Generate
 		}
 
 		EndBlock();
+		return true;
 	}
 
 	bool Proxy::Class(Node const &cl)
@@ -78,6 +79,7 @@ namespace Generate
 		}
 
 		EndBlock();
+		return true;
 	}
 
 	bool Proxy::Property(Node const &prop)
