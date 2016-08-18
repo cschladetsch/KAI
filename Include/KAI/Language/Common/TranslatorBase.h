@@ -4,6 +4,7 @@
 
 KAI_BEGIN
 
+
 template <class EParser>
 struct TranslatorBase : TranslatorCommon
 {
@@ -21,25 +22,39 @@ struct TranslatorBase : TranslatorCommon
 	virtual Pointer<Continuation> Translate(const char *text, Structure st) override
 	{
 		if (text == 0 || text[0] == 0)
+		{
+			KAI_TRACE_WARN_1("No input");
 			return Object();
+		}
 
-		auto lex = std::make_shared<Lexer>(text, _reg);
+		auto lex = std::make_shared<Lexer>(text, *_reg);
 		lex->Process();
 		if (lex->GetTokens().empty())
+		{
+			KAI_TRACE_WARN_1("No tokens");
 			return Object();
-		if (lex->Failed)
-			Fail(lex->Error);
+		}
 
-		if (trace)
+		if (lex->Failed)
+		{
+			KAI_TRACE_WARN_1(lex->Error);
+			Fail(lex->Error);
+			return Object();
+		}
+
+		if (trace > 5)
 			KAI_TRACE_1(lex->Print());
 
-		auto parse = std::make_shared<Parser>(_reg);
+		auto parse = std::make_shared<Parser>(*_reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
+		{
 			Fail(parse->Error);
+			return Object();
+		}
 
-		if (trace)
-			KAI_TRACE_1(parse->PrintTree());
+		if (trace > 1)
+			KAI_TRACE_2("AST\n", parse->PrintTree());
 
 		PushNew();
 		TranslateNode(parse->GetRoot());
@@ -50,11 +65,14 @@ struct TranslatorBase : TranslatorCommon
 		if (trace)
 			KAI_TRACE_1(stack.back());
 
-		// TODO: don't want fudge around fact that the entire sequence is wrapped around
-		// a root continuation
-		Continuation const &root = ConstDeref<Continuation>(stack.back());
-		auto inner = root.GetCode()->At(0);
-		return inner;
+		auto ret = stack.back();
+		if (!ret.IsType<Continuation>())
+		{
+			Fail("Result is not a continuation");
+			return Object();
+		}
+
+		return ret;
 	}
 
 protected:
@@ -66,7 +84,7 @@ protected:
 
 		try
 		{
-			TranslateNode(p->GetRoot());
+			TranslateNode(p);
 		}
 		catch (Exception &)
 		{

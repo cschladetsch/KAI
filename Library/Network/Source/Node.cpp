@@ -38,6 +38,11 @@ void Node::Listen(int port)
 	KAI_NOT_IMPLEMENTED();
 }
 
+void Node::Connect(Node &other)
+{
+	_other = &other;
+}
+
 void Node::Connect(IpAddress const &, int port)
 {
 	KAI_UNUSED_1(port);

@@ -27,7 +27,7 @@ struct Coloriser;
 class Console : public Reflected
 {
 	Tree tree;
-	Registry *registry;
+	Registry *_reg;
 	Pointer<Executor> executor;
 	Pointer<Compiler> compiler;
 	std::shared_ptr<Memory::IAllocator> alloc;
@@ -44,7 +44,7 @@ public:
 
 	String GetPrompt() const;
 	String Process(const String&);
-	Registry &GetRegistry() const { return *registry; }
+	Registry &GetRegistry() const { return *_reg; }
 	Tree &GetTree() { return tree; }
 	Tree const &GetTree() const { return tree; }
 

@@ -9,7 +9,7 @@ struct FluidConsole;
 
 shared_ptr<Console> console;
 
-/// The console for KAI provided bu Fluid
+/// The console for KAI provided by Fluid
 struct FluidConsole
 {
 	Registry *_reg;
@@ -79,9 +79,9 @@ struct FluidConsole
 		auto const &st = stack->GetStack();
 		auto end = st.rend();
 		auto begin = st.rbegin();
-		for (; end != begin; ++begin)
+		while (begin != end)
 		{
-			str << "[" << n++ << "] "  << *begin << "\n";
+			str << "[" << n++ << "] "  << *begin++ << "\n";
 		}
 
 		text->text(str.ToString().c_str());
@@ -95,4 +95,5 @@ void StartKai()
 	cout << "Starting Kai" << endl;
 	console = make_shared<kai::Console>();
 	console->SetLanguage(Language::Pi);
+	new FluidConsole();
 }

@@ -5,7 +5,6 @@ project(Console)
 set(SOURCE_ROOT ${KAI_HOME}/App/Console/Source/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
-link_directories(${HOME}/lib /usr/local/lib)
 link_libraries(Executor Core PiLang RhoLang)
 
 add_executable(Console ${SOURCE_FILES})

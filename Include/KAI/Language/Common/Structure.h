@@ -9,7 +9,7 @@ enum class Structure
 	None,
 	Single,
 	Sequence,
-	Modulue,
+	Module,
 	Statement,
 	Function,
 	Expression,
@@ -19,4 +19,8 @@ enum class Structure
 	Class,
 };
 
+StringStream &operator<<(StringStream &S, Structure T);
+StringStream &operator>>(StringStream &S, Structure T);
+
 KAI_END
+

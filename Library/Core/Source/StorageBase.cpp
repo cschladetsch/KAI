@@ -1,11 +1,6 @@
 #include <map>
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object/StorageBase.h>
-#include <KAI/Core/Exception.h>
-#include <KAI/Core/Object/GetStorageBase.h>
 #include <KAI/Core/Object/IObject.h>
-#include <KAI/Core/Object/ClassBase.h>
 #include <KAI/Core/Registry.h>
 
 KAI_BEGIN

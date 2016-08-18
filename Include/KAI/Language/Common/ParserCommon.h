@@ -1,18 +1,12 @@
 #pragma once
 
-#include <boost/lexical_cast.hpp>
-#include "KAI/Language/Common/ParserBase.h"
-#include "KAI/Language/Common/ProcessCommon.h"
-#include "KAI/Language/Common/Process.h"
-#include "KAI/Language/Common/AstNodeBase.h"
-#include "KAI/Language/Common/Structure.h"
-#include <iostream>
-
-using namespace std;
+#include <KAI/Language/Common/ParserBase.h>
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Process.h>
+#include <KAI/Language/Common/AstNodeBase.h>
+#include <KAI/Language/Common/Structure.h>
 
 KAI_BEGIN
-
-//using lexical_cast = boost::lexical_cast;
 
 // common for all parsers.
 // iterate over a stream of tokens to produce an abstract syntax tree
@@ -28,10 +22,6 @@ public:
 	typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
 	typedef std::shared_ptr<AstNode> AstNodePtr;
 
-	bool Passed() const { return passed;  }
-	const std::string &GetError() const { return error; }
-	AstNodePtr GetRoot() const { return root; }
-	
 	ParserCommon(Registry& r) : ProcessCommon(r)
 	{ 
 		current = 0;
@@ -39,14 +29,11 @@ public:
 		lexer.reset();
 	}
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) = 0;
 
-//	template <class T>
-//	AstNodePtr AppendLexicalValue(TokenNode const &tok)
-//	{
-//		Pointer<T> val = reg.New(boost::lexical_cast<T>(tok.Text()));
-//		return std::make_shared<
-//	}
+	const std::string &GetError() const { return error; }
+	AstNodePtr GetRoot() const { return root; }
+	bool Process();
 
 	template <class T>
 	Pointer<T> New(T const &val)
@@ -54,7 +41,7 @@ public:
 		return _reg.New<T>(val);
 	}
 
-	void Run(Structure st)
+	bool Run(Structure st)
 	{
 		try
 		{
@@ -75,6 +62,8 @@ public:
 			if (!Failed)
 				Fail(Lexer::CreateErrorMessage(Current(), "internal error"));
 		}
+
+		return !Failed;
 	}
 
 	std::string PrintTree() const
@@ -104,7 +93,6 @@ protected:
 	std::vector<AstNodePtr> stack;
 	size_t current;
 	AstNodePtr root;
-	bool passed;
 	std::string error;
 	int indent;
 	std::shared_ptr<Lexer> lexer;
@@ -204,6 +192,11 @@ protected:
 		return false;
 	}
 
+	bool CurrentIs(TokenEnum ty) const
+	{
+		return Current().type == ty;
+	}
+
 	bool PeekIs(TokenEnum ty) const
 	{
 		return Peek().type == ty;
@@ -235,10 +228,9 @@ protected:
 		TokenNode tok = Current();
 		if (tok.type != type)
 		{
-			//Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnum::ToString(type), TokenEnum::ToString(tok.type)));
-			Fail(Lexer::CreateErrorMessage(tok, "Unexpected token %s", TokenEnumType::ToString(tok.type)));
-			cerr << Error << endl;
-			KAI_THROW_1(LogicError, "Unexpected token");
+			Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnumType::ToString(type), TokenEnumType::ToString(tok.type)));
+			//KAI_THROW_1(LogicError, "Unexpected token");
+			return 0;
 		}
 
 		Next();
