@@ -1,17 +1,14 @@
 #pragma once
 
-#include <vector>
-#include <string>
-
-#include "KAI/Language/Common/ProcessCommon.h"
-#include "KAI/Language/Common/Slice.h"
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Slice.h>
 
 KAI_BEGIN
 
 int IsSpaceChar(int ch);
 
 // Common to all lexers with different token types
-class LexerBase: public ProcessCommon
+class LexerBase : public ProcessCommon
 {
 public:
 	typedef std::vector<std::string> Lines;
@@ -53,7 +50,7 @@ protected:
 	virtual void LexErrorBase(const char *msg) = 0;
 	virtual void AddStringToken(int lineNumber, Slice slice) = 0;
 
-	Slice Gather(int(*filt)(int ch));
+	Slice Gather(int(*filter)(int ch));
 };
 
 KAI_END

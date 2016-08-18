@@ -12,9 +12,9 @@ struct RhoLexer : LexerCommon<RhoTokenEnumType>
 
 	RhoLexer(const char *text, Registry &r) : Parent(text, r) { }
 
-	void AddKeyWords() override ;
-	bool NextToken() override ;
-	void Terminate() override ;
+	void AddKeyWords() override;
+	bool NextToken() override;
+	void Terminate() override;
 
 protected:
 	using Parent::_reg;

@@ -71,9 +71,13 @@ const char *RhoTokenEnumType::ToString(Enum val)
 		CASE(ToPi)
 		CASE(PiSequence)
 		CASE(Debug)
+		CASE(Quote)
+		CASE(Sep)
 	}
 
-	return "Unnamed";
+	static char buff[BUFSIZ];
+	sprintf(buff, "Unnamed RhoToken %d", val);
+	return buff;
 }
 
 std::ostream &operator<<(std::ostream &out, RhoToken const &node)

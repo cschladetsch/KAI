@@ -1,46 +1,45 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include <KAI/Language/Common/Structure.h>
 #include <KAI/Language/Rho/RhoParser.h>
 
 KAI_BEGIN
 
-void RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
-	// TODO: low-priority: this code basically the same in Pi Rho and Tau
-	current = 0;
-	indent = 0;
 	lexer = lex;
-
-	if (lexer->Failed)
-		return;
+	if (lex->Failed)
+	{
+		return Fail(lex->Error);
+	}
 
 	// strip whitespace and comments
 	for (auto tok : lexer->GetTokens())
+	{
 		if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+		{
 			tokens.push_back(tok);
+		}
+	}
 
 	root = NewNode(AstEnum::Program);
 
-	Run(st);
+	return Run(st);
 }
 
-void RhoParser::Run(Structure st)
+bool RhoParser::Run(Structure st)
 {
 	switch (st)
 	{
 	case Structure::Statement:
 		if (!Statement(root))
 		{
-			CreateError("Statement expected");
-			return;
+			return CreateError("Statement expected");
 		}
 		break;
 
 	case Structure::Expression:
 		if (!Expression())
 		{
-			CreateError("Expression expected");
-			return;
+			return CreateError("Expression expected");
 		}
 		root->Add(Pop());
 		break;
@@ -55,7 +54,9 @@ void RhoParser::Run(Structure st)
 	}
 
 	if (!stack.empty())
-		Fail("Internal error: Stack not empty after parsing");
+		return Fail("[Internal] Error: Stack not empty after parsing");
+
+	return true;
 }
 
 bool RhoParser::Program()
@@ -152,7 +153,7 @@ bool RhoParser::Statement(AstNodePtr block)
 			Consume();
 			if (!Expression())
 			{
-				Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
+				CreateError("Assert needs an expression to test");
 				return false;
 			}
 
@@ -342,11 +343,7 @@ bool RhoParser::Factor()
 	{
 		Consume();
 		if (!Expression())
-		{
-			CreateError("Expected an expression for a factor in parenthesis");
-
-			return false;
-		}
+			return CreateError("Expected an expression for a factor in parenthesis");
 
 		Expect(TokenType::CloseParan);
 		return true;
@@ -380,20 +377,78 @@ bool RhoParser::Factor()
 	while (Try(TokenType::Lookup))
 		PushConsume();
 
-	if (Try(TokenType::Ident))
-		return ParseFactorIdent();
+	if (Try(TokenType::Quote) || Try(TokenType::Sep) || Try(TokenType::Ident))
+		return ParsePathname();
 
 	return false;
 }
 
-//warning C4127: conditional expression is constant
-#pragma warning (disable:4127)
+bool RhoParser::ParsePathname()
+{
+	auto node = NewNode(NodeType::Pathname);
+	if (ParsePathname(node))
+	{
+		Push(node);
+		return true;
+	}
+
+	return false;
+}
+
+bool RhoParser::ParsePathname(AstNodePtr path)
+{
+	// foo          # legal
+	// 'foo          # legal
+	// '/foo        # legal
+	// foo/bar/     # legal
+	// foo//bar/    # illegal
+	// '            # illegal
+
+	if (CurrentIs(TokenType::Quote))
+		path->Add(Consume());
+	bool expectIdent;
+	switch (Current().type)
+	{
+	case TokenType::Sep:
+		expectIdent = true;
+		path->Add(Consume());
+		break;
+	case TokenType::Ident:
+		path->Add(Consume());
+		expectIdent = false;
+		break;
+	default:
+		return CreateError("Expected a separator or ident");
+	}
+
+	while (true)
+	{
+		switch (Current().type)
+		{
+		case TokenType::Ident:
+			if (!expectIdent)
+				return true;
+			path->Add(Consume());
+			expectIdent = false;
+			break;
+		case TokenType::Sep:
+			if (expectIdent)
+				return true;
+			path->Add(Consume());
+			expectIdent = true;
+			break;
+
+		default:
+			return true;
+		}
+	}
+}
 
 bool RhoParser::ParseFactorIdent()
 {
 	PushConsume();
 
-	while (true)
+	while (!Failed)
 	{
 		if (Try(TokenType::Dot))
 		{
@@ -435,7 +490,7 @@ void RhoParser::ParseMethodCall()
 			Consume();
 			if (!Expression())
 			{
-				Fail("What is the next argument?");
+				CreateError("What is the next argument?");
 				return;
 			}
 
@@ -598,4 +653,5 @@ void RhoParser::ConsumeNewLines()
 	while (Try(TokenType::NewLine))
 		Consume();
 }
+
 KAI_END

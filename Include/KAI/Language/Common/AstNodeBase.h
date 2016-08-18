@@ -38,12 +38,6 @@ public:
 	const Token &GetToken() const { return _token; }
 	std::string GetTokenText() const { return std::move(_token.Text()); }
 
-//	std::string PrintTree()
-//	{
-//		std::stringstream out;
-//		PrintTree(out, 0, *this);
-//	}
-
 	std::string ToString() const
 	{
 		std::stringstream out;
@@ -60,11 +54,6 @@ public:
 		return std::move(_token.Text());
 	}
 
-	friend std::ostream &operator<<(std::ostream &out, Self const &node)
-	{
-		return out << node.ToString();
-	}
-
 	void Add(AstNodePtr node)
 	{
 		_children.push_back(node);
@@ -78,6 +67,11 @@ public:
 	void Add(Token const &tok)
 	{
 		Add(std::make_shared<Self>(tok));
+	}
+
+	friend std::ostream &operator<<(std::ostream &out, Self const &node)
+	{
+		return out << node.ToString();
 	}
 
 protected:

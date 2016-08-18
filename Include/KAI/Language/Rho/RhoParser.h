@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KAI/Language/Common/ParserCommon.h"
 #include "KAI/Language/Rho/RhoAstNode.h"
 #include "KAI/Language/Rho/RhoLexer.h"
 
@@ -21,15 +22,15 @@ public:
 
 	RhoParser(Registry &r) : Parent(r) { }
 
-	virtual void Process(std::shared_ptr<Lexer> lex, Structure st) override;
+	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
 	void Process(Structure);
 
 private:
-	void Run(Structure st);
+	bool Run(Structure st);
 	bool Program();
-	bool Statement(AstNodePtr );
+	bool Statement(AstNodePtr);
 	bool Expression();
 	bool Logical();
 	bool Relational();
@@ -38,17 +39,20 @@ private:
 	bool Factor();
 	void ConsumeNewLines();
 	void Block(AstNodePtr block);
+	bool ParsePathname();
+	bool ParsePathname(AstNodePtr path);
 	bool ParseFactorIdent();
 	void ParseGetMember();
 	void ParseMethodCall();
 	void Function(AstNodePtr);
 	void AddBlock(AstNodePtr fun);
-	void IfCondition(AstNodePtr block);
+	void IfCondition(AstNodePtr);
 	void ParseIndexOp();
 	void Assignment(AstNodePtr);
-	void For(AstNodePtr block);
-	void While(AstNodePtr block);
-	bool CreateError(const char *text);
+	void For(AstNodePtr);
+	void While(AstNodePtr);
+
+	bool CreateError(const char *);
 };
 
 KAI_END

@@ -3,22 +3,23 @@
 #include "KAI/Core/BinaryPacket.h"
 #include "KAI/Core/BinaryStream.h"
 #include "KAI/Core/FunctionBase.h"
-#include "KAI/Core/BuiltinTypes/Signed32.h"
 #include <KAI/Executor/Operation.h>
+#include <KAI/Core/Object/ClassBuilder.h>
 
 KAI_BEGIN
 
 void StringStream::Register(Registry &registry)
 {
 	KAI_UNUSED(registry);
-	// TODO TESTS
-//ClassBuilder<StringStream>(registry, "StringStream")
-//	.Methods
-//	("Size", &StringStream::Size)
-//	("Empty", &StringStream::Empty)
-//	("ToString", &StringStream::ToString)
-//	("Clear", &StringStream::Clear)
-//	// TODO ("Append", &StringStream::Append)
+//TODO
+//	ClassBuilder<StringStream>(registry, "StringStream")
+//		.Methods
+//			("Size", &StringStream::Size)
+//			("Empty", &StringStream::Empty)
+//			("ToString", &StringStream::ToString)
+//			("Clear", &StringStream::Clear)
+////TODO		("Append", &StringStream::Append)
+//		.Properties
 //	;
 }
 
@@ -135,7 +136,9 @@ StringStream &operator<<(StringStream &stream, const Object &object)
 	{
 		if (klass->GetTypeNumber() == Type::Number::Operation)
 		{
-			stream << ConstDeref<Operation>(object).ToString();
+			//Operation op = ConstDeref<Operation>(object);
+			//stream << "Op: " << op.GetTypeNumber();
+			stream << Operation::ToString(ConstDeref<Operation>(object).GetTypeNumber());
 		}
 		else
 		{

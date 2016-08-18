@@ -25,8 +25,13 @@ const char *RhoAstNodes::ToString(Enum ty)
 		CASE(List)
 		CASE(Map)
 		CASE(Continuation)
+		CASE(TokenType)
+		CASE(Pathname)
 	}
-	return "???";
+
+	static char buff[BUFSIZ];
+	sprintf(buff, "Case %d", ty);
+	return buff;
 }
 
 KAI_END

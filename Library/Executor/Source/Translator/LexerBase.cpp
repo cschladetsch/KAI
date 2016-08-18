@@ -8,7 +8,7 @@ int IsSpaceChar(int ch)
 }
 
 LexerBase::LexerBase(const char *in, Registry &r)
-	: input(in), offset(0), lineNumber(0), ProcessCommon(r)
+	: ProcessCommon(r), input(in), offset(0), lineNumber(0)
 {
 }
 
