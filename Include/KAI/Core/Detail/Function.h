@@ -8,6 +8,7 @@
 #include "KAI/Core/Type.h"
 #include "KAI/Core/FunctionBase.h"
 #include "KAI/Core/Detail/CallableBase.h"
+#include "KAI/Core/BuiltinTypes/Void.h"
 
 KAI_BEGIN
 

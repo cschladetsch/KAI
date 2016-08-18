@@ -28,19 +28,7 @@ public:
 	template <class T>
 	void AppendNew(T val)
 	{
-		Append(_reg.New<T>(val));
-	}
-
-	template <class T>
-	Value<T> NewObject()
-	{
-		return _reg.New<T>();
-	}
-
-	template <class T>
-	Value<T> NewObject(const T &val)
-	{
-		return _reg.New<T>(val);
+		Append(_reg->New<T>(val));
 	}
 
 	/*
