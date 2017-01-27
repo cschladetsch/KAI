@@ -1,0 +1,13 @@
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/TestConsole.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/TestRho.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/RhoLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/TestPi.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/TestCore.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/TestExecutor.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/PiLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/CommonLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Executor.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Core.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Console.dir

@@ -1,0 +1,68 @@
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/christian/Local/KAI
+-- Boost version: 1.60.0
+-- Found the following Boost libraries:
+--   system
+--   filesystem
+-- Configuring done
+CMake Error at CMakeLists.txt:48 (add_library):
+  Target "RhoLang" links to itself.
+Call Stack (most recent call first):
+  Library/Language/CMakeLists.txt:11 (def_lang_library)
+  Library/CMakeLists.txt:13 (include)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:48 (add_library):
+  Target "PiLang" links to itself.
+Call Stack (most recent call first):
+  Library/Language/CMakeLists.txt:11 (def_lang_library)
+  Library/CMakeLists.txt:13 (include)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:55 (add_library):
+  Target "Core" links to itself.
+Call Stack (most recent call first):
+  Library/CMakeLists.txt:9 (def_library)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:55 (add_library):
+  Target "Executor" links to itself.
+Call Stack (most recent call first):
+  Library/CMakeLists.txt:9 (def_library)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:55 (add_library):
+  Target "Executor" links to itself.
+Call Stack (most recent call first):
+  Library/CMakeLists.txt:9 (def_library)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:55 (add_library):
+  Target "Core" links to itself.
+Call Stack (most recent call first):
+  Library/CMakeLists.txt:9 (def_library)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:48 (add_library):
+  Target "PiLang" links to itself.
+Call Stack (most recent call first):
+  Library/Language/CMakeLists.txt:11 (def_lang_library)
+  Library/CMakeLists.txt:13 (include)
+  CMakeLists.txt:69 (include)
+
+
+CMake Error at CMakeLists.txt:48 (add_library):
+  Target "RhoLang" links to itself.
+Call Stack (most recent call first):
+  Library/Language/CMakeLists.txt:11 (def_lang_library)
+  Library/CMakeLists.txt:13 (include)
+  CMakeLists.txt:69 (include)
+
+
+-- Generating done
+-- Build files have been written to: /Users/christian/Local/KAI/cmake-build-debug

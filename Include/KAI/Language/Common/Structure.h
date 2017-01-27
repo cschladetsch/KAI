@@ -19,8 +19,8 @@ enum class Structure
 	Class,
 };
 
-StringStream &operator<<(StringStream &S, Structure T);
-StringStream &operator>>(StringStream &S, Structure T);
+StringStream &operator<<(StringStream &S, const Structure& T);
+StringStream &operator>>(StringStream &S, const Structure T);
 
 KAI_END
 
