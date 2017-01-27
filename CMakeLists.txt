@@ -14,12 +14,12 @@ set(HOME $ENV{HOME})
 
 # THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
 # Source location.
-set(KAI_HOME ${HOME}/dev/KAI)
+set(KAI_HOME ${HOME}/Local/KAI)
 # RakNet
-include_directories(${HOME}/External/RakNet/include)
-# for X11
-link_directories(/usr/lib/x86_64-linux-gnu)
-# END HARD-CODED
+#include_directories(${HOME}/External/RakNet/include)
+## for X11
+#link_directories(/usr/lib/x86_64-linux-gnu)
+## END HARD-CODED
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
@@ -65,7 +65,7 @@ macro(create_test name)
 endmacro()
 
 include(Library/CMakeLists.txt)
-include(Test/CMakeLists.txt)
+#include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)
 
 #$
