@@ -5,13 +5,13 @@
     <sourceRoots>
       <file path="$PROJECT_DIR$/App" />
       <file path="$PROJECT_DIR$/App/TestAll" />
+      <file path="$PROJECT_DIR$/C" />
       <file path="$PROJECT_DIR$/Include" />
       <file path="$PROJECT_DIR$/Install" />
       <file path="$PROJECT_DIR$/Library" />
       <file path="$PROJECT_DIR$/Root" />
       <file path="$PROJECT_DIR$/Test" />
     </sourceRoots>
-    <libraryRoots />
     <excludeRoots>
       <file path="$PROJECT_DIR$/bin" />
       <file path="$PROJECT_DIR$/build" />
@@ -22,15 +22,5 @@
     <option name="defaultSettings" value="true" />
     <option name="id" value="1470803563250" />
     <option name="name" value="default" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
   </component>
 </project>

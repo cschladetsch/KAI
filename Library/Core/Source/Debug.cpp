@@ -14,6 +14,20 @@ namespace debug
 		return *this << Q.ToString();
 	}
 
+//	StringStream& Trace::operator<<(const Structure & st)
+//	{
+//		// FIXME
+//		return *this;
+//	}
+
+//	StringStream& Trace::operator>>(Structure &S)
+//	{
+//		int n;
+//		*this >> n;
+//		S = (Structure)n;
+//		return *this;
+//	}
+
 	const char *TypeToString(Trace::Type t)
 	{
 		switch (t)

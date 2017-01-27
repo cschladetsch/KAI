@@ -38,7 +38,7 @@ public:
 	template <class T>
 	Pointer<T> New(T const &val)
 	{
-		return _reg.New<T>(val);
+		return _reg->New<T>(val);
 	}
 
 	bool Run(Structure st)
