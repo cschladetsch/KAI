@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(libs Core Executor Network)
+# Ubuntu only set(libs Core Executor Network)
+set(libs Core Executor)
 
 include_directories(${KAT_HOME}/Library/Language/Include)
 

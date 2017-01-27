@@ -12,14 +12,19 @@ add_definitions(-DKAI_TRACE_FILE_LOCATION)
 
 set(HOME $ENV{HOME})
 
+
 # *** THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
 # Source location.
-set(KAI_HOME ${HOME}/dev/KAI)
-# RakNet
-include_directories(${HOME}/External/RakNet/include)
-# for X11
-link_directories(/usr/lib/x86_64-linux-gnu)
-# *** END HARD-CODED
+set(KAI_HOME ${HOME}/Local/KAI)
+
+find_package(Boost 1.57.0 COMPONENTS system filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+
+## RakNet
+#include_directories(${HOME}/External/RakNet/include)
+## for X11
+#link_directories(/usr/lib/x86_64-linux-gnu)
+## *** END HARD-CODED
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
@@ -54,7 +59,8 @@ macro(create_test name)
     project(${name})
     set(SOURCE_ROOT ${KAI_HOME}/Test/Tests/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    link_libraries(Executor Core Executor CommonLang PiLang RhoLang TauLang)
+    # Ubuntu only link_libraries(Executor Core Executor CommonLang PiLang RhoLang TauLang)
+    link_libraries(Executor Core Executor CommonLang PiLang RhoLang)
     add_executable(${name} ${SOURCE_FILES})
     target_link_libraries(${name} gtest pthread)
 endmacro()
