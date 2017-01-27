@@ -3,12 +3,12 @@
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &S, Structure T)
+StringStream &operator<<(StringStream &S, const Structure &T)
 {
 	return S;//TODO << (int)T;
 }
 
-StringStream &operator>>(StringStream &S, Structure& T)
+StringStream &operator>>(StringStream &S, Structure &T)
 {
 	int num;
 //TODO	S >> num;

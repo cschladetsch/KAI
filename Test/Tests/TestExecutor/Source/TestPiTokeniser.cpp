@@ -21,9 +21,8 @@ namespace
 	TEST(TestPiTokeniser, Tokenising)
 	{
 		auto input = "1 1 +		\n   \t \"hello, world\"		{ 1 2 * } [ 3 4 5 ]";
-		std::array<PiTokens::Enum, 15> types = 
+		std::array<PiTokens::Enum, 14> types =
 		{
-			PiTokens::Int,
 			PiTokens::Int,
 			PiTokens::Plus,
 			PiTokens::String,

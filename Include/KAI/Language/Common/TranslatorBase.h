@@ -66,7 +66,7 @@ struct TranslatorBase : TranslatorCommon
 			KAI_TRACE_1(stack.back());
 
 		auto ret = stack.back();
-		if (!ret.IsType<Continuation>())
+		if (!ret.template IsType<Continuation>())
 		{
 			Fail("Result is not a continuation");
 			return Object();
