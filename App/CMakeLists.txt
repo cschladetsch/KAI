@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4)
 
-# Ubuntu only set(apps Window Console Generate)
+# UBUNTU set(apps Window Console)
 set(apps Console)
 
 foreach (app ${apps})
