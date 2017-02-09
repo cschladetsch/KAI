@@ -4,15 +4,29 @@ KAI provides a distributed **Object Model** for C++ with full reflection, persis
 
 You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
-The system comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant 60fps with tens of thousands of objects, with hundreds of objects being created each frame on a gaming console from 2008.
+The system comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant 60fps with tens of thousands of objects, with hundreds of objects being created each frame on a gaming console from 2012.
 
-The library also offers two scripting languages: Pi, which is based on RPN notation, and Rho, which uses infix notation. Rho is translated to Pi. 
+The library also offers two scripting languages: Pi, which is based on RPN notation, and Rho, which uses infix notation. Rho is translated to Pi.
 
 There is also an Interface Definition Language (IDL) called Tau, which is used to generate code for proxies and agents in the system. To give you and idea:
 
 ## PI
 
 	{ 1 + } 'add # 2 add & print &
+
+This creates a function tha is named 'add'. Then invokes it will an argument of 2 and prints the reslt.
+
+The syntax is obtuse because it is reverse-polish notation: the arguments are introduced then an operator is aplied.
+
+In this case, the first 'argument' is the functon { 1 + } which simply adds 1 to what ever is on the stack.
+
+The next sub-sequence "'add #' stores that function to a name called "add" in the current scope.
+
+Then we push 2 onto the stack, then the add function by name, then use the '&' operator to execute what is on the stack (the 'add' function').
+
+Then we push the 'print' function onto the stack (which is built-in), then execute that too.
+
+The result is a stack with the integer value 3 on at the top.
 
 ## Rho
 
