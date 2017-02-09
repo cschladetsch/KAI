@@ -20,11 +20,11 @@ The syntax is obtuse because it is reverse-polish notation: the arguments are in
 
 In this case, the first 'argument' is the function **{ 1 + }** which simply adds 1 to what ever is on the stack.
 
-The next sub-sequence "'add #' stores that function to a name called "add" in the current scope.
+The next sub-sequence **'add #** stores that function to a name called "add" in the current scope.
 
 Then we push 2 onto the stack, then the add function by name, then use the '&' operator to execute what is on the stack (the 'add' function').
 
-Then we push the 'print' function onto the stack (which is built-in), then execute that too.
+Then we push the **print** function onto the stack (which is built-in), then execute that too.
 
 The result is a stack with the integer value 3 on at the top.
 
