@@ -7,26 +7,17 @@ using namespace std;
 
 KAI_BEGIN
 
+StringStream& operator<<(StringStream &s, const Structure & st)
+{
+	s;
+}
+
 namespace debug
 {
 	StringStream& Trace::operator<<(Object const&Q)
 	{
 		return *this << Q.ToString();
 	}
-
-//	StringStream& Trace::operator<<(const Structure & st)
-//	{
-//		// FIXME
-//		return *this;
-//	}
-
-//	StringStream& Trace::operator>>(Structure &S)
-//	{
-//		int n;
-//		*this >> n;
-//		S = (Structure)n;
-//		return *this;
-//	}
 
 	const char *TypeToString(Trace::Type t)
 	{
