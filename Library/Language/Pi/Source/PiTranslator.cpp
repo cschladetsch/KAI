@@ -148,6 +148,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		break;
 
 	default:
+		KAI_TRACE_1(tok.type);
 		KAI_NOT_IMPLEMENTED();
 		break;
 	}
