@@ -12,25 +12,25 @@ add_definitions(-DKAI_TRACE_FILE_LOCATION)
 
 set(HOME $ENV{HOME})
 
-
-# *** THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
+# THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
 # Source location.
 set(KAI_HOME ${HOME}/Local/KAI)
-
-find_package(Boost 1.57.0 COMPONENTS system filesystem REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-
-## RakNet
+# RakNet
 #include_directories(${HOME}/External/RakNet/include)
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
-## *** END HARD-CODED
+## END HARD-CODED
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
 set(TESTS_HOME ${KAI_HOME}/Tests)
 
 include_directories(${KAI_HOME}/Include)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
+    include_directories(/usr/local/)
+endif()
 
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
@@ -57,15 +57,15 @@ endmacro()
 
 macro(create_test name)
     project(${name})
-    set(SOURCE_ROOT ${KAI_HOME}/Test/Tests/${name}/Source/*.cpp)
+    set(SOURCE_ROOT ${KAI_HOME}/Test/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    # Ubuntu only link_libraries(Executor Core Executor CommonLang PiLang RhoLang TauLang)
-    link_libraries(Executor Core Executor CommonLang PiLang RhoLang)
+    link_libraries(Executor Core Executor PiLang RhoLang TauLang)
     add_executable(${name} ${SOURCE_FILES})
     target_link_libraries(${name} gtest pthread)
 endmacro()
 
-include(App/CMakeLists.txt)
 include(Library/CMakeLists.txt)
-include(Test/CMakeLists.txt)
+#include(Test/CMakeLists.txt)
+include(App/CMakeLists.txt)
 
+#$

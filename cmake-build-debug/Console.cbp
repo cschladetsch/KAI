@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Console"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\Library\;CMake Files\Library\Language\;CMake Files\App\;CMake Files\App\Console\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Console">
+				<Option output="/Users/christian/Local/KAI/bin/Console" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Console"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Console/fast">
+				<Option output="/Users/christian/Local/KAI/bin/Console" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Console/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PiLang">
+				<Option output="/Users/christian/Local/KAI/lib/libPiLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 PiLang"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PiLang/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libPiLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 PiLang/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core">
+				<Option output="/Users/christian/Local/KAI/lib/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Core"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Core/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RhoLang">
+				<Option output="/Users/christian/Local/KAI/lib/libRhoLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 RhoLang"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RhoLang/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libRhoLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 RhoLang/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Network">
+				<Option output="/Users/christian/Local/KAI/lib/libNetwork.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Network"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Network/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libNetwork.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Network/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TauLang">
+				<Option output="/Users/christian/Local/KAI/lib/libTauLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 TauLang"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TauLang/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libTauLang.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 TauLang/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Executor">
+				<Option output="/Users/christian/Local/KAI/lib/libExecutor.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Executor"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Executor/fast">
+				<Option output="/Users/christian/Local/KAI/lib/libExecutor.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/christian/Local/KAI/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DKAI_USE_NAMESPACES"/>
+					<Add option="-DKAI_NAMESPACE_NAME=kai"/>
+					<Add option="-DKAI_DEBUG"/>
+					<Add option="-DKAI_DEBUG_TRACE"/>
+					<Add option="-DKAI_USE_EXCEPTIONS"/>
+					<Add option="-DKAI_TRACE_FILE_LOCATION"/>
+					<Add directory="/Users/christian/Local/KAI/Include"/>
+					<Add directory="/usr/local/Cellar/boost/1.60.0_2/include"/>
+					<Add directory="/usr/local"/>
+					<Add directory="/Library/Language/Window"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Pi/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Rho/Include"/>
+					<Add directory="/Users/christian/Local/KAI/Library/Language/Tau/Include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 Executor/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/christian/Local/KAI/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/christian/Local/KAI/App/Console/Source/Main.cpp">
+			<Option target="Console"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BasePointerBase.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BinaryPacket.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BinaryStream.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BinaryStreamBuiltins.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/Array.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/CalcHashValues.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/List.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/Map.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/Set.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/Stack.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/BuiltinTypes/String.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Class.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Debug.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/DotGraph.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Exception.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Label.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Object.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Pair.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Pathname.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Property.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Reflected.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Registry.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/StorageBase.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/String.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/StringStream.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/TypeNumberToString.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Core/Source/Utility.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Bin.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Compiler.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Console.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/ConsoleColor.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Continuation.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Executor.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Operation.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/SignedContinuation.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Translator/LexerBase.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Translator/Process.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Translator/TokenBase.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Translator/TranslatorCommon.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Executor/Source/Tree.cpp">
+			<Option target="Executor"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Pi/Source/PiAstNode.cpp">
+			<Option target="PiLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Pi/Source/PiLexer.cpp">
+			<Option target="PiLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Pi/Source/PiParser.cpp">
+			<Option target="PiLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Pi/Source/PiToken.cpp">
+			<Option target="PiLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Pi/Source/PiTranslator.cpp">
+			<Option target="PiLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/RhoLang.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/RhoLexer.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/RhoParser.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/RhoToken.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/RhoTranslator.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Rho/Source/TauAstNode.cpp">
+			<Option target="RhoLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Generate/Agent.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Generate/GenerateProcess.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Generate/Proxy.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Tau/TauAstNode.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Tau/TauLexer.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Tau/TauParser.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/Tau/Source/Tau/TauToken.cpp">
+			<Option target="TauLang"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Network/Source/AgentBase.cpp">
+			<Option target="Network"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Network/Source/Connection.cpp">
+			<Option target="Network"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Network/Source/Node.cpp">
+			<Option target="Network"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Network/Source/ProxyBase.cpp">
+			<Option target="Network"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Library\"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/Library/Language/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\Library\Language\"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/App/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\App\"/>
+		</Unit>
+		<Unit filename="/Users/christian/Local/KAI/App/Console/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\App\Console\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
