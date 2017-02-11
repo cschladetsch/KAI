@@ -235,13 +235,14 @@ int Console::Run()
 		{
 			for (;;)
 			{
-				cout << Color::Normal << endl;
-				cout << Color::Prompt << GetPrompt().c_str() << Color::Input;
+				auto n = Color::Normal;
+				cout << n << endl;
+				cout << Color::Prompt << GetPrompt().c_str() << n << Color::Input;
 				string text;
 				getline(cin, text);
-				cout << Color::Trace << Process(text.c_str()).c_str();
+				cout << n << Color::Trace << n << Process(text.c_str()).c_str();
 
-				cout << executor->PrintStack() << endl;
+				cout << n << executor->PrintStack() << n << endl;
 
 				if (_end)
 					return _endCode;
