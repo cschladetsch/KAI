@@ -1,11 +1,9 @@
-//
-// Created by Christian on 11/02/2017.
-//
+#include <map>
 
 #include "KAI/Console/Color.h"
-#include "./Include/ColorEscapeSequences.h"
-#include <map>
-#include <string>
+#include "KAI/Core/Debug.h"
+#include "KAI/Core/StringStream.h"
+
 
 KAI_BEGIN
 
@@ -19,7 +17,6 @@ struct Color::Impl
 static std::string AddEscape(const char *text)
 {
 	std::string s;
-	s += '[';
 	s += (char)27;
 	s += text;
 	return s;
@@ -28,27 +25,31 @@ static std::string AddEscape(const char *text)
 Color::Color()
 	: _impl(new Impl())
 {
-	_impl->colors[Normal] = AddEscape("[1;31m");
-	_impl->colors[Error] = AddEscape("[1;31m");
-	_impl->colors[Warning] = AddEscape("[1;31m");
-	_impl->colors[Trace] = AddEscape("[1;31m");
-	_impl->colors[StackNumber] = AddEscape("[1;31m");
-	_impl->colors[Prompt] = AddEscape("[1;31m");
-	_impl->colors[LanguageName] = AddEscape("[1;31m");
-	_impl->colors[Input] = AddEscape("[1;31m");
+	_impl->colors[Normal] = AddEscape("[0m");
+	_impl->colors[Error] = AddEscape("[0;31m");
+	_impl->colors[Warning] = AddEscape("[0;33m");
+	_impl->colors[Trace] = AddEscape("[0;34m");
+	_impl->colors[StackNumber] = AddEscape("[1;30m");
+	_impl->colors[Prompt] = AddEscape("[1;37m");
+	_impl->colors[LanguageName] = AddEscape("[0;34m");
+	_impl->colors[Input] = AddEscape("[1;33m");
 }
 
 std::string Color::GetColor(EType type) const
 {
 	if (_impl->colors.find(type) == _impl->colors.end())
-		return std::string();
+	{
+		// TODO: WTF this not working
+//		KAI_TRACE_1(type);
+		return std::move(_impl->colors[Input]);
+	}
 
 	return std::move(_impl->colors[type]);
 }
 
 std::ostream& operator<<(std::ostream &S, Color::EType C)
 {
-	std::string D = _color.GetColor(C);
+//	std::string D = _color.GetColor(C);
 	return S << _color.GetColor(C);
 }
 
