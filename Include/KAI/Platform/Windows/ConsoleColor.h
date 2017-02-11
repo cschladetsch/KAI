@@ -1,7 +1,11 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+
+#ifdef KAI_
 #include <ostream>
+
+
 
 KAI_BEGIN
 
