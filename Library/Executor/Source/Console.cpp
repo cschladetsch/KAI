@@ -235,6 +235,7 @@ int Console::Run()
 		{
 			for (;;)
 			{
+				cout << Color::Normal << endl;
 				cout << Color::Prompt << GetPrompt().c_str() << Color::Input;
 				string text;
 				getline(cin, text);
