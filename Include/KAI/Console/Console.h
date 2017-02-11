@@ -18,7 +18,7 @@
 #include "KAI/Language/Pi/Pi.h"
 #include "KAI/Language/Rho/Rho.h"
 
-#include "KAI/Console/ConsoleColor.h"
+#include "KAI/Console/Color.h"
 
 KAI_BEGIN
 

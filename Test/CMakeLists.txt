@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4)
 
-# Ubuntu only set(tests TestExecutor TestCore TestConsole TestPi TestRho TestGamma)
+# Linux only set(tests TestExecutor TestCore TestConsole TestPi TestRho TestGamma)
 set(tests TestExecutor TestCore TestConsole TestPi TestRho )
 
 include_directories(${KAI_HOME}/Test/Include)

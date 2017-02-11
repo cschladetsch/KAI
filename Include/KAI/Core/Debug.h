@@ -10,7 +10,7 @@
 
 KAI_BEGIN
 
-extern void DebugTrace(const char *);
+//extern void DebugTrace(const char *);
 
 StringStream &operator<<(StringStream &S, const Structure &T);
 StringStream &operator>>(StringStream &S, Structure &T);
