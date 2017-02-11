@@ -1,14 +1,17 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-//#include <memory>
 #include <sstream>
+#include <memory>
 
 KAI_BEGIN
 
 // Generic color class for all consoles on all platforms
 class Color
 {
+	struct Impl;
+	std::unique_ptr<Impl> _impl;
+
 public:
 	enum EType
 	{
@@ -17,7 +20,6 @@ public:
 		Warning,
 		Trace,
 		StackNumber,
-		StackPutput,
 		Prompt,
 		LanguageName,
 		Pathname,
@@ -28,13 +30,17 @@ public:
 
 	enum EColor
 	{
-		Red, Green, Blue,       // .. etc
+		Red, Green, Blue,
 	};
 
 	Color();
+
+	std::string GetColor(EType type) const;
 };
 
-std::stringstream& operator<<(std::stringstream &S, Color::EType C);
+extern Color ConsoleColors;
+
+std::ostream& operator<<(std::ostream &S, Color::EType C);
 
 KAI_END
 

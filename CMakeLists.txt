@@ -72,8 +72,8 @@ macro(create_test name)
 endmacro()
 
 include(Library/CMakeLists.txt)
-#include(Library/Core/Source/Platform/CMakeLists.txt)
 include(App/CMakeLists.txt)
 include(Platform/CMakeLists.txt)
+#include(Test/CMakeLists.txt)
 
 #$
