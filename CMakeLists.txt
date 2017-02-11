@@ -59,7 +59,7 @@ macro(def_platform_library name)
     project(platform-${name})
     set(SOURCE_ROOT ${KAI_HOME}/Platform/${name}/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    add_library(platform-${name} ${SOURCE_FILES})
+    add_library(platform-${name} SHARED ${SOURCE_FILES})
 endmacro()
 
 macro(create_test name)
@@ -73,7 +73,7 @@ endmacro()
 
 include(Library/CMakeLists.txt)
 include(App/CMakeLists.txt)
-include(Platform/CMakeLists.txt)
+# include(Platform/CMakeLists.txt)
 #include(Test/CMakeLists.txt)
 
 #$
