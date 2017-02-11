@@ -4,7 +4,7 @@ project(Languages)
 
 set(lang_root_dir ${KAI_SOURCE_ROOT_DIR}/Library/Language)
 
-# Ubuntu only set(langs Common Pi Rho Tau)
+# Linux only set(langs Common Pi Rho Tau)
 set(langs Common Pi Rho)
 
 foreach(l ${langs})

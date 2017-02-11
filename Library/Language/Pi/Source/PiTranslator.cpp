@@ -16,27 +16,27 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 
 	switch (node->GetType())
 	{
-	case PiAstNodeEnumType::Array:
-	{
-		KAI_NOT_IMPLEMENTED();
-		break;
-	}
+		case PiAstNodeEnumType::Array:
+		{
+			KAI_NOT_IMPLEMENTED();
+			break;
+		}
 
-	case PiAstNodeEnumType::Continuation:
-	{
-		PushNew();
-		for (auto const &ch : node->GetChildren())
-			TranslateNode(ch);
-		Append(Pop());
-		break;
-	}
+		case PiAstNodeEnumType::Continuation:
+		{
+			PushNew();
+			for (auto const &ch : node->GetChildren())
+				TranslateNode(ch);
+			Append(Pop());
+			break;
+		}
 
-	default:
-	{
-		if (node->GetToken().type != PiTokenEnumType::NewLine)
-			AppendTokenised(node->GetToken());
-		break;
-	}
+		default:
+		{
+			if (node->GetToken().type != PiTokenEnumType::NewLine)
+				AppendTokenised(node->GetToken());
+			break;
+		}
 	}
 }
 
@@ -145,6 +145,8 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 
 	case PiTokenEnumType::ToRho:
 		AppendOp(Operation::ToRho);
+		break;
+	case PiTokenEnumType::None:
 		break;
 
 	default:
