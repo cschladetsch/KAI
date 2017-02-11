@@ -37,9 +37,11 @@ Color::~Color()
 	SetConsoleTextAttribute(hstdout, orig.wAttributes);
 }
 
-void Color::SetColor(Type c)
+
+std::ostream& operator<<(std::ostream &S, Color::EType C)
 {
-	SetConsoleTextAttribute(hstdout, colors[c]);
+	s << "color: " << (int)c << " ";
+	return s;
 }
 
 KAI_END
