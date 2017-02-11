@@ -11,16 +11,10 @@ using namespace std;
 
 KAI_BEGIN
 
-// Never used?
-//void DebugTrace(const char *text)
-//{
-//#ifdef WIN32
-//	OutputDebugStringA(text);
-//	OutputDebugStringA("\n");
-//#else
-//	cerr << text << endl;
-//#endif
-//}
+ostream& operator<<(ostream &S, Color::EType type)
+{
+	return S;
+}
 
 KAI_END
 
