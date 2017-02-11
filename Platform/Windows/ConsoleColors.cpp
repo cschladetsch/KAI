@@ -1,10 +1,12 @@
-#include "KAI/Console/ConsoleColor.h"
+//
+// Created by Christian on 11/02/2017.
+//
+#include "KAI/Console/Color.h"
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 KAI_BEGIN
-
-#ifdef WIN32
-#	define WIN32_LEAN_AND_MEAN
-#	include <windows.h>
 
 static WORD colors[Color::Last];
 static HANDLE hstdout;
@@ -39,25 +41,6 @@ void Color::SetColor(Type c)
 {
 	SetConsoleTextAttribute(hstdout, colors[c]);
 }
-
-#else
-
-// WTF this is an error with Clang++
-//#pragma message Color is not suported on this platform
-
-Color::Color()
-{
-}
-
-Color::~Color()
-{
-}
-
-void Color::SetColor(Type c)
-{
-}
-
-#endif
 
 KAI_END
 

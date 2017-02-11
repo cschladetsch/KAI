@@ -11,21 +11,22 @@ using namespace std;
 
 KAI_BEGIN
 
-void DebugTrace(const char *text)
-{
-#ifdef WIN32
-	OutputDebugStringA(text);
-	OutputDebugStringA("\n");
-#else
-	cerr << text << endl;
-#endif
-}
+// Never used?
+//void DebugTrace(const char *text)
+//{
+//#ifdef WIN32
+//	OutputDebugStringA(text);
+//	OutputDebugStringA("\n");
+//#else
+//	cerr << text << endl;
+//#endif
+//}
 
 KAI_END
 
 USING_NAMESPACE_KAI
 
-static Color _color;
+//static Color _color;
 
 int main(int argc, char **argv)
 {
