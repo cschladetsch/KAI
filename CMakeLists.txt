@@ -21,7 +21,7 @@ set(KAI_HOME ${HOME}/Local/KAI)
 #link_directories(/usr/lib/x86_64-linux-gnu)
 ## END HARD-CODED
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated")
+set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
 set(TESTS_HOME ${KAI_HOME}/Tests)
 
@@ -67,19 +67,20 @@ endmacro()
 
 macro(create_test name)
     project(${name})
-    set(SOURCE_ROOT ${KAI_HOME}/Test/${name}/Source/*.cpp)
-    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    link_libraries(Executor Core Executor PiLang RhoLang TauLang)
-    add_executable(${name} ${SOURCE_FILES})
+    set(TEST_SRC_ROOT ${KAI_HOME}/Test/Tests/${name}/Source/*.cpp)
+    file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT})
+    link_libraries(Executor Core PiLang RhoLang)
+    message(STATUS "**** ${test} ** ${TEST_SRC_ROOT} ** ${TEST_SRC_FILES}")
+    add_executable(${name} ${TEST_SRC_FILES})
     target_link_libraries(${name} gtest pthread)
 endmacro()
 
 include(Library/CMakeLists.txt)
+include(Test/CMakeLists.txt)
+include(App/CMakeLists.txt)
 
 include(CMakeToolsHelpers OPTIONAL)
-include(App/CMakeLists.txt)
 # include(Platform/CMakeLists.txt)
-#include(Test/CMakeLists.txt)
 
 
 #$

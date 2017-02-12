@@ -9,15 +9,6 @@
 
 using namespace std;
 
-KAI_BEGIN
-
-// this is just being used while I sort out the cross-platform console color issues
-ostream& operator<<(ostream &S, Color::EType type)
-{
-	return S;
-}
-
-KAI_END
 
 USING_NAMESPACE_KAI
 
