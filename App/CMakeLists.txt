@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
-# UBUNTU set(apps Window Console)
-set(apps Console)
+#set(apps Console Window)
+set(apps Console )
 
 foreach (app ${apps})
     include(${KAI_HOME}/App/${app}/CMakeLists.txt)

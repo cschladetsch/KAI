@@ -35,6 +35,9 @@ endif()
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
+
+# FLTK
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
@@ -72,8 +75,11 @@ macro(create_test name)
 endmacro()
 
 include(Library/CMakeLists.txt)
+
+include(CMakeToolsHelpers OPTIONAL)
 include(App/CMakeLists.txt)
 # include(Platform/CMakeLists.txt)
 #include(Test/CMakeLists.txt)
+
 
 #$
