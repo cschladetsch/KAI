@@ -14,11 +14,12 @@ protected:
 		_reg.AddClass<int>();
 		_reg.AddClass<bool>();
 		_reg.AddClass<String>();
-		// _reg.AddClass<StringStream>();
+		// _reg.AddClass<StringStream>();	// TODO: where are the StringStream traits defined?
 	}	
 
 	virtual void TearDown() override
 	{
+		_reg.Clear();
 	}
 };
 
