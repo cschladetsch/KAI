@@ -1,6 +1,7 @@
 #include "KAI/Language/Pi/Pi.h"
 #include "TestBase.h"
 #include <algorithm>
+#include <array>
 
 using namespace kai;
 using namespace std;

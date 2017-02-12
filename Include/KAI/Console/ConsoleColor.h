@@ -3,11 +3,11 @@
 #include <KAI/Core/Config/Base.h>
 #include <sstream>
 #include <memory>
+#include <string>
 
 KAI_BEGIN
 
-// Generic color class for all consoles on all platforms
-class Color
+class ConsoleColor
 {
 	struct Impl;
 	std::unique_ptr<Impl> _impl;
@@ -28,20 +28,14 @@ public:
 		Last,
 	};
 
-	enum EColor
+	enum EConsoleColor
 	{
 		Red, Green, Blue,
 	};
 
-	Color();
-
-	std::string GetColor(EType type) const;
+	std::string GetConsoleColor(EType type) const;
 };
 
-extern Color ConsoleColors;
-
-std::ostream& operator<<(std::ostream &S, Color::EType C);
+std::ostream& operator<<(std::ostream &S, ConsoleColor C);
 
 KAI_END
-
-
