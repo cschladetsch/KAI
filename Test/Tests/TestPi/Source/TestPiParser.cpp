@@ -1,4 +1,4 @@
-#include "TestBase.h"
+#include "Test/Common.h"
 #include "KAI/Language/Pi/Pi.h"
 
 using namespace kai;

@@ -1,5 +1,6 @@
+#include "Test/Common.h"
 #include "KAI/Language/Pi/Pi.h"
-#include "TestBase.h"
+
 #include <algorithm>
 #include <array>
 
