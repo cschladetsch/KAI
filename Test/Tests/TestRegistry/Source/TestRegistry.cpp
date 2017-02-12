@@ -1,4 +1,4 @@
-#include "Test/TestCommon.h"
+#include "Test/Common.h"
 #include <KAI/Core/Tree.h>
 #include <KAI/Core/DotGraph.h>
 

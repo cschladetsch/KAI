@@ -1,3 +1,4 @@
+#include "Test/Common.h"
 #include <KAI/KAI.h>
 #include <KAI/Console/Console.h>
 #include <gtest/gtest.h>

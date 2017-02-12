@@ -1,4 +1,4 @@
-#include "Test/TestCommon.h"
+#include "Test/Common.h"
 
 
 USING_NAMESPACE_KAI

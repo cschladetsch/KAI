@@ -1,6 +1,5 @@
 #if 0
-#include <KAI/BuiltinTypes/List.h>
-#include "TestBase.h"
+#include "Test/Common.h"
 
 using namespace kai;
 using namespace std;
