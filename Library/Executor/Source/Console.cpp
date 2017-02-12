@@ -169,12 +169,12 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		cout << Color::Error;
+		cout << ConsoleColor::Error;
 		auto cont = compiler->Translate(text.c_str());
 		if (cont.Exists())
 		{
 			cont->SetScope(tree.GetScope());
-			cout << Color::Trace;
+			cout << ConsoleColor::Trace;
 			Execute(cont);
 		}
 
@@ -199,8 +199,8 @@ String Console::GetPrompt() const
 {
 	StringStream prompt;
 	prompt
-		<< Color::LanguageName << ToString((Language)compiler->GetLanguage())
-		<< Color::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() << Color::Input << "> ";
+		<< ConsoleColor::LanguageName << ToString((Language)compiler->GetLanguage())
+		<< ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() << ConsoleColor::Input << "> ";
 
 	return prompt.ToString();
 }
@@ -235,12 +235,13 @@ int Console::Run()
 		{
 			for (;;)
 			{
-				auto n = Color::Normal;
+				auto n = ConsoleColor::Normal;
 				cout << n << endl;
-				cout << Color::Prompt << GetPrompt().c_str() << n << Color::Input;
+				cout << ConsoleColor::Prompt << GetPrompt().c_str() << n << ConsoleColor::Input;
 				string text;
 				getline(cin, text);
-				cout << n << Color::Trace << n << Process(text.c_str()).c_str();
+				// text = "1 1 +";
+				cout << n << ConsoleColor::Trace << n << Process(text.c_str()).c_str();
 
 				cout << n << executor->PrintStack() << n << endl;
 

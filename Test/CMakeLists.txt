@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
 # Linux only set(tests TestExecutor TestCore TestConsole TestPi TestRho TestGamma)
-set(tests TestExecutor TestCore TestConsole TestPi TestRho )
+set(tests TestCore TestExecutor TestPi TestConsole)# TestRho )
 
 include_directories(${KAI_HOME}/Test/Include)
 
@@ -14,4 +14,4 @@ endforeach()
 
 # include(${KAI_HOME}/Test/Tests/TestTau/CMakeLists.txt)
 
-include(${HOME}/Local/fl)
+#include(${HOME}/Local/fl)

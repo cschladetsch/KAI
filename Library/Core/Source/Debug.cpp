@@ -1,6 +1,8 @@
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Exception.h>
 #include <KAI/Core/Debug.h>
+#include <KAI/Console/ConsoleColor.h>
 #include <iostream>
 
 using namespace std;
@@ -9,7 +11,14 @@ KAI_BEGIN
 
 StringStream& operator<<(StringStream &s, const Structure & st)
 {
-	s;
+	KAI_NOT_IMPLEMENTED();
+	return s;
+}
+
+// this is just being used while I sort out the cross-platform console color issues
+ostream& operator<<(ostream &S, ConsoleColor::EType type)
+{
+	return S;
 }
 
 namespace debug

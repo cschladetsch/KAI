@@ -10,7 +10,7 @@
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",
 			"environment": [],
-			"externalConsole": true,
+			"internalConsoleOptions": "openOnFirstSessionStart",
 			"linux": {
 				"MIMode": "gdb",
 				"setupCommands": [
