@@ -1,0 +1,14 @@
+
+fun r(a)
+	if a > 0
+		return r(a - 1)
+	
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	res = mul(n, fact(n - 1))
+	Printf("fact(#0) = #1", [n, res])
+
+fun mul(a,b)
+	return a*b
+

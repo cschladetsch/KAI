@@ -3,7 +3,7 @@
 
 USING_NAMESPACE_KAI
 
-class TestContainers : public ::testing::Test
+class TestMap : public ::testing::Test
 {
 	virtual void SetUp() override
 	{
@@ -14,42 +14,30 @@ class TestContainers : public ::testing::Test
 	}
 };
 
-TEST_F(TestCointainer, TestCreation)
+TEST_F(TestMap, TestCreation)
 {
 }
 
-TEST_F(TestCointainer, TestConcat)
+TEST_F(TestMap, TestInsert)
 {
 }
 
-TEST_F(TestCointainer, TestLength)
+TEST_F(TestMap, TestDelete)
 {
 }
 
-TEST_F(TestCointainer, TestComparison)
+TEST_F(TestMap, TestOwnership)
 {
 }
 
-TEST_F(TestCointainer, TestCointainerStreamInsert)
+TEST_F(TestMap, TestComparison)
 {
 }
 
-TEST_F(TestCointainer, TestCointainerStreamExtract)
+TEST_F(TestMap, TestStringStream)
 {
 }
 
-TEST_F(TestCointainer, TestCointainerStreamInsertList)
-{
-}
-
-TEST_F(TestCointainer, TestCointainerStreamExtractVector)
-{
-}
-
-TEST_F(TestCointainer, TestCointainerStreamInsertLVector)
-{
-}
-
-TEST_F(TestCointainer, TestCointainerStreamExtractList)
+TEST_F(TestMap, TestBinaryStream)
 {
 }

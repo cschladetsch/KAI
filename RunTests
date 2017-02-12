@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for test in bin/Test*
+for test in Bin/Test/Test*
 do
 	$test
 done
