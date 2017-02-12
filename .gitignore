@@ -10,6 +10,7 @@ KAI.VC.*
 *.a
 *.so
 /Intermediate/
+test.graph
 
 *.orig
 *.swp
