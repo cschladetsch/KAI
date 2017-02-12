@@ -1,4 +1,4 @@
-#include "Test/TestLangCommon.h"
+#include "Test/TestCommon.h"
 
 using namespace kai;
 using namespace std;
