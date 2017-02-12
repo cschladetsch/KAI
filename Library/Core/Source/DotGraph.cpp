@@ -60,9 +60,9 @@ DotGraph &operator<<(DotGraph &graph, Object const &object)
 	graph << " color=";
 	switch (object.GetColor())
 	{
-	case ObjectColor::White: graph << "red"; break;
-	case ObjectColor::Grey: graph << "blue"; break;
-	case ObjectColor::Black: graph << "green"; break;
+	case ObjectColor::White: graph << "grey"; break;
+	case ObjectColor::Grey: graph << "green"; break;
+	case ObjectColor::Black: graph << "black"; break;
 	}
 
 	graph << "]\n";

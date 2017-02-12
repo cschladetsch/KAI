@@ -67,8 +67,13 @@ endmacro()
 
 macro(create_test name)
     project(${name})
-    set(TEST_SRC_ROOT ${KAI_HOME}/Test/Tests/${name}/Source/*.cpp)
-    file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT})
+    include_directories(${KAI_HOME}/Test/Include)
+
+    set(TEST_ROOT ${KAI_HOME}/Test)
+    set(TEST_SRC_ROOT ${TEST_ROOT}/Tests/${name}/Source/*.cpp)
+
+    file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT} ${TEST_ROOT}/Source)
+
     link_libraries(Executor Core PiLang RhoLang)
     add_executable(${name} ${TEST_SRC_FILES})
     target_link_libraries(${name} gtest pthread)
