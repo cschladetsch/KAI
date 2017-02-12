@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for test in bin/Test*
+do
+	$test
+done
+
