@@ -1,5 +1,4 @@
-#include "../../TestCore/Source/TestBase.h"
-#include "KAI/Console/Console.h"
+#include "Test/Lang/Common.h"
 #include "KAI/Core/Detail/Function.h"
 
 using namespace kai;

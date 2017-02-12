@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "Test/Common.h"
 
 using namespace kai;
 using namespace std;

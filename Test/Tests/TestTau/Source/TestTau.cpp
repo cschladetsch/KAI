@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "Test/Lang/Common.h"
 #include <KAI/Language/Tau/TauParser.h>
 #include <KAI/Network/Proxy.h>
 #include <KAI/Language/Tau/Generate/Agent.h>
