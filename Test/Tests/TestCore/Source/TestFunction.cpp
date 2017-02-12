@@ -1,6 +1,5 @@
-#include "./TestBase.h"
+#include "Test/Common.h"
 #include <KAI/Core/FunctionBase.h>
-#include <KAI/Core/BuiltinTypes/Void.h>
 #include <KAI/Core/Object/Class.h>
 #include "KAI/Core/Detail/Function.h"
 

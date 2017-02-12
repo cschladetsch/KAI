@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "Test/Lang/Common.h"
 
 int main(int argc, char **argv)
 {
