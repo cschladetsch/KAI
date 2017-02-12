@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(tests TestCore TestRegistry TestExecutor TestConsole TestString TestPi TestRho )
+set(tests 
+    TestCore TestRegistry TestExecutor TestConsole 
+    TestString TestBasePointer TestContainers
+    TestEvents TestObject
+    TestPi TestRho 
+)
 
 include_directories(${KAI_HOME}/Test/Include)
 
