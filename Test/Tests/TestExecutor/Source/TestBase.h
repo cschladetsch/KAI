@@ -1,6 +1,5 @@
 #pragma once
 
-#include "KAI/Core/BuiltinTypes.h"
+#include "Test/TestCommon.h"
 #include "KAI/Executor/Executor.h"
-#include <gtest/gtest.h>
 
