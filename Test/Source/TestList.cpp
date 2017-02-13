@@ -9,8 +9,6 @@ protected:
 	void AddrequiredClasses() override
 	{
 		reg.AddClass<List>();
-		reg.AddClass<StringStream>();
-		reg.AddClass<BinaryStream>();
 	}
 };
 
