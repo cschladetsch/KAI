@@ -1,17 +1,28 @@
 cmake_minimum_required(VERSION 3.4)
 
-set(tests 
-    TestCore TestRegistry TestExecutor TestConsole 
-    TestString TestBasePointer TestContainers
-    TestEvents TestObject
-    TestPi TestRho 
-)
+# set(tests TestBasePointer)
 
-include_directories(${KAI_HOME}/Test/Include)
 
-foreach (test ${tests})
-    create_test(${test})
-endforeach()
+#     TestCore TestRegistry TestExecutor TestConsole 
+#     TestString TestBasePointer TestContainers
+#     TestEvents TestObject
+#     TestPi TestRho 
+# )
+
+project(KaiTests)
+
+# include_directories(${KAI_HOME}/Test/Include)
+set(TEST_ROOT ${KAI_HOME}/Test)
+set(TEST_SRC_ROOT ${TEST_ROOT}/Source/*.cpp)
+file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT})
+link_libraries(Executor Core PiLang RhoLang)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin/Test")
+add_executable(KaiTests ${TEST_SRC_FILES})
+target_link_libraries(KaiTests gtest pthread)
+
+# foreach (test ${tests})
+#     create_test(${test})
+# endforeach()
 
 # special case the network test, as it needs RakNet
 # include(${KAI_HOME}/Test/Tests/TestNetwork/CMakeLists.txt)
