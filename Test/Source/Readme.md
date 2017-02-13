@@ -1,10 +1,4 @@
-# Tests Files
+# KAI Test Systems
 
-Common functionality for KAI tests.
+There are not enough tests, and even then not all of them pass.
 
-## TestCommon
-
-Code that is common for all tests
-## TestLangCommon
-
-Code that is common to all language-based tests.
