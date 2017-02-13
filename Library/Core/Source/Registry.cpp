@@ -48,7 +48,7 @@ Registry::~Registry()
 void Registry::Clear()
 {
 	ClearInstances();
-	ForEach(classes, Deleter<ClassBase>());
+	// ForEach(classes,Deleter<ClassBase>());
 }
 
 void Registry::ClearInstances()
