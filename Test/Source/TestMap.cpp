@@ -99,13 +99,16 @@ TEST_F(TestMap, TestComparison)
 
 TEST_F(TestMap, TestStringStream)
 {
-	ASSERT_TRUE(false);
-
 	Pointer<Map> m = reg.New<Map>();
 	Pointer<int> n = reg.New(42);
 	Pointer<String> s = reg.New<String>("Hello");
 
 	m->Insert(n, s);
+
+	// TODO: this test is broken.
+	// it *should* work - but inserting a map into a StringStream faults
+	// and I haven't looked into it yet.
+	ASSERT_TRUE(false);
 
 	// make a new string stream, insert the map into it
 	Pointer<StringStream> t = reg.New<StringStream>();
