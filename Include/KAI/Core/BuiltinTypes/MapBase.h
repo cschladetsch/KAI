@@ -33,12 +33,13 @@ public:
 	const_iterator Begin() const { return map.begin(); }
 	const_iterator End() const { return map.end(); }
 	int Size() const { return (int)map.size(); }
-	
 	bool Empty() const { return map.empty(); }
 	void Clear() { map.clear(); }
-	void Insert(Object key, Object value) { map[key] = value; }
+	void Insert(Object const &key, Object const &value) { map[key] = value; }
+	bool ContainsKey(Object const &k) const { return Find(k) != End(); }
+	const_iterator Find(Object const &k) const { return map.find(k); }
 	
-	void Erase(Object key)
+	void Erase(Object const &key)
 	{
 		iterator A = map.find(key);
 		if (A == map.end())
@@ -48,7 +49,7 @@ public:
 		map.erase(A);	
 	}
 	
-	Object Find(Object key) const
+	Object GetValue(Object const &key) const
 	{
 		const_iterator A = map.find(key);
 		if (A == map.end())

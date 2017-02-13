@@ -14,7 +14,7 @@ void KAITestClass::SetUp()
 	reg.SetTree(tree);
 
 	AddrequiredClasses();
-}	
+}
 
 void KAITestClass::AddrequiredClasses() 
 {

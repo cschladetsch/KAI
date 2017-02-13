@@ -8,13 +8,17 @@
 
 KAI_BEGIN
 
-struct KAITestClass : ::testing::Test
+// TODO: Rename to BaseTestClass once refactoring works with VSCode again :P
+class KAITestClass : public ::testing::Test
 {
+	// TODO: could use PIMPL here, but compile times don't seem to matter for tests so far
+protected:
 	Registry reg;
 	Tree tree;
 
-	void SetUp();// override;
-	void TearDown();// overide;
+protected:
+	void SetUp();
+	void TearDown();
 
 	virtual void AddrequiredClasses();
 };

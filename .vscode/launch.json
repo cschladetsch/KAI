@@ -3,10 +3,10 @@
 	"configurations": [
 
 		{
-			"name": "RegTest",
+			"name": "Tests",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceRoot}/bin/TestRegistry",
+			"program": "${workspaceRoot}/Bin/KaiTests",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",
