@@ -7,7 +7,10 @@ void KAITestClass::SetUp()
 	reg.AddClass<void>();
 	reg.AddClass<bool>();
 	reg.AddClass<int>();
+	reg.AddClass<float>();
 	reg.AddClass<String>();
+	reg.AddClass<StringStream>();
+	reg.AddClass<BinaryStream>();
 
 	auto root = reg.New<void>();
 	tree.SetRoot(root);

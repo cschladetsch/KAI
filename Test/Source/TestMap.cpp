@@ -1,6 +1,4 @@
 #include "./Common.h"
-#include "KAI/Core/Object/GetStorageBase.h"
-#include "KAI/Core/StringStreamTraits.h"
 
 USING_NAMESPACE_KAI
 
