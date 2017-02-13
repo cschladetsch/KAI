@@ -1,5 +1,6 @@
 #include "./Common.h"
 #include "KAI/Core/Object/GetStorageBase.h"
+#include "KAI/Core/StringStreamTraits.h"
 
 USING_NAMESPACE_KAI
 
@@ -9,6 +10,7 @@ protected:
 	void AddrequiredClasses() override
 	{
 		reg.AddClass<Map>();
+		reg.AddClass<StringStream>();
 	}
 };
 
@@ -97,6 +99,31 @@ TEST_F(TestMap, TestComparison)
 
 TEST_F(TestMap, TestStringStream)
 {
+	ASSERT_TRUE(false);
+
+	Pointer<Map> m = reg.New<Map>();
+	Pointer<int> n = reg.New(42);
+	Pointer<String> s = reg.New<String>("Hello");
+
+	m->Insert(n, s);
+
+	// make a new string stream, insert the map into it
+	Pointer<StringStream> t = reg.New<StringStream>();
+	*t << m;
+	
+	// here, we extract a map back out of the stream.
+	//
+	// not happy about this approach. we have to make the map with a registry, before extracting
+	// it from a StringStream.
+	// It seems we should be able to just say:
+	//		Object q;
+	//		*t >> q;
+	//		ASSERT_TRUE(q.GetClass().GetType() == Type::Traits<Map>::Number);
+	Pointer<Map> m1 = reg.New<Map>();
+	*t >> m1;
+
+	// ensure the extracted map is the same value as the original map
+	ASSERT_EQ(*m, *m1);
 }
 
 TEST_F(TestMap, TestBinaryStream)
