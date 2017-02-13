@@ -1,16 +1,16 @@
 #include "./Common.h"
-
+#include <KAI/Core/BuiltinTypes/Set.h>
 
 USING_NAMESPACE_KAI
 
-class TestSet : public ::testing::Test
+class TestSet : public KAITestClass
 {
-	virtual void SetUp() override
+protected:
+	void AddrequiredClasses() override
 	{
-	}	
-
-	virtual void TearDown() override
-	{
+		reg.AddClass<ObjectSet>();
+		reg.AddClass<StringStream>();
+		reg.AddClass<BinaryStream>();
 	}
 };
 
@@ -18,12 +18,23 @@ TEST_F(TestSet, TestCreation)
 {
 }
 
-TEST_F(TestSet, TestInsert)
+TEST_F(TestSet, TestInsertDelete)
 {
-}
+	Pointer<ObjectSet> set = reg.New<ObjectSet>();
+	tree.GetRoot().Set("set", set);
 
-TEST_F(TestSet, TestDelete)
-{
+	Object n = reg.New(42);
+	set->Insert(n);
+	reg.GarbageCollect();
+
+	ASSERT_TRUE(set.Exists());
+	ASSERT_TRUE(n.Exists());
+
+	set->Erase(n);
+	reg.GarbageCollect();
+
+	ASSERT_TRUE(set.Exists());
+	ASSERT_FALSE(n.Exists());
 }
 
 TEST_F(TestSet, TestOwnership)
