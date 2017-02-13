@@ -24,6 +24,7 @@ public:
 	StringStream() : read_offset(0), registry(0) { }
 	explicit StringStream(String const &S) : read_offset(0), registry(0) { Append(S); }
 
+	const Storage& GetStorage() const { return stream; }
 	String ToString() const;
 	bool Empty() const { return stream.empty(); }
 	int Size() const { return (int)stream.size(); }
@@ -41,6 +42,10 @@ public:
 	char Peek() const;
 
 	static void Register(Registry &);
+
+	friend bool operator==(StringStream const &, StringStream const &);
+	friend bool operator!=(StringStream const &, StringStream const &);
+	friend bool operator<(StringStream const &, StringStream const &);
 };
 
 struct EndsArgument { };
@@ -48,16 +53,7 @@ void Ends(EndsArgument);
 
 StringStream &operator<<(StringStream &, void (*)(EndsArgument));
 StringStream &operator<<(StringStream &, const String::Char *);
-//StringStream &operator<<(StringStream &, const String::Char);
 
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
-//inline StringStream &operator<<(StringStream &S, const Exception::Base &E) { return S << E.ToString().c_str(); }
-//
-//StringStream& operator<<(StringStream&, ObjectColor::Color);
-//
-//KAI_TYPE_TRAITS(
-//	StringStream,
-//	Number::StringStream,
-//	Properties::Equiv);
 
 KAI_END
