@@ -1,4 +1,0 @@
-# Console
-
-Test both BasePointers
-
