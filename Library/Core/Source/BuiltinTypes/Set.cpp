@@ -71,7 +71,7 @@ BinaryStream &operator<<(BinaryStream &S, const ObjectSet &T)
 	KAI_NOT_IMPLEMENTED();
 }
 
-BinaryPacket &operator>>(BinaryPacket &S, ObjectSet &T)
+BinaryStream &operator>>(BinaryStream &S, ObjectSet &T)
 {
 	KAI_UNUSED_2(S,T);
 	KAI_NOT_IMPLEMENTED();

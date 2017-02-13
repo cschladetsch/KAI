@@ -27,6 +27,8 @@ struct HashObject
 
 };
 
+// I'm sure there was a good reason I named this ObjectSet rather than just Set.
+// And at this point, I am too afraid to ask.
 struct ObjectSet : Container<ObjectSet>
 {
 	typedef std::unordered_set<Object, HashObject, CompareHandles> Objects;
@@ -68,16 +70,16 @@ public:
 	static void Register(Registry &);
 };
 
+StringStream &operator<<(StringStream &, ObjectSet const &);
+StringStream &operator>>(StringStream &, ObjectSet &);
+
+BinaryStream &operator<<(BinaryStream &, ObjectSet const &);
+BinaryStream &operator>>(BinaryStream &, ObjectSet &);
+
 KAI_TYPE_TRAITS(ObjectSet, Number::Set
 	, Properties::StringStreamInsert 
 	| Properties::BinaryStreaming 
 	| Properties::Reflected
 	| Properties::Container);
-
-StringStream &operator<<(StringStream &, ObjectSet const &);
-//StringStream &operator<<(StringStream &, ObjectSet::const_iterator const &);
-
-BinaryStream &operator<<(BinaryStream &, ObjectSet const &);
-//BinaryStream &operator>>(BinaryStream &, ObjectSet &);
 
 KAI_END

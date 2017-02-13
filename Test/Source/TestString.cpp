@@ -4,7 +4,11 @@ USING_NAMESPACE_KAI
 
 struct TestString : KAITestClass
 {
-
+protected:
+	void AddrequiredClasses() override
+	{
+		reg.AddClass<String>();
+	}
 };
 
 TEST_F(TestString, TestCreation)
