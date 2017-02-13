@@ -97,8 +97,6 @@ public:
 		return NewClass<T>(*this, N);
 	}
 
-
-
 	Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
 
 	/// create a new instance of a given known type
