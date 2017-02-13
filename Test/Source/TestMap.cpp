@@ -1,7 +1,6 @@
 #include "./Common.h"
 #include "KAI/Core/Object/GetStorageBase.h"
 
-
 USING_NAMESPACE_KAI
 
 class TestMap : public KAITestClass
@@ -70,6 +69,30 @@ TEST_F(TestMap, TestInsertDelete)
 
 TEST_F(TestMap, TestComparison)
 {
+	Pointer<Map> m0 = reg.New<Map>();
+	Pointer<Map> m1 = reg.New<Map>();
+
+	Object n = reg.New(42);
+	Pointer<String> s0 = reg.New<String>("World");
+	Pointer<String> s1 = reg.New<String>("World");
+
+	// make two value-identical maps (but with different value objects)
+	m0->Insert(n, s0);
+	m1->Insert(n, s1);
+
+	// get a reference to the class for maps to make things easier to type
+	ClassBase const &k = *m0.GetClass();
+
+	// test that both maps are the same size and have same set of key/value pairs (by object value)
+	ASSERT_TRUE(k.Equiv(m0, m1));
+	
+	// change the value that the second map has for it's key valued 42
+	*s1 = "Hello";
+	ASSERT_FALSE(k.Equiv(m0, m1));
+
+	// and just to prove that wasn't a fluke:
+	*s1 = "World";
+	ASSERT_TRUE(k.Equiv(m0, m1));
 }
 
 TEST_F(TestMap, TestStringStream)
