@@ -17,22 +17,13 @@ struct MapCompare
 typedef MapBase<std::map<Object, Object, MapCompare> > Map;
 
 KAI_TYPE_TRAITS(Map, Number::Map
-	, Properties::StringStreamInsert 
+	, Properties::StringStreamInsert // TODO: StringStreaming
 	| Properties::BinaryStreaming 
 	| Properties::Equiv 
-	// CJS TODO | Properties::Less
 	| Properties::Reflected
-	| Properties::Container);
-
-//hmmm StringStream &operator<<(StringStream &, Map::const_iterator const &);
-
-/* TODO or not?
-KAI_TYPE_TRAITS(Map::const_iterator, Number::MapConstIterator
-	, Properties::StringStreamInsert
-	| Properties::Equiv
-	//| Properties::Container ?? should an iterator be considered a container?
+	| Properties::Container
+	// Properties::Less ??
 	);
-	*/
 
 KAI_END
 
