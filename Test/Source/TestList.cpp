@@ -36,7 +36,11 @@ TEST_F(TestList, TestInsertDelete)
 	ASSERT_TRUE(list.Exists());
 	ASSERT_TRUE(n.Exists());
 
+	ASSERT_EQ(list->Size(), 1);
+	ASSERT_FALSE(list->Empty());
 	list->Erase(n);
+	ASSERT_EQ(list->Size(), 0);
+	ASSERT_TRUE(list->Empty());
 	reg.GarbageCollect();
 
 	ASSERT_TRUE(list.Exists());
