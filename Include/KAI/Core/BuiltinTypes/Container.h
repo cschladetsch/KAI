@@ -26,7 +26,7 @@ struct Container : Reflected
 		if (Q.IsMarked())
 			return false;
 
-		//TODO: Q.AddedToContainer(*Self);
+		Q.AddedToContainer(*Self);
 		return true;
 	}
 	void Detach(Object const &Q)
@@ -34,7 +34,7 @@ struct Container : Reflected
 		if (!Self || !Q.Exists())
 			return;
 
-		//TODO: Q.RemovedFromContainer(*Self);
+		Q.RemovedFromContainer(*Self);
 	}
 };
 
