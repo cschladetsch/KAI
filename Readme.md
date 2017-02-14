@@ -77,8 +77,7 @@ It's hard to give examples of an engine without applications. This is an 'engine
 
 The best example is the REPL Window, provided. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
 
-/*
-To see what the language looks like, see https://github.com/cschladetsch/KAI/blob/master/Projects/Console/Scripts.
+## Unit Tests
+See the [Unit Tests](https://github.com/cschladetsch/KAI/tree/master/Test/Source) here. They are of course not comprehensive, but they give an idea.
 
-For a quick intro, see unit tests at https://github.com/cschladetsch/KAI/tree/master/Projects/Library/Source/Tests.
-*/
+They are what I am working on the most at the moment.
