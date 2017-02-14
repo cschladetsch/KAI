@@ -96,6 +96,22 @@ StringStream &operator<<(StringStream &S, MapBase<Map> const &M)
 }
 
 template <class Map>
+StringStream &operator>>(StringStream &S, MapBase<Map> const &M)
+{
+	// S << "{ ";
+	// const char *sep = "";
+	// for (auto const &A : M)
+	// {
+	// 	S << sep << "[" << A.first << ", " << A.second << "]";
+	// 	sep = ", ";
+	// }
+	
+
+	// this will need a parser....
+	KAI_NOT_IMPLEMENTED();
+}
+	
+template <class Map>
 BinaryStream &operator<<(BinaryStream &S, MapBase<Map> const &M)
 {
 	S << M.Size();

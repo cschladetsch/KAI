@@ -5,6 +5,16 @@
 
 KAI_BEGIN
 
+StringStream& operator>>(StringStream& S, std::pair<Object, Object> & P)
+{
+	return S >> P.first >> P.second;
+}
+
+StringStream& operator>>(StringStream& S, Map &M)
+{
+	return S;
+}
+
 //StringStream &operator<<(StringStream &S, typename Map::const_iterator const &P)
 //{
 //	KAI_UNUSED(P);

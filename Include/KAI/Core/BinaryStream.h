@@ -41,11 +41,11 @@ public:
 
 StringStream &operator<<(StringStream &, BinaryStream const &);
 BinaryStream &operator<<(BinaryStream &, BinaryStream const &);
-BinaryPacket &operator >> (BinaryPacket &, BinaryStream &);
+BinaryPacket &operator>>(BinaryPacket &, BinaryStream &);
 
 KAI_TYPE_TRAITS(BinaryStream, Number::BinaryStream
 	, Properties::StringStreamInsert
-	| Properties::BinaryStreamExtract | Properties::BinaryStreamInsert)
+	| Properties::BinaryStreamExtract 
+	| Properties::BinaryStreamInsert)
 
 KAI_END
-
