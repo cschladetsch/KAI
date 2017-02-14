@@ -15,8 +15,12 @@ set(HOME $ENV{HOME})
 # THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
 # Source location.
 set(KAI_HOME ${HOME}/Local/KAI)
+
 # RakNet
-#include_directories(${HOME}/External/RakNet/include)
+set(RAKNET_DIR ${HOME}/External/RakNet)
+include(${KAI_HOME}/CmakeIncludes/FindRakNet.cmake)
+
+
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
 ## END HARD-CODED
