@@ -128,7 +128,6 @@ Continuations are important because they allow you to yield the current command 
 Both Pi and Rho support continuations natively.
 
 ## Networking
-<<<<<<< HEAD
 There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach. 
 
 There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach. 
