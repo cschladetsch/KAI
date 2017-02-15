@@ -39,6 +39,28 @@ A general-purpose stack-based virtual machine. Think of it like a JVM or Dalvik.
 
 So, onto some concrete examples of the progress made so far.
 
+# Networking
+The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command across a group of Nodes in a Domain, and across a group of Domains in a System.
+
+It has taken many years to build all this up from the ground, starting with scripting languages and parsers, distributed garbage collection systems, and various fuzzy synchronisation models.
+
+These are all coming along, slowly over the years. This project was started in 2008.
+
+The end goal is to have a server-less truely peer-to-peer system that maintains coherency and is scalable to the tens of thousands of connected nodes. That doesn't come cheaply and work continues.
+
+One of the first things I recognised is that it's cheap and easy to send *code* rather than send *state*. So, I started with a very breif language I called Pi. 
+
+That's very fast for a computer to parse and execute, and has other benefits, but it's hard to read for a human so I created Rho with compiles to Pi. 
+
+Then I needed to generate Proxy code for Agents in the network, so why not leverage all the existing work I did on Pi and Rho for that too?
+
+So then I refactored all the language systems to use on generic language system that can be used to generate Lexer, Parser, AST Walker and Translator for any language you want. Overkill, but fun.
+
+But it's all for a purpose: to allow for natural and fluid networking without a client/server model. I make progress over time, and so continue. Here's a date overview of what I've got so far:
+
+## Executor
+A general-purpose stack-based virtual machine.
+
 ## PI
 
 	{ 1 + } 'add # 2 add & print &
@@ -84,14 +106,17 @@ Continuations are important because they allow you to yield the current command 
 Both Pi and Rho support continuations natively.
 
 ## Networking
+
 There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach.
 
-I've written a similar system in C# a few years ago with .NET reflection support. Now I am doing it again with custom reflection.
+I've written a similar system in C# a few years ago with .NET reflection support to make a render farm. Now I am doing it again with custom reflection.
 
 Of course, once I'm done C++19 will have built-in reflection. Oh well.
 
 ## Conclusion
 This library will be useful to those that want to expose C++ types and instances to the runtime, and across the network.
+
+It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
 
 It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
 
