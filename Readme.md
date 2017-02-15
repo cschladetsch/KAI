@@ -81,13 +81,6 @@ Continuations are important because they allow you to yield the current command 
 
 Both Pi and Rho support continuations natively.
 
-## Networking
-There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach. 
-
-I've written a similar system in C# a few years ago with .NET reflection support to make a render farm. Now I am doing it again with custom reflection.
-
-Of course, once I'm done C++19 will have built-in reflection. Oh well.
-
 ## Conclusion
 This library will be useful to those that want to expose C++ types and instances to the runtime, and across the network.
 
@@ -97,7 +90,7 @@ It allows you to script C++ in a very simple way. Adding a new 'builtin type' to
 
 This means you can expose and script other classes as well, including those in a library that you do not have the source code to.
 
-To be clear: you do not have to change the source code of a class in order to access and use it at runtime with KAI.
+To be clear: you do not have to change the source code of a class in order to access and use it at runtime with KAI. Further, these exposed classes are directly accessable via the Network.
 
 A REPL console application is also supplied, as well as a Window application based on FLTK.
 
