@@ -28,7 +28,7 @@ struct Node::Impl
 };
 
 Node::Node()
-	: _impl(std::make_shared<Impl>())
+	: _impl(std::make_unique<Impl>())
 {
 }
 
