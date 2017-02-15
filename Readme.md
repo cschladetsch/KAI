@@ -128,16 +128,19 @@ Continuations are important because they allow you to yield the current command 
 Both Pi and Rho support continuations natively.
 
 ## Networking
+<<<<<<< HEAD
 There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach. 
 
-I've written a similar system in C# a few years ago with .NET reflection support. Now I am doing it again with custom reflection.
+There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach. 
+
+There is a large library being built around the idea of Nodes connecting to other Nodes. Rather than a client/server approach.
+
+I've written a similar system in C# a few years ago with .NET reflection support to make a render farm. Now I am doing it again with custom reflection.
 
 Of course, once I'm done C++19 will have built-in reflection. Oh well.
 
 ## Conclusion
 This library will be useful to those that want to expose C++ types and instances to the runtime, and across the network.
-
-It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
 
 It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
 
