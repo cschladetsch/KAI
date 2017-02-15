@@ -11,12 +11,17 @@ The library also offers two scripting languages: ***Pi***, which is based on RPN
 There is also an Interface Definition Language (IDL) called ***Tau***, which is used to generate code for proxies and agents in the system.
 
 # Networking
-The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command executio (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
+The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
 
 * Registry -> Object (local)
 * Domain -> NetObject (shared)
+* System -> Domain (shared)
 
-A Domain has-a shared Registry.
+A Registry is a local set of unique well-known objects. A Domain is a set of unique well-known objects within a set of network Peers. A System is a set of well-known Domains - The top-level System network does not generally deal with specific NetObjects, although it can.
+
+Rather, a network **System** is a collection of distriuted **Domains**, each such unique Domain with a unique shared **Registry**. 
+
+In othe words, a Registry can exist locally within a single Console applciation on a single machine. A collection of Registries is a Domain, and a collection of Domains is the overall system.
 
 It has taken many years to build all this all up from the ground, starting with scripting languages and parsers, distributed garbage collection systems, and various fuzzy synchronisation models.
 
