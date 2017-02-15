@@ -2,27 +2,32 @@
 
 #include "KAI/Network/Network.h"
 
+namespace RakNet
+{
+	class RakPeerInterface;
+}
+
 KAI_NET_BEGIN
 
+// A peer on the network. Nominally, there are no servers or clients. Just
+// a collection of nodes that connect and communicate with each other.
 struct Node
 {
 private:
-	struct Impl;
-	std::shared_ptr<Impl> _impl;
-	Node *_other;   // just for testing
+	RakNet::RakPeerInterface *_peer;
 
 public:
+	static int constexpr DefaultPort = 14589;
+
 	Node();
 
-	void Listen(int listen);
-
-	/// this is just for testing
-	void Connect(Node &other);
+	void Listen(int port);
+	void Listen(IpAddress const &address, int port);
 
 	void Connect(IpAddress const &, int port);
 
 	template <class T = void>
-	Future<T> Send(NetHandle, Object);
+	Future<T> Send(NetHandle, const Object&);
 
 	template <class T = void>
 	Future<T> Receive(NetHandle, Object);
