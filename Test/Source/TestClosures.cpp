@@ -1,7 +1,7 @@
 #include "./Common.h"
 
 
-TEST(TestClosure)
-{
-	ASSERT_EQ(1,1);
-}
+// TEST(TestClosure)
+// {
+// 	ASSERT_EQ(1,1);
+// }
