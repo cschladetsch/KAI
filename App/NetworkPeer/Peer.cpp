@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 #include "raknet/BitStream.h"
 #include "raknet/RakPeer.h"
@@ -9,16 +10,22 @@ using namespace std;
 
 struct Peer
 {
-	// const static int InPort = 9999;
-	// const static int OutPort = 8888;
-	const static int MaxConnections = 4;
+	// TODO
+	bool connected = false;
+	bool isServer = false;
+
+	const static int MaxConnections = 255;
 
 	typedef unsigned char PacketType;
+
+	typedef std::map<int, RakNet::SystemAddress> Peers;
 
 private:
 	RakNet::RakPeerInterface *_peer;
 	RakNet::SocketDescriptor _socketDescriptors[2];
 	DataStructures::List<RakNet::RakNetSocket2 *> _sockets;
+	Peers _peers;
+	int _nextPeerId;
 
 public:
 	Peer(int listenPort)
@@ -70,14 +77,36 @@ public:
 		{
 			PacketType type = GetPacketIdentifier(p);
 
+			cout << "Type: " << type << endl;
+
 			switch (type)
 			{
 				case ID_NEW_INCOMING_CONNECTION:
 					NewConnection(p);
 					break;
-			
+
+				case ID_DISCONNECTION_NOTIFICATION:
+					// Connection lost normally
+					printf("ID_DISCONNECTION_NOTIFICATION from %s\n", p->systemAddress.ToString(true));;
+					break;
+
+				case ID_INCOMPATIBLE_PROTOCOL_VERSION:
+					printf("ID_INCOMPATIBLE_PROTOCOL_VERSION\n");
+					break;
+
+				case ID_CONNECTED_PING:
+				case ID_UNCONNECTED_PING:
+					printf("Ping from %s\n", p->systemAddress.ToString(true));
+					break;
+
+				case ID_CONNECTION_LOST:
+					// Couldn't deliver a reliable packet - i.e. the other system was abnormally terminated
+					printf("ID_CONNECTION_LOST from %s\n", p->systemAddress.ToString(true));;
+					break;			
+
 				default:
-					cerr << "Unused packet id " << type << endl;
+					// just assume it's message data
+					cout << p->data << endl;
 			}
 		}
 	}
@@ -86,8 +115,9 @@ public:
 	{
 		printf("Connection from %s with GUID %s\n", p->systemAddress.ToString(true), p->guid.ToString());
 
-		// Record the player ID of the client
-		auto clientID = p->systemAddress; 
+		_peers[++_nextPeerId] = p->systemAddress;
+
+		connected = true;
 
 		printf("Remote internal IDs:\n");
 		for (int index=0; index < MAXIMUM_NUMBER_OF_INTERNAL_IDS; index++)
@@ -115,6 +145,19 @@ public:
 		}
 		else
 			return (unsigned char) p->data[0];
+	}
+
+	int SendText(const char *text)
+	{
+		// WTF why +1 on strlen
+		int messageId = _peer->Send(text, strlen(text) + 1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+		if (messageId == 0)
+		{
+			cerr << "Failed to send " << text << endl;
+			return 0;
+		}
+
+		return messageId;
 	}
 
 	void Shutdown()
@@ -149,6 +192,14 @@ int main(int argc, char **argv)
 	while (true)
 	{
 		peer.Step();
+
+		if (peer.connected)
+		{
+			char buffer[1024];
+			cin.getline(buffer, sizeof(buffer));
+			peer.SendText(buffer);
+			continue;
+		}
 
 		if (kbhit())
 		{
