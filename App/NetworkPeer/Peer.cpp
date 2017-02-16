@@ -9,8 +9,8 @@ using namespace std;
 
 struct Peer
 {
-	const static int InPort = 9999;
-	const static int OutPort = 8888;
+	// const static int InPort = 9999;
+	// const static int OutPort = 8888;
 	const static int MaxConnections = 4;
 
 	typedef unsigned char PacketType;
@@ -21,7 +21,7 @@ private:
 	DataStructures::List<RakNet::RakNetSocket2 *> _sockets;
 
 public:
-	Peer()
+	Peer(int listenPort)
 	{
 		_peer = RakNet::RakPeerInterface::GetInstance();
 		
@@ -29,17 +29,19 @@ public:
 		_peer->DisableSecurity();
 
 		// attempt both IPV4 and V6
-		_socketDescriptors[0].port = InPort;
+		_socketDescriptors[0].port = listenPort;
 		_socketDescriptors[0].socketFamily = AF_INET;
-		_socketDescriptors[1].port = InPort;
+		_socketDescriptors[1].port = listenPort;
 		_socketDescriptors[1].socketFamily = AF_INET6;
 	}
 
 	bool Start()
 	{
+		// TODO: try IP6 first. this only attempts IPV4
+		// confusingly, the last parameter to Startup
+		// is 1-based: so this listens on IP4. changing
+		// the 3rd parameter to 2 attempts ip6...
 		int startResult = _peer->Startup(MaxConnections, _socketDescriptors, 1);
-
-		cout << startResult << endl;
 
 		bool started = startResult == RakNet::RAKNET_STARTED;
 		
@@ -124,9 +126,20 @@ public:
 
 int main(int argc, char **argv)
 {
-	cout << "Peer" << endl;
+	if (argc != 4)
+	{
+		cerr << "usage: " << argv[0] << " remote_url remote_port local_port" << endl;
 
-	Peer peer;
+		return -1;
+	}
+
+	const char *remoteUrl = argv[1];
+	int remotePort = atoi(argv[2]);
+	int localPort = atoi(argv[3]);
+
+	Peer peer(localPort);
+	cout << "Listening on " << localPort << endl;
+
 	if (!peer.Start())
 	{
 		cerr << "Failed to start peer" << endl;
@@ -139,7 +152,7 @@ int main(int argc, char **argv)
 
 		if (kbhit())
 		{
-			peer.Connect("127.0.0.1", Peer::InPort);
+			peer.Connect(remoteUrl, remotePort);
 		}
 	}
 
