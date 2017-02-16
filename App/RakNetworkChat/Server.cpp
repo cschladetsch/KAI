@@ -143,6 +143,8 @@ int main(void)
 	// This sleep keeps RakNet responsive
 	RakSleep(30);
 
+	// printf("1\n");
+
 	if (kbhit())
 	{
 		// Notice what is not here: something to keep our network running.  It's
