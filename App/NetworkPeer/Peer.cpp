@@ -111,14 +111,30 @@ public:
 		}
 	}
 
+	// make a dual connection with the sender of packet
+	void HandShake(RakNet::Packet *p)
+	{
+		
+		// Connect(p->systemAddress.ipAddress)
+		// RequestPort(...)
+		// DisconnectOriginal(...)
+		// ReconnectAsRealPeer(...)
+
+		//_peers[++_nextPeerId] = p->systemAddress;
+
+		CompleteConnection(p);
+	}
+
 	void NewConnection(RakNet::Packet *p)
 	{
 		printf("Connection from %s with GUID %s\n", p->systemAddress.ToString(true), p->guid.ToString());
 
-		_peers[++_nextPeerId] = p->systemAddress;
+		HandShake(p);
 
-		connected = true;
+	}
 
+	void CompleteConnnection(RakNet::Packet *p)
+	{
 		printf("Remote internal IDs:\n");
 		for (int index=0; index < MAXIMUM_NUMBER_OF_INTERNAL_IDS; index++)
 		{
