@@ -6,6 +6,6 @@ The general idea is that you use cmake:
 
 Best wishes.
 
-There is a GUI-based comand interpreter for the Pi and Rho languages as well, located in App/Window folder. This has only ever worked on Ubunutu and similar systems.
+There is a GUI-based comand interpreter for the Pi and Rho languages as well, located in App/Window folder. This has only ever worked on Ubuntu and similar systems.
 
 
