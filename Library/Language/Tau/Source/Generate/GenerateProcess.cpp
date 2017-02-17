@@ -3,8 +3,13 @@
 
 using namespace std;
 
-TAU_BEGIN
+KAI_BEGIN
 
+string ReadTextFile(const char *fileName);
+
+KAI_END
+
+TAU_BEGIN
 
 namespace Generate
 {
