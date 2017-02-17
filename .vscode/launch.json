@@ -34,7 +34,7 @@
 			"program": "${workspaceRoot}/Bin/KaiTests",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}",
+			"cwd": "${workspaceRoot}/Bin",
 			"environment": [],
 			"externalConsole": true,
 			// "internalConsoleOptions": ""
