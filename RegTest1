@@ -1,6 +1,0 @@
-digraph G
-{
-1 [shape=box label="[void]" color=grey]
-1 -> 2[weight=10]
-2 [shape=box label="list[kai::LiAì¿_ÿ]" color=green]
-}
