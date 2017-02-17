@@ -1,5 +1,8 @@
 #include "./Common.h"
 #include <KAI/Core/File.h>
+#include <KAI/Language/Tau/TauParser.h>
+#include <KAI/Language/Tau/Generate/Proxy.h>
+#include <KAI/Language/Tau/Generate/Agent.h>
 
 using namespace std;
 
@@ -15,6 +18,7 @@ protected:
 
 TEST_F(TestTau, GenerateSimpleProxy0)
 {
-	auto contents = ReadTextFile("Tau/t0.tau");
-	cout << contents << endl;
+	auto inFileName = "Tau/t0.tau";
+	auto outFileName = "Tau/t0.out.h";
+	tau::Generate::Proxy(inFileName, outFileName);
 }
