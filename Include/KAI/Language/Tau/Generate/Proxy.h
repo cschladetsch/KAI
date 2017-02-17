@@ -10,7 +10,9 @@ namespace Generate
 	{
 		using GenerateProcess::Node;
 
-		Proxy(const char *inputFile, const char *outputFile);
+		 Proxy(const char *inputFile, const char *outputFile);
+		// Proxy();
+		// bool Generate(const char *inputFile, const char *outputFile);
 
 	protected:
 		virtual string Prepend() const override;
