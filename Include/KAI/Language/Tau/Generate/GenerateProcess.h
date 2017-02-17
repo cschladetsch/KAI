@@ -49,7 +49,5 @@ namespace Generate
 	};
 }
 
-std::string ReadTextFile(const char *fileName);
-
 TAU_END
 
