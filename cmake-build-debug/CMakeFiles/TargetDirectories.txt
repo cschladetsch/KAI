@@ -1,0 +1,10 @@
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Console.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/PiLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/CommonLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/KaiTests.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Network.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Executor.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/RhoLang.dir
+/Users/christian/Local/KAI/cmake-build-debug/CMakeFiles/Core.dir
