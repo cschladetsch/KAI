@@ -1,4 +1,4 @@
-#include "Test/Common.h"
+#include "../Common.h"
 #include "KAI/Language/Pi/Pi.h"
 
 #include <algorithm>
