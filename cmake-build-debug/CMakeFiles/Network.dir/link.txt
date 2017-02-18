@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc ../lib/libNetwork.a  CMakeFiles/Network.dir/Library/Network/Source/AgentBase.cpp.o CMakeFiles/Network.dir/Library/Network/Source/Connection.cpp.o CMakeFiles/Network.dir/Library/Network/Source/Node.cpp.o CMakeFiles/Network.dir/Library/Network/Source/ProxyBase.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib ../lib/libNetwork.a
