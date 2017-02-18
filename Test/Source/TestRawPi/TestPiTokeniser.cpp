@@ -1,8 +1,9 @@
-#include "../Common.h"
-#include "KAI/Language/Pi/Pi.h"
-
 #include <algorithm>
 #include <array>
+
+#include "KAI/Language/Pi/Pi.h"
+
+#include "TestCommon.h"
 
 using namespace kai;
 using namespace std;

@@ -11,7 +11,7 @@
 KAI_BEGIN
 
 // TODO: Rename to BaseTestClass once refactoring works with VSCode again :P
-class KAITestClass : public ::testing::Test
+class TestCommon : public ::testing::Test
 {
 protected:
 	// TODO: could use PIMPL here, but compile times don't seem to matter for tests so far

@@ -1,8 +1,8 @@
-#include "./Common.h"
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 
-class TestMap : public KAITestClass
+class TestMap : public TestCommon
 {
 protected:
 	void AddrequiredClasses() override
