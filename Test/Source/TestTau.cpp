@@ -19,7 +19,7 @@ protected:
 TEST_F(TestTau, GenerateSimpleProxy0)
 {
 	auto inFileName = "Tau/t0.tau";
-	auto outFileName = "Tau/t0.out.h";
+	auto outFileName = "Tau/t0.proxy.h";
 	tau::Generate::Proxy proxy(inFileName, outFileName);
 	ASSERT_FALSE(proxy.Failed) << proxy.Error;
 }
