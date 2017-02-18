@@ -1,4 +1,5 @@
 # Language
+
 This library defines the thee key languages used by the system:
 * Pi: A post-fix language inspired by forth.
 * Rho: An in-fix language inspired by Python. Complies to Pi.
@@ -6,13 +7,16 @@ This library defines the thee key languages used by the system:
 C++ code for both consumers and agents of a given network entity.
 
 ## Pi
+
 Pi is a simple post-fix language with two stacks: A datatack and a 
 context stack.
 
 ## Rho
+
 Rho is a simple in-fix dynamically typed language.
 
 ## Tau
+
 Tau is an Interface Definition Language (IDL). It is used to generate
 both consumer (Proxy) and producer (Agent) code.
 
@@ -20,6 +24,7 @@ A single Network entity begins with a definition in the Tau language.
 From there, Proxies are used to access Agents.
 
 # Summary
+
 There are currently three different language systems used by the system:
 - Pi
 - Rho
