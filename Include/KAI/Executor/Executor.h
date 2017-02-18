@@ -19,18 +19,8 @@ class Executor;
 
 KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected); 
 
-class Executor : public Reflected
+struct Executor : Reflected
 {
-	Value<Continuation> _continuation;
-	Value<Stack> _context;
-	Value<Stack> _data;
-	Object _compiler;
-	bool _break;
-	Tree *_tree;
-	int _traceLevel;
-	int _stepNumber;
-
-public:
 	void Create();
 	bool Destroy();
 
@@ -137,6 +127,16 @@ private:
 	void ConditionalContextSwitch(Operation::Type);
 	Value<Continuation> NewContinuation(Value<Continuation> P);
 	Object TryResolve(Label const &label) const;
+
+private:
+	Value<Continuation> _continuation;
+	Value<Stack> _context;
+	Value<Stack> _data;
+	Object _compiler;
+	bool _break;
+	Tree *_tree;
+	int _traceLevel;
+	int _stepNumber;
 };
 
 StringStream &operator<<(StringStream &, Executor const &);

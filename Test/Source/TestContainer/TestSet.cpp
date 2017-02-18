@@ -1,9 +1,10 @@
-#include "./Common.h"
 #include <KAI/Core/BuiltinTypes/Set.h>
+
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 
-class TestSet : public KAITestClass
+class TestSet : public TestCommon
 {
 protected:
 	void AddrequiredClasses() override

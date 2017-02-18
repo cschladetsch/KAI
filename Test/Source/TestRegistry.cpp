@@ -1,6 +1,7 @@
-#include "./Common.h"
 #include <KAI/Core/Tree.h>
 #include <KAI/Core/DotGraph.h>
+
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 

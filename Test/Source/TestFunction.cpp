@@ -1,7 +1,8 @@
-#include "./Common.h"
 #include <KAI/Core/FunctionBase.h>
 #include <KAI/Core/Object/Class.h>
 #include "KAI/Core/Detail/Function.h"
+
+#include "TestCommon.h"
 
 using namespace kai;
 using namespace std;

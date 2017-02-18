@@ -1,14 +1,15 @@
-#include "./Common.h"
 #include <KAI/Core/File.h>
 #include <KAI/Language/Tau/TauParser.h>
 #include <KAI/Language/Tau/Generate/Proxy.h>
 #include <KAI/Language/Tau/Generate/Agent.h>
 
+#include "TestCommon.h"
+
 using namespace std;
 
 USING_NAMESPACE_KAI
 
-class TestTau : public KAITestClass
+class TestTau : public TestCommon
 {
 protected:
 	void AddrequiredClasses() override
