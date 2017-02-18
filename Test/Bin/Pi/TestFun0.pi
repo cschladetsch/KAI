@@ -1,0 +1,12 @@
+# f0, f1, and f2 have been added already by the test
+# case
+
+# f0 should just return 42
+f0 & 42 == assert
+
+# f1 should add 1 to what is passed to it
+1 f1 & 2 == assert
+
+# f2 should multiply two arguments
+2 3 f2 6 == assert
+
