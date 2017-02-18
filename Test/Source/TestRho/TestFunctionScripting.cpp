@@ -60,11 +60,11 @@ TEST(TestFunctionScripting, Test)
 			KAI_TRACE_1(val);
 		}
 
-		//// show results and
-		//ASSERT_TRUE(stack_A->Empty());
-		//ASSERT_TRUE(stack_B->Empty());
-		//EXPECT_EQ(ConstDeref<String>(stack_C->Pop()), "barfoo");
-		//EXPECT_EQ(ConstDeref<int>(stack_D->Pop()), 345);
+		// // show results and
+		// ASSERT_TRUE(stack_A->Empty());
+		// ASSERT_TRUE(stack_B->Empty());
+		// EXPECT_EQ(ConstDeref<String>(stack_C->Pop()), "barfoo");
+		// EXPECT_EQ(ConstDeref<int>(stack_D->Pop()), 345);
 	}
 	catch (kai::Exception::Base &e)
 	{
