@@ -2,6 +2,30 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "TestTau",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceRoot}/Test/Bin/KaiTests",
+			"args": ["--gtest_filter=TestTau*"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceRoot}/Test/Bin/",
+			"environment": [],
+			"externalConsole": true,
+			// "internalConsoleOptions": ""
+			"linux": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			},
+			"osx": {
+				"MIMode": "lldb"
+			}
+		},		{
 			"name": "Peer",
 			"type": "cppdbg",
 			"request": "launch",

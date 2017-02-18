@@ -20,5 +20,6 @@ TEST_F(TestTau, GenerateSimpleProxy0)
 {
 	auto inFileName = "Tau/t0.tau";
 	auto outFileName = "Tau/t0.out.h";
-	tau::Generate::Proxy(inFileName, outFileName);
+	tau::Generate::Proxy proxy(inFileName, outFileName);
+	ASSERT_FALSE(proxy.Failed) << proxy.Error;
 }
