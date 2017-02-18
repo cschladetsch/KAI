@@ -1,3 +1,3 @@
 # Library
 
-These are the libraries of the KAI system.
+These are the source codes for the libraries of the KAI system.
