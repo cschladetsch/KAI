@@ -11,6 +11,7 @@ The library also offers two scripting languages: ***Pi***, which is based on RPN
 There is also an Interface Definition Language (IDL) called ***Tau***, which is used to generate code for proxies and agents in the system.
 
 # Networking
+
 The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
 
 * Registry -> Object (local)
@@ -75,11 +76,13 @@ The **Rho** example is more familiar. Define a function that takes one argument 
 In both cases, the data stack will be left with the single value 'int 3'. Rho gets translated to Pi code on the fly, so when you 'compile' the Rho code above you will get something very similiar to the pi code above that.
 
 ## Tau
+
 **Tau** is the language used to describe objects that are visible across a network. It all works, but I don't have documentation for it yet. Basically, Tau takes a foo.tau file, and generates foo.agent.cpp/h and foo.proxy.cpp/h. If you want to host a Foo, you implement what's required in the foo.agent.cpp file, else if you want to use a Foo from somewhere else, you just use kai::Proxy<Foo>.
 
 This is all clear as mud, I realise. But it does all work, and once I finish the libraries I will work on real documentation.
 
 ### Continuations
+
 Also known as co-routines or fibres, are natively supported in both Pi and Rho languages.
 
 Continuations are important because they allow you to yield the current command sequence to another without having to actually use threads.
@@ -87,6 +90,7 @@ Continuations are important because they allow you to yield the current command 
 Both Pi and Rho support continuations natively.
 
 ## Conclusion
+
 This library will be useful to those that want to expose C++ types and instances to the runtime, and across the network.
 
 It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
@@ -120,6 +124,7 @@ It's hard to give examples of an engine without applications. This is an 'engine
 The best example is the REPL Window, provided. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
 
 ## Unit Tests
+
 See the [Unit Tests](https://github.com/cschladetsch/KAI/tree/master/Test/Source) here. They are of course not comprehensive, but they give an idea.
 
 They are what I am working on the most at the moment.
