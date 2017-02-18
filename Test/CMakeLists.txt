@@ -1,7 +1,7 @@
+# Build all tests for the KAI framework
+
 cmake_minimum_required(VERSION 3.4)
-
 project(KaiTests)
-
 set(TEST_ROOT ${KAI_HOME}/Test)
 set(TEST_SRC_ROOT ${TEST_ROOT}/Source/*.cpp)
 file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT})
