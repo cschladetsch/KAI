@@ -1,0 +1,36 @@
+
+fun path1()
+	'/a = 1+2
+	assert(/a == 3)
+
+fun path2()
+	'a = 4
+	assert(a == 4)
+	assert(!same_object(a, /a))
+	assert(same_object(locate('a), a))
+
+fun path3()
+	'a = 6
+	assert(locate('./a))
+	assert(locate('a))
+	assert('/a == 3)
+
+fun path4()
+	'z = 'b
+	z = 5
+	'c = 2
+	fun path5()
+		assert(b == 5)
+		'c = 6
+		'd = 7
+		assert(d == 7)
+		assert(c == 6)
+	path5()
+	assert(!locate('d))
+	assert(locate('b))
+
+fun main()
+	p = "path"
+	for n : 1..4
+		`p + str(n)`()
+

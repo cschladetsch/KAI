@@ -1,0 +1,61 @@
+# Pi code to test the Pi parser and Executor
+
+# add 1 to stak, drop it, and assert stack is equal
+1 drop depth 0 == assert
+
+# adding two numbers
+1 1 +
+2 == assert
+
+# comparing two numbers
+1 2 > false assert
+
+1 2 > false not assert
+
+# using floats
+1.2 1.1 > assert
+
+# strings
+"foo" "bar" +
+"foobar" == assert
+
+# stack depth
+1 2 3 depth 3 == assert
+
+# clear the stack
+clear 0 depth == assert
+
+# swap the top two elements on the stack
+2 1 swap - -1 == assert
+
+# make a vector from elements on the stack
+1 2 3 depth >vec [ 1 2 3 ] == assert
+
+# storing values
+3 'a #
+
+a 2 + 5 == assert
+a 3 - 0 == assert
+
+depth 0 == assert
+
+5 'b #
+a b + 3 5 + == assert
+
+# test pick - add the nth last value onto the stack
+1 2 3 0 pick depth >vec [1 2 3 3 ] == assert
+
+# make a vector, then expand it onto stack, then add
+# the three numbers togethers should give 6
+[1 2 3] vec> + + 6 == assert
+
+["foo" 1 "bar" 2] 'c #
+c vec>
+# now the stack is:
+# "foo" 
+# 1
+# "bar"
+# 2
+
+rot + 3 == assert
+drop + "foobar" == assert 
