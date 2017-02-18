@@ -33,8 +33,8 @@ This is a common virtual machine that uses two stacks: one for data and one for 
 There are currently three languages in the KAI system:
 
 1. Pi. Post-fix, forth-like.
-2. Rho. In-fix, python-like.
-3. Tau. An IDL that generates C++ code for C++ agents and proxies.
+1. Rho. In-fix, python-like.
+1. Tau. An IDL that generates C++ code for C++ agents and proxies.
 
 The languages are all located in <KAI/Lang/Lang.h> for each of Pi, Rho and Tau for _Lang_.
 
