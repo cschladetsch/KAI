@@ -1,0 +1,21 @@
+
+fun fib(n)
+	if n <= 0
+		return 0
+	if n == 1
+		return 1
+	return n + fib(n - 1)!
+
+fun testFib()
+	assert(fib(0) == 0)
+	assert(fib(1) == 1)
+	assert(fib(2) == 2+1)
+	assert(fib(3) == 3+2+1)
+	assert(fib(4) == 4+3+2+1)
+	return true
+
+fun main()
+	assert(testFib())
+
+	
+

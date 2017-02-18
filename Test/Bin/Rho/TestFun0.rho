@@ -1,0 +1,51 @@
+// this is a comment
+
+num = 42				// a number
+msg = "Hello, world"		// a string
+
+fun hello()
+	Print(msg)
+	Print(num)
+
+fun mul(a, b)
+	return a*b
+
+fun fact(n)
+	if n == 0 || n == 1
+		return 1
+	return mul(n, fact(n - 1))
+
+fun outer()
+	fun inner(a)
+		return a + 2
+	s = [1,2,3]
+	t = []
+	foreach e in s
+		t += inner(e)
+	Assert(t == [3,4,5])
+
+fun useGen()
+	fun gen(n)
+		while n > 0
+			yield --n
+	r = []
+	foreach g in gen(3)
+		r += g
+	assert r == [2,1,0]
+	
+fun a(n)
+	Print(n)
+	if n-- > 0
+		b(n-1)...	// the ... syntax means to not push current context before calling new
+
+fun b(n)
+	a(n)...
+	Print("Never reached")
+
+fun main()
+	hello()
+	Assert(fact(3) == 3*2*1)
+	useGen()
+	b(3)		
+
+
