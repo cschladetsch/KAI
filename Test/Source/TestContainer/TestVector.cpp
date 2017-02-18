@@ -1,13 +1,11 @@
-#include "./Common.h"
-
 // WHY THE FUCK did I call this an Array
 #include <KAI/Core/BuiltinTypes/Array.h>
 
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 
-
-class TestArray : public KAITestClass
+class TestArray : public TestCommon
 {
 protected:
 	void AddrequiredClasses() override

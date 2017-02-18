@@ -1,8 +1,9 @@
-#include "./Common.h"
 #include "KAI/Core/Tree.h"
 #include "KAI/Core/DotGraph.h"
 #include "KAI/Core/Object/ClassBuilder.h"
 #include "KAI/Core/BuiltinTypes.h"
+
+#include "TestCommon.h"
 
 using namespace kai;
 using namespace std;

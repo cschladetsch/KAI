@@ -1,8 +1,8 @@
-#include "./Common.h"
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 
-struct TestString : KAITestClass
+struct TestString : TestCommon
 {
 protected:
 	void AddrequiredClasses() override

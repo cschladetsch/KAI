@@ -1,5 +1,6 @@
 #include <KAI/Core/Detail/Function.h>
-#include "./TestLangCommon.h"
+
+#include "TestLangCommon.h"
 
 using namespace kai;
 using namespace std;

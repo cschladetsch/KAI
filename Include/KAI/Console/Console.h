@@ -3,7 +3,7 @@
 #include <memory>
 
 #include <KAI/Core/Memory/IAllocator.h>
-#include "KAI/Core/Type.h"
+#include <KAI/Core/Type.h>
 #include <KAI/Core/Object/Reflected.h>
 #include <KAI/Core/Object/Object.h>
 #include <KAI/Core/BuiltinTypes/String.h>
@@ -15,10 +15,10 @@
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Executor.h>
 
-#include "KAI/Language/Pi/Pi.h"
-#include "KAI/Language/Rho/Rho.h"
+#include <KAI/Language/Pi/Pi.h>
+#include <KAI/Language/Rho/Rho.h>
 
-#include "KAI/Console/ConsoleColor.h"
+#include <KAI/Console/ConsoleColor.h>
 
 KAI_BEGIN
 
