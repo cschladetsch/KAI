@@ -1,8 +1,8 @@
-#include "./Common.h"
+#include "TestCommon.h"
 
 KAI_BEGIN
 
-void KAITestClass::SetUp()
+void TestCommon::SetUp()
 {
 	reg.AddClass<void>();
 	reg.AddClass<bool>();
@@ -19,11 +19,11 @@ void KAITestClass::SetUp()
 	AddrequiredClasses();
 }
 
-void KAITestClass::AddrequiredClasses() 
+void TestCommon::AddrequiredClasses() 
 {
 }
 
-void KAITestClass::TearDown()
+void TestCommon::TearDown()
 {
 	reg.Clear();
 }

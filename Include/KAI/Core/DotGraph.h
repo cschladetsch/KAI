@@ -2,6 +2,10 @@
 
 #include <KAI/Core/Base.h>
 
+// TODO: remove this and have DotGraph use Pimpl
+// not very important as few things include this file.
+#include <set>
+
 KAI_BEGIN
 
 // Generates GraphViz script showing the depedancy graph given an object root

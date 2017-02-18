@@ -1,7 +1,9 @@
-#include "Common.h"
-#include "KAI/Core/BuiltinTypes/List.h"
+#include <KAI/Core/BuiltinTypes/List.h>
 
-using namespace kai;
+#include "TestCommon.h"
+
+USING_NAMESPACE_KAI
+
 using namespace std;
 
 // this is a C++ struct that we will reflect to access at runtime via scripting

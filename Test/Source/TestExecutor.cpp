@@ -1,8 +1,8 @@
-#include "./Common.h"
+#include "TestCommon.h"
 
 USING_NAMESPACE_KAI
 
-struct TestExecutor : KAITestClass 
+struct TestExecutor : TestCommon
 {
 };
 
