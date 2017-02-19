@@ -5,7 +5,7 @@
 #include "wx/wx.h"
 #include "wx/sizer.h"
 
-#undef wxUSE_MENUS
+#define wxUSE_MENUS 1
 
 // ----------------------------------------------------------------------------
 // private classes
