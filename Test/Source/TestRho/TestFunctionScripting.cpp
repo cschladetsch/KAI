@@ -1,6 +1,6 @@
 #include <KAI/Core/Detail/Function.h>
 
-#include "TestLangCommon.h"
+#include "MyTestStruct.h"
 
 USING_NAMESPACE_KAI
 
@@ -22,18 +22,16 @@ void Function_1(int )
 String Function_2(int n, int f, String p)
 {
 	funCalled[2] = true;
-	KAI_TRACE_3(n, f, p);
+	// KAI_TRACE_3(n, f, p);
 	return p + "foo";
 }
 
-// TODO: this used to pass a custom type of MyStruct which has been lost...
-//
-// Object Function_3(Object object)
-// {
-// 	funCalled[3] = true;
-// 	KAI_TRACE_1(object);
-// 	return object["num"];
-// }
+Object Function_3(Object object)
+{
+	funCalled[3] = true;
+	KAI_TRACE_1(object);
+	return object["num"];
+}
 
 TEST(TestFunctionScripting, Test)
 {
@@ -42,25 +40,33 @@ TEST(TestFunctionScripting, Test)
 		Console console;
 		console.SetLanguage(Language::Rho);
 		Object root = console.GetRoot();
-		// Process::trace = 10;
+		Registry &reg = console.GetRegistry();
+		MyStruct::Register(reg);
 
+		Pointer<MyStruct> mystruct = reg.New<MyStruct>();
+		mystruct->num = 345;
+		mystruct->string = "hello world";
+
+		console.GetTree().AddSearchPath(root);//Pathname("/"));
+
+		// Process::trace = 10;
+		root["mystruct"] = mystruct;
 		AddFunction(root, Function_0, Label("Function0"));
 		AddFunction(root, Function_1, Label("Function1"));
 		AddFunction(root, Function_2, Label("Function2"));
-		// AddFunction(root, Function_3, Label("Function3"));
-
-		console.GetExecutor()->GetTree()->AddSearchPath(root);
+		AddFunction(root, Function_3, Label("Function3"));
 
 		console.Execute("Function0()");
 		console.Execute("Function1(42)");
 		console.Execute("Function2(123, 3, \"bar\")");
-		// console.Execute("Function3(mystruct)");
+		console.Execute("Function3(mystruct)");
 
 		for (int n = 0; n < 2; ++n)
 			ASSERT_TRUE(funCalled[n]);
 
 		Value<Stack> stack = console.GetExecutor()->GetDataStack();
-		EXPECT_EQ(stack->Size(), 1);
+		EXPECT_EQ(stack->Size(), 2);
+		EXPECT_EQ(ConstDeref<int>(stack->Pop()), 345);
 		EXPECT_EQ(ConstDeref<String>(stack->Pop()), "barfoo");
 		EXPECT_EQ(stack->Size(), 0);
 	}
