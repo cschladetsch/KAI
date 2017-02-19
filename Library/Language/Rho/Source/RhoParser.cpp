@@ -377,8 +377,11 @@ bool RhoParser::Factor()
 	while (Try(TokenType::Lookup))
 		PushConsume();
 
-	if (Try(TokenType::Quote) || Try(TokenType::Sep) || Try(TokenType::Ident))
-		return ParsePathname();
+	// TODO: allow for paths for identitifers like /foo/bar(1,2,3) (?)
+	// auto quoted = Try(TokenType::Quote);
+	// if (quoted || Try(TokenType::Sep) || Try(TokenType::Ident))
+	if (Try(TokenType::Ident))
+		return ParseFactorIdent();
 
 	return false;
 }

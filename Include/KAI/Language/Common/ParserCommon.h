@@ -153,9 +153,8 @@ protected:
 	{
 		if (!Has())
 		{
-			Fail(Lexer::CreateErrorMessage(TokenNode(), "Expected something"));
+			Fail("Expected something");
 			KAI_THROW_1(LogicError, "Expected something");
-			//return TokenNode::None;
 		}
 
 		return tokens[current];
