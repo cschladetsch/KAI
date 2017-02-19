@@ -1,0 +1,26 @@
+{
+    "name": "pi",
+    "displayName": "pi",
+    "description": "PiScript",
+    "version": "0.0.1",
+    "publisher": "Christian",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "pi",
+            "aliases": ["pi", "pi"],
+            "extensions": ["pi"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "pi",
+            "scopeName": "scope.pi",
+            "path": "./syntaxes/pi.tmLanguage.json"
+        }]
+    }
+}
