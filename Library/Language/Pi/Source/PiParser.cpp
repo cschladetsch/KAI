@@ -86,13 +86,19 @@ bool PiParser::NextSingle(AstNodePtr root)
 bool PiParser::ParseArray(AstNodePtr root)
 {
 	auto node = NewNode(PiAstNodes::Array);
-	while (!Failed && !Try(PiTokens::CloseSquareBracket))
+	while (!Empty() && !Failed && !Try(PiTokens::CloseSquareBracket))
 	{
 		if (!NextSingle(node))
 		{
 			Fail("Malformed Array");
 			return false;
 		}
+	}
+
+	if (Empty())
+	{
+		Fail("Malformed array");
+		return false;
 	}
 
 	if (Failed)
