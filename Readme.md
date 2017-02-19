@@ -1,6 +1,6 @@
 # KAI
 
-KAI provides a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection. 
+KAI provides a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection.
 
 You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
@@ -41,6 +41,7 @@ So then I refactored all the language systems to use one generic language system
 But it's all for a simple and single purpose: to allow for natural and fluid networking without a client/server model. I make progress over time, and so it continues. Here's a dated overview of what I've got so far:
 
 ## Executor
+
 A general-purpose stack-based virtual machine. Think of it like a JVM or Dalvik. The question then begs: why not use either of those. Well, I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system.
 
 ## PI
@@ -108,6 +109,7 @@ KAI and all of its libraries and applications are completely cross-platform and 
 Currently the networking is supplied by RakNet, but no RakNet symbols are exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
 
 # Installing
+
 You will need CMake version 3.4 or greater.
 
 From top-level do:
@@ -119,6 +121,7 @@ For the basics, no external libraries are required.
 For the Window app to build, you will need [FLTK](www.fltk.org) and all of its' requirements as well.
 
 # Examples
+
 It's hard to give examples of an engine without applications. This is an 'engine' that attempts to make C++ more dynamic and scriptable. It is also the basis for a new network model that uses Proxies and Agents to make networking as simple as async method calls.
 
 The best example is the REPL Window, provided. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
