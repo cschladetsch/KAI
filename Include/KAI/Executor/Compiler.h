@@ -32,7 +32,7 @@ public:
 		case Language::None:
 			return Object();
 		case Language::Pi:
-			return Compile<PiTranslator>(text, st);
+			return Compile<PiTranslator>(text, st)->GetCode()->At(0);	// Pi wraps output in a continuation. TODO: fix
 		case Language::Rho:
 			return Compile<RhoTranslator>(text, st);
 		case Language::Tau:
@@ -52,7 +52,7 @@ public:
 		auto result = p->Translate(text.c_str(), st);
 		if (p->Failed)
 		{
-			KAI_TRACE_ERROR_2(p->Error, st);
+			KAI_TRACE_ERROR_1(p->Error);//, st);
 			return Object();
 		}
 

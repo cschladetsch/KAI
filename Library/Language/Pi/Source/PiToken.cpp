@@ -140,7 +140,7 @@ const char *PiTokenEnumType::ToString(Enum t)
 std::ostream &operator<<(std::ostream &out, PiToken const &node)
 {
 	if (node.type == PiTokenEnumType::None)
-		return out << "<>";
+		return out << "[none]";
 
 	switch (node.type)
 	{
