@@ -10,8 +10,7 @@ struct PiTokenEnumType
 {
 	enum Enum
 	{
-		None,
-		Null = None,
+		None = 0,
 		Whitespace,
 		Int,
 		Float,

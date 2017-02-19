@@ -115,6 +115,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		AppendOp(Operation::Multiply);
 		break;
 
+	case PiTokenEnumType::Divide:
+		AppendOp(Operation::Divide);
+		break;
+
 	case PiTokenEnumType::Equiv:
 		AppendOp(Operation::Equiv);
 		break;
@@ -150,7 +154,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		break;
 
 	default:
-		KAI_TRACE_1(tok.type);
+		KAI_TRACE_1(tok.type) << " Not dealt with: " << tok.ToString();
 		KAI_NOT_IMPLEMENTED();
 		break;
 	}
