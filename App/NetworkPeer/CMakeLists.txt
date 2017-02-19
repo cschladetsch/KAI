@@ -6,7 +6,6 @@ set(SOURCE_ROOT ${KAI_HOME}/App/NetworkPeer/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
 link_libraries(Executor Core PiLang RhoLang RakNetLibStatic)
-message(STATUS sorces: ${SOURCE_FILES} ---)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 add_executable(Peer ${SOURCE_FILES})
