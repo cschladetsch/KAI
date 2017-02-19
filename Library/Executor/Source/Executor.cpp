@@ -1082,25 +1082,25 @@ const char *ToString(Language l)
 			Push(A);
 			Push(B);
 		}
-			break;
+		break;
 
 		case Operation::Dup:
-		{
-			Object Q = Pop();
-			Push(Q);
-			Push(Q.Duplicate());
-		}
+			{
+				Object Q = Pop();
+				Push(Q);
+				Push(Q.Duplicate());
+			}
 			break;
 
 		case Operation::Rot:
-		{
-			Object A = Pop();
-			Object B = Pop();
-			Object C = Pop();
-			Push(B);
-			Push(A);
-			Push(C);
-		}
+			{
+				Object A = Pop();
+				Object B = Pop();
+				Object C = Pop();
+				Push(B);
+				Push(A);
+				Push(C);
+			}
 			break;
 
 		case Operation::Clear:
@@ -1117,7 +1117,7 @@ const char *ToString(Language l)
 			Object A = Pop();
 			Push(New(Pair(A, B)));
 		}
-			break;
+		break;
 
 		case Operation::ToArray:
 			ToArray();
@@ -1144,52 +1144,52 @@ const char *ToString(Language l)
 			break;
 
 		case Operation::ChangeScope:
-		{
-			Object id = Pop();
-			if (GetTypeNumber(id) == Type::Number::Label)
-				_tree->SetScope(GetStorageBase(_tree->GetScope()).Get(ConstDeref<Label>(id)));
-			else
-				_tree->SetScope(ConstDeref<Pathname>(id));
-		}
-			break;
-
-		case Operation::PlusEquals:
-		{
-			Object arg = Pop();
-			Object from = Pop();
-			if (arg.IsType<float>() && from.IsType<float>())
 			{
-				Deref<float>(from) += ConstDeref<float>(arg);
-				break;
+				Object id = Pop();
+				if (GetTypeNumber(id) == Type::Number::Label)
+					_tree->SetScope(GetStorageBase(_tree->GetScope()).Get(ConstDeref<Label>(id)));
+				else
+					_tree->SetScope(ConstDeref<Pathname>(id));
 			}
+				break;
 
-			if (arg.IsType<int>() && from.IsType<int>())
+			case Operation::PlusEquals:
 			{
-				Deref<int>(from) += ConstDeref<int>(arg);
-				break;
-			}
+				Object arg = Pop();
+				Object from = Pop();
+				if (arg.IsType<float>() && from.IsType<float>())
+				{
+					Deref<float>(from) += ConstDeref<float>(arg);
+					break;
+				}
 
-			Object result = from.GetClass()->Plus(from, arg);
-			from.GetClass()->Assign(from, result);
-		}
+				if (arg.IsType<int>() && from.IsType<int>())
+				{
+					Deref<int>(from) += ConstDeref<int>(arg);
+					break;
+				}
+
+				Object result = from.GetClass()->Plus(from, arg);
+				from.GetClass()->Assign(from, result);
+			}
 			break;
 
 		case Operation::MinusEquals:
-		{
-			Object arg = Pop();
-			Object from = Pop();
-			Object result = from.GetClass()->Minus(from, arg);
-			from.GetClass()->Assign(from, result);
-		}
+			{
+				Object arg = Pop();
+				Object from = Pop();
+				Object result = from.GetClass()->Minus(from, arg);
+				from.GetClass()->Assign(from, result);
+			}
 			break;
 
 		case Operation::MulEquals:
-		{
-			Object arg = Pop();
-			Object from = Pop();
-			Object result = from.GetClass()->Multiply(from, arg);
-			from.GetClass()->Assign(from, result);
-		}
+			{
+				Object arg = Pop();
+				Object from = Pop();
+				Object result = from.GetClass()->Multiply(from, arg);
+				from.GetClass()->Assign(from, result);
+			}
 			break;
 
 		case Operation::DivEquals:
@@ -1199,18 +1199,18 @@ const char *ToString(Language l)
 			Object result = from.GetClass()->Divide(from, arg);
 			from.GetClass()->Assign(from, result);
 		}
-			break;
+		break;
 
 		case Operation::ModEquals:
 			KAI_NOT_IMPLEMENTED();
 			break;
 
 		case Operation::Plus:
-		{
-			Object B = ResolvePop();
-			Object A = ResolvePop();
-			Push(*A.GetClass()->Plus(GetStorageBase(A), GetStorageBase(B)));
-		}
+			{
+				Object B = ResolvePop();
+				Object A = ResolvePop();
+				Push(*A.GetClass()->Plus(GetStorageBase(A), GetStorageBase(B)));
+			}
 			break;
 
 		case Operation::Minus:
@@ -1219,7 +1219,7 @@ const char *ToString(Language l)
 			Object A = ResolvePop();
 			Push(*A.GetClass()->Minus(GetStorageBase(A), GetStorageBase(B)));
 		}
-			break;
+		break;
 
 		case Operation::Multiply:
 		{
@@ -1227,7 +1227,7 @@ const char *ToString(Language l)
 			Object A = ResolvePop();
 			Push(*A.GetClass()->Multiply(GetStorageBase(A), GetStorageBase(B)));
 		}
-			break;
+		break;
 
 		case Operation::Divide:
 		{
@@ -1238,14 +1238,14 @@ const char *ToString(Language l)
 			break;
 
 		case Operation::Store:
-		{
-			Object ident = Pop();
-			Object value = ResolvePop();
-			if (!_continuation->HasScope())
-				_continuation->SetScope(New<void>().GetObject());
+			{
+				Object ident = Pop();
+				Object value = ResolvePop();
+				if (!_continuation->HasScope())
+					_continuation->SetScope(New<void>().GetObject());
 
-			Set(_tree->GetRoot(), _continuation->GetScope(), ident, value);
-		}
+				Set(_tree->GetRoot(), _continuation->GetScope(), ident, value);
+			}
 			break;
 
 		case Operation::Retreive:
@@ -1261,11 +1261,11 @@ const char *ToString(Language l)
 			break;
 
 		case Operation::NotEquiv:
-		{
-			Object B = ResolvePop();
-			Object A = ResolvePop();
-			Push(New(!A.GetClass()->Equiv2(A,B)));
-		}
+			{
+				Object B = ResolvePop();
+				Object A = ResolvePop();
+				Push(New(!A.GetClass()->Equiv2(A,B)));
+			}
 			break;
 
 		case Operation::Equiv:
