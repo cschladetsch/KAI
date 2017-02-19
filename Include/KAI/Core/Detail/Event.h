@@ -19,11 +19,16 @@ namespace event_detail
 	template <int>
 	struct Delegate;
 
+	struct HasVirtualDtor
+	{
+		virtual ~HasVirtualDtor() { }
+	};
+
 	template <>
-	struct Delegate<0>
+	struct Delegate<0> 
 	{
 		template <class = Null, class = Null, class = Null>
-		struct Given
+		struct Given : HasVirtualDtor
 		{
 			virtual void Invoke() = 0;
 		};
@@ -33,7 +38,7 @@ namespace event_detail
 	struct Delegate<1>
 	{
 		template <class T0, class = Null, class = Null>
-		struct Given
+		struct Given : HasVirtualDtor
 		{
 			virtual void Invoke(T0) = 0;
 		};
@@ -43,7 +48,7 @@ namespace event_detail
 	struct Delegate<2>
 	{
 		template <class T0, class T1, class = Null>
-		struct Given
+		struct Given : HasVirtualDtor
 		{
 			virtual void Invoke(T0, T1) = 0;
 		};
@@ -53,7 +58,7 @@ namespace event_detail
 	struct Delegate<3>
 	{
 		template <class T0, class T1, class T2>
-		struct Given
+		struct Given : HasVirtualDtor
 		{
 			virtual void Invoke(T0, T1, T2) = 0;
 		};
