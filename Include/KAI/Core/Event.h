@@ -30,21 +30,17 @@
 // REVISION
 //		November 2007		@author christian		created
 //		June 2008			@author christian		added SystemEvent
+//		Feb 2017			@author christian		removed SystemEvent. I forgot what it was for.
 
 KAI_BEGIN
 
-#	include "KAI/Core/Detail/Event.h"
-#	include "KAI/Core/Detail/SystemEvent.h"
+#include "KAI/Core/Detail/Event.h"
+// #include "KAI/Core/Detail/SystemEvent.h"
 
 template <class T0 = event_detail::Null, class T1 = event_detail::Null, class T2 = event_detail::Null>
 struct Event : event_detail::EventType<event_detail::Arity<T0, T1, T2>:: Value>::template Create<T0, T1, T2> { };
 
-template <class T0 = event_detail::Null, class T1 = event_detail::Null, class T2 = event_detail::Null>
-struct SystemEvent : event_detail_sys::EventType<event_detail::Arity<T0, T1, T2>::Value>::template Create<T0, T1, T2> { };
-
+// template <class T0 = event_detail::Null, class T1 = event_detail::Null, class T2 = event_detail::Null>
+// struct SystemEvent : event_detail_sys::EventType<event_detail::Arity<T0, T1, T2>::Value>::template Create<T0, T1, T2> { };
 
 KAI_END
-
-#endif // KAI_EVENT_H
-
-//EOF
