@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.4)
 
 project(KAI)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+# see https://github.com/sakra/cotire
+include(cotire)
+
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_DEBUG)
@@ -18,12 +22,11 @@ set(KAI_HOME ${HOME}/Local/KAI)
 
 # RakNet
 set(RAKNET_DIR ${HOME}/External/RakNet)
-include(${KAI_HOME}/CmakeIncludes/FindRakNet.cmake)
+include(${KAI_HOME}/CMake/FindRakNet.cmake)
 
 
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
-## END HARD-CODED
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 set(LIBRARY_HOME ${KAI_HOME}/Library)
@@ -53,13 +56,15 @@ macro(def_lang_library name)
     set(SOURCE_ROOT ${lang_root}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     add_library(${name}Lang ${SOURCE_FILES})
+    cotire(${name}Lang)
 endmacro()
 
 macro(def_library name)
     project(${name})
     set(SOURCE_ROOT ${KAI_HOME}/Library/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    add_library(${name} ${SOURCE_FILES})
+    add_library(${name} ${SOURCE_FILES} )
+    cotire(${name})
 endmacro()
 
 macro(def_platform_library name)
@@ -67,30 +72,11 @@ macro(def_platform_library name)
     set(SOURCE_ROOT ${KAI_HOME}/Platform/${name}/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     add_library(platform-${name} SHARED ${SOURCE_FILES})
-endmacro()
-
-macro(create_test name)
-    project(${name})
-    include_directories(${KAI_HOME}/Test/Include)
-    set(TEST_ROOT ${KAI_HOME}/Test)
-    set(TEST_SRC_ROOT ${TEST_ROOT}/Tests/${name}/Source/*.cpp)
-    file(GLOB_RECURSE TEST_SRC_FILES ${TEST_SRC_ROOT} ${TEST_ROOT}/Source)
-	list(APPEND ${TEST_SRC_FILES} ${TEST_ROOT}/Source/BaseTestClass.cpp)
-    message(STATUS >>>> ${TEST_ROOT}/Source/BaseTestClass.cpp)
-	message(STATUS ==== ${TEST_SRC_FILES})
-    link_libraries(Executor Core PiLang RhoLang)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin/Test")
-    add_executable(${name} ${TEST_SRC_FILES})
-    target_link_libraries(${name} gtest pthread)
+    cotire(platform-${name})
 endmacro()
 
 include(CMakeToolsHelpers OPTIONAL)
-
 include(Library/CMakeLists.txt)
 include(Test/CMakeLists.txt)
 include(App/CMakeLists.txt)
-
-# include(Platform/CMakeLists.txt)
-
-
-#$
+include(Library/Platform/CMakeLists.txt)
