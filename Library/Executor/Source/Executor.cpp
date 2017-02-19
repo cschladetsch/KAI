@@ -388,6 +388,7 @@ Object Executor::TryResolve(Label const &label) const
 		Pointer<Continuation> cont = scopes.At(N);
 		if (!cont.Exists())
 			continue;
+
 		Object scope = cont->GetScope();
 		if (scope.HasChild(label))
 			return scope.GetChild(label);

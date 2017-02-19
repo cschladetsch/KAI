@@ -306,7 +306,6 @@ Object Tree::Resolve(const Label &label) const
 
 		Object found = object.Get(label);
 		if (found.Exists())
-		if (found.Exists())
 			return found;
 	}
 

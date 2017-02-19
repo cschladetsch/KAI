@@ -72,9 +72,7 @@ struct TranslatorBase : TranslatorCommon
 			return Object();
 		}
 
-		// this is required for Pi at least, otherwise it returns a continuation containing the continuation
-		// this unwraps the 'real' continuation be to executed. will probably break other languages?
-		return ret->GetCode()->At(0);
+		return ret;
 	}
 
 protected:
