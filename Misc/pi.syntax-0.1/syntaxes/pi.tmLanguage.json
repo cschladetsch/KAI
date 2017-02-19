@@ -13,7 +13,7 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.pi",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(assert|==|)\\b"
 			}]
 		},
 		"strings": {
