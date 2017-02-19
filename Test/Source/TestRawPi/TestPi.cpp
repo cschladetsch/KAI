@@ -9,7 +9,7 @@ struct TestPi : TestLangCommon
 
 TEST_F(TestPi, TestArithmetic)
 {
-	TranslatorCommon::trace = 1;
+	// TranslatorCommon::trace = 1;
 
 	_console->SetLanguage(Language::Pi);
 	_data->Clear();
