@@ -2,6 +2,30 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "WxWindow",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceRoot}/Bin/WxWindow",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceRoot}/Bin/",
+			"environment": [],
+			"externalConsole": true,
+			"linux": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			},
+			"osx": {
+				"MIMode": "lldb"
+			}
+		},		
+		{
 			"name": "TestPi",
 			"type": "cppdbg",
 			"request": "launch",
