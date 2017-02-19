@@ -14,6 +14,8 @@ KAI_BEGIN
 
 const char *ToLower(const char *str);
 
+// comment
+
 typedef ::std::size_t HashValue;
 
 KAI_END
