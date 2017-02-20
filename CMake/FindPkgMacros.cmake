@@ -4,16 +4,16 @@
 
 # Begin processing of package
 macro(findpkg_begin PREFIX)
-  if (NOT ${PREFIX}_FIND_QUIETLY)
-    message(STATUS "Looking for ${PREFIX}...")
-  endif ()
+  # if (NOT ${PREFIX}_FIND_QUIETLY)
+  #   message(STATUS "Looking for ${PREFIX}...")
+  # endif ()
 endmacro(findpkg_begin)
 
 # Display a status message unless FIND_QUIETLY is set
 macro(pkg_message PREFIX)
-  if (NOT ${PREFIX}_FIND_QUIETLY)
-    message(STATUS ${ARGN})
-  endif ()
+  # if (NOT ${PREFIX}_FIND_QUIETLY)
+  #   message(STATUS ${ARGN})
+  # endif ()
 endmacro(pkg_message)
 
 # Get environment variable, define it as ENV_$var and make sure backslashes are converted to forward slashes
