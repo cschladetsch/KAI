@@ -6,6 +6,10 @@ using namespace std;
 
 KAI_BEGIN
 
+#undef CASE
+#undef CASE_LOWER
+#undef CASE_REPLACE
+
 const char *PiTokenEnumType::ToString(Enum t)
 {
 	switch (t)
