@@ -2,6 +2,40 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Tests",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceRoot}/Test/Bin/KaiTests",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceRoot}/Test/Bin",
+			"environment": [],
+			"externalConsole": true,
+			"linux": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			},
+			"osx": {
+				"MIMode": "lldb"
+			},
+			"windows": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			}
+		},
+		{
 			"name": "Window",
 			"type": "cppdbg",
 			"request": "launch",
