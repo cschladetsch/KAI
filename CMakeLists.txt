@@ -76,7 +76,11 @@ macro(def_platform_library name)
 endmacro()
 
 include(CMakeToolsHelpers OPTIONAL)
-include(Library/CMakeLists.txt)
-include(Test/CMakeLists.txt)
-include(App/CMakeLists.txt)
+
+set(TopLevels Library Test App)
+
+foreach(top ${TopLevels})
+    include(${top}/CMakeLists.txt)
+endforeach()
+
 # include(Library/Platform/CMakeLists.txt)
