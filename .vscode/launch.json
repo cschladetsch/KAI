@@ -2,114 +2,15 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Window",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceRoot}/Bin/Window",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Bin/",
-			"environment": [],
-			"externalConsole": true,
-			"linux": {
-				"MIMode": "gdb",
-				"setupCommands": [
-					{
-						"description": "Enable pretty-printing for gdb",
-						"text": "-enable-pretty-printing",
-						"ignoreFailures": true
-					}
-				]
-			},
-			"osx": {
-				"MIMode": "lldb"
-			}
-		},		
-		{
-			"name": "TestPi",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceRoot}/Test/Bin/KaiTests",
-			"args": ["--gtest_filter=TestPi*"],
-			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Test/Bin/",
-			"environment": [],
-			"externalConsole": true,
-			"linux": {
-				"MIMode": "gdb",
-				"setupCommands": [
-					{
-						"description": "Enable pretty-printing for gdb",
-						"text": "-enable-pretty-printing",
-						"ignoreFailures": true
-					}
-				]
-			},
-			"osx": {
-				"MIMode": "lldb"
-			}
-		},		
-		{
-			"name": "TestTau",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceRoot}/Test/Bin/KaiTests",
-			"args": ["--gtest_filter=TestTau*"],
-			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Test/Bin/",
-			"environment": [],
-			"externalConsole": true,
-			"linux": {
-				"MIMode": "gdb",
-				"setupCommands": [
-					{
-						"description": "Enable pretty-printing for gdb",
-						"text": "-enable-pretty-printing",
-						"ignoreFailures": true
-					}
-				]
-			},
-			"osx": {
-				"MIMode": "lldb"
-			}
-		},		
-		{
-			"name": "Peer",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceRoot}/Bin/Peer",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Bin",
-			"environment": [],
-			"externalConsole": true,
-			// "internalConsoleOptions": ""
-			"linux": {
-				"MIMode": "gdb",
-				"setupCommands": [
-					{
-						"description": "Enable pretty-printing for gdb",
-						"text": "-enable-pretty-printing",
-						"ignoreFailures": true
-					}
-				]
-			},
-			"osx": {
-				"MIMode": "lldb"
-			}
-		},
-
-		{
 			"name": "Tests",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/Test/Bin/KaiTests",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Bin",
+			"cwd": "${workspaceRoot}/Test/Bin",
 			"environment": [],
 			"externalConsole": true,
-			// "internalConsoleOptions": ""
 			"linux": {
 				"MIMode": "gdb",
 				"setupCommands": [
@@ -122,19 +23,28 @@
 			},
 			"osx": {
 				"MIMode": "lldb"
+			},
+			"windows": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
 			}
 		},
 		{
-			"name": "C++ Launch",
+			"name": "Window",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceRoot}/Bin/Console",
+			"program": "${workspaceRoot}/Bin/Window",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}",
+			"cwd": "${workspaceRoot}/Bin",
 			"environment": [],
 			"externalConsole": true,
-			// "internalConsoleOptions": ""
 			"linux": {
 				"MIMode": "gdb",
 				"setupCommands": [
