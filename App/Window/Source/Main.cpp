@@ -9,10 +9,16 @@
 #include <GLFW/glfw3.h>
 
 using namespace std;
+using namespace ImGui;
+
+KAI_BEGIN
+
+void ShowExecutorWindow(bool *);
+
+KAI_END
 
 USING_NAMESPACE_KAI
 
-using namespace ImGui;
 
 static void error_callback(int error, const char* description)
 {
@@ -31,7 +37,7 @@ GLFWwindow *SetupGui()
 #if __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui OpenGL3 example", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "KAI Window", NULL, NULL);
     glfwMakeContextCurrent(window);
     gl3wInit();
 
@@ -41,11 +47,23 @@ GLFWwindow *SetupGui()
 	return window;
 }
 
+void LoadFont()
+{
+    ImGuiIO& io = ImGui::GetIO();
+    ImFontConfig config;
+    config.OversampleH = 3;
+    config.OversampleV = 1;
+    config.GlyphExtraSpacing.x = 1.0f;
+    io.Fonts->AddFontFromFileTTF("CouierNew.ttf", 20, &config); 
+}
+
 int main(int argc, char **argv)
 {
 	GLFWwindow *window = SetupGui();
 	if (!window)
 		return -1;
+
+    // LoadFont();
 
     bool show_test_window = true;
     bool show_another_window = false;
@@ -79,11 +97,13 @@ int main(int argc, char **argv)
         // }
 
         // // 3. Show the ImGui test window. Most of the sample code is in ImGui::ShowTestWindow()
-        if (show_test_window)
-        {
-            ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
-            ImGui::ShowTestWindow(&show_test_window);
-        }
+        // if (show_test_window)
+        // {
+        //     ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
+        //     ImGui::ShowTestWindow(&show_test_window);
+        // }
+        
+        ShowExecutorWindow(0);
 
         // Rendering
         int display_w, display_h;
