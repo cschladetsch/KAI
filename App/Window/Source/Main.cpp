@@ -34,7 +34,7 @@ GLFWwindow *SetupGui()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#if __APPLE__
+#if KAI_PLATFORM_OSX
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
     GLFWwindow* window = glfwCreateWindow(800, 600, "KAI Window", NULL, NULL);
@@ -54,7 +54,7 @@ void LoadFont()
     config.OversampleH = 3;
     config.OversampleV = 1;
     config.GlyphExtraSpacing.x = 1.0f;
-    io.Fonts->AddFontFromFileTTF("CouierNew.ttf", 20, &config); 
+    io.Fonts->AddFontFromFileTTF("CourierNew.ttf", 20, &config); 
 }
 
 int main(int argc, char **argv)
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 	if (!window)
 		return -1;
 
-    // LoadFont();
+    LoadFont();
 
     bool show_test_window = true;
     bool show_another_window = false;
