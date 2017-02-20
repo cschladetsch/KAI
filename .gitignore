@@ -1,4 +1,5 @@
 
+.cmaketools.json
 .idea/
 cmake-build-debug/*
 
