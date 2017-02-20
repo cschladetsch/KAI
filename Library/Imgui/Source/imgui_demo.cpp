@@ -126,7 +126,6 @@ void ImGui::ShowTestWindow(bool* p_open)
 
     static bool show_app_metrics = false;
     static bool show_app_about = false;
-
     if (show_app_main_menu_bar) ShowExampleAppMainMenuBar();
     if (show_app_console) ShowExampleAppConsole(&show_app_console);
     if (show_app_log) ShowExampleAppLog(&show_app_log);
