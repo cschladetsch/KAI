@@ -10,7 +10,7 @@ endforeach()
 include_directories(${KAT_HOME}/Library/Language/Include)
 include(${KAI_HOME}/Library/Language/CMakeLists.txt)
 
-include(${LIBRARY_HOME}/Imgui/CMakeLists.txt)
+include(${LIBRARY_HOME}/ImGui/CMakeLists.txt)
 
 #$
 
