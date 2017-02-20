@@ -6,15 +6,12 @@ project(${name})
 set(frameworks OpenGL Cocoa IOKit CoreVideo)
 
 foreach(framework ${frameworks})
-	# include(${CMAKE_MODULE_PATH}/Find${framework}.cmake)
-	set(${framework}_FIND_QUIETLY true)
+	set(${framework}_FIND_QUIETLY true) # doesn't seem to work?
 	find_package(${framework})
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework ${framework}")
 endforeach()
 
-# TODO: use KAI_PLATFORM_OSX
 add_definitions(-DKAI_PLATFORM_OSX)
-add_definitions(-D__APPLE__)
 
 include_directories(/opt/local/include ${KAI_HOME}/Include/Imgui)
 link_directories(/opt/local/lib)
