@@ -10,18 +10,15 @@ using namespace std;
 
 KAI_BEGIN
 
-// Demonstrating creating a simple console window, with scrolling, filtering, completion and history.
-// For the console example, here we are using a more C++ like approach of declaring a class to hold the data and the functions.
-
 struct ExecutorWindow
 {
+	// deprecating...
     char InputBuf[256];
+    int HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
+    bool ScrollToBottom;
 
     vector<string> Items;
     vector<string> History;
-
-    int HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
-    bool ScrollToBottom;
 
 	Console _console;
 	Tree *_tree;
@@ -68,25 +65,15 @@ struct ExecutorWindow
             return;
         }
 
-        // ImGui::TextWrapped("This example implements a console with basic coloring, completion and history. A more elaborate implementation may want to store entries along with extra data such as timestamp, emitter, etc.");
-        // ImGui::TextWrapped("Enter 'HELP' for help, press TAB to use text completion.");
-
         // TODO: display items starting from the bottom
 
-        // if (ImGui::SmallButton("Add Dummy Text")) { AddLog("%d some text", Items.Size); AddLog("some more text"); AddLog("display very important message here!"); } ImGui::SameLine();
-        // if (ImGui::SmallButton("Add Dummy Error")) AddLog("[error] something went wrong"); ImGui::SameLine();
         if (ImGui::SmallButton("Clear")) ClearLog(); 
-		
 		ImGui::SameLine();
-
         if (ImGui::SmallButton("Scroll to bottom")) ScrollToBottom = true;
-        //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
 
         ImGui::Separator();
 
         ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));
-        // static ImGuiTextFilter filter;
-        // filter.Draw("Filter (\"incl,-excl\") (\"error\")", 180);
         ImGui::PopStyleVar();
         ImGui::Separator();
 
@@ -114,16 +101,18 @@ struct ExecutorWindow
             const string &item = Items[i];
             // if (!filter.PassFilter(item))
             //     continue;
-            ImVec4 col = ImVec4(1.0f,1.0f,1.0f,1.0f); // A better implementation may store a type per-item. For the sample let's just parse the text.
+            // ImVec4 col = ImVec4(1.0f,1.0f,1.0f,1.0f); // A better implementation may store a type per-item. For the sample let's just parse the text.
             // if (strstr(item, "[error]")) col = ImColor(1.0f,0.4f,0.4f,1.0f);
             // else if (strncmp(item, "# ", 2) == 0) col = ImColor(1.0f,0.78f,0.58f,1.0f);
             // ImGui::PushStyleColor(ImGuiCol_Text, col);
             ImGui::TextUnformatted(item.c_str());
             // ImGui::PopStyleColor();
         }
+
         if (ScrollToBottom)
             ImGui::SetScrollHere();
         ScrollToBottom = false;
+
         ImGui::PopStyleVar();
         ImGui::EndChild();
         ImGui::Separator();
@@ -156,35 +145,22 @@ struct ExecutorWindow
 		{
 			StringStream st;
 			st << e.ToString() << "\n";
+			ImVec4 color(1,0,0,1);
+            ImGui::PushStyleColor(ImGuiCol_Text, color);
 			AddLog(st.ToString().c_str());
+			ImGui::PopStyleColor();
 			return;
 		}
 
 		ClearLog();
 
+		// draw executor data stack
 		for (auto obj : *_exec->GetDataStack())
 		{
 			StringStream st;
 			st << obj << "\n";
 			AddLog(st.ToString().c_str());
 		}
-
-        // Insert into history. First find match and delete it so it can be pushed to the back. This isn't trying to be smart or optimal.
-        HistoryPos = -1;
-        for (int i = (int)History.size() - 1; i >= 0; i--)
-		{
-            // if (Stricmp(History[i], command_line) == 0)
-            // {
-            //     free(History[i]);
-            //     History.erase(History.begin() + i);
-            //     break;
-            // }
-		}
-
-        History.push_back(command_line);
-
-        // Process command
-        // AddLog("typed: '%s'\n", command_line);
     }
 
     static int TextEditCallbackStub(ImGuiTextEditCallbackData* data)
@@ -296,7 +272,7 @@ struct ExecutorWindow
 void ShowExecutorWindow(bool* p_open)
 {
     static ExecutorWindow console;
-    console.Draw("KAI Console", p_open);
+    console.Draw("KAI Executor", p_open);
 }
 
 KAI_END
