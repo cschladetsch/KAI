@@ -29,7 +29,6 @@ struct ExecutorWindow
 	
     ExecutorWindow()
     {
-        ClearLog()        memset(InputBuf, 0, sizeof(InputBuf));
         HistoryPos = -1;
 
 		_console.SetLanguage(Language::Pi);
@@ -37,13 +36,12 @@ struct ExecutorWindow
 		_reg = &_console.GetRegistry();
 		_tree = &_console.GetTree();
 
-        ClearLog()
+        ClearLog();
     }
 
     void ClearLog()
     {
         Items.clear();
-        _exec->GetDataStack()->Clear();
         ScrollToBottom = true;
     }
 
