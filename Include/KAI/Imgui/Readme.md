@@ -10,3 +10,11 @@ Took some time to integrate this. Not sure I like it in *KAI/Imgui*. An alternat
 
 Currently, ImGui builds as an internal library and is used by **App/Window** application.
 
+## RENAMED
+
+The folder has been renamed to ImGui. Apparently GitHub (and/or git itself) doesn't mind changing case of files or folders.
+
+But on case-sensitive systems (OSX, Linux), remember that this is called ImGui not Imgui. I'll fix this later.
+
+
+
