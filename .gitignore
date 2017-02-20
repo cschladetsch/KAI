@@ -1,5 +1,5 @@
-
 .cmaketools.json
+.vscode/
 .idea/
 cmake-build-debug/*
 
