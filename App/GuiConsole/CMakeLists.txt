@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 
-set(name ImGuiConsole)
+set(name GuiConsole)
 project(${name})
 
 set(frameworks OpenGL Cocoa IOKit CoreVideo)
