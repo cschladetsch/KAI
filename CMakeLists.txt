@@ -75,7 +75,7 @@ macro(def_platform_library name)
     cotire(platform-${name})
 endmacro()
 
-include(CMakeToolsHelpers OPTIONAL)
+# include(CMakeToolsHelpers OPTIONAL)
 
 set(TopLevels Library Test App)
 
