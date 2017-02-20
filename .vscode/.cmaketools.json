@@ -19,7 +19,7 @@
             "targets": [
               {
                 "artifacts": [
-                  "/Users/christian/Local/KAI/Bin/Console"
+                  "/Users/christian/Local/KAI/Bin/Window"
                 ],
                 "buildDirectory": "/Users/christian/Local/KAI/build",
                 "fileGroups": [
@@ -81,17 +81,102 @@
                     "isGenerated": false,
                     "language": "CXX",
                     "sources": [
-                      "App/Console/Source/Main.cpp"
+                      "App/Window/Source/ExecutorWindow.cpp",
+                      "App/Window/Source/Main.cpp"
                     ]
                   }
                 ],
-                "fullName": "Console",
+                "fullName": "Window",
                 "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
                 "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
-                "linkLibraries": "-Wl,-rpath,/Users/christian/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a",
-                "linkPath": "-L/Users/christian/lib",
+                "linkLibraries": "-Wl,-rpath,/Users/christian/lib -Wl,-rpath,/opt/local/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a -lRakNetLibStatic ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libImGui.a -lglfw",
+                "linkPath": "-L/Users/christian/lib  -L/opt/local/lib",
                 "linkerLanguage": "CXX",
-                "name": "Console",
+                "name": "Window",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "EXECUTABLE"
+              },
+              {
+                "artifacts": [
+                  "/Users/christian/Local/KAI/Bin/Window"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/Window_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": true,
+                    "language": "CXX",
+                    "sources": [
+                      "build/cotire/Window_CXX_unity.cxx"
+                    ]
+                  }
+                ],
+                "fullName": "Window",
+                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
+                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
+                "linkLibraries": "-Wl,-rpath,/Users/christian/lib -Wl,-rpath,/opt/local/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a -lRakNetLibStatic ../lib/libImGui.a -lglfw",
+                "linkPath": "-L/Users/christian/lib  -L/opt/local/lib",
+                "linkerLanguage": "CXX",
+                "name": "Window_unity",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "EXECUTABLE"
               },
@@ -170,108 +255,6 @@
                 "linkPath": "-L/Users/christian/lib",
                 "linkerLanguage": "CXX",
                 "name": "NetworkGenerate",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/Test/Bin/KaiTests"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "Test/Source/Common/TestCommon.cpp",
-                      "Test/Source/Common/TestLangCommon.cpp",
-                      "Test/Source/Main.cpp",
-                      "Test/Source/MyTestStruct.cpp",
-                      "Test/Source/TestBasePointer.cpp",
-                      "Test/Source/TestBinaryStream.cpp",
-                      "Test/Source/TestClassScripting.cpp",
-                      "Test/Source/TestConsole.cpp",
-                      "Test/Source/TestContainer/TestList.cpp",
-                      "Test/Source/TestContainer/TestMap.cpp",
-                      "Test/Source/TestContainer/TestSet.cpp",
-                      "Test/Source/TestContainer/TestStack.cpp",
-                      "Test/Source/TestContainer/TestString.cpp",
-                      "Test/Source/TestContainer/TestVector.cpp",
-                      "Test/Source/TestDotGraph.cpp",
-                      "Test/Source/TestEvents.cpp",
-                      "Test/Source/TestExecutor.cpp",
-                      "Test/Source/TestFunction.cpp",
-                      "Test/Source/TestObject.cpp",
-                      "Test/Source/TestPi.cpp",
-                      "Test/Source/TestRawPi/TestPi.cpp",
-                      "Test/Source/TestRawPi/TestPiParser.cpp",
-                      "Test/Source/TestRegistry.cpp",
-                      "Test/Source/TestRho/TestFunctionScripting.cpp",
-                      "Test/Source/TestTau/TestTau.cpp"
-                    ]
-                  }
-                ],
-                "fullName": "KaiTests",
-                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
-                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
-                "linkLibraries": "-Wl,-rpath,/Users/christian/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a -lgtest -lpthread",
-                "linkPath": "-L/Users/christian/lib",
-                "linkerLanguage": "CXX",
-                "name": "KaiTests",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "EXECUTABLE"
               },
@@ -361,21 +344,12 @@
               },
               {
                 "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libRhoLang.a"
+                  "/Users/christian/Local/KAI/Bin/Console"
                 ],
                 "buildDirectory": "/Users/christian/Local/KAI/build",
                 "fileGroups": [
                   {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/RhoLang_CXX_prefix.hxx.pch.rule",
-                      "build/cotire/RhoLang_CXX_prefix.hxx.rule",
-                      "build/cotire/RhoLang_CXX_prefix.cxx.rule",
-                      "build/cotire/RhoLang_CXX_unity.cxx.rule"
-                    ]
-                  },
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g   -Qunused-arguments -include /Users/christian/Local/KAI/build/cotire/RhoLang_CXX_prefix.hxx",
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
                     "defines": [
                       "KAI_DEBUG",
                       "KAI_DEBUG_TRACE",
@@ -432,49 +406,26 @@
                     "isGenerated": false,
                     "language": "CXX",
                     "sources": [
-                      "Library/Language/Rho/Source/RhoAstNode.cpp",
-                      "Library/Language/Rho/Source/RhoLang.cpp",
-                      "Library/Language/Rho/Source/RhoLexer.cpp",
-                      "Library/Language/Rho/Source/RhoParser.cpp",
-                      "Library/Language/Rho/Source/RhoToken.cpp",
-                      "Library/Language/Rho/Source/RhoTranslator.cpp"
+                      "App/Console/Source/Main.cpp"
                     ]
                   }
                 ],
-                "fullName": "libRhoLang.a",
+                "fullName": "Console",
+                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
+                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
+                "linkLibraries": "-Wl,-rpath,/Users/christian/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a",
+                "linkPath": "-L/Users/christian/lib",
                 "linkerLanguage": "CXX",
-                "name": "RhoLang",
+                "name": "Console",
                 "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "STATIC_LIBRARY"
-              },
-              {
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/clean_cotire",
-                      "build/CMakeFiles/clean_cotire.rule"
-                    ]
-                  }
-                ],
-                "fullName": "clean_cotire",
-                "name": "clean_cotire",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "UTILITY"
+                "type": "EXECUTABLE"
               },
               {
                 "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libNetwork.a"
+                  "/Users/christian/Local/KAI/lib/libImGui.a"
                 ],
                 "buildDirectory": "/Users/christian/Local/KAI/build",
                 "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/Network_CXX_unity.cxx.rule"
-                    ]
-                  },
                   {
                     "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
                     "defines": [
@@ -530,53 +481,17 @@
                         "path": "/Users/christian/Local/KAI/Include/Imgui"
                       }
                     ],
-                    "isGenerated": true,
+                    "isGenerated": false,
                     "language": "CXX",
                     "sources": [
-                      "build/cotire/Network_CXX_unity.cxx"
-                    ]
-                  }
-                ],
-                "fullName": "libNetwork.a",
-                "linkerLanguage": "CXX",
-                "name": "Network_unity",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "STATIC_LIBRARY"
-              },
-              {
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/Core_pch",
-                      "build/CMakeFiles/Core_pch.rule",
-                      "build/cotire/Core_CXX_prefix.hxx.pch.rule",
-                      "build/cotire/Core_CXX_prefix.hxx.rule",
-                      "build/cotire/Core_CXX_prefix.cxx.rule",
-                      "build/cotire/Core_CXX_unity.cxx.rule"
-                    ]
-                  }
-                ],
-                "fullName": "Core_pch",
-                "name": "Core_pch",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "UTILITY"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libCore.a"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/Core_CXX_unity.cxx.rule"
+                      "Library/ImGui/Source/imgui.cpp",
+                      "Library/ImGui/Source/imgui_demo.cpp",
+                      "Library/ImGui/Source/imgui_draw.cpp",
+                      "Library/ImGui/Source/imgui_impl_glfw_gl3.cpp"
                     ]
                   },
                   {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
+                    "compileFlags": "-g  ",
                     "defines": [
                       "KAI_DEBUG",
                       "KAI_DEBUG_TRACE",
@@ -630,18 +545,45 @@
                         "path": "/Users/christian/Local/KAI/Include/Imgui"
                       }
                     ],
-                    "isGenerated": true,
-                    "language": "CXX",
+                    "isGenerated": false,
+                    "language": "C",
                     "sources": [
-                      "build/cotire/Core_CXX_unity.cxx"
+                      "Library/ImGui/Source/gl3w.c"
                     ]
                   }
                 ],
-                "fullName": "libCore.a",
+                "fullName": "libImGui.a",
                 "linkerLanguage": "CXX",
-                "name": "Core_unity",
+                "name": "ImGui",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "STATIC_LIBRARY"
+              },
+              {
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fullName": "all_pch",
+                "name": "all_pch",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "UTILITY"
+              },
+              {
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/TauLang_pch",
+                      "build/CMakeFiles/TauLang_pch.rule",
+                      "build/cotire/TauLang_CXX_prefix.hxx.pch.rule",
+                      "build/cotire/TauLang_CXX_prefix.hxx.rule",
+                      "build/cotire/TauLang_CXX_prefix.cxx.rule",
+                      "build/cotire/TauLang_CXX_unity.cxx.rule"
+                    ]
+                  }
+                ],
+                "fullName": "TauLang_pch",
+                "name": "TauLang_pch",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "UTILITY"
               },
               {
                 "buildDirectory": "/Users/christian/Local/KAI/build",
@@ -900,358 +842,6 @@
                 "fullName": "libCommonLang.a",
                 "linkerLanguage": "CXX",
                 "name": "CommonLang",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "STATIC_LIBRARY"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libTauLang.a"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/TauLang_CXX_unity.cxx.rule"
-                    ]
-                  },
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": true,
-                    "language": "CXX",
-                    "sources": [
-                      "build/cotire/TauLang_CXX_unity.cxx"
-                    ]
-                  }
-                ],
-                "fullName": "libTauLang.a",
-                "linkerLanguage": "CXX",
-                "name": "TauLang_unity",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "STATIC_LIBRARY"
-              },
-              {
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/CMakeFiles/PiLang_pch",
-                      "build/CMakeFiles/PiLang_pch.rule",
-                      "build/cotire/PiLang_CXX_prefix.hxx.pch.rule",
-                      "build/cotire/PiLang_CXX_prefix.hxx.rule",
-                      "build/cotire/PiLang_CXX_prefix.cxx.rule",
-                      "build/cotire/PiLang_CXX_unity.cxx.rule"
-                    ]
-                  }
-                ],
-                "fullName": "PiLang_pch",
-                "name": "PiLang_pch",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "UTILITY"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/Bin/Window"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/Window_CXX_unity.cxx.rule"
-                    ]
-                  },
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": true,
-                    "language": "CXX",
-                    "sources": [
-                      "build/cotire/Window_CXX_unity.cxx"
-                    ]
-                  }
-                ],
-                "fullName": "Window",
-                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
-                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
-                "linkLibraries": "-Wl,-rpath,/Users/christian/lib -Wl,-rpath,/opt/local/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a -lRakNetLibStatic ../lib/libImGui.a -lglfw",
-                "linkPath": "-L/Users/christian/lib  -L/opt/local/lib",
-                "linkerLanguage": "CXX",
-                "name": "Window_unity",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/Bin/Window"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "App/Window/Source/ExecutorWindow.cpp",
-                      "App/Window/Source/Main.cpp"
-                    ]
-                  }
-                ],
-                "fullName": "Window",
-                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
-                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
-                "linkLibraries": "-Wl,-rpath,/Users/christian/lib -Wl,-rpath,/opt/local/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a -lRakNetLibStatic ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libImGui.a -lglfw",
-                "linkPath": "-L/Users/christian/lib  -L/opt/local/lib",
-                "linkerLanguage": "CXX",
-                "name": "Window",
-                "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "EXECUTABLE"
-              },
-              {
-                "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libTauLang.a"
-                ],
-                "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fileGroups": [
-                  {
-                    "isGenerated": true,
-                    "sources": [
-                      "build/cotire/TauLang_CXX_prefix.hxx.pch.rule",
-                      "build/cotire/TauLang_CXX_prefix.hxx.rule",
-                      "build/cotire/TauLang_CXX_prefix.cxx.rule",
-                      "build/cotire/TauLang_CXX_unity.cxx.rule"
-                    ]
-                  },
-                  {
-                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g   -Qunused-arguments -include /Users/christian/Local/KAI/build/cotire/TauLang_CXX_prefix.hxx",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "CXX",
-                    "sources": [
-                      "Library/Language/Tau/Source/Generate/Agent.cpp",
-                      "Library/Language/Tau/Source/Generate/GenerateProcess.cpp",
-                      "Library/Language/Tau/Source/Generate/Proxy.cpp",
-                      "Library/Language/Tau/Source/Tau/TauAstNode.cpp",
-                      "Library/Language/Tau/Source/Tau/TauLexer.cpp",
-                      "Library/Language/Tau/Source/Tau/TauParser.cpp",
-                      "Library/Language/Tau/Source/Tau/TauToken.cpp"
-                    ]
-                  }
-                ],
-                "fullName": "libTauLang.a",
-                "linkerLanguage": "CXX",
-                "name": "TauLang",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "STATIC_LIBRARY"
               },
@@ -1661,6 +1251,86 @@
               },
               {
                 "artifacts": [
+                  "/Users/christian/Local/KAI/lib/libCore.a"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/Core_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": true,
+                    "language": "CXX",
+                    "sources": [
+                      "build/cotire/Core_CXX_unity.cxx"
+                    ]
+                  }
+                ],
+                "fullName": "libCore.a",
+                "linkerLanguage": "CXX",
+                "name": "Core_unity",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
                   "/Users/christian/Local/KAI/lib/libNetwork.a"
                 ],
                 "buildDirectory": "/Users/christian/Local/KAI/build",
@@ -1827,7 +1497,364 @@
               },
               {
                 "artifacts": [
-                  "/Users/christian/Local/KAI/lib/libImGui.a"
+                  "/Users/christian/Local/KAI/lib/libNetwork.a"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/Network_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": true,
+                    "language": "CXX",
+                    "sources": [
+                      "build/cotire/Network_CXX_unity.cxx"
+                    ]
+                  }
+                ],
+                "fullName": "libNetwork.a",
+                "linkerLanguage": "CXX",
+                "name": "Network_unity",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/Core_pch",
+                      "build/CMakeFiles/Core_pch.rule",
+                      "build/cotire/Core_CXX_prefix.hxx.pch.rule",
+                      "build/cotire/Core_CXX_prefix.hxx.rule",
+                      "build/cotire/Core_CXX_prefix.cxx.rule",
+                      "build/cotire/Core_CXX_unity.cxx.rule"
+                    ]
+                  }
+                ],
+                "fullName": "Core_pch",
+                "name": "Core_pch",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "UTILITY"
+              },
+              {
+                "artifacts": [
+                  "/Users/christian/Local/KAI/lib/libTauLang.a"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/TauLang_CXX_prefix.hxx.pch.rule",
+                      "build/cotire/TauLang_CXX_prefix.hxx.rule",
+                      "build/cotire/TauLang_CXX_prefix.cxx.rule",
+                      "build/cotire/TauLang_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g   -Qunused-arguments -include /Users/christian/Local/KAI/build/cotire/TauLang_CXX_prefix.hxx",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "Library/Language/Tau/Source/Generate/Agent.cpp",
+                      "Library/Language/Tau/Source/Generate/GenerateProcess.cpp",
+                      "Library/Language/Tau/Source/Generate/Proxy.cpp",
+                      "Library/Language/Tau/Source/Tau/TauAstNode.cpp",
+                      "Library/Language/Tau/Source/Tau/TauLexer.cpp",
+                      "Library/Language/Tau/Source/Tau/TauParser.cpp",
+                      "Library/Language/Tau/Source/Tau/TauToken.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "libTauLang.a",
+                "linkerLanguage": "CXX",
+                "name": "TauLang",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/christian/Local/KAI/lib/libTauLang.a"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/TauLang_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g  ",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": true,
+                    "language": "CXX",
+                    "sources": [
+                      "build/cotire/TauLang_CXX_unity.cxx"
+                    ]
+                  }
+                ],
+                "fullName": "libTauLang.a",
+                "linkerLanguage": "CXX",
+                "name": "TauLang_unity",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/christian/Local/KAI/lib/libRhoLang.a"
+                ],
+                "buildDirectory": "/Users/christian/Local/KAI/build",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/cotire/RhoLang_CXX_prefix.hxx.pch.rule",
+                      "build/cotire/RhoLang_CXX_prefix.hxx.rule",
+                      "build/cotire/RhoLang_CXX_prefix.cxx.rule",
+                      "build/cotire/RhoLang_CXX_unity.cxx.rule"
+                    ]
+                  },
+                  {
+                    "compileFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g   -Qunused-arguments -include /Users/christian/Local/KAI/build/cotire/RhoLang_CXX_prefix.hxx",
+                    "defines": [
+                      "KAI_DEBUG",
+                      "KAI_DEBUG_TRACE",
+                      "KAI_NAMESPACE_NAME=kai",
+                      "KAI_PLATFORM_OSX",
+                      "KAI_TRACE_FILE_LOCATION",
+                      "KAI_USE_EXCEPTIONS",
+                      "KAI_USE_NAMESPACES"
+                    ],
+                    "includePath": [
+                      {
+                        "path": "/Users/christian/Local/KAI/Include"
+                      },
+                      {
+                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
+                      },
+                      {
+                        "path": "/usr/local"
+                      },
+                      {
+                        "path": "/Library/Language/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Test/Include"
+                      },
+                      {
+                        "path": "/usr/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
+                      },
+                      {
+                        "path": "/opt/local/include"
+                      },
+                      {
+                        "path": "/Users/christian/Local/KAI/Include/Imgui"
+                      }
+                    ],
+                    "isGenerated": false,
+                    "language": "CXX",
+                    "sources": [
+                      "Library/Language/Rho/Source/RhoAstNode.cpp",
+                      "Library/Language/Rho/Source/RhoLang.cpp",
+                      "Library/Language/Rho/Source/RhoLexer.cpp",
+                      "Library/Language/Rho/Source/RhoParser.cpp",
+                      "Library/Language/Rho/Source/RhoToken.cpp",
+                      "Library/Language/Rho/Source/RhoTranslator.cpp"
+                    ]
+                  }
+                ],
+                "fullName": "libRhoLang.a",
+                "linkerLanguage": "CXX",
+                "name": "RhoLang",
+                "sourceDirectory": "/Users/christian/Local/KAI",
+                "type": "STATIC_LIBRARY"
+              },
+              {
+                "artifacts": [
+                  "/Users/christian/Local/KAI/Test/Bin/KaiTests"
                 ],
                 "buildDirectory": "/Users/christian/Local/KAI/build",
                 "fileGroups": [
@@ -1889,84 +1916,61 @@
                     "isGenerated": false,
                     "language": "CXX",
                     "sources": [
-                      "Library/ImGui/Source/imgui.cpp",
-                      "Library/ImGui/Source/imgui_demo.cpp",
-                      "Library/ImGui/Source/imgui_draw.cpp",
-                      "Library/ImGui/Source/imgui_impl_glfw_gl3.cpp"
-                    ]
-                  },
-                  {
-                    "compileFlags": "-g  ",
-                    "defines": [
-                      "KAI_DEBUG",
-                      "KAI_DEBUG_TRACE",
-                      "KAI_NAMESPACE_NAME=kai",
-                      "KAI_PLATFORM_OSX",
-                      "KAI_TRACE_FILE_LOCATION",
-                      "KAI_USE_EXCEPTIONS",
-                      "KAI_USE_NAMESPACES"
-                    ],
-                    "includePath": [
-                      {
-                        "path": "/Users/christian/Local/KAI/Include"
-                      },
-                      {
-                        "path": "/usr/local/Cellar/boost/1.60.0_2/include"
-                      },
-                      {
-                        "path": "/usr/local"
-                      },
-                      {
-                        "path": "/Library/Language/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Common/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Pi/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Rho/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Library/Language/Tau/Include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/KAI/ImGui"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Test/Include"
-                      },
-                      {
-                        "path": "/usr/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/NetworkGenerate/Include"
-                      },
-                      {
-                        "path": "/opt/local/include"
-                      },
-                      {
-                        "path": "/Users/christian/Local/KAI/Include/Imgui"
-                      }
-                    ],
-                    "isGenerated": false,
-                    "language": "C",
-                    "sources": [
-                      "Library/ImGui/Source/gl3w.c"
+                      "Test/Source/Common/TestCommon.cpp",
+                      "Test/Source/Common/TestLangCommon.cpp",
+                      "Test/Source/Main.cpp",
+                      "Test/Source/MyTestStruct.cpp",
+                      "Test/Source/TestBasePointer.cpp",
+                      "Test/Source/TestBinaryStream.cpp",
+                      "Test/Source/TestClassScripting.cpp",
+                      "Test/Source/TestConsole.cpp",
+                      "Test/Source/TestContainer/TestList.cpp",
+                      "Test/Source/TestContainer/TestMap.cpp",
+                      "Test/Source/TestContainer/TestSet.cpp",
+                      "Test/Source/TestContainer/TestStack.cpp",
+                      "Test/Source/TestContainer/TestString.cpp",
+                      "Test/Source/TestContainer/TestVector.cpp",
+                      "Test/Source/TestDotGraph.cpp",
+                      "Test/Source/TestEvents.cpp",
+                      "Test/Source/TestExecutor.cpp",
+                      "Test/Source/TestFunction.cpp",
+                      "Test/Source/TestObject.cpp",
+                      "Test/Source/TestPi.cpp",
+                      "Test/Source/TestRawPi/TestPi.cpp",
+                      "Test/Source/TestRawPi/TestPiParser.cpp",
+                      "Test/Source/TestRegistry.cpp",
+                      "Test/Source/TestRho/TestFunctionScripting.cpp",
+                      "Test/Source/TestTau/TestTau.cpp"
                     ]
                   }
                 ],
-                "fullName": "libImGui.a",
+                "fullName": "KaiTests",
+                "linkFlags": "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo",
+                "linkLanguageFlags": "-std=c++1y -g -Wno-deprecated -Wno-switch -g",
+                "linkLibraries": "-Wl,-rpath,/Users/christian/lib ../lib/libExecutor.a ../lib/libCore.a ../lib/libPiLang.a ../lib/libRhoLang.a ../lib/libTauLang.a -lgtest -lpthread",
+                "linkPath": "-L/Users/christian/lib",
                 "linkerLanguage": "CXX",
-                "name": "ImGui",
+                "name": "KaiTests",
                 "sourceDirectory": "/Users/christian/Local/KAI",
-                "type": "STATIC_LIBRARY"
+                "type": "EXECUTABLE"
               },
               {
                 "buildDirectory": "/Users/christian/Local/KAI/build",
-                "fullName": "all_pch",
-                "name": "all_pch",
+                "fileGroups": [
+                  {
+                    "isGenerated": true,
+                    "sources": [
+                      "build/CMakeFiles/PiLang_pch",
+                      "build/CMakeFiles/PiLang_pch.rule",
+                      "build/cotire/PiLang_CXX_prefix.hxx.pch.rule",
+                      "build/cotire/PiLang_CXX_prefix.hxx.rule",
+                      "build/cotire/PiLang_CXX_prefix.cxx.rule",
+                      "build/cotire/PiLang_CXX_unity.cxx.rule"
+                    ]
+                  }
+                ],
+                "fullName": "PiLang_pch",
+                "name": "PiLang_pch",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "UTILITY"
               },
@@ -1976,17 +1980,13 @@
                   {
                     "isGenerated": true,
                     "sources": [
-                      "build/CMakeFiles/TauLang_pch",
-                      "build/CMakeFiles/TauLang_pch.rule",
-                      "build/cotire/TauLang_CXX_prefix.hxx.pch.rule",
-                      "build/cotire/TauLang_CXX_prefix.hxx.rule",
-                      "build/cotire/TauLang_CXX_prefix.cxx.rule",
-                      "build/cotire/TauLang_CXX_unity.cxx.rule"
+                      "build/CMakeFiles/clean_cotire",
+                      "build/CMakeFiles/clean_cotire.rule"
                     ]
                   }
                 ],
-                "fullName": "TauLang_pch",
-                "name": "TauLang_pch",
+                "fullName": "clean_cotire",
+                "name": "clean_cotire",
                 "sourceDirectory": "/Users/christian/Local/KAI",
                 "type": "UTILITY"
               },
@@ -2082,7 +2082,7 @@
         ]
       }
     ],
-    "cookie": "0.5355096817259397",
+    "cookie": "0.1952054999635926",
     "inReplyTo": "codemodel",
     "type": "reply"
   }
