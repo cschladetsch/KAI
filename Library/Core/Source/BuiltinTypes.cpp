@@ -249,6 +249,28 @@ StringStream &operator<<(StringStream &S, Handle H)
 	return S << "Handle: " << H.GetValue();
 }
 
+StringStream &operator<<(StringStream &S, Pair const &P)
+{
+	return S << "Pair(" << P.first << ", " << P.second << ")";
+}
+
+StringStream &operator>>(StringStream &S, Pair &P)
+{
+	KAI_UNUSED_2(S,P);
+	KAI_NOT_IMPLEMENTED();
+}
+
+BinaryStream &operator<<(BinaryStream &S, Pair const &P)
+{
+	return S << P.first << P.second;
+}
+
+BinaryStream &operator>>(BinaryStream &S, Pair &P)
+{
+	return S >> P.first >> P.second;
+}
+
+
 KAI_END
 
 //EOF
