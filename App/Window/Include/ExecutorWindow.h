@@ -1,17 +1,12 @@
-#include <KAI/ImGui/imgui.h>
-
-#include <KAI/Console.h>
-#include <KAI/Core/Exception.h>
+#pragma once
 
 #include <vector>
 #include <string>
 
-using namespace std;
+#include <KAI/Config.h>
 
 KAI_BEGIN
 
-// TODO: it's pretty old-school to not have a header and just use a single
-// static instance via ShowExecutorWindow()....
 struct ExecutorWindow
 {
 	// deprecating...
@@ -19,8 +14,8 @@ struct ExecutorWindow
     int HistoryPos;    // -1: new line, 0..History.Size-1 browsing history.
     bool ScrollToBottom;
 
-    vector<string> Items;
-    vector<string> History;
+    std::vector<std::string> Items;
+    std::vector<std::string> History;
 
 	Console _console;
 	Tree *_tree;
@@ -280,4 +275,5 @@ void ShowExecutorWindow(bool* p_open)
 }
 
 KAI_END
+
 
