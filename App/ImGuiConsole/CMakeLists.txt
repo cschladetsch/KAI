@@ -3,20 +3,14 @@ cmake_minimum_required(VERSION 3.4)
 set(name ImGuiConsole)
 project(${name})
 
+set(frameworks OpenGL Cocoa IOKit CoreVideo)
 
-find_package(OpenGL REQUIRED)
-find_package(Cocoa REQUIRED)
-find_package(IOKit REQUIRED)
-find_package(CoreVideo REQUIRED)
-
-message(STATUS "OPENGL_INCLUDE_DIR: ${OPENGL_INCLUDE_DIR}")
-
-include_directories(${OPENGL_INCLUDE_DIR})
-
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework OpenGl")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework Cocoa")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework IOKit")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework CoreVideo")
+foreach(framework ${frameworks})
+	# include(${CMAKE_MODULE_PATH}/Find${framework}.cmake)
+	set(${framework}_FIND_QUIETLY true)
+	find_package(${framework})
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework ${framework}")
+endforeach()
 
 # TODO: use KAI_PLATFORM_OSX
 add_definitions(-DKAI_PLATFORM_OSX)
