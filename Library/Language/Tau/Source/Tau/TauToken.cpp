@@ -3,6 +3,10 @@
 
 TAU_BEGIN
 
+#undef CASE
+#undef CASE_LOWER
+#undef CASE_REPLACE
+
 const char *TauTokenEnumType::ToString(Enum val)
 {
 	switch (val)
