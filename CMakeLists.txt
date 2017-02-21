@@ -29,8 +29,11 @@ include(${KAI_HOME}/CMake/FindRakNet.cmake)
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
 set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
-set(LIBRARY_HOME ${KAI_HOME}/Library)
-set(TESTS_HOME ${KAI_HOME}/Tests)
+set(SOURCE_HOME ${KAI_HOME}/Source)
+set(APP_HOME ${SOURCE_HOME}/App)
+set(LIBRARY_HOME ${SOURCE_HOME}/Library)
+set(TEST_HOME ${SOURCE_HOME}/Test)
+set(BIN_HOME ${KAI_HOME}/Bin)
 
 include_directories(${KAI_HOME}/Include)
 
@@ -40,18 +43,18 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 endif()
 
 set(dir ${KAI_HOME})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
 
 # FLTK
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
 
 macro(def_lang_library name)
     project(${name}Lang)
-    set(lang_root ${KAI_HOME}/Library/Language/${name})
+    set(lang_root ${LIBRARY_HOME}/Language/${name})
     include_directories(${lang_root}/Include)
     set(SOURCE_ROOT ${lang_root}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
@@ -61,7 +64,7 @@ endmacro()
 
 macro(def_library name)
     project(${name})
-    set(SOURCE_ROOT ${KAI_HOME}/Library/${name}/Source/*.cpp)
+    set(SOURCE_ROOT ${LIBRARY_HOME}/${name}/Source/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     add_library(${name} ${SOURCE_FILES} )
     cotire(${name})
@@ -69,7 +72,7 @@ endmacro()
 
 macro(def_platform_library name)
     project(platform-${name})
-    set(SOURCE_ROOT ${KAI_HOME}/Platform/${name}/*.cpp)
+    set(SOURCE_ROOT ${LIBRARY_HOME}/Platform/${name}/*.cpp)
     file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
     add_library(platform-${name} SHARED ${SOURCE_FILES})
     cotire(platform-${name})
@@ -80,7 +83,7 @@ endmacro()
 set(TopLevels Library Test App)
 
 foreach(top ${TopLevels})
-    include(${top}/CMakeLists.txt)
+    include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
 # include(Library/Platform/CMakeLists.txt)

@@ -16,7 +16,7 @@ add_definitions(-DKAI_PLATFORM_OSX)
 include_directories(/opt/local/include ${KAI_HOME}/Include/Imgui)
 link_directories(/opt/local/lib)
 
-set(SOURCE_ROOT ${KAI_HOME}/App/${name}/Source/*.cpp)
+set(SOURCE_ROOT ${SOURCE_HOME}/App/${name}/Source/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 
 link_libraries(Executor Core PiLang RhoLang ImGui)
