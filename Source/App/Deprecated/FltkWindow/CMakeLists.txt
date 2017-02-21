@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.7)
 project(FltkWindow)
 set(Root ${KAI_HOME}/App/FltkWindow/Source)
 file(GLOB_RECURSE SOURCE_FILES ${Root}/*.cpp)
