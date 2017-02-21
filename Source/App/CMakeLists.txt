@@ -5,6 +5,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 set(apps Console NetworkGenerate NetworkPeer Window)
 
 foreach (app ${apps})
-    include(${KAI_HOME}/App/${app}/CMakeLists.txt)
+    include(${APP_HOME}/${app}/CMakeLists.txt)
 endforeach()
 
