@@ -35,49 +35,37 @@ Object Function_3(Object object)
 
 TEST(TestFunctionScripting, Test)
 {
-	try
-	{
-		Console console;
-		console.SetLanguage(Language::Rho);
-		Object root = console.GetRoot();
-		Registry &reg = console.GetRegistry();
-		MyStruct::Register(reg);
+	Console console;
+	console.SetLanguage(Language::Rho);
+	Object root = console.GetRoot();
+	Registry &reg = console.GetRegistry();
+	MyStruct::Register(reg);
 
-		Pointer<MyStruct> mystruct = reg.New<MyStruct>();
-		mystruct->num = 345;
-		mystruct->string = "hello world";
+	Pointer<MyStruct> mystruct = reg.New<MyStruct>();
+	mystruct->num = 345;
+	mystruct->string = "hello world";
 
-		console.GetTree().AddSearchPath(root);//Pathname("/"));
+	console.GetTree().AddSearchPath(root);//Pathname("/"));
 
-		// Process::trace = 10;
-		root["mystruct"] = mystruct;
-		AddFunction(root, Function_0, Label("Function0"));
-		AddFunction(root, Function_1, Label("Function1"));
-		AddFunction(root, Function_2, Label("Function2"));
-		AddFunction(root, Function_3, Label("Function3"));
+	// Process::trace = 10;
+	root["mystruct"] = mystruct;
+	AddFunction(root, Function_0, Label("Function0"));
+	AddFunction(root, Function_1, Label("Function1"));
+	AddFunction(root, Function_2, Label("Function2"));
+	AddFunction(root, Function_3, Label("Function3"));
 
-		console.Execute("Function0()");
-		console.Execute("Function1(42)");
-		console.Execute("Function2(123, 3, \"bar\")");
-		console.Execute("Function3(mystruct)");
+	console.Execute("Function0()");
+	console.Execute("Function1(42)");
+	console.Execute("Function2(123, 3, \"bar\")");
+	console.Execute("Function3(mystruct)");
 
-		for (int n = 0; n < 2; ++n)
-			ASSERT_TRUE(funCalled[n]);
+	for (int n = 0; n < 2; ++n)
+		ASSERT_TRUE(funCalled[n]);
 
-		Value<Stack> stack = console.GetExecutor()->GetDataStack();
-		EXPECT_EQ(stack->Size(), 2);
-		EXPECT_EQ(ConstDeref<int>(stack->Pop()), 345);
-		EXPECT_EQ(ConstDeref<String>(stack->Pop()), "barfoo");
-		EXPECT_EQ(stack->Size(), 0);
-	}
-
-	catch (kai::Exception::Base &e)
-	{
-		cerr << e.ToString() << endl;
-	}
-	catch (std::exception &e)
-	{
-		cerr << e.what() << endl;
-	}
+	Value<Stack> stack = console.GetExecutor()->GetDataStack();
+	EXPECT_EQ(stack->Size(), 2);
+	EXPECT_EQ(ConstDeref<int>(stack->Pop()), 345);
+	EXPECT_EQ(ConstDeref<String>(stack->Pop()), "barfoo");
+	EXPECT_EQ(stack->Size(), 0);
 }
 
