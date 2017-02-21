@@ -54,6 +54,7 @@ TEST(TestFunctionScripting, Test)
 	AddFunction(root, Function_2, Label("Function2"));
 	AddFunction(root, Function_3, Label("Function3"));
 
+	// these fail because of changes to CommonLexer
 	console.Execute("Function0()");
 	console.Execute("Function1(42)");
 	console.Execute("Function2(123, 3, \"bar\")");
