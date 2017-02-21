@@ -6,7 +6,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/Test/Bin/KaiTests",
-			"args": ["--gtest_filter=TestPi.*"],
+			"args": ["--gtest_filter=TestPi.*", "--gtest_catch_exceptions"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}/Test/Bin",
 			"environment": [],

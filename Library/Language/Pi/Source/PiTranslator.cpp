@@ -18,7 +18,14 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 	{
 		case PiAstNodeEnumType::Array:
 		{
-			KAI_NOT_IMPLEMENTED();
+			// although we are getting an array,
+			// pretend at first we are getting a Continuation
+			// then use it's code as the data for the array
+			PushNew();
+			for (auto const &ch : node->GetChildren())
+				TranslateNode(ch);
+			Pointer<Continuation> c = Pop();
+			Append(c->GetCode());
 			break;
 		}
 
