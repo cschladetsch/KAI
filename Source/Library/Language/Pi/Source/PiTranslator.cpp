@@ -168,10 +168,13 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		AppendOp(Operation::ToArray);
 		break;
 
+	case PiTokenEnumType::Depth:
+		AppendOp(Operation::Depth);
+		break;
 
 	default:
 		KAI_TRACE_1(tok.type) << " Not dealt with: " << tok.ToString();
-		KAI_NOT_IMPLEMENTED();
+		// KAI_NOT_IMPLEMENTED_1(tok.ToString());
 		break;
 	}
 }

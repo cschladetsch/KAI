@@ -32,6 +32,7 @@ void PiLexer::AddKeyWords()
 	keyWords["pwd"] = Enum::PrintFolder;
 	keyWords["type"] = Enum::GetType;
 	keyWords["size"] = Enum::Size;
+	keyWords["depth"] = Enum::Depth;
 
 	keyWords["toarray"] = Enum::ToArray;
 	keyWords["tolist"] = Enum::ToList;
