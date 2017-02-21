@@ -96,8 +96,11 @@ protected:
 	bool Add(Enum type, int len = 1)
 	{
 		Add(type, Slice(offset, offset + len));
-		while (len--)
+		while (len-- && Peek())
 			Next();
+
+		if (Current() == '\n')
+			++lineNumber;
 
 		return true;
 	}
