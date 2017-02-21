@@ -51,7 +51,7 @@ namespace
 		if (trace) parser->PrintTree();
 
 		auto root = parser->GetRoot();
-		ASSERT_EQ(root->GetChildren().size(), 3);
+		ASSERT_EQ(root->GetChildren().size(), 2);
 
 		auto ch0 = root->GetChildren()[0];
 		auto ch1 = ch0->GetChildren()[0];

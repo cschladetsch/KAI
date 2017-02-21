@@ -315,25 +315,6 @@ void Executor::ContinueOnly(Value<Continuation> C)
 	Continue(C);
 }
 
-//void Executor::ContinueTestCode(Value<Continuation> test)
-//{
-//	// preserve the stack depth going into the test
-//	int start_depth = _data->Size();
-//
-//	// execute the test code
-//	ContinueOnly(test);
-//
-//	// ensure we have at least one extra argument on the stack
-//	int new_depth = _data->Size();
-//	if (new_depth < start_depth + 1)
-//		KAI_THROW_1(Base, "Corrupted stack");
-//
-//	// pop off the extraneous left-overs from the conditional
-//	int num_pops = _data->Size() - new_depth - 1;
-//	for (int N = 0; N < num_pops; ++N)
-//		_data->Pop();
-//}
-
 template <class D>
 Value<Array> Executor::ForEach(D const &C, Object const &F)
 {
@@ -593,6 +574,43 @@ std::string Executor::PrintStack() const
 		str << "[" << n++ << "]: " << A <<  "\n";
 	}
 	return str.ToString().c_str();
+}
+
+// template <typename Cont>
+// struct GetContSize
+// {
+// 	static size_t Get(Object const &) { return 0; };
+// }
+
+// template <typename T>
+// struct GetContSize<Container<T> >
+// {
+// 	static size_t Get(Object const &Q) { return ConstDeref<Container<T>>(Q).Size(); }
+// }
+
+// TODO: put container size in traits, as per above.
+// for now, be lame
+static int ContainerSize(Object cont)
+{
+	switch (cont.GetTypeNumber().ToInt())
+	{
+		case Type::Number::List:
+			return ConstDeref<List>(cont).Size();
+			break;
+		case Type::Number::Array:
+			return ConstDeref<Array>(cont).Size();
+			break;
+		case Type::Number::Map:
+			return ConstDeref<Map>(cont).Size();
+			break;
+		// case Type::Number::Set:
+		// 	return ConstDeref<Set>(cont).Size();
+		// 	break;
+	}
+
+	KAI_NOT_IMPLEMENTED();
+
+	return 0;
 }
 
 const char *ToString(Language l)
@@ -1251,6 +1269,10 @@ const char *ToString(Language l)
 
 		case Operation::Retreive:
 			Push(Resolve(Pop()));
+			break;
+
+		case Operation::Size:
+			Push(New(ContainerSize(ResolvePop())));
 			break;
 
 		case Operation::Less:

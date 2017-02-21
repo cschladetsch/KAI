@@ -101,6 +101,8 @@ struct Operation
 		DivEquals,
 		ModEquals,
 
+		Size,
+
 		ToPi,
 		ToRho,
 		StartPiSequence,

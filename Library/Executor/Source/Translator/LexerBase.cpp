@@ -49,6 +49,9 @@ bool LexerBase::EndOfLine() const
 
 char LexerBase::Peek() const
 {
+	if (!Current())
+		return 0;
+
 	if (EndOfLine())
 		return 0;
 
