@@ -31,6 +31,14 @@ void PiLexer::AddKeyWords()
 	keyWords["cd"] = Enum::ChangeFolder;
 	keyWords["pwd"] = Enum::PrintFolder;
 	keyWords["type"] = Enum::GetType;
+	keyWords["size"] = Enum::Size;
+
+	keyWords["toarray"] = Enum::ToArray;
+	keyWords["tolist"] = Enum::ToList;
+	keyWords["tomap"] = Enum::ToMap;
+	keyWords["toset"] = Enum::ToSet;
+	
+	keyWords["expand"] = Enum::Expand;
 }
 
 bool PiLexer::QuotedIdent()

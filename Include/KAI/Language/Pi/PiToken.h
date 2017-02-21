@@ -83,6 +83,7 @@ struct PiTokenEnumType
 		RotN,
 		Clear,
 		Expand,
+
 		ToArray,
 		ToList,
 		ToMap,
@@ -93,6 +94,7 @@ struct PiTokenEnumType
 		ToVector3,
 		ToVector4,
 		ToQuaternion,
+
 		RunScript,
 		Name,
 		Fullname,
@@ -129,6 +131,8 @@ struct PiTokenEnumType
 		History,
 		Jobs,
 		Debug,
+
+		Size,
 
 	};
 
