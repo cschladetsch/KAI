@@ -1,1 +1,0 @@
-dot -Tpng $1 > Graphs/$1.png && open Graphs/$1.png
