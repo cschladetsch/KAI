@@ -208,7 +208,8 @@ finis:
 	if (Try(TokenType::Semi))
 		Consume();
 
-	Expect(TokenType::NewLine);
+	if (!Try(TokenType::None))
+		Expect(TokenType::NewLine);
 
 	return true;
 }
