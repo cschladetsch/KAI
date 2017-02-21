@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.7)
 project(Languages)
 set(lang_root_dir ${KAI_SOURCE_ROOT_DIR}/Library/Language)
 set(langs Common Pi Rho Tau)
