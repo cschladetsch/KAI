@@ -42,6 +42,8 @@ void Console::Create()
 		compiler.SetManaged(false);
 
 		CreateTree();
+
+		SetLanguage(Language::Pi);
 	}
 	KAI_CATCH(exception, e)
 	{
