@@ -163,6 +163,6 @@ The best example is the REPL Window, provided. From there, you can see that you 
 
 ## Unit Tests
 
-See the [Unit Tests](https://github.com/cschladetsch/KAI/tree/master/Test/Source) here. They are of course not comprehensive, but they give an idea.
+See the [Unit Tests](https://github.com/cschladetsch/KAI/tree/master/Source/Test/Source) here. They are of course not comprehensive, but they give an idea.
 
 They are what I am working on the most at the moment.
