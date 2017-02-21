@@ -10,6 +10,6 @@ The approach I've taken here is that KAI is entirely self-contained. You downloa
 
 * ***Lib*** Built static and dynamic libraries. Add this to your linker path if needed.
 * ***Bin*** Built applications like the console REPL and the Window gui and the NeworkGenerator. Add to PATH if needed.
-* ***Include*** Under this is the "real" KAI include folder. So if you installed to Foo, add -IFoo/Include so you can use *\<KAI/Include/Header.h\>*. Add to -I if needed.
+* ***Include*** Under this is the "real" KAI include folder. So if you installed to Foo, add -IFoo/Include so you can use *\<KAI/Core/Header.h\>* or whatever.
 
 Perhaps I'm wrong. But for small(?) projects like this, it's best to keep things local and removable with a single rm -rf command.
