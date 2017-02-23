@@ -1,0 +1,10 @@
+// Test Tau with properties
+
+namespace MLB
+{
+	class C0
+	{
+		int n0;
+		String s0;
+	}
+}

@@ -1,0 +1,8 @@
+// Test basic Tau
+
+namespace MLB
+{
+	class C0
+	{
+	}
+}

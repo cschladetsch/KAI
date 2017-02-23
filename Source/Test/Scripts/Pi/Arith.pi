@@ -1,10 +1,16 @@
 # Test basic logic and arithmetic in Pi
 
+true assert
+
+false not assert
+
+1 assert
+
+0 not assert
+
 1 2 + 3 == assert
 
 1 {2 +} & 3 == assert
-
-"foo" "bar" + "foobar" == assert
 
 2 1 swap - 1 == assert
 
