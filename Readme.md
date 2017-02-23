@@ -30,22 +30,22 @@ I did make it easier for you by providing .cmake files for each requirement in t
 
 So, (deep breath), this should work on all platforms (assuming Cygwin on Windows):
 
-	$ mdkir build && cd build && cmake .. && make
-	$ cd ../Bin
+  $ mdkir build && cd build && cmake .. && make
+  $ cd ../Bin
 
 At this point you shoud be in the binary executable folder of the library, with fun stuff in it like character-based **Console**, Gui-Based console (**Window**), and unit-tests in **Tests/KaiTests**. 
 
 Check **${KAI_HOME}/Lib** for all static and dynamic libraries that should also have been built.
 
-Go ahead and run the tests. 
+Go ahead and run the tests.
 
-	$ Test/KaiTests
+  $ Bin/Test/KaiTests
 
 The only output should be green things. Nothing else flashy. If you see a red thing, that's bad and you should report it to me here as an Issue.
 
 Otherwise, read *(this other document that doesn't exist)* on how to make a set of KAI nodes on one or more machines and connect them to each other. 
 
-# Networking
+## Networking
 
 The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
 
@@ -143,26 +143,10 @@ KAI and all of its libraries and applications are completely cross-platform and 
 
 Currently the networking is supplied by RakNet, but no RakNet symbols are exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
 
-# Installing
+## Examples
 
-You will need CMake version 3.4 or greater.
+It's hard to give examples of an engine without applications. This is an 'engine' that attempts to make C++ more dynamic and scriptable. It is also the basis for a new network model that uses *Proxies* and *Agents* to make networking as simple as async method calls.
 
-From top-level do:
+I've since learned that this isn't uncommon anymore. Well, it was when I started it in 2009.
 
-	# mkdir build && cd build && cmake .. && make
-
-For the basics, no external libraries are required.
-
-For the Window app to build, you will need [FLTK](www.fltk.org) and all of its' requirements as well.
-
-# Examples
-
-It's hard to give examples of an engine without applications. This is an 'engine' that attempts to make C++ more dynamic and scriptable. It is also the basis for a new network model that uses Proxies and Agents to make networking as simple as async method calls.
-
-The best example is the REPL Window, provided. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
-
-## Unit Tests
-
-See the [Unit Tests](https://github.com/cschladetsch/KAI/tree/master/Source/Test/Source) here. They are of course not comprehensive, but they give an idea.
-
-They are what I am working on the most at the moment.
+The best example is the REPL Window, provided in ${KAI_HOME}/Bin/Window. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
