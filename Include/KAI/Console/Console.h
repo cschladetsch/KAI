@@ -1,29 +1,16 @@
 #pragma once
 
-#include <memory>
-
-#include <KAI/Core/Memory/IAllocator.h>
-#include <KAI/Core/Type.h>
-#include <KAI/Core/Object/Reflected.h>
-#include <KAI/Core/Object/Object.h>
-#include <KAI/Core/BuiltinTypes/String.h>
-#include <KAI/Core/Tree.h>
-#include <KAI/Core/Registry.h>
-#include <KAI/Core/Pointer.h>
-
 #include <KAI/Executor/Compiler.h>
-#include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Executor.h>
-
-#include <KAI/Language/Pi/Pi.h>
-#include <KAI/Language/Rho/Rho.h>
-
+#include <KAI/Core/Tree.h>
+#include <KAI/Language.h>
 #include <KAI/Console/ConsoleColor.h>
 
 KAI_BEGIN
 
 struct Coloriser;
 
+// This is a language-independant REPL console
 class Console : public Reflected
 {
 	Tree tree;
@@ -49,6 +36,7 @@ public:
 	Tree const &GetTree() const { return tree; }
 
 	Object GetRoot() const { return tree.GetRoot(); }
+
 	Pointer<Executor> GetExecutor() const { return executor; }
 	Pointer<Compiler> GetCompiler() const { return compiler; }
 
