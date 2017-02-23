@@ -82,7 +82,23 @@ TEST_F(TestPi, TestVectors)
 	_data->Clear();
 	_console->Execute("[1 2 3] size");
 	ASSERT_EQ(AtData<int>(0), 3);
+}
 
-
+TEST_F(PiTests, TestScope)
+{
+	// store to explicit root of tree
+	_console->Execute("1 '/b #");
+	ASSERT_TRUE(_root->Has("b"));
+	ASSERT_EQ(42, ConstDeref<int>_root->Get("b"));
+	
+	// store into local scope. whatever that is supposed to be?
+	// currently it is the scope of the continuation that is passed to the 
+	// executor --- so it goes out of scope immediately after the continuation 
+	// has finished (and before the next starts)
+	//
+	// we don't want that (or do we). Rather, the *first* continuation should run in the
+	// current scope of the executor - after that, it uses local scope
+	_console->Execute("1 'a #");
+	ASSERT_TRUE(_executor->GetScope()->Has("a"));
 }
 

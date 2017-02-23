@@ -1,0 +1,13 @@
+# Test basic logic and arithmetic in Pi
+
+1 2 + 3 == assert
+
+1 {2 +} & 3 == assert
+
+"foo" "bar" + "foobar" == assert
+
+2 1 swap - 1 == assert
+
+1 2 3 3 toarray [1 2 3] == assert
+
+

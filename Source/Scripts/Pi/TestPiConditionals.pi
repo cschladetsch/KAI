@@ -1,0 +1,17 @@
+depth 0 == assert
+
+1 2 3 clear depth 0 == assert
+
+1 true if 1 == assert
+1 false if 0 depth == assert
+
+1 2 true ife 1 == assert
+1 2 false ife 2 == assert
+
+1 2 false ife 2 == assert
+
+{1 +} {2 +} true  ife 1 swap & 2 == assert
+
+{1 +} {2 +} false ife 1 swap & 3 == assert
+
+

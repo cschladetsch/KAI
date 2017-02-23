@@ -1,0 +1,18 @@
+// Test scoping
+
+scope print &
+
+'/ cd // change to root of tree
+
+1 'a #
+2 'b #
+
+a b + 3 == assert
+
+'/home cd
+3 'c #
+
+/a c + 4 == assert
+
+{ 1 'z #} & z exsists not assert
+

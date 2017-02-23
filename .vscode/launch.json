@@ -39,10 +39,10 @@
 			"name": "Tests",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceRoot}/Test/Bin/KaiTests",
+			"program": "${workspaceRoot}/Bin/Test/KaiTests",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceRoot}/Test/Bin",
+			"cwd": "${workspaceRoot}/Bin/Test",
 			"environment": [],
 			"externalConsole": true,
 			"linux": {

@@ -1,0 +1,16 @@
+# Test Pi continuations
+
+  {1 +} 'a # 
+
+ 1 a & 2 == assert
+  2 a & 3 == assert
+
+## storing locals
+
+  { 'a # a 3 * } 4 swap & 12 == assert
+
+## nested continuations
+
+  { 2 { swap 1 - } & } & 1 == assert
+
+
