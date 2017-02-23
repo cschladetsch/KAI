@@ -69,7 +69,9 @@ struct ExecutorWindow
 
         // TODO: display items starting from the bottom
 
-        if (ImGui::SmallButton("Clear")) ClearLog(); 
+        if (ImGui::SmallButton("Clear"))
+            ClearLog(); 
+
 		// ImGui::SameLine();
         // if (ImGui::SmallButton("Scroll to bottom")) ScrollToBottom = true;
 
@@ -119,20 +121,36 @@ struct ExecutorWindow
         ImGui::EndChild();
         ImGui::Separator();
 
+        // Prompt
+        // ImGui::BeginChild("Prompt");
+        // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0,0));
+        // ImGui::PopStyleVar();
+        // ImGui::LabelText("> ", "%s", _console.GetPrompt().c_str());
+        // ImGui::EndChild();
+        // ImGui::Separator();
+
         // Command-line
         if (ImGui::InputText("Input", InputBuf, sizeof(InputBuf), 
 			ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory, &TextEditCallbackStub, (void*)this))
         {
             char* input_end = InputBuf+strlen(InputBuf);
-            while (input_end > InputBuf && input_end[-1] == ' ') input_end--; *input_end = 0;
+            while (input_end > InputBuf && input_end[-1] == ' ') input_end--; 
+            
+            *input_end = 0;
+
             if (InputBuf[0])
                 ExecCommand(InputBuf);
             strcpy(InputBuf, "");
         }
 
         // Demonstrate keeping auto focus on the input box
-        if (ImGui::IsItemHovered() || (ImGui::IsRootWindowOrAnyChildFocused() && !ImGui::IsAnyItemActive() && !ImGui::IsMouseClicked(0)))
+        if (ImGui::IsItemHovered() 
+            || (ImGui::IsRootWindowOrAnyChildFocused() 
+            && !ImGui::IsAnyItemActive() 
+            && !ImGui::IsMouseClicked(0)))
+        {
             ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
+        }
 
         ImGui::End();
     }
