@@ -1259,7 +1259,13 @@ const char *ToString(Language l)
 		case Operation::Store:
 			{
 				Object ident = Pop();
-				Object value = ResolvePop();
+				// Object value = ResolvePop();
+				Object value = Pop();	// Why did I ever think I should resolve the value to store?
+				// 42 'a # a 'b # 
+				// in the above, b will be stored with 42 (because pushing a resolves to 42)
+				// but
+				// 42 'a # 'a 'b #
+				// the above should mean that b stores 'a, not 42
 				if (!_continuation->HasScope())
 					_continuation->SetScope(New<void>().GetObject());
 
