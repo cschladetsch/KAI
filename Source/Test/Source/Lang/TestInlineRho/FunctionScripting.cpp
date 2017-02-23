@@ -8,7 +8,7 @@ using namespace std;
 
 bool funCalled[5];
 
-// just making some functions that we will also add to the runtime soon
+// make some functions that we will also add to the runtime
 void Function_0()
 {
 	funCalled[0] = true;
@@ -69,4 +69,3 @@ TEST(TestFunctionScripting, Test)
 	EXPECT_EQ(ConstDeref<String>(stack->Pop()), "barfoo");
 	EXPECT_EQ(stack->Size(), 0);
 }
-
