@@ -6,7 +6,7 @@ We will call the folder that you installed KAI to as **${KAI_HOME}**.
 
 From **${KAI_HOME}** do:
 
-	$ mkdir build && cd build && cmake .. && make
+  $ mkdir build && cd build && cmake .. && make
 
 No external libraries are required. If it doesn't build cleanly please contact [me](mailto:christian.schladetsch@gmail.com) with the build log and platform details.
 
