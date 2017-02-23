@@ -12,38 +12,13 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 ## Getting Started
 
-You will need advanced skill level to build and use this library. Sorry, it's just true.
-
 I will refer to the folder that you installed KAI into as **${KAI_HOME}**. For instance, for me on ***OSX*** and ***Ubuntu*** KAI_HOME is *~/Local/Kai*. *Local* because I made it and *Kai* because that's it's name.
 
-I've used CMake so it should be relatively painless to make any changes to ports that I missed after updating for other ports. That said, if this library is like any other I've used, you will have know know what you're doing to build and use KAI cross-platform.
+I've used CMake so it should be relatively painless to make any changes to ports that I missed after updating for other ports.
 
 ### Building
 
-You will need cmake >= 3.7 and OpenGL and a bunch of things like Raknet. I have made the CMake files as permissible as possible, as at worst you will just end up with a character-based terminal and no networking.
-
-That is to say: if the build system can't locate a package, it will not fail. It will just not build anything that relies on that package.
-
-Otherwise, do what I do and solve the dependancies problems one at a time as you try to build. I could try to give you deep instructions on how to add all dependancies on all platforms, but they would be outdated before you read them anyway. And they'd be wrong.
-
-I did make it easier for you by providing .cmake files for each requirement in the top-level **${KAI_HOM}/CMake** folder that tries to find each package as required. This works cross-platform. Probably.
-
-So, (deep breath), this should work on all platforms (assuming Cygwin on Windows):
-
-  $ mdkir build && cd build && cmake .. && make
-  $ cd ../Bin
-
-At this point you shoud be in the binary executable folder of the library, with fun stuff in it like character-based **Console**, Gui-Based console (**Window**), and unit-tests in **Tests/KaiTests**. 
-
-Check **${KAI_HOME}/Lib** for all static and dynamic libraries that should also have been built.
-
-Go ahead and run the tests.
-
-  $ Bin/Test/KaiTests
-
-The only output should be green things. Nothing else flashy. If you see a red thing, that's bad and you should report it to me here as an Issue.
-
-Otherwise, read *(this other document that doesn't exist)* on how to make a set of KAI nodes on one or more machines and connect them to each other. 
+See **${KAI_HOME}**/Install.md. If after reading that you still get a failed build, contact [me](matilto:christian.schladetsch@gmail.com) with the build log and platform details.
 
 ## Networking
 
