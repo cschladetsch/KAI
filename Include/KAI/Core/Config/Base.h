@@ -23,16 +23,15 @@
 #define KAI_CACHE_OBJECT_LOOKUPS
 
 // These no longer work :(
-
+//
 //#	define KAI_PLATFORM_INCLUDE(Header) \
 //	KAI_PP_CONCAT( \
 //		KAI_PP_CONCAT("KAI/Platform", KAI_PP_STRINGISE(KAI_PLATFORM_LABEL)) \
 //		, KAI_PP_STRINGISE(Header))
-
-#	define KAI_PLATFORM_Source(Source) \
-	KAI_PP_CONCAT( \
-		KAI_PP_CONCAT("./Platform", KAI_PP_STRINGISE(KAI_PLATFORM_LABEL)) \
-		, KAI_PP_STRINGISE(Header))
+// #	define KAI_PLATFORM_Source(Source) \
+// 	KAI_PP_CONCAT( \
+// 		KAI_PP_CONCAT("./Platform", KAI_PP_STRINGISE(KAI_PLATFORM_LABEL)) \
+// 		, KAI_PP_STRINGISE(Header))
 
 #define KAI_UNUSED(A) ( &reinterpret_cast< const int& >( A ) )
 #define KAI_UNUSED_1(A) KAI_UNUSED(A)

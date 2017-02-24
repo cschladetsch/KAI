@@ -47,7 +47,3 @@
 #	define	KAI_OPTION_DEBUG_SAVE_POINTER
 #endif
 
-#ifndef UNUSED
-#	define UNUSED(X) (void)(sizeof(X))
-#endif
-
