@@ -1,11 +1,11 @@
 #pragma once
 
-#include "KAI/Executor/Executor.h"
-#include "KAI/Language/Common/TranslatorBase.h"
-#include "KAI/Language/Pi/PiToken.h"
-#include "KAI/Language/Pi/PiLexer.h"
-#include "KAI/Language/Pi/PiAstNode.h"
-#include "KAI/Language/Pi/PiParser.h"
+#include <KAI/Executor/Executor.h>
+#include <KAI/Language/Common/TranslatorBase.h>
+#include <KAI/Language/Pi/PiToken.h>
+#include <KAI/Language/Pi/PiLexer.h>
+#include <KAI/Language/Pi/PiAstNode.h>
+#include <KAI/Language/Pi/PiParser.h>
 
 KAI_BEGIN
 

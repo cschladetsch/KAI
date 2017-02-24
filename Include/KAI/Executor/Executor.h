@@ -1,16 +1,12 @@
 #pragma once
 
 #include <KAI/Core/Value.h>
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/TraitMacros.h>
-
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Operation.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
-
-#include "KAI/Core/Object/Reflected.h"
-#include "KAI/Core/Value.h"
-#include "KAI/Core/Pathname.h"
+#include <KAI/Core/Object/Reflected.h>
+#include <KAI/Core/Value.h>
+#include <KAI/Core/Pathname.h>
 
 KAI_BEGIN
 

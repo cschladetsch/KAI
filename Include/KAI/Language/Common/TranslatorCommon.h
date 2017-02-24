@@ -7,7 +7,7 @@
 
 KAI_BEGIN
 
-/// Common to all systems that translate from one grammar to another
+/// Common to all systems that translate from a text stream to a Continuation
 struct TranslatorCommon : ProcessCommon
 {
 public:
@@ -30,14 +30,6 @@ public:
 	{
 		Append(_reg->New<T>(val));
 	}
-
-	/*
-	template <>
-	void AppendNew<Operation::Type>(Operation::Type op)
-	{
-		AppendOp(op);
-	}
-	*/
 
 	void AppendOp(Operation::Type op);
 

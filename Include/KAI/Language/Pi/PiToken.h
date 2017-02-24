@@ -1,11 +1,12 @@
 #pragma once
 
+// TODO: Use kai::StringStringStream
 #include <ostream>
 #include <KAI/Language/Common/TokenBase.h>
 
 KAI_BEGIN
 
-// A token in the language
+// A token in the Pi language
 struct PiTokenEnumType
 {
 	enum Enum

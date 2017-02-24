@@ -1,10 +1,11 @@
 #pragma once
 
 #include <KAI/Language/Common/LexerCommon.h>
-#include "KAI/Language/Pi/PiToken.h"
+#include <KAI/Language/Pi/PiToken.h>
 
 KAI_BEGIN
 
+// Lexer for the Pi language. A specialistion of the generalised lexer.
 class PiLexer : public LexerCommon<PiTokenEnumType>
 {
 public:

@@ -5,9 +5,9 @@
 #include <string>
 #include <sstream>
 
-#include "KAI/Core/Config/Base.h"
-#include "KAI/Core/Object.h"
-#include "KAI/Language/Common/AstNodeBase.h"
+// #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object.h>
+#include <KAI/Language/Common/AstNodeBase.h>
 
 KAI_BEGIN
 
