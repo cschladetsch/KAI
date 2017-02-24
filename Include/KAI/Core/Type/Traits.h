@@ -1,13 +1,11 @@
 #pragma once
 
 #include <boost/type_index.hpp>
-
 #include <KAI/Core/Base.h>
 #include <KAI/Core/Exception/ExceptionMacros.h>
 #include <KAI/Core/Meta/Base.h>
 #include "KAI/Core/Type/Properties.h"
 #include "KAI/Core/Object/Reflected.h"
-//#include "KAI/Core/SetAbsValue.h"
 
 KAI_TYPE_BEGIN
 

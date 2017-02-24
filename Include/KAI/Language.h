@@ -1,3 +1,3 @@
 #pragma once
 
-#include <KAI/Language/Common/LangCommon.h>
+#include <KAI/Language/Language.h>
