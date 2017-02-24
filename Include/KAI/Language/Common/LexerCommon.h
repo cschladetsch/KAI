@@ -64,17 +64,18 @@ protected:
 		return !Failed;
 	}
 
-	bool LexAlpha()
+	Token LexAlpha()
 	{
 		Token tok(Enum::Ident, *this, lineNumber, Gather(isalnum));
-
 		auto kw = keyWords.find(tok.Text());
-		if (kw != keyWords.end())
+		auto keyword = kw != keyWords.end();
+		if (keyword)
+		{
 			tok.type = kw->second;
+			tokens.push_back(tok);
+		}
 
-		tokens.push_back(tok);
-
-		return true;
+		return tok;
 	}
 
 	void AddStringToken(int lineNumber, Slice slice) override
@@ -85,6 +86,12 @@ protected:
 	void LexErrorBase(const char *msg) override
 	{
 		LexError(msg);
+	}
+
+	bool Add(Token const &tok)
+	{
+		tokens.push_back(tok);
+		return true;
 	}
 
 	bool Add(Enum type, Slice slice)

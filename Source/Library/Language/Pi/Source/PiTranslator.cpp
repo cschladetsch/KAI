@@ -155,6 +155,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		AppendNew(Label(tok.Text()));
 		break;
 
+	case PiTokenEnumType::Pathname:
+		AppendNew(Pathname(tok.Text()));
+		break;
+
 	case PiTokenEnumType::ToRho:
 		AppendOp(Operation::ToRho);
 		break;
@@ -174,7 +178,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		break;
 
 	default:
-		KAI_TRACE_1(tok.type) << " Not dealt with: " << tok.ToString();
+		KAI_TRACE_1(tok.type) << " Token not implemented: " << tok.ToString();
 		// KAI_NOT_IMPLEMENTED_1(tok.ToString());
 		break;
 	}

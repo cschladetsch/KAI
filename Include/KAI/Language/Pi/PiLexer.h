@@ -20,6 +20,7 @@ public:
 
 private:
 	bool QuotedIdent();
+	bool Pathname();
 
 protected:
 	using Parent::_reg;

@@ -1,1 +1,13 @@
 // Test continuations in Rho
+
+fun a()
+	yield 1
+	yield 2
+
+fun b()
+	sum = 0
+	for x in a()
+		sum += x
+	assert(sum == 3)
+
+

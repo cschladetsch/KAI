@@ -39,6 +39,10 @@ void Pathname::FromString2(String text)
 	FromString(text);
 }
 
+// TODO: pathnames and id's have been giving me grief for years.
+// need to sort it out once and for all.
+// use a static PiParser method or something. Doing it badly
+// in three different places and across 3 different languages is insane.
 void Pathname::FromString(const String &text)
 {
 	elements.clear();
@@ -52,6 +56,10 @@ void Pathname::FromString(const String &text)
 	{
 		switch (*S)
 		{
+		case Literals::Quote:
+			elements.push_back(Element::Quote);
+			break;
+
 		case Literals::Parent:
 			AddElement(name, Element::Parent);
 			break;

@@ -1,0 +1,25 @@
+# test tail recursion: the ability to call a function
+# (including yourself) without pushing current context
+# onto the stack
+
+# cheat and use pi to get the current stack depth
+
+fun stackDepth()
+	r = pi { context size }			# get the size of the context stack of the VM 
+	return r[0] - 1 				# -1 because we're in a function!
+
+current = stackDepth()
+
+n = 100
+
+# have c() and d() mutually call eachther 100 times
+# usually, this would mean a call-stack with 200 elements
+fun c()
+	if --n
+		d()...
+
+fun d()
+	assert(stackDepth == current)	# we should never add to the context stack here
+	c()...
+
+

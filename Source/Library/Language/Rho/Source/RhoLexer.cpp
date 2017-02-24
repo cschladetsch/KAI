@@ -29,7 +29,7 @@ bool RhoLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return Add(Enum::Ident, Gather(isalnum));
+		return Add(LexAlpha());
 
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));
@@ -51,8 +51,9 @@ bool RhoLexer::NextToken()
 	case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
 	case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
 	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
-	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less); case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
-	case '"': return LexString();
+	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less); 
+	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
+	case '"': return LexString(); // "
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
 	case '\'': return Add(Enum::Quote);

@@ -20,7 +20,10 @@ bool TauLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return LexAlpha();
+	{
+		LexAlpha();
+		return true; 	// parser will deal with keywords in wrong places
+	}
 
 	if (isdigit(current))
 		return Fail("Number not expected");
@@ -35,7 +38,7 @@ bool TauLexer::NextToken()
 	case ',': return Add(Enum::Comma);
 	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
 	case '"': return LexString();
-	case '\'': return LexAlpha();
+	// case '\'': return LexAlpha();
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
 	case '/':

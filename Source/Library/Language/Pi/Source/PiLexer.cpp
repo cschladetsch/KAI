@@ -7,6 +7,7 @@ KAI_BEGIN
 void PiLexer::AddKeyWords()
 {
 	keyWords["if"] = Enum::If;
+	keyWords["ife"] = Enum::IfElse;
 	keyWords["for"] = Enum::For;
 	keyWords["true"] = Enum::True;
 	keyWords["false"] = Enum::False;
@@ -38,22 +39,15 @@ void PiLexer::AddKeyWords()
 	keyWords["tolist"] = Enum::ToList;
 	keyWords["tomap"] = Enum::ToMap;
 	keyWords["toset"] = Enum::ToSet;
+
+	keyWords["div"] = Enum::Divide;
 	
 	keyWords["expand"] = Enum::Expand;
 }
 
 bool PiLexer::QuotedIdent()
 {
-	auto start = offset;
-	Next();
-	if (!LexAlpha())
-		return false;
-
-	PiToken id = tokens.back();
-	tokens.pop_back();
-	Add(PiTokens::QuotedIdent, Slice(start + 1, offset));
-
-	return true;
+	return Pathname();
 }
 
 bool PiLexer::NextToken()
@@ -63,7 +57,7 @@ bool PiLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return LexAlpha();
+		return Pathname();
 
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));
@@ -89,7 +83,8 @@ bool PiLexer::NextToken()
 	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
-	case '"': return LexString();
+	// case '"': return LexString();
+
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
 	case '-':
@@ -128,7 +123,7 @@ bool PiLexer::NextToken()
 				;
 			return Add(Enum::Comment, offset - start);
 		}
-		return ParsePathname();
+		return Pathname();
 	}
 
 	LexError("Unrecognised %c");
@@ -141,9 +136,46 @@ void PiLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
-bool PiLexer::ParsePathname()
+// TODO: this isn't a full pathname . See Pathname.cpp in Core
+bool PiLexer::Pathname()
 {
-	return false;
+	int start = offset;
+	bool quoted = Current() == '\'';
+	if (quoted)
+		Next();
+
+	bool rooted = Current() == '/';
+	if (rooted)
+		Next();
+	
+	bool anyIdent = false;
+	do
+	{
+		Token result = LexAlpha();
+		// can't allow '// or foo// or foo//bar etc. sorry, comments.
+		// this could be fixed with some more logic.
+		// but - just don't use two slashes in pathnames for the moment.
+		// even then, I think that allowing 
+		//			'/foo/bar//spam/grok
+		// to be a legal Pi expression of
+		//			'/foo/bar//this is a comment
+		// is dodgey as well. prefer to just dissallow empty elements in pathnames.
+		// note that //foo is still a comment but /foo is a pathname
+		
+		// TODO
+		// if (result.Length == 0)		
+		// 	return false;
+
+		if (result.type != TokenEnumType::Ident)
+			return false;
+
+		anyIdent = true;
+	}
+	while (Current() == '/');
+
+	Add(Enum::Pathname, Slice(start, offset));
+
+	return true;
 }
 
 KAI_END

@@ -378,74 +378,10 @@ bool RhoParser::Factor()
 	while (Try(TokenType::Lookup))
 		PushConsume();
 
-	// TODO: allow for paths for identitifers like /foo/bar(1,2,3) (?)
-	// auto quoted = Try(TokenType::Quote);
-	// if (quoted || Try(TokenType::Sep) || Try(TokenType::Ident))
-	if (Try(TokenType::Ident))
+	if (Try(TokenType::Ident) || Try(TokenType::Pathname))
 		return ParseFactorIdent();
 
 	return false;
-}
-
-bool RhoParser::ParsePathname()
-{
-	auto node = NewNode(NodeType::Pathname);
-	if (ParsePathname(node))
-	{
-		Push(node);
-		return true;
-	}
-
-	return false;
-}
-
-bool RhoParser::ParsePathname(AstNodePtr path)
-{
-	// foo          # legal
-	// 'foo          # legal
-	// '/foo        # legal
-	// foo/bar/     # legal
-	// foo//bar/    # illegal
-	// '            # illegal
-
-	if (CurrentIs(TokenType::Quote))
-		path->Add(Consume());
-	bool expectIdent;
-	switch (Current().type)
-	{
-	case TokenType::Sep:
-		expectIdent = true;
-		path->Add(Consume());
-		break;
-	case TokenType::Ident:
-		path->Add(Consume());
-		expectIdent = false;
-		break;
-	default:
-		return CreateError("Expected a separator or ident");
-	}
-
-	while (true)
-	{
-		switch (Current().type)
-		{
-		case TokenType::Ident:
-			if (!expectIdent)
-				return true;
-			path->Add(Consume());
-			expectIdent = false;
-			break;
-		case TokenType::Sep:
-			if (expectIdent)
-				return true;
-			path->Add(Consume());
-			expectIdent = true;
-			break;
-
-		default:
-			return true;
-		}
-	}
 }
 
 bool RhoParser::ParseFactorIdent()
@@ -525,7 +461,6 @@ void RhoParser::IfCondition(AstNodePtr block)
 
 	Consume();
 
-	// get the test expression
 	if (!Expression())
 	{
 		CreateError("If what?");
@@ -533,7 +468,6 @@ void RhoParser::IfCondition(AstNodePtr block)
 	}
 
 	auto condition = Pop();
-	//Expect(TokenType::CloseParan);
 
 	// get the true-clause
 	auto trueClause = NewNode(NodeType::Block);
