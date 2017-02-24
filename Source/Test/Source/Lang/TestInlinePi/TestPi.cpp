@@ -88,27 +88,24 @@ TEST_F(TestPi, TestVectors)
 
 TEST_F(TestPi, TestScope)
 {
-	try {
-	// store to explicit root of tree
-	_console.Execute("42 '/b #");
-	const Label b("b");
-	ASSERT_TRUE(_root.Has(b));
-	ASSERT_EQ(42, ConstDeref<int>(_root.Get(b)));
-	
-	// store into local scope. whatever that is supposed to be?
-	// currently it is the scope of the continuation that is passed to the 
-	// executor --- so it goes out of scope immediately after the continuation 
-	// has finished (and before the next starts)
-	//
-	// we don't want that (or do we). Rather, the *first* continuation should run in the
-	// current scope of the executor - after that, it uses local scope
-	_console.Execute("1 'a #");
-	// ASSERT_TRUE(_tree->GetScope()->Has(Label("a")));
+	try
+	{
+		const Label b("b");
+		const Label c("c");
+
+		// store to explicit root of tree
+		_console.Execute("42 '/b #");
+		ASSERT_TRUE(_root.Has(b));
+		ASSERT_EQ(42, ConstDeref<int>(_root.Get(b)));
+		
+		// this is only storing to local scope - within the context
+		// of the command-line in which it was executed - so it
+		// should not be preserved in the global tree
+		_console.Execute("1 'c #");
+		ASSERT_FALSE(_root.Has(c));
 	}
 	catch (Exception::Base &e)
 	{
 		ASSERT_TRUE(false) << e.ToString().c_str();
 	}
-	
 }
-
