@@ -1,13 +1,17 @@
 #pragma once
 
-#include <KAI/Executor/Operation.h>
-#include <KAI/Language/Common/Language.h>
-#include <KAI/Language/Rho/RhoTranslator.h>
-#include <KAI/Language/Pi/PiTranslator.h>
+#include <map>
+
 #include <KAI/Core/Debug.h>
+#include <KAI/Executor/Operation.h>
+#include <KAI/Executor/Continuation.h>
+#include <KAI/Language/Common/Language.h>
 
 KAI_BEGIN
 
+// this is a strange beast.
+// it works for any language that conforms to the concept defined in
+// <KAI/Language/Common/TranslatorBase.h>
 class Compiler : public Reflected
 {
 	typedef std::map<Operation, String> OperationToString;
@@ -24,23 +28,6 @@ public:
 
 	void SetLanguage(int);
 	int GetLanguage() const;
-
-	Pointer<Continuation> Translate(const String &text, Structure st = Structure::Statement) const
-	{
-		switch (_language)
-		{
-		case Language::None:
-			return Object();
-		case Language::Pi:
-			return Compile<PiTranslator>(text, st)->GetCode()->At(0);	// Pi wraps output in a continuation. TODO: fix
-		case Language::Rho:
-			return Compile<RhoTranslator>(text, st);
-		case Language::Tau:
-			KAI_NOT_IMPLEMENTED();
-			break;
-		}
-		return Object();
-	}
 
 	template <class Trans>
 	Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
@@ -59,14 +46,18 @@ public:
 		return result;
 	}
 
+	Pointer<Continuation> Translate(const String &text, Structure st = Structure::Expression) const;
 	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const;
-
 
 	static void Register(Registry &, const char * = "Compiler");
 
 	void AddOperation(int N, const String &S);
 };
 
-KAI_TYPE_TRAITS(Compiler, Number::Compiler, Properties::Reflected);
+// you can interact with a Compiler at runtime
+KAI_TYPE_TRAITS(
+	Compiler, 
+	Number::Compiler, 
+	Properties::Reflected);
 
 KAI_END

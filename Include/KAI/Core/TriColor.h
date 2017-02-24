@@ -63,13 +63,11 @@ struct IteratedFunctionBase
 	}
 	bool operator()(std::pair<Object, Object> &M)
 	{
-		return Invoke(M.first)
-			&& Invoke(M.second);
+		return Invoke(M.first) && Invoke(M.second);
 	}
 	bool operator()(std::pair<const Object, Object> &M)
 	{
-		return Invoke(const_cast<Object &>(M.first))
-			&& Invoke(M.second);
+		return Invoke(const_cast<Object &>(M.first)) && Invoke(M.second);
 	}
 	bool operator()(std::pair<const String, Object> &M)
 	{

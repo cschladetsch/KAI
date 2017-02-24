@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KAI/Core/Config/Options.h"
-#include "KAI/Core/Config/Platform.h"
+#include <KAI/Core/Config/Options.h>
+#include <KAI/Core/Config/Platform.h>
 
 #ifdef KAI_OPTION_USE_NAMESPACES
 #	define KAI_BEGIN namespace KAI_NAMESPACE_NAME {
@@ -38,8 +38,7 @@
 #define KAI_UNUSED_2(A,B) KAI_UNUSED(A), KAI_UNUSED(B)
 #define KAI_UNUSED_3(A,B,C) KAI_UNUSED(A), KAI_UNUSED(B), KAI_UNUSED(C)
 
-#include "KAI/Core/Config/Platform.h"
-#include "KAI/Core/Config/IntegralTypes.h"
-#include "KAI/Core/Utility.h"
-#include "KAI/Core/FwdDeclarations.h"
+#include <KAI/Core/Config/Platform.h>
+#include <KAI/Core/Config/IntegralTypes.h>
+#include <KAI/Core/FwdDeclarations.h>
 

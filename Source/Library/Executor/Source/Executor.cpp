@@ -3,6 +3,8 @@
 #include "KAI/Core/Object.h"
 #include "KAI/Core/Tree.h"
 #include "KAI/Executor/SignedContinuation.h"
+
+#include "KAI/Language/Common/Process.h"
 #include "KAI/Executor/Compiler.h"
 
 #include <iostream>

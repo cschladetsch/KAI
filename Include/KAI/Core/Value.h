@@ -78,7 +78,6 @@ public:
 		return &storage->GetConstReference();
 	}
 
-	// IObject
 	Handle GetHandle() const 
 	{ 
 		return Exists() ? GetObject().GetHandle() : Handle();

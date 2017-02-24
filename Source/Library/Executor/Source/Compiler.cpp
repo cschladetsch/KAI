@@ -1,9 +1,10 @@
-#include "KAI/Core/Object.h"
-#include "KAI/Core/BuiltinTypes.h"
-#include "KAI/Executor/Compiler.h"
-
 #include <iostream>
 #include <fstream>
+
+#include <KAI/Core/BuiltinTypes.h>
+#include <KAI/Executor/Compiler.h>
+#include <KAI/Language/Rho/RhoTranslator.h>
+#include <KAI/Language/Pi/PiTranslator.h>
 #include <KAI/Core/File.h>
 
 using namespace std;
@@ -24,6 +25,31 @@ bool Compiler::Destroy()
 		op.second.SetManaged(true);
 
 	return true;
+}
+
+Pointer<Continuation> Compiler::Translate(const String &text, Structure st) const
+{
+	switch (_language)
+	{
+	case Language::None:
+		return Object();
+
+	case Language::Pi:
+		// Pi wraps output (A continuation) in a continuation. So the output has to be
+		// dereferenced once.
+		//
+		// TODO: not have to do this.
+		return Compile<PiTranslator>(text, st)->GetCode()->At(0);	
+
+	case Language::Rho:
+		return Compile<RhoTranslator>(text, st);
+
+	case Language::Tau:
+		KAI_NOT_IMPLEMENTED();	// Tau is not a compiled language - it is an IDL
+		break;
+	}
+
+	return Object();
 }
 
 void Compiler::AddOperation(int N, const String &S)
