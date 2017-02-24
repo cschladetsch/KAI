@@ -22,7 +22,7 @@ private:
 public:
 	BinaryStream() { }
 	BinaryStream(Registry &R) : BinaryPacket(R) { }
-	//BinaryStream(int start_size) : bytes(start_size) { }
+	BinaryStream(int start_size) : bytes(start_size) { }
 
 	BinaryStream &Write(int len, const Byte *src);
 	void Clear();

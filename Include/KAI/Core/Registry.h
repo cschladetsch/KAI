@@ -3,9 +3,9 @@
 #include <KAI/Core/Config/Base.h>
 
 #include <unordered_map>
-#include <vector>
+// #include <vector>
 #include <set>
-#include <list>
+// #include <list>
 
 #include <KAI/Core/Memory/IAllocator.h>
 #include <KAI/Core/Type/Traits.h>

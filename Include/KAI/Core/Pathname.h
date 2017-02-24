@@ -21,6 +21,7 @@ public:
 		static const String::Char All[];
 		static const String::Char AllButQuote[];
 	};
+
 	struct Element
 	{
 		enum Type { None, Quote, Separator, Parent, This, Name };
@@ -80,7 +81,6 @@ KAI_TYPE_TRAITS(Pathname,
 	Number::Pathname
 	, Properties::Streaming
 	| Properties::Relational
-	//| Properties::Container
 	);
 
 Pathname GetFullname(const StorageBase &);
