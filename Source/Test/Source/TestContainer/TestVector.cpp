@@ -10,36 +10,36 @@ class TestArray : public TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<Array>();
+		Reg().AddClass<Array>();
 	}
 };
 
 TEST_F(TestArray, TestCreation)
 {
-	Pointer<Array> cont = reg.New<Array>();
+	Pointer<Array> cont = Reg().New<Array>();
 	ASSERT_TRUE(cont.Exists());
 	ASSERT_TRUE(cont->Size() == 0);
 	ASSERT_TRUE(cont->Empty());
 
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_FALSE(cont.Exists());
 }
 
 TEST_F(TestArray, TestInsertDelete)
 {
-	Pointer<Array> cont = reg.New<Array>();
-	tree.GetRoot().Set("cont", cont);
+	Pointer<Array> cont = Reg().New<Array>();
+	_root.Set("cont", cont);
 
-	Object n = reg.New(42);
+	Object n = Reg().New(42);
 	cont->PushBack(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(cont.Exists());
 	ASSERT_TRUE(n.Exists());
 
 	cont->Erase(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(cont.Exists());
 	ASSERT_FALSE(n.Exists());

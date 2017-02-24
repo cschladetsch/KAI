@@ -7,18 +7,18 @@ class TestStack : public TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<Stack>();
+		Reg().AddClass<Stack>();
 	}
 };
 
 TEST_F(TestStack, TestCreation)
 {
-	Pointer<Stack> stack = reg.New<Stack>();
+	Pointer<Stack> stack = Reg().New<Stack>();
 	ASSERT_TRUE(stack.Exists());
 	ASSERT_TRUE(stack->Size() == 0);
 	ASSERT_TRUE(stack->Empty());
 
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_FALSE(stack.Exists());
 }

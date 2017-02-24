@@ -7,7 +7,7 @@ struct TestString : TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<String>();
+		Reg().AddClass<String>();
 	}
 };
 

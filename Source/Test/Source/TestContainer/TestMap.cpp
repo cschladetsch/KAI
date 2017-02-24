@@ -7,32 +7,32 @@ class TestMap : public TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<Map>();
-		reg.AddClass<StringStream>();
+		Reg().AddClass<Map>();
+		Reg().AddClass<StringStream>();
 	}
 };
 
 TEST_F(TestMap, TestCreation)
 {
-	Pointer<Map> map = reg.New<Map>();
+	Pointer<Map> map = Reg().New<Map>();
 	ASSERT_TRUE(map.Exists());
 	ASSERT_TRUE(map->Size() == 0);
 	ASSERT_TRUE(map->Empty());
 
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_FALSE(map.Exists());
 }
 
 TEST_F(TestMap, TestInsertDelete)
 {
-	Pointer<Map> map = reg.New<Map>();
-	Pointer<Map> dangling = reg.New<Map>();
+	Pointer<Map> map = Reg().New<Map>();
+	Pointer<Map> dangling = Reg().New<Map>();
 	
 	// add the map to the root of the object tree, so it can be
 	// found and hence not GC'd
-	tree.GetRoot().Set("map", map);
-	reg.GarbageCollect();
+	_root.Set("map", map);
+	Reg().GarbageCollect();
 
 	// the map will still exist after the GC - but the `dangling` map
 	// won't because it can't be reached by the Registry reg
@@ -40,8 +40,8 @@ TEST_F(TestMap, TestInsertDelete)
 	ASSERT_FALSE(dangling.Exists());
 
 	// make a key and a value to insert into map
-	Pointer<int> n = reg.New(42);
-	Pointer<String> s = reg.New<String>("Hello");
+	Pointer<int> n = Reg().New(42);
+	Pointer<String> s = Reg().New<String>("Hello");
 
 	map->Insert(n, s);
 
@@ -57,7 +57,7 @@ TEST_F(TestMap, TestInsertDelete)
 
 	// by removing the key associated with n, we also remove the value
 	map->Erase(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	// now, neither the key nor value should exist,
 	// but the map itself should exist because it was added
@@ -69,12 +69,12 @@ TEST_F(TestMap, TestInsertDelete)
 
 TEST_F(TestMap, TestComparison)
 {
-	Pointer<Map> m0 = reg.New<Map>();
-	Pointer<Map> m1 = reg.New<Map>();
+	Pointer<Map> m0 = Reg().New<Map>();
+	Pointer<Map> m1 = Reg().New<Map>();
 
-	Object n = reg.New(42);
-	Pointer<String> s0 = reg.New<String>("World");
-	Pointer<String> s1 = reg.New<String>("World");
+	Object n = Reg().New(42);
+	Pointer<String> s0 = Reg().New<String>("World");
+	Pointer<String> s1 = Reg().New<String>("World");
 
 	// make two value-identical maps (but with different value objects)
 	m0->Insert(n, s0);
@@ -97,27 +97,27 @@ TEST_F(TestMap, TestComparison)
 
 TEST_F(TestMap, TestStringStream)
 {
-	Pointer<Map> m = reg.New<Map>();
-	Pointer<int> n = reg.New(42);
-	Pointer<String> s = reg.New<String>("Hello");
+	Pointer<Map> m = Reg().New<Map>();
+	Pointer<int> n = Reg().New(42);
+	Pointer<String> s = Reg().New<String>("Hello");
 
 	m->Insert(n, s);
 
 	// make a new string stream, insert the map into it
-	Pointer<StringStream> t = reg.New<StringStream>();
+	Pointer<StringStream> t = Reg().New<StringStream>();
 	*t << m;
 
 	std::cout << t->ToString().c_str() << std::endl;
 	
 	// here, we extract a map back out of the stream.
 	//
-	// not happy about this approach. we have to make the map with a registry, before extracting
+	// not happy about this approach. we have to make the map with a Reg().stry, before extracting
 	// it from a StringStream.
 	// It seems we should be able to just say:
 	//		Object q;
 	//		*t >> q;
 	//		ASSERT_TRUE(q.GetClass().GetType() == Type::Traits<Map>::Number);
-	// Pointer<Map> m1 = reg.New<Map>();
+	// Pointer<Map> m1 = Reg().New<Map>();
 	// *t >> m1;
 
 	// ensure the extracted map is the same value as the original map
@@ -126,15 +126,15 @@ TEST_F(TestMap, TestStringStream)
 
 TEST_F(TestMap, TestBinaryStream)
 {
-	Pointer<Map> m0 = reg.New<Map>();
-	Pointer<Map> m1 = reg.New<Map>();
-	Pointer<int> n = reg.New(42);
-	Pointer<String> s = reg.New<String>("Hello");
+	Pointer<Map> m0 = Reg().New<Map>();
+	Pointer<Map> m1 = Reg().New<Map>();
+	Pointer<int> n = Reg().New(42);
+	Pointer<String> s = Reg().New<String>("Hello");
 
 	m0->Insert(n, s);
 
 	// make a new string stream, insert the map into it
-	Pointer<BinaryStream> t = reg.New<BinaryStream>();
+	Pointer<BinaryStream> t = Reg().New<BinaryStream>();
 	*t << m0;
 
 	// TODO: BinaryStream  derives from BinaryPacket, which needs a Registry.

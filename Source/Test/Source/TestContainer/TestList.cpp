@@ -7,30 +7,30 @@ class TestList : public TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<List>();
+		Reg().AddClass<List>();
 	}
 };
 
 TEST_F(TestList, TestCreation)
 {
-	Pointer<List> list = reg.New<List>();
+	Pointer<List> list = Reg().New<List>();
 	ASSERT_TRUE(list.Exists());
 	ASSERT_TRUE(list->Size() == 0);
 	ASSERT_TRUE(list->Empty());
 
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_FALSE(list.Exists());
 }
 
 TEST_F(TestList, TestInsertDelete)
 {
-	Pointer<List> list = reg.New<List>();
-	tree.GetRoot().Set("list", list);
+	Pointer<List> list = Reg().New<List>();
+	_root.Set("list", list);
 
-	Object n = reg.New(42);
+	Object n = Reg().New(42);
 	list->PushBack(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(list.Exists());
 	ASSERT_TRUE(n.Exists());
@@ -40,7 +40,7 @@ TEST_F(TestList, TestInsertDelete)
 	list->Erase(n);
 	ASSERT_EQ(list->Size(), 0);
 	ASSERT_TRUE(list->Empty());
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(list.Exists());
 	ASSERT_FALSE(n.Exists());
@@ -48,16 +48,16 @@ TEST_F(TestList, TestInsertDelete)
 
 TEST_F(TestList, TestComparison)
 {
-	Pointer<List> l0 = reg.New<List>();
-	Pointer<List> l1 = reg.New<List>();
-	tree.GetRoot().Set("list0", l0);
-	tree.GetRoot().Set("list1", l1);
+	Pointer<List> l0 = Reg().New<List>();
+	Pointer<List> l1 = Reg().New<List>();
+	_root.Set("list0", l0);
+	_root.Set("list1", l1);
 
-	l0->PushBack(reg.New(42));
-	l0->PushBack(reg.New<String>("Hello"));
+	l0->PushBack(Reg().New(42));
+	l0->PushBack(Reg().New<String>("Hello"));
 
-	l1->PushBack(reg.New(42));
-	l1->PushBack(reg.New<String>("Hello"));
+	l1->PushBack(Reg().New(42));
+	l1->PushBack(Reg().New<String>("Hello"));
 
 	// assert same value
 	ASSERT_EQ(*l0, *l1);
@@ -75,11 +75,11 @@ TEST_F(TestList, TestStringStream)
 
 TEST_F(TestList, TestBinaryStream)
 {
-	Pointer<List> l = reg.New<List>();
-	Pointer<BinaryStream> s = reg.New<BinaryStream>();
+	Pointer<List> l = Reg().New<List>();
+	Pointer<BinaryStream> s = Reg().New<BinaryStream>();
 
-	l->PushBack(reg.New(42));
-	l->PushBack(reg.New<String>("Hello"));
+	l->PushBack(Reg().New(42));
+	l->PushBack(Reg().New<String>("Hello"));
 
 	ASSERT_EQ(s->Size(), 0);
 

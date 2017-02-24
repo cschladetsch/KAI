@@ -38,14 +38,12 @@ protected:
 	void AsssertResult(const char *text, T const &val)
 	{
 		_data->Clear();
-		_console->Execute(text);
+		_console.Execute(text);
 		ASSERT_EQ(AtData<T>(0), val);
 	}
 
 protected:
-	std::shared_ptr<Console> _console;
-	Object _root;
-	Registry *_reg;
+	Console _console;
 	Stack *_data;
 	const Stack *_context;
 	Executor *_exec;

@@ -14,9 +14,14 @@ KAI_BEGIN
 class TestCommon : public ::testing::Test
 {
 protected:
-	// TODO: could use PIMPL here, but compile times don't seem to matter for tests so far
-	Registry reg;
-	Tree tree;
+	Registry *_reg;
+	Tree *_tree;
+	Object _root;
+
+protected:
+	Registry &Reg();
+	Tree &Tree();
+	Object Root() const;
 
 protected:
 	void SetUp();

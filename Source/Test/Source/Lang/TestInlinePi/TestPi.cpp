@@ -90,9 +90,9 @@ TEST_F(TestPi, TestScope)
 {
 	try {
 	// store to explicit root of tree
-	_console->Execute("42 '/b #");
+	_console.Execute("42 '/b #");
 	const Label b("b");
-	ASSERT_TRUE(_root->Has(b));
+	ASSERT_TRUE(_root.Has(b));
 	ASSERT_EQ(42, ConstDeref<int>(_root.Get(b)));
 	
 	// store into local scope. whatever that is supposed to be?
@@ -102,7 +102,7 @@ TEST_F(TestPi, TestScope)
 	//
 	// we don't want that (or do we). Rather, the *first* continuation should run in the
 	// current scope of the executor - after that, it uses local scope
-	_console->Execute("1 'a #");
+	_console.Execute("1 'a #");
 	// ASSERT_TRUE(_tree->GetScope()->Has(Label("a")));
 	}
 	catch (Exception::Base &e)

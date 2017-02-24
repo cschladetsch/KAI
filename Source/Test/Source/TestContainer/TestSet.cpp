@@ -9,9 +9,9 @@ class TestSet : public TestCommon
 protected:
 	void AddrequiredClasses() override
 	{
-		reg.AddClass<ObjectSet>();
-		reg.AddClass<StringStream>();
-		reg.AddClass<BinaryStream>();
+		Reg().AddClass<ObjectSet>();
+		Reg().AddClass<StringStream>();
+		Reg().AddClass<BinaryStream>();
 	}
 };
 
@@ -21,18 +21,18 @@ TEST_F(TestSet, TestCreation)
 
 TEST_F(TestSet, TestInsertDelete)
 {
-	Pointer<ObjectSet> set = reg.New<ObjectSet>();
-	tree.GetRoot().Set("set", set);
+	Pointer<ObjectSet> set = _reg->New<ObjectSet>();
+	_root.Set("set", set);
 
-	Object n = reg.New(42);
+	Object n = _reg->New(42);
 	set->Insert(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(set.Exists());
 	ASSERT_TRUE(n.Exists());
 
 	set->Erase(n);
-	reg.GarbageCollect();
+	Reg().GarbageCollect();
 
 	ASSERT_TRUE(set.Exists());
 	ASSERT_FALSE(n.Exists());
