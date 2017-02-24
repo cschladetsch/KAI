@@ -6,10 +6,12 @@
 #include <KAI/Core/Object/Label.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
 #include <KAI/Core/Type/Number.h>
-#include "KAI/Executor/Continuation.h"
+#include <KAI/Executor/Continuation.h>
 
 KAI_BEGIN
 
+// A SignedContinuation is just like a normal Continuation, except is knows what to
+// expect on the stack when it is executed.
 struct SignedContinuation
 {
 	struct FormalParameter

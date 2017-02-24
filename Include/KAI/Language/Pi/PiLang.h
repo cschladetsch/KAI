@@ -1,10 +1,11 @@
 #pragma once
 
-#include "KAI/Language/Pi/PiTranslator.h"
+#include <KAI/Language/Pi/PiTranslator.h>
 #include <KAI/Language/Common/LangCommon.h>
 
 KAI_BEGIN
 
+// the specialised PiLang translator.
 class PiLang : Lang<PiTranslator>
 {
 	typedef Lang<PiTranslator> Parent;

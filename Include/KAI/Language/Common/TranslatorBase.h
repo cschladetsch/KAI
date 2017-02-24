@@ -1,9 +1,8 @@
 #pragma once
 
-#include "KAI/Language/Common/TranslatorCommon.h"
+#include <KAI/Language/Common/TranslatorCommon.h>
 
 KAI_BEGIN
-
 
 template <class EParser>
 struct TranslatorBase : TranslatorCommon
@@ -42,7 +41,7 @@ struct TranslatorBase : TranslatorCommon
 			return Object();
 		}
 
-		if (trace > 5)
+		if (trace > 1)
 			KAI_TRACE_1(lex->Print());
 
 		auto parse = std::make_shared<Parser>(*_reg);

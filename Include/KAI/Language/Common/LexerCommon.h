@@ -1,9 +1,10 @@
 #pragma once
 
-#include "KAI/Language/Common/Slice.h"
-#include "KAI/Language/Common/Process.h"
-#include "KAI/Language/Common/LexerBase.h"
+#include <KAI/Language/Common/Slice.h>
+#include <KAI/Language/Common/Process.h>
+#include <KAI/Language/Common/LexerBase.h>
 
+// TODO: ugly to need these in a library header
 #include <sstream>
 #include <stdarg.h>
 

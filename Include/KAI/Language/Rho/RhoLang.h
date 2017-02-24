@@ -1,8 +1,8 @@
 #pragma once
 
 #include <KAI/Language/Common/LangCommon.h>
-#include "KAI/Language/Rho/RhoTranslator.h"
-#include "KAI/Language/Common/Structure.h"
+#include <KAI/Language/Rho/RhoTranslator.h>
+#include <KAI/Language/Common/Structure.h>
 
 KAI_BEGIN
 

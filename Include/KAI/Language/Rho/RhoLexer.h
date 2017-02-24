@@ -1,7 +1,7 @@
 #pragma once
 
-#include "KAI/Language/Rho/RhoToken.h"
-#include "KAI/Language/Common/LexerCommon.h"
+#include <KAI/Language/Rho/RhoToken.h>
+#include <KAI/Language/Common/LexerCommon.h>
 
 KAI_BEGIN
 

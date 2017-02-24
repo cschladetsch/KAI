@@ -1,18 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Object/Reflected.h>
-#include <KAI/Core/Pointer.h>
-#include <KAI/Core/Object/Object.h>
-#include <KAI/Core/Object/Label.h>
-#include <KAI/Core/StringStream.h>
+#include <KAI/Core/Type.h>
 #include <KAI/Core/BinaryStream.h>
-
-#include <KAI/Core/Type/Number.h>
-#include <KAI/Core/Type/Properties.h>
-#include <KAI/Core/Type/TraitMacros.h>
-#include <KAI/Core/Type/Traits.h>
-
 #include <KAI/Core/BuiltinTypes/Array.h>
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Registry.h>

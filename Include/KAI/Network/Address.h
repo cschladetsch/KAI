@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "KAI/Network/Config.h"
+#include <KAI/Network/Config.h>
 
 KAI_NET_BEGIN
 
