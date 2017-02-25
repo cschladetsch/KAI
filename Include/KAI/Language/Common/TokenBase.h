@@ -23,10 +23,7 @@ public:
 	TokenBase() : lexer(0), lineNumber(0), type((Enum)0) {} 
 
 	TokenBase(Enum val, const LexerBase &lexer, int ln, Slice slice)
-		: type(val), lexer(&lexer), lineNumber(ln), slice(slice) 
-		{ 
-			KAI_TRACE_3(ln, slice.Start, slice.End);
-		}
+		: type(val), lexer(&lexer), lineNumber(ln), slice(slice) { }
 
 	char operator[](int n) const
 	{
@@ -36,9 +33,6 @@ public:
 	std::string ToString() const
 	{
 		std::stringstream out;
-#ifdef KAI_TRACE_VERBOSE
-		out << "[Token " << EEnumType::ToString(type)  << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
-#else
 		std::string ty = EEnumType::ToString(type);
 		std::string text = Text();
 		out << ty;
@@ -46,8 +40,8 @@ public:
 		{
 			out << " '" << text << "'";
 		}
-#endif
-		return std::move(out.str());
+
+		return out.str();
 	}
 
 	std::string Text() const
@@ -58,7 +52,7 @@ public:
 		if (slice.Length() == 0)
 			return "";
 
-		return std::move(lexer->GetLine(lineNumber).substr(slice.Start, slice.Length()));
+		return lexer->GetLine(lineNumber).substr(slice.Start, slice.Length());
 	}
 
 	friend std::ostream &operator<<(std::ostream &out, Self const &node)

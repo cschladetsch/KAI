@@ -26,7 +26,6 @@ public:
 	typedef std::vector<Child> ChildrenType;
 
 	AstNodeBase() : _astType((Enum)0) { }
-
 	AstNodeBase(Enum e) : _astType(e) { }
 	AstNodeBase(Enum e, Token t) : _astType(e), _token(t) { }
 	AstNodeBase(Token const &t) : _astType(AstEnumType::TokenType), _token(t) { }
@@ -41,12 +40,8 @@ public:
 	std::string ToString() const
 	{
 		std::stringstream out;
-#ifdef KAI_TRACE_VERBOSE
-		out << "(AstNode " << AstEnumType::ToString(_astType)  << ", token:" << _token.ToString() << ")";
-#else
 		out << AstEnumType::ToString(_astType) << ": " << _token.ToString() << std::ends;
 		return std::move(out.str());
-#endif
 	}
 
 	std::string Text() const

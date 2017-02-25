@@ -13,7 +13,11 @@ KAI_BEGIN
 		{
 #define CASE(X) case PiAstNodeEnumType::Enum::X: return #X;
 			CASE(Program)
-			CASE(None)
+
+			// CASE(None)
+			case PiAstNodeEnumType::Enum::None:
+				return "";
+
 			CASE(Operation)
 			CASE(List)
 			CASE(Map)

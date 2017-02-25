@@ -20,13 +20,14 @@ const char *PiTokenEnumType::ToString(Enum t)
 #ifdef TRACE_WS
 		CASE_LOWER(Whitespace)
 		CASE_LOWER(NewLine)
+		CASE_LOWER(None)
 #else
 		case PiTokens::NewLine:
 		case PiTokens::Whitespace:
+		case PiTokens::None:
 			return "";
 #endif
 
-		CASE_LOWER(None)
 		CASE_LOWER(Bool)
 		CASE_LOWER(Greater)
 		CASE_LOWER(Debug)
