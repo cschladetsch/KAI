@@ -3,8 +3,10 @@
 So, why make this?
 
 * Cross platform communication using native C/C++
-* Garbage Collection
-* Easy to expose C/C++ structures and values
+* Distributed Garbage Collection
+* Easy to expose C/C++ structures and values to
+  * Your programs
+  * Your shell
 
 ## First Application
 
