@@ -23,7 +23,10 @@ public:
 	TokenBase() : lexer(0), lineNumber(0), type((Enum)0) {} 
 
 	TokenBase(Enum val, const LexerBase &lexer, int ln, Slice slice)
-		: type(val), lexer(&lexer), lineNumber(ln), slice(slice) { }
+		: type(val), lexer(&lexer), lineNumber(ln), slice(slice) 
+		{ 
+			KAI_TRACE_3(ln, slice.Start, slice.End);
+		}
 
 	char operator[](int n) const
 	{
@@ -36,10 +39,10 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "[Token " << EEnumType::ToString(type)  << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
-		std::string&& ty = EEnumType::ToString(type);
-		std::string&& text = lexer->GetString(slice);
+		std::string ty = EEnumType::ToString(type);
+		std::string text = Text();
 		out << ty;
-		if (ty != text && !text.empty())
+		if (ty != text && !text.empty() && text != "\n")
 		{
 			out << " '" << text << "'";
 		}

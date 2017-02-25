@@ -70,12 +70,12 @@ public:
 	{
 		std::stringstream str;
 		PrintTree(str, 0, root);
-		return std::move(str.str());
+		return str.str();
 	}
 
 	std::string ToString() const
 	{
-		return std::move(root->ToString());
+		return root->ToString();
 	}
 
 protected:

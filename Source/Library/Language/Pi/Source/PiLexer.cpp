@@ -80,7 +80,7 @@ bool PiLexer::NextToken()
 	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
-	// case '"': return LexString();
+	case '"': return LexString(); // "comment to unfuck Visual Studio Code's syntax hilighter
 
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);

@@ -104,14 +104,8 @@ protected:
 	bool Add(Enum type, int len = 1)
 	{
 		Add(type, Slice(offset, offset + len));
-		while (len-- && Peek())
+		while (len--)
 			Next();
-
-		if (Current() == '\n')
-		{
-			++lineNumber;
-			offset = 0;
-		}
 
 		return true;
 	}
@@ -208,9 +202,7 @@ public:
 		int n = 0;
 		for (auto tok : tokens)
 		{
-			str << tok << ", ";
-			if (++n % 5 == 0)
-				str << "\n";
+			str << tok << " ";
 		}
 		return str.str();
 	}

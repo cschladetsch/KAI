@@ -83,25 +83,17 @@ char LexerBase::Next()
 	return Line()[offset];
 }
 
-char LexerBase::PeekBase() const
-{
-	if (EndOfLine())
-		return 0;
-
-	return Line()[offset + 1];
-}
-
 bool LexerBase::LexString()
 {
 	int start = offset;
 	Next();
-	while (!Failed && Current() != '"')
+	while (!Failed && Current() != '"') // "
 	{
 		if (Current() == '\\')
 		{
 			switch (Next())
 			{
-			case '"':
+			case '"':	// "
 			case 'n':
 			case 't':
 				break;

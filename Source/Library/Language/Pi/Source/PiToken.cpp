@@ -6,20 +6,27 @@ using namespace std;
 
 KAI_BEGIN
 
-#undef CASE
-#undef CASE_LOWER
-#undef CASE_REPLACE
+#define TRACE_WS
 
 const char *PiTokenEnumType::ToString(Enum t)
 {
 	switch (t)
 	{
-		#define CASE(N) case PiTokens::N : return #N;
-		#define CASE_LOWER(N) case PiTokens::N : return ToLower(#N);
-		#define CASE_REPLACE(N, M) case PiTokens::N : return M;
+#define CASE(N) case PiTokens::N : return #N;
+#define CASE_LOWER(N) CASE(N)
+// #define CASE_LOWER(N) case PiTokens::N : return ToLower(#N);
+#define CASE_REPLACE(N, M) case PiTokens::N : return M;
+
+#ifdef TRACE_WS
+		CASE_LOWER(Whitespace)
+		CASE_LOWER(NewLine)
+#else
+		case PiTokens::NewLine:
+		case PiTokens::Whitespace:
+			return "";
+#endif
 
 		CASE_LOWER(None)
-		CASE_LOWER(Whitespace)
 		CASE_LOWER(Bool)
 		CASE_LOWER(Greater)
 		CASE_LOWER(Debug)
@@ -67,7 +74,6 @@ const char *PiTokenEnumType::ToString(Enum t)
 		CASE_LOWER(Self)
 		CASE_LOWER(Lookup)
 		CASE(Tab)
-		CASE(NewLine)
 		CASE(Comment)
 		CASE_REPLACE(PlusAssign, "+=")
 		CASE_REPLACE(MinusAssign, "-=")
@@ -138,13 +144,14 @@ const char *PiTokenEnumType::ToString(Enum t)
 		CASE_REPLACE(ToRhoSequence, "rho{")
 	}
 	
-	return "nocase";
+	KAI_TRACE() << " PiToken #" << (int)t;
+	KAI_NOT_IMPLEMENTED();
 }
 
 std::ostream &operator<<(std::ostream &out, PiToken const &node)
 {
 	if (node.type == PiTokenEnumType::None)
-		return out << "[none]";
+		return out << "<NONE>";
 
 	switch (node.type)
 	{
@@ -162,7 +169,7 @@ std::ostream &operator<<(std::ostream &out, PiToken const &node)
 	case PiTokenEnumType::String:
 	case PiTokenEnumType::Ident:
 	case PiTokenEnumType::QuotedIdent:
-		out << "='" << node.Text();
+		out << "=" << node.Text();
 		break;
 	}
 

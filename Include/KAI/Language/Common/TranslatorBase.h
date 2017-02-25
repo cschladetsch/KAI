@@ -42,7 +42,7 @@ struct TranslatorBase : TranslatorCommon
 		}
 
 		// if (trace > 1)
-			KAI_TRACE_1(lex->Print());
+			KAI_TRACE_2("Lexer:\n", lex->Print());
 
 		auto parse = std::make_shared<Parser>(*_reg);
 		parse->Process(lex, st);
@@ -53,7 +53,7 @@ struct TranslatorBase : TranslatorCommon
 		}
 
 		// if (trace > 1)
-			KAI_TRACE_2("AST\n", parse->PrintTree());
+			KAI_TRACE_2("\n\n\nAST:\n", parse->PrintTree());
 
 		PushNew();
 		TranslateNode(parse->GetRoot());
