@@ -20,9 +20,14 @@ KAI_BEGIN
 			CASE(Set)
 			CASE(Array)
 			CASE(Continuation)
-			CASE(TokenType)
+			
+			// special case to avoid noisey 'TokenType:' debug traces
+			case PiAstNodeEnumType::Enum::TokenType:
+				return "Tok";
+			
 		}
 
+		// sorry :'(
 		static char b[100];
 		sprintf(b, "%d", (int)ty);
 		return b;

@@ -36,7 +36,13 @@ public:
 #ifdef KAI_TRACE_VERBOSE
 		out << "[Token " << EEnumType::ToString(type)  << ", #" << (int)type << "ln=" << lineNumber << ", slice=" << slice.Start << ":" << slice.End << "]";
 #else
-		out << EEnumType::ToString(type) << "'" << lexer->GetString(slice) << "'";
+		std::string&& ty = EEnumType::ToString(type);
+		std::string&& text = lexer->GetString(slice);
+		out << ty;
+		if (ty != text && !text.empty())
+		{
+			out << " '" << text << "'";
+		}
 #endif
 		return std::move(out.str());
 	}

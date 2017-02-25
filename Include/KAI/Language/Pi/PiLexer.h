@@ -20,8 +20,7 @@ public:
 	void Terminate() override ;
 
 private:
-	bool QuotedIdent();
-	bool Pathname();
+	bool PathnameOrKeyword();
 
 protected:
 	using Parent::_reg;

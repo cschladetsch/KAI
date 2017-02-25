@@ -42,7 +42,7 @@ public:
 
 	Pointer<Continuation> Compile(const char *, Structure);
 	void Execute(const String &text, Structure st = Structure::Statement);
-	void ExecuteFile(const char *);
+	bool ExecuteFile(const char *);
 	void Execute(Pointer<Continuation> cont);
 
 	String WriteStack() const;

@@ -2,6 +2,40 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "TestPiScripts",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceRoot}/Bin/Test/KaiTest",
+			"args": ["--gtest_filter=TestPiScripts.*", "--gtest_catch_exceptions"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceRoot}/Bin/Test",
+			"environment": [],
+			"externalConsole": true,
+			"linux": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			},
+			"osx": {
+				"MIMode": "lldb"
+			},
+			"windows": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				]
+			}
+		},
+		{
 			"name": "TestPi",
 			"type": "cppdbg",
 			"request": "launch",

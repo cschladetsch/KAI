@@ -1,8 +1,12 @@
-// Test scoping
-
 scope print &
 
-'/ cd // change to root of tree
+clear
+
+pwd drop
+
+'/ cd
+
+pwd '/ == assert
 
 1 'a #
 2 'b #

@@ -17,6 +17,7 @@ void PiLexer::AddKeyWords()
 	keyWords["div"] = Enum::Divide;
 	keyWords["rho"] = Enum::ToRho;
 	keyWords["rho{"] = Enum::ToRhoSequence;
+	keyWords["not"] = Enum::Not;
 
 	keyWords["drop"] = Enum::Drop;
 	keyWords["dup"] = Enum::Dup;
@@ -41,13 +42,9 @@ void PiLexer::AddKeyWords()
 	keyWords["toset"] = Enum::ToSet;
 
 	keyWords["div"] = Enum::Divide;
+	keyWords["mul"] = Enum::Mul;
 	
 	keyWords["expand"] = Enum::Expand;
-}
-
-bool PiLexer::QuotedIdent()
-{
-	return Pathname();
 }
 
 bool PiLexer::NextToken()
@@ -57,14 +54,14 @@ bool PiLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return Pathname();
+		return PathnameOrKeyword();
 
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));
 
 	switch (current)
 	{
-	case '\'': return QuotedIdent();
+	case '\'': return PathnameOrKeyword();
 	case '{': return Add(Enum::OpenBrace);
 	case '}': return Add(Enum::CloseBrace);
 	case '(': return Add(Enum::OpenParan);
@@ -123,7 +120,7 @@ bool PiLexer::NextToken()
 				;
 			return Add(Enum::Comment, offset - start);
 		}
-		return Pathname();
+		return PathnameOrKeyword();
 	}
 
 	LexError("Unrecognised %c");
@@ -136,8 +133,19 @@ void PiLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
+bool Contains(const char *allowed, char current)
+{
+	for (const char *a = allowed; *a; ++a)
+	{
+		if (current == *a)
+			return true;
+	}
+
+	return false;
+}
+
 // TODO: this isn't a full pathname . See Pathname.cpp in Core
-bool PiLexer::Pathname()
+bool PiLexer::PathnameOrKeyword()
 {
 	int start = offset;
 	bool quoted = Current() == '\'';
@@ -148,30 +156,39 @@ bool PiLexer::Pathname()
 	if (rooted)
 		Next();
 	
-	bool anyIdent = false;
+	bool prevIdent = false;
+	bool isSeparator = false;
 	do
 	{
 		Token result = LexAlpha();
-		// can't allow '// or foo// or foo//bar etc. sorry, comments.
-		// this could be fixed with some more logic.
-		// but - just don't use two slashes in pathnames for the moment.
-		// even then, I think that allowing 
-		//			'/foo/bar//spam/grok
-		// to be a legal Pi expression of
-		//			'/foo/bar//this is a comment
-		// is dodgey as well. prefer to just dissallow empty elements in pathnames.
-		// note that //foo is still a comment but /foo is a pathname
 		
-		// TODO
-		// if (result.Length == 0)		
-		// 	return false;
-
 		if (result.type != TokenEnumType::Ident)
-			return false;
+		{
+			// keywords cannot be part of a path
+			if (prevIdent || quoted || rooted)
+			{
+				return false;
+			}
 
-		anyIdent = true;
+			// this is actually a keyword
+			return true;
+		}
+
+		prevIdent = true;
+
+		isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
+		if (isSeparator)
+		{
+			Next();
+			continue;
+		}
+
+		if (isspace(Peek()))
+		{
+			break;
+		}
 	}
-	while (Current() == '/');
+	while (true);
 
 	Add(Enum::Pathname, Slice(start, offset));
 

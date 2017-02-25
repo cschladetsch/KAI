@@ -321,14 +321,17 @@ void Console::Register(Registry &)
 {
 }
 
-void Console::ExecuteFile(const char *fileName)
+bool Console::ExecuteFile(const char *fileName)
 {
 	Pointer<Continuation> c = compiler->CompileFile(fileName, Structure::Program);
-	KAI_TRACE_1(c);
+	// KAI_TRACE_1(c);
 	if (c.Exists())
 	{
 		executor->Continue(c);
+		return true;
 	}
+
+	return false;
 }
 
 KAI_END

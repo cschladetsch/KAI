@@ -108,7 +108,10 @@ protected:
 			Next();
 
 		if (Current() == '\n')
+		{
 			++lineNumber;
+			offset = 0;
+		}
 
 		return true;
 	}
@@ -214,4 +217,3 @@ public:
 };
 
 KAI_END
-

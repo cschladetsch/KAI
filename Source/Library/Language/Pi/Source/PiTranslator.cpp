@@ -63,6 +63,18 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		break;
 	}
 
+	case PiTokenEnumType::True:
+		AppendNew(true);
+		break;
+
+	case PiTokenEnumType::Assert:
+		AppendOp(Operation::Assert);
+		break;
+
+	case PiTokenEnumType::False:
+		AppendNew(false);
+		break;
+
 	case PiTokenEnumType::Bool:
 		AppendNew(boost::lexical_cast<bool>(tok.Text()));
 		break;
@@ -175,6 +187,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 
 	case PiTokenEnumType::Depth:
 		AppendOp(Operation::Depth);
+		break;
+
+	case PiTokenEnumType::Not:
+		AppendOp(Operation::LogicalNot);
 		break;
 
 	default:
