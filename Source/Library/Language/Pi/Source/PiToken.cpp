@@ -6,7 +6,7 @@ using namespace std;
 
 KAI_BEGIN
 
-#define TRACE_WS
+// #define TRACE_WS
 
 const char *PiTokenEnumType::ToString(Enum t)
 {
