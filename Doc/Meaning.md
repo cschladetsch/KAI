@@ -9,9 +9,9 @@ So, why make this?
   * Scripting (with not one but *three* languages!)
   * Your shell
 
-## First Application
+## First Application - Beesh
 
-Bash++. Be a shell you can use daily across many machines. Integrate C/C++ seamlessly and type-safely.
+Bash++. Be a shell - **Beesh**. A shell you can use daily across many machines and any OS. Integrate C/C++ seamlessly and type-safely. Connect to each other.
 
 * A cross-platform shell that runs on all your machines (OSX, Windows, Ubuntu) with no setup cost.
   * Default to native shell. All commands preceeded by backtick or whatever will be redirected to KAI.
