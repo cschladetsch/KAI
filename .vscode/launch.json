@@ -2,11 +2,11 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "TestPiScripts",
+			"name": "TestLangScripts",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/Bin/Test/KaiTest",
-			"args": ["--gtest_filter=TestPiScripts.*", "--gtest_catch_exceptions"],
+			"args": ["--gtest_filter=TestLangScripts.*", "--gtest_catch_exceptions"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}/Bin/Test",
 			"environment": [],
@@ -70,7 +70,7 @@
 			}
 		},
 		{
-			"name": "Tests",
+			"name": "KaiTest",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/Bin/Test/KaiTest",
