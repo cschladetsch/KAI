@@ -1,11 +1,12 @@
 #include <KAI/Core/StringStream.h>
 #include <KAI/Language/Common/Structure.h>
+#include <KAI/BuiltinTypes.h>
 
 KAI_BEGIN
 
 StringStream &operator<<(StringStream &S, const Structure &T)
 {
-	return << (int)T;
+	return S << (int)T;
 }
 
 StringStream &operator>>(StringStream &S, Structure &T)

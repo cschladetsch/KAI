@@ -37,7 +37,8 @@ inline bool operator<(StringStream const &A, StringStream const &B)
 KAI_TYPE_TRAITS(
 	StringStream,
 	Number::StringStream,
-	Properties::Equiv);
+	Properties::Equiv// || Properties::StringStreaming
+	);
 
 KAI_END
 
