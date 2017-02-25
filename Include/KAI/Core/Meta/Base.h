@@ -10,7 +10,7 @@ namespace meta
 		typedef Null Next, Prev, Value, Type;
 	};
 
-	/// Compile-time conditional evaluation. TODO: lazy eval of types A, B
+	/// Compile-time conditional evaluation.
 	template <bool T, class A, class B>
 	struct If
 	{

@@ -65,7 +65,6 @@ public:
 	{
 		if (!properties.empty())
 		{
-//			foreach (Properties::value_type const &X, properties)
 			for (auto X : properties)
 			{
 				PropertyBase const &prop = *X.second;
@@ -87,7 +86,6 @@ public:
 	}
 	void CreateProperties(StorageBase &object) const 
 	{
-		//foreach (Properties::value_type X, properties)
 		for (auto property : properties)
 		{
 			PropertyBase const &prop = *property.second;
@@ -127,8 +125,6 @@ public:
 		return *result;
 	}
 
-	/// @group container operations
-
 	void GetContainedObjects(StorageBase &object, ObjectList &contained) const
 	{
 		Traits::ContainerOps::ForEachContained(CleanDeref<T>(object), AddContainedFun<T, ObjectList>(contained));
@@ -160,22 +156,11 @@ public:
 		Traits::ContainerOps::ForEachContained(
 			CleanDeref<T>(base), MakeReachableGreyFun<T>());
 	}
-	/// @endgroup container operations
 
 	Object UpCast(StorageBase &Q) const
 	{
-		// TODO UPCASTING
-
-		KAI_UNUSED_1(Q);
-
-		/*
-		StorageBase *base = Traits::UpCaster::Cast(*Q.GetRegistry(), Deref<T>(Q));
-		if (base == 0)
-			KAI_THROW_0(BadUpCast);
-		return Object(ObjectConstructParams(base->GetRegistry(), base->GetClass(), base->GetHandle()));
-		*/
-
-		return Object();
+		// This is almost always a bad idea. I see no reason to allow it in KAI as well.
+		KAI_NOT_IMPLEMENTED();
 	}
 
 	Object CrossCast(StorageBase &, Type::Number) const

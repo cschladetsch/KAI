@@ -16,7 +16,6 @@ class Continuation : public Reflected
 public:
 	typedef Pointer</*const*/ Array> Code;
 
-///private:
 	Object scope;
 	Pointer<Array> code;
 	Pointer<Array> args;
@@ -26,6 +25,8 @@ public:
 
 	// if true, this is a 'top-level' continuation, so
 	// name resolution should stop here
+	//
+	// I hate this idea. needs to be re-thought through clearly.
 	Pointer<bool> scopeBreak;
 
 public:
@@ -78,9 +79,10 @@ StringStream &operator>>(StringStream &, Continuation &);
 BinaryStream &operator<<(BinaryStream &, const Continuation &);
 BinaryStream &operator>>(BinaryStream &, Continuation &);
 
-KAI_TYPE_TRAITS(Continuation, Number::Continuation, Properties::Streaming | Properties::Reflected);
+KAI_TYPE_TRAITS(
+	Continuation, 
+	Number::Continuation, 
+	Properties::Streaming | Properties::Reflected
+	);
 
 KAI_END
-
-// TODO TESTS
-//#include KAI_TEST(Continuation)
