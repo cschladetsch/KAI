@@ -81,8 +81,11 @@ public:
 protected:
 	void PrintTree(std::ostream &str, int level, AstNodePtr root) const
 	{
+		auto val = root->ToString();
+		if (val.empty())
+			return;
 		std::string indent(4*level, ' ');
-		str << indent << root->ToString().c_str() << std::endl;
+		str << indent << val.c_str() << std::endl;
 		for (auto const &ch : root->GetChildren())
 		{
 			PrintTree(str, level + 1, ch);

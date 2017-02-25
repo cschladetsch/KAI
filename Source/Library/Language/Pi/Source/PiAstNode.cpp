@@ -27,7 +27,8 @@ KAI_BEGIN
 			
 			// special case to avoid noisey 'TokenType:' debug traces
 			case PiAstNodeEnumType::Enum::TokenType:
-				return "Tok";
+				// return "Tok";
+				return "";
 			
 		}
 

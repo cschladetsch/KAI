@@ -5,7 +5,7 @@ USING_NAMESPACE_KAI
 
 namespace fs = boost::filesystem;
 
-
+// TODO: generalise for all languages.
 TEST(TestPiScripts, TestAll)
 {
 	fs::path scripts = fs::system_complete("../../Source/Test/Scripts/Pi");
@@ -25,7 +25,7 @@ TEST(TestPiScripts, TestAll)
 		{
 			if (file->path().extension() == ".pi")
 			{
-				TEST_COUT << "Running script: " << file->path().filename().string().c_str() << "\n";
+				TEST_COUT << "...Now running script: " << file->path().filename().string().c_str() << "\n";
 				ASSERT_TRUE(console.ExecuteFile(script));
 			}
 		}
