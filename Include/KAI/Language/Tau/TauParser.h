@@ -32,6 +32,7 @@ protected:
 	void Class(AstNodePtr rent);
 	void Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name);
 	void Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
+	//void Event(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
 
 	void AddArg(AstNodePtr parent);
 	void OptionalSemi();

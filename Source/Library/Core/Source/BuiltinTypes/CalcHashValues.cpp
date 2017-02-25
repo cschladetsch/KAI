@@ -8,9 +8,15 @@ KAI_BEGIN
 
 HashValue GetHash(const Stack &S)
 {
-	if (S.Empty())
-		return Type::Number::Stack;
-	return GetHash(S.Top());
+	return 42;
+	// if (S.Empty())
+	// 	return Type::Number::Stack;
+	// size_t h = 42;
+	// for (const auto &v: S)
+	// {
+	// 	h ^= v.GetClass().HashValue(v);
+	// }
+	// return h;//GetHash(S.Top());
 }
 
 HashValue GetHash(const Array &A)
@@ -25,7 +31,7 @@ HashValue GetHash(const Map &M)
 	if (M.Empty())
 		return Type::Number::Map;
 	Map::const_iterator A = M.Begin();
-	return GetHash(A->first) + GetHash(A->second);
+	return GetHash(A->first) ^ GetHash(A->second);
 }
 
 HashValue GetHash(const String &S)

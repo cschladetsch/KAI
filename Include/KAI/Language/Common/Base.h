@@ -6,7 +6,7 @@
 // each of these other templates to transform a text string
 // into an executable stream for an Executor.
 //
-// It's a bit too involved to try and explain in the code itself. Sadly.
+// It's a bit too involved to try and explain it with just text.
 //
 // The good news is that you currently have the code itself...
 
@@ -22,6 +22,7 @@ template <class Token>
 class LexerCommon;
 
 // a node in the AST tree given the AST type
+// TODO: rename to AstCommon. Current tools make this hard.
 template <class AstEnum>
 class NodeBase;
 

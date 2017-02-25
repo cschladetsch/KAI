@@ -63,17 +63,16 @@ void Array::Erase(Handle H)
 
 StringStream &operator<<(StringStream &S, const Array &A)
 {
-	S << "<";
+	S << "[";
 	Array::const_iterator B = A.Begin(), C = A.End();
 	String sep = "";
 	for (; B != C; ++B)
 	{
 		S << sep << *B;
-		sep = ", ";
+		sep = " ";
 	}
-	return S << ">";
+	return S << "]";
 }
-
 
 BinaryStream &operator<<(BinaryStream &S, const Array &Q)
 {

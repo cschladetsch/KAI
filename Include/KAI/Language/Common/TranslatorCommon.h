@@ -18,7 +18,7 @@ public:
 	std::string ToString() const;
 
 	void PushNew();
-	Pointer<Continuation> Pop();
+	Pointer<Continuation> Pop(); 	// fault in system: only continuations can be pushed/popped
 	Pointer<Continuation> Top();
 	Pointer<const Continuation> Top() const;
 	virtual Pointer<Continuation> Result() { return Top(); }
