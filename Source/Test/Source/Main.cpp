@@ -10,18 +10,7 @@ int main(int argc, char **argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
 
-	// will use boost::program_options eventually...
-	// but for now, invoke test with 
-	//		KaiTest [langs]
-	// where [langs] is a sequence of languages to test. 
-	// See Kai/Language/Common/Language.h. Just use the enum values as ints
-	//
-	// For instance to test everything but languages:
-	//		./KaiTest
-	// Test to Pi:
-	//		./KaiTest 1
-	// Test Pi and Rho:
-	//		./KaiTest 1 2
+	// add language scripts to add with 1,2, ...
 	for (int n = argc - 1; n > 0; --n)
 	{
 		TestLanguages.push_back(kai::Language(atoi(argv[n])));

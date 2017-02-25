@@ -1,12 +1,12 @@
 #include "TestCommon.h"
 #include <boost/filesystem.hpp>
 
-namespace fs = boost::filesystem;
+using namespace boost::filesystem;
 using namespace std;
 using namespace kai;
 
 std::list<kai::Language> TestLanguages;
-fs::path ScriptRoot = "../../Source/Test/Scripts/";
+path ScriptRoot = "../../Source/Test/Scripts/";
 
 // single test that is used to run all scripts for all languages, configured
 // via global TestLanguages.
@@ -18,20 +18,23 @@ TEST(TestLangScripts, TestAll)
 		TEST_COUT << "Testing language: " << name;
 
 		const string extension = "." + name;
+		path dir = ScriptRoot;
+		directory_iterator file(dir.append(extension)), end;
 
-		fs::path dir = ScriptRoot;
-		fs::directory_iterator script(dir.append(extension)), end;
-
-		for (; script != end; ++script)
+		for (; file != end; ++file)
 		{
-			if (script->path().extension() != extension)
+			auto const &path = file->path();
+			if (path.extension() != extension)
+			{
+				TEST_COUT << "Ignoring " << path;
 				continue;
+			}
 
 			Console console;
 			console.SetLanguage(lang);
 			console.GetExecutor()->SetTraceLevel(10);
-			const char *source = script->path().string().c_str();
-			TEST_COUT << "...Now running script: " << script->path().filename().string().c_str() << "\n";
+			const char *source = path.string().c_str();
+			TEST_COUT << "...Now running script: " << path.filename().string().c_str() << "\n";
 
 			try
 			{
