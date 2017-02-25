@@ -26,7 +26,6 @@ protected:
 		return CanAssign(Q.GetStorageBase());
 	}
 
-	// TODO: inheritance
 	bool CanAssign(const StorageBase &P) const
 	{
 		Type::Number type = P.GetTypeNumber();
