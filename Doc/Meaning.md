@@ -6,6 +6,7 @@ So, why make this?
 * Distributed Garbage Collection
 * Easy to expose C/C++ structures and values to
   * Your programs
+  * Scripting (with not one but *three* languages!)
   * Your shell
 
 ## First Application
