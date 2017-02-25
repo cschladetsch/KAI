@@ -1,5 +1,4 @@
-#if 0
-#include "Test/Common.h"
+#include "TestCommon.h"
 
 using namespace kai;
 using namespace std;
@@ -30,7 +29,7 @@ TEST(TestBinaryStream, Builtins)
 TEST(TestBinaryStream, TestObject)
 {
 	Registry R;
-	R.AddClass<int>("int");
+	R.AddClass<int>();
 
 	BinaryStream S;
 	S.SetRegistry(&R);
@@ -47,21 +46,22 @@ TEST(TestBinaryStream, TestObject)
 	S.Clear();
 	ASSERT_TRUE(S.Empty());
 
-	N.Set("child0", R.New<int>(123));
+	auto lab = Label("child0");
+	N.Set(lab, R.New<int>(123));
 	S << N;
 	Object M;
 	S >> M;
 	ASSERT_FALSE(S.CanRead(1));
 	EXPECT_EQ(ConstDeref<int>(M), 42);
-	ASSERT_TRUE(M.Has("child0"));
-	EXPECT_EQ(ConstDeref<int>(M.Get("child0")), 123);
+	ASSERT_TRUE(M.Has(lab));
+	EXPECT_EQ(ConstDeref<int>(M.Get(lab)), 123);
 }
 
 TEST(TestBinaryStream, TestArray)
 {
 	Registry R;
-	R.AddClass<Array>("Array");
-	R.AddClass<int>("int");
+	R.AddClass<Array>();
+	R.AddClass<int>();
 
 	Pointer<Array> A = R.New<Array>();
 	A->Append(R.New<int>(0));
@@ -130,8 +130,8 @@ TEST(TestBinaryStream, TestProperties)
 
 	ASSERT_TRUE(result.Exists());
 	ASSERT_TRUE(result.IsType<TestPropertiesStruct>());
-	EXPECT_EQ(result.GetValue<int>("num"), 42);
-	EXPECT_EQ(result.GetValue<String>("str"), "hello");
+	EXPECT_EQ(ConstDeref<int>(result.Get(Label("num"))), 42);
+	EXPECT_STREQ(ConstDeref<String>(result.Get(Label("str"))).c_str(), "hello");
 	//ASSERT_TRUE(result.Get("foo").IsType<TestPropertiesStruct>());
 	ASSERT_TRUE(result.Get("foo").IsType<bool>());
 }
@@ -140,9 +140,9 @@ TEST(TestBinaryStream, TestList)
 {
 	Registry R;
 	List::Register(R);
-	R.AddClass<void>("void");
-	R.AddClass<int>("int");
-	R.AddClass<String>("String");
+	R.AddClass<void>();
+	R.AddClass<int>();
+	R.AddClass<String>();
 
 	Pointer<List> list = R.New<List>();
 	list->Append(R.New(123));
@@ -184,4 +184,3 @@ TEST(TestBinaryStream, TestStreams)
 {
 }
 
-#endif
