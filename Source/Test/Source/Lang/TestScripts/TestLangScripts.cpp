@@ -1,41 +1,41 @@
 #include "TestCommon.h"
 #include <boost/filesystem.hpp>
 
-USING_NAMESPACE_KAI
-
 namespace fs = boost::filesystem;
 using namespace std;
+using namespace kai;
 
 std::list<kai::Language> TestLanguages;
+fs::path ScriptRoot = "../../Source/Test/Scripts/";
 
+// single test that is used to run all scripts for all languages, configured
+// via global TestLanguages.
 TEST(TestLangScripts, TestAll)
 {
 	for (auto lang : TestLanguages)
 	{
 		const string name = ToString(lang);
-		const string extension = "." + name;
-
-		fs::path scripts = fs::system_complete("../../Source/Test/Scripts/" + name);
-
-		fs::directory_iterator file(scripts);
-		fs::directory_iterator end;
 		TEST_COUT << "Testing language: " << name;
 
-		for (; file != end; ++file)
+		const string extension = "." + name;
+
+		fs::path dir = ScriptRoot;
+		fs::directory_iterator script(dir.append(extension)), end;
+
+		for (; script != end; ++script)
 		{
+			if (script->path().extension() != extension)
+				continue;
+
+			Console console;
+			console.SetLanguage(lang);
+			console.GetExecutor()->SetTraceLevel(10);
+			const char *source = script->path().string().c_str();
+			TEST_COUT << "...Now running script: " << script->path().filename().string().c_str() << "\n";
+
 			try
 			{
-				if (file->path().extension() == extension)
-				{
-					Console console;
-					console.SetLanguage(lang);
-					console.GetExecutor()->SetTraceLevel(10);
-
-					const char *script = file->path().string().c_str();
-					TEST_COUT << "...Now running script: " << file->path().filename().string().c_str() << "\n";
-
-					EXPECT_TRUE(console.ExecuteFile(script));
-				}
+				EXPECT_TRUE(console.ExecuteFile(source));
 			}
 			catch (Exception::Base &e)
 			{
