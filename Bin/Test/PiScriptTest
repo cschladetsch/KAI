@@ -1,0 +1,1 @@
+./KaiTest --gtest_filter=TestLangScripts.* 1

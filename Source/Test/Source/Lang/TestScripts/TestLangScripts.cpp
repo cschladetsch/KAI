@@ -18,8 +18,8 @@ TEST(TestLangScripts, TestAll)
 		TEST_COUT << "Testing language: " << name;
 
 		const string extension = "." + name;
-		path dir = ScriptRoot;
-		directory_iterator file(dir.append(extension)), end;
+		path dir = ScriptRoot.append(name);
+		directory_iterator file(dir), end;
 
 		for (; file != end; ++file)
 		{
