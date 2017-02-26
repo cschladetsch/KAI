@@ -183,7 +183,7 @@ bool PiLexer::PathnameOrKeyword()
 			continue;
 		}
 
-		if (isspace(Peek()))
+		if (isspace(Current()))
 		{
 			break;
 		}

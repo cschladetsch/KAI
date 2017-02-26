@@ -91,6 +91,9 @@ TEST_F(TestPi, TestScope)
 		const Label b("b");
 		const Label c("c");
 
+		Pathname p("'/b");
+		EXPECT_TRUE(p.Validate());
+
 		// store to explicit root of tree
 		_console.Execute("42 '/b #");
 		ASSERT_TRUE(_root.Has(b));

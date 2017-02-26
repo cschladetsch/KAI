@@ -1,6 +1,6 @@
 #include <KAI/Core/StringStream.h>
 #include <KAI/Language/Common/Structure.h>
-#include <KAI/BuiltinTypes.h>
+#include <KAI/Core/BuiltinTypes.h>
 
 KAI_BEGIN
 

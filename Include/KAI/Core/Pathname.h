@@ -61,9 +61,8 @@ public:
 
 	static void Register(Registry &);
 
-private:
-	void AddElement(StringStream &, Element::Type);
 	bool Validate() const;
+	void AddElement(StringStream &, Element::Type);
 };
 
 StringStream &operator<<(StringStream &, Pathname const &);

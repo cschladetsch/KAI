@@ -98,6 +98,7 @@ void Pathname::FromString(const String &text)
 	if (!Validate())
 	{
 		elements.clear();
+		Validate();
 		KAI_THROW_1(InvalidPathname, text);
 	}
 }

@@ -170,7 +170,7 @@ std::ostream &operator<<(std::ostream &out, PiToken const &node)
 	case PiTokenEnumType::String:
 	case PiTokenEnumType::Ident:
 	case PiTokenEnumType::QuotedIdent:
-		out << "=" << node.Text();
+		out << "='" << node.Text() << "'";
 		break;
 	}
 
