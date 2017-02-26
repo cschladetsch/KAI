@@ -6,7 +6,8 @@ String Label::ToString() const
 {
 	if (!Quoted)
 		return value;
-	return String("'" + value);
+
+	return String("'") + value;
 }
 
 void Label::FromString2(String text)

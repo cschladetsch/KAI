@@ -37,12 +37,19 @@ KAI_BEGIN
 	KAI_TYPE_TRAITS(T,N,0)
 
 // need these defined before they are fully defined for forward references to their Traits
-KAI_TYPE_TRAITS(String, Number::String, Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
+KAI_TYPE_TRAITS(
+	String, 
+	Number::String, 
+	Properties::Boolean | Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
 
-KAI_TYPE_TRAITS(Handle, Number::Handle, Properties::StringStreamInsert)
+KAI_TYPE_TRAITS(
+	Handle, 
+	Number::Handle, 
+	Properties::Boolean | Properties::StringStreamInsert)
 
-KAI_TYPE_TRAITS(::kai::Type::Number, ::kai::Type::Number::TypeNumber, ::kai::Type::Properties::StringStreamInsert);
-
+KAI_TYPE_TRAITS(
+	::kai::Type::Number, 
+	::kai::Type::Number::TypeNumber, 
+	::kai::Type::Properties::StringStreamInsert);
 
 KAI_END
-

@@ -185,9 +185,28 @@ struct TraitsBase
 		}
 	};
 
-	// minus
+	template <class Dummy, bool>
+	struct BoolOp
+	{
+		static bool Perform(ConstReference)
+		{
+			KAI_THROW_2(NoOperation, Number, Properties::Boolean);
+		}
+	};
+
+	template <class Dummy>
+	struct BoolOp<Dummy, true>
+	{
+		static bool Perform(ConstReference A)
+		{
+			return A;
+		}
+	};
+
 	template <class, bool>
-	struct MinusOp { static Store Perform(ConstReference A, ConstReference B)
+	struct MinusOp 
+	{ 
+		static Store Perform(ConstReference A, ConstReference B)
 		{
 			return A - B;
 		}
@@ -210,6 +229,7 @@ struct TraitsBase
 			KAI_THROW_2(NoOperation, Number, Properties::Multiply);
 		}
 	};
+
 	template <class D>
 	struct MultiplyOp<D, true>
 	{
@@ -227,6 +247,7 @@ struct TraitsBase
 			KAI_THROW_2(NoOperation, Number, Properties::Divide);
 		}
 	};
+
 	template <class D>
 	struct DivideOp<D, true>
 	{
@@ -249,6 +270,7 @@ struct TraitsBase
 	#pragma warning (push)
 		}
 	};
+
 	template <class D>
 	struct HashOp<D, false>
 	{
@@ -283,14 +305,17 @@ struct TraitsBase
 			reflected->Self = (StorageBase *) storage;
 			reflected->Create();
 		}
+
 		static bool Destroy(Storage<T> *storage)
 		{
 			Reflected *reflected = &storage->GetReference();
 			bool destroyed = reflected->Destroy();
 			if (destroyed)
 				UnReflectedLifetimeManagement::Destroy(storage);
+
 			return destroyed;
 		}
+
 		static void Delete(Storage<T> *storage)
 		{
 			Reflected *reflected = &storage->GetReference();
@@ -366,6 +391,8 @@ struct TraitsBase
 	typedef DivideOp<D, HasProperty<Properties::Divide>::Value != 0> Divide;
 	typedef MultiplyOp<D, HasProperty<Properties::Multiply>::Value != 0> 
 		Multiply;
+	typedef BoolOp<D, HasProperty<Properties::Boolean>::Value != 0> 
+		Boolean;
 	template <bool, class Stream>
 	struct StreamInsertOp
 	{

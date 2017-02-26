@@ -1066,13 +1066,16 @@ const char *ToString(Language l)
 			Object Q = Pop();
 			switch (Q.GetTypeNumber().ToInt())
 			{
-			case Type::Number::String: Push(Self->GetRegistry()->NewFromClassName(ConstDeref<String>(Q).c_str()));
+			case Type::Number::String:
+				Push(Self->GetRegistry()->NewFromClassName(ConstDeref<String>(Q).c_str()));
 				break;
 
-			case Type::Number::TypeNumber: Push(Self->GetRegistry()->NewFromTypeNumber(ConstDeref<Type::Number>(Q)));
+			case Type::Number::TypeNumber:
+				Push(Self->GetRegistry()->NewFromTypeNumber(ConstDeref<Type::Number>(Q)));
 				break;
 
-			case Type::Number::Class: Push(Self->GetRegistry()->NewFromClass(ConstDeref<const ClassBase *>(Q)));
+			case Type::Number::Class:
+				Push(Self->GetRegistry()->NewFromClass(ConstDeref<const ClassBase *>(Q)));
 				break;
 
 			default:
@@ -1080,13 +1083,15 @@ const char *ToString(Language l)
 				break;
 			}
 		}
-			break;
+		break;
+
 		case Operation::Assert:
 		{
-			if (!ConstDeref<bool>(Pop()))
+			auto Q = Pop();
+			if (!Q.GetClass()->Boolean(Q.GetStorageBase()))
 				KAI_THROW_0(Assertion);
 		}
-			break;
+		break;
 
 		case Operation::Ref:
 			Push(Top());

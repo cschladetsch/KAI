@@ -22,6 +22,10 @@ public:
 	friend bool operator<(Handle A, Handle B) { return A.value < B.value; }
 	friend bool operator==(Handle A, Handle B) { return A.value == B.value; }
 	friend bool operator!=(Handle A, Handle B) { return A.value != B.value; }
+	operator bool() const
+	{
+		return GetValue();
+	}
 
 	static void Register(Registry &);
 };
@@ -38,6 +42,7 @@ struct HashHandle
 	{ 
 		return A.GetValue() < B.GetValue(); 
 	}
+
 };
 
 StringStream &operator<<(StringStream &, Handle);

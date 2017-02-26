@@ -41,15 +41,20 @@ public:
 		return A;
 	}
 
-	friend String operator+(String &A, Char B)
-	{
-		A._string += B;
-		return std::move(A);
-	}
+	// friend String operator+(String &A, Char B)
+	// {
+	// 	A._string += B;
+	// 	return std::move(A);
+	// }
 
 	friend String operator+(String const &A, String const & B)
 	{
-		return std::move(String(A._string + B._string));
+		return String(A._string + B._string);
+	}
+
+	operator bool() const
+	{
+		return !empty();
 	}
 
 	const_iterator begin() const { return _string.begin(); }

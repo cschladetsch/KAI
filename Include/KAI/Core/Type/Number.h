@@ -15,19 +15,16 @@ struct Number
 		Undefined = 0,
 		None = 1,
 		Void = 2,
-
 		Handle = 11,
 		Object = 12,
 		Type = 13,
 		TypeNumber = 14,
-
 		BasePointer = 15,
 		Callable = 16,
 		Function = 17,
 		Method = 18,
 		Property = 19,
 		Class = 20,
-
 		Bool = 21,
 		Signed32 = 22,
 		Single = 23,
@@ -35,7 +32,6 @@ struct Number
 		String = 25,
 		Label = 26,
 		Pathname = 27,
-
 		Array = 28,
 		Pair = 29,
 		Map = 30,
@@ -43,7 +39,6 @@ struct Number
 		Set = 32,
 		HashSet = 33,
 		Stack = 34,
-
 		MapConstIterator = 35,
 		MapIterator = 36,
 		SetConstIterator = 37,
@@ -52,25 +47,20 @@ struct Number
 		HashMapIterator = 40,
 		HashSetConstIterator = 41,
 		HashSetIterator = 42,
-
 		Operation = 43,
 		Continuation = 44,
 		Compiler = 45,
 		Executor = 46,
-
 		StreamBase = 47,
 		StringStream = 48,
 		XmlStream = 49,
 		GraphStream = 50,
 		BinaryStream = 51,
 		BinaryPacket = 52,
-
 		Console = 53,
 		Node = 54,
 		Browser = 55,
-
 		SignedContinuation = 56,
-
 		Vector2 = 57,
 		Vector3 = 58,
 		Vector4 = 59,

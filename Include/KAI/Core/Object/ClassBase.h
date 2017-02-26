@@ -144,6 +144,7 @@ public:
 	virtual bool Less(const StorageBase &, const StorageBase &) const = 0;
 	virtual bool Greater(const StorageBase &, const StorageBase &) const = 0;
 	virtual bool Equiv(const StorageBase &, const StorageBase &) const = 0;
+	virtual bool Boolean(const StorageBase &) const = 0;
 
 	virtual void Insert(StringStream &, const StorageBase &) const = 0;
 	virtual StorageBase *Extract(Registry &, StringStream &) const = 0;

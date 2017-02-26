@@ -56,6 +56,7 @@ public:
 		CreateProperties(storage);
 		Traits::LifetimeManager::Create(TypedStorage(storage));
 	}
+
 	bool Destroy(StorageBase &storage) const
 	{
 		return Traits::LifetimeManager::Destroy(TypedStorage(storage));
@@ -70,8 +71,8 @@ public:
 				PropertyBase const &prop = *X.second;
 				if (!prop.IsSystemType())
 					continue;
+
 				Object K = prop.GetObject(storage);
-				if (K.Exists())
 				if (K.Exists())
 				{
 					K.RemovedFromContainer(storage);
@@ -80,10 +81,12 @@ public:
 		}
 		Traits::LifetimeManager::Delete(TypedStorage(storage));
 	}
+
 	Storage<T> *TypedStorage(StorageBase &storage) const
 	{
 		return reinterpret_cast<Storage<T> *>(&storage);
 	}
+
 	void CreateProperties(StorageBase &object) const 
 	{
 		for (auto property : properties)
@@ -91,8 +94,10 @@ public:
 			PropertyBase const &prop = *property.second;
 			if (!prop.IsSystemType())
 				continue;
+
 			if (!prop.CreateDefaultValue())
 				continue;
+
 			Object value = object.GetRegistry()->NewFromTypeNumber(prop.GetFieldTypeNumber());
 			prop.SetObject(object, value);
 		}
@@ -102,6 +107,7 @@ public:
 	{
 		Traits::Assign::Perform(Deref<T>(A), ConstDeref<T>(B));
 	}
+
 	Object Duplicate(StorageBase const &parent) const
 	{
 		Storage<T> *result = parent.GetRegistry()->NewStorage<T>();
@@ -184,6 +190,12 @@ public:
 		Traits::Absolute::Perform(Deref<T>(object));
 		return result;
 	}
+
+	bool Boolean(const StorageBase &A) const
+	{
+		return Traits::Boolean::Perform(ConstDeref<T>(A));
+	}
+
 	bool Less(const StorageBase &A, const StorageBase &B) const
 	{
 		return Traits::Less::Perform(ConstDeref<T>(A), ConstDeref<T>(B));
@@ -195,10 +207,12 @@ public:
 			return !Less(A,B) && !Less(B,A);
 		return Traits::Equiv::Perform(ConstDeref<T>(A),ConstDeref<T>(B));
 	}
+
 	bool Greater(const StorageBase &A, const StorageBase &B) const
 	{
 		return Traits::Greater::Perform(ConstDeref<T>(A), ConstDeref<T>(B));
 	}
+
 	StorageBase *Plus(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
@@ -211,6 +225,7 @@ public:
 		Traits::Assign::Perform(R->GetReference(), Traits::Minus::Perform(ConstDeref<T>(A), ConstDeref<T>(B)));
 		return R;
 	}
+
 	StorageBase *Multiply(StorageBase const &A, StorageBase const &B) const
 	{
 		Storage<T> *R = A.GetRegistry()->NewStorage<T>();
@@ -255,20 +270,20 @@ public:
 	}
 };
 
-	template <class T>
-	Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
-	{
-		auto klass = new Class<T>(name);
-		return R.AddClass(Type::Traits<T>::Number, klass);
-	}
+template <class T>
+Pointer<ClassBase const *> NewClass(Registry &R, const Label &name)
+{
+	auto klass = new Class<T>(name);
+	return R.AddClass(Type::Traits<T>::Number, klass);
+}
 
-	template <class T>
-	Storage<T> *Clone(StorageBase const &Q)
-	{
-		auto dup = Q.GetRegistry()->NewStorage<T>();
-		dup->GetClass()->Clone(*dup, Q);
-		return dup;
-	}
+template <class T>
+Storage<T> *Clone(StorageBase const &Q)
+{
+	auto dup = Q.GetRegistry()->NewStorage<T>();
+	dup->GetClass()->Clone(*dup, Q);
+	return dup;
+}
 
 #pragma warning(pop)
 

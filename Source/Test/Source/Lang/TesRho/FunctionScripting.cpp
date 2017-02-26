@@ -23,7 +23,7 @@ String Function_2(int n, int f, String p)
 {
 	funCalled[2] = true;
 	// KAI_TRACE_3(n, f, p);
-	return p + "foo";
+	return p + String("foo");
 }
 
 Object Function_3(Object object)
