@@ -2,8 +2,9 @@
 
 USING_NAMESPACE_KAI
 
-struct StringTest : TestCommon
+struct TestString : TestCommon
 {
+protected:
 	void AddrequiredClasses() override
 	{
 		Reg().AddClass<bool>();
@@ -12,7 +13,7 @@ struct StringTest : TestCommon
 	}
 };
 
-TEST_F(StringTest, TestBoolean)
+TEST_F(TestString, TestBoolean)
 {
 	Pointer<String> s0 = Reg().New<String>("foo");
 	ASSERT_TRUE(s0.GetClass()->Boolean(s0.GetStorageBase()));
@@ -20,7 +21,7 @@ TEST_F(StringTest, TestBoolean)
 	ASSERT_FALSE(s0.GetClass()->Boolean(s0.GetStorageBase()));
 }
 
-TEST_F(StringTest, TestCompare)
+TEST_F(TestString, TestCompare)
 {
 	Pointer<String> s0 = Reg().New<String>("a");
 	Pointer<String> s1 = Reg().New<String>("a");
@@ -30,4 +31,21 @@ TEST_F(StringTest, TestCompare)
 	*s1 = "b";
 	ASSERT_FALSE(s0.GetClass()->Equiv(s0.GetStorageBase(), s1.GetStorageBase()));
 	ASSERT_TRUE(s0.GetClass()->Less(s0.GetStorageBase(), s1.GetStorageBase()));
+	ASSERT_FALSE(s0.GetClass()->Greater(s0.GetStorageBase(), s1.GetStorageBase()));
+}
+
+TEST_F(TestString, TestConcat)
+{
+}
+
+TEST_F(TestString, TestLength)
+{
+}
+
+TEST_F(TestString, TestStringStreamInsert)
+{
+}
+
+TEST_F(TestString, TestStringStreamExtract)
+{
 }

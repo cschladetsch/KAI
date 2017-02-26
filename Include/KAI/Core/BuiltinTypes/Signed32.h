@@ -18,6 +18,7 @@ KAI_TYPE_TRAITS(int, Number::Signed32
 	| Properties::Assign
 	| Properties::Relational
 	| Properties::Absolute
+	| Properties::Boolean
 	);
 
 KAI_END

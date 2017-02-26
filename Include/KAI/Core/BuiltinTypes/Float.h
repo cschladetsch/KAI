@@ -23,6 +23,7 @@ KAI_TYPE_TRAITS(double, Number::Double
 	| Properties::Assign
 	| Properties::Relational
 	| Properties::Absolute
+	| Properties::Boolean
 	);
 
 KAI_END

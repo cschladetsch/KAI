@@ -6,6 +6,7 @@ KAI_BEGIN
 
 KAI_TYPE_TRAITS(bool, Number::Bool
 	, Properties::Streaming 
+	| Properties::Boolean
 	| Properties::Assign)
 
 StringStream &operator<<(StringStream &, bool);
