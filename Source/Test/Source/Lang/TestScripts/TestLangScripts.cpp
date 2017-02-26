@@ -38,11 +38,12 @@ TEST(TestLangScripts, TestAll)
 
 			try
 			{
-				EXPECT_TRUE(console.ExecuteFile(source));
+				ASSERT_TRUE(console.ExecuteFile(source));
 			}
 			catch (Exception::Base &e)
 			{
-				TEST_CERR << "Exception: " << e.ToString().c_str();// << endl;
+				// TEST_CERR 
+				ASSERT_TRUE(false)<< "Exception: " << e.ToString().c_str();// << endl;
 			}
 		}
 	}

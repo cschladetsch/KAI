@@ -4,14 +4,15 @@
 
 KAI_BEGIN
 
-KAI_TYPE_TRAITS(bool, Number::Bool
-	, Properties::Streaming 
-	| Properties::Boolean
-	| Properties::Assign)
-
 StringStream &operator<<(StringStream &, bool);
 StringStream &operator>>(StringStream &, bool &);
 BinaryStream &operator<<(BinaryStream &, bool);
 BinaryStream &operator>>(BinaryStream &, bool &);
+
+KAI_TYPE_TRAITS(bool,
+	Number::Bool
+	, Properties::Streaming 
+	| Properties::Boolean
+	| Properties::Assign)
 
 KAI_END
