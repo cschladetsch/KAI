@@ -14,7 +14,6 @@ namespace
 		auto input = "1";
 		Registry reg;
 
-
 		shared_ptr<PiLexer> lex = make_shared<PiLexer>(input, reg);
 		lex->Process();
 		if (trace) KAI_TRACE_1(lex->Print());
@@ -51,7 +50,7 @@ namespace
 		if (trace) parser->PrintTree();
 
 		auto root = parser->GetRoot();
-		ASSERT_EQ(root->GetChildren().size(), 2);
+		ASSERT_EQ(root->GetChildren().size(), 3);
 
 		auto ch0 = root->GetChildren()[0];
 		auto ch1 = ch0->GetChildren()[0];

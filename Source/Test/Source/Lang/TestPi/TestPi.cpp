@@ -40,8 +40,6 @@ TEST_F(TestPi, TestComments)
 
 TEST_F(TestPi, TestArithmetic)
 {
-	// TranslatorCommon::trace = 1;
-
 	_console.SetLanguage(Language::Pi);
 	_data->Clear();
 	_console.Execute("6 2 div");
