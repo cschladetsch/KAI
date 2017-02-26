@@ -118,7 +118,11 @@ bool PiLexer::NextToken()
 			int start = offset;
 			while (Next() != '\n')
 				;
-			return Add(Enum::Comment, offset - start);
+			
+			Token comment(Enum::Comment, *this, lineNumber, Slice(start, offset));
+			Add(comment);
+			Next();
+			return true;
 		}
 		return PathnameOrKeyword();
 	}
