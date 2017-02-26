@@ -1,0 +1,2 @@
+./KaiTest --gtest_filter=$1*
+
