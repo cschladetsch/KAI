@@ -1,16 +1,11 @@
-true assert 
 
-false not assert 
+// 0 not assert 
 
-true assert 
+1 2 + 3 == assert 
 
-// TODO: 0 not assert 
+1 2 + 3 mul 3 + 6 div 2 == assert 
 
-// 1 2 + 3 == assert 
-
-// 1 2 + 3 mul 3 + 6 div 2 == assert 
-
-// 2 1 swap - 1 == assert 
+2 3 swap - 1 == assert
 
 // 1 2 3 3 toarray [1 2 3] == assert
 

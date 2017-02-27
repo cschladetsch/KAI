@@ -17,7 +17,11 @@ void PiLexer::AddKeyWords()
 	keyWords["div"] = Enum::Divide;
 	keyWords["rho"] = Enum::ToRho;
 	keyWords["rho{"] = Enum::ToRhoSequence;
+
 	keyWords["not"] = Enum::Not;
+	keyWords["and"] = Enum::And;
+	keyWords["or"] = Enum::Or;
+	keyWords["xor"] = Enum::Xor;
 
 	keyWords["drop"] = Enum::Drop;
 	keyWords["dup"] = Enum::Dup;

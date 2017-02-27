@@ -193,6 +193,18 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 		AppendOp(Operation::LogicalNot);
 		break;
 
+	case PiTokenEnumType::And:
+		AppendOp(Operation::LogicalAnd);
+		break;
+
+	case PiTokenEnumType::Or:
+		AppendOp(Operation::LogicalOr);
+		break;
+
+	case PiTokenEnumType::Xor:
+		AppendOp(Operation::LogicalXor);
+		break;
+
 	default:
 		KAI_TRACE_1(tok.type) << " Token not implemented: " << tok.ToString();
 		// KAI_NOT_IMPLEMENTED_1(tok.ToString());
