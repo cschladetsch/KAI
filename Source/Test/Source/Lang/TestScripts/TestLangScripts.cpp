@@ -15,7 +15,7 @@ TEST(TestLangScripts, TestAll)
 	for (auto lang : TestLanguages)
 	{
 		const string name = ToString(lang);
-		TEST_COUT << "Testing language: " << name;
+		TEST_COUT << ">>> Testing Language: " << name;
 
 		const string extension = "." + name;
 		path dir = ScriptRoot.append(name);
@@ -26,15 +26,15 @@ TEST(TestLangScripts, TestAll)
 			auto const &path = file->path();
 			if (path.extension() != extension)
 			{
-				TEST_COUT << "Ignoring " << path;
+				// TEST_COUT << "Ignoring " << path;
 				continue;
 			}
 
 			Console console;
 			console.SetLanguage(lang);
-			console.GetExecutor()->SetTraceLevel(10);
+			// console.GetExecutor()->SetTraceLevel(10);
 			const char *source = path.string().c_str();
-			TEST_COUT << "...Now running script: " << path.filename().string().c_str() << "\n";
+			TEST_COUT << "Running: " << path.filename().string().c_str();
 
 			try
 			{
