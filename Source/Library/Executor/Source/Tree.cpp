@@ -321,9 +321,10 @@ Object Tree::Resolve(const Pathname &P) const
 	if (P.Absolute())
 		return Object();
 	
+	// search in each object stored in path
 	for (auto const &A : path)
 	{
-		Object found = Get(root, *A, P);
+		Object found = Get(root, A, P);
 		if (found.Exists())
 			return found;
 	}

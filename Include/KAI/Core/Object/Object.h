@@ -227,7 +227,6 @@ StringStream &operator>>(StringStream &S, Object &Q);
 BinaryStream &operator<<(BinaryStream &S, const Object &Q);
 BinaryStream &operator>>(BinaryStream &stream, Object &Q);
 
-Object operator*(Object const &A);
 bool operator<(Object const &A, Object const &B);
 bool operator==(Object const &A, Object const &B);
 inline bool operator!=(Object const &A, Object const &B) { return !(A == B); }

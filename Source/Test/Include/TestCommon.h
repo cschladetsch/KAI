@@ -48,7 +48,7 @@ namespace testing
  }
 }
 
-#define TEST_PRINTF(COLOR, ...)  do { testing::internal::ColoredPrintf(testing::internal::COLOR, "[ KAI      ] "); testing::internal::ColoredPrintf(testing::internal::COLOR, __VA_ARGS__); } while(0)
+#define TEST_PRINTF(COLOR, ...)  do { testing::internal::ColoredPrintf(testing::internal::COLOR, "[      KAI ] "); testing::internal::ColoredPrintf(testing::internal::COLOR, __VA_ARGS__); } while(0)
 
 // C++ stream interface
 class TestCout : public std::stringstream

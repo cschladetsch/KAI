@@ -1,3 +1,9 @@
-// comment
+// may seem simple, but
+// this has to deal with comments
 
+// and blank lines
+
+// and executing things and stuff
 1 1 + 2 == assert
+
+// but it shows that the core systems are all up
