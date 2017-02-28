@@ -112,7 +112,7 @@ This means you can expose and script other classes as well, including those in a
 
 To be clear: you do not have to change the source code of a class in order to access and use it at runtime with KAI. Further, these exposed classes are directly accessable via the Network.
 
-A REPL console application is also supplied, as well as a Window application based on FLTK.
+A REPL console application is also supplied, as well as a Window application based on [Dear ImGui](https://github.com/ocornut/imgui).
 
 KAI and all of its libraries and applications are completely cross-platform and supports Linux, Windows, and OSX.
 
