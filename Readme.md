@@ -24,19 +24,19 @@ See **${KAI_HOME}**/Install.md. If after reading that you still get a failed bui
 
 The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
 
-* Registry -> Object (local)
-* Domain -> NetObject (shared)
-* System -> Domain (shared)
+* Object -> Registry (local)
+* NetObject -> Domain (shared)
+* Domain -> System (shared across multiple Domains)
 
-A Registry is a local set of unique well-known objects. A Domain is a set of unique well-known objects within a set of network Peers. A System is a set of well-known Domains - The top-level System network does not generally deal with specific NetObjects, although it can.
+A *Registry* is a local set of unique well-known *Objects*. A *Domain* is a set of unique well-known objects within a set of network *Peers*. A *System* is a set of well-known Domains - The top-level System network does not generally deal with specific NetObjects, although it can.
 
 Rather, a network **System** is a collection of distriuted **Domains**, each such unique Domain with a unique shared **Registry**. 
 
-In othe words, a Registry can exist locally within a single Console applciation on a single machine. A collection of Registries is a Domain, and a collection of Domains is the overall system.
+In other words, a Registry can exist locally within a single Console applciation on a single machine. A collection of Registries is a Domain, and a collection of Domains is the overall System.
 
 It has taken many years to build all this all up from the ground, starting with scripting languages and parsers, distributed garbage collection systems, and various fuzzy synchronisation models.
 
-These are all coming along, slowly over the years. This project was started in 2008.
+These are all coming along, slowly over the years. This specific project was started in 2008, and even more informally back in 2001.
 
 The end goal is to have a server-less, truely peer-to-peer system that yet maintains state coherency and is scalable to the tens of thousands of connected nodes. That doesn't come cheaply and work continues.
 
@@ -70,7 +70,7 @@ Then we push 2 onto the stack, then the add function by name, then use the '&' o
 
 Then we push the **print** function onto the stack (which is built-in), then execute that too.
 
-The result is a stack with the integer value 3 on at the top.
+The result is an empty stack with the console output of "3".
 
 ## Rho
 
