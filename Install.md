@@ -2,6 +2,8 @@
 
 You will need cmake >= 3.7 and OpenGL and a bunch of things like Raknet. I have made the CMake files as permissible as possible, as at worst you will just end up with a character-based terminal and no networking.
 
+Note that Ubuntu apt only has cmake 3.5.
+
 That is to say: if the build system can't locate a package, it will not fail. It will just not build anything that relies on that package.
 
 Otherwise, do what I do and solve the dependancies problems one at a time as you try to build. I could try to give you deep instructions on how to add all dependancies on all platforms, but they would be outdated before you read them anyway. And they'd be wrong.
