@@ -1,8 +1,12 @@
 # Installing
 
-You will need cmake >= 3.7 and OpenGL and a bunch of things like Raknet. I have made the CMake files as permissible as possible, as at worst you will just end up with a character-based terminal and no networking.
+To build *everything* You will need cmake >= 3.7 and OpenGL and a bunch of things like Raknet and boost libraries.
 
-Note that Ubuntu apt only has cmake 3.5. So, for the moment you must use the *ubuntu* branch of the repo to build there. Soon enough I'll clean the CMake files to work with either 3.7 or 3.5 with or without cotire. For the moment, there's a branch you can use.
+To build the basics - to me, that 'basic' thing is the test suite in ${KAI_HOME}/Bin/Test/KaiTest - then you won't need all that. KAI is self-contained inasmuchas it builds itself and its test suite without external dependancies other than gtest.
+
+I have made the CMake files as permissible as possible, so at worst you will just end up with a character-based terminal and no networking and no pretty window GUI to play with.
+
+Note that Ubuntu apt only has cmake 3.5. So, for the moment you must use the *ubuntu* branch of the repo to build on Ubuntu. Soon enough I'll clean the CMake files to work with either 3.7 or 3.5 with or without cotire. For the moment, there's a branch you can use.
 
 If the build system can't locate a package, it will try to fail well. It will just not build anything that relies on that package.
 
