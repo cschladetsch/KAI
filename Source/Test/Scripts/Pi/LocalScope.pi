@@ -1,0 +1,48 @@
+asd
+
+'w 'z # 
+'w 'y #
+z y == assert
+
+'foo exists not assert
+
+42 'a #
+'a exists assert
+a 42 == assert
+
+2 'b #
+a b + 44 == assert
+
+// p is a 'pointer' to object called 'a
+'a 'p #
+'a p == assert // test Label/Pathname equivalence
+
+// 'dereference' the 'pointer'
+p @ 42 == assert
+
+// z only exists in scope of the local continuation
+{ 1 'z # } & 'z exists not assert
+
+// can access outer scope
+{ a } & 42 == assert
+{ p @ } & 42 == assert
+
+'e exists not assert
+
+// name resoluton works up the context stack
+{ 5 'e # { 'e exists assert } & } &
+
+// e was local to the previous continuation
+'e exists not assert
+
+// be creative
+{ + } 'plus #
+1 2 + 3 == assert
+1 2 plus & 3 == assert
+
+// just exercise
+{ 7 'e # { e 2 } & plus & } & 9 == assert
+
+// ensure nothing left over
+0 depth == assert
+

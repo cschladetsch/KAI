@@ -22,6 +22,7 @@ void PiLexer::AddKeyWords()
 	keyWords["and"] = Enum::And;
 	keyWords["or"] = Enum::Or;
 	keyWords["xor"] = Enum::Xor;
+	keyWords["exists"] = Enum::Exists;
 
 	keyWords["drop"] = Enum::Drop;
 	keyWords["dup"] = Enum::Dup;

@@ -22,11 +22,9 @@ struct Executor : Reflected
 
 	void SetContinuation(Value<Continuation>);
 	void Continue(Value<Continuation>);
-	void ContinueOnly(Value<Continuation> C);	// continue C, do not call into the context stack after
-	void ContinueTestCode(Value<Continuation> C);	// continue C, leaving one result on the stack
+	void ContinueOnly(Value<Continuation> C);
 	void Continue();
 
-	// just so we cn switch languages
 	Object GetCompiler() const { return _compiler; }
 	void SetCompiler(Object c) { _compiler = c; }
 

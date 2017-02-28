@@ -1,6 +1,4 @@
-scope print &
 
-clear
 
 pwd drop
 
@@ -18,4 +16,3 @@ a b + 3 == assert
 
 /a c + 4 == assert
 
-{ 1 'z #} & 'z exists not assert

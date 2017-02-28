@@ -22,6 +22,24 @@ bool Continuation::Destroy()
 	return true;
 }
 
+String Continuation::Show() const
+{
+	StringStream str;
+	int around = 4;
+	auto current = *index;
+	auto min = std::max(0, current - around);
+	auto max = std::min(code->Size() - 1, current + around);
+	str << "IP=" << current << "\n";
+	for (int n = min; n < max; ++n)
+	{
+		if (n == current - 1)
+			str << ">>> ";
+		str << code->At(n) << "\n";
+	}
+
+	return str.ToString();
+}
+
 void Continuation::SetCode(Code C)
 {
 	code = C;

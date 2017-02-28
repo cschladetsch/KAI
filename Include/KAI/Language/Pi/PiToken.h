@@ -130,6 +130,7 @@ struct PiTokenEnumType
 		Jobs,
 		Debug,
 		Size,
+		Exists,
 	};
 
 	struct Type : TokenBase<PiTokenEnumType>

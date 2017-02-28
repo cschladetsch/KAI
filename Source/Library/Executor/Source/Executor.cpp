@@ -106,7 +106,7 @@ void Executor::Continue()
 			}
 			catch (Exception::Base &E)
 			{
-				KAI_TRACE_1(E);
+				KAI_TRACE_1(E) << "\n" << _continuation->Show();
 				_data->Push(Reg().New<String>(E.ToString()));
 				throw;
 			}
@@ -1089,7 +1089,10 @@ const char *ToString(Language l)
 		{
 			auto Q = Pop();
 			if (!Q.GetClass()->Boolean(Q.GetStorageBase()))
+			{
+				KAI_TRACE() << "\n" << _continuation->Show();
 				KAI_THROW_0(Assertion);
+			}
 		}
 		break;
 
@@ -1162,7 +1165,7 @@ const char *ToString(Language l)
 			break;
 
 		case Operation::Exists:
-			Push(New(Pop().Exists()));
+			Push(New(Resolve(Pop()).Exists()));
 			break;
 
 		case Operation::GetChildren:

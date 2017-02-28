@@ -71,6 +71,7 @@ public:
 	bool Next() const;
 	bool Next(Object &) const;
 
+	String Show() const;
 	static void Register(Registry &);
 };
 
