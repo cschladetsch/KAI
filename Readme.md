@@ -84,7 +84,9 @@ The first is post-fix **Pi** and will not be too strange that those that have us
 
 The **Rho** example is more familiar. Define a function that takes one argument and return it plus 1. Then print the result of calling that function with the argument 2.
 
-In both cases, the data stack will be left with the single value 'int 3'. Rho gets translated to Pi code on the fly, so when you 'compile' the Rho code above you will get something very similiar to the pi code above that.
+In both cases, the data stack will be left empty and the console will have output of '3'. 
+
+Rho gets translated to Pi code on the fly, so when you 'compile' the Rho code above you will get something very similiar to the pi code above that.
 
 ## Tau
 
