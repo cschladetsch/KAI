@@ -11,19 +11,15 @@ add_definitions(-DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_USE_EXCEPTIONS)
-# add_definitions(-DKAI_TRACE_FILE_LOCATION)
+#add_definitions(-DKAI_TRACE_FILE_LOCATION)
 #add_definitions(-DKAI_TRACE_VERBOSE)
 
 set(HOME $ENV{HOME})
-
-# THESE ARE HARD-CODED AND WILL HAVE TO BE CHANGED FOR YOUR INSTALLATION
-# Source location.
 set(KAI_HOME ${CMAKE_SOURCE_DIR})
 
 # RakNet
 set(RAKNET_DIR ${HOME}/External/RakNet)
 include(${KAI_HOME}/CMake/FindRakNet.cmake)
-
 
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
@@ -37,17 +33,9 @@ set(BIN_HOME ${KAI_HOME}/Bin)
 
 include_directories(${KAI_HOME}/Include)
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    include_directories(/usr/local/Cellar/boost/1.60.0_2/include)
-    include_directories(/usr/local/)
-endif()
-
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
-
-# FLTK
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
@@ -78,12 +66,10 @@ macro(def_platform_library name)
     cotire(platform-${name})
 endmacro()
 
-# include(CMakeToolsHelpers OPTIONAL)
-
 set(TopLevels Library Test App)
-
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
+# TODO
 # include(Library/Platform/CMakeLists.txt)
