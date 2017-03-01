@@ -27,6 +27,7 @@ class ClassBase
 public:
 	typedef std::unordered_map<Label, MethodBase *, detail::LabelHash> Methods;
 	typedef std::unordered_map<Label, PropertyBase *, detail::LabelHash> Properties;
+	typedef std::list<Object> ObjectList;
 
 protected:
 	Type::Number type_number;
@@ -38,36 +39,16 @@ public:
 	ClassBase(Label const &N, Type::Number T) : name(N), type_number(T) { }
 	virtual ~ClassBase();
 
-	/// identification
 	const Label &GetName() const { return name; }
 	const Label &GetLabel() const { return GetName(); }
 	Type::Number GetTypeNumber() const { return type_number; }
 
-	/// tri-color marking: set reference objects color
-	virtual void SetReferencedObjectsColor(StorageBase &base, ObjectColor::Color color, HandleSet& handles) const
-	{
-		if (properties.empty())
-			return;
-		//ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
-		//for (; iter != end; ++iter)
-		for (auto const &iter : properties)
-		{
-			PropertyBase const &prop = *(iter.second);
-			if (!prop.IsSystemType())
-				continue;
+	virtual void SetReferencedObjectsColor(
+		StorageBase &base, ObjectColor::Color color, HandleSet& handles) const;
 
-			Object property = prop.GetObject(base);
-			if (!property.Exists())
-				continue;
-
-			property.SetColorRecursive(color, handles);
-		}
-	}
 
 	virtual void MakeReachableGrey(StorageBase &base) const = 0;
 
-	typedef std::list<Object> ObjectList;
-	
 	// get all objects which are contained by this one
 	virtual void GetContainedObjects(StorageBase &object, ObjectList &contained) const = 0;
 
@@ -127,17 +108,25 @@ public:
 	{
 		return Absolute(object.GetStorageBase());
 	}
+
 	bool Less(Object const &lhs, Object const &rhs) const
 	{
 		return Less(lhs.GetStorageBase(), rhs.GetStorageBase());
 	}
+
 	bool Equiv(Object const &lhs, Object const &rhs) const
 	{
 		return Equiv(lhs.GetStorageBase(), rhs.GetStorageBase());
 	}
+
 	bool Greater(Object const &lhs, Object const &rhs) const
 	{
 		return Greater(lhs.GetStorageBase(), rhs.GetStorageBase());
+	}
+
+	bool Boolean(Object const &Q) const 
+	{
+		return Boolean(Q.GetStorageBase());
 	}
 
 	virtual Object Absolute(const StorageBase &) const = 0;
@@ -198,7 +187,10 @@ public:
 
 StringStream &operator<<(StringStream &, const ClassBase *);
 
-KAI_TYPE_TRAITS_NAMED(const ClassBase *, Number::Class, "Class", Properties::StringStreamInsert)
+KAI_TYPE_TRAITS_NAMED(
+	const ClassBase *, 
+	Number::Class, 
+	"Class", 
+	Properties::StringStreamInsert)
 
 KAI_END
-

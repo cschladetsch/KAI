@@ -4,10 +4,10 @@ KAI_BEGIN
 
 String Label::ToString() const
 {
-	if (!Quoted)
-		return value;
+	if (!_quoted)
+		return _value;
 
-	return String("'") + value;
+	return String("'") + _value;
 }
 
 void Label::FromString2(String text)
@@ -17,29 +17,30 @@ void Label::FromString2(String text)
 
 void Label::FromString(const Value &S)
 {
-	value = "";
+	_quoted = false;
+	_value = "";
 	if (S.empty())
 		return;
 
 	const String::Char *str = S.c_str();
 	if (str[0] == '\'')
 	{
-		Quoted = true;
+		_quoted = true;
 		str++;
 	}
-	value = str;
+
+	_value = str;
 }
+
 StringStream &operator<<(StringStream &S, const Label &L)
 {
-	if (L.Quoted)
-		S << "'";
-	return S << L.GetValue();
+	return S << L.ToString();
 }
 
 StringStream &operator>>(StringStream &S, Label &L)
 {
-	L.Quoted = S.Peek() == '\'';
-	if (L.Quoted)
+	bool quoted = S.Peek() == '\'';
+	if (quoted)
 	{
 		char ch;
 		S.Extract(ch);
@@ -48,22 +49,20 @@ StringStream &operator>>(StringStream &S, Label &L)
 	String val;
 	S >> val;
 	L.FromString(val);
+	L.SetQuoted(quoted);
 	return S;
 }
 
-
 BinaryStream &operator<<(BinaryStream &S, Label const &L)
 {
-	return S << L.Quoted << L.GetValue();
+	return S << L.ToString();
 }
 
 BinaryStream &operator>>(BinaryStream &S, Label &L)
 {
 	String value;
-	bool quoted;
-	S >> quoted >> value;
+	S >> value;
 	L.FromString(value);
-	L.Quoted = quoted;
 	return S;
 }
 

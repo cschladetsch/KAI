@@ -57,6 +57,23 @@ struct Executor : Reflected
 		Push(val.GetObject());
 	}
 	
+	template <class Ident>
+	void EvalIdent(Object const &Q)
+	{
+		Ident const &ident = ConstDeref<Ident>(Q);
+		if (ident.Quoted())
+		{
+			Push(Q);
+			return;
+		}
+
+		auto found = TryResolve(ident);
+		if (found.Exists())
+			Push(found);
+		else
+			KAI_THROW_1(ObjectNotFound, ident.ToString());
+	}
+
 	void Push(Object const &);
 	void Push(const std::pair<Object, Object> &);
 	Object Pop();
@@ -87,12 +104,15 @@ struct Executor : Reflected
 	
 	void DropN();
 
-	Object ResolvePop();
-	Object Resolve(Object) const;
+	// if ignoreQuote is true, then we resolve the identifier
+	// even if it is quoted
+	Object Resolve(Object, bool ignoreQuote = false) const;
 	Object Resolve(const Label &) const;
 	Object Resolve(const Pathname &) const;
 
 protected:
+	bool PopBool();
+
 	void Perform(Operation::Type op);
 	void ToArray();
 
@@ -120,7 +140,10 @@ private:
 	void Trace(const Object&, StringStream &);
 	void ConditionalContextSwitch(Operation::Type);
 	Value<Continuation> NewContinuation(Value<Continuation> P);
+
+	Object TryResolve(Object const &) const;
 	Object TryResolve(Label const &label) const;
+	Object TryResolve(Pathname const &label) const;
 
 private:
 	Value<Continuation> _continuation;

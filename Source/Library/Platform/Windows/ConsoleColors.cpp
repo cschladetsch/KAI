@@ -1,6 +1,3 @@
-//
-// Created by Christian on 11/02/2017.
-//
 #include "KAI/Console/Color.h"
 
 #define WIN32_LEAN_AND_MEAN

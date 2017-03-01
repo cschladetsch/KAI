@@ -58,7 +58,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::QuotedIdent:
 	{
 		auto label = Label(tok.Text().c_str());
-		label.Quoted = true;
+		label.SetQuoted(true);
 		AppendNew(label);
 		break;
 	}

@@ -8,32 +8,34 @@ KAI_BEGIN
 struct Label
 {
 	typedef String Value;
-	bool Quoted = false;
 
 private:
-	Value value;
+	Value _value;
+	bool _quoted = false;
 
 public:
 	Label() { }
 	explicit Label(const String::Char *S) { FromString(S); }
 	Label(const Value &S) { FromString(S); }
 
-	bool Empty() const { return value.empty(); }
-
+	bool Empty() const { return _value.empty(); }
+	bool Quoted() const { return _quoted; }
+	void SetQuoted(bool q) { _quoted = q; }
+	
 	void FromString(const Value &S);
 	String ToString() const;
 
 	void FromString2(Value S);
-	const Value &GetValue() const { return value; }
+	const Value &GetValue() const { return _value; }
 
 	friend bool operator<(const Label &A, const Label &B) 
 	{
-	   	return A.Quoted < B.Quoted || (A.Quoted == B.Quoted && A.value < B.value);
+		return A.ToString() < B.ToString();
 	}
 
 	friend bool operator==(const Label &A, const Label &B) 
 	{
-	   	return A.Quoted == B.Quoted && A.value == B.value;
+		return A.ToString() == B.ToString();
 	}
 
 	static void Register(Registry &);

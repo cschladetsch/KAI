@@ -39,18 +39,15 @@ std::string Color::GetColor(EType type) const
 {
 	if (_impl->colors.find(type) == _impl->colors.end())
 	{
-		// TODO: WTF this not working
-//		KAI_TRACE_1(type);
-		return std::move(_impl->colors[Input]);
+		return _impl->colors[Input];
 	}
 
-	return std::move(_impl->colors[type]);
+	return _impl->colors[type];
 }
 
 std::ostream& operator<<(std::ostream &S, Color::EType C)
 {
-//	std::string D = _color.GetColor(C);
-	return S << _color.GetColor(C);
+	return S;// << _color.GetColor(C);
 }
 
 KAI_END

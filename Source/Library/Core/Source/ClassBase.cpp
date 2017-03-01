@@ -19,6 +19,26 @@ ClassBase::~ClassBase()
 		delete C->second;
 }
 
+void ClassBase::SetReferencedObjectsColor(
+		StorageBase &base, ObjectColor::Color color, HandleSet& handles) const
+{
+	if (properties.empty())
+		return;
+
+	for (auto const &iter : properties)
+	{
+		PropertyBase const &prop = *(iter.second);
+		if (!prop.IsSystemType())
+			continue;
+
+		Object property = prop.GetObject(base);
+		if (!property.Exists())
+			continue;
+
+		property.SetColorRecursive(color, handles);
+	}
+}
+
 void ClassBase::SetMarked(StorageBase &Q, bool M) const
 {
 	Properties::const_iterator A = properties.begin(), B = properties.end();
