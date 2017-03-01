@@ -1,0 +1,24 @@
+
+depth toarray [] == assert
+1 depth toarray [1] == assert
+1 2 3 depth toarray [1 2 3] == assert
+
+// expand the array, leaving the size of the expanded array on the stack
+[11 22 33] expand 3 == assert
+
+depth 3 == assert
+
+3 toarray [11 22 33] == assert
+clear
+depth 0 == assert
+
+1 2 3 4
+2 toarray	// stack: 1 2 [3 4]
+rot			// stack: 2 [3 4] 1
+rot			// stack: [3 4] 1 2
+2 toarray	// stack: [3 4] [1 2]
+
+[1 2] == assert
+[3 4] == assert
+
+depth 0 == assert

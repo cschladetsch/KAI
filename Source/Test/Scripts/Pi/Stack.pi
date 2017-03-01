@@ -1,0 +1,18 @@
+depth 0 == assert
+
+1 2 3 depth 3 == assert
+clear depth 0 == assert
+
+{ depth toarray } 'toa #
+
+1 2 toa & [1 2] == assert
+
+// why does this fail?
+// ...beacuse continuations aren't reset!
+// ...same reason why other tests fail
+//1 2 swap toa & [2 1] == assert
+
+
+
+//1 2 3 rot toa & [3 1 2] == assert
+//1 2 3 2 pickn toa & [1 2 3 2 3] == assert

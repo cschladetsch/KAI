@@ -3,8 +3,8 @@
 cmake_minimum_required(VERSION 3.7)
 FIND_PACKAGE(Boost 1.40 COMPONENTS filesystem REQUIRED )
 
-add_definitions(-DKAI_TRACE_FILE_LOCATION)
-add_definitions(-DKAI_TRACE_VERBOSE)
+# add_definitions(-DKAI_TRACE_FILE_LOCATION)
+# add_definitions(-DKAI_TRACE_VERBOSE)
 
 set(name KaiTest)
 project(${name})

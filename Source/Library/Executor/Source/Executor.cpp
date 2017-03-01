@@ -42,7 +42,7 @@ void Executor::Push(Object const &Q)
 
 void Executor::Push(const std::pair<Object, Object> &P)
 {
-	Push(New(Pair(P.first, P.second)).GetObject());
+	Push(New(Pair(P.first, P.second)));
 }
 
 // why was this ever a good idea
@@ -108,7 +108,7 @@ void Executor::Continue()
 			catch (Exception::Base &E)
 			{
 				KAI_TRACE_1(E) << "\n" << _continuation->Show();
-				_data->Push(Reg().New<String>(E.ToString()));
+				_data->Push(New<String>(E.ToString()));
 				throw;
 			}
 		}
@@ -189,9 +189,8 @@ void Executor::Eval(Object const &Q)
 template <class Cont>
 void Executor::PushAll(const Cont &cont)
 {
-	typename Cont::const_iterator A = cont.Begin(), B = cont.End();
-	for (; A != B; ++A)
-		Push(*A);
+	for (const auto &A : cont)
+		Push(A);
 
 	Push(New(cont.Size()));
 }
@@ -229,13 +228,16 @@ void Executor::Expand()
 		}
 		break;
 
-	case Type::Number::List: PushAll(ConstDeref<List>(Q)); 
+	case Type::Number::List:
+		PushAll(ConstDeref<List>(Q)); 
 		break;
 
-	case Type::Number::Array: PushAll(ConstDeref<Array>(Q)); 
+	case Type::Number::Array:
+		PushAll(ConstDeref<Array>(Q)); 
 		break;
 
-	case Type::Number::Map: PushAll(ConstDeref<Map>(Q)); 
+	case Type::Number::Map:
+		PushAll(ConstDeref<Map>(Q)); 
 		break;
 
 	default:
@@ -252,9 +254,9 @@ void Executor::GetChildren()
 	const Dictionary &D = Q.GetDictionary();
 	Dictionary::const_iterator A = D.begin(), B = D.end();
 	for (; A != B; ++A)
-		children->Append(New(A->first.ToString()).GetObject());
+		children->Append(New(A->first.ToString()));
 
-	Push(children.GetObject());
+	Push(children);
 }
 
 void Executor::ToArray()
@@ -264,10 +266,11 @@ void Executor::ToArray()
 		KAI_THROW_1(BadIndex, len);
 
 	Value<Array> A = New<Array>();
-	while (len-- > 0)
-		A->Append(Pop());
+	A->Resize(len);
+	while (len--)
+		A->RefAt(len) = Pop();
 
-	Push(A.GetObject());
+	Push(A);
 }
 
 void Executor::DropN()
@@ -292,9 +295,9 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 	{
 	case Operation::Suspend:
 		_continuation->Next();
-		_context->Push(_continuation.GetObject());
+		_context->Push(_continuation);
 	case Operation::Replace:
-		_context->Push(NewContinuation(Pop()).GetObject());
+		_context->Push(NewContinuation(Pop()));
 	case Operation::Resume:
 		_break = true;
 		default:
@@ -726,7 +729,7 @@ void Executor::Perform(Operation::Type op)
 		V->x = *x;
 		V->y = *y;
 		V->z = *z;
-		Push(V.GetObject());
+		Push(V);
 	}
 	break;
 
@@ -764,7 +767,7 @@ void Executor::Perform(Operation::Type op)
 		int &ref = *N;
 		*M = ref;
 		++ref;
-		Push(M.GetObject());
+		Push(M);
 	}
 	break;
 
@@ -775,7 +778,7 @@ void Executor::Perform(Operation::Type op)
 		int &ref = *N;
 		*M = ref;
 		--ref;
-		Push(M.GetObject());
+		Push(M);
 	}
 	break;
 
@@ -814,7 +817,7 @@ void Executor::Perform(Operation::Type op)
 	break;
 
 	case Operation::ThisContinuation:
-		Push(_continuation.GetObject());
+		Push(_continuation);
 		break;
 
 	case Operation::Delete:
@@ -863,7 +866,7 @@ void Executor::Perform(Operation::Type op)
 			break;
 		}
 
-		_context->Push(_continuation.GetObject());
+		_context->Push(_continuation);
 		_context->Push(where_to_go);
 		if (where_to_go.IsType<Continuation>())
 			Deref<Continuation>(where_to_go).Enter(this);
@@ -888,7 +891,7 @@ void Executor::Perform(Operation::Type op)
 	break;
 
 	case Operation::Replace:
-		_context->Push(NewContinuation(Pop()).GetObject());
+		_context->Push(NewContinuation(Pop()));
 	case Operation::Resume:
 		_break = true;
 		break;
@@ -995,8 +998,8 @@ void Executor::Perform(Operation::Type op)
 		Object then = Pop();
 		if (PopBool())
 		{
-			_context->Push(_continuation.GetObject());
-			_context->Push(NewContinuation(then).GetObject());
+			_context->Push(_continuation);
+			_context->Push(NewContinuation(then));
 			_break = true;
 		}
 	}
@@ -1006,11 +1009,11 @@ void Executor::Perform(Operation::Type op)
 	{
 		Pointer<Continuation> else_ = Pop();
 		Pointer<Continuation> then = Pop();
-		_context->Push(_continuation.GetObject());
+		_context->Push(_continuation);
 		if (PopBool())
-			_context->Push(NewContinuation(then).GetObject());
+			_context->Push(NewContinuation(then));
 		else
-			_context->Push(NewContinuation(else_).GetObject());
+			_context->Push(NewContinuation(else_));
 
 		_break = true;
 	}
@@ -1033,7 +1036,7 @@ void Executor::Perform(Operation::Type op)
 	break;
 
 	case Operation::ThisContext:
-		Push(_continuation.GetObject());
+		Push(_continuation);
 		break;
 
 	case Operation::Remove:
@@ -1099,15 +1102,15 @@ void Executor::Perform(Operation::Type op)
 		switch (Q.GetTypeNumber().ToInt())
 		{
 		case Type::Number::String:
-			Push(Self->GetRegistry()->NewFromClassName(ConstDeref<String>(Q).c_str()));
+			Push(Reg().NewFromClassName(ConstDeref<String>(Q).c_str()));
 			break;
 
 		case Type::Number::TypeNumber:
-			Push(Self->GetRegistry()->NewFromTypeNumber(ConstDeref<Type::Number>(Q)));
+			Push(Reg().NewFromTypeNumber(ConstDeref<Type::Number>(Q)));
 			break;
 
 		case Type::Number::Class:
-			Push(Self->GetRegistry()->NewFromClass(ConstDeref<const ClassBase *>(Q)));
+			Push(Reg().NewFromClass(ConstDeref<const ClassBase *>(Q)));
 			break;
 
 		default:
@@ -1217,7 +1220,7 @@ void Executor::Perform(Operation::Type op)
 	{
 		Object arg = Pop();
 		Object from = Pop();
-		// TODO: this is lame. need to generalise
+		// TODO: this is lame. need to generalise across all numerics
 		if (arg.IsType<float>() && from.IsType<float>())
 		{
 			Deref<float>(from) += ConstDeref<float>(arg);
@@ -1270,7 +1273,7 @@ void Executor::Perform(Operation::Type op)
 	{
 		Object B = Pop();
 		Object A = Pop();
-		Push(*A.GetClass()->Plus(GetStorageBase(A), GetStorageBase(B)));
+		Push(A.GetClass()->Plus(A, B));
 	}
 	break;
 
@@ -1278,7 +1281,7 @@ void Executor::Perform(Operation::Type op)
 	{
 		Object B = Pop();
 		Object A = Pop();
-		Push(*A.GetClass()->Minus(GetStorageBase(A), GetStorageBase(B)));
+		Push(A.GetClass()->Minus(A, B));
 	}
 	break;
 

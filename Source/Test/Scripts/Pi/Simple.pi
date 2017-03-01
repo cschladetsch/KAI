@@ -7,3 +7,19 @@
 1 1 + 2 == assert
 
 // but it shows that the core systems are all up
+
+true assert 
+
+true true and assert
+
+true false or assert
+
+false false and not assert
+
+false true or assert
+
+false not assert 
+
+true not not assert 
+
+false not true and assert

@@ -27,7 +27,9 @@ public:
 	const_iterator Begin() const { return objects.begin(); }
 	const_iterator End() const { return objects.end(); }
 
+	void Resize(int n) { objects.resize(n); }
 	Object At(int pos) const { return objects.at(pos); }
+	Object& RefAt(int pos) { return objects.at(pos); }
 	int Size() const { return (int)objects.size(); }
 	bool Empty() const { return objects.empty(); }
 	Object Front() const { return objects.front(); }

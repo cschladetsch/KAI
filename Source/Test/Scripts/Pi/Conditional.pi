@@ -1,15 +1,4 @@
-
-// if (true) 1
 1 true if 1 == assert
-
-// if (false) 2
 2 false if depth 0 == assert
-
-// if (true) 1 else 2
 1 2 true ife 1 == assert
-
-// if (false) 1 else 2
 1 2 false ife 2 == assert
-
-
-
