@@ -12,6 +12,14 @@ true assert
 
 true true and assert
 
+depth 0 == assert
+
+1 1 and assert
+
+"foo" "bar" and assert
+
+"spam" 42 and assert
+
 true false or assert
 
 false false and not assert
@@ -23,3 +31,8 @@ false not assert
 true not not assert 
 
 false not true and assert
+
+// TODO:
+//1 2 less assert
+//2 1 greater assert
+

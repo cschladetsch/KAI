@@ -1,4 +1,7 @@
 { 1 } 'a #
 a & 1 == assert
-a & 1 == assert
+
+
+//TODO: re-entrancy of continuations:
+//a & 1 == assert
 
