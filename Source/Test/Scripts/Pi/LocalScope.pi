@@ -1,5 +1,3 @@
-asd
-
 'w 'z # 
 'w 'y #
 z y == assert
@@ -20,9 +18,6 @@ a b + 44 == assert
 // 'dereference' the 'pointer'
 p @ 42 == assert
 
-// z only exists in scope of the local continuation
-{ 1 'z # } & 'z exists not assert
-
 // can access outer scope
 { a } & 42 == assert
 { p @ } & 42 == assert
@@ -40,9 +35,13 @@ p @ 42 == assert
 1 2 + 3 == assert
 1 2 plus & 3 == assert
 
+0 depth == assert
+
 // just exercise
 { 7 'e # { e 2 } & plus & } & 9 == assert
 
+// z only exists in scope of the local continuation
+{ 1 'z # } & 'z exists not assert
+
 // ensure nothing left over
-0 depth == assert
 
