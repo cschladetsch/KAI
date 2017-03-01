@@ -158,6 +158,12 @@ void Executor::Push(Stack& L, Object const &Q)
 void Executor::Eval(Object const &Q)
 {
 	//Dump(Q);
+	if (_traceLevel > 1)
+	{
+		Object eval = Q;
+		KAI_TRACE_1(eval);
+	}
+
 	_stepNumber++;
 
 	switch (GetTypeNumber(Q).value)
