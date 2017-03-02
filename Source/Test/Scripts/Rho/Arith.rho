@@ -9,7 +9,9 @@ assert("foo" + "bar" == "foobar")
 
 assert(6/2 + 1 == 4)
 assert(3*2 + 2 == 8)
-assert(2 + 6/3*2 + 8/2 == 8)
-//assert((2 + 6)/2 == 4)
+assert(2 + 6/3 == 4)
+assert((2 + 6) == 8)
+assert((2 + 6)/2 == 4)
 assert(2*(6 + 2) == 16)
+assert(2*(6 + 2)/4 == 4)
 

@@ -216,16 +216,22 @@ finis:
 
 bool RhoParser::Expression()
 {
-	bool paran = Try(TokenType::OpenParan);
-	if (paran)
-	{
-		Consume();
-		if (!Expression())
-			return false;
-
-		Expect(TokenType::CloseParan);
-		return true;
-	}
+//	bool paran = Try(TokenType::OpenParan);
+//	if (paran)
+//	{
+//		auto exp = NewNode(Consume());
+//		if (!Logical())
+//			return false;
+//
+//		Expect(TokenType::CloseParan);
+//		exp->Add(Pop());
+//		Push(exp);
+//
+////		while (Factor())
+////			;
+////
+////		return true;
+//	}
 
 	if (!Logical())
 		return false;
@@ -353,11 +359,13 @@ bool RhoParser::Factor()
 {
 	if (Try(TokenType::OpenParan))
 	{
-		Consume();
+		auto exp = NewNode(Consume());
 		if (!Expression())
 			return CreateError("Expected an expression for a factor in parenthesis");
 
 		Expect(TokenType::CloseParan);
+		exp->Add(Pop());
+		Push(exp);
 		return true;
 	}
 

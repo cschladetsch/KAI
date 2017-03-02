@@ -12,6 +12,11 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 {
 	switch (node->GetToken().type)
 	{
+	case TokenEnum::OpenParan:
+		for (auto ch : node->GetChildren())
+			TranslateNode(ch);
+		return;
+
 	case TokenEnum::Not:
 		TranslateNode(node->GetChild(0));
 		AppendOp(Operation::LogicalNot);
