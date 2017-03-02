@@ -67,10 +67,15 @@ bool RhoLexer::NextToken()
 		{
 			Next();
 			int start = offset;
-			while (Next() != '\n');
-			return Add(Enum::Comment, offset - start);
+			while (Next() != '\n')
+				;
+
+			Token comment(Enum::Comment, *this, lineNumber, Slice(start, offset));
+			Add(comment);
+			Next();
+			return true;
 		}
-		return Add(Enum::Sep);
+		return Add(Enum::Divide);
 
 	case '-':
 		if (Peek() == '-')

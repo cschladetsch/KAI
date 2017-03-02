@@ -1,1 +1,21 @@
 assert(true)
+assert((true))
+assert(((true)))
+
+assert(!false)
+assert((!false))
+
+assert(!!true)
+assert(!!!false)
+
+assert(true || true)
+assert(false || true)
+assert((false || true))
+assert(!!(false || true))
+
+assert(true && true)
+assert(!(true && false))
+
+assert(!(false || false))
+
+

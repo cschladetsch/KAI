@@ -292,13 +292,23 @@ bool RhoParser::Additive()
 	// unary +/- operator
 	if (Try(TokenType::Plus) || Try(TokenType::Minus))
 	{
-		auto ty = Consume().type;
-		Consume();
+		auto uniSigned = NewNode(Consume());
 		if (!Term())
 			return CreateError("Term expected");
 
-		auto node = new AstNode(ty == TokenType::Plus ? NodeType::Positive : NodeType::Negative);
-		node->Add(Pop());
+		uniSigned->Add(Pop());
+		Push(uniSigned);
+		return true;
+	}
+
+	if (Try(TokenType::Not))
+	{
+		auto negate = NewNode(Consume());
+		if (!Additive())
+			return CreateError("Additive expected");
+
+		negate->Add(Pop());
+		Push(negate);
 		return true;
 	}
 
@@ -307,6 +317,7 @@ bool RhoParser::Additive()
 
 	while (Try(TokenType::Plus) || Try(TokenType::Minus))
 	{
+		//[1]
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Term())

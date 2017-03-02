@@ -1,18 +1,15 @@
-assert(true)
-assert(!!true)
-assert(!false)
-assert(!!!false)
+
 
 assert(1)
 assert(1 == 1)
 assert(0 != 1)
 assert(1 + 2 == 2 + 1)
 
-asssert("foo" + "bar" == "foobar")
+assert("foo" + "bar" == "foobar")
 
 assert(6/2 + 1 == 4)
 assert(3*2 + 2 == 8)
 assert(2 + 6/3*2 + 8/2 == 8)
-assert((2 + 6)/2 == 4)
-assert(2 * (6 + 2) == 16)
+//assert((2 + 6)/2 == 4)
+assert(2*(6 + 2) == 16)
 
