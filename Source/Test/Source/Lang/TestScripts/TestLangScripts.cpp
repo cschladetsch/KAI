@@ -32,7 +32,10 @@ TEST(TestLangScripts, TestAll)
 
 			Console console;
 			console.SetLanguage(lang);
-			// console.GetExecutor()->SetTraceLevel(10);
+
+			console.GetCompiler()->SetTraceLevel(10);
+//			console.GetExecutor()->SetTraceLevel(10);
+
 			const char *source = path.string().c_str();
 			TEST_COUT << "Running: " << path.filename().string().c_str();
 

@@ -1,5 +1,3 @@
-// test basic arithmetic and logic operations
-
 assert(true)
 assert(!!true)
 assert(!false)

@@ -53,6 +53,7 @@ bool RhoParser::Run(Structure st)
 		break;
 	}
 
+	ConsumeNewLines();
 	if (!stack.empty())
 		return Fail("[Internal] Error: Stack not empty after parsing");
 
@@ -150,16 +151,15 @@ bool RhoParser::Statement(AstNodePtr block)
 	{
 		case TokenType::Assert:
 		{
-			Consume();
+			auto ass = NewNode(Consume());
 			if (!Expression())
 			{
 				CreateError("Assert needs an expression to test");
 				return false;
 			}
 
-			auto ass = NewNode(Consume());
 			ass->Add(Pop());
-			Push(ass);
+			block->Add(ass);
 			goto finis;
 		}
 

@@ -12,6 +12,19 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 {
 	switch (node->GetToken().type)
 	{
+	case TokenEnum::True:
+		AppendOp(Operation::True);
+		return;
+
+	case TokenEnum::False:
+		AppendOp(Operation::False);
+		return;
+
+	case TokenEnum::Assert:
+		TranslateNode(node->GetChild(0));
+		AppendOp(Operation::Assert);
+		return;
+
 	case TokenEnum::While:
 		TranslateWhile(node);
 		return;
@@ -123,7 +136,6 @@ void RhoTranslator::TranslateToken(AstNodePtr node)
 	}
 
 	Fail("Unsupported node %s", node->ToString().c_str());
-	KAI_NOT_IMPLEMENTED();
 }
 
 void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)

@@ -33,12 +33,12 @@ public:
 	std::string ToString() const
 	{
 		std::stringstream out;
-		std::string ty = EEnumType::ToString(type);
-		std::string text = Text();
-		out << ty;
-		if (ty != text && !text.empty() && text != "\n")
+		String ty = EEnumType::ToString(type);
+		String text = Text();
+		out << ty.c_str();
+		if (ty != text && !text.empty() && !isspace(text[0]) && text.tolower() != ty.tolower())
 		{
-			out << " '" << text << "'";
+			out << " '" << text.c_str() << "'";
 		}
 
 		return out.str();

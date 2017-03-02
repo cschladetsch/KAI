@@ -29,7 +29,12 @@ bool RhoLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-		return Add(LexAlpha());
+	{
+		Token tok = LexAlpha();
+		// TODO: possibly test for Pathnames
+		Add(tok);
+		return true;
+	}
 
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));

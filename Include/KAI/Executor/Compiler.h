@@ -20,7 +20,8 @@ class Compiler : public Reflected
 private:
 	OperationToString op_to_string;
 	StringToOperation string_to_op;
-	Language _language;
+	Language _language = Language::Pi;
+	int _traceLevel = 0;
 
 public:
 	void Create();
@@ -28,6 +29,7 @@ public:
 
 	void SetLanguage(int);
 	int GetLanguage() const;
+	void SetTraceLevel(int n) { _traceLevel = n; }
 
 	template <class Trans>
 	Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
@@ -35,11 +37,12 @@ public:
 		if (text.empty())
 			return Object();
 
-		auto p = std::make_shared<Trans>(Reg());
-		auto result = p->Translate(text.c_str(), st);
-		if (p->Failed)
+		auto trans = std::make_shared<Trans>(Reg());
+		trans->trace = _traceLevel;
+		auto result = trans->Translate(text.c_str(), st);
+		if (trans->Failed)
 		{
-			KAI_TRACE_ERROR_1(p->Error);//, st);
+			KAI_TRACE_ERROR_1(trans->Error);//, st);
 			return Object();
 		}
 

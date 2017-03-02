@@ -41,13 +41,16 @@ struct TranslatorBase : TranslatorCommon
 			return Object();
 		}
 
-		if (trace > 1)
+		if (trace > 0)
 			KAI_TRACE_2("Lexer:\n", lex->Print());
 
 		auto parse = std::make_shared<Parser>(*_reg);
 		parse->Process(lex, st);
 		if (parse->Failed)
 		{
+			if (trace > 1)
+				KAI_TRACE_2("\n\n\nAST:\n", parse->PrintTree());
+
 			Fail(parse->Error);
 			return Object();
 		}
@@ -61,7 +64,7 @@ struct TranslatorBase : TranslatorCommon
 		if (stack.empty())
 			KAI_THROW_0(EmptyStack);
 
-		if (trace)
+		if (trace > 2)
 			KAI_TRACE_1(stack.back());
 
 		auto ret = stack.back();
