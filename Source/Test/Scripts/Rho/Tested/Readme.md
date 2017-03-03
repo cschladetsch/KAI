@@ -1,5 +1,8 @@
-# Test Rho Scripts
+# Tested tests
 
-The general idea here is to exercise all the functionality of the Pi language via a set of scripts.
+I just move tests that work to this folder so I can debug ones that don't by leaving the in the Scripts/Rho folder.
 
-There is also a Test called *RhoTestRaw* which performs many tests via GoogleTest, which enable for simpler debugging. Hopefully by the time you read this, that will not be necessary because all the script based tests in this folder will be passing.
+This readme is mostly to ensure this folder doesn't get deleted even if empty.
+
+I love you too.
+
