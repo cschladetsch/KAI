@@ -29,18 +29,14 @@ bool RhoLexer::NextToken()
 		return false;
 
 	if (isalpha(current))
-	{
-		Token tok = LexAlpha();
-		// TODO: possibly test for Pathnames
-		Add(tok);
-		return true;
-	}
+		return LexPathname();
 
 	if (isdigit(current))
 		return Add(Enum::Int, Gather(isdigit));
 
 	switch (current)
 	{
+	case '\'': return LexPathname();
 	case ';': return Add(Enum::Semi);
 	case '{': return Add(Enum::OpenBrace);
 	case '}': return Add(Enum::CloseBrace);
@@ -61,7 +57,6 @@ bool RhoLexer::NextToken()
 	case '"': return LexString(); // "
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
-	case '\'': return Add(Enum::Quote);
 	case '/':
 		if (Peek() == '/')
 		{
@@ -109,6 +104,64 @@ bool RhoLexer::NextToken()
 	LexError("Unrecognised %c");
 
 	return false;
+}
+
+bool Contains(const char *allowed, char current);
+
+// TODO: this is the same as PiLexer::PathnameOrKeyword(!)
+bool RhoLexer::LexPathname()
+{
+	int start = offset;
+	bool quoted = Current() == '\'';
+	if (quoted)
+		Next();
+
+	bool rooted = Current() == '/';
+	if (rooted)
+		Next();
+
+	bool prevIdent = false;
+	do
+	{
+		Token result = LexAlpha();
+
+		if (result.type != TokenEnumType::Ident)
+		{
+			// this is actually a keyword
+			if (quoted || rooted)
+			{
+				return false;
+			}
+
+			// keywords cannot be part of a path
+			if (prevIdent)
+			{
+				return false;
+			}
+
+			Add(result);
+			return true;
+		}
+
+		prevIdent = true;
+
+		auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
+		if (isSeparator)
+		{
+			Next();
+			continue;
+		}
+
+		if (!isalpha(Current()))
+		{
+			break;
+		}
+	}
+	while (true);
+
+	Add(Enum::Pathname, Slice(start, offset));
+
+	return true;
 }
 
 void RhoLexer::Terminate()

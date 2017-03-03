@@ -32,7 +32,6 @@ TEST(TestLangScripts, TestAll)
 
 			Console console;
 			console.SetLanguage(lang);
-
 			console.GetCompiler()->SetTraceLevel(10);
 //			console.GetExecutor()->SetTraceLevel(10);
 

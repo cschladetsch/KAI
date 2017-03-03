@@ -7,38 +7,38 @@
 
 KAI_BEGIN
 
-	const char *PiAstNodeEnumType::ToString(Enum ty)
+const char *PiAstNodeEnumType::ToString(Enum ty)
+{
+	switch (ty)
 	{
-		switch (ty)
-		{
 #define CASE(X) case PiAstNodeEnumType::Enum::X: return #X;
-			CASE(Program)
-			CASE(Operation)
-			CASE(List)
-			CASE(Map)
-			CASE(Set)
-			CASE(Array)
-			CASE(Continuation)
-			
-			// special case to avoid noisey 'TokenType:' debug traces
-			case PiAstNodeEnumType::Enum::TokenType:
-				// return "Tok";
-				return "";
+		CASE(Program)
+		CASE(Operation)
+		CASE(List)
+		CASE(Map)
+		CASE(Set)
+		CASE(Array)
+		CASE(Continuation)
 
-			case PiAstNodeEnumType::Enum::None:
-				return "";
-		}
+		// special case to avoid noisey 'TokenType:' debug traces
+		case PiAstNodeEnumType::Enum::TokenType:
+			// return "Tok";
+			return "";
 
-		// sorry :'(
-		static char b[100];
-		sprintf(b, "%d", (int)ty);
-		return b;
+		case PiAstNodeEnumType::Enum::None:
+			return "";
 	}
 
-	std::ostream& operator<<(std::ostream& out, const PiAstNode &node)
-	{
-		return out << node.ToString();
-	}
+	// sorry :'(
+	static char b[100];
+	sprintf(b, "%d", (int)ty);
+	return b;
+}
+
+std::ostream& operator<<(std::ostream& out, const PiAstNode &node)
+{
+	return out << node.ToString();
+}
 
 KAI_END
 

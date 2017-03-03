@@ -77,6 +77,7 @@ const char *RhoTokenEnumType::ToString(Enum val)
 		CASE(Debug)
 		CASE(Quote)
 		CASE(Sep)
+		CASE(Pathname)
 	}
 
 	static char buff[BUFSIZ];

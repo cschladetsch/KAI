@@ -40,7 +40,8 @@ public:
 	std::string ToString() const
 	{
 		std::stringstream out;
-		out << AstEnumType::ToString(_astType) << ": " << _token.ToString() << std::ends;
+//		out << AstEnumType::ToString(_astType) << ": " << _token.ToString() << std::ends;
+		out << _token.ToString() << std::ends;
 		return std::move(out.str());
 	}
 

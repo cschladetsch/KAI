@@ -65,7 +65,11 @@ bool RhoParser::Program()
 	while (!Try(TokenType::None) && !Failed)
 	{
 		ConsumeNewLines();
-		Statement(root);
+		if (!Statement(root))
+		{
+			Fail("Statement expected");
+			return false;
+		}
 	}
 
 	return true;
@@ -375,10 +379,15 @@ bool RhoParser::Factor()
 		do
 		{
 			Consume();
+			if (Try(TokenType::CloseSquareBracket))
+				break;
 			if (Expression())
 				list->Add(Pop());
 			else
-				list->Add(0);
+			{
+				Fail("Badly formed array");
+				return false;
+			}
 		}
 		while (Try(TokenType::Comma));
 
@@ -394,10 +403,13 @@ bool RhoParser::Factor()
 	if (Try(TokenType::Self))
 		return PushConsume();
 
-	while (Try(TokenType::Lookup))
-		PushConsume();
+//	while (Try(TokenType::Lookup))
+//		return PushConsume();
 
-	if (Try(TokenType::Ident) || Try(TokenType::Pathname))
+	if (Try(TokenType::Ident))
+		return ParseFactorIdent();
+
+	if (Try(TokenType::Pathname))
 		return ParseFactorIdent();
 
 	return false;

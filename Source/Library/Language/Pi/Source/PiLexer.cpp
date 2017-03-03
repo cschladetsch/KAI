@@ -86,7 +86,6 @@ bool PiLexer::NextToken()
 	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less);
 	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
 	case '"': return LexString(); // "comment to unfuck Visual Studio Code's syntax hilighter
-
 	case '\t': return Add(Enum::Tab);
 	case '\n': return Add(Enum::NewLine);
 	case '-':
@@ -166,26 +165,31 @@ bool PiLexer::PathnameOrKeyword()
 		Next();
 	
 	bool prevIdent = false;
-	bool isSeparator = false;
 	do
 	{
 		Token result = LexAlpha();
-		
+
 		if (result.type != TokenEnumType::Ident)
 		{
-			// keywords cannot be part of a path
-			if (prevIdent || quoted || rooted)
+			// this is actually a keyword
+			if (quoted || rooted)
 			{
 				return false;
 			}
 
-			// this is actually a keyword
+			// keywords cannot be part of a path
+			if (prevIdent)
+			{
+				return false;
+			}
+
+			Add(result);
 			return true;
 		}
 
 		prevIdent = true;
 
-		isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
+		auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
 		if (isSeparator)
 		{
 			Next();

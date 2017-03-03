@@ -17,6 +17,7 @@ struct RhoLexer : LexerCommon<RhoTokenEnumType>
 	void Terminate() override;
 
 protected:
+	bool LexPathname();
 	using Parent::_reg;
 };
 
