@@ -158,7 +158,7 @@ bool RhoParser::Statement(AstNodePtr block)
 			auto ass = NewNode(Consume());
 			if (!Expression())
 			{
-				CreateError("Assert needs an expression to test");
+				Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
 				return false;
 			}
 
@@ -273,7 +273,7 @@ bool RhoParser::Logical()
 		auto node = NewNode(Consume());
 		node->Add(Pop());
 		if (!Relational())
-			return Fail(Lexer::CreateErrorMessage(Current(), "Relational expected"));
+			return CreateError("Relational expected");
 
 		node->Add(Pop());
 		Push(node);

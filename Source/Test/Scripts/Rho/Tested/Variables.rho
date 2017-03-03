@@ -1,5 +1,6 @@
 'a = 1
 assert(a == 1)
+
 'b = 2
 assert(a + b == 3)
 assert(b*(a + b) == 6)
