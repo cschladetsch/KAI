@@ -202,6 +202,11 @@ bool RhoParser::Statement(AstNodePtr block)
 		}
 	}
 
+	ConsumeNewLines();
+
+	if (Try(TokenType::None))
+		return true;
+
 	if (!Expression())
 		return false;
 
