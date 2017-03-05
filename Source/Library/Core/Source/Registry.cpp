@@ -1,4 +1,3 @@
-
 #undef GetObject
 #undef GetObjectA
 
@@ -120,7 +119,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 		Instances::iterator iter = instances.find(handle);
 		if (iter == instances.end())
 		{
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 			if (IsWatching(handle))
 			{
 				KAI_TRACE() << handle << ": doesn't exist, not deleted";
@@ -133,14 +132,14 @@ void Registry::DestroyObject(Handle handle, bool force)
 		assert(base.GetHandle() == handle);
 		if (!base.IsManaged() && !force)
 		{
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 			if (IsWatching(handle))
 				KAI_TRACE() << handle << ": " << base << " is not managed, not deleted";
 #endif
 			return;
 		}
 
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 		bool trace = gc_trace_level > 3;
 		trace = trace || IsWatching(base);
 		if (trace)
@@ -248,7 +247,7 @@ void Registry::AddClass(const ClassBase *klass)
 
 Object Registry::GetObject(Handle handle) const
 {
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 	if (IsWatching(handle) && gc_trace_level > 1)
 		KAI_TRACE() << handle;
 #endif
@@ -346,7 +345,7 @@ void Registry::Delete(Handle handle)
 	throw;
 #else
 
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 	if (IsObserving(handle))
 	{
 		KAI_TRACE() << handle;
@@ -381,7 +380,7 @@ void Registry::Delete(Handle handle)
 
 void Registry::Delete(Object const &object)
 {
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 	if (IsWatching(object))
 		KAI_TRACE() << object.GetHandle();
 #endif
@@ -392,11 +391,6 @@ Pointer<ClassBase const *> Registry::AddClass(Type::Number N, ClassBase const *K
 {
 	classes[N.ToInt()] = K;
 	return Pointer<ClassBase const *>();
-}
-
-Object Registry::GetObjectFoo(Handle H) const
-{
-	return this->GetObject(H);
 }
 
 void Registry::GarbageCollect()
@@ -616,7 +610,7 @@ void Registry::AddRoot(Object const &root)
 	SetColor(root.GetStorageBase(), ObjectColor::Grey);
 }
 
-#ifdef KAI_DEBUG
+#ifdef KAI_DEBUG_REGISTRY
 String Registry::Trace() const
 {
 	return "";

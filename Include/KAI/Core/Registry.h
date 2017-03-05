@@ -1,36 +1,28 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-
-#include <unordered_map>
-// #include <vector>
-#include <set>
-// #include <list>
-
 #include <KAI/Core/Memory/IAllocator.h>
 #include <KAI/Core/Type/Traits.h>
 #include <KAI/Core/Object/PropertyBase.h>
-#include "KAI/Core/Object/ClassBase.h"
-#include "KAI/Core/Object/Object.h"
-#include "KAI/Core/Pointer.h"
+#include <KAI/Core/Object/ClassBase.h>
+#include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Pointer.h>
+
+#include <unordered_map>
+#include <set>
 
 KAI_BEGIN
 
-#ifdef KAI_DEBUG
-#	ifndef KAI_DEBUG_REGISTRY
-#		define KAI_DEBUG_REGISTRY
-#	endif
-#endif
-
 class Tree;
-
-// Use hash-tables for class and instance lookups
-//#define KAI_HASH_TABLE_REGISTRY
-#define KAI_BOOST_UNORDERED_REGISTRY
 
 template <class T>
 Pointer<ClassBase const *> NewClass(Registry &R, const Label &name);
 
+///
+/// Contains a set of classes and instances.
+///
+/// Instances are life-time managed via Tri-Color Garbage Collection system.
+///
 class Registry
 {
 public:
@@ -50,11 +42,17 @@ public:
 	// pools of objects indexed by type number
 	typedef std::vector<std::vector<StorageBase *> > Pools;
 
+	/// A number in range [0..100)
+	typedef int Percentage;
+
+	typedef std::list<Object> Roots;
+	Roots roots;
+
 private:
 	friend class StorageBase;
-	ColoredSet white;	// condemned set. may be referenced by objects in the white or grey sets
-	ColoredSet grey;	// may or may not have refernces to objects in the white, black or grey sets
-	ColoredSet black;	// has no references to objects in the white set
+	ColoredSet white;	/// condemned set. may be referenced by objects in the white or grey sets
+	ColoredSet grey;	/// may or may not have refernces to objects in the white, black or grey sets
+	ColoredSet black;	/// has no references to objects in the white set
 
 	Classes classes;
 	Instances instances;
@@ -72,10 +70,7 @@ public:
 	Registry(std::shared_ptr<Memory::IAllocator>);
 	~Registry();
 
-	Memory::IAllocator &GetMemorySystem() const
-	{
-		return *allocator;
-	}
+	Memory::IAllocator &GetMemorySystem() const { return *allocator; }
 
 	/// destroys all instances and types
 	void Clear();
@@ -91,6 +86,7 @@ public:
 	{
 		return NewClass<T>(*this, Label(String(Type::Traits<T>::Name())));
 	}
+
 	template <class T>
 	Pointer<ClassBase const *> AddClass(const Label &N)
 	{
@@ -109,9 +105,6 @@ public:
 		return NewFromClass(klass);
 	}
 
-	/// A number in range [0..100)
-	typedef int Percentage;
-
 	Percentage CalcMemoryUsage() const;
 	Percentage CalcMemoryFragmentationPercentage() const;
 
@@ -120,10 +113,9 @@ public:
 	Tree *GetTree() const { return tree; }
 	void SetTree(Tree &);
 
-	// A pinned Object will not be moved in memory
+	/// @group A pinned Object will not be moved in memory
 	bool Pin(Handle);
 	bool Unpin(Handle);
-
 	bool Pin(const Object &Q) { return Pin(Q.GetHandle()); }
 	bool Unpin(const Object &Q) { return Unpin(Q.GetHandle()); }
 
@@ -135,13 +127,12 @@ public:
 		return P;
 	}
 
-	//template <>
 	Object New(const Object &Q)
 	{
 		return Q;
 	}
 
-	/// Retained process objects
+	/// @group Retained process objects
 	template <class T>
 	Object NewRetained()
 	{
@@ -151,10 +142,11 @@ public:
 		retained_objects.insert(retained.GetHandle());
 		return retained;
 	}
-	void UpdateProcesses(float time_delta);
 	RetainedObjects const &GetRetainedObjects() const { return retained_objects; }
 	void PruneRetained();
 	void DeleteRetained();
+
+	void UpdateProcesses(float time_delta);
 
 	template <class T>
 	Storage<T> *NewStorage()
@@ -177,7 +169,6 @@ public:
 	StorageBase *GetStorageBase(Handle) const;
 
 	Object GetObject(Handle) const;
-	Object GetObjectFoo(Handle) const;
 
 	template <class T>
 	Pointer<T> GetPointer(Handle handle) const
@@ -195,14 +186,11 @@ public:
 	void Delete(Handle);
 	void Delete(Object const &);
 
-	bool OnDeathRow(Handle) const;
 	void AddClass(const ClassBase *K);
 
 	Object NewFromTypeNumber(Type::Number type_number);
 	Object NewFromClassName(const char *classname_str);
 	Object NewFromClass(const ClassBase *klass);
-
-	void NominateAll();
 
 	template <class T>
 	void FreeResources(T *p)
@@ -210,19 +198,11 @@ public:
 		allocator->DeAllocate(p);
 	}
 
-	// delete all objects on deathrow, returning the number deleted
-	void DestroyNominated();
-
-	int GetDeathrowSize() const { return (int)deathrow.size(); }
-
 	template <class T>
 	Storage<T> *CloneStorage(const Object &Q)
 	{
 		KAI_NOT_IMPLEMENTED();
 	}
-
-	typedef std::list<Object> Roots;
-	Roots roots;
 
 	void AddRoot(Object const &root);
 
@@ -241,6 +221,8 @@ public:
 
 	bool SetColor(StorageBase &, ObjectColor::Color);
 
+	bool OnDeathRow(Handle) const;
+
 	/// @group debugging
 	int gc_trace_level;
 	void SetGCTraceLevel(int);
@@ -253,7 +235,6 @@ public:
 
 	bool IsWatching(Object const &Q) const { return IsWatching(Q.GetHandle()); }
 	bool IsWatching(Handle) const;
-
 	void WatchObject(Handle handle, bool = true);
 	void WatchObject(Object const &Q, bool W = true) { WatchObject(Q.GetHandle(), W); }
 	void WatchAllObjects();
@@ -282,6 +263,10 @@ public:
 
 private:
 	void Construct();
+
+	void NominateAll();
+	void DestroyNominated();
+	int GetDeathrowSize() const { return (int)deathrow.size(); }
 };
 
 template <class T>
