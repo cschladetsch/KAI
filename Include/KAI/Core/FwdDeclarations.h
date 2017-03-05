@@ -21,11 +21,10 @@ class Reflected;
 template <class T>
 struct FwdBasePointer { };
 
-
 const char *ToLower(const char *str);
 
 typedef ::std::size_t HashValue;
 
 KAI_END
 
-#include "KAI/Core/Object/Reflected.h"
+#include <KAI/Core/Object/Reflected.h>

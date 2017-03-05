@@ -19,5 +19,4 @@
 #	else
 #		define KAI_STATIC_MESSAGE(T) error(T)
 #	endif
-#	
 #endif // KAI_PRE_PROCESSOR_H

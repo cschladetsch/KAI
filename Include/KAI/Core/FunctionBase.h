@@ -18,8 +18,10 @@ struct FunctionBase : CallableBase<FunctionBase>
 
 StringStream &operator<<(StringStream &, FunctionBase const &);
 
-KAI_TYPE_TRAITS(BasePointer<FunctionBase>, Number::Function
-	, Properties::StringStreamInsert 
+KAI_TYPE_TRAITS(
+	BasePointer<FunctionBase>,
+	Number::Function,
+	Properties::StringStreamInsert 
 	);
 
 KAI_END
