@@ -1,9 +1,0 @@
-depth 0 == assert
-
-1 depth 1 == assert
-clear 0 depth == assert
-
-1 2 3 clear depth 0 == assert
-
-1 2 2 toarray [1 2] == assert
-1 2 swap 2 toarray [2 1] == assert
