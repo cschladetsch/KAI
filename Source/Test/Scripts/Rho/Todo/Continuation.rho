@@ -1,10 +1,10 @@
 // Test continuations in Rho
 
-fun a()
+fun a
 	yield 1
 	yield 2
 
-fun b()
+fun b
 	sum = 0
 	for x in a()
 		sum += x

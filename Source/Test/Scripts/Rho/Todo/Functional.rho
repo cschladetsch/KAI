@@ -1,0 +1,4 @@
+
+fun e = f
+	return e(2)
+assert e()
