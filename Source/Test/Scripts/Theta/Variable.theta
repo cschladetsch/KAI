@@ -1,0 +1,37 @@
+
+type A
+	int n
+	string s
+
+	A
+		print "made an A"
+
+	~A
+		print "destoyed an A"
+
+	fun f a,b
+		a + b
+
+	op < a,b
+		a.n < b.n
+
+	hash 
+		n xor hash s
+
+	op [j]
+		s[j]
+
+type B C : A
+	int m
+	C c
+
+	B
+		print "made a B"
+		c = C()
+
+a = A
+a.n = 42
+print a.n
+
+b = B<A>
+
