@@ -20,7 +20,7 @@ protected:
 
 protected:
 	Registry &Reg();
-	Tree &Tree();
+	Tree &GetTree();
 	Object Root() const;
 
 protected:

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.7)
 set(name Window)
 project(${name})
 
-set(frameworks OpenGL Cocoa IOKit CoreVideo)
+# CJS UBUNTU set(frameworks OpenGL Cocoa IOKit CoreVideo)
 
 foreach(framework ${frameworks})
 	set(${framework}_FIND_QUIETLY true) # doesn't seem to work?

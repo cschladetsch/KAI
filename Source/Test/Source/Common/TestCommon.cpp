@@ -27,7 +27,7 @@ Registry &TestCommon::Reg()
 	return *_reg; 
 }
 
-Tree &TestCommon::Tree()
+Tree &TestCommon::GetTree()
 {
 	return *_tree;
 }
