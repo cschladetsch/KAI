@@ -47,7 +47,7 @@ std::string Color::GetColor(EType type) const
 
 std::ostream& operator<<(std::ostream &S, Color::EType C)
 {
-	return S;// << _color.GetColor(C);
+	return S << _color.GetColor(C);
 }
 
 KAI_END
