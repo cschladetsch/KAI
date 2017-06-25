@@ -243,6 +243,8 @@ int Console::Run()
 				string text;
 				getline(cin, text);
 				// text = "1 1 +";
+				cout << ConsoleColor::Normal;
+
 				cout << n << ConsoleColor::Trace << n << Process(text.c_str()).c_str();
 
 				cout << n << executor->PrintStack() << n << endl;
