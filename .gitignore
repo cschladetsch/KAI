@@ -1,4 +1,5 @@
 /Doc/html
+/tmp/
 
 .cmaketools.json
 .vscode/
