@@ -1,0 +1,12 @@
+[submodule "External/RakNet"]
+	path = External/RakNet
+	url = https://github.com/facebookarchive/RakNet.git
+[submodule "External/rang"]
+	path = External/rang
+	url = https://github.com/agauniyal/rang.git
+[submodule "External/googletest"]
+	path = External/googletest
+	url = https://github.com/google/googletest.git
+[submodule "External/imgui"]
+	path = External/imgui
+	url = https://github.com/ocornut/imgui.git
