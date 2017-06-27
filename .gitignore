@@ -1,16 +1,12 @@
 /Doc/html
 
-.cmaketools.json
-.vscode/
 .idea/
 cmake-build-debug/*
 
 # all generated files
-lib/
-bin/
-build/
-Bin/
-Lib/
+[Ll]ib/
+[Bb]in/
+[Bb]uild/
 
 # ignore generated graphs
 Graphs/
