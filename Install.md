@@ -1,70 +1,37 @@
 # Installing
 
-To build *everything* You will need cmake >= 3.7 and OpenGL and a bunch of things like Raknet and boost libraries.
+## Build and Install Google Test
 
-To build the basics - to me, that 'basic' thing is the test suite in ${KAI_HOME}/Bin/Test/KaiTest - then you won't need all that. KAI is self-contained inasmuchas it builds itself and its test suite without external dependancies other than gtest.
+GoogleTest no longer automattically installs static libraries.
 
-I have made the CMake files as permissible as possible, so at worst you will just end up with a character-based terminal and no networking and no pretty window GUI to play with.
+So, here's one way to setup Gtest:
 
-Note that Ubuntu apt only has cmake 3.5. So, for the moment you must use the *ubuntu* branch of the repo to build on Ubuntu. Soon enough I'll clean the CMake files to work with either 3.7 or 3.5 with or without cotire. For the moment, there's a branch you can use.
+```bash
+sudo apt-get install -y libgtest-dev
+pushd /tmp
+mkdir gtbuild; cd gtbuild
+cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/
+make
+sudo mv libg* /usr/lib/
+popd
+rm -rf /tmp/gtbuild
+```
 
-If the build system can't locate a package, it will try to fail well. It will just not build anything that relies on that package.
+## Build KAI
 
-Otherwise, do what I do and solve the dependancies problems one at a time as you try to build. I could try to give you deep instructions on how to add all dependancies on all platforms, but they would be outdated before you read them anyway. And they'd be wrong.
+```bash
+git clone git@github.com:cschladetsch/KAI.git
+git submodule init
+git submodule update
+sudo apt-get install -y libboost-all-dev
+mkdir build; cd build; cmake ..; make
+cd ../Bin; ls
+```
 
-I did make it easier for you by providing .cmake files for each requirement in the top-level **${KAI_HOM}/CMake** folder that tries to find each package as required. This works cross-platform. Probably.
+## Folders
 
-So, (deep breath), this should work on all platforms (assuming Cygwin on Windows):
+The resulting interesting folders:
 
-  $ mdkir build && cd build && cmake .. && make
-  $ cd ../Bin
-
-At this point you shoud be in the binary executable folder of the library, with fun stuff in it like character-based **Console**, Gui-Based console (**Window**), and unit-tests in **Tests/KaiTests**. 
-
-Check **${KAI_HOME}/Lib** for all static and dynamic libraries that should also have been built.
-
-Go ahead and run the tests.
-
-  $ Bin/Test/KaiTests
-
-The only output should be green things. Nothing else flashy. If you see a red thing, that's bad and you should report it to me here as an Issue.
-
-Otherwise, read *(this other document that doesn't exist)* on how to make a set of KAI nodes on one or more machines and connect them to each other.
-
-We will call the folder that you installed KAI to as **${KAI_HOME}**.
-
-From **${KAI_HOME}** do:
-
-  $ mkdir build && cd build && cmake .. && make
-
-No external libraries are required. If it doesn't build cleanly please contact [me](mailto:christian.schladetsch@gmail.com) with the build log and platform details.
-
-## Outputs
-
-Paths are given relative to ${KAI_HOME}:
-
-* **/Bin** Contains all built executable binaries, such as the REPL _Console_, _Window_, and _NetworkGenerator_.
-* **/Bin/Test** Contains all built test executables. If any fail, please contact [me](mailto:christian.schladetsch@gmail.com).
-* **/Lib** Contains all built static and dynmaic libraries.
-* **/Include** Is not a part of the make process:
-  * Deterministic switching is done at compile time.
-  * If you wish to build a binary that uses KAI code, **/Include** and **/Lib** should be added to your *include* and *library* search paths respectively.
-
-## Supported platforms
-
-Nominally, KAI supports:
-
-* OSX
-* Windows
-* Ubuntu
-* Linux in general
-
-I do not always test everything on every platform before pushing to master branch.
-
-If you have any problems, feel free to [mail me](mailto:christian.schladetsch@gmail.com)
-
-## C++ Language requirements
-
-For a long time I excluded using C++0x11. But, well, it just makes things easier and so now it builds with it. This is 2017 after all.
-
-If in the rare case you need a fallback to a previous version, the main issue will be with *KAI/Include/Core/Detail/CallableBase.h*. Good luck with that. I removed hundreds of LOC with that simple file. Reproducing all that won't be trivial.
+* __KAI/Bin__. Executables and test suites.
+* __KAI/Include__. Root C++ include folder for KAI systems.
+* __KAI/Lib__. C++ static and shared libraries
