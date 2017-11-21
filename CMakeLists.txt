@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.7)
 
 project(KAI)
 
+# used tp generate compile options for YouCompleteMe
+set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 # see https://github.com/sakra/cotire
 include(cotire)
