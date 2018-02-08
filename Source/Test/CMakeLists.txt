@@ -1,6 +1,6 @@
 # Build all tests for the KAI framework
 
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.6)
 FIND_PACKAGE(Boost 1.40 COMPONENTS filesystem REQUIRED )
 
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
