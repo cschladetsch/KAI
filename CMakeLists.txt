@@ -38,6 +38,8 @@ set(BIN_HOME ${KAI_HOME}/Bin)
 
 include_directories(${KAI_HOME}/Include)
 
+include(${KAI_HOME}/External/CMakeLists.txt)
+
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")

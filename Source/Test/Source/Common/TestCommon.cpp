@@ -1,4 +1,5 @@
 #include "TestCommon.h"
+#include <cstdarg>
 
 KAI_BEGIN
 
@@ -48,3 +49,16 @@ void TestCommon::TearDown()
 }
 
 KAI_END
+
+namespace testing::internal 
+{
+    void ColoredPrintf(GTestColor color, const char* fmt, ...)
+    {
+         va_list args;
+        va_start(args, fmt);
+        char buffer[1000];
+        vsprintf(buffer, fmt, args);
+        printf("%s\n", buffer);
+    }
+}
+
