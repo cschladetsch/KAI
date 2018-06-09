@@ -1,6 +1,11 @@
 /Doc/html
 /tmp/
 
+
+Bin/
+.vs/
+.vscode/
+
 .idea/
 cmake-build-debug/*
 
