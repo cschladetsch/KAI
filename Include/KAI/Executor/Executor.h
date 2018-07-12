@@ -11,9 +11,9 @@
 KAI_BEGIN
 
 class Tree;
-class Executor;
+struct Executor;
 
-KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected); 
+KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected);
 
 struct Executor : Reflected
 {
@@ -30,7 +30,7 @@ struct Executor : Reflected
 
 	void Eval(Object const &Q);
 	void Dump(Object const &Q);
-	
+
 	std::string PrintStack() const;
 
 	template <class T>
@@ -56,7 +56,7 @@ struct Executor : Reflected
 	{
 		Push(val.GetObject());
 	}
-	
+
 	template <class Ident>
 	void EvalIdent(Object const &Q)
 	{
@@ -101,7 +101,7 @@ struct Executor : Reflected
 	friend bool operator==(const Executor &A, const Executor &B);
 
 	void ClearContext();
-	
+
 	void DropN();
 
 	// if ignoreQuote is true, then we resolve the identifier
@@ -124,7 +124,7 @@ protected:
 	void Push(Stack& L, Object const &Q);
 	Object Pop(Stack &stack);
 	void NextContinuation();
-	
+
 	void DumpStack(Stack const &);
 	static void DumpContinuation(Continuation const &, int);
 

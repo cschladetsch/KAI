@@ -3,9 +3,8 @@
 KAI_BEGIN
 
 struct StorageBase;
-class Registry;
+struct Registry;
 template <class T> struct Pointer;
-struct StorageBase;
 
 class Reflected
 {
