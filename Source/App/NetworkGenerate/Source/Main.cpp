@@ -60,6 +60,8 @@ int main(int argc,const char* const argv[])
 	string outputProxy = "out.proxy.h";//(path(proxyOutputDir).append(vm["proxy_dir"]).append(vm["proxy_name"]));
 	string outputAgent = "out.agent.h";//(path(proxyOutputDir).append(vm["proxy_dir"]).append(vm["proxy_name"]));
 
+    // Error because boost::path.c_str() return wchar_t *
+#if 0
 	if (!outputProxy.empty())
 	{
 		tau::Generate::Proxy proxy(input.c_str(), outputProxy.c_str());
@@ -81,6 +83,7 @@ int main(int argc,const char* const argv[])
 		}
 		cout << "Wrote agent code to " << outputAgent << endl;
 	}
+#endif
 
 	return 0;
 }

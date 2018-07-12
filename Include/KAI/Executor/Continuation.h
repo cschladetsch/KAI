@@ -9,7 +9,7 @@
 
 KAI_BEGIN
 
-class Executor;
+struct Executor;
 
 class Continuation : public Reflected
 {

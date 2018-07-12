@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
+set(BOOST_ROOT C:/Users/christian/external)
+
 # used tp generate compile options for YouCompleteMe
 set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
@@ -29,7 +31,12 @@ include(${KAI_HOME}/CMake/FindRakNet.cmake)
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
-set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
+# Clang (and I think GCC)
+# set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
+
+# Visual Studio 2017
+set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc")
+
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)

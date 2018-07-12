@@ -10,7 +10,7 @@ KAI_BEGIN
 
 // Base for all object instances. The value stored with an object is placed
 // contiguously in memory with the object.
-class StorageBase : public Object
+struct StorageBase : public Object
 {
 public:
 	typedef int Switches;
@@ -25,7 +25,7 @@ private:
 	ObjectColor::Color color;
 
 public:
-	StorageBase(const ObjectConstructParams &P) 
+	StorageBase(const ObjectConstructParams &P)
 		: Object(P), switches(DefaultSwitches) { }
 
 	virtual ~StorageBase() { }
