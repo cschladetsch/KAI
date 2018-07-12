@@ -1,6 +1,8 @@
 # Installing
 
-## Build and Install Google Test
+## Ubuntu
+
+### Build and Install Google Test
 
 GoogleTest no longer automattically installs static libraries.
 
@@ -17,7 +19,7 @@ popd
 rm -rf /tmp/gtbuild
 ```
 
-## Build KAI
+### Build KAI
 
 ```bash
 git clone git@github.com:cschladetsch/KAI.git
@@ -26,6 +28,17 @@ git submodule update
 sudo apt-get install -y libboost-all-dev
 mkdir build; cd build; cmake ..; make
 cd ../Bin; ls
+```
+
+## Windows
+
+You will need `cmake` installed. Then, from a Visual Studio 2017 command line, from the root of the KAI folder structure enter the following:
+
+```
+> mkdir build
+> cd build
+> cmake -G "Visual Studio 15 2017 Win64" ..
+> msbuild NetworkGenerator.sln
 ```
 
 ## Folders
