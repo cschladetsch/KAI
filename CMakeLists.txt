@@ -31,11 +31,13 @@ include(${KAI_HOME}/CMake/FindRakNet.cmake)
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
-# Clang (and I think GCC)
-set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
-
-# Visual Studio 2017
-#set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc")
+if (MSVC)
+	# Visual Studio 2017
+	set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc")
+else()
+	# Clang (and I think GCC)
+	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
+endif()
 
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
