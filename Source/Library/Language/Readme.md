@@ -9,15 +9,15 @@ These three languages are supported by a language-agnostic lexer/parser/ast syst
 
 ## Pi
 
-Pi is a simple post-fix language with two stacks: A datatack and a context stack.
+_Pi_ is a simple post-fix language with two stacks: A data- and a context-stack.
 
 ## Rho
 
-Rho is a simple in-fix dynamically typed language. It smells a lot like Python, but has native co-routine support.
+_Rho_ is a simple in-fix dynamically typed language. It smells a lot like Python, but has native co-routine support.
 
 ## Tau
 
-Tau is an Interface Definition Language (IDL). It is used to generate both consumer _Proxy_ and producer _Agent_ code.
+_Tau_ is an Interface Definition Language (_IDL_). It is used to generate both consumer _Proxy_ and producer _Agent_ code.
 
 A single Network entity begins with a definition in the Tau language. From there, Proxies are used to access Agents.
 
