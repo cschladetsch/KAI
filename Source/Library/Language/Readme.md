@@ -5,6 +5,8 @@ This library defines the three key languages used by the system:
 * **Rho** An in-fix language inspired by Python. Complies to Pi.
 * **Tau** An Interface Definitional Language (_IDL_) that generates C++ code for both consumers and agents of a given network entity.
 
+These three languages are supported by a language-agnostic lexer/parser/ast system that is used by all three systems. An attempt is underway to extract this common language system out of other dependancies of the system, called [FPL](https://github.com/cschladetsch/fpl).
+
 ## Pi
 
 Pi is a simple post-fix language with two stacks: A datatack and a context stack.
