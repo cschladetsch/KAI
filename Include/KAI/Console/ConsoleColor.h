@@ -4,6 +4,7 @@
 #include <sstream>
 #include <memory>
 #include <string>
+#include "rang.hpp"
 
 KAI_BEGIN
 
@@ -36,6 +37,6 @@ public:
 	std::string GetConsoleColor(EType type) const;
 };
 
-std::ostream& operator<<(std::ostream &S, ConsoleColor C);
+std::ostream& operator<<(std::ostream &S, ConsoleColor::EType C);
 
 KAI_END

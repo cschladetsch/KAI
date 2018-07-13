@@ -29,6 +29,7 @@ public:
 	void SetLanguage(int lang);
 	Language GetLanguage() const;
 
+	void WritePrompt(std::ostream &out) const;
 	String GetPrompt() const;
 	String Process(const String&);
 	Registry &GetRegistry() const { return *_reg; }

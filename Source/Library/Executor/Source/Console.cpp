@@ -10,6 +10,23 @@ using namespace std;
 
 KAI_BEGIN
 
+/*
+StringStream &operator<<(StringStream &out, ConsoleColor::EType type)
+{
+	switch (type)
+	{
+		case ConsoleColor::LanguageName:
+			return out << rang::fg::green;
+		case ConsoleColor::Pathname:
+			return out << rang::fg::gray;
+		case ConsoleColor::Input:
+			return out << rang::fg::yellow;
+	}
+	return out << rang::fg::gray;
+}
+*/
+
+
 Console::Console()
 {
 	alloc = make_shared<Memory::StandardAllocator>();
@@ -171,12 +188,12 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		cout << ConsoleColor::Error;
+		cout << rang::fg::red;//ConsoleColor::Error;
 		auto cont = compiler->Translate(text.c_str());
 		if (cont.Exists())
 		{
 			cont->SetScope(tree.GetScope());
-			cout << ConsoleColor::Trace;
+			cout << rang::fg::gray;//ConsoleColor::Trace;
 			Execute(cont);
 		}
 
@@ -197,12 +214,21 @@ String Console::Process(const String& text)
 	return result.ToString();
 }
 
+void Console::WritePrompt(ostream &out) const
+{
+	out
+		<< rang::fg::green << ToString((Language)compiler->GetLanguage())
+		<< rang::fg::yellow << GetFullname(GetTree().GetScope()).ToString().c_str() 
+		<< rang::fg::gray << "> ";
+}
+
 String Console::GetPrompt() const
 {
 	StringStream prompt;
 	prompt
 		<< ConsoleColor::LanguageName << ToString((Language)compiler->GetLanguage())
-		<< ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() << ConsoleColor::Input << "> ";
+		<< ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() 
+		<< ConsoleColor::Input << "> ";
 
 	return prompt.ToString();
 }
@@ -237,15 +263,13 @@ int Console::Run()
 		{
 			for (;;)
 			{
-				auto n = ConsoleColor::Normal;
-				cout << n << endl;
-				cout << ConsoleColor::Prompt << GetPrompt().c_str() << n << ConsoleColor::Input;
+				auto n = rang::fg::reset;
+				WritePrompt(cout);//GetPrompt().c_str() << n << ConsoleColor::Input;
+				cout << rang::style::bold;
 				string text;
 				getline(cin, text);
-				// text = "1 1 +";
-				cout << ConsoleColor::Normal;
 
-				cout << n << ConsoleColor::Trace << n << Process(text.c_str()).c_str();
+				cout << n << Process(text.c_str()).c_str();
 
 				cout << n << executor->PrintStack() << n << endl;
 
