@@ -12,6 +12,9 @@
 #	include <boost/monotonic/monotonic.hpp>
 #endif
 
+#undef min
+#undef max
+
 KAI_BEGIN
 
 // Tokenise an input string for later parsing
@@ -148,7 +151,7 @@ public:
 
 		const char *fmt1 = "%s(%d):[%d]: %s\n";
 		char buff[2000];
-		#if WIN32
+		#ifdef WIN32
 		sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
 		#else
 		sprintf(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
@@ -195,7 +198,7 @@ public:
 
 		return err.str();
 	}
-	
+
 	std::string Print() const
 	{
 		std::stringstream str;

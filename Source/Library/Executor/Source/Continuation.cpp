@@ -1,3 +1,5 @@
+#define NOMINMAX
+
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/Void.h>
 #include <KAI/Core/BuiltinTypes/Bool.h>
@@ -6,6 +8,9 @@
 #include <KAI/Core/Debug.h>
 #include <KAI/Core/BuiltinTypes/Stack.h>
 #include <KAI/Core/Object/ClassBuilder.h>
+
+#undef min
+#undef max
 
 KAI_BEGIN
 
@@ -81,7 +86,7 @@ bool Continuation::Next() const
 }
 
 bool Continuation::Next(Object &next) const
-{ 
+{
 	if (!code.Exists())
 		return false;
 

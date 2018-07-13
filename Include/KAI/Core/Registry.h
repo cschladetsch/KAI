@@ -10,6 +10,7 @@
 
 #include <unordered_map>
 #include <set>
+#include <KAI/UnfuckWin32.h>
 
 KAI_BEGIN
 

@@ -57,19 +57,19 @@ void Set(Object scope, const Pathname &path, Object const &Q)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::None: 
+		case Pathname::Element::None:
 			break;
 
 		case Pathname::Element::Separator:
 			break;
 
-		case Pathname::Element::This: 
+		case Pathname::Element::This:
 			break;
 
-		case Pathname::Element::Parent: scope = scope.GetParent(); 
+		case Pathname::Element::Parent: scope = scope.GetParent();
 			break;
 
-		case Pathname::Element::Name: 
+		case Pathname::Element::Name:
 			{
 				const Label &name = A->name;
 				if (A == --path.end())
@@ -144,13 +144,13 @@ Object Get(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::None: 
+		case Pathname::Element::None:
 			break;
 
 		case Pathname::Element::Separator:
 			break;
 
-		case Pathname::Element::Name: 
+		case Pathname::Element::Name:
 			{
 				scope = scope.Get(A->name);
 				if (!scope.Exists())
@@ -158,10 +158,10 @@ Object Get(Object scope, const Pathname &path)
 			}
 			break;
 
-		case Pathname::Element::This: 
+		case Pathname::Element::This:
 			break;
 
-		case Pathname::Element::Parent: scope = scope.GetParent(); 
+		case Pathname::Element::Parent: scope = scope.GetParent();
 			break;
 		}
 	}
@@ -206,20 +206,20 @@ void Remove(Object scope, const Pathname &path)
 	{
 		switch (A->type)
 		{
-		case Pathname::Element::None: 
+		case Pathname::Element::None:
 			break;
 
 		case Pathname::Element::Separator:
 			break;
-		
-		case Pathname::Element::Name: 
+
+		case Pathname::Element::Name:
 			scope = scope.Get(A->name);
 			break;
-		
-		case Pathname::Element::This: 
+
+		case Pathname::Element::This:
 			break;
-		
-		case Pathname::Element::Parent: 
+
+		case Pathname::Element::Parent:
 			scope = scope.GetParent();
 			break;
 		}
@@ -273,8 +273,6 @@ void Tree::SetScope(const Pathname &path)
 	scope = Get(root, scope, path);
 }
 
-#undef SearchPath
-
 void Tree::SetSearchPath(const SearchPath &P)
 {
 	path = P;
@@ -320,7 +318,7 @@ Object Tree::Resolve(const Pathname &P) const
 
 	if (P.Absolute())
 		return Object();
-	
+
 	// search in each object stored in path
 	for (auto const &A : path)
 	{
@@ -328,7 +326,7 @@ Object Tree::Resolve(const Pathname &P) const
 		if (found.Exists())
 			return found;
 	}
-	
+
 	return Object();
 }
 

@@ -2,8 +2,18 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
-# sorry
-set(BOOST_ROOT C:/Users/christian/external/boost_1_67_0)
+# setup boost
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED OFF)
+set(Boost_USE_STATIC_RUNTIME ON)
+find_package(Boost 1.6 COMPONENTS program_options chrono system)
+if(!Boost_FOUND)
+	message(FATAL_ERROR "We really need boost")
+endif()
+include_directories(${Boost_INCLUDE_DIRS})
+message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost LibDir: ${Boost_LIBRARY_DIRS}")
+message(STATUS "Boost Libs: ${Boost_LIBRARIES}")
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -26,17 +36,15 @@ set(HOME $ENV{HOME})
 set(KAI_HOME ${CMAKE_SOURCE_DIR})
 
 # RakNet
-set(RAKNET_DIR ${HOME}/External/RakNet)
-include(${KAI_HOME}/CMake/FindRakNet.cmake)
+#set(RAKNET_DIR ${HOME}/External/RakNet)
+#include(${KAI_HOME}/CMake/FindRakNet.cmake)
 
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
 if (MSVC)
-	# Visual Studio 2017
 	set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
 else()
-	# Clang (and I think GCC)
 	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
@@ -57,8 +65,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
-link_directories(${BOOST_ROOT}/lib)
 
+# make a new library
+macro(def_library name)
+    project(${name})
+    set(SOURCE_ROOT ${LIBRARY_HOME}/${name}/Source/*.cpp)
+    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+    add_library(${name} ${SOURCE_FILES} )
+    cotire(${name})
+endmacro()
+
+# make a new language library
 macro(def_lang_library name)
     project(${name}Lang)
     set(lang_root ${LIBRARY_HOME}/Language/${name})
@@ -69,14 +86,7 @@ macro(def_lang_library name)
     cotire(${name}Lang)
 endmacro()
 
-macro(def_library name)
-    project(${name})
-    set(SOURCE_ROOT ${LIBRARY_HOME}/${name}/Source/*.cpp)
-    file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
-    add_library(${name} ${SOURCE_FILES} )
-    cotire(${name})
-endmacro()
-
+# make a platform-specific library
 macro(def_platform_library name)
     project(platform-${name})
     set(SOURCE_ROOT ${LIBRARY_HOME}/Platform/${name}/*.cpp)
@@ -85,10 +95,8 @@ macro(def_platform_library name)
     cotire(platform-${name})
 endmacro()
 
+# make all top-level components
 set(TopLevels Library Test App)
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
-
-# TODO
-# include(Library/Platform/CMakeLists.txt)
