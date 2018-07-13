@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
-set(BOOST_ROOT C:/Users/christian/external)
+# sorry
+set(BOOST_ROOT C:/Users/christian/external/boost_1_67_0)
 
 # used tp generate compile options for YouCompleteMe
-set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 # see https://github.com/sakra/cotire
@@ -56,6 +57,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
+link_directories(${BOOST_ROOT}/lib)
 
 macro(def_lang_library name)
     project(${name}Lang)

@@ -13,5 +13,6 @@ set(SOURCE_ROOT ${SOURCE_HOME}/App/${name}/Source/*.cpp)
 file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
 link_libraries(TauLang Executor Core )
 add_executable(${name} ${SOURCE_FILES})
+
 target_link_libraries(${name} boost_program_options boost_system)
 

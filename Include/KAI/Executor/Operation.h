@@ -1,7 +1,7 @@
 #pragma once
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Type/TraitMacros.h>
+#include "KAI/Core/Config/Base.h"
+#include "KAI/Core/Type/TraitMacros.h"
 
 KAI_BEGIN
 
@@ -20,10 +20,15 @@ struct Operation
 		CppMethodCall,
 		Plus, Minus, Multiply, Divide, Modulo,
 		TypeOf,
+
 		Store, Retreive, Remove,
+
 		New,
 		Assign,
+
+        GetScope,
 		ChangeScope,
+
 		GetChildren,
 		Break,
 		Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
@@ -125,7 +130,7 @@ public:
 	friend bool operator<(const Operation &A, const Operation &B) { return A.value < B.value; }
 	friend bool operator==(const Operation &A, const Operation &B) { return A.value == B.value; }
 	friend bool operator!=(const Operation &A, const Operation &B) { return A.value != B.value; }
-	
+
 	static void Register(Registry &);
 };
 

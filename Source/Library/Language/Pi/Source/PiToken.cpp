@@ -146,7 +146,7 @@ const char *PiTokenEnumType::ToString(Enum t)
 		CASE_REPLACE(ToRho, "rho")
 		CASE_REPLACE(ToRhoSequence, "rho{")
 	}
-	
+
 	KAI_TRACE() << " PiToken #" << (int)t;
 	KAI_NOT_IMPLEMENTED();
 }

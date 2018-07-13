@@ -203,17 +203,19 @@ namespace Bin
 		return text.ToString();
 	}
 
+#define BIN_FIXED
+
 	#ifdef BIN_FIXED
 	void AddFunctions(Object Q)
 	{
 		#define ADD_FUN(N, D) \
-			AddFunction(Q, N, #N, D);
+			AddFunction(Q, N, Label(#N), D);
 		ADD_FUN(TypeNumberToClass, "Returns the Class of a given type number");
 		ADD_FUN(GetMethods, "Returns an Array of all Methods for a given Object");
 		ADD_FUN(GetProperties, "Returns an Array of all Properties for a given Object");
 		ADD_FUN(Describe, "Returns Methods and Properties for a given Object");
 		ADD_FUN(info, "Prints the methods and properties");
-		AddFunction(Q, ExitToOS, "Exit", "Ends the Session");
+		AddFunction(Q, ExitToOS, Label("Exit"), "Ends the Session");
 		ADD_FUN(Assert, "Throws AssertionFailed if Object equates to False");
 		ADD_FUN(Freeze, "Inserts Object into a BinaryStream");
 		ADD_FUN(Thaw, "Extracts an Object from a BinarySteam");
@@ -228,7 +230,7 @@ namespace Bin
 		ADD_FUN(PrintXml, "Print's an Object to stdout in XML");
 		ADD_FUN(WriteToFile, "Writes an Object to a text file");
 		ADD_FUN(ReadFile, "Reads a text file");
-		ADD_FUN(ScaleVector3, "Multiply a vector by a float");
+		//ADD_FUN(ScaleVector3, "Multiply a vector by a float");
 		ADD_FUN(AddVector3, "Adds two Vector3s together.")
 		ADD_FUN(Help, "LOL");
 	}

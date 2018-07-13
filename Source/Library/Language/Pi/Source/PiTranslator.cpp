@@ -220,8 +220,16 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 	case PiTokenEnumType::Expand:
 		AppendOp(Operation::Expand);
 		break;
-	
+
 	case PiTokenEnumType::Tab:
+		return;
+
+    case PiTokenEnumType::PrintFolder:
+        AppendOp(Operation::GetScope);
+		return;
+
+    case PiTokenEnumType::ChangeFolder:
+        AppendOp(Operation::ChangeScope);
 		return;
 
 	default:

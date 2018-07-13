@@ -41,6 +41,12 @@ You will need `cmake` installed. Then, from a Visual Studio 2017 command line, f
 > msbuild NetworkGenerator.sln
 ```
 
+Alternatively, to open in Visual Studio:
+
+```
+> start NetworkGenerator.sln
+```
+
 ## Folders
 
 The resulting interesting folders:
