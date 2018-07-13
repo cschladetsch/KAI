@@ -44,8 +44,6 @@ StringStream& operator<<(StringStream& S, ObjectColor::Color C)
 
 void ToStringStream(const Object &Q, StringStream &S, int level)
 {
-	S << std::string(4, ' ').c_str();
-
 	if (!Q.Valid())
 	{
 		S << "[Invalid]\n";
@@ -53,19 +51,9 @@ void ToStringStream(const Object &Q, StringStream &S, int level)
 	}
 
 	const StorageBase &base = Q.GetStorageBase();
-#ifdef KAI_TRACE_VERBOSE
-	S << base.GetLabel().ToString() << ": ";
-#endif
-	
+
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))
 		Q.GetClass()->Insert(S, base);
-	
-	S << "\n";
-
-	for (auto const &child : base.GetDictionary())
-		ToStringStream(child.second, S, level + 1);
-
-	return;
 }
 
 void ToXmlStream(const Object &Q, StringStream &S, int level)
@@ -82,9 +70,9 @@ void ToXmlStream(const Object &Q, StringStream &S, int level)
 
 	StorageBase const &base = Q.GetStorageBase();
 	ClassBase const &klass = *Q.GetClass();
-	S << indent.ToString() << "<Object type='" << klass.GetName() 
-		<< "' name='" << base.GetLabel().ToString() 
-		//<< "' handle='" << (int)Q.GetHandle().GetValue() 
+	S << indent.ToString() << "<Object type='" << klass.GetName()
+		<< "' name='" << base.GetLabel().ToString()
+		//<< "' handle='" << (int)Q.GetHandle().GetValue()
 		<< "'>\n";
 
 	if (Q.GetClass()->HasTraitsProperty(Type::Properties::StringStreamInsert))

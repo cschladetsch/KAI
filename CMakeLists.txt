@@ -33,7 +33,7 @@ include(${KAI_HOME}/CMake/FindRakNet.cmake)
 
 if (MSVC)
 	# Visual Studio 2017
-	set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc")
+	set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
 else()
 	# Clang (and I think GCC)
 	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
@@ -55,6 +55,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 link_directories(${HOME}/lib /usr/local/lib)
+link_directories(${KAI_HOME}/Lib/Debug)
 
 macro(def_lang_library name)
     project(${name}Lang)

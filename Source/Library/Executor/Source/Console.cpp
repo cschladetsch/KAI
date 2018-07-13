@@ -10,23 +10,6 @@ using namespace std;
 
 KAI_BEGIN
 
-/*
-StringStream &operator<<(StringStream &out, ConsoleColor::EType type)
-{
-	switch (type)
-	{
-		case ConsoleColor::LanguageName:
-			return out << rang::fg::green;
-		case ConsoleColor::Pathname:
-			return out << rang::fg::gray;
-		case ConsoleColor::Input:
-			return out << rang::fg::yellow;
-	}
-	return out << rang::fg::gray;
-}
-*/
-
-
 Console::Console()
 {
 	alloc = make_shared<Memory::StandardAllocator>();
@@ -65,7 +48,7 @@ void Console::Create()
 	KAI_CATCH(exception, e)
 	{
 		KAI_TRACE_1(e.what());
-		//std::cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
+		std::cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
 	}
 }
 
@@ -98,7 +81,6 @@ void Console::ControlC()
 
 Language Console::GetLanguage() const
 {
-//	return static_cast<int>(language);
 	return language;
 }
 
@@ -188,12 +170,12 @@ String Console::Process(const String& text)
 	StringStream result;
 	KAI_TRY
 	{
-		cout << rang::fg::red;//ConsoleColor::Error;
+		cout << rang::fg::red;
 		auto cont = compiler->Translate(text.c_str());
 		if (cont.Exists())
 		{
 			cont->SetScope(tree.GetScope());
-			cout << rang::fg::gray;//ConsoleColor::Trace;
+			cout << rang::fg::gray;
 			Execute(cont);
 		}
 
@@ -218,7 +200,7 @@ void Console::WritePrompt(ostream &out) const
 {
 	out
 		<< rang::fg::green << ToString((Language)compiler->GetLanguage())
-		<< rang::fg::yellow << GetFullname(GetTree().GetScope()).ToString().c_str() 
+		<< rang::fg::yellow << GetFullname(GetTree().GetScope()).ToString().c_str()
 		<< rang::fg::gray << "> ";
 }
 
@@ -227,7 +209,7 @@ String Console::GetPrompt() const
 	StringStream prompt;
 	prompt
 		<< ConsoleColor::LanguageName << ToString((Language)compiler->GetLanguage())
-		<< ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str() 
+		<< ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str()
 		<< ConsoleColor::Input << "> ";
 
 	return prompt.ToString();
@@ -270,8 +252,7 @@ int Console::Run()
 				getline(cin, text);
 
 				cout << n << Process(text.c_str()).c_str();
-
-				cout << n << executor->PrintStack() << n << endl;
+                executor->PrintStack(cout);
 
 				if (_end)
 					return _endCode;
@@ -325,8 +306,8 @@ void Console::RegisterTypes()
 	Array::Register(*_reg);
 	List::Register(*_reg);
 	Map::Register(*_reg, "Map");
-	
-	// TODO: remove less-than comparable trait for hash maps: 
+
+	// TODO: remove less-than comparable trait for hash maps:
 	//HashMap::Register(*registry, "HashMap");
 
 #ifdef KAI_UNIT_TESTS

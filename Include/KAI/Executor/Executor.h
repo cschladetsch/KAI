@@ -32,6 +32,7 @@ struct Executor : Reflected
 	void Dump(Object const &Q);
 
 	std::string PrintStack() const;
+    void PrintStack(std::ostream& out) const;
 
 	template <class T>
 	Value<T> New()

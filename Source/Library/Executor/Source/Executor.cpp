@@ -6,6 +6,7 @@
 
 #include "KAI/Language/Common/Process.h"
 #include "KAI/Executor/Compiler.h"
+#include "KAI/Console/rang.hpp"
 
 #include <iostream>
 
@@ -169,7 +170,7 @@ void Executor::Eval(Object const &Q)
 	switch (GetTypeNumber(Q).value)
 	{
 	case Type::Number::Operation:
-		Perform(Deref<Operation>(Q).GetTypeNumber()); 
+		Perform(Deref<Operation>(Q).GetTypeNumber());
 		break;
 
 	case Type::Number::Pathname:
@@ -229,15 +230,15 @@ void Executor::Expand()
 		break;
 
 	case Type::Number::List:
-		PushAll(ConstDeref<List>(Q)); 
+		PushAll(ConstDeref<List>(Q));
 		break;
 
 	case Type::Number::Array:
-		PushAll(ConstDeref<Array>(Q)); 
+		PushAll(ConstDeref<Array>(Q));
 		break;
 
 	case Type::Number::Map:
-		PushAll(ConstDeref<Map>(Q)); 
+		PushAll(ConstDeref<Map>(Q));
 		break;
 
 	default:
@@ -449,10 +450,10 @@ Object Executor::Resolve(Pathname const &path) const
 void Executor::Trace(const Label &, const StorageBase &Q, StringStream &S)
 {
 	S
-		<< "Handle=" << Q.GetHandle().GetValue() << ": " 
+		<< "Handle=" << Q.GetHandle().GetValue() << ": "
 		<< "Parent=" << Q.GetParentHandle().GetValue() << ": "
-		<< "Fullname=" << GetFullname(Q) << ": " 
-		<< "Type=" << Q.GetClass()->GetName() << ": " 
+		<< "Fullname=" << GetFullname(Q) << ": "
+		<< "Type=" << Q.GetClass()->GetName() << ": "
 		<< "StrStrm='" << Q
 		<< "'\n";
 }
@@ -595,8 +596,6 @@ std::string Executor::PrintStack() const
 {
 	int n = 0;
 	StringStream str;
-	//auto const &stack = _data->GetStack();
-	//Stack::const_reverse_iterator A = stack.rbegin(), B = stack.rend();
 	for (const auto &A : _data->GetStack())
 	{
 		str << "[" << n++ << "]: " << A <<  "\n";
@@ -604,17 +603,16 @@ std::string Executor::PrintStack() const
 	return str.ToString().c_str();
 }
 
-// template <typename Cont>
-// struct GetContSize
-// {
-// 	static size_t Get(Object const &) { return 0; };
-// }
-
-// template <typename T>
-// struct GetContSize<Container<T> >
-// {
-// 	static size_t Get(Object const &Q) { return ConstDeref<Container<T>>(Q).Size(); }
-// }
+void Executor::PrintStack(std::ostream& out) const
+{
+	int n = 0;
+	for (const auto &A : _data->GetStack())
+	{
+        out << rang::style::dim << rang::fg::gray << "[" << rang::style::bold << n++ << rang::style::dim << "]: ";
+        out << rang::style::bold << rang::fg::yellow << A.ToString().c_str();
+        out << std::endl;
+	}
+}
 
 // TODO: put container size in traits, as per above.
 // for now, be lame
