@@ -1,6 +1,10 @@
 # Installing
 
+This can be tricky, because KAI is cross-platform across maxOS, Linux and Windows. It also has 3rd party dependancies. Don't worry too much: if the 3rd party systems can't be found you will still get the [test suite](Source/App/Test) and [Console](Source/App/Console).
+
 ## Ubuntu
+
+The same rules apply for other apt-get based systems.
 
 ### Build and Install Google Test
 
@@ -22,29 +26,25 @@ rm -rf /tmp/gtbuild
 ### Build KAI
 
 ```bash
-git clone git@github.com:cschladetsch/KAI.git
-git submodule init
-git submodule update
+git clone --cursive git@github.com:cschladetsch/KAI.git
 sudo apt-get install -y libboost-all-dev
 mkdir build; cd build; cmake ..; make
-cd ../Bin; ls
 ```
 
 ## Windows
 
-You will need `cmake` installed. Then, from a Visual Studio 2017 command line, from the root of the KAI folder structure enter the following:
+You will need `cmake` installed and `boost` installed with at least `chrono`, `system` and `filesystem` libraries. Then, from a Visual Studio 2017 command line, from the root of the KAI folder structure enter the following:
 
 ```
-> mkdir build
-> cd build
-> cmake -G "Visual Studio 15 2017 Win64" ..
-> msbuild NetworkGenerator.sln
+> git clone --recursive https://github.com/cschladetsch/KAI.git
+> cd KAI
+> mk-vs.bat
 ```
 
 Alternatively, to open in Visual Studio:
 
 ```
-> start NetworkGenerator.sln
+> start build\NetworkGenerator.sln
 ```
 
 ## Folders
