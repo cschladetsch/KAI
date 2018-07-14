@@ -12,13 +12,11 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 ## Getting Started
 
-I will refer to the folder that you installed KAI into as **${KAI_HOME}**. For instance, for me on ***OSX*** and ***Ubuntu*** KAI_HOME is *~/Local/Kai*. *Local* because I made it and *Kai* because that's it's name.
+I will refer to the folder that you installed KAI into as **${KAI_HOME}**. See [Install.md](Install.md) for installation instructions. KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
 
-I've used CMake so it should be relatively painless to make any changes to ports that I missed after updating for other ports.
+I've used CMake so it should be relatively painless to make any changes to ports.
 
-### Building
-
-See **${KAI_HOME}**/Install.md. If after reading that you still get a failed build, contact [me](matilto:christian.schladetsch@gmail.com) with the build log and platform details.
+If after reading that you still get a failed build, contact [me](matilto:christian.schladetsch@gmail.com) with the build log and platform details.
 
 ## Networking
 
