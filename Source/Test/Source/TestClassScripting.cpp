@@ -1,6 +1,6 @@
-#include <KAI/Core/BuiltinTypes/List.h>
-
+#include "TestCommon.h"
 #include "MyTestStruct.h"
+#include <KAI/Core/BuiltinTypes/List.h>
 
 USING_NAMESPACE_KAI
 

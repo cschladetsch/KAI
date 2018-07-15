@@ -1,3 +1,4 @@
+#include "TestCommon.h"
 #include "MyTestStruct.h"
 
 KAI_BEGIN

@@ -5,6 +5,10 @@
 #include "KAI/Core/Executor.h"
 #include "KAI/Core/Object/GetStorageBase.h"
 #include "KAI/Core/StringStreamTraits.h"
+#include "KAI/Core/FunctionBase.h"
+#include "KAI/Core/Object/Class.h"
+#include "KAI/Core/Detail/Function.h"
+#include "KAI/Language/Common/Language.h"
 
 #include <gtest/gtest.h>
 

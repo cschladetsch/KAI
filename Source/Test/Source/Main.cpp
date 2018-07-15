@@ -1,8 +1,4 @@
-#include <gtest/gtest.h>
-#include <list>
-
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Language/Common/Language.h>
+#include "TestCommon.h"
 
 extern std::list<kai::Language> TestLanguages;
 

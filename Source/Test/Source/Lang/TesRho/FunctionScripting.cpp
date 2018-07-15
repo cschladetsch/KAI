@@ -1,5 +1,4 @@
-#include <KAI/Core/Detail/Function.h>
-
+#include "TestCommon.h"
 #include "MyTestStruct.h"
 
 USING_NAMESPACE_KAI

@@ -1,3 +1,4 @@
+#include "TestCommon.h"
 #include "TestLangCommon.h"
 #include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Core/BuiltinTypes/Array.h>
@@ -21,7 +22,7 @@ TEST_F(TestPi, TestComments)
 
 		_console.Execute("// text\n");
 		ASSERT_EQ(_data->Size(), 0);
-		
+
 		_console.Execute("// text");
 		ASSERT_EQ(_data->Size(), 0);
 
@@ -114,7 +115,7 @@ TEST_F(TestPi, TestScope)
 		_console.Execute("42 '/b #");
 		ASSERT_TRUE(_root.Has(b));
 		ASSERT_EQ(42, ConstDeref<int>(_root.Get(b)));
-		
+
 		// this is only storing to local scope - within the context
 		// of the command-line in which it was executed - so it
 		// should not be preserved in the global tree

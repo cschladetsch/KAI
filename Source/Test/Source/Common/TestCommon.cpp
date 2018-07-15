@@ -23,9 +23,9 @@ void TestCommon::SetUp()
 	AddrequiredClasses();
 }
 
-Registry &TestCommon::Reg() 
-{ 
-	return *_reg; 
+Registry &TestCommon::Reg()
+{
+	return *_reg;
 }
 
 Tree &TestCommon::GetTree()
@@ -34,11 +34,11 @@ Tree &TestCommon::GetTree()
 }
 
 Object TestCommon::Root() const
-{ 
+{
 	return _root;
 }
 
-void TestCommon::AddrequiredClasses() 
+void TestCommon::AddrequiredClasses()
 {
 }
 
@@ -50,7 +50,7 @@ void TestCommon::TearDown()
 
 KAI_END
 
-namespace testing::internal 
+namespace testing::internal
 {
     void ColoredPrintf(GTestColor color, const char* fmt, ...)
     {

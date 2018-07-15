@@ -1,3 +1,4 @@
+#include "TestCommon.h"
 #include "TestLangCommon.h"
 
 KAI_BEGIN

@@ -14,9 +14,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost LibDir: ${Boost_LIBRARY_DIRS}")
 message(STATUS "Boost Libs: ${Boost_LIBRARIES}")
-
 link_directories(${Boost_LIBRARY_DIRS})
-
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -48,7 +46,10 @@ else()
 	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
+# this was a bit of a nightmare, so it's in a re-usable .cmake file for other projects
+include(Cmake/IncludeGtest.cmake)
 
+# set common paths for all other projects to use
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)
@@ -56,8 +57,6 @@ set(TEST_HOME ${SOURCE_HOME}/Test)
 set(BIN_HOME ${KAI_HOME}/Bin)
 
 include_directories(${KAI_HOME}/Include)
-
-include(Cmake/IncludeGtest.cmake)
 
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")

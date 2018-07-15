@@ -1,6 +1,5 @@
-#include <KAI/Language/Pi/Pi.h>
-
 #include "TestCommon.h"
+#include <KAI/Language/Pi/Pi.h>
 
 using namespace kai;
 using namespace std;

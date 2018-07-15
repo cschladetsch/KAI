@@ -1,5 +1,5 @@
 #include "TestCommon.h"
-#include <KAI/Core/Event.h>
+#include "KAI/Core/Event.h"
 
 USING_NAMESPACE_KAI
 

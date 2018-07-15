@@ -1,6 +1,5 @@
-#include <KAI/Core/BuiltinTypes/Set.h>
-
 #include "TestCommon.h"
+#include <KAI/Core/BuiltinTypes/Set.h>
 
 USING_NAMESPACE_KAI
 

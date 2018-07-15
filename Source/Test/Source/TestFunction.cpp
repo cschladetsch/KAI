@@ -1,7 +1,3 @@
-#include <KAI/Core/FunctionBase.h>
-#include <KAI/Core/Object/Class.h>
-#include "KAI/Core/Detail/Function.h"
-
 #include "TestCommon.h"
 
 using namespace kai;
@@ -81,7 +77,7 @@ protected:
 		std::fill(called, called + sizeof(called) / sizeof(called[0]), false);
 	}
 
-	virtual void TearDown() 
+	virtual void TearDown()
 	{
 	}
 
