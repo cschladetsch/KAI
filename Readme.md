@@ -1,6 +1,10 @@
 # KAI
 
-KAI provides a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection.
+KAI provides a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection. Currently supported platforms are:
+
+1. **Windows 10** (VS 2017)
+1. **Linux** (Ubuntu)
+1. **macOS** (Sierra)
 
 You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
