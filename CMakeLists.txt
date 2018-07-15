@@ -47,7 +47,7 @@ else()
 endif()
 
 # this was a bit of a nightmare, so it's in a re-usable .cmake file for other projects
-include(Cmake/IncludeGtest.cmake)
+include(CMake/IncludeGtest.cmake)
 
 # set common paths for all other projects to use
 set(SOURCE_HOME ${KAI_HOME}/Source)
