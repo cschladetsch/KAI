@@ -5,7 +5,7 @@ This can be tricky, because KAI is cross-platform across maxOS, Linux and Window
 ## Ubuntu
 
 ```
-# /build-linux
+# ./build-linux
 ```
 
 ## Windows
@@ -13,7 +13,7 @@ This can be tricky, because KAI is cross-platform across maxOS, Linux and Window
 You will need `cmake` installed and `boost` installed with at least `chrono`, `system` and `filesystem` libraries. Then, from a Visual Studio 2017 command line, from the root of the KAI folder structure enter the following:
 
 ```
-> build-vs2017.bat
+> .\build-vs2017.bat
 ```
 
 To open in _Visual Studio 2017_ (after running the above build command):
