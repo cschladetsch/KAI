@@ -4,7 +4,9 @@ cmake_minimum_required(VERSION 3.6)
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
 add_definitions(-DKAI_TRACE_VERBOSE)
 
-set(GTEST_ROOT ${KAI_HOME}/../external/googletest)
+message(STATUS >>>> ${KAI_HOME}/External/googletest)
+
+set(GTEST_ROOT ${KAI_HOME}/External/googletest/googletest)
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})

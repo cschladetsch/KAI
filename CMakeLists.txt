@@ -15,12 +15,11 @@ message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost LibDir: ${Boost_LIBRARY_DIRS}")
 message(STATUS "Boost Libs: ${Boost_LIBRARIES}")
 
-enable_testing()
-
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
+
 # see https://github.com/sakra/cotire
 include(cotire)
 
@@ -37,10 +36,6 @@ add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
 set(HOME $ENV{HOME})
 set(KAI_HOME ${CMAKE_SOURCE_DIR})
 
-# RakNet
-#set(RAKNET_DIR ${HOME}/External/RakNet)
-#include(${KAI_HOME}/CMake/FindRakNet.cmake)
-
 ## for X11
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
@@ -50,6 +45,9 @@ else()
 	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
+add_subdirectory(External)
+find_package(GTest REQUIRED)
+
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)
@@ -58,7 +56,8 @@ set(BIN_HOME ${KAI_HOME}/Bin)
 
 include_directories(${KAI_HOME}/Include)
 
-include(${KAI_HOME}/External/CMakeLists.txt)
+enable_testing()
+#find_package(GTest REQUIRED)
 
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
