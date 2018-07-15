@@ -1,0 +1,8 @@
+#!/bin/sh
+
+mkdir build 
+cd build
+cmake ..
+time make && ../Bin/Test/KaiTest
+
+
