@@ -15,6 +15,8 @@ message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost LibDir: ${Boost_LIBRARY_DIRS}")
 message(STATUS "Boost Libs: ${Boost_LIBRARIES}")
 
+enable_testing()
+
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
