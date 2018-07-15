@@ -4,12 +4,15 @@ cmake_minimum_required(VERSION 3.6)
 add_definitions(-DKAI_TRACE_FILE_LOCATION)
 add_definitions(-DKAI_TRACE_VERBOSE)
 
-message(STATUS >>>> ${KAI_HOME}/External/googletest)
+#set(GTEST_ROOT ${KAI_HOME}/External/googletest/googletest)
+#enable_testing()
+#find_package(GTest REQUIRED)
+#include_directories(${GTEST_INCLUDE_DIRS})
 
-set(GTEST_ROOT ${KAI_HOME}/External/googletest/googletest)
-enable_testing()
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+include_directories("${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
+
+# TODO: Obj: remove hard-coded refs
+set(GTEST_BOTH_LIBRARIES C:/Users/christian/src/KAI/build/googletest-build/googlemock/Debug/gmockd.lib C:/Users/christian/src/KAI/build/googletest-build/googlemock/Debug/gmock_maind.lib)
 
 set(name KaiTest)
 project(${name})
