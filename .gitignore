@@ -8,6 +8,9 @@ cmake-build-debug/*
 [Bb]in/
 [Bb]uild/
 
+.vs/
+.vscode/
+
 # ignore generated graphs
 Graphs/
 
