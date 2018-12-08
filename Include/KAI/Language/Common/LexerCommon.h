@@ -6,14 +6,15 @@
 
 // TODO: ugly to need these in a library header
 #include <sstream>
+#include <algorithm>
 #include <stdarg.h>
 
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
 #	include <boost/monotonic/monotonic.hpp>
 #endif
 
-#undef min
-#undef max
+////#undef min
+//#undef max
 
 KAI_BEGIN
 
