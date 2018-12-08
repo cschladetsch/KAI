@@ -2,13 +2,13 @@
 #include <KAI/Core/File.h>
 
 #include "KAI/Executor/Executor.h"
-#include "KAI/Language/Rho/RhoLang.h"
+#include "KAI/Language/Hlsl/HlslLang.h"
 
 using namespace std;
 
 KAI_BEGIN
 
-void RhoLang::Print()
+void HlslLang::Print()
 {
 	/*
 	cout << "Input--" << endl;
@@ -25,7 +25,7 @@ void RhoLang::Print()
 	 */
 }
 
-Pointer<Continuation> RhoLang::TranslateFile(const char *name, Structure st)
+Pointer<Continuation> HlslLang::TranslateFile(const char *name, Structure st)
 {
 	ifstream file(name, ios::binary);
 	if (!file)
@@ -34,7 +34,7 @@ Pointer<Continuation> RhoLang::TranslateFile(const char *name, Structure st)
 	return Translate(ReadTextFile(name).c_str(), st);
 }
 
-Pointer<Continuation> RhoLang::Translate(const char *text, Structure st)
+Pointer<Continuation> HlslLang::Translate(const char *text, Structure st)
 {
 	KAI_UNUSED_2(text, st);
 	return Object();

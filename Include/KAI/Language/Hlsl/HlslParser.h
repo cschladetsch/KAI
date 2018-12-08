@@ -11,18 +11,18 @@ class HlslParser : public ParserCommon<HlslLexer, HlslAstNodeEnumType>
 {
 public:
 	typedef ParserCommon<HlslLexer, HlslAstNodeEnumType> Parent;
-	using typename Parent::TokenEnum;
-	using typename Parent::TokenNode;
-	using typename Parent::Lexer;
-	using typename Parent::AstNode;
-	using typename Parent::AstNodePtr;
+	using Parent::TokenEnum;
+	using Parent::TokenNode;
+	using Parent::Lexer;
+	using Parent::AstNode;
+	using Parent::AstNodePtr;
 
 	typedef HlslAstNodeEnumType NodeType; 
 	typedef HlslTokenEnumType TokenType;
 
 	HlslParser(Registry &r) : Parent(r) { }
 
-	virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
+	bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
 	void Process(Structure);
@@ -39,8 +39,6 @@ private:
 	bool Factor();
 	void ConsumeNewLines();
 	void Block(AstNodePtr block);
-	bool ParsePathname();
-	bool ParsePathname(AstNodePtr path);
 	bool ParseFactorIdent();
 	void ParseGetMember();
 	void ParseMethodCall();

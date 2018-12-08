@@ -9,6 +9,7 @@ KAI_BEGIN
 /// but crucial to the overall system.
 struct Process
 {
+	virtual ~Process() = default;
 	static int trace;
 
 	mutable bool Failed = false;

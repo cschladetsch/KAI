@@ -7,10 +7,7 @@ struct TestEvents : TestCommon
 {
 };
 
-
 static bool funCalled[4];
-
-//
 
 void function0()
 {

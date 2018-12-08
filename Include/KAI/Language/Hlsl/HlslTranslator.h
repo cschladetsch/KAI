@@ -25,8 +25,8 @@ protected:
 
 private:
 	void TranslateToken(AstNodePtr node);
-	void TranslateFunction(AstNodePtr node);
-	void TranslateBlock(AstNodePtr node);
+	void TranslateFunction(const AstNodePtr& node);
+	void TranslateBlock(const AstNodePtr& node);
 	void TranslateBinaryOp(AstNodePtr node, Operation::Type);
 	void TranslateCall(AstNodePtr node);
 	void TranslatePathname(AstNodePtr node);

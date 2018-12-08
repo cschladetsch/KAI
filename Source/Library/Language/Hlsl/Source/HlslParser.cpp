@@ -67,8 +67,7 @@ bool HlslParser::Program()
 		ConsumeNewLines();
 		if (!Statement(root))
 		{
-			Fail("Statement expected");
-			return false;
+			return Fail("Statement expected");
 		}
 	}
 
