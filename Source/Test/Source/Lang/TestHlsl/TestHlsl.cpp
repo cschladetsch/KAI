@@ -7,5 +7,9 @@ using namespace std;
 
 TEST(TestHlsl, Test)
 {
-    
+    Console console;
+    Registry &reg = console.GetRegistry();
+    const char *text =( "float res = exp2(pw*a) + exp2(pw*b);");
+    HlslLexer lex(text, reg);
+    TEST_COUT << lex.Print();
 }

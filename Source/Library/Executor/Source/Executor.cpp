@@ -647,8 +647,9 @@ const char *ToString(Language l)
     case Language::Pi: return "pi";
     case Language::Rho: return "rho";
     case Language::Tau: return "tau";
+    case Language::Hlsl: return "hlsl";
     }
-    return "UknownLanguage";
+    return "Unknown Language";
 }
 
 bool Executor::PopBool()
