@@ -11,5 +11,6 @@ TEST(TestHlsl, Test)
     Registry &reg = console.GetRegistry();
     const char *text =( "float res = exp2(pw*a) + exp2(pw*b);");
     HlslLexer lex(text, reg);
+    lex.Process();
     TEST_COUT << lex.Print();
 }
