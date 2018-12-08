@@ -133,6 +133,15 @@ protected:
 		return true;
 	}
 
+	bool AddThreeCharOp(Enum ty)
+	{
+		Add(ty, 3);
+		Next();
+		Next();
+
+		return true;
+	}
+
 	bool LexError(const char *text)
 	{
 		return Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));

@@ -215,15 +215,19 @@ bool HlslLexer::NextToken()
 		if (Peek() == '/')
 		{
 			Next();
-			int start = offset;
+			const int start = offset;
 			while (Next() != '\n')
 				;
 
-			Token comment(Enum::Comment, *this, lineNumber, Slice(start, offset));
-			Add(comment);
+			Add(Token(Enum::Comment, *this, lineNumber, Slice(start, offset)));
 			Next();
 			return true;
 		}
+        if (Peek() == '=')
+        {
+            Next();
+	        return AddTwoCharOp(Enum::DivAssign);
+        }
 		return Add(Enum::Divide);
 
 	case '-':
@@ -234,7 +238,13 @@ bool HlslLexer::NextToken()
 		return Add(Enum::Minus);
 
 	case '.':
-
+		if (Peek() == '.')
+		{
+            Next();
+            if (Peek() == '.')
+                return AddThreeCharOp(Enum::ThreeDots);
+			return LexError("Unexpected ..");
+		}
 		return Add(Enum::Dot);
 
 	case '+':
@@ -246,7 +256,7 @@ bool HlslLexer::NextToken()
 
 	}
 
-	LexError("Unrecognised %c");
+	LexError("Unrecognized %c");
 
 	return false;
 }
@@ -290,7 +300,7 @@ bool HlslLexer::LexPathname()
 
 		prevIdent = true;
 
-		auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
+		const auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
 		if (isSeparator)
 		{
 			Next();
@@ -314,4 +324,4 @@ void HlslLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
-	KAI_END
+KAI_END

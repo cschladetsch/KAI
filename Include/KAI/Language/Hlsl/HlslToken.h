@@ -170,6 +170,8 @@ struct HlslTokenEnumType
 		Plus,
 		PlusAssign,
 		Ident,
+		DoubleColon,
+		ThreeDots,
 
 		Reserved,
 
