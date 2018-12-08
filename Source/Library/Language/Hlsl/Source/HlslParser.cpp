@@ -79,7 +79,7 @@ void HlslParser::Function(AstNodePtr node)
 {
 	ConsumeNewLines();
 
-	Expect(TokenType::Fun);
+	//Expect(TokenType::Fun);
 	Expect(TokenType::Ident);
 	HlslToken name = Last();
 	std::shared_ptr<AstNode> fun = NewNode(AstEnum::Function);
@@ -153,22 +153,22 @@ bool HlslParser::Statement(AstNodePtr block)
 {
 	switch (Current().type)
 	{
-		case TokenType::Assert:
-		{
-			auto ass = NewNode(Consume());
-			if (!Expression())
-			{
-				Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
-				return false;
-			}
+		//case TokenType::Assert:
+		//{
+		//	auto ass = NewNode(Consume());
+		//	if (!Expression())
+		//	{
+		//		Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
+		//		return false;
+		//	}
 
-			ass->Add(Pop());
-			block->Add(ass);
-			goto finis;
-		}
+		//	ass->Add(Pop());
+		//	block->Add(ass);
+		//	goto finis;
+		//}
 
 		case TokenType::Return:
-		case TokenType::Yield:
+		//case TokenType::Yield:
 		{
 			auto ret = NewNode(Consume());
 			if (Expression())
@@ -195,11 +195,11 @@ bool HlslParser::Statement(AstNodePtr block)
 			return true;
 		}
 		
-		case TokenType::Fun:
-		{
-			Function(block);
-			return true;
-		}
+		//case TokenType::Fun:
+		//{
+		//	Function(block);
+		//	return true;
+		//}
 	}
 
 	ConsumeNewLines();
@@ -405,16 +405,7 @@ bool HlslParser::Factor()
 	if (Try(TokenType::Int) || Try(TokenType::Float) || Try(TokenType::String) || Try(TokenType::True) || Try(TokenType::False))
 		return PushConsume();
 
-	if (Try(TokenType::Self))
-		return PushConsume();
-
-//	while (Try(TokenType::Lookup))
-//		return PushConsume();
-
 	if (Try(TokenType::Ident))
-		return ParseFactorIdent();
-
-	if (Try(TokenType::Pathname))
 		return ParseFactorIdent();
 
 	return false;
@@ -477,8 +468,6 @@ void HlslParser::ParseMethodCall()
 	Push(call);
 	Expect(TokenType::CloseParan);
 
-	if (Try(TokenType::Replace))
-		call->Add(Consume());
 }
 
 void HlslParser::ParseGetMember()
