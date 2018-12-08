@@ -127,6 +127,42 @@ void HlslLexer::AddKeyWords()
     keyWords["void"] = Enum::Void;
     keyWords["volatile"] = Enum::Volatile;
     keyWords["while"] = Enum::While;
+
+    keyWords["auto"] = Enum::Reserved;
+	keyWords["case"] = Enum::Reserved;
+	keyWords["catch"] = Enum::Reserved;
+	keyWords["char"] = Enum::Reserved;
+	keyWords["class"] = Enum::Reserved;
+	keyWords["const_cast"] = Enum::Reserved;
+	keyWords["default"] = Enum::Reserved;
+	keyWords["delete"] = Enum::Reserved;
+	keyWords["dynamic_cast"] = Enum::Reserved;
+	keyWords["enum"] = Enum::Reserved;
+	keyWords["explicit"] = Enum::Reserved;
+	keyWords["friend"] = Enum::Reserved;
+	keyWords["goto"] = Enum::Reserved;
+	keyWords["long"] = Enum::Reserved;
+	keyWords["mutable"] = Enum::Reserved;
+	keyWords["new"] = Enum::Reserved;
+	keyWords["operator"] = Enum::Reserved;
+	keyWords["private"] = Enum::Reserved;
+	keyWords["protected"] = Enum::Reserved;
+	keyWords["public"] = Enum::Reserved;
+	keyWords["reinterpret_cast"] = Enum::Reserved;
+	keyWords["short"] = Enum::Reserved;
+	keyWords["signed"] = Enum::Reserved;
+	keyWords["sizeof"] = Enum::Reserved;
+	keyWords["static_cast"] = Enum::Reserved;
+	keyWords["template"] = Enum::Reserved;
+	keyWords["this"] = Enum::Reserved;
+	keyWords["throw"] = Enum::Reserved;
+	keyWords["try"] = Enum::Reserved;
+	keyWords["typename"] = Enum::Reserved;
+	keyWords["union"] = Enum::Reserved;
+	keyWords["unsigned"] = Enum::Reserved;
+	keyWords["using"] = Enum::Reserved;
+	keyWords["virtual"] = Enum::Reserved;
+
 }
 
 bool HlslLexer::NextToken()

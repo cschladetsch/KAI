@@ -170,6 +170,8 @@ struct HlslTokenEnumType
 		Plus,
 		PlusAssign,
 		Ident,
+
+		Reserved,
 	};
 
 	struct Type : TokenBase<HlslTokenEnumType>
