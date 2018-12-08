@@ -5,45 +5,45 @@
 KAI_BEGIN
 
 TranslatorCommon::TranslatorCommon(Registry &r)
-	: ProcessCommon(r)
+    : ProcessCommon(r)
 {
 }
 
 void TranslatorCommon::Append(Object const &ob)
 {
-	Top()->GetCode()->Append(ob);
+    Top()->GetCode()->Append(ob);
 }
 
 void TranslatorCommon::AppendOp(Operation::Type op)
 {
-	AppendNew(Operation(op));
+    AppendNew(Operation(op));
 }
 
 Pointer<Continuation> TranslatorCommon::Top()
 {
-	return stack.back();
+    return stack.back();
 }
 
 void TranslatorCommon::PushNew()
 {
-	Pointer<Continuation> c = _reg->New<Continuation>();
-	c->SetCode(_reg->New<Array>());
-	stack.push_back(c);
+    Pointer<Continuation> c = _reg->New<Continuation>();
+    c->SetCode(_reg->New<Array>());
+    stack.push_back(c);
 }
 
 Pointer<Continuation> TranslatorCommon::Pop()
 {
-	auto top = Top();
-	stack.pop_back();
-	return top;
+    auto top = Top();
+    stack.pop_back();
+    return top;
 }
 
 std::string TranslatorCommon::ToString() const
 {
-	StringStream str;
-	for (auto ob : *stack.back()->GetCode())
-		str << ' ' << ob;
-	return str.ToString().c_str();
+    StringStream str;
+    for (auto ob : *stack.back()->GetCode())
+        str << ' ' << ob;
+    return str.ToString().c_str();
 }
 
 KAI_END

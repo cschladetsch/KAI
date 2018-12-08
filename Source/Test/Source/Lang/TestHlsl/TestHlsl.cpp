@@ -7,5 +7,5 @@ using namespace std;
 
 TEST(TestHlsl, Test)
 {
-	
+    
 }

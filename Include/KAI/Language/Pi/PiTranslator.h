@@ -12,23 +12,23 @@ KAI_BEGIN
 class PiTranslator : public TranslatorBase<PiParser>
 {
 public:
-	typedef TranslatorBase<PiParser> Parent;
-	typedef typename Parent::TokenNode TokenNode;
-	typedef typename Parent::AstNode AstNode;
-	typedef typename Parent::AstNodePtr AstNodePtr;
+    typedef TranslatorBase<PiParser> Parent;
+    typedef typename Parent::TokenNode TokenNode;
+    typedef typename Parent::AstNode AstNode;
+    typedef typename Parent::AstNodePtr AstNodePtr;
 
-	PiTranslator() = delete;
-	PiTranslator(Registry &r) : Parent(r) { }
-	virtual Pointer<Continuation> Result() override
-	{
-		return stack.front();
-	}
+    PiTranslator() = delete;
+    PiTranslator(Registry &r) : Parent(r) { }
+    virtual Pointer<Continuation> Result() override
+    {
+        return stack.front();
+    }
 
 protected:
-	virtual void TranslateNode(AstNodePtr node) override;
+    virtual void TranslateNode(AstNodePtr node) override;
 
 private:
-	void AppendTokenised(const TokenNode& tok);
+    void AppendTokenised(const TokenNode& tok);
 };
 
 KAI_END

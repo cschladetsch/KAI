@@ -10,48 +10,48 @@ KAI_BEGIN
 
 void HlslLang::Print()
 {
-	/*
-	cout << "Input--" << endl;
-	cout << lex->GetInput() << endl;
+    /*
+    cout << "Input--" << endl;
+    cout << lex->GetInput() << endl;
 
-	cout << "Lexer--" << endl;
-	lex->Print();
+    cout << "Lexer--" << endl;
+    lex->Print();
 
-	cout << "Parser--" << endl;
-	parse->Print();
+    cout << "Parser--" << endl;
+    parse->Print();
 
-	cout << "Trans--" << endl;
-	cout << trans->Result() << endl;
-	 */
+    cout << "Trans--" << endl;
+    cout << trans->Result() << endl;
+     */
 }
 
 Pointer<Continuation> HlslLang::TranslateFile(const char *name, Structure st)
 {
-	ifstream file(name, ios::binary);
-	if (!file)
-		return Object();
+    ifstream file(name, ios::binary);
+    if (!file)
+        return Object();
 
-	return Translate(ReadTextFile(name).c_str(), st);
+    return Translate(ReadTextFile(name).c_str(), st);
 }
 
 Pointer<Continuation> HlslLang::Translate(const char *text, Structure st)
 {
-	KAI_UNUSED_2(text, st);
-	return Object();
+    KAI_UNUSED_2(text, st);
+    return Object();
 
-//	trans = std::make_shared<Translator>(reg);
-//	trans->Translate(text);
+//    trans = std::make_shared<Translator>(reg);
+//    trans->Translate(text);
 //
-//	if (lex->Failed)
-//		Fail(lex->Error);
+//    if (lex->Failed)
+//        Fail(lex->Error);
 //
-//	if (parse->Failed)
-//		Fail(parse->Error);
+//    if (parse->Failed)
+//        Fail(parse->Error);
 //
-//	if (trans->Failed)
-//		Fail(trans->Error);
+//    if (trans->Failed)
+//        Fail(trans->Error);
 //
-//	return !Failed;
+//    return !Failed;
 }
 
 KAI_END

@@ -8,32 +8,32 @@ KAI_BEGIN
 class HlslTranslator : public TranslatorBase<HlslParser>
 {
 public:
-	typedef TranslatorBase<HlslParser> Parent;
-	typedef typename Parent::Parser Parser;
-	typedef typename Parent::TokenNode TokenNode;
-	typedef typename Parent::AstNode AstNode;
-	typedef typename Parent::TokenEnum TokenEnum;
-	typedef typename Parent::AstEnum AstNodeEnum;
-	typedef typename Parent::AstNodePtr AstNodePtr;
+    typedef TranslatorBase<HlslParser> Parent;
+    typedef typename Parent::Parser Parser;
+    typedef typename Parent::TokenNode TokenNode;
+    typedef typename Parent::AstNode AstNode;
+    typedef typename Parent::TokenEnum TokenEnum;
+    typedef typename Parent::AstEnum AstNodeEnum;
+    typedef typename Parent::AstNodePtr AstNodePtr;
 
-	HlslTranslator(const HlslTranslator&) = delete;
-	HlslTranslator(Registry &r) : Parent(r) { }
+    HlslTranslator(const HlslTranslator&) = delete;
+    HlslTranslator(Registry &r) : Parent(r) { }
 
 protected:
-	virtual void TranslateNode(AstNodePtr node) override;
-	using Parent::_reg;
+    virtual void TranslateNode(AstNodePtr node) override;
+    using Parent::_reg;
 
 private:
-	void TranslateToken(AstNodePtr node);
-	void TranslateFunction(const AstNodePtr& node);
-	void TranslateBlock(const AstNodePtr& node);
-	void TranslateBinaryOp(AstNodePtr node, Operation::Type);
-	void TranslateCall(AstNodePtr node);
-	void TranslatePathname(AstNodePtr node);
-	void TranslateIndex(AstNodePtr node);
-	void TranslateIf(AstNodePtr node);
-	void TranslateFor(AstNodePtr node);
-	void TranslateWhile(AstNodePtr node);
+    void TranslateToken(AstNodePtr node);
+    void TranslateFunction(const AstNodePtr& node);
+    void TranslateBlock(const AstNodePtr& node);
+    void TranslateBinaryOp(AstNodePtr node, Operation::Type);
+    void TranslateCall(AstNodePtr node);
+    void TranslatePathname(AstNodePtr node);
+    void TranslateIndex(AstNodePtr node);
+    void TranslateIf(AstNodePtr node);
+    void TranslateFor(AstNodePtr node);
+    void TranslateWhile(AstNodePtr node);
 };
 
 KAI_END

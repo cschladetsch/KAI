@@ -18,20 +18,20 @@ KAI_BEGIN
 class TestCommon : public ::testing::Test
 {
 protected:
-	Registry *_reg;
-	Tree *_tree;
-	Object _root;
+    Registry *_reg;
+    Tree *_tree;
+    Object _root;
 
 protected:
-	Registry &Reg();
-	Tree &GetTree();
-	Object Root() const;
+    Registry &Reg();
+    Tree &GetTree();
+    Object Root() const;
 
 protected:
-	void SetUp();
-	void TearDown();
+    void SetUp();
+    void TearDown();
 
-	virtual void AddrequiredClasses();
+    virtual void AddrequiredClasses();
 };
 
 KAI_END
@@ -58,14 +58,14 @@ namespace testing
 class TestCout : public std::stringstream
 {
 public:
-	bool _isError;
-	TestCout(bool e = false) : _isError(e) { }
+    bool _isError;
+    TestCout(bool e = false) : _isError(e) { }
     ~TestCout()
     {
-		if (_isError)
-			TEST_PRINTF(COLOR_RED, "%s\n",str().c_str());
+        if (_isError)
+            TEST_PRINTF(COLOR_RED, "%s\n",str().c_str());
         else
-			TEST_PRINTF(COLOR_YELLOW, "%s\n",str().c_str());
+            TEST_PRINTF(COLOR_YELLOW, "%s\n",str().c_str());
     }
 };
 

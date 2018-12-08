@@ -9,41 +9,41 @@ USING_NAMESPACE_KAI
 class TestArray : public TestCommon
 {
 protected:
-	void AddrequiredClasses() override
-	{
-		Reg().AddClass<Array>();
-	}
+    void AddrequiredClasses() override
+    {
+        Reg().AddClass<Array>();
+    }
 };
 
 TEST_F(TestArray, TestCreation)
 {
-	Pointer<Array> cont = Reg().New<Array>();
-	ASSERT_TRUE(cont.Exists());
-	ASSERT_TRUE(cont->Size() == 0);
-	ASSERT_TRUE(cont->Empty());
+    Pointer<Array> cont = Reg().New<Array>();
+    ASSERT_TRUE(cont.Exists());
+    ASSERT_TRUE(cont->Size() == 0);
+    ASSERT_TRUE(cont->Empty());
 
-	Reg().GarbageCollect();
+    Reg().GarbageCollect();
 
-	ASSERT_FALSE(cont.Exists());
+    ASSERT_FALSE(cont.Exists());
 }
 
 TEST_F(TestArray, TestInsertDelete)
 {
-	Pointer<Array> cont = Reg().New<Array>();
-	_root.Set("cont", cont);
+    Pointer<Array> cont = Reg().New<Array>();
+    _root.Set("cont", cont);
 
-	Object n = Reg().New(42);
-	cont->PushBack(n);
-	Reg().GarbageCollect();
+    Object n = Reg().New(42);
+    cont->PushBack(n);
+    Reg().GarbageCollect();
 
-	ASSERT_TRUE(cont.Exists());
-	ASSERT_TRUE(n.Exists());
+    ASSERT_TRUE(cont.Exists());
+    ASSERT_TRUE(n.Exists());
 
-	cont->Erase(n);
-	Reg().GarbageCollect();
+    cont->Erase(n);
+    Reg().GarbageCollect();
 
-	ASSERT_TRUE(cont.Exists());
-	ASSERT_FALSE(n.Exists());
+    ASSERT_TRUE(cont.Exists());
+    ASSERT_FALSE(n.Exists());
 }
 
 TEST_F(TestArray, TestComparison)

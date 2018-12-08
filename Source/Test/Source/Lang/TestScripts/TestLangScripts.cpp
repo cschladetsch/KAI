@@ -12,41 +12,41 @@ path ScriptRoot = "../../Source/Test/Scripts/";
 // via global TestLanguages.
 TEST(TestLangScripts, TestAll)
 {
-	for (auto lang : TestLanguages)
-	{
-		const string name = ToString(lang);
-		TEST_COUT << ">>> Testing Language: " << name;
+    for (auto lang : TestLanguages)
+    {
+        const string name = ToString(lang);
+        TEST_COUT << ">>> Testing Language: " << name;
 
-		const string extension = "." + name;
-		path dir = ScriptRoot.append(name);
-		directory_iterator file(dir), end;
+        const string extension = "." + name;
+        path dir = ScriptRoot.append(name);
+        directory_iterator file(dir), end;
 
-		for (; file != end; ++file)
-		{
-			auto const &path = file->path();
-			if (path.extension() != extension)
-			{
-				// TEST_COUT << "Ignoring " << path;
-				continue;
-			}
+        for (; file != end; ++file)
+        {
+            auto const &path = file->path();
+            if (path.extension() != extension)
+            {
+                // TEST_COUT << "Ignoring " << path;
+                continue;
+            }
 
-			Console console;
-			console.SetLanguage(lang);
-			console.GetCompiler()->SetTraceLevel(10);
-//			console.GetExecutor()->SetTraceLevel(10);
+            Console console;
+            console.SetLanguage(lang);
+            console.GetCompiler()->SetTraceLevel(10);
+//            console.GetExecutor()->SetTraceLevel(10);
 
-			const char *source = path.string().c_str();
-			TEST_COUT << "Running: " << path.filename().string().c_str();
+            const char *source = path.string().c_str();
+            TEST_COUT << "Running: " << path.filename().string().c_str();
 
-			try
-			{
-				EXPECT_TRUE(console.ExecuteFile(source));
-			}
-			catch (Exception::Base &e)
-			{
-				// TEST_CERR 
-				ASSERT_TRUE(false)<< "Exception: " << e.ToString().c_str();// << endl;
-			}
-		}
-	}
+            try
+            {
+                EXPECT_TRUE(console.ExecuteFile(source));
+            }
+            catch (Exception::Base &e)
+            {
+                // TEST_CERR 
+                ASSERT_TRUE(false)<< "Exception: " << e.ToString().c_str();// << endl;
+            }
+        }
+    }
 }

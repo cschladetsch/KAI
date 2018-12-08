@@ -19,7 +19,7 @@ message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost Libs: ${Boost_LIBRARYDIR}")
 
 if(!Boost_FOUND)
-	message(FATAL_ERROR "We really need boost")
+    message(FATAL_ERROR "We really need boost")
 endif()
 
 include_directories(${Boost_INCLUDE_DIRS})
@@ -50,9 +50,9 @@ set(KAI_HOME ${CMAKE_SOURCE_DIR})
 #link_directories(/usr/lib/x86_64-linux-gnu)
 
 if (MSVC)
-	set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
+    set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
 else()
-	set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
+    set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
 # this was a bit of a nightmare, so it's in a re-usable .cmake file for other projects

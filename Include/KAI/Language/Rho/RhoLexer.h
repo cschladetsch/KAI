@@ -7,18 +7,18 @@ KAI_BEGIN
 
 struct RhoLexer : LexerCommon<RhoTokenEnumType>
 {
-	typedef LexerCommon<RhoTokenEnumType> Parent;
-	typedef TokenBase<RhoTokenEnumType> TokenNode;
+    typedef LexerCommon<RhoTokenEnumType> Parent;
+    typedef TokenBase<RhoTokenEnumType> TokenNode;
 
-	RhoLexer(const char *text, Registry &r) : Parent(text, r) { }
+    RhoLexer(const char *text, Registry &r) : Parent(text, r) { }
 
-	void AddKeyWords() override;
-	bool NextToken() override;
-	void Terminate() override;
+    void AddKeyWords() override;
+    bool NextToken() override;
+    void Terminate() override;
 
 protected:
-	bool LexPathname();
-	using Parent::_reg;
+    bool LexPathname();
+    using Parent::_reg;
 };
 
 KAI_END

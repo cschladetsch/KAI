@@ -129,136 +129,136 @@ void HlslLexer::AddKeyWords()
     keyWords["while"] = Enum::While;
 
     keyWords["auto"] = Enum::Reserved;
-	keyWords["case"] = Enum::Reserved;
-	keyWords["catch"] = Enum::Reserved;
-	keyWords["char"] = Enum::Reserved;
-	keyWords["class"] = Enum::Reserved;
-	keyWords["const_cast"] = Enum::Reserved;
-	keyWords["default"] = Enum::Reserved;
-	keyWords["delete"] = Enum::Reserved;
-	keyWords["dynamic_cast"] = Enum::Reserved;
-	keyWords["enum"] = Enum::Reserved;
-	keyWords["explicit"] = Enum::Reserved;
-	keyWords["friend"] = Enum::Reserved;
-	keyWords["goto"] = Enum::Reserved;
-	keyWords["long"] = Enum::Reserved;
-	keyWords["mutable"] = Enum::Reserved;
-	keyWords["new"] = Enum::Reserved;
-	keyWords["operator"] = Enum::Reserved;
-	keyWords["private"] = Enum::Reserved;
-	keyWords["protected"] = Enum::Reserved;
-	keyWords["public"] = Enum::Reserved;
-	keyWords["reinterpret_cast"] = Enum::Reserved;
-	keyWords["short"] = Enum::Reserved;
-	keyWords["signed"] = Enum::Reserved;
-	keyWords["sizeof"] = Enum::Reserved;
-	keyWords["static_cast"] = Enum::Reserved;
-	keyWords["template"] = Enum::Reserved;
-	keyWords["this"] = Enum::Reserved;
-	keyWords["throw"] = Enum::Reserved;
-	keyWords["try"] = Enum::Reserved;
-	keyWords["typename"] = Enum::Reserved;
-	keyWords["union"] = Enum::Reserved;
-	keyWords["unsigned"] = Enum::Reserved;
-	keyWords["using"] = Enum::Reserved;
-	keyWords["virtual"] = Enum::Reserved;
+    keyWords["case"] = Enum::Reserved;
+    keyWords["catch"] = Enum::Reserved;
+    keyWords["char"] = Enum::Reserved;
+    keyWords["class"] = Enum::Reserved;
+    keyWords["const_cast"] = Enum::Reserved;
+    keyWords["default"] = Enum::Reserved;
+    keyWords["delete"] = Enum::Reserved;
+    keyWords["dynamic_cast"] = Enum::Reserved;
+    keyWords["enum"] = Enum::Reserved;
+    keyWords["explicit"] = Enum::Reserved;
+    keyWords["friend"] = Enum::Reserved;
+    keyWords["goto"] = Enum::Reserved;
+    keyWords["long"] = Enum::Reserved;
+    keyWords["mutable"] = Enum::Reserved;
+    keyWords["new"] = Enum::Reserved;
+    keyWords["operator"] = Enum::Reserved;
+    keyWords["private"] = Enum::Reserved;
+    keyWords["protected"] = Enum::Reserved;
+    keyWords["public"] = Enum::Reserved;
+    keyWords["reinterpret_cast"] = Enum::Reserved;
+    keyWords["short"] = Enum::Reserved;
+    keyWords["signed"] = Enum::Reserved;
+    keyWords["sizeof"] = Enum::Reserved;
+    keyWords["static_cast"] = Enum::Reserved;
+    keyWords["template"] = Enum::Reserved;
+    keyWords["this"] = Enum::Reserved;
+    keyWords["throw"] = Enum::Reserved;
+    keyWords["try"] = Enum::Reserved;
+    keyWords["typename"] = Enum::Reserved;
+    keyWords["union"] = Enum::Reserved;
+    keyWords["unsigned"] = Enum::Reserved;
+    keyWords["using"] = Enum::Reserved;
+    keyWords["virtual"] = Enum::Reserved;
 
-	keyWords["#define"] = Enum::PP_Define;
-	keyWords["#elif"] = Enum::PP_Elif;
-	keyWords["#else"] = Enum::PP_Else;
-	keyWords["#endif"] = Enum::PP_Endif;
-	keyWords["#error"] = Enum::PP_Error;
-	keyWords["#if"] = Enum::PP_If;
-	keyWords["#ifdef"] = Enum::PP_IfDef;
-	keyWords["#ifndef"] = Enum::PP_IfNotDef;
-	keyWords["#include"] = Enum::PP_Include;
-	keyWords["#line"] = Enum::PP_Line;
-	keyWords["#pragma"] = Enum::PP_Pragma;
-	keyWords["#undef"] = Enum::PP_Undef;
+    keyWords["#define"] = Enum::PP_Define;
+    keyWords["#elif"] = Enum::PP_Elif;
+    keyWords["#else"] = Enum::PP_Else;
+    keyWords["#endif"] = Enum::PP_Endif;
+    keyWords["#error"] = Enum::PP_Error;
+    keyWords["#if"] = Enum::PP_If;
+    keyWords["#ifdef"] = Enum::PP_IfDef;
+    keyWords["#ifndef"] = Enum::PP_IfNotDef;
+    keyWords["#include"] = Enum::PP_Include;
+    keyWords["#line"] = Enum::PP_Line;
+    keyWords["#pragma"] = Enum::PP_Pragma;
+    keyWords["#undef"] = Enum::PP_Undef;
 }
 
 bool HlslLexer::NextToken()
 {
-	char current = Current();
-	if (current == 0)
-		return false;
+    char current = Current();
+    if (current == 0)
+        return false;
 
-	if (isalpha(current))
-		return LexPathname();
+    if (isalpha(current))
+        return LexPathname();
 
-	if (isdigit(current))
-		return Add(Enum::Int, Gather(isdigit));
+    if (isdigit(current))
+        return Add(Enum::Int, Gather(isdigit));
 
-	switch (current)
-	{
-	case '\'': return LexPathname();
-	case ';': return Add(Enum::Semi);
-	case '{': return Add(Enum::OpenBrace);
-	case '}': return Add(Enum::CloseBrace);
-	case '(': return Add(Enum::OpenParan);
-	case ')': return Add(Enum::CloseParan);
-	case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
-	case ',': return Add(Enum::Comma);
-	case '*': return Add(Enum::Mul);
-	case '[': return Add(Enum::OpenSquareBracket);
-	case ']': return Add(Enum::CloseSquareBracket);
-	case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
-	case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
-	case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
-	case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
-	case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less); 
-	case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
-	case '"': return LexString(); // "
-	case '\t': return Add(Enum::Tab);
-	case '\n': return Add(Enum::NewLine);
-	case '/':
-		if (Peek() == '/')
-		{
-			Next();
-			const int start = offset;
-			while (Next() != '\n')
-				;
+    switch (current)
+    {
+    case '\'': return LexPathname();
+    case ';': return Add(Enum::Semi);
+    case '{': return Add(Enum::OpenBrace);
+    case '}': return Add(Enum::CloseBrace);
+    case '(': return Add(Enum::OpenParan);
+    case ')': return Add(Enum::CloseParan);
+    case ' ': return Add(Enum::Whitespace, Gather(IsSpaceChar));
+    case ',': return Add(Enum::Comma);
+    case '*': return Add(Enum::Mul);
+    case '[': return Add(Enum::OpenSquareBracket);
+    case ']': return Add(Enum::CloseSquareBracket);
+    case '=': return AddIfNext('=', Enum::Equiv, Enum::Assign);
+    case '!': return AddIfNext('=', Enum::NotEquiv, Enum::Not);
+    case '&': return AddIfNext('&', Enum::And, Enum::BitAnd);
+    case '|': return AddIfNext('|', Enum::Or, Enum::BitOr);
+    case '<': return AddIfNext('=', Enum::LessEquiv, Enum::Less); 
+    case '>': return AddIfNext('=', Enum::GreaterEquiv, Enum::Greater);
+    case '"': return LexString(); // "
+    case '\t': return Add(Enum::Tab);
+    case '\n': return Add(Enum::NewLine);
+    case '/':
+        if (Peek() == '/')
+        {
+            Next();
+            const int start = offset;
+            while (Next() != '\n')
+                ;
 
-			Add(Token(Enum::Comment, *this, lineNumber, Slice(start, offset)));
-			Next();
-			return true;
-		}
+            Add(Token(Enum::Comment, *this, lineNumber, Slice(start, offset)));
+            Next();
+            return true;
+        }
         if (Peek() == '=')
         {
             Next();
-	        return AddTwoCharOp(Enum::DivAssign);
+            return AddTwoCharOp(Enum::DivAssign);
         }
-		return Add(Enum::Divide);
+        return Add(Enum::Divide);
 
-	case '-':
-		if (Peek() == '-')
-			return AddTwoCharOp(Enum::Decrement);
-		if (Peek() == '=')
-			return AddTwoCharOp(Enum::MinusAssign);
-		return Add(Enum::Minus);
+    case '-':
+        if (Peek() == '-')
+            return AddTwoCharOp(Enum::Decrement);
+        if (Peek() == '=')
+            return AddTwoCharOp(Enum::MinusAssign);
+        return Add(Enum::Minus);
 
-	case '.':
-		if (Peek() == '.')
-		{
+    case '.':
+        if (Peek() == '.')
+        {
             Next();
             if (Peek() == '.')
                 return AddThreeCharOp(Enum::ThreeDots);
-			return LexError("Unexpected ..");
-		}
-		return Add(Enum::Dot);
+            return LexError("Unexpected ..");
+        }
+        return Add(Enum::Dot);
 
-	case '+':
-		if (Peek() == '+')
-			return AddTwoCharOp(Enum::Increment);
-		if (Peek() == '=')
-			return AddTwoCharOp(Enum::PlusAssign);
-		return Add(Enum::Plus);
+    case '+':
+        if (Peek() == '+')
+            return AddTwoCharOp(Enum::Increment);
+        if (Peek() == '=')
+            return AddTwoCharOp(Enum::PlusAssign);
+        return Add(Enum::Plus);
 
-	}
+    }
 
-	LexError("Unrecognized %c");
+    LexError("Unrecognized %c");
 
-	return false;
+    return false;
 }
 
 bool Contains(const char *allowed, char current);
@@ -266,62 +266,62 @@ bool Contains(const char *allowed, char current);
 // TODO: this is the same as PiLexer::PathnameOrKeyword(!)
 bool HlslLexer::LexPathname()
 {
-	int start = offset;
-	bool quoted = Current() == '\'';
-	if (quoted)
-		Next();
+    int start = offset;
+    bool quoted = Current() == '\'';
+    if (quoted)
+        Next();
 
-	bool rooted = Current() == '/';
-	if (rooted)
-		Next();
+    bool rooted = Current() == '/';
+    if (rooted)
+        Next();
 
-	bool prevIdent = false;
-	do
-	{
-		Token result = LexAlpha();
+    bool prevIdent = false;
+    do
+    {
+        Token result = LexAlpha();
 
-		if (result.type != TokenEnumType::Ident)
-		{
-			// this is actually a keyword
-			if (quoted || rooted)
-			{
-				return false;
-			}
+        if (result.type != TokenEnumType::Ident)
+        {
+            // this is actually a keyword
+            if (quoted || rooted)
+            {
+                return false;
+            }
 
-			// keywords cannot be part of a path
-			if (prevIdent)
-			{
-				return false;
-			}
+            // keywords cannot be part of a path
+            if (prevIdent)
+            {
+                return false;
+            }
 
-			Add(result);
-			return true;
-		}
+            Add(result);
+            return true;
+        }
 
-		prevIdent = true;
+        prevIdent = true;
 
-		const auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
-		if (isSeparator)
-		{
-			Next();
-			continue;
-		}
+        const auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
+        if (isSeparator)
+        {
+            Next();
+            continue;
+        }
 
-		if (!isalpha(Current()))
-		{
-			break;
-		}
-	}
-	while (true);
+        if (!isalpha(Current()))
+        {
+            break;
+        }
+    }
+    while (true);
 
-	//Add(Enum::Pathname, Slice(start, offset));
+    //Add(Enum::Pathname, Slice(start, offset));
 
-	return true;
+    return true;
 }
 
 void HlslLexer::Terminate()
 {
-	Add(Enum::None, 0);
+    Add(Enum::None, 0);
 }
 
 KAI_END
