@@ -163,6 +163,18 @@ void HlslLexer::AddKeyWords()
 	keyWords["using"] = Enum::Reserved;
 	keyWords["virtual"] = Enum::Reserved;
 
+	keyWords["#define"] = Enum::PP_Define;
+	keyWords["#elif"] = Enum::PP_Elif;
+	keyWords["#else"] = Enum::PP_Else;
+	keyWords["#endif"] = Enum::PP_Endif;
+	keyWords["#error"] = Enum::PP_Error;
+	keyWords["#if"] = Enum::PP_If;
+	keyWords["#ifdef"] = Enum::PP_IfDef;
+	keyWords["#ifndef"] = Enum::PP_IfNotDef;
+	keyWords["#include"] = Enum::PP_Include;
+	keyWords["#line"] = Enum::PP_Line;
+	keyWords["#pragma"] = Enum::PP_Pragma;
+	keyWords["#undef"] = Enum::PP_Undef;
 }
 
 bool HlslLexer::NextToken()
@@ -302,4 +314,4 @@ void HlslLexer::Terminate()
 	Add(Enum::None, 0);
 }
 
-KAI_END
+	KAI_END

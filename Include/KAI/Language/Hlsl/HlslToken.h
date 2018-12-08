@@ -172,6 +172,19 @@ struct HlslTokenEnumType
 		Ident,
 
 		Reserved,
+
+		PP_Define,
+		PP_Elif,
+		PP_Else,
+		PP_Endif,
+		PP_Error,
+		PP_If,
+		PP_IfDef,
+		PP_IfNotDef,
+		PP_Include,
+		PP_Line,
+		PP_Pragma,
+		PP_Undef,
 	};
 
 	struct Type : TokenBase<HlslTokenEnumType>
