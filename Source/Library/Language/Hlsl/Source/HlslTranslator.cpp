@@ -2,7 +2,6 @@
 #include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Language/Rho/RhoTranslator.h>
 #include <boost/lexical_cast.hpp>
-#include <boost/range/adaptor/reversed.hpp>
 
 using namespace std;
 

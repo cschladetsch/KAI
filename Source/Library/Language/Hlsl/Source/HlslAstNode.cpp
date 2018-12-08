@@ -1,4 +1,4 @@
-#include "KAI/Language/Rho/RhoAstNode.h"
+#include "KAI/Language/Hlsl/HlslAstNode.h"
 
 KAI_BEGIN
 
@@ -6,13 +6,13 @@ KAI_BEGIN
 #undef CASE_LOWER
 #undef CASE_REPLACE
 
-const char *RhoAstNodes::ToString(Enum ty)
+const char *HlslAstNodes::ToString(Enum ty)
 {
 	switch (ty)
 	{
-		#define CASE(N) case RhoAstNodes::N : return #N;
-		#define CASE_LOWER(N) case RhoAstNodes::N : return ToLower(#N);
-		#define CASE_REPLACE(N, M) case RhoAstNodes::N : return M;
+		#define CASE(N) case HlslAstNodes::N : return #N;
+		#define CASE_LOWER(N) case HlslAstNodes::N : return ToLower(#N);
+		#define CASE_REPLACE(N, M) case HlslAstNodes::N : return M;
 		CASE(None)
 		CASE(Program)
 		CASE(Ident)

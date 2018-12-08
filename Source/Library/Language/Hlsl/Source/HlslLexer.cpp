@@ -1,10 +1,10 @@
-#include <KAI/Language/Rho/RhoLexer.h>
+#include <KAI/Language/Hlsl/HlslLexer.h>
 
 using namespace std;
 
 KAI_BEGIN
 
-void RhoLexer::AddKeyWords() 
+void HlslLexer::AddKeyWords() 
 {
 	keyWords["AppendStructuredBuffer"] = Enum::AppendStructuredBuffer;
 	keyWords["if"] = Enum::If;
@@ -23,7 +23,7 @@ void RhoLexer::AddKeyWords()
 	keyWords["while"] = Enum::While;
 }
 
-bool RhoLexer::NextToken()
+bool HlslLexer::NextToken()
 {
 	char current = Current();
 	if (current == 0)
@@ -110,7 +110,7 @@ bool RhoLexer::NextToken()
 bool Contains(const char *allowed, char current);
 
 // TODO: this is the same as PiLexer::PathnameOrKeyword(!)
-bool RhoLexer::LexPathname()
+bool HlslLexer::LexPathname()
 {
 	int start = offset;
 	bool quoted = Current() == '\'';
@@ -165,7 +165,7 @@ bool RhoLexer::LexPathname()
 	return true;
 }
 
-void RhoLexer::Terminate()
+void HlslLexer::Terminate()
 {
 	Add(Enum::None, 0);
 }
