@@ -1,3 +1,9 @@
 [submodule "External/imgui"]
 	path = External/imgui
-	url = https://github.com/ocornut/imgui.git
+	url = git@github.com:cschladetsch/imgui.git
+[submodule "External/RakNet"]
+	path = External/RakNet
+	url = git@github.com:cschladetsch/RakNet.git
+[submodule "External/rang"]
+	path = External/rang
+	url = git@github.com:cschladetsch/rang.git
