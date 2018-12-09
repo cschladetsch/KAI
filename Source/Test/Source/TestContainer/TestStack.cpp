@@ -5,44 +5,44 @@ USING_NAMESPACE_KAI
 class TestStack : public TestCommon
 {
 protected:
-	void AddrequiredClasses() override
-	{
-		Reg().AddClass<Stack>();
-	}
+    void AddrequiredClasses() override
+    {
+        Reg().AddClass<Stack>();
+    }
 };
 
 TEST_F(TestStack, TestCreation)
 {
-	Pointer<Stack> stack = Reg().New<Stack>();
-	ASSERT_TRUE(stack.Exists());
-	ASSERT_TRUE(stack->Size() == 0);
-	ASSERT_TRUE(stack->Empty());
+    Pointer<Stack> stack = Reg().New<Stack>();
+    ASSERT_TRUE(stack.Exists());
+    ASSERT_TRUE(stack->Size() == 0);
+    ASSERT_TRUE(stack->Empty());
 
-	Reg().GarbageCollect();
+    Reg().GarbageCollect();
 
-	ASSERT_FALSE(stack.Exists());
+    ASSERT_FALSE(stack.Exists());
 }
 
 TEST_F(TestStack, TestInsertDelete)
 {
-	// stacks are not Containers that track their contents, so this
-	// test will always fail.
+    // stacks are not Containers that track their contents, so this
+    // test will always fail.
 
-	// Pointer<Stack> stack = reg.New<Stack>();
-	// tree.GetRoot().Set("stack", stack);
+    // Pointer<Stack> stack = reg.New<Stack>();
+    // tree.GetRoot().Set("stack", stack);
 
-	// Object n = reg.New(42);
-	// stack->Push(n);
-	// reg.GarbageCollect();
+    // Object n = reg.New(42);
+    // stack->Push(n);
+    // reg.GarbageCollect();
 
-	// ASSERT_TRUE(stack.Exists());
-	// ASSERT_TRUE(n.Exists());
+    // ASSERT_TRUE(stack.Exists());
+    // ASSERT_TRUE(n.Exists());
 
-	// stack->Erase(n);
-	// reg.GarbageCollect();
+    // stack->Erase(n);
+    // reg.GarbageCollect();
 
-	// ASSERT_TRUE(stack.Exists());
-	// ASSERT_FALSE(n.Exists());
+    // ASSERT_TRUE(stack.Exists());
+    // ASSERT_FALSE(n.Exists());
 }
 
 TEST_F(TestStack, TestComparison)

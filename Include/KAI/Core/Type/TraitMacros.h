@@ -40,7 +40,7 @@ KAI_BEGIN
 KAI_TYPE_TRAITS(
 	String, 
 	Number::String, 
-	Properties::Boolean | Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
+	Properties::Streaming | Properties::Plus | Properties::Equiv | Properties::Relational)
 
 KAI_TYPE_TRAITS(
 	Handle, 

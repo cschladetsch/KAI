@@ -8,22 +8,22 @@ KAI_BEGIN
 // Another humble but extremely useful structure.
 struct Slice
 {
-	int Start, End;
+    int Start, End;
 
-	Slice() { Start = End = 0; }
-	Slice(int start, int end) { Start = start; End = end; }
+    Slice() { Start = End = 0; }
+    Slice(int start, int end) { Start = start; End = end; }
 
-	int Length() const { return End - Start; }
+    int Length() const { return End - Start; }
 
-	friend bool operator==(Slice const &A, Slice const &B)
-	{
-		return A.Start == B.Start && A.End == B.End;
-	}
+    friend bool operator==(Slice const &A, Slice const &B)
+    {
+        return A.Start == B.Start && A.End == B.End;
+    }
 
-	friend bool operator!=(Slice const &A, Slice const &B)
-	{
-		return !(A == B);
-	}
+    friend bool operator!=(Slice const &A, Slice const &B)
+    {
+        return !(A == B);
+    }
 };
 
 KAI_END

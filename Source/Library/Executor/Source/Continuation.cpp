@@ -1,3 +1,5 @@
+#define NOMINMAX
+
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/Void.h>
 #include <KAI/Core/BuiltinTypes/Bool.h>
@@ -7,94 +9,97 @@
 #include <KAI/Core/BuiltinTypes/Stack.h>
 #include <KAI/Core/Object/ClassBuilder.h>
 
+#undef min
+#undef max
+
 KAI_BEGIN
 
 void Continuation::Create()
 {
-	entered = New(false);
-	scopeBreak = New(false);
-	args = New<Array>();
-	index = New(0);
+    entered = New(false);
+    scopeBreak = New(false);
+    args = New<Array>();
+    index = New(0);
 }
 
 bool Continuation::Destroy()
 {
-	return true;
+    return true;
 }
 
 String Continuation::Show() const
 {
-	StringStream str;
-	int around = 4;
-	auto current = *index;
-	auto min = std::max(0, current - around);
-	auto max = std::min(code->Size() - 1, current + around);
-	str << "IP=" << current << "\n";
-	for (int n = min; n < max; ++n)
-	{
-		if (n == current - 1)
-			str << ">>> ";
-		str << code->At(n) << "\n";
-	}
+    StringStream str;
+    int around = 4;
+    auto current = *index;
+    auto min = std::max(0, current - around);
+    auto max = std::min(code->Size() - 1, current + around);
+    str << "IP=" << current << "\n";
+    for (int n = min; n < max; ++n)
+    {
+        if (n == current - 1)
+            str << ">>> ";
+        str << code->At(n) << "\n";
+    }
 
-	return str.ToString();
+    return str.ToString();
 }
 
 void Continuation::SetCode(Code C)
 {
-	code = C;
-	*entered = false;
+    code = C;
+    *entered = false;
 }
 
 void Continuation::Enter(Executor *exec)
 {
-	if (*entered)
-		return;
+    if (*entered)
+        return;
 
-	if (code.Exists() && !code->Empty())
-	{
-		if (!scope.Exists())
-			scope = exec->New<void>();
+    if (code.Exists() && !code->Empty())
+    {
+        if (!scope.Exists())
+            scope = exec->New<void>();
 
-		Stack &data = *exec->GetDataStack();
-		if (data.Size() < args->Size())
-		{
-			KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
-			KAI_THROW_0(EmptyStack);
-		}
+        Stack &data = *exec->GetDataStack();
+        if (data.Size() < args->Size())
+        {
+            KAI_TRACE_ERROR_2(data.Size(), args->Size()) << "Failed to enter continuation: not enough args";
+            KAI_THROW_0(EmptyStack);
+        }
 
-		for (auto arg : *args)
-		{
-			Object a = data.Pop();
-			scope.Set(ConstDeref<Label>(arg), a);
-		}
-	}
+        for (auto arg : *args)
+        {
+            Object a = data.Pop();
+            scope.Set(ConstDeref<Label>(arg), a);
+        }
+    }
 
-	*index = 0;
-	*entered = true;
+    *index = 0;
+    *entered = true;
 }
 
 bool Continuation::Next() const
 {
-	Object unused;
-	return Next(unused);
+    Object unused;
+    return Next(unused);
 }
 
 bool Continuation::Next(Object &next) const
-{ 
-	if (!code.Exists())
-		return false;
+{
+    if (!code.Exists())
+        return false;
 
-	if (!*entered)
-		KAI_THROW_1(LogicError, "Continuation not Entered");
+    if (!*entered)
+        KAI_THROW_1(LogicError, "Continuation not Entered");
 
-	int &n = Deref<int>(index);
-	if (n == code->Size())
-		return false;
+    int &n = Deref<int>(index);
+    if (n == code->Size())
+        return false;
 
-	next = code->At(n++);
+    next = code->At(n++);
 
-	return true;
+    return true;
 }
 
 const static int MaxDepth = 3;
@@ -102,76 +107,76 @@ const static int MaxLen = 80;
 
 StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t index, int depth)
 {
-	// too long
-	if (stream.Size() >= MaxLen)
-		return stream << "...}";
+    // too long
+    if (stream.Size() >= MaxLen)
+        return stream << "...}";
 
-	// finished
-	if (index == (int)code.Size())
-		return stream << "}";
+    // finished
+    if (index == (int)code.Size())
+        return stream << "}";
 
-	auto const &next = code.At(index);
+    auto const &next = code.At(index);
 
-	// print next thing
-	if (next.IsType<Continuation>())
-	{
-		// limit depth of coro pritning
-		if (depth == MaxDepth)
-			return stream << "{...}...";
+    // print next thing
+    if (next.IsType<Continuation>())
+    {
+        // limit depth of coro pritning
+        if (depth == MaxDepth)
+            return stream << "{...}...";
 
-		auto const &coro = ConstDeref<Continuation>(next);
-		return InsertContinuation(stream, *coro.GetCode(), 0, ++depth);
-	}
+        auto const &coro = ConstDeref<Continuation>(next);
+        return InsertContinuation(stream, *coro.GetCode(), 0, ++depth);
+    }
 
-	while (code.Size() > (int)index)
-	{
-		stream << code.At(index) << " ";
-		InsertContinuation(stream, code, ++index, depth);
-	}
+    while (code.Size() > (int)index)
+    {
+        stream << code.At(index) << " ";
+        InsertContinuation(stream, code, ++index, depth);
+    }
 
-	return stream;
+    return stream;
 }
 
 StringStream &operator<<(StringStream &S, const Continuation &C)
 {
-	//return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
-	S << "{ ";
-	for (auto ch : *C.GetCode())
-		S << ch << " ";
-	return S << "}";
+    //return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
+    S << "{ ";
+    for (auto ch : *C.GetCode())
+        S << ch << " ";
+    return S << "}";
 }
 
 StringStream &operator>>(StringStream &, Continuation &)
 {
-	KAI_NOT_IMPLEMENTED();
+    KAI_NOT_IMPLEMENTED();
 }
 
 BinaryStream &operator<<(BinaryStream &S, const Continuation &C)
 {
-	// TODO: instruction pointer and scope!
-	return S << C.GetCode();
+    // TODO: instruction pointer and scope!
+    return S << C.GetCode();
 }
 
 BinaryStream &operator>>(BinaryStream &S, Continuation &C)
 {
-	Object code;
-	// TODO: instruction pointer and scope!
-	S >> code;
-	C.SetCode(code);
-	return S;
+    Object code;
+    // TODO: instruction pointer and scope!
+    S >> code;
+    C.SetCode(code);
+    return S;
 }
 
 void Continuation::Register(Registry &R)
 {
-	ClassBuilder<Continuation>(R, "Continuation")
-		.Methods
-		.Properties
-		("code", &Continuation::code)
-		("args", &Continuation::args)
-		("scope", &Continuation::scope)
-		("source_code", &Continuation::source_code)
-		("entered", &Continuation::entered)
-		;
+    ClassBuilder<Continuation>(R, "Continuation")
+        .Methods
+        .Properties
+        ("code", &Continuation::code)
+        ("args", &Continuation::args)
+        ("scope", &Continuation::scope)
+        ("source_code", &Continuation::source_code)
+        ("entered", &Continuation::entered)
+        ;
 }
 
 KAI_END

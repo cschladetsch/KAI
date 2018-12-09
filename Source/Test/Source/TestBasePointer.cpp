@@ -8,5 +8,5 @@ struct BasePointerTest : TestCommon
 
 TEST_F(BasePointerTest, TestUpCast)
 {
-	ASSERT_TRUE(1);
+    ASSERT_TRUE(1);
 }

@@ -1,31 +1,25 @@
 # Installing
 
-## Build and Install Google Test
+This can be tricky, because KAI is cross-platform across maxOS, Linux and Windows. It also has 3rd party dependancies. Don't worry too much: if the 3rd party systems can't be found you will still get the [test suite](Source/App/Test) and [Console](Source/App/Console).
 
-GoogleTest no longer automattically installs static libraries.
+## Ubuntu
 
-So, here's one way to setup Gtest:
-
-```bash
-sudo apt-get install -y libgtest-dev
-pushd /tmp
-mkdir gtbuild; cd gtbuild
-cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/
-make
-sudo mv libg* /usr/lib/
-popd
-rm -rf /tmp/gtbuild
+```
+# ./build-linux
 ```
 
-## Build KAI
+## Windows
 
-```bash
-git clone git@github.com:cschladetsch/KAI.git
-git submodule init
-git submodule update
-sudo apt-get install -y libboost-all-dev
-mkdir build; cd build; cmake ..; make
-cd ../Bin; ls
+You will need `cmake` installed and `boost` installed with at least `chrono`, `system` and `filesystem` libraries. Then, from a Visual Studio 2017 command line, from the root of the KAI folder structure enter the following:
+
+```
+> .\build-vs2017.bat
+```
+
+To open in _Visual Studio 2017_ (after running the above build command):
+
+```
+> start build\NetworkGenerator.sln
 ```
 
 ## Folders

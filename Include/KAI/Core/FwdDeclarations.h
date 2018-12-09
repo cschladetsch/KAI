@@ -4,7 +4,7 @@
 
 KAI_BEGIN
 
-class StorageBase;
+struct StorageBase;
 template <class T> class Storage;
 
 class ClassBase;
@@ -15,7 +15,7 @@ class String;
 class StringStream;
 class BinaryStream;
 class BinaryPacket;
-class Registry;
+struct Registry;
 class Reflected;
 
 template <class T>

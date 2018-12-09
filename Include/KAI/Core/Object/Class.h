@@ -136,7 +136,7 @@ public:
 		Traits::ContainerOps::ForEachContained(CleanDeref<T>(object), AddContainedFun<T, ObjectList>(contained));
 	}
 
-	void SetReferencedObjectsColor(StorageBase &Q, ObjectColor::Color C, StorageBase::Containers &H) const
+	void SetReferencedObjectsColor(StorageBase &Q, ObjectColor::Color C, HandleSet &H) const
 	{
 		ClassBase::SetReferencedObjectsColor(Q, C, H);
 		Traits::ContainerOps::ForEachContained(CleanDeref<T>(Q), SetObjectColorRecursive<T>(C, H));

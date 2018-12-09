@@ -10,6 +10,7 @@
 
 #include <unordered_map>
 #include <set>
+#include <KAI/UnfuckWin32.h>
 
 KAI_BEGIN
 
@@ -23,7 +24,7 @@ Pointer<ClassBase const *> NewClass(Registry &R, const Label &name);
 ///
 /// Instances are life-time managed via Tri-Color Garbage Collection system.
 ///
-class Registry
+struct Registry
 {
 public:
 #ifdef KAI_BOOST_UNORDERED_REGISTRY
@@ -49,7 +50,7 @@ public:
 	Roots roots;
 
 private:
-	friend class StorageBase;
+	friend struct StorageBase;
 	ColoredSet white;	/// condemned set. may be referenced by objects in the white or grey sets
 	ColoredSet grey;	/// may or may not have refernces to objects in the white, black or grey sets
 	ColoredSet black;	/// has no references to objects in the white set

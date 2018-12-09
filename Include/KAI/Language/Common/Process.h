@@ -9,14 +9,15 @@ KAI_BEGIN
 /// but crucial to the overall system.
 struct Process
 {
-	static int trace;
+    virtual ~Process() = default;
+    static int trace;
 
-	mutable bool Failed = false;
-	mutable std::string Error;
+    mutable bool Failed = false;
+    mutable std::string Error;
 
 protected:
-	bool Fail(const char *fmt, ...) const;
-	bool Fail(const std::string &) const;
+    bool Fail(const char *fmt, ...) const;
+    bool Fail(const std::string &) const;
 };
 
 KAI_END

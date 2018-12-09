@@ -6,15 +6,15 @@ KAI_BEGIN
 
 StringStream &operator<<(StringStream &S, const Structure &T)
 {
-	return S << (int)T;
+    return S << (int)T;
 }
 
 StringStream &operator>>(StringStream &S, Structure &T)
 {
-	int num;
-	S >> num;
-	T = (Structure)num;
-	return S;
+    int num;
+    S >> num;
+    T = (Structure)num;
+    return S;
 }
 
 KAI_END

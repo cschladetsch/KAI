@@ -5,10 +5,10 @@ KAI_BEGIN
 
 Registry &Reflected::Reg() const
 {
-	if (!Self || !Self->Exists())
-		KAI_THROW_0(NullObject);
+    if (!Self || !Self->Exists())
+        KAI_THROW_0(NullObject);
 
-	return *Self->GetRegistry();
+    return *Self->GetRegistry();
 }
 
 KAI_END

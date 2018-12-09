@@ -1,9 +1,55 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+		{ 
+			"name": "(gdb) Attach",
+			"type": "cppdbg",
+			"request": "attach",
+			"program": "enter program name, for example ${workspaceFolder}/a.out",
+			"processId": "${command:pickProcess}",
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "Console",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Bin/Console",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"type": "extensionHost",
+			"request": "launch",
+			"name": "Launch Extension",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--extensionDevelopmentPath=${workspaceFolder}"
+			],
+			"outFiles": [
+				"${workspaceFolder}/out/**/*.js"
+			],
+			"preLaunchTask": "npm"
+		},
 		{
 			"name": "TestLangScripts",
-			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/Bin/Test/KaiTest",
 			"args": ["--gtest_filter=TestLangScripts.*", "--gtest_catch_exceptions", "1"],

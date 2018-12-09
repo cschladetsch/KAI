@@ -16,24 +16,24 @@ template <class Tr>
 class Lang : public Process
 {
 public:
-	typedef Tr Translator;
-	typedef typename Tr::Lexer Lexer;
-	typedef typename Tr::Parser Parser;
+    typedef Tr Translator;
+    typedef typename Tr::Lexer Lexer;
+    typedef typename Tr::Parser Parser;
 
 protected:
-	Registry &reg;
-	std::shared_ptr<Lexer> lex;
-	std::shared_ptr<Parser> parse;
-	std::shared_ptr<Translator> trans;
-	Pointer<Executor> exec;
+    Registry &reg;
+    std::shared_ptr<Lexer> lex;
+    std::shared_ptr<Parser> parse;
+    std::shared_ptr<Translator> trans;
+    Pointer<Executor> exec;
 
 public:
-	Lang(const Lang&) = delete;
-	Lang(Registry &r) : reg(r) { }
+    Lang(const Lang&) = delete;
+    Lang(Registry &r) : reg(r) { }
 
-	virtual Pointer<Executor> Exec(const char *text, Structure st = Structure::Expression) = 0;
-	virtual Pointer<Continuation> Translate(const char *text, Structure st = Structure::Expression) = 0;
-	virtual Pointer<Continuation> TranslateFile(const char *name, Structure st = Structure::Program) = 0;
+    virtual Pointer<Executor> Exec(const char *text, Structure st = Structure::Expression) = 0;
+    virtual Pointer<Continuation> Translate(const char *text, Structure st = Structure::Expression) = 0;
+    virtual Pointer<Continuation> TranslateFile(const char *name, Structure st = Structure::Program) = 0;
 };
 
 KAI_END

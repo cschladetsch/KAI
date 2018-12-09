@@ -9,23 +9,23 @@ KAI_BEGIN
 class PiLexer : public LexerCommon<PiTokenEnumType>
 {
 public:
-	typedef LexerCommon<PiTokenEnumType> Parent;
-	typedef Parent Lexer;
-	typedef TokenBase<PiTokenEnumType> TokenNode;
+    typedef LexerCommon<PiTokenEnumType> Parent;
+    typedef Parent Lexer;
+    typedef TokenBase<PiTokenEnumType> TokenNode;
 
-	PiLexer(const char *text, Registry &r) : Parent(text, r) { }
+    PiLexer(const char *text, Registry &r) : Parent(text, r) { }
 
-	void AddKeyWords() override;
-	bool NextToken() override ;
-	void Terminate() override ;
+    void AddKeyWords() override;
+    bool NextToken() override ;
+    void Terminate() override ;
 
 private:
-	bool PathnameOrKeyword();
+    bool PathnameOrKeyword();
 
 protected:
-	using Parent::_reg;
+    using Parent::_reg;
 
-	bool ParsePathname();
+    bool ParsePathname();
 };
 
 KAI_END
