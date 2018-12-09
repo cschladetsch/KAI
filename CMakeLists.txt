@@ -2,36 +2,17 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
-# setup boost
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
-set(BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE 1)
-add_compile_definitions(BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE)
-set(Boost_USE_MULTITHREADED OFF)
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_STATIC_RUNTIME ON)
-#set(Boost_DEBUG 1)
-set(BOOST_ROOT "c:/Boost/boost_1_66_0")
-# for some unknoiwn reason, the following fails, even after setting BOOST_ROOT before calling it. Giving up for now and just hard-coding boost paths :/
-# find_package(BOOST COMPONENTS program_options chrono filesystem system)
-set(Boost_LIBRARYDIR "c:/Boost/lib")
-set(Boost_INCLUDE_DIRS ${BOOST_ROOT})
-message(STATUS "Boost IncludeDir: ${Boost_INCLUDE_DIRS}")
-message(STATUS "Boost Libs: ${Boost_LIBRARYDIR}")
+option(KAI_BUILD_TESTS	"Build unit tests" OFF)
+option(KAI_BUILD_TESTS	"Build unit tests" OFF)
 
-if(!Boost_FOUND)
-    message(FATAL_ERROR "We really need boost")
-endif()
-
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories(${Boost_LIBRARYDIR})
+include(cotire)
+include(FindBoost)
+include(IncludeGtest)
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
-
-# see https://github.com/sakra/cotire
-include(cotire)
 
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
@@ -43,20 +24,14 @@ add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
 # add_definitions(-DKAI_TRACE_VERBOSE)
 # add_definitions(-DKAI_DEBUG_REGISTRY)
 
-set(HOME $ENV{HOME})
-set(KAI_HOME ${CMAKE_SOURCE_DIR})
-
-## for X11
-#link_directories(/usr/lib/x86_64-linux-gnu)
-
 if (MSVC)
     set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
 else()
     set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
-# this was a bit of a nightmare, so it's in a re-usable .cmake file for other projects
-include(CMake/IncludeGtest.cmake)
+set(HOME $ENV{HOME})
+set(KAI_HOME ${CMAKE_SOURCE_DIR})
 
 # set common paths for all other projects to use
 set(SOURCE_HOME ${KAI_HOME}/Source)
@@ -65,16 +40,26 @@ set(LIBRARY_HOME ${SOURCE_HOME}/Library)
 set(TEST_HOME ${SOURCE_HOME}/Test)
 set(BIN_HOME ${KAI_HOME}/Bin)
 set(INCLUDE_HOME ${KAI_HOME}/Include)
-
-include_directories(${INCLUDE_HOME})
+set(EXTERNAL ${KAI_HOME}/Ext)
 
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
+include_directories(${INCLUDE_HOME})
+
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
+
+# Add RakNet
+set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
+set(RAKNET_ROOT ${EXTERNAL}/RakNet)
+add_subdirectory(${RAKNET_ROOT})
+include_directories(${RAKNET_ROOT}/include)
+
+# Add rang
+include_directories(${EXTERNAL}/rang/include)
 
 # make a new library
 macro(def_library name)
@@ -113,7 +98,12 @@ macro(def_platform_library name)
 endmacro()
 
 # make all top-level components
-set(TopLevels Library Test App)
+set(TopLevels Library App)
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
+
+if (KAI_BUILD_TESTS)
+	include(${SOURCE_HOME}/Test/CMakeLists.txt)
+endif()
+

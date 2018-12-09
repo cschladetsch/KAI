@@ -54,7 +54,7 @@ void Peer::Step()
 	{
 		PacketType type = GetPacketIdentifier(p);
 
-		cout << "Type: " << type << endl;
+		cout << "Type: " << (int)type << endl;
 
 		switch (type)
 		{

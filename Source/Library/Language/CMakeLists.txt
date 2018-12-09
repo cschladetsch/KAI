@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(Languages)
 set(lang_root_dir ${KAI_SOURCE_ROOT_DIR}/Library/Language)
-set(langs Common Hlsl Pi Rho Tau)
+set(langs Common Pi Rho Tau)#Hlsl 
 foreach(l ${langs})
     def_lang_library(${l})
 endforeach()

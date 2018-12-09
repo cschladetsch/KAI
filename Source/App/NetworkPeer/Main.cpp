@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "./Peer.h"
-#include "raknet/Kbhit.h"
+#include "RakNet/Kbhit.h"
 
 using namespace std;
 using namespace RakNet;
