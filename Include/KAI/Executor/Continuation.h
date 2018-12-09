@@ -66,6 +66,7 @@ public:
 	int InitialStackDepth;
 
 	void Enter(Executor *exec);
+    void Reset();
 
 	// get next object in the continuation
 	bool Next() const;

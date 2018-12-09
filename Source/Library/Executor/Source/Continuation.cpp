@@ -102,6 +102,11 @@ bool Continuation::Next(Object &next) const
     return true;
 }
 
+void Continuation::Reset()
+{
+    *index = 0;
+}
+
 const static int MaxDepth = 3;
 const static int MaxLen = 80;
 

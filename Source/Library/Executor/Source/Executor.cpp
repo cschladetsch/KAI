@@ -119,6 +119,9 @@ void Executor::Continue()
             if (_traceLevel > 0)
                 KAI_TRACE_1(_data);
 
+            // get ready for next time
+            _continuation->Reset();
+           
             NextContinuation();
             if (!_continuation.Exists())
                 return;
