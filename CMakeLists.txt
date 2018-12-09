@@ -2,18 +2,11 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
-option(KAI_BUILD_TESTS	"Build unit tests" OFF)
-option(KAI_INIT_GTEST	"Initialise Gtest" OFF)
-
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 include(cotire)
 include(FindBoost)
-
-# do this sparingly as it pulls over network. need to fix this.
-if (KAI_INIT_GTEST)
-	include(IncludeGtest)
-endif()
+include(IncludeGtest)
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -102,12 +95,8 @@ macro(def_platform_library name)
 endmacro()
 
 # make all top-level components
-set(TopLevels Library App)
+set(TopLevels Library App Test)
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
-
-if (KAI_BUILD_TESTS)
-	include(${SOURCE_HOME}/Test/CMakeLists.txt)
-endif()
 
