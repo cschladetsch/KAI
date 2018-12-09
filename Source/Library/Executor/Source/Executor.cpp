@@ -657,6 +657,7 @@ void WriteHumanReadableString(std::ostream &out, const Object& obj)
                 out << '\'';
             out << rang::fg::cyan << str;
         }
+        break;
     default:
         out << str;
         break;
