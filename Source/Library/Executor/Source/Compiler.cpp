@@ -35,11 +35,19 @@ Pointer<Continuation> Compiler::Translate(const String &text, Structure st) cons
         return Object();
 
     case Language::Pi:
-        // Pi wraps output (A continuation) in a continuation. So the output has to be
-        // dereferenced once.
-        //
-        // TODO: not have to do this.
-        return Compile<PiTranslator>(text, st)->GetCode()->At(0);    
+        {
+            // Pi wraps output (A continuation) in a continuation. So the output has to be
+            // dereferenced once.
+            //
+            // TODO: not have to do this.
+            auto top = Compile<PiTranslator>(text, st);
+            if (!top.Exists())
+                return Object();
+            auto inner = top->GetCode();
+            if (!inner.Exists())
+                return Object();
+            return inner->At(0);
+        }
 
     case Language::Rho:
         return Compile<RhoTranslator>(text, st);

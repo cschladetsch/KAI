@@ -1,8 +1,6 @@
 # Build all tests for the KAI framework
 
 cmake_minimum_required(VERSION 3.6)
-add_definitions(-DKAI_TRACE_FILE_LOCATION)
-add_definitions(-DKAI_TRACE_VERBOSE)
 
 set(name KaiTest)
 project(${name})

@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
+option(KAI_BUILD_RAKNET	"Build RakNet" OFF)
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 include(cotire)
@@ -13,12 +15,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
-add_definitions(-DKAI_DEBUG)
+#add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
-# add_definitions(-DKAI_TRACE_FILE_LOCATION)
-# add_definitions(-DKAI_TRACE_VERBOSE)
+#add_definitions(-DKAI_TRACE_FILE_LOCATION)
+#add_definitions(-DKAI_TRACE_VERBOSE)
 # add_definitions(-DKAI_DEBUG_REGISTRY)
 
 if (MSVC)
@@ -52,7 +54,9 @@ link_directories(${KAI_HOME}/Lib/Debug)
 # Add RakNet
 set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-add_subdirectory(${RAKNET_ROOT})
+if(KAI_BUILD_RAKNET)
+	add_subdirectory(${RAKNET_ROOT})
+endif()
 include_directories(${RAKNET_ROOT}/include)
 
 # Add rang

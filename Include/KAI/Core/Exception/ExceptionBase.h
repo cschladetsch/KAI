@@ -9,14 +9,16 @@ KAI_BEGIN
 
 namespace Exception
 {
-	struct Base
+	struct Base : std::exception
 	{
 		FileLocation location;
 		std::string text;
 
 		Base() { }
+		Base(const char * const msg) : std::exception(msg), text(msg) { }
 		Base(const FileLocation &L, const char *T = "Exception")
-			: location(L), text(T) { }
+			: std::exception(T), location(L), text(T) { }
+
 		std::string ToString() const;
 		virtual void WriteExtendedInformation(StringStream &) const { }
 	};

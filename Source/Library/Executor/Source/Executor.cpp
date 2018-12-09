@@ -14,10 +14,7 @@ using namespace std;
 
 KAI_BEGIN
 
-StringStream &operator<<(StringStream &stream, const Object &object);
-StringStream &operator>>(StringStream &stream, Object &object);
-
-const ClassBase *GetClass(Object const &Q);
+//const ClassBase *GetClass(Object const &Q);
 
 void Executor::Create()
 {
@@ -108,9 +105,10 @@ void Executor::Continue()
             }
             catch (Exception::Base &E)
             {
-                KAI_TRACE_1(E) << "\n" << _continuation->Show();
-                _data->Push(New<String>(E.ToString()));
-                throw;
+                KAI_TRACE_1(E);
+                //KAI_TRACE_1(E) << "\n" << _continuation->Show();
+                //_data->Push(New<String>(E.ToString()));
+                //throw;
             }
         }
         else
@@ -130,6 +128,9 @@ void Executor::Continue()
 
 void Executor::Continue(Value<Continuation> C)
 {
+    if (!C.Exists())
+        return;
+
     SetContinuation(C);
     Continue();
 }
@@ -603,13 +604,73 @@ std::string Executor::PrintStack() const
     return str.ToString().c_str();
 }
 
+struct WrappedColor
+{
+    
+};
+
+std::ostream &operator<<(std::ostream &out, const String &str)
+{
+    return out << str.c_str();
+}
+
+bool IsNumber(const Object &obj)
+{
+    switch (obj.GetTypeNumber().ToInt())
+    {
+    case Type::Number::Signed32:
+    case Type::Number::Single:
+        return true;
+    }
+
+    return false;
+}
+
+void WriteHumanReadableString(std::ostream &out, const Object& obj)
+{
+    if (IsNumber(obj))
+    {
+        out << rang::style::bold << rang::fg::blue << obj.ToString();
+        return;
+    }
+
+    const auto dim = rang::style::dim;
+    const auto bold = rang::style::bold;
+
+    const auto str = obj.ToString();
+    switch (obj.GetTypeNumber().ToInt())
+    {
+    case Type::Number::Bool:
+        out << rang::fg::cyan << str;
+        break;
+    case Type::Number::String:
+        out << dim << '"' << bold << str << dim << '"';
+        break;
+    case Type::Number::Label:
+        // these things are fucking deprecated after 12 years
+        KAI_NOT_IMPLEMENTED();
+        break;
+    case Type::Number::Pathname:
+        {
+            const auto& label = ConstDeref<Pathname>(obj);
+            if (label.Quoted())
+                out << '\'';
+            out << rang::fg::cyan << str;
+        }
+    default:
+        out << str;
+        break;
+    }
+}
+
 void Executor::PrintStack(std::ostream& out) const
 {
     int n = 0;
-    for (const auto &A : _data->GetStack())
+    for (const auto &obj : _data->GetStack())
     {
         out << rang::style::dim << rang::fg::gray << "[" << rang::style::bold << n++ << rang::style::dim << "]: ";
-        out << rang::style::bold << rang::fg::yellow << A.ToString().c_str();
+        out << rang::style::bold << rang::fg::yellow;
+        WriteHumanReadableString(out, obj);
         out << std::endl;
     }
 }

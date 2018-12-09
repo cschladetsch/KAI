@@ -50,6 +50,7 @@ void PiLexer::AddKeyWords()
     keyWords["mul"] = Enum::Mul;
     
     keyWords["expand"] = Enum::Expand;
+    keyWords["noteq"] = Enum::NotEquiv;
 }
 
 bool PiLexer::NextToken()

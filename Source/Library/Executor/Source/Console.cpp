@@ -133,27 +133,15 @@ void Console::Execute(Pointer<Continuation> cont)
     }
     KAI_CATCH(Exception::Base, E)
     {
-#ifdef KAI_DEBUG_TRACE
         KAI_TRACE_ERROR_1(E);
-#else
-        cerr << Color::Error << "Error: " << E.ToString() << endl;
-#endif
     }
     KAI_CATCH(exception, E)
     {
-#ifdef KAI_DEBUG_TRACE
         KAI_TRACE_ERROR_2("StdException: ", E.what());
-#else
-        cerr << Color::Error << "StdError: " << E.what() << endl;
-#endif
     }
     KAI_CATCH_ALL()
     {
-#ifdef KAI_DEBUG_TRACE
         KAI_TRACE_ERROR_1("UnknownException");
-#else
-        cerr << Color::Error << "UnknownException" << endl;
-#endif
     }
 }
 
