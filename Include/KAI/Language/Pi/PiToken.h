@@ -78,6 +78,7 @@ struct PiTokenEnumType
         OverM,
         PickN,
         Depth,
+        New,
         Swap,
         Rot,
         RotN,

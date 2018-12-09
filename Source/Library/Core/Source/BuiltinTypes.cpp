@@ -1,6 +1,3 @@
-#include <algorithm>
-#include <boost/algorithm/string/find.hpp>
-#include <boost/algorithm/string/erase.hpp>
 #include <boost/lexical_cast.hpp>
 
 #include "KAI/Core/BuiltinTypes.h"

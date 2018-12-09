@@ -197,6 +197,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
         AppendOp(Operation::LogicalAnd);
         break;
 
+    case PiTokenEnumType::New:
+        AppendOp(Operation::New);
+        break;
+
     case PiTokenEnumType::Or:
         AppendOp(Operation::LogicalOr);
         break;

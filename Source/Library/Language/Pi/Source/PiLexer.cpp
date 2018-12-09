@@ -40,6 +40,7 @@ void PiLexer::AddKeyWords()
     keyWords["type"] = Enum::GetType;
     keyWords["size"] = Enum::Size;
     keyWords["depth"] = Enum::Depth;
+    keyWords["new"] = Enum::New;
 
     keyWords["toarray"] = Enum::ToArray;
     keyWords["tolist"] = Enum::ToList;
@@ -120,12 +121,11 @@ bool PiLexer::NextToken()
         if (Peek() == '/')
         {
             Next();
-            int start = offset;
+            const int start = offset;
             while (Next() != '\n')
                 ;
-            
-            Token comment(Enum::Comment, *this, lineNumber, Slice(start, offset));
-            Add(comment);
+
+            Add(Token(Enum::Comment, *this, lineNumber, Slice(start, offset)));
             Next();
             return true;
         }
