@@ -17,7 +17,6 @@ void Loop(Peer &peer)
 			char buffer[1024];
 			cin.getline(buffer, sizeof(buffer));
 			peer.SendText(buffer);
-			continue;
 		}
 	}
 }
@@ -30,9 +29,9 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	const char *remoteUrl = argv[1];
-	int remotePort = atoi(argv[2]);
-	int localPort = atoi(argv[3]);
+	const char *remote_url = argv[1];
+	const int remotePort = atoi(argv[2]);
+	const int localPort = atoi(argv[3]);
 
 	Peer peer(localPort);
 	cout << "Listening on " << localPort << endl;
@@ -43,7 +42,7 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	peer.Connect(remoteUrl, remotePort);
+	peer.Connect(remote_url, remotePort);
 
 	Loop(peer);
 }

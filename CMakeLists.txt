@@ -2,10 +2,9 @@ cmake_minimum_required(VERSION 3.6)
 
 project(KAI)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
+option(KAI_BUILD_TESTS	"Build unit tests" OFF)
 
-option(KAI_BUILD_TESTS	"Build unit tests" OFF)
-option(KAI_BUILD_TESTS	"Build unit tests" OFF)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 include(cotire)
 include(FindBoost)
