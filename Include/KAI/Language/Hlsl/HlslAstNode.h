@@ -41,6 +41,7 @@ struct HlslAstNodeEnumType
         Continuation = 29,
         Pathname = 30,
         Home = 31,
+        Declaration,
     };
 
     struct Node : AstNodeBase<HlslToken, HlslAstNodeEnumType>

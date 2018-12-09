@@ -9,8 +9,13 @@ TEST(TestHlsl, Test)
 {
     Console console;
     Registry &reg = console.GetRegistry();
-    const char *text =( "float res = exp2(pw*a) + exp2(pw*b);");
-    HlslLexer lex(text, reg);
-    lex.Process();
-    TEST_COUT << lex.Print();
+    const char *text =( "float res = foo(pw*a) + bar(pw*b);");
+    auto lex = make_shared<HlslLexer>(text, reg);
+    lex->Process();
+    TEST_COUT << text << endl;
+    TEST_COUT << lex->Print() << endl;
+
+    HlslParser parse(reg);
+    parse.Process(lex, Structure::Statement);
+    TEST_COUT << parse.PrintTree() << endl;
 }

@@ -220,6 +220,16 @@ protected:
         return tokens[current++];
     }
 
+    bool Try(std::vector<TokenEnum> const & types)
+    {
+        for (auto ty : types)
+        {
+            if (Current().type == ty)
+                return true;
+        }
+        return false;
+    }
+
     bool Try(TokenEnum type)
     {
         return Current().type == type;
@@ -231,8 +241,7 @@ protected:
         if (tok.type != type)
         {
             Fail(Lexer::CreateErrorMessage(tok, "Expected %s, have %s", TokenEnumType::ToString(type), TokenEnumType::ToString(tok.type)));
-            //KAI_THROW_1(LogicError, "Unexpected token");
-            return 0;
+            return nullptr;
         }
 
         Next();

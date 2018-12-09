@@ -1,7 +1,11 @@
 #include <KAI/Language/Common/ParserCommon.h>
 #include <KAI/Language/Hlsl/HlslParser.h>
+#include <iostream>
+#include <vector>
 
 KAI_BEGIN
+
+using namespace std;
 
 bool HlslParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
@@ -17,6 +21,7 @@ bool HlslParser::Process(std::shared_ptr<Lexer> lex, Structure st)
         if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
         {
             tokens.push_back(tok);
+            std::cout << tok.ToString() << ' ';
         }
     }
 
@@ -206,6 +211,9 @@ bool HlslParser::Statement(AstNodePtr block)
     if (Try(TokenType::None))
         return true;
 
+    if (Declaration(block))
+        return true;
+
     if (!Expression())
         return false;
 
@@ -247,7 +255,7 @@ bool HlslParser::Expression()
     if (Try(TokenType::Assign) || Try(TokenType::PlusAssign) || Try(TokenType::MinusAssign) || Try(TokenType::MulAssign) || Try(TokenType::DivAssign))
     {
         auto node = NewNode(Consume());
-        auto ident = Pop();
+        const auto ident = Pop();
         if (!Logical())
         {
             Fail(Lexer::CreateErrorMessage(Current(), "Assignment requires an expression"));
@@ -260,6 +268,80 @@ bool HlslParser::Expression()
     }
 
     return true;
+}
+
+// https://docs.microsoft.com/en-us/windows/desktop/direct3dhlsl/dx-graphics-hlsl-variables
+//  [Storage_Class] [Type_Modifier] Type Name[Index] [: Semantic] [: Packoffset] [: Register]; [Annotations] [= Initial_Value]
+bool HlslParser::Declaration(AstNodePtr block)
+{
+    static vector<TokenType::Enum> storageClass = {
+        TokenType::Extern, TokenType::Nointerpolation, TokenType::Precise, TokenType::Shared, TokenType::GroupShared,
+        TokenType::Static, TokenType::Uniform, TokenType::Volatile
+    };
+    static vector<TokenType::Enum> typeMod = {
+        TokenType::Const, TokenType::RowMajor, TokenType::ColumnMajor
+    };
+    static vector<TokenType::Enum> scalarType = {
+        TokenType::Bool, TokenType::Int,TokenType:: Uint, TokenType::Dword, TokenType::Half,TokenType::Float, TokenType::Double, 
+        TokenType::Min16Float, TokenType::Min10Float,TokenType::Min16Int, TokenType::Min12Int, TokenType::Min16Uint
+    };
+    static TokenType::Enum nonScalarType[] = { TokenType::Vector, TokenType::Matrix };
+
+    auto current = Current();
+    cout << current.ToString() << endl;
+    std::vector<TokenNode> decl;
+    if (Try(storageClass))
+        decl.push_back(Consume());
+    if (Try(typeMod))
+        decl.push_back(Consume());
+    if (Try(scalarType))
+        decl.push_back(Consume());
+    if (decl.empty())
+        return false;
+
+    const auto id = Expect(TokenType::Ident);
+    auto node = NewNode(AstEnum::Declaration);
+    for (auto d : decl)
+        node->Add(d);
+    node->Add(id);
+
+    if (Try(TokenType::Assign))
+    {
+        Next();
+        if (!Initialiser())
+        {
+            Fail(Lexer::CreateErrorMessage(Current(), "Declaration requires an expression"));
+            return false;
+        }
+        node->Add(Pop());
+    }
+    block->Add(node);
+
+    Expect(TokenType::Semi);
+    
+    return true;
+}
+
+bool HlslParser::Initialiser()
+{
+    if (Try(TokenType::OpenBrace))
+    {
+        if (!ExpressionList())
+            return false;
+        Expect(TokenType::CloseBrace);
+    }
+
+    return Expression();
+}
+
+bool HlslParser::ExpressionList()
+{
+    while (Expression())
+    {
+        if (!Try(TokenType::Comma))
+            return true;
+    }
+    return false;
 }
 
 bool HlslParser::Logical()

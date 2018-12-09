@@ -31,6 +31,9 @@ private:
     bool Run(Structure st);
     bool Program();
     bool Statement(AstNodePtr);
+    bool Declaration(AstNodePtr);
+    bool Initialiser();
+    bool ExpressionList();
     bool Expression();
     bool Logical();
     bool Relational();

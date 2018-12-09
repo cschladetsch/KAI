@@ -175,23 +175,29 @@ void HlslLexer::AddKeyWords()
     keyWords["#line"] = Enum::PP_Line;
     keyWords["#pragma"] = Enum::PP_Pragma;
     keyWords["#undef"] = Enum::PP_Undef;
+
+    keyWords["float2x2"] = Enum::Float2x2;
+    keyWords["float3x3"] = Enum::Float3x3;
+    keyWords["float4x4"] = Enum::Float4x4;
+    keyWords["double2x2"] = Enum::Double2x2;
+    keyWords["double3x3"] = Enum::Double3x3;
+    keyWords["double4x4"] = Enum::Double4x4;
 }
 
 bool HlslLexer::NextToken()
 {
-    char current = Current();
+    const char current = Current();
     if (current == 0)
         return false;
 
     if (isalpha(current))
-        return LexPathname();
+        return LexIdent();
 
     if (isdigit(current))
         return Add(Enum::Int, Gather(isdigit));
 
     switch (current)
     {
-    case '\'': return LexPathname();
     case ';': return Add(Enum::Semi);
     case '{': return Add(Enum::OpenBrace);
     case '}': return Add(Enum::CloseBrace);
@@ -263,60 +269,46 @@ bool HlslLexer::NextToken()
 
 bool Contains(const char *allowed, char current);
 
-// TODO: this is the same as PiLexer::PathnameOrKeyword(!)
-bool HlslLexer::LexPathname()
+bool HlslLexer::LexIdent()
 {
-    int start = offset;
-    bool quoted = Current() == '\'';
-    if (quoted)
-        Next();
+    return Add(LexAlpha());
+    //const int start = offset;
+    //
+    //bool prev_ident = false;
+    //do
+    //{
+    //    const Token result = LexAlpha();
 
-    bool rooted = Current() == '/';
-    if (rooted)
-        Next();
+    //    if (result.type != TokenEnumType::Ident)
+    //    {
+    //        // keywords cannot be part of a path
+    //        if (prev_ident)
+    //        {
+    //            return false;
+    //        }
 
-    bool prevIdent = false;
-    do
-    {
-        Token result = LexAlpha();
+    //        Add(result);
+    //        return true;
+    //    }
 
-        if (result.type != TokenEnumType::Ident)
-        {
-            // this is actually a keyword
-            if (quoted || rooted)
-            {
-                return false;
-            }
+    //    prev_ident = true;
 
-            // keywords cannot be part of a path
-            if (prevIdent)
-            {
-                return false;
-            }
+    //    auto isSeparator = Contains(".", Current());
+    //    if (isSeparator)
+    //    {
+    //        Next();
+    //        continue;
+    //    }
 
-            Add(result);
-            return true;
-        }
+    //    if (isspace(Current()))
+    //    {
+    //        break;
+    //    }
+    //}
+    //while (true);
 
-        prevIdent = true;
-
-        const auto isSeparator = Contains(Pathname::Literals::AllButQuote, Current());
-        if (isSeparator)
-        {
-            Next();
-            continue;
-        }
-
-        if (!isalpha(Current()))
-        {
-            break;
-        }
-    }
-    while (true);
-
-    //Add(Enum::Pathname, Slice(start, offset));
-
-    return true;
+    //Add(Enum::Ident, Slice(start, offset));
+    //return true;
 }
 
 void HlslLexer::Terminate()

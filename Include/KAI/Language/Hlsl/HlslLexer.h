@@ -17,7 +17,7 @@ struct HlslLexer : LexerCommon<HlslTokenEnumType>
     void Terminate() override;
 
 protected:
-    bool LexPathname();
+    bool LexIdent();
     using Parent::_reg;
 };
 

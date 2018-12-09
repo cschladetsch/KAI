@@ -187,6 +187,14 @@ struct HlslTokenEnumType
         PP_Line,
         PP_Pragma,
         PP_Undef,
+
+        Float2x2,
+        Float3x3,
+        Float4x4,
+        Double2x2,
+        Double3x3,
+        Double4x4,
+
     };
 
     struct Type : TokenBase<HlslTokenEnumType>
