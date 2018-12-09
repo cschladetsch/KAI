@@ -104,7 +104,8 @@ void HlslParser::Function(AstNodePtr node)
 
     if (Try(TokenType::Colon))
     {
-        
+        Fail("Not implemented");
+        KAI_NOT_IMPLEMENTED();
     }
 
     Expect(TokenType::CloseParan);
