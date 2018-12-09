@@ -3,12 +3,17 @@ cmake_minimum_required(VERSION 3.6)
 project(KAI)
 
 option(KAI_BUILD_TESTS	"Build unit tests" OFF)
+option(KAI_INIT_GTEST	"Initialise Gtest" OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 include(cotire)
 include(FindBoost)
-include(IncludeGtest)
+
+# do this sparingly as it pulls over network. need to fix this.
+if (KAI_INIT_GTEST)
+	include(IncludeGtest)
+endif()
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

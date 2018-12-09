@@ -54,7 +54,7 @@ void Peer::Step()
 	{
 		PacketType type = GetPacketIdentifier(p);
 
-		cout << "Type: " << (int)type << endl;
+		//cout << "Type: " << (int)type << endl;
 
 		switch (type)
 		{
@@ -85,9 +85,9 @@ void Peer::Step()
 				cout << "Got request for remote listen port from " << AddressFromPacket(p);
 				break;
 
-			default:
-				// just assume it's message data
-				cout << p->data << endl;
+			//default:
+			//	// just assume it's message data
+			//	cout << p->data << endl;
 		}
 	}
 }
@@ -128,7 +128,6 @@ void Peer::CompleteConnnection(RakNet::Packet *p)
 
 int Peer::SendText(const char *text)
 {
-	// WTF why +1 on strlen
 	int messageId = _peer->Send(text, strlen(text) + 1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 	if (messageId == 0)
 	{
@@ -152,19 +151,17 @@ const char *Peer::AddressFromPacket(RakNet::Packet *p)
 
 unsigned char Peer::GetPacketIdentifier(RakNet::Packet *p)
 {
-	if (p == 0)
+	if (p == nullptr)
 		return 255;
 
 	// skip over timestamp to payload
 	// TODO: not ignore timestamp?
-	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+	if (static_cast<unsigned char>(p->data[0]) == ID_TIMESTAMP)
 	{
-		// const RakNet::Time & = *reinterpret_cast<RakNet::Time *>(p->data);
-
-		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)];
+		return static_cast<unsigned char>(p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)]);
 	}
 	else
-		return (unsigned char) p->data[0];
+		return static_cast<unsigned char>(p->data[0]);
 }
 
 //EOF
