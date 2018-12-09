@@ -21,5 +21,11 @@ KAI_TYPE_TRAITS(int, Number::Signed32
 	| Properties::Boolean
 	);
 
+//KAI_TYPE_TRAITS(String, Number::String
+//	, Properties::Arithmetic 
+//	| Properties::Streaming 
+//	| Properties::Assign
+//	| Properties::Relational
+//	);
 KAI_END
 

@@ -25,18 +25,9 @@ StringStream &operator>>(StringStream &S, String &T)
     return S;
 }
 
-bool operator<(const String &A, const String &B)
-{
-    return A._string < B._string;
-}
-
 bool operator>(const String &A, const String &B)
 {
     return A._string > B._string;
-}
-bool operator==(const String &A, const String &B)
-{
-    return A._string == B._string;
 }
 
 KAI_END

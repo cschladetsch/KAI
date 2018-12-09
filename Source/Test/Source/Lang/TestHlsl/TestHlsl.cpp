@@ -9,7 +9,7 @@ TEST(TestHlsl, Test)
 {
     Console console;
     Registry &reg = console.GetRegistry();
-    const char *text =( "float res = foo(pw*a) + bar(pw*b);");
+    const char *text =( "float res = foo(pw*a) + bar(pw*123);");
     auto lex = make_shared<HlslLexer>(text, reg);
     lex->Process();
     TEST_COUT << text << endl;

@@ -36,7 +36,7 @@ public:
         String ty = EEnumType::ToString(type);
         String text = Text();
         out << ty.c_str();
-        if (ty != text && !text.empty() && !isspace(text[0]) && text.tolower() != ty.tolower())
+        if (ty != text && !text.empty())// && !isspace(text[0]) && text.tolower() != ty.tolower())
         {
             out << " '" << text.c_str() << "'";
         }

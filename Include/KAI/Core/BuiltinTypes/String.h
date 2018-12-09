@@ -29,6 +29,14 @@ public:
 //	String(String &&X) { _string = std::move(X._string); }
 	explicit String(int N, Char C) : _string(N, C) { }
 
+	friend bool operator==(String const &A, String const &B) { return A._string == B._string; }
+
+	friend bool operator!=(String const &A, String const &B) { return A._string != B._string; }
+
+	friend bool operator<(String const &A, String const &B) { return A._string < B._string; }
+
+	friend bool operator<=(String const &A, String const &B) { return A._string <= B._string; }
+
 	friend String &operator+=(String &A, Char B)
 	{
 		A._string += B;
@@ -52,10 +60,11 @@ public:
 		return String(A._string + B._string);
 	}
 
-	operator bool() const
-	{
-		return !empty();
-	}
+	// Why was this ever a good idea?!
+	//operator bool() const
+	//{
+	//	return !empty();
+	//}
 
 	const_iterator begin() const { return _string.begin(); }
 	const_iterator end() const { return _string.end(); }
@@ -170,3 +179,4 @@ namespace boost
 	}
 	#undef get16bits
 }
+
