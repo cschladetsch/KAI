@@ -102,6 +102,11 @@ void HlslParser::Function(AstNodePtr node)
         }
     }
 
+    if (Try(TokenType::Colon))
+    {
+        
+    }
+
     Expect(TokenType::CloseParan);
     Expect(TokenType::NewLine);
     
