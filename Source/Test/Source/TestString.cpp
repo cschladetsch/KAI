@@ -13,14 +13,6 @@ protected:
     }
 };
 
-TEST_F(TestString, TestBoolean)
-{
-    Pointer<String> s0 = Reg().New<String>("foo");
-    ASSERT_TRUE(s0.GetClass()->Boolean(s0.GetStorageBase()));
-    *s0 = "";
-    ASSERT_FALSE(s0.GetClass()->Boolean(s0.GetStorageBase()));
-}
-
 TEST_F(TestString, TestCompare)
 {
     Pointer<String> s0 = Reg().New<String>("a");
