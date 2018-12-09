@@ -113,7 +113,7 @@ struct PiTokenEnumType
         SetName,
         SetChild,
         GetChild,
-        GetChildren,
+        Contents,
         GetMethods,
         GetProperties,
         GetType,

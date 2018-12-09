@@ -248,7 +248,6 @@ void Executor::Expand()
     }
 }
 
-
 void Executor::GetChildren()
 {
     Value<Array> children = New<Array>();
@@ -1269,6 +1268,11 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::Exists:
         Push(New(TryResolve(Pop()).Exists()));
+        break;
+
+    case Operation::Contents:
+        Push(_context->Top());
+        GetChildren();
         break;
 
     case Operation::GetChildren:

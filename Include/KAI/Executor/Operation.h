@@ -33,6 +33,7 @@ struct Operation
 		ChangeScope,
 
 		GetChildren,
+		Contents,
 		Break,
 		Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
 		ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, Expand,

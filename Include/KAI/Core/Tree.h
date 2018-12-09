@@ -32,6 +32,8 @@ public:
 
 	void SetScope(const Object &);
 	void SetScope(const Pathname &);
+
+    void GetChildren() const;
 };
 
 KAI_END

@@ -248,8 +248,12 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
         AppendOp(Operation::Thaw);
         return;
 
-    case PiTokenEnumType::GetChildren:
-        AppendOp(Operation::GetChildren);
+    case PiTokenEnumType::Self:
+        AppendOp(Operation::This);
+        return;
+
+    case PiTokenEnumType::Contents:
+        AppendOp(Operation::Contents);
         return;
 
     default:
