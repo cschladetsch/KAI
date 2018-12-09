@@ -151,6 +151,10 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
         AppendOp(Operation::Rot);
         break;
 
+    case PiTokenEnumType::Over:
+        AppendOp(Operation::Over);
+        break;
+
     case PiTokenEnumType::PickN:
         AppendOp(Operation::Pick);
         break;
@@ -254,6 +258,14 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
 
     case PiTokenEnumType::Contents:
         AppendOp(Operation::Contents);
+        return;
+
+    case PiTokenEnumType::GetContents:
+        AppendOp(Operation::GetChildren);
+        return;
+
+    case PiTokenEnumType::DropN:
+        AppendOp(Operation::DropN);
         return;
 
     default:

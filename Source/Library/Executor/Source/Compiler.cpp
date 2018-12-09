@@ -8,8 +8,6 @@ using namespace std;
 
 KAI_BEGIN
 
-#include "CompilerTokens.inl"
-
 bool Compiler::Destroy()
 {
     // these are un-managed while the compiler is alive, to avoid them being part

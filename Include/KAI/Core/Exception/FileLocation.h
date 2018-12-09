@@ -13,7 +13,7 @@ struct FileLocation
 
 	FileLocation() : line(0) { }
 	FileLocation(const char *F, int L, const char *G = "") : file(F), line(L), function(G) { }
-	FileLocation(const char *G) : function(G) { }
+	FileLocation(const char *G) : function(G), line(0) { }
 	String ToString(bool strip_path = true) const;
 };
 

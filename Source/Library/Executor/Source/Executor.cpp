@@ -250,37 +250,35 @@ void Executor::Expand()
 
 void Executor::GetChildren()
 {
-    Value<Array> children = New<Array>();
-    const StorageBase &Q = GetStorageBase(Pop());
-    const Dictionary &D = Q.GetDictionary();
-    Dictionary::const_iterator A = D.begin(), B = D.end();
-    for (; A != B; ++A)
-        children->Append(New(A->first.ToString()));
+    const auto& scope = GetStorageBase(Pop());
+    auto children = New<Array>();
+    for (const auto child : scope.GetDictionary())
+        children->Append(New(child.first.ToString()));
 
     Push(children);
 }
 
 void Executor::ToArray()
 {
-    int len = ConstDeref<int>(Pop());
+    auto len = ConstDeref<int>(Pop());
     if (len < 0)
         KAI_THROW_1(BadIndex, len);
 
-    Value<Array> A = New<Array>();
-    A->Resize(len);
+    auto array = New<Array>();
+    array->Resize(len);
     while (len--)
-        A->RefAt(len) = Pop();
+        array->RefAt(len) = Pop();
 
-    Push(A);
+    Push(array);
 }
 
 void Executor::DropN()
 {
-    int N = Deref<int>(Pop());
-    if (N < 0)
-        KAI_THROW_1(BadIndex, N);
+    auto count = Deref<int>(Pop());
+    if (count < 0)
+        KAI_THROW_1(BadIndex, count);
 
-    while (N-- > 0)
+    while (count-- > 0)
         Pop();
 }
 
@@ -314,19 +312,18 @@ void Executor::ContinueOnly(Value<Continuation> C)
 }
 
 template <class D>
-Value<Array> Executor::ForEach(D const &C, Object const &F)
+Value<Array> Executor::ForEach(D const &cont, Object const &fun)
 {
-    Value<Array> R = New<Array>();
-    typename D::const_iterator A = C.Begin(), B = C.End();
-    for (; A != B; ++A)
+    auto array = New<Array>();
+    for (auto const &elem : cont)
     {
-        Push(*A);
+        Push(elem);
         _context->Push(Object());
-        Continue(F);
-        R->Append(Pop());
+        Continue(fun);
+        array->Append(Pop());
     }
 
-    return R;
+    return array;
 }
 
 Object Executor::Pop(Stack &stack)
@@ -344,7 +341,7 @@ Object Executor::Resolve(Object Q, bool ignoreQuote) const
     // TODO: this double-handling of Labels and Pathnames is tedious and wrong
     if (Q.IsType<Label>())
     {
-        const Label &l = ConstDeref<Label>(Q);
+        const auto& l = ConstDeref<Label>(Q);
         if (l.Quoted() && !ignoreQuote)
             return Q;
         return Resolve(l);
@@ -352,7 +349,7 @@ Object Executor::Resolve(Object Q, bool ignoreQuote) const
 
     if (Q.IsType<Pathname>())
     {
-        const Pathname &l = ConstDeref<Pathname>(Q);
+        const auto& l = ConstDeref<Pathname>(Q);
         if (l.Quoted() && !ignoreQuote)
             return Q;
         return Resolve(l);
@@ -486,16 +483,14 @@ void Executor::TraceAll()
 {
     StringStream debug;
     debug << "DEBUG: ";
-    const Registry::Instances &I = Self->GetRegistry()->GetInstances();
-    Registry::Instances::const_iterator A = I.begin(), B = I.end();
-    for (; A != B; ++A)
+    for (const auto &elem : Self->GetRegistry()->GetInstances())
     {
         try
         {
-            if (A->second == 0)
+            if (elem.second == nullptr)
                 debug << "!!!null object in registry!!!";
             else
-                Trace(*A->second, debug);
+                Trace(*elem.second, debug);
         }
         catch (Exception::Base &E)
         {
@@ -503,7 +498,7 @@ void Executor::TraceAll()
         }
         catch (std::exception &E)
         {
-            debug << "TraceError std::exeption:( " << E.what();
+            debug << "TraceError std::exception:( " << E.what();
         }
         catch (...)
         {
@@ -517,7 +512,7 @@ void Executor::TraceAll()
 void Executor::DumpStack(Stack const &stack)
 {
     StringStream result;
-    Stack::const_iterator A = stack.Begin(), B = stack.End();
+    auto A = stack.Begin(), B = stack.End();
     for (int N = stack.Size() - 1; A != B; ++A, --N)
     {
         result << "[" << N << "] ";
@@ -596,9 +591,9 @@ std::string Executor::PrintStack() const
 {
     int n = 0;
     StringStream str;
-    for (const auto &A : _data->GetStack())
+    for (const auto &elem : _data->GetStack())
     {
-        str << "[" << n++ << "]: " << A <<  "\n";
+        str << "[" << n++ << "]: " << elem <<  "\n";
     }
     return str.ToString().c_str();
 }
@@ -725,11 +720,11 @@ void Executor::Perform(Operation::Type op)
     switch (op)
     {
     case Operation::ToPi:
-        Deref<Compiler>(_compiler).SetLanguage((int)Language::Pi);
+        Deref<Compiler>(_compiler).SetLanguage(static_cast<int>(Language::Pi));
         break;
 
     case Operation::ToRho:
-        Deref<Compiler>(_compiler).SetLanguage((int)Language::Rho);
+        Deref<Compiler>(_compiler).SetLanguage(static_cast<int>(Language::Rho));
         break;
 
     case Operation::Lookup:
@@ -738,34 +733,29 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::SetManaged:
     {
-        Object object = Pop();
-        bool managed = ConstDeref<bool>(Pop());
-        object.SetManaged(managed);
+        auto object = Pop();
+        object.SetManaged(ConstDeref<bool>(Pop()));
     }
     break;
 
     case Operation::SetChild:
     {
         Pointer<Label> label = Pop();
-        Object parent = Pop();
-        Object child = Pop();
-        parent.SetChild(*label, child);
+        Pop().SetChild(*label, Pop());
     }
     break;
 
     case Operation::GetChild:
     {
         Pointer<Label> label = Pop();
-        Object parent = Pop();
-        Push(parent.GetChild(*label));
+        Push(Pop().GetChild(*label));
     }
     break;
 
     case Operation::RemoveChild:
     {
         Pointer<Label> label = Pop();
-        Object parent = Pop();
-        parent.RemoveChild(*label);
+        Pop().RemoveChild(*label);
     }
     break;
 
@@ -781,7 +771,7 @@ void Executor::Perform(Operation::Type op)
     {
         Pointer<float> y = Pop();
         Pointer<float> x = Pop();
-        Value<Vector2> V = New<Vector2>();
+        auto V = New<Vector2>();
         V->x = *x;
         V->y = *y;
         Push(V);
@@ -818,7 +808,7 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::LevelStack:
     {
-        int required_depth = _continuation->InitialStackDepth;
+        const int required_depth = _continuation->InitialStackDepth;
         int depth = _data->Size();
         if (depth < required_depth)
             KAI_THROW_0(EmptyStack);    // we lost some objects off the stack
@@ -872,14 +862,11 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::WhileLoop:
     {
-        Pointer<Continuation> body = Pop();
-        Pointer<Continuation> test = Pop();
-        _context->Push(_continuation);    // for scoping
-        while (Deref<bool>(Pop()))
-        {
+        const Pointer<Continuation> body = Pop();
+        const Pointer<Continuation> test = Pop();
+        _context->Push(_continuation);
+        while (Deref<bool>(test))
             ContinueOnly(body);
-        }
-
         _context->Pop();
     }
     break;
@@ -1075,8 +1062,8 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::IfThenSuspendElseSuspend:
     {
-        Pointer<Continuation> else_ = Pop();
-        Pointer<Continuation> then = Pop();
+        const Pointer<Continuation> else_ = Pop();
+        const Pointer<Continuation> then = Pop();
         _context->Push(_continuation);
         if (PopBool())
             _context->Push(NewContinuation(then));
@@ -1147,7 +1134,6 @@ void Executor::Perform(Operation::Type op)
     case Operation::Trace:
     {
         Object Q = Pop();
-        Push(Q);
         Trace(Q);
     }
     break;
@@ -1208,8 +1194,8 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::Swap:
     {
-        Object A = Pop();
-        Object B = Pop();
+        auto A = Pop();
+        auto B = Pop();
         Push(A);
         Push(B);
     }
@@ -1217,7 +1203,7 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::Dup:
     {
-        Object Q = Pop();
+        auto Q = Pop();
         Push(Q);
         Push(Q.Duplicate());
     }
@@ -1225,9 +1211,9 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::Rot:
     {
-        Object A = Pop();
-        Object B = Pop();
-        Object C = Pop();
+        auto A = Pop();
+        auto B = Pop();
+        auto C = Pop();
         Push(B);
         Push(A);
         Push(C);
@@ -1244,8 +1230,8 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::ToPair:
     {
-        Object B = Pop();
-        Object A = Pop();
+        auto B = Pop();
+        auto A = Pop();
         Push(New(Pair(A, B)));
     }
     break;
@@ -1271,7 +1257,7 @@ void Executor::Perform(Operation::Type op)
         break;
 
     case Operation::Contents:
-        Push(_context->Top());
+        Push(_tree->GetScope());
         GetChildren();
         break;
 
@@ -1291,8 +1277,8 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::PlusEquals:
     {
-        Object arg = Pop();
-        Object from = Pop();
+        auto arg = Pop();
+        auto from = Pop();
         // TODO: this is lame. need to generalise across all numerics
         if (arg.IsType<float>() && from.IsType<float>())
         {
@@ -1306,8 +1292,7 @@ void Executor::Perform(Operation::Type op)
             break;
         }
 
-        Object result = from.GetClass()->Plus(from, arg);
-        from.GetClass()->Assign(from, result);
+        from.GetClass()->Assign(from, from.GetClass()->Plus(from, arg));
     }
     break;
 
@@ -1458,6 +1443,13 @@ void Executor::Perform(Operation::Type op)
     }
     break;
 
+    case Operation::Pick:
+    {
+        int n = ConstDeref<int>(Pop());
+        Push(Duplicate(_data->At(n)));
+        break;
+    }
+
     case Operation::LogicalXor:
     {
         bool A = PopBool();
@@ -1481,7 +1473,6 @@ case Operation::Op: \
     OPERATION_NOT_IMPLEMENTED(IfThenReplaceElseResume);
     OPERATION_NOT_IMPLEMENTED(IfThenResumeElseResume);
     OPERATION_NOT_IMPLEMENTED(RotN);
-    OPERATION_NOT_IMPLEMENTED(Pick);
     OPERATION_NOT_IMPLEMENTED(ToList);
     OPERATION_NOT_IMPLEMENTED(LessOrEquiv);
     OPERATION_NOT_IMPLEMENTED(GreaterOrEquiv);

@@ -41,6 +41,7 @@ void PiLexer::AddKeyWords()
     keyWords["size"] = Enum::Size;
     keyWords["depth"] = Enum::Depth;
     keyWords["new"] = Enum::New;
+    keyWords["dropn"] = Enum::DropN;
 
     keyWords["toarray"] = Enum::ToArray;
     keyWords["tolist"] = Enum::ToList;
@@ -53,6 +54,7 @@ void PiLexer::AddKeyWords()
     keyWords["expand"] = Enum::Expand;
     keyWords["noteq"] = Enum::NotEquiv;
     keyWords["ls"] = Enum::Contents;
+    keyWords["cls"] = Enum::GetContents;
     keyWords["freeze"] = Enum::Freeze;
     keyWords["thaw"] = Enum::Thaw;
 }

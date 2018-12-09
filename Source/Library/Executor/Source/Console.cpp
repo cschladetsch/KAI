@@ -187,7 +187,7 @@ String Console::Process(const String& text)
 void Console::WritePrompt(ostream &out) const
 {
     out
-        << rang::fg::green << ToString((Language)compiler->GetLanguage())
+        << rang::fg::green << ToString(static_cast<Language>(compiler->GetLanguage()))
         << rang::fg::yellow << GetFullname(GetTree().GetScope()).ToString().c_str()
         << rang::fg::gray << "> ";
 }
@@ -196,7 +196,7 @@ String Console::GetPrompt() const
 {
     StringStream prompt;
     prompt
-        << ConsoleColor::LanguageName << ToString((Language)compiler->GetLanguage())
+        << ConsoleColor::LanguageName << ToString(static_cast<Language>(compiler->GetLanguage()))
         << ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str()
         << ConsoleColor::Input << "> ";
 
@@ -205,13 +205,13 @@ String Console::GetPrompt() const
 
 String Console::WriteStack() const
 {
-    Value<const Stack> data = executor->GetDataStack();
-    Stack::const_iterator A = data->Begin(), B = data->End();
+    const Value<const Stack> data = executor->GetDataStack();
+    auto A = data->Begin(), B = data->End();
     StringStream result;
     for (int N = data->Size() - 1; A != B; ++A, --N)
     {
         result << "[" << N << "] ";
-        bool is_string = A->GetTypeNumber() == Type::Number::String;
+        const bool is_string = A->GetTypeNumber() == Type::Number::String;
         if (is_string)
             result << "\"";
 
@@ -233,13 +233,12 @@ int Console::Run()
         {
             for (;;)
             {
-                auto n = rang::fg::reset;
-                WritePrompt(cout);//GetPrompt().c_str() << n << ConsoleColor::Input;
+                WritePrompt(cout);
                 cout << rang::style::bold;
                 string text;
                 getline(cin, text);
 
-                cout << n << Process(text.c_str()).c_str();
+                cout << rang::fg::reset << Process(text.c_str()).c_str();
                 executor->PrintStack(cout);
 
                 if (_end)

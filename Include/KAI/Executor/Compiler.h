@@ -24,7 +24,6 @@ private:
 	int _traceLevel = 0;
 
 public:
-	void Create();
 	bool Destroy();
 
 	void SetLanguage(int);
