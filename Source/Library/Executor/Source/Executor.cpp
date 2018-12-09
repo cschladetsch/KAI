@@ -1,11 +1,11 @@
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/FunctionBase.h"
-#include "KAI/Core/Object.h"
 #include "KAI/Core/Tree.h"
 #include "KAI/Executor/SignedContinuation.h"
 
 #include "KAI/Language/Common/Process.h"
 #include "KAI/Executor/Compiler.h"
+#include "KAI/Executor/BinBase.h"
 #include "KAI/Console/rang.hpp"
 
 #include <iostream>
@@ -769,6 +769,14 @@ void Executor::Perform(Operation::Type op)
         parent.RemoveChild(*label);
     }
     break;
+
+    case Operation::Freeze:
+        Push(Bin::Freeze(Pop()));
+        break;
+
+    case Operation::Thaw:
+        Push(Bin::Thaw(Pop()));
+        break;
 
     case Operation::ToVector2:
     {

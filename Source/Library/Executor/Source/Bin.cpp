@@ -32,7 +32,7 @@ namespace Bin
 
     void Help()
     {
-        cout << "There is no help" << endl;
+        cout << "type /Bin ls" << endl;
     }
 
     Object GetProperties(Object Q)

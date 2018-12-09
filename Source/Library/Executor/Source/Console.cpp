@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include <KAI/Core/Memory/StandardAllocator.h>
-#include <KAI/Core/Object.h>
+#include "KAI/Core/Memory/StandardAllocator.h"
+#include "KAI/Core/Object.h"
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Console/Console.h"
 #include "KAI/Executor/BinBase.h"

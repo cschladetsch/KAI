@@ -132,6 +132,8 @@ struct PiTokenEnumType
         Debug,
         Size,
         Exists,
+        Freeze,
+        Thaw,
     };
 
     struct Type : TokenBase<PiTokenEnumType>

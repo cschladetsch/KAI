@@ -28,6 +28,8 @@ const char *PiTokenEnumType::ToString(Enum t)
             return "";
 #endif
 
+        CASE_LOWER(Freeze)
+        CASE_LOWER(Thaw)
         CASE_LOWER(Bool)
         CASE_LOWER(Greater)
         CASE_LOWER(Debug)
@@ -97,8 +99,8 @@ const char *PiTokenEnumType::ToString(Enum t)
         CASE_LOWER(RotN)
         CASE_LOWER(Clear)
         CASE_LOWER(Expand)
-        CASE_LOWER(ToArray)
         CASE_LOWER(ToList)
+        CASE_LOWER(ToArray)
         CASE_LOWER(ToMap)
         CASE_LOWER(ToSet)
         CASE_LOWER(ToHashMap)

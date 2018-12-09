@@ -26,6 +26,9 @@ struct Operation
 		New,
 		Assign,
 
+		Freeze,
+		Thaw,
+
         GetScope,
 		ChangeScope,
 

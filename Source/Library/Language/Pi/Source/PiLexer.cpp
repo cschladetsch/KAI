@@ -52,6 +52,9 @@ void PiLexer::AddKeyWords()
     
     keyWords["expand"] = Enum::Expand;
     keyWords["noteq"] = Enum::NotEquiv;
+    keyWords["ls"] = Enum::GetChildren;
+    keyWords["freeze"] = Enum::Freeze;
+    keyWords["thaw"] = Enum::Thaw;
 }
 
 bool PiLexer::NextToken()

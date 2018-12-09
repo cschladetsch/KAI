@@ -36,6 +36,39 @@ TEST_F(TestPi, TestComments)
     }
 }
 
+// Create some stuff on the stack, freeze it to a binary packet, thaw it out to objects,
+// then ensure the end result is what went in.
+TEST_F(TestPi, TestFreezeThaw)
+{
+    _console.SetLanguage(Language::Pi);
+    _console.Execute("42 \"hello\" [3 9 8] 3 toarray freeze");
+    TEST_COUT << _exec->PrintStack();
+    auto top = _data->Top();
+    ASSERT_TRUE(top.IsType<BinaryStream>());
+    _console.Execute("thaw");
+    auto stack = ConstDeref<Array>(_data->Top());
+    ASSERT_EQ(3, stack.Size());
+    auto a = stack.At(2);
+    auto b = stack.At(1);
+    auto c = stack.At(0);
+
+    ASSERT_TRUE(a.IsType<Array>());
+    ASSERT_TRUE(b.IsType<String>());
+    ASSERT_TRUE(c.IsType<int>());
+
+    auto a1 = ConstDeref<Array>(a);
+    auto b1 = ConstDeref<String>(b);
+    auto c1 = ConstDeref<int>(c);
+
+    ASSERT_EQ(a1.Size(), 3);
+    ASSERT_EQ(ConstDeref<int>(a1.At(0)), 3);
+    ASSERT_EQ(ConstDeref<int>(a1.At(1)), 9);
+    ASSERT_EQ(ConstDeref<int>(a1.At(2)), 8);
+
+    ASSERT_EQ(b1, "hello");
+    ASSERT_EQ(c1, 42);
+}
+
 TEST_F(TestPi, TestArithmetic)
 {
     _console.SetLanguage(Language::Pi);
