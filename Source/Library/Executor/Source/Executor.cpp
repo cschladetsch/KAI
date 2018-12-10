@@ -21,7 +21,7 @@ void Executor::Create()
     _data = New<Stack>();
     _context = New<Stack>();
     _break = false;
-    _traceLevel = 0;
+    _traceLevel = 1000;
     _stepNumber = 0;
 }
 
@@ -78,6 +78,8 @@ struct Trace
 
 void Executor::Continue()
 {
+    _traceLevel = 999;
+
     Object next;
     for (;;)
     {

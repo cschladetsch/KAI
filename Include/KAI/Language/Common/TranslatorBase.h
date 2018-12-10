@@ -67,7 +67,7 @@ struct TranslatorBase : TranslatorCommon
         if (stack.empty())
             KAI_THROW_0(EmptyStack);
 
-        return Pop()->GetCode()->At(0);
+        return Pop();
     }
 
 protected:
