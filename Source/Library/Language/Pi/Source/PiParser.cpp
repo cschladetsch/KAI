@@ -1,4 +1,3 @@
-
 #include <KAI/Language/Pi/PiParser.h>
 #include <KAI/Language/Common/Structure.h>
 
@@ -14,26 +13,23 @@ bool PiParser::Process(std::shared_ptr<Lexer> lex, Structure st)
     lexer = lex;
 
     if (lexer->Failed)
-    {
         return Fail(lexer->Error);
-    }
 
-    // strip whitespace and comments
-    for (auto tok : lexer->GetTokens())
-        if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
+    for (auto const &tok : lexer->GetTokens())
+    {
+        if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::NewLine && tok.type != TokenEnum::Tab && tok.type != TokenEnum::Comment)
             tokens.push_back(tok);
-
-    root = NewNode(AstEnum::Continuation);
+    }
 
     return Run(st);
 }
 
 bool PiParser::Run(Structure st)
 {
-    KAI_UNUSED_1(st);
+    KAI_UNUSED_1(st); // no real structure to Pi - it's mostly a sequence of tokens
+    root = NewNode(AstEnum::Continuation);
     while (!Failed && NextSingle(root))
         ;
-
     return !Failed;
 }
 
@@ -42,92 +38,43 @@ bool PiParser::NextSingle(AstNodePtr root)
     if (Empty())
         return false;
 
-    auto tok = Current();
+    const auto tok = Current();
     switch (tok.type)
     {
+    case PiTokens::OpenSquareBracket:
+        return ParseCompound(root, AstEnum::Array, TokenEnum::CloseSquareBracket);
+    case PiTokens::OpenBrace:
+        return ParseCompound(root, AstEnum::Continuation, TokenType::CloseBrace);
     case PiTokens::CloseSquareBracket:
     case PiTokens::CloseBrace:
         Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
         return false;
-
-    case PiTokens::OpenSquareBracket:
-        Consume();
-        return ParseArray(root);
-
-    case PiTokens::OpenBrace:
-        Consume();
-        return ParseContinuation(root);
-
-    case PiTokens::Clear:
-    case PiTokens::Drop:
-    case PiTokens::Dup:
-    case PiTokens::Rot:
-    case PiTokens::PickN:
-    case PiTokens::Pathname:
-    case PiTokens::String:
-    case PiTokens::Int:
-    case PiTokens::Float:
-    case PiTokens::True:
-    case PiTokens::False:
-    case PiTokens::Plus:
-    case PiTokens::Minus:
-    case PiTokens::Mul:
-    case PiTokens::Divide:
-    case PiTokens::PlusAssign:
-    case PiTokens::MinusAssign:
-    case PiTokens::MulAssign:
-    case PiTokens::DivAssign:
+    case PiTokens::None:
+        return false;
     default:
         root->Add(Consume());
         return true;
     }
 }
 
-bool PiParser::ParseArray(AstNodePtr root)
+bool PiParser::ParseCompound(AstNodePtr root, AstEnum nodeType, TokenEnum end)
 {
-    auto node = NewNode(PiAstNodes::Array);
-    while (!Empty() && !Failed && !Try(PiTokens::CloseSquareBracket))
+    Consume();
+    auto node = NewNode(nodeType);
+    while (!Empty() && !Failed && !Try(end))
     {
         if (!NextSingle(node))
-        {
-            Fail("Malformed Array");
-            return false;
-        }
+            return Fail(Lexer::CreateErrorMessage(Current(), "Malformed compound %s", PiAstNodeEnumType::ToString(nodeType)));
     }
 
     if (Empty())
-    {
-        Fail("Malformed array");
-        return false;
-    }
+        return Fail("Malformed compound");
 
     if (Failed)
         return false;
 
     Consume();
     root->Add(node);
-
-    return true;
-}
-
-bool PiParser::ParseContinuation(AstNodePtr root)
-{
-    AstNodePtr node = NewNode(PiAstNodes::Continuation);
-    while (!Failed && !Try(PiTokenEnumType::CloseBrace))
-    {
-        if (!NextSingle(node))
-        {
-            Fail("Malformed Coro");
-            return false;
-        }
-    }
-
-    if (Failed)
-        return false;
-    Consume();
-
-    root->Add(node);
-
     return true;
 }
 

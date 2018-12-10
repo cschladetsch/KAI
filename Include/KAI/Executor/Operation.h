@@ -138,7 +138,10 @@ public:
 	static void Register(Registry &);
 };
 
-KAI_TYPE_TRAITS(Operation, Number::Operation, 0);
+KAI_TYPE_TRAITS(
+    Operation,
+    Number::Operation,
+    Properties::Streaming | Properties::Assign);
 
 KAI_END
 

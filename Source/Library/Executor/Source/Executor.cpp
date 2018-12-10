@@ -43,12 +43,6 @@ void Executor::Push(const std::pair<Object, Object> &P)
     Push(New(Pair(P.first, P.second)));
 }
 
-// why was this ever a good idea
-// Object Executor::Pop()
-// {
-//     return Resolve(Pop(*_data));
-// }
-
 Object Executor::Pop()
 {
     return Pop(*_data);
@@ -84,9 +78,6 @@ struct Trace
 
 void Executor::Continue()
 {
-    if (_traceLevel > 2)
-        KAI_TRACE_2("Entering", _continuation);
-
     Object next;
     for (;;)
     {
@@ -95,20 +86,23 @@ void Executor::Continue()
         {
             KAI_TRY
             {
-                if (_traceLevel > 0)
+                if (_traceLevel > 10)
+                    KAI_TRACE_1(_stepNumber);
+
+                if (_traceLevel > 10)
                     KAI_TRACE_1(_data);
 
-                if (_traceLevel > 1)
-                    KAI_TRACE_2(_continuation, next.ToString());
+                if (_traceLevel > 10)
+                    KAI_TRACE_1(_context);
+
+                if (_traceLevel > 10)
+                    KAI_TRACE_1(next);
 
                 Eval(next);
             }
             catch (Exception::Base &E)
             {
                 KAI_TRACE_1(E);
-                //KAI_TRACE_1(E) << "\n" << _continuation->Show();
-                //_data->Push(New<String>(E.ToString()));
-                //throw;
             }
         }
         else
@@ -119,14 +113,27 @@ void Executor::Continue()
             if (_traceLevel > 0)
                 KAI_TRACE_1(_data);
 
-            // get ready for next time
-            _continuation->Reset();
-           
             NextContinuation();
+
             if (!_continuation.Exists())
                 return;
         }
     }
+}
+
+void Executor::SetScope(Object scope)
+{
+    _context->Push(scope);
+}
+
+void Executor::PopScope()
+{
+    _context->Pop();
+}
+
+Object Executor::GetScope() const
+{
+    return _context->Top();
 }
 
 void Executor::Continue(Value<Continuation> C)
@@ -146,13 +153,9 @@ void Executor::NextContinuation()
         return;
     }
 
-    if (_context->Empty())
-    {
-        KAI_TRACE_ERROR() << "Context stack is empty";
-        KAI_NOT_IMPLEMENTED();
-    }
-
-    SetContinuation(_context->Pop());
+    const auto next = _context->Pop();
+    SetContinuation(next);
+    KAI_TRACE_2(next, _context->Size());
 }
 
 void Executor::Push(Stack& L, Object const &Q)
@@ -162,19 +165,15 @@ void Executor::Push(Stack& L, Object const &Q)
 
 void Executor::Eval(Object const &Q)
 {
-    //Dump(Q);
-    if (_traceLevel > 1)
-    {
-        Object eval = Q;
-        KAI_TRACE_1(eval);
-    }
-
     _stepNumber++;
 
     switch (GetTypeNumber(Q).value)
     {
     case Type::Number::Operation:
-        Perform(Deref<Operation>(Q).GetTypeNumber());
+        {
+            const auto op = Deref<Operation>(Q).GetTypeNumber();
+            Perform(op);
+        }
         break;
 
     case Type::Number::Pathname:
@@ -183,6 +182,10 @@ void Executor::Eval(Object const &Q)
 
     case Type::Number::Label:
         EvalIdent<Label>(Q);
+        break;
+
+    case Type::Number::Continuation:
+        Push(Q);
         break;
 
     default:

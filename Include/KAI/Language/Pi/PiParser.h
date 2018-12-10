@@ -11,23 +11,24 @@ KAI_BEGIN
 struct PiParser : ParserCommon<PiLexer, PiAstNodeEnumType>
 {
     typedef ParserCommon<PiLexer, PiAstNodeEnumType> Parent;
-    using typename Parent::Lexer;
-    using typename Parent::AstNode;
-    using typename Parent::TokenNode;
-    using typename Parent::TokenEnum;
-    using typename Parent::AstNodePtr;
+    using Parent::Lexer;
+    using Parent::AstNode;
+    using Parent::TokenNode;
+    using Parent::TokenEnum;
+    using Parent::AstNodePtr;
     typedef PiAstNodeEnumType NodeType;
     typedef PiTokenEnumType TokenType;
 
     PiParser(Registry &r) : Parent(r) { }
 
-    virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
+    bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 private:
     bool Run(Structure);
     bool NextSingle(AstNodePtr context);
     bool ParseArray(AstNodePtr context);
     bool ParseContinuation(AstNodePtr context);
+    bool ParseCompound(AstNodePtr root, AstEnum nodeType, TokenEnum end);
 };
 
 KAI_END

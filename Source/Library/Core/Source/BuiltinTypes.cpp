@@ -3,6 +3,7 @@
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Exception.h"
 #include "KAI/Core/FunctionBase.h"
+#include "rang.hpp"
 
 KAI_BEGIN
 
@@ -243,7 +244,7 @@ StringStream &operator<<(StringStream &S, std::size_t N)
 
 StringStream &operator<<(StringStream &S, Handle H)
 {
-    return S << "Handle: " << H.GetValue();
+    return S << "#" << H.GetValue();
 }
 
 StringStream &operator<<(StringStream &S, Pair const &P)

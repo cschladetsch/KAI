@@ -40,8 +40,7 @@ void PiTranslator::TranslateNode(AstNodePtr node)
 
         default:
         {
-            if (node->GetToken().type != PiTokenEnumType::NewLine)
-                AppendTokenised(node->GetToken());
+            AppendTokenised(node->GetToken());
             break;
         }
     }

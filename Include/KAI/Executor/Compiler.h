@@ -44,8 +44,7 @@ public:
 			KAI_TRACE_ERROR_1(trans->Error);//, st);
 			return Object();
 		}
-
-		return result;
+        return result;
 	}
 
 	Pointer<Continuation> Translate(const String &text, Structure st = Structure::Expression) const;

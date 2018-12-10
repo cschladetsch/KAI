@@ -16,8 +16,6 @@ KAI_BEGIN
 
 void Continuation::Create()
 {
-    entered = New(false);
-    scopeBreak = New(false);
     args = New<Array>();
     index = New(0);
 }
@@ -48,14 +46,10 @@ String Continuation::Show() const
 void Continuation::SetCode(Code C)
 {
     code = C;
-    *entered = false;
 }
 
 void Continuation::Enter(Executor *exec)
 {
-    if (*entered)
-        return;
-
     if (code.Exists() && !code->Empty())
     {
         if (!scope.Exists())
@@ -76,7 +70,6 @@ void Continuation::Enter(Executor *exec)
     }
 
     *index = 0;
-    *entered = true;
 }
 
 bool Continuation::Next() const
@@ -90,12 +83,11 @@ bool Continuation::Next(Object &next) const
     if (!code.Exists())
         return false;
 
-    if (!*entered)
-        KAI_THROW_1(LogicError, "Continuation not Entered");
-
     int &n = Deref<int>(index);
     if (n == code->Size())
         return false;
+
+    KAI_TRACE_1(code);
 
     next = code->At(n++);
 
@@ -142,13 +134,26 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
     return stream;
 }
 
+//StringStream &Print(StringStream &S, const Continuation &C, int level)
+//{
+//    const std::string indent(level*4, ' ');
+//
+//    S << "\n" << indent << "Continuation " << C.Self->GetHandle() << "<\n";
+//    for (auto ch : *C.GetCode())
+//    {
+//        if (ch.IsType<Continuation>())
+//            Print(S, ConstDeref<Continuation>(ch), level + 1);
+//        S << indent << indent << ch << " " << "\n";
+//    }
+//    return S << indent << ">" << C.Self->GetHandle() << " @" << C.index << "/" << C.code->Size() << "\n";
+//}
+
 StringStream &operator<<(StringStream &S, const Continuation &C)
 {
-    //return InsertContinuation(S << "{ ", *C.GetCode(), 0, 0);
-    S << "{ ";
-    for (auto ch : *C.GetCode())
-        S << ch << " ";
-    return S << "}";
+    S << "Continuation[";
+    for (auto cmd : *C.GetCode())
+        S << cmd << " ";
+    return S << "] @" << C.index << "/" << C.code->Size();
 }
 
 StringStream &operator>>(StringStream &, Continuation &)
@@ -180,7 +185,6 @@ void Continuation::Register(Registry &R)
         ("args", &Continuation::args)
         ("scope", &Continuation::scope)
         ("source_code", &Continuation::source_code)
-        ("entered", &Continuation::entered)
         ;
 }
 

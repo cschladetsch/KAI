@@ -20,6 +20,10 @@ struct Executor : Reflected
 	void Create();
 	bool Destroy();
 
+    void SetScope(Object);
+    void PopScope();
+    Object GetScope() const;
+
 	void SetContinuation(Value<Continuation>);
 	void Continue(Value<Continuation>);
 	void ContinueOnly(Value<Continuation> C);

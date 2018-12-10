@@ -147,9 +147,11 @@ void Console::Execute(Pointer<Continuation> cont)
 
 void Console::Execute(String const &text, Structure st)
 {
-    auto cont = compiler->Translate(text.c_str(), st);
+    Pointer<Continuation> cont = compiler->Translate(text.c_str(), st);
     if (!cont.Exists())
         return;
+
+    cont->SetScope(executor->GetTree()->GetScope());
     executor->Continue(cont);
 }
 

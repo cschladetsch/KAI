@@ -7,6 +7,7 @@
 #include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/StringStream.h"
 #include "KAI/Language/Common/Structure.h"
+#include "rang.hpp"
 
 KAI_BEGIN
 
@@ -42,13 +43,9 @@ namespace debug
 		template <class T>
 		Trace &Write(const char *P, T const &X)
 		{
-#ifdef KAI_TRACE_VERBOSE
-			*this << "[" << P << "='" << X << "'] ";
-#else
-			KAI_UNUSED_1(P);
-			*this << X;
-#endif
-			return *this;
+			//TODO: *this << rang::fg::green << P << "='" << rang::fg::yellow << X << rang::fg::gray << "' " << rang::style::reset;
+            *this << P << "='" << X << "' ";
+            return *this;
 		}
 	};
 
@@ -87,7 +84,7 @@ namespace debug
 #		define KAI_TRACE_3(A,B,C) \
 			KAI_TRACE_2(A,B).Write(#C,C)
 #		define KAI_TRACE_4(A,B,C,D) \
-			KAI_TRACE_3(A,B,Coloriser).Write(#D,D)
+			KAI_TRACE_3(A,B,C).Write(#D,D)
 
 #		define KAI_TRACE_WARN_0() \
 			KAI_TRACE_WARN()
@@ -98,7 +95,7 @@ namespace debug
 #		define KAI_TRACE_WARN_3(A,B,C) \
 			KAI_TRACE_WARN_2(A,B).Write(#C,C)
 #		define KAI_TRACE_WARN_4(A,B,C,D) \
-			KAI_TRACE_WARN_3(A,B,Coloriser).Write(#D,D)
+			KAI_TRACE_WARN_3(A,B,C).Write(#D,D)
 
 #		define KAI_TRACE_ERROR_0() \
 			KAI_TRACE_ERROR()
@@ -109,7 +106,7 @@ namespace debug
 #		define KAI_TRACE_ERROR_3(A,B,C) \
 			KAI_TRACE_ERROR_2(A,B).Write(#C,C)
 #		define KAI_TRACE_ERROR_4(A,B,C,D) \
-			KAI_TRACE_ERROR_3(A,B,Coloriser).Write(#D,D)
+			KAI_TRACE_ERROR_3(A,B,C).Write(#D,D)
 
 #	else
 #		define KAI_EMPTY_TRACE_SINK debug::EmptySink()

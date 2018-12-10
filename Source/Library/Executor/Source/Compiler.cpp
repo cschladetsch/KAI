@@ -30,19 +30,7 @@ Pointer<Continuation> Compiler::Translate(const String &text, Structure st) cons
         return Object();
 
     case Language::Pi:
-        {
-            // Pi wraps output (A continuation) in a continuation. So the output has to be
-            // dereferenced once.
-            //
-            // TODO: not have to do this.
-            auto top = Compile<PiTranslator>(text, st);
-            if (!top.Exists())
-                return Object();
-            auto inner = top->GetCode();
-            if (!inner.Exists())
-                return Object();
-            return inner->At(0);
-        }
+        return Compile<PiTranslator>(text, st);
 
     case Language::Rho:
         return Compile<RhoTranslator>(text, st);
@@ -109,11 +97,6 @@ BinaryStream &operator>>(BinaryStream &S, Operation &P)
     return S;
 }
 
-//const char *Operation::ToString() const
-//{
-//    return ToString((int)value);
-//}
-//
 void Operation::Register(Registry &R)
 {
     ClassBuilder<Operation>(R, "Operation")

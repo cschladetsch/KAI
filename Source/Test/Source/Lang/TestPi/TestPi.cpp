@@ -9,6 +9,23 @@ struct TestPi : TestLangCommon
 {
 };
 
+TEST_F(TestPi, TestContinuations)
+{
+    auto exec = _console.GetExecutor();
+    auto data = exec->GetDataStack();
+    auto context = exec->GetContextStack();
+
+    _console.GetExecutor()->SetTraceLevel(999);
+    _console.SetLanguage(Language::Pi);
+    _console.Execute("1");
+    _console.Execute("1 2");
+    _console.Execute("{ } &");
+    _console.Execute("{ { } & } &");
+
+    ASSERT_EQ(data->Size(), 0);
+    ASSERT_EQ(context->Size(), 0);
+}
+
 TEST_F(TestPi, TestComments)
 {
     _console.SetLanguage(Language::Pi);

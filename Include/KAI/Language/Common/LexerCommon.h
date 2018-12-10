@@ -144,7 +144,7 @@ protected:
 
     bool LexError(const char *text)
     {
-        return Fail(CreateErrorMessage(Token((Enum)0, *this, lineNumber, Slice(offset, offset)), text, Current()));
+        return Fail(CreateErrorMessage(Token(static_cast<Enum>(0), *this, lineNumber, Slice(offset, offset)), text, Current()));
     }
 
 public:
