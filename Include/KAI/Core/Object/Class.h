@@ -11,6 +11,8 @@
 #include <KAI/Core/Type/Deref.h>
 #include <KAI/Core/Registry.h>
 
+#undef RegisterClass
+
 KAI_BEGIN
 
 #pragma warning(push)

@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "rang.hpp"
+
 #include "KAI/Core/Memory/StandardAllocator.h"
 #include "KAI/Core/Object.h"
 #include "KAI/Core/BuiltinTypes.h"

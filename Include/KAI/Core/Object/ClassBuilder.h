@@ -7,6 +7,8 @@
 #include "KAI/Core/Object/Accessor.h"
 #include "KAI/Core/Object/Method.h"
 
+#undef RegisterClass
+
 KAI_BEGIN
 
 void RegisterClass(Registry &, ClassBase const &, Object const &, Pathname const &);

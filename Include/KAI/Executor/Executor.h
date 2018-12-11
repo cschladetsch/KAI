@@ -90,10 +90,11 @@ struct Executor : Reflected
 		return Value<const Stack>(_data.GetConstObject());
 	}
 
-	Value<const Stack> GetContextStack() const;
+	// could be const, but more fun to mess with the context stack as needed elsewhere
+	Value</*const*/ Stack> GetContextStack() const;
 
-	/// This resets the entire process, other than static state stored
-	/// in referenced objects
+	// This resets the entire process, other than static state stored
+	// in referenced objects
 	void ClearStacks()
 	{
 		_data->Clear();

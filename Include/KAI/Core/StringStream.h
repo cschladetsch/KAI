@@ -62,5 +62,7 @@ StringStream &operator<<(StringStream &, void (*)(EndsArgument));
 StringStream &operator<<(StringStream &, const String::Char *);
 
 inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
+std::ostream &operator<<(std::ostream &S, const StringStream &T);
+std::istream &operator>>(std::istream &S, StringStream &T);
 
 KAI_END

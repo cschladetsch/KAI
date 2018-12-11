@@ -4,7 +4,6 @@
 #include <sstream>
 #include <memory>
 #include <string>
-#include "rang.hpp"
 
 KAI_BEGIN
 

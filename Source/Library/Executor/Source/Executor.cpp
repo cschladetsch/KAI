@@ -21,7 +21,7 @@ void Executor::Create()
     _data = New<Stack>();
     _context = New<Stack>();
     _break = false;
-    _traceLevel = 1000;
+    _traceLevel = 0;
     _stepNumber = 0;
 }
 
@@ -53,9 +53,11 @@ Value<Stack> Executor::GetDataStack()
     return _data;
 }
 
-Value<const Stack> Executor::GetContextStack() const
+// I thought it would be safest to make the context stack const, but that just made things boring
+Value</*const*/ Stack> Executor::GetContextStack() const
 {
-    return Value<const Stack>(_context.GetConstObject());
+    //return Value</*const*/ Stack>(_context.GetConstObject());
+    return _context;
 }
 
 void Executor::SetContinuation(Value<Continuation> C)
@@ -78,12 +80,10 @@ struct Trace
 
 void Executor::Continue()
 {
-    _traceLevel = 0;
-
-    Object next;
-    for (;;)
+    while (true)
     {
         _break = false;
+        Object next;
         if (_continuation->Next(next))
         {
             KAI_TRY
@@ -112,7 +112,6 @@ void Executor::Continue()
         if (_break)
         {
             NextContinuation();
-
             if (!_continuation.Exists())
                 return;
         }
@@ -252,7 +251,7 @@ void Executor::GetChildren()
 {
     const auto& scope = GetStorageBase(Pop());
     auto children = New<Array>();
-    for (const auto child : scope.GetDictionary())
+    for (const auto& child : scope.GetDictionary())
         children->Append(New(child.first.ToString()));
 
     Push(children);
@@ -1433,6 +1432,12 @@ void Executor::Perform(Operation::Type op)
     }
     break;
 
+    case Operation::LogicalXor:
+    {
+        Push(New(PopBool() ^ PopBool()));
+    }
+    break;
+
     case Operation::LogicalAnd:
     {
         Push(New(PopBool() && PopBool()));
@@ -1441,9 +1446,7 @@ void Executor::Perform(Operation::Type op)
 
     case Operation::LogicalOr:
     {
-        bool A = PopBool();
-        bool B = PopBool();
-        Push(New(A || B));
+        Push(New(PopBool() || PopBool()));
     }
     break;
 
@@ -1453,14 +1456,6 @@ void Executor::Perform(Operation::Type op)
         Push(Duplicate(_data->At(n)));
         break;
     }
-
-    case Operation::LogicalXor:
-    {
-        bool A = PopBool();
-        bool B = PopBool();
-        Push(New(A ^ B));
-    }
-    break;
 
 #define OPERATION_NOT_IMPLEMENTED(Op) \
 case Operation::Op: \
@@ -1490,6 +1485,13 @@ case Operation::Op: \
 }
 
 int Process::trace = 0;
+
+StringStream& operator<<(StringStream& str, const Executor& exec)
+{
+    return str << "Executor " << exec.Self->GetHandle() 
+        << ", data.size=" << exec.GetDataStack()->Size() 
+        << ", context.size=" << exec.GetContextStack()->Size();
+}
 
 KAI_END
 

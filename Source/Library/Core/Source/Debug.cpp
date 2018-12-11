@@ -1,9 +1,12 @@
+#include <iostream>
+
+#include "rang.hpp"
+
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Object/Object.h>
 #include <KAI/Core/Exception.h>
 #include <KAI/Core/Debug.h>
 #include <KAI/Console/ConsoleColor.h>
-#include <iostream>
 
 using namespace std;
 
@@ -23,20 +26,37 @@ ostream& operator<<(ostream &S, ConsoleColor::EType type)
 
 namespace debug
 {
-    StringStream& Trace::operator<<(Object const&Q)
+    bool Trace::TraceFileLocation = false;
+    bool Trace::StripPath = true;
+    bool Trace::TraceFunction = false;
+
+    void MaxTrace()
     {
-        return *this << Q.ToString();
+        Trace::TraceFileLocation = true;
+		Trace::StripPath = false;
+        Trace::TraceFunction = true;
     }
 
-    const char *TypeToString(Trace::Type t)
+    void MinTrace()
     {
-        switch (t)
+        Trace::TraceFileLocation = true;
+        Trace::StripPath = true;
+        Trace::TraceFunction = true;
+    }
+    StringStream& Trace::operator<<(Object const&obj)
+    {
+        return *this << obj.ToString();
+    }
+
+    const char *TypeToString(Trace::Type type)
+    {
+        switch (type)
         {
             #define CASE(V) case Trace::V: return #V;
-        case Trace::Information: return "Info";
             CASE(Warn);
             CASE(Error);
             CASE(Fatal);
+            case Trace::Information: return "Info";
         }
 
         return "??";
@@ -44,17 +64,13 @@ namespace debug
 
     Trace::~Trace()
     {
-#if defined(KAI_TRACE_FILE_LOCATION)
-        auto val = ToString();
-        cout << file_location.ToString(true).c_str() << TypeToString(type) << ": " << val.c_str() << endl;
-#else
-        auto lead = TypeToString(type);
-        if (lead != 0)
-            cout << lead << ": ";
-        cout << ToString().c_str() << endl;
-#endif
+        const auto filelocCol = rang::fg::gray;
+        const auto textCol = rang::fg::yellow;
+        const auto val = ToString();
+        if (TraceFileLocation)
+            cout << filelocCol << file_location.ToString().c_str();
+        cout << TypeToString(type) << ": " << textCol << val.c_str() << endl;
     }
 }
 
 KAI_END
-
