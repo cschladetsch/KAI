@@ -1,21 +1,31 @@
-#include <KAI/Console/Console.h>
 #include <iostream>
 
-using namespace std;
+#include "KAI/Console/Console.h"
 
-USING_NAMESPACE_KAI
+using namespace std;
+using namespace kai;
+
+Console console;
+
+string Kai_VersionString()
+{
+    stringstream str;
+    str << KAI_VERSION_MAJOR << '.' << KAI_VERSION_MINOR << '.' << KAI_VERSION_PATCH;
+    return str.str();
+}
 
 int main(int argc, char **argv)
 {
     KAI_UNUSED_2(argc, argv);
 
-    cout << "KAI v0.1" << endl;
+    cout << "KAI v" << Kai_VersionString() << endl << endl;
 
-    Console console;
     console.SetLanguage(Language::Pi);
 
-    // the higher the number, the greater the verbosity of debug output
+    // the higher the number, the greater the verbosity of debug output for language systems
     Process::trace = 0;
+
+    // the higher the number, the greater the verbosity of debug output for the Executor
     console.GetExecutor()->SetTraceLevel(0);
 
     // start the REPL

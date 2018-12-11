@@ -190,9 +190,11 @@ String Console::Process(const String& text)
 
 void Console::WritePrompt(ostream &out) const
 {
+    const auto path = GetFullname(GetTree().GetScope());
+    auto pathName = path.ToString();
     out
-        << rang::fg::green << ToString(static_cast<Language>(compiler->GetLanguage()))
-        << rang::fg::yellow << GetFullname(GetTree().GetScope()).ToString().c_str()
+        << rang::fg::green << ToString(static_cast<Language>(compiler->GetLanguage())) << " "
+        << rang::fg::yellow << pathName.c_str()
         << rang::fg::gray << "> ";
 }
 

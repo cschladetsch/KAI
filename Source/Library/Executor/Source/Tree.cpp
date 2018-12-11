@@ -17,28 +17,26 @@ Pathname GetFullname(const Object &Q)
     return GetFullname(GetStorageBase(Q));
 }
 
-Pathname GetFullname(const StorageBase &Q)
+Pathname GetFullname(const StorageBase &obj)
 {
     std::list<String> parentage;
-    Label const &label = Q.GetLabel();
+    auto const & label = obj.GetLabel();
     if (!label.ToString().empty())
         parentage.push_back(label.ToString());
 
-    Object parent = Q.GetParent();
+    auto parent = obj.GetParent();
     for (; parent.Valid(); parent = parent.GetParent())
+    {
         parentage.push_front(GetStorageBase(parent).GetLabel().ToString());
+    }
 
     StringStream path;
-    if (!parentage.empty())
-        ;//path << "[anon]";
-    else
-        path.Append('/');
+    if (parentage.empty())
+        return Pathname("[anon]");
+    path.Append('/');
 
     for (auto const &name : parentage)
-    {
         path.Append(name);
-        path.Append('/');
-    }
 
     return path.ToString();
 }
@@ -48,7 +46,7 @@ void Set(Object scope, const Pathname &path, Object const &Q)
     if (path.Empty())
         return;
 
-    Pathname::Elements::const_iterator A = path.begin(), B = --path.end();
+    auto A = path.begin(), B = --path.end();
 
     if (B->type != Pathname::Element::Name)
         KAI_THROW_1(InvalidPathname, path.ToString());

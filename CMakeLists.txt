@@ -15,6 +15,9 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
+add_definitions(-DKAI_VERSION_MAJOR=0)
+add_definitions(-DKAI_VERSION_MINOR=3)
+add_definitions(-DKAI_VERSION_PATCH=0)
 #dd_definitions(-DKAI_DEBUG_REGISTRY)
 
 if (MSVC)
@@ -94,7 +97,7 @@ macro(def_platform_library name)
 endmacro()
 
 # make all top-level components
-set(TopLevels Library App Test)
+set(TopLevels Library App)# Test)
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
