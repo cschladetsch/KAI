@@ -1243,6 +1243,10 @@ void Executor::Perform(Operation::Type op)
         ToArray();
         break;
 
+    case Operation::Self:
+        Push(_tree->GetScope());
+        break;
+
     case Operation::This:
         Push(_continuation);
         break;

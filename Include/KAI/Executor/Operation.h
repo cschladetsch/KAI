@@ -45,6 +45,7 @@ struct Operation
 		TraceAll,
 		Trace,
 		This,
+		Self,
 		Ref,
 		Detach,
 		Delete,
