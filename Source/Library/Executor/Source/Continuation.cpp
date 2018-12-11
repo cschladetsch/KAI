@@ -87,8 +87,6 @@ bool Continuation::Next(Object &next) const
     if (n == code->Size())
         return false;
 
-    KAI_TRACE_1(code);
-
     next = code->At(n++);
 
     return true;
@@ -148,12 +146,12 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
 //    return S << indent << ">" << C.Self->GetHandle() << " @" << C.index << "/" << C.code->Size() << "\n";
 //}
 
-StringStream &operator<<(StringStream &S, const Continuation &C)
+StringStream &operator<<(StringStream &str, const Continuation &cont)
 {
-    S << "Continuation[";
-    for (auto cmd : *C.GetCode())
-        S << cmd << " ";
-    return S << "] @" << C.index << "/" << C.code->Size();
+    str << "Continuation " << cont.Self->GetHandle() << "[";
+    for (const auto& cmd : *cont.GetCode())
+        str << cmd << " ";
+    return str << "] @" << cont.index << "/" << cont.code->Size();
 }
 
 StringStream &operator>>(StringStream &, Continuation &)

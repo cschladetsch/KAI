@@ -61,11 +61,11 @@ Value<const Stack> Executor::GetContextStack() const
 void Executor::SetContinuation(Value<Continuation> C)
 {
     _continuation = C;
-    if (_continuation.Exists())
-    {
-        _continuation->Enter(this);
-        _continuation->InitialStackDepth = _data->Size();
-    }
+    //if (_continuation.Exists())
+    //{
+    //    _continuation->Enter(this);
+    //    _continuation->InitialStackDepth = _data->Size();
+    //}
 }
 
 struct Trace
@@ -78,7 +78,7 @@ struct Trace
 
 void Executor::Continue()
 {
-    _traceLevel = 999;
+    _traceLevel = 0;
 
     Object next;
     for (;;)
@@ -89,14 +89,13 @@ void Executor::Continue()
             KAI_TRY
             {
                 if (_traceLevel > 10)
+                    KAI_TRACE() << "Start step\n";
+                if (_traceLevel > 10)
                     KAI_TRACE_1(_stepNumber);
-
                 if (_traceLevel > 10)
                     KAI_TRACE_1(_data);
-
                 if (_traceLevel > 10)
                     KAI_TRACE_1(_context);
-
                 if (_traceLevel > 10)
                     KAI_TRACE_1(next);
 
@@ -112,9 +111,6 @@ void Executor::Continue()
 
         if (_break)
         {
-            if (_traceLevel > 0)
-                KAI_TRACE_1(_data);
-
             NextContinuation();
 
             if (!_continuation.Exists())
@@ -184,10 +180,6 @@ void Executor::Eval(Object const &Q)
 
     case Type::Number::Label:
         EvalIdent<Label>(Q);
-        break;
-
-    case Type::Number::Continuation:
-        Push(Q);
         break;
 
     default:
@@ -931,6 +923,10 @@ void Executor::Perform(Operation::Type op)
 
         _context->Push(_continuation);
         _context->Push(where_to_go);
+
+        if (_traceLevel > 10)
+            KAI_TRACE_2(_continuation, where_to_go);
+
         if (where_to_go.IsType<Continuation>())
             Deref<Continuation>(where_to_go).Enter(this);
 

@@ -15,7 +15,7 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
-add_definitions(-DKAI_TRACE_FILE_LOCATION)
+#add_definitions(-DKAI_TRACE_FILE_LOCATION)
 #dd_definitions(-DKAI_DEBUG_REGISTRY)
 
 if (MSVC)
