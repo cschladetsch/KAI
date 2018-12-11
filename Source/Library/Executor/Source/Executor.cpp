@@ -152,7 +152,6 @@ void Executor::NextContinuation()
 
     const auto next = _context->Pop();
     SetContinuation(next);
-    KAI_TRACE_2(next, _context->Size());
 }
 
 void Executor::Push(Stack& L, Object const &Q)
@@ -901,7 +900,7 @@ void Executor::Perform(Operation::Type op)
             KAI_TRACE_ERROR() << "Suspend: nothing to suspend to";
             KAI_NOT_IMPLEMENTED();
         }
-        Object where_to_go = Resolve(Pop());
+        auto where_to_go = Resolve(Pop());
         switch (where_to_go.GetTypeNumber().GetValue())
         {
         case Type::Number::Function:
@@ -1181,7 +1180,7 @@ void Executor::Perform(Operation::Type op)
     {
         if (!PopBool())
         {
-            KAI_TRACE() << "\n" << _continuation->Show();
+            KAI_TRACE(_continuation->Show());
             KAI_THROW_0(Assertion);
         }
     }

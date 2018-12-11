@@ -97,7 +97,7 @@ macro(def_platform_library name)
 endmacro()
 
 # make all top-level components
-set(TopLevels Library App)# Test)
+set(TopLevels Library App Test)
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
