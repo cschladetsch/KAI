@@ -1,14 +1,10 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.13)
 
 project(KAI)
 
-option(KAI_BUILD_RAKNET	"Build RakNet" OFF)
+option(KAI_BUILD_RAKNET	"Build RakNet" ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
-
-include(cotire)
-include(FindBoost)
-include(IncludeGtest)
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -50,13 +46,16 @@ include_directories(${INCLUDE_HOME})
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
 
+include(AddBoost)
+include(IncludeGtest)
+include(cotire)
+
 # Add RakNet
-set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-if(KAI_BUILD_RAKNET)
-	add_subdirectory(${RAKNET_ROOT})
-endif()
+add_subdirectory(${RAKNET_ROOT})
 include_directories(${RAKNET_ROOT}/include)
+
+message(STATUS ${RAKNET_ROOT})
 
 # Add rang
 include_directories(${EXTERNAL}/rang/include)
