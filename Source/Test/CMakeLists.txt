@@ -11,6 +11,5 @@ link_libraries(Executor Core PiLang RhoLang TauLang)# HlslLang)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BIN_HOME}/Test")
 add_executable(${name} ${TEST_SRC_FILES})
 target_link_libraries(${name} ${GTEST_BOTH_LIBRARIES} ${Boost_LIBRARIES})
-
 cotire(${name})
 
