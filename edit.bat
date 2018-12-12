@@ -1,5 +1,5 @@
 mkdir build
 pushd build
-cmake ..
+cmake --graphviz=graph.dot ..
 popd
 
