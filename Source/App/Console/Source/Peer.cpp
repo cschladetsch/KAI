@@ -1,7 +1,7 @@
 #include <iostream>
-#include <map>
 
 #include "KAI/Network/Peer.h"
+#include "KAI/ClassBuilder.h"
 
 using namespace std;
 
@@ -128,6 +128,16 @@ void Peer::CompleteConnnection(RakNet::Packet *p)
 	}
 }
 
+int Peer::SendText2(Pointer<String> str)
+{
+    return SendText(str->c_str());
+}
+
+int Peer::SendBlob(Pointer<BinaryPacket> packet)
+{
+    KAI_NOT_IMPLEMENTED();
+}
+
 int Peer::SendText(const char *text)
 {
 	int messageId = _peer->Send(text, strlen(text) + 1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
@@ -166,5 +176,24 @@ unsigned char Peer::GetPacketIdentifier(RakNet::Packet *p)
 		return static_cast<unsigned char>(p->data[0]);
 }
 
+void Peer::Register(Registry &reg)
+{
+    ClassBuilder<Peer>(reg, "Peer")
+        .Methods
+			("SendText", &Peer::SendText2)
+			("SendBlob", &Peer::SendBlob)
+        ;
+}
+
+StringStream &operator<<(StringStream &str, Peer const &peer)
+{
+    return str << "Peer is connected: " << peer.connected;
+}
+
+StringStream &operator<<(StringStream &str, RakNet::Packet const &packet)
+{
+    return str << "Packet from " << packet.guid.ToString() << ", length " << static_cast<int>(packet.length);
+}
+	
 KAI_END
 

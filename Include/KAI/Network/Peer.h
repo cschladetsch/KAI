@@ -24,7 +24,7 @@ KAI_TYPE_TRAITS(
     Properties::StringStreamInsert
 );
 
-// basic connection between two processes over TCP
+// basic connection between two processes over UDP and/or TCP
 struct Peer : Reflected
 {
     enum MessageId
@@ -33,16 +33,15 @@ struct Peer : Reflected
     };
 
     // TODO
-    bool connected = false;
-    bool isServer = false;
+    Pointer<bool> connected;
+    Pointer<bool> isServer;
 
     const static int MaxConnections = 255;
 
-    typedef unsigned char PacketType;
-
-    typedef std::map<int, RakNet::SystemAddress> Peers;
-
 private:
+    typedef unsigned char PacketType;
+    typedef std::map<int, RakNet::SystemAddress> Peers;
+	
     RakNet::RakPeerInterface *_peer;
     DataStructures::List<RakNet::RakNetSocket2 *> _sockets;
     RakNet::SocketDescriptor _socketDescriptors[2];
@@ -51,13 +50,17 @@ private:
 
 public:
     Peer();
+    virtual ~Peer() = default;
 
     typedef std::function<void(Pointer<Peer>, Pointer<String>)> ReceiveCallback;
     typedef std::function<void(Pointer<Peer>, Pointer<RakNet::Packet>)> PacketReceiveCallback;
+
     bool Start(int listenport, PacketReceiveCallback = &Peer::DefaultPacketReceiveCallback, ReceiveCallback = &Peer::DefaultReceiveCallback);
     bool Connect(const char *ip, int port);
-    void Step();
     int SendText(const char *text);
+    int SendText2(Pointer<String>);
+    int SendBlob(Pointer<BinaryPacket>);
+    void Step();
 
     static const char *AddressFromPacket(RakNet::Packet *p);
 

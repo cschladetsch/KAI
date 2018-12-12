@@ -4,8 +4,10 @@ set(name Network)
 project(${name})
 
 set(SOURCE_ROOT Source/*.cpp)
-file(GLOB_RECURSE SOURCE_FILES ${SOURCE_ROOT})
+set(HEADER_ROOT ${INCLUDE_ROOT}/Network/*.h)
+file(GLOB_RECURSE srcs ${SOURCE_ROOT})
+file(GLOB_RECURSE headers ${HEADER_ROOT})
 link_libraries(Executor Core PiLang RhoLang RakNetLibStatic)
-add_library(${name} ${SOURCE_FILES})
+add_library(${name} ${srcs} ${headers})
 cotire(${name})
 
