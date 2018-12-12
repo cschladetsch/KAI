@@ -1,6 +1,6 @@
+#include <RakNet/RakPeer.h>
+
 #include "KAI/Network/Node.h"
-#include <raknet/RakPeer.h>
-#include <memory>
 
 KAI_NET_BEGIN
 
