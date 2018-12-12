@@ -1,8 +1,10 @@
-#include <KAI/Language/Tau/Generate/Proxy.h>
-#include <KAI/Language/Tau/Generate/Agent.h>
+#include <iostream>
+
 #include <boost/program_options.hpp>
 #include <boost/filesystem.hpp>
-#include <iostream>
+
+#include "KAI/Language/Tau/Generate/Proxy.h"
+#include "KAI/Language/Tau/Generate/Agent.h"
 
 using namespace std;
 using namespace kai;

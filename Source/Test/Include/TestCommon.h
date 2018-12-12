@@ -1,5 +1,7 @@
 #pragma once
 
+#include <gtest/gtest.h>
+
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Console.h"
 #include "KAI/Core/Executor.h"
@@ -9,8 +11,6 @@
 #include "KAI/Core/Object/Class.h"
 #include "KAI/Core/Detail/Function.h"
 #include "KAI/Language/Common/Language.h"
-
-#include <gtest/gtest.h>
 
 KAI_BEGIN
 

@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.7)
-project(Chat)
-set(SOURCE_ROOT ${KAI_HOME}/App/RakNetworkChat)
-link_libraries(Executor Core PiLang RhoLang RakNetLibStatic)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Test/Bin")
-add_executable(Server ${SOURCE_ROOT}/Server.cpp)
-add_executable(Client ${SOURCE_ROOT}/Client.cpp)

@@ -67,7 +67,9 @@ struct TranslatorBase : TranslatorCommon
         if (stack.empty())
             KAI_THROW_0(EmptyStack);
 
-        return Pop();
+        // the continuation is wrapped in a continuation
+        auto cont = Pop();
+        return cont->GetCode()->At(0);
     }
 
 protected:

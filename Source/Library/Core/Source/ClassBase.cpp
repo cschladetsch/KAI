@@ -11,12 +11,10 @@ void RegisterClass(Registry &reg, ClassBase const &klass, Object const &root, Pa
 
 ClassBase::~ClassBase()
 {
-    Methods::iterator A = methods.begin(), B = methods.end();
-    for (; A != B; ++A)
-        delete A->second;
-    Properties::iterator C = properties.begin(), D = properties.end();
-    for (; C != D; ++C)
-        delete C->second;
+    for (const auto& method : methods)
+        delete method.second;
+    for (auto const &prop : properties)
+        delete prop.second;
 }
 
 void ClassBase::SetReferencedObjectsColor(

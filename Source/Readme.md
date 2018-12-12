@@ -2,9 +2,6 @@
 
 This is the top-level for all the sources in the system:
 
-* ***App***. Applications
-* ***Library***. All the library code.
+* ***App***. Applications: Console, Window, Peer, etc.
+* ***Library***. All the library code supporting the apps.
 * ***Test***. Test suites based on Google Test.
-  * Also test scripts for various languages.
-
-  * Test

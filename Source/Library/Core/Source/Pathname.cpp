@@ -118,23 +118,33 @@ void Pathname::AddElement(StringStream &name, Element::Type type)
 String Pathname::ToString() const
 {
     StringStream str;
+    bool addedRoot = false;
     if (Absolute())
+    {
+        addedRoot = true;
         str.Append(Literals::Separator);
+    }
 
     for (auto element : elements)
     {
         switch (element.type)
         {
-        case Element::Separator: str.Append(Literals::Separator);
+        case Element::Separator: 
+            if (!addedRoot)
+                str.Append(Literals::Separator);
+            addedRoot = false;
             break;
         
-        case Element::Parent: str.Append(Literals::Parent); 
+        case Element::Parent:
+            str.Append(Literals::Parent); 
             break;
 
-        case Element::This: str.Append(Literals::This); 
+        case Element::This:
+            str.Append(Literals::This); 
             break;
 
-        case Element::Name: str << element.name.ToString(); 
+        case Element::Name:
+            str << element.name.ToString(); 
             break;
 
         case Element::None:

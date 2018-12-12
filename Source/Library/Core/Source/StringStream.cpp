@@ -1,10 +1,12 @@
+#include <iostream>
+
 #include "KAI/Core/BasePointer.h"
 #include "KAI/Core/StringStream.h"
 #include "KAI/Core/BinaryPacket.h"
 #include "KAI/Core/BinaryStream.h"
 #include "KAI/Core/FunctionBase.h"
-#include <KAI/Executor/Operation.h>
-#include <KAI/Core/Object/ClassBuilder.h>
+#include "KAI/Executor/Operation.h"
+#include "KAI/Core/Object/ClassBuilder.h"
 
 KAI_BEGIN
 
@@ -168,6 +170,19 @@ StringStream &operator>>(StringStream &S, bool &N)
 void Ends(EndsArgument)
 {
     KAI_NOT_IMPLEMENTED_1("This is used to terminate string streams. Do not call it.");
+}
+
+std::ostream &operator<<(std::ostream &out, const StringStream &ss)
+{
+    return out << ss.ToString().c_str();
+}
+
+std::istream &operator>>(std::istream &in, StringStream &ss)
+{
+    std::string str;
+    in >> str;
+    ss.Append(str.c_str());
+    return in;
 }
 
 KAI_END

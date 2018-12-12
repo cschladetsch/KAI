@@ -57,7 +57,6 @@ struct PiTokenEnumType
         BitAnd,
         BitOr,
         BitXor,
-        Self,
         Lookup,
         Tab,
         NewLine,
@@ -136,6 +135,9 @@ struct PiTokenEnumType
         Exists,
         Freeze,
         Thaw,
+
+        Self,   // current continuation 'self'
+        This,   // current scope '.'
     };
 
     struct Type : TokenBase<PiTokenEnumType>

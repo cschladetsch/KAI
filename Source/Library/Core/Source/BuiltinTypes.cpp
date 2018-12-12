@@ -1,5 +1,3 @@
-#include <boost/lexical_cast.hpp>
-
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Exception.h"
 #include "KAI/Core/FunctionBase.h"
@@ -45,29 +43,39 @@ void Pair::Register(Registry &R)
         ;
 }
 
-String FileLocation::ToString(bool strip_path) const
+void FileLocation::AddLocation(StringStream &str) const
 {
-    StringStream S;
-    std::string loc = file.c_str();
-    if (strip_path)
+    if (debug::Trace::TraceFileLocation)
     {
-        loc = loc.substr(loc.find_last_of('/') + 1);
-        loc = loc.substr(loc.find_last_of('\\') + 1);
+        std::string loc = file.c_str();
+        if (debug::Trace::StripPath)
+        {
+            loc = loc.substr(loc.find_last_of('/') + 1);
+            loc = loc.substr(loc.find_last_of('\\') + 1);
+        }
+
+        if (!loc.empty())
+    #ifdef __MSVC__
+            S << loc.c_str() << "(" << line << "): ";
+    #else
+            str << loc.c_str() << ":" << line << ": ";
+    #endif
     }
+}
 
-    if (!loc.empty())
-#ifdef __MSVC__
-        S << loc.c_str() << "(" << line << "): ";
-#else
-        S << loc.c_str() << ":" << line << ": ";
-#endif
+void FileLocation::AddFunction(StringStream &str) const
+{
+    if (debug::Trace::TraceFunction && !function.Empty())
+        str << function << ": ";
+}
 
-    if (!function.Empty())
-        S << function << ": ";
-
-    S << Ends;
-
-    return S.ToString();
+String FileLocation::ToString() const
+{
+    StringStream str;
+    AddLocation(str);
+    AddFunction(str);
+    str << Ends;
+    return str.ToString();
 }
  
 template <class Callable>
@@ -122,7 +130,7 @@ void FunctionBase::Register(Registry &R)
 
 StringStream &operator<<(StringStream &S, int N)
 {
-    S << boost::lexical_cast<std::string>(N);
+    S << std::to_string(N);
     return S;
 }
 

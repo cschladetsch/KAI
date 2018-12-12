@@ -15,7 +15,9 @@ add_definitions(-DKAI_USE_EXCEPTIONS)
 add_definitions(-DKAI_BOOST_UNORDERED_REGISTRY)
 add_definitions(-DKAI_DEBUG)
 add_definitions(-DKAI_DEBUG_TRACE)
-add_definitions(-DKAI_TRACE_FILE_LOCATION)
+add_definitions(-DKAI_VERSION_MAJOR=0)
+add_definitions(-DKAI_VERSION_MINOR=3)
+add_definitions(-DKAI_VERSION_PATCH=0)
 #dd_definitions(-DKAI_DEBUG_REGISTRY)
 
 if (MSVC)
@@ -24,10 +26,9 @@ else()
     set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
 endif()
 
+# set common paths for all other projects to use
 set(HOME $ENV{HOME})
 set(KAI_HOME ${CMAKE_SOURCE_DIR})
-
-# set common paths for all other projects to use
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)
@@ -35,7 +36,6 @@ set(TEST_HOME ${SOURCE_HOME}/Test)
 set(BIN_HOME ${KAI_HOME}/Bin)
 set(INCLUDE_HOME ${KAI_HOME}/Include)
 set(EXTERNAL ${KAI_HOME}/Ext)
-
 set(dir ${KAI_HOME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
@@ -46,6 +46,7 @@ include_directories(${INCLUDE_HOME})
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
 
+add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE)
 include(AddBoost)
 include(IncludeGtest)
 include(cotire)
@@ -54,13 +55,12 @@ include(cotire)
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
 add_subdirectory(${RAKNET_ROOT})
 include_directories(${RAKNET_ROOT}/include)
-
 message(STATUS ${RAKNET_ROOT})
 
 # Add rang
 include_directories(${EXTERNAL}/rang/include)
 
-# make a new library
+### make a new library
 macro(def_library name)
     project(${name})
     set(SOURCE_ROOT ${LIBRARY_HOME}/${name}/Source/*.cpp)
@@ -69,7 +69,7 @@ macro(def_library name)
     cotire(${name})
 endmacro()
 
-# make a new language library
+### make a new language library
 macro(def_lang_library name)
     project(${name}Lang)
     set(lang_root ${LIBRARY_HOME}/Language/${name})
@@ -87,7 +87,7 @@ macro(def_lang_library name)
     cotire(${name}Lang)
 endmacro()
 
-# make a platform-specific library
+### make a platform-specific library
 macro(def_platform_library name)
     project(platform-${name})
     set(SOURCE_ROOT ${LIBRARY_HOME}/Platform/${name}/*.cpp)

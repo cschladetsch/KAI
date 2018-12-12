@@ -53,8 +53,8 @@ void PiLexer::AddKeyWords()
     
     keyWords["expand"] = Enum::Expand;
     keyWords["noteq"] = Enum::NotEquiv;
-    keyWords["ls"] = Enum::Contents;
-    keyWords["cls"] = Enum::GetContents;
+    keyWords["lls"] = Enum::Contents;
+    keyWords["ls"] = Enum::GetContents;
     keyWords["freeze"] = Enum::Freeze;
     keyWords["thaw"] = Enum::Thaw;
 }
@@ -113,7 +113,7 @@ bool PiLexer::NextToken()
             }
             return Fail("Two dots doesn't work");
         }
-        return Add(Enum::Dot);
+        return Add(Enum::Self);
 
     case '+':
         if (Peek() == '+')

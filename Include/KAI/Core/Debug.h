@@ -7,7 +7,6 @@
 #include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/StringStream.h"
 #include "KAI/Language/Common/Structure.h"
-#include "rang.hpp"
 
 KAI_BEGIN
 
@@ -25,6 +24,15 @@ namespace debug
 			Error,
 			Fatal,
 		};
+
+		// show the location of the trace, including line number
+        static bool TraceFileLocation;
+
+		// only show basename of location of trace
+		static bool StripPath;
+
+		// trace the function name as well
+        static bool TraceFunction;
 
 		Type type;
 		FileLocation file_location;
@@ -48,6 +56,9 @@ namespace debug
             return *this;
 		}
 	};
+
+    void MaxTrace();
+    void MinTrace();
 
 	struct EmptySink
 	{
