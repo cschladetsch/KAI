@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
-set(apps NetworkPeer Console NetworkGenerate)
+set(apps Console NetworkGenerate)# Window
 
 foreach (app ${apps})
     include(${APP_HOME}/${app}/CMakeLists.txt)

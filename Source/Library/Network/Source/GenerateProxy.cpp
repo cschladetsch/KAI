@@ -1,5 +1,6 @@
-#include <Tau/TauParser.h>
-#include <Generate/Proxy.h>
+#include <KAI/Language/Tau/TauParser.h>
+#include <KAI/Language/Tau/Generate/GenerateProxy.h>
+#include <KAI/Network/Proxy.h>
 #include <fstream>
 
 using namespace std;
@@ -8,7 +9,7 @@ TAU_BEGIN
 
 namespace Generate
 {
-	bool Proxy::Generate(TauParser const &p, const char *fname)
+	bool GenerateProxy::Generate(TauParser const &p, const char *fname)
 	{
 		auto const &root = p.GetRoot();
 		if (root->GetType() != TauAstEnumType::Module)
@@ -28,7 +29,7 @@ namespace Generate
 		return f.write(s.c_str(), s.size()).good();
 	}
 
-	bool Proxy::Namespace(Node const &ns)
+	bool GenerateProxy::Namespace(Node const &ns)
 	{
 		StartBlock(string("namespace ") + ns.GetToken().Text());
 		for (auto const &ch : ns.GetChildren())
@@ -54,7 +55,7 @@ namespace Generate
 		return true;
 	}
 
-	bool Proxy::Class(Node const &cl)
+	bool GenerateProxy::Class(Node const &cl)
 	{
 		StartBlock(string("struct ") + cl.GetToken().Text());
 
@@ -82,7 +83,7 @@ namespace Generate
 		return true;
 	}
 
-	bool Proxy::Property(Node const &prop)
+	bool GenerateProxy::Property(Node const &prop)
 	{
 		_str
 			<< ReturnType(prop.GetTokenText())
@@ -90,7 +91,7 @@ namespace Generate
 		return true;
 	}
 
-	bool Proxy::Method(Node const &method)
+	bool GenerateProxy::Method(Node const &method)
 	{
 		auto const &rt = method.GetChild(0);
 		auto const &args = method.GetChild(1);
@@ -113,16 +114,15 @@ namespace Generate
 		return (_str << ");" << EndLine()).good();
 	}
 
-	string Proxy::ReturnType(string &&text) const
+	string GenerateProxy::ReturnType(string const &text) const
 	{
-		return move(string("IFuture<") + text + "> ");
+		return string("IFuture<") + text + "> ";
 	}
 
-	string Proxy::ArgType(string &&text) const
+	string GenerateProxy::ArgType(string const &text) const
 	{
-		return move(text);
+		return text;
 	}
 }
 
 TAU_END
-

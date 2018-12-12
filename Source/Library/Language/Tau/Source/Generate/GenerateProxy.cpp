@@ -1,5 +1,5 @@
 #include <KAI/Language/Tau/Tau.h>
-#include <KAI/Language/Tau/Generate/Proxy.h>
+#include <KAI/Language/Tau/Generate/GenerateProxy.h>
 
 using namespace std;
 
@@ -7,17 +7,17 @@ TAU_BEGIN
 
 namespace Generate
 {
-    Proxy::Proxy(const char *in, const char *out)
+    GenerateProxy::GenerateProxy(const char *in, const char *out)
     {
         GenerateProcess::Generate(in, out);
     }
 
-    string Proxy::Prepend() const
+    string GenerateProxy::Prepend() const
     {
         return move(string("#include <KAI/Network/ProxyDecl.h>\n\n"));
     }
 
-    struct Proxy::ProxyDecl
+    struct GenerateProxy::ProxyDecl
     {
         string RootName;
         string ProxyName;
@@ -36,14 +36,14 @@ namespace Generate
         }
     };
 
-    void Proxy::AddProxyBoilerplate(ProxyDecl const &proxy)
+    void GenerateProxy::AddProxyBoilerplate(ProxyDecl const &proxy)
     {
         _str << "using ProxyBase::StreamType;" << EndLine();
         _str << proxy.ProxyName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
         _str << EndLine();
     }
 
-    bool Proxy::Class(Node const &cl)
+    bool GenerateProxy::Class(Node const &cl)
     {
         auto decl = ProxyDecl(cl.GetToken().Text());
 
@@ -56,7 +56,7 @@ namespace Generate
         return true;
     }
 
-    bool Proxy::Property(Node const &prop)
+    bool GenerateProxy::Property(Node const &prop)
     {
         auto type = prop.GetChild(0)->GetTokenText();
         auto name = prop.GetChild(1)->GetTokenText();
@@ -69,7 +69,7 @@ namespace Generate
         return true;
     }
 
-    bool Proxy::Method(Node const &method)
+    bool GenerateProxy::Method(Node const &method)
     {
         auto const &returnType = method.GetChild(0)->GetTokenText();
         auto const &args = method.GetChild(1)->GetChildren();
@@ -83,7 +83,7 @@ namespace Generate
         return true;
     }
 
-    void Proxy::MethodDecl(const string &returnType, const Node::ChildrenType &args, const string &name)
+    void GenerateProxy::MethodDecl(const string &returnType, const Node::ChildrenType &args, const string &name)
     {
         _str << ReturnType(returnType) << " " << name << "(";
         bool first = true;
@@ -108,7 +108,7 @@ namespace Generate
         return move(str.str());
     }
 
-    void Proxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
+    void GenerateProxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
     {
         StartBlock();
         auto ret = ReturnLead(returnType, name);
@@ -132,12 +132,12 @@ namespace Generate
         EndBlock();
     }
 
-    string Proxy::ReturnType(string const &text) const
+    string GenerateProxy::ReturnType(string const &text) const
     {
         return move(string("Future<") + text + ">");
     }
 
-    string Proxy::ArgType(string const &text) const
+    string GenerateProxy::ArgType(string const &text) const
     {
         return move(text);
     }

@@ -1180,7 +1180,7 @@ void Executor::Perform(Operation::Type op)
     {
         if (!PopBool())
         {
-            KAI_TRACE(_continuation->Show());
+            KAI_TRACE_ERROR_1(_continuation->Show()) << "Assertion failed";
             KAI_THROW_0(Assertion);
         }
     }
