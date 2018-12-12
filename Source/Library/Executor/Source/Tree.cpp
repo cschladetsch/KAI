@@ -270,11 +270,11 @@ void Tree::SetScope(const Pathname &path)
 
     scope = Get(root, scope, path);
 }
-
-void Tree::SetSearchPath(const SearchPath &P)
-{
-    path = P;
-}
+//
+//void Tree::SetSearchPath(const SearchPath &P)
+//{
+//    path = P;
+//}
 
 void Tree::AddSearchPath(const Object &P)
 {
