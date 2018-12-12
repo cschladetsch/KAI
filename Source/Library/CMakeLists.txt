@@ -6,7 +6,9 @@ foreach(lib ${libs})
     def_library(${lib})
 endforeach()
 
+message(STATUS ---- starting NETWORK)
 add_subdirectory(${LIBRARY_HOME}/Network)
+message(STATUS ---- ending NETWORK)
 
 # language libs are a bit different
 include_directories(${LIBRARY_HOME}/Language/Include)
