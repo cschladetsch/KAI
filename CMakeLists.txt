@@ -53,8 +53,8 @@ include(cotire)
 
 # Add RakNet
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-# don't build it every time
-#add_subdirectory(${RAKNET_ROOT})
+# TODO: don't build it every time
+add_subdirectory(${RAKNET_ROOT})
 include_directories(${RAKNET_ROOT}/include)
 
 # Add rang
