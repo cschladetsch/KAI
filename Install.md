@@ -10,6 +10,23 @@ KAI is cross-platform across maxOS, Linux and Windows system with many internal 
 > git submodule update
 ```
 
+Currently the list of external `git` repos are:
+
+* *RakNet*. Cross-platform networking.
+* *rang*. Cross-platform Colored console output.
+* *imgui*. Cross-platform Immediate-mode windowing system.
+
+## Boost
+
+For windows:
+
+```bash
+> .\bootstrap.bat
+> .\b2 install debug --build=complete --with-chrono --with-filesystem --with-system --with-program_options
+```
+
+The same is true for Linux or macOS, just use `./` instead of `.\`
+
 ## Ubuntu
 
 ```
