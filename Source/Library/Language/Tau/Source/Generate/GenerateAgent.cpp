@@ -1,20 +1,20 @@
-#include <KAI/Language/Tau/Generate/Agent.h>
+#include <KAI/Language/Tau/Generate/GenerateAgent.h>
 
 TAU_BEGIN
 
 namespace Generate
 {
-    Agent::Agent(const char *in, const char *out)
+    GenerateAgent::GenerateAgent(const char *in, const char *out)
     {
         GenerateProcess::Generate(in, out);
     }
 
-    string Agent::Prepend() const
+    string GenerateAgent::Prepend() const
     {
         return move(string("#include <KAI/Network/AgentDecl.h"));
     }
 
-    struct Agent::Decl
+    struct GenerateAgent::Decl
     {
         string RootName;
         string AgentName;
@@ -33,13 +33,13 @@ namespace Generate
         }
     };
 
-    void Agent::AddAgentBoilerplate(Decl const &agent)
+    void GenerateAgent::AddAgentBoilerplate(Decl const &agent)
     {
         _str << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
         _str << EndLine();
     }
 
-    bool Agent::Class(TauParser::AstNode const &cl)
+    bool GenerateAgent::Class(TauParser::AstNode const &cl)
     {
         auto decl = Decl(cl.GetToken().Text());
 
@@ -52,22 +52,22 @@ namespace Generate
         return true;
     }
 
-    bool Agent::Property(TauParser::AstNode const &prop)
+    bool GenerateAgent::Property(TauParser::AstNode const &prop)
     {
         return false;
     }
 
-    bool Agent::Method(TauParser::AstNode const &method)
+    bool GenerateAgent::Method(TauParser::AstNode const &method)
     {
         return false;
     }
 
-    std::string Agent::ArgType(std::string const &text) const
+    std::string GenerateAgent::ArgType(std::string const &text) const
     {
         return move(text);
     }
 
-    std::string Agent::ReturnType(std::string const &text) const
+    std::string GenerateAgent::ReturnType(std::string const &text) const
     {
         return move(text);
     }

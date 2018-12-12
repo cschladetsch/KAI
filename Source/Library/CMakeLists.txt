@@ -6,8 +6,8 @@ foreach(lib ${libs})
     def_library(${lib})
 endforeach()
 
+add_subdirectory(${LIBRARY_HOME}/Network)
+
 # language libs are a bit different
 include_directories(${LIBRARY_HOME}/Language/Include)
-include(${LIBRARY_HOME}/Language/CMakeLists.txt)
-
-# CJS UBUNTU include(${LIBRARY_HOME}/ImGui/CMakeLists.txt)
+add_subdirectory(${LIBRARY_HOME}/Language)

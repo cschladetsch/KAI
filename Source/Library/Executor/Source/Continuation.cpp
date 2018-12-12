@@ -179,10 +179,10 @@ void Continuation::Register(Registry &R)
     ClassBuilder<Continuation>(R, "Continuation")
         .Methods
         .Properties
-        ("code", &Continuation::code)
-        ("args", &Continuation::args)
-        ("scope", &Continuation::scope)
-        ("source_code", &Continuation::source_code)
+            ("code", &Continuation::code)
+            ("args", &Continuation::args)
+            ("scope", &Continuation::scope)
+            ("source_code", &Continuation::source_code)
         ;
 }
 

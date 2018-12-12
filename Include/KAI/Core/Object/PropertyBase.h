@@ -5,6 +5,8 @@
 #include "KAI/Core/BasePointer.h"
 #include "KAI/Core/Object/MemberCreateParams.h"
 
+#include "KAI/UnfuckWin32.h"
+
 KAI_BEGIN
 
 /// nominates a field in an instance of a class. commonality for all accessors and mutators.

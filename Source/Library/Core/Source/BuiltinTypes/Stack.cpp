@@ -9,10 +9,10 @@ void Stack::Register(Registry &R)
 {
     ClassBuilder<Stack>(R, Label("Stack"))
         .Methods
-        ("Pop", &Stack::Pop)
-        ("Top", &Stack::Top)
-        ("Size", &Stack::Size)
-        ("Empty", &Stack::Empty)
+            ("Pop", &Stack::Pop)
+            ("Top", &Stack::Top)
+            ("Size", &Stack::Size)
+            ("Empty", &Stack::Empty)
         ;
 }
 

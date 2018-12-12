@@ -1,26 +1,28 @@
 #include <iostream>
-#include <map>
 
-#include "./Peer.h"
+#include "KAI/Network/Peer.h"
+#include "KAI/ClassBuilder.h"
 
 using namespace std;
 
-Peer::Peer(int listenPort)
+KAI_BEGIN
+
+Peer::Peer()
 {
 	_peer = RakNet::RakPeerInterface::GetInstance();
 	
 	_peer->SetTimeoutTime(3000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	_peer->DisableSecurity();
 
+}
+
+bool Peer::Start(int listenPort, PacketReceiveCallback r0, ReceiveCallback r1)
+{
 	// attempt both IPV4 and V6
 	_socketDescriptors[0].port = listenPort;
 	_socketDescriptors[0].socketFamily = AF_INET;
 	_socketDescriptors[1].port = listenPort;
 	_socketDescriptors[1].socketFamily = AF_INET6;
-}
-
-bool Peer::Start()
-{
 	// TODO: try IP6 first. this only attempts IPV4
 	// confusingly, the last parameter to Startup
 	// is 1-based: so this listens on IP4. changing
@@ -126,6 +128,16 @@ void Peer::CompleteConnnection(RakNet::Packet *p)
 	}
 }
 
+int Peer::SendText2(Pointer<String> str)
+{
+    return SendText(str->c_str());
+}
+
+int Peer::SendBlob(Pointer<BinaryPacket> packet)
+{
+    KAI_NOT_IMPLEMENTED();
+}
+
 int Peer::SendText(const char *text)
 {
 	int messageId = _peer->Send(text, strlen(text) + 1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
@@ -164,4 +176,24 @@ unsigned char Peer::GetPacketIdentifier(RakNet::Packet *p)
 		return static_cast<unsigned char>(p->data[0]);
 }
 
-//EOF
+void Peer::Register(Registry &reg)
+{
+    ClassBuilder<Peer>(reg, "Peer")
+        .Methods
+			("SendText", &Peer::SendText2)
+			("SendBlob", &Peer::SendBlob)
+        ;
+}
+
+StringStream &operator<<(StringStream &str, Peer const &peer)
+{
+    return str << "Peer is connected: " << peer.connected;
+}
+
+StringStream &operator<<(StringStream &str, RakNet::Packet const &packet)
+{
+    return str << "Packet from " << packet.guid.ToString() << ", length " << static_cast<int>(packet.length);
+}
+	
+KAI_END
+

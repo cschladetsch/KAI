@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "KAI/UnfuckWin32.h"
 
 KAI_BEGIN
 

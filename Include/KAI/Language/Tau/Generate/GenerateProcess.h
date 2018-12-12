@@ -1,9 +1,7 @@
 #pragma once
 
-#include <KAI/Language/Tau/TauParser.h>
-
-#include <strstream>
 #include <string>
+#include <KAI/Language/Tau/TauParser.h>
 
 TAU_BEGIN
 
@@ -16,23 +14,24 @@ namespace Generate
     // common base for proxy and agent generation
     struct GenerateProcess : Process
     {
+    public:
         typedef TauParser::AstNode Node;
 
     public:
-        virtual ~GenerateProcess()  { }
+        virtual ~GenerateProcess() = default;
 
         shared_ptr<TauParser> Parse(const char *fileName) const;
         bool Generate(const char *inputFile, const char *outputFile);
-        bool Generate(TauParser const &p, const char *fileName);
+        virtual bool Generate(TauParser const &p, const char *fileName) = 0;
 
     protected:
-        bool Module(TauParser const &);
-        virtual bool Namespace(Node const &ns);
 
-        virtual bool Class(Node const &cl) = 0;
-        virtual bool Property(Node const &prop) = 0;
-        virtual bool Method(Node const &method) = 0;
-        virtual string Prepend() const = 0;
+        virtual bool Module(TauParser const &);
+        virtual bool Namespace(Node const &ns);
+        virtual bool Class(Node const &cl);
+        virtual bool Property(Node const &prop);
+        virtual bool Method(Node const &method);
+        virtual string Prepend() const;
 
     protected:
         string CommonPrepend();
