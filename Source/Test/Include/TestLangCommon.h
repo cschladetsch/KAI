@@ -1,10 +1,9 @@
-#include <memory>
+#include "./TestCommon.h"
+
 #include <gtest/gtest.h>
 
 #include <KAI/KAI.h>
 #include <KAI/Console/Console.h>
-
-#include "./TestCommon.h"
 
 KAI_BEGIN
 

@@ -12,11 +12,12 @@ using namespace kai;
 
 KAI_BEGIN
 
-path ScriptRoot = "../../Source/Test/Scripts/";
+path ScriptRoot = "Scripts/";
 
 string LoadScriptText(const char *filename)
 {
-    return File::ReadAllText((ScriptRoot / path(filename)).generic_string().c_str());
+    //return File::ReadAllText((ScriptRoot / path(filename)).generic_string().c_str());
+    return File::ReadAllText(filename);
 }
 
 KAI_END
