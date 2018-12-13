@@ -19,7 +19,9 @@ TEST_F(TestTau, TestProxyGen)
     Console console;
     Registry &reg = console.GetRegistry();
 
-    //tau::Generate::GenerateAgent gen("", "");
+    string out;
+    tau::Generate::GenerateAgent gen(tauScript.c_str(), out);
+    KAI_TRACE_1(out);
 }
 
 TEST_F(TestTau, TestAgentGen)

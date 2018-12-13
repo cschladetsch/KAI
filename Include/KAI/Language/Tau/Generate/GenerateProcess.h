@@ -26,6 +26,7 @@ namespace Generate
     protected:
         shared_ptr<TauParser> Parse(const char *input) const;
         virtual bool Generate(TauParser const &p, string &output) = 0;
+        static string CommonPrepend();
 
         virtual bool Module(TauParser const &);
         virtual bool Namespace(Node const &ns);
@@ -35,8 +36,7 @@ namespace Generate
         virtual string Prepend() const;
 
     protected:
-        static string CommonPrepend();
-        stringstream &StartBlock(const string &text = "");
+        stringstream &StartBlock(const string &name = "");
         string EndLine() const;
         void EndBlock();
 

@@ -9,6 +9,34 @@ TAU_BEGIN
 
 namespace Generate
 {
+    bool GenerateProcess::Generate(const char *input, string &output)
+    {
+        auto parser = Parse(input);
+        if (parser)
+            return Generate(*parser, output);
+        return false;
+    }
+
+    shared_ptr<TauParser> GenerateProcess::Parse(const char *input) const
+    {
+        Registry r;
+        auto lex = make_shared<TauLexer>(input, r);
+        if (!lex->Process())
+        {
+            Fail(lex->Error);
+            return nullptr;
+        }
+
+        auto parser = make_shared<TauParser>(r);
+        if (!parser->Process(lex, Structure::Module))
+        {
+            Fail(parser->Error);
+            return nullptr;
+        }
+
+        return parser;
+    }
+
     bool GenerateProcess::Generate(TauParser const &p, string &output)
     {
         if (!Module(p))
@@ -99,32 +127,19 @@ namespace Generate
         return true;
     }
 
-    bool GenerateProcess::Generate(const char *input, string &output)
+    bool GenerateProcess::Property(Node const &prop)
     {
-        auto parser = Parse(input);
-        if (parser)
-            return Generate(*parser, output);
-        return false;
+        return true;
     }
 
-    shared_ptr<TauParser> GenerateProcess::Parse(const char *input) const
+    bool GenerateProcess::Method(Node const &method)
     {
-        Registry r;
-        auto lex = make_shared<TauLexer>(input, r);
-        if (!lex->Process())
-        {
-            Fail(lex->Error);
-            return nullptr;
-        }
+        return true;
+    }
 
-        auto parser = make_shared<TauParser>(r);
-        if (!parser->Process(lex, Structure::Module))
-        {
-            Fail(parser->Error);
-            return nullptr;
-        }
-
-        return parser;
+    string GenerateProcess::Prepend() const
+    {
+        return "";
     }
 
     stringstream &GenerateProcess::StartBlock(const string &name)
