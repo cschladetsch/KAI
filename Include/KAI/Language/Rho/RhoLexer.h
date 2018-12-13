@@ -15,6 +15,7 @@ struct RhoLexer : LexerCommon<RhoTokenEnumType>
     void AddKeyWords() override;
     bool NextToken() override;
     void Terminate() override;
+    String ToString() const { return Print(); }
 
 protected:
     bool LexPathname();

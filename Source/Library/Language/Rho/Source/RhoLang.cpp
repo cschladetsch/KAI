@@ -3,55 +3,49 @@
 
 #include "KAI/Executor/Executor.h"
 #include "KAI/Language/Rho/RhoLang.h"
+#include <iostream>
 
 using namespace std;
 
 KAI_BEGIN
 
-void RhoLang::Print()
+void RhoLang::Print() const
 {
-    /*
-    cout << "Input--" << endl;
-    cout << lex->GetInput() << endl;
+    cout << "Input:" << endl;
+    KAI_TRACE_1(lex->GetInput());
 
-    cout << "Lexer--" << endl;
-    lex->Print();
+    cout << "Lexer:" << endl;
+    KAI_TRACE_1(lex->ToString());
 
-    cout << "Parser--" << endl;
-    parse->Print();
+    cout << "Parser:" << endl;
+    KAI_TRACE_1(parse->ToString());
 
-    cout << "Trans--" << endl;
-    cout << trans->Result() << endl;
-     */
+    cout << "Trans:" << endl;
+    KAI_TRACE_1(trans->ToString());
 }
 
 Pointer<Continuation> RhoLang::TranslateFile(const char *name, Structure st)
 {
-    ifstream file(name, ios::binary);
-    if (!file)
-        return Object();
-
-    return Translate(ReadTextFile(name).c_str(), st);
+    return Translate(File::ReadAllText(name).c_str(), st);
 }
 
 Pointer<Continuation> RhoLang::Translate(const char *text, Structure st)
 {
-    KAI_UNUSED_2(text, st);
-    return Object();
+    if (lex->Failed)
+        return Fail(lex->Error), Object();
 
-//    trans = std::make_shared<Translator>(reg);
-//    trans->Translate(text);
-//
-//    if (lex->Failed)
-//        Fail(lex->Error);
-//
-//    if (parse->Failed)
-//        Fail(parse->Error);
-//
-//    if (trans->Failed)
-//        Fail(trans->Error);
-//
-//    return !Failed;
+    if (parse->Failed)
+        return Fail(parse->Error), Object();
+
+    auto trans = make_shared<Translator>(reg);
+    auto cont = trans->Translate(text, st);
+    if (trans->Failed)
+        return Fail(trans->Error), Object();
+
+    return cont;
 }
 
 KAI_END
+
+//EOF
+

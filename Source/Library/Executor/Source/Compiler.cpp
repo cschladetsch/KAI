@@ -54,7 +54,7 @@ void Compiler::AddOperation(int N, const String &S)
 
 Pointer<Continuation> Compiler::CompileFile(const String &fileName, Structure st) const
 {
-    auto text = ReadTextFile(fileName.c_str());
+    auto text = File::ReadAllText(fileName.c_str());
     return Translate(text.c_str(), st);
 }
 

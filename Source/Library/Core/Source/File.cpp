@@ -1,37 +1,77 @@
-#include <KAI/Core/File.h>
-#include <KAI/Core/Object.h>
-#include <fstream>
+#include <boost/filesystem.hpp>
 
+#include "KAI/Core/File.h"
+#include "KAI/Core/Object.h"
+#include "KAI/Core/Exception.h"
+
+using namespace boost::filesystem;
 using namespace std;
 
 KAI_BEGIN
 
-string ReadTextFile(const char *fileName)
+namespace File
 {
-    fstream file(fileName);
-    typedef istreambuf_iterator<char> iter;
-    return move(string(iter(file), iter()));
-}
+    namespace fs = boost::filesystem;
+    using byte = std::byte;
 
-vector<byte> ReadBinaryFile(const char *fileName)
-{
-    KAI_NOT_IMPLEMENTED();
-}
+    // return a vector of all files that have the given extension, starting from root, recursively
+    Pathnames GetFilesWithExtensionRecursively(Pathname const &root, Extension const &ext)
+    {
+        recursive_directory_iterator iter(root);
+        const recursive_directory_iterator end;
 
-bool WriteTextFile(const char *contents, const char *fileName)
-{
-    KAI_NOT_IMPLEMENTED();
-}
+        vector<path> result;
+        for (; iter != end; ++iter)
+        {
+            auto const &val = *iter;
+            if (is_regular_file(val) && val.path().extension() == ext)
+                result.push_back(val.path().filename());
+        }
 
-bool WriteBinaryFile(const void *contents, const size_t len, const char *fileName)
-{
-    KAI_NOT_IMPLEMENTED();
-}
+        return result;
+    }
 
-bool WriteBinaryFile(vector<byte> const &, const char *fileName)
-{
-    KAI_NOT_IMPLEMENTED();
+    Pathnames GetFilesRecursively(Pathname const &root)
+    {
+        KAI_NOT_IMPLEMENTED();
+    }
+
+    Pathnames GetFiles(Pathname const &root)
+    {
+        KAI_NOT_IMPLEMENTED();
+    }
+
+    // Read all text from given filename
+    string ReadAllText(Pathname const &path)
+    {
+        fs::ifstream f(path);
+        return string(istreambuf_iterator<char>(f), istreambuf_iterator<char>());
+    }
+
+    std::wstring ReadAllWideText(Pathname const &path)
+    {
+        fs::ifstream f(path);
+        return wstring(istreambuf_iterator<char>(f), istreambuf_iterator<char>());
+    }
+
+    // replace a file with the contents of a string
+    bool ReplaceWithText(std::string const &text, Pathname const &path)
+    {
+        fs::ofstream out(path, ios_base::out);
+        if (!out)
+            return false;
+        std::copy(text.begin(), text.end(), ostream_iterator<char>(out));
+        return out.good() && out.tellp() == text.size();
+    }
+
+    // replace a file with a sequence of bytes
+    bool ReplaceWithBinary(std::byte const *bytes, size_t num_bytes, Pathname const &path)
+    {
+        KAI_NOT_IMPLEMENTED();
+    }
 }
 
 KAI_END
+
+//EOF
 

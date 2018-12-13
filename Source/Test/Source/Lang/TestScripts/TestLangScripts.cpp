@@ -1,12 +1,25 @@
 #include "TestCommon.h"
 #include <boost/filesystem.hpp>
+#include "KAI/Core/File.h"
+#include "KAI/Language/Common/Language.h"
+#include <KAI/Console/Console.h>
+
+std::list<kai::Language> TestLanguages;
 
 using namespace boost::filesystem;
 using namespace std;
 using namespace kai;
 
-std::list<kai::Language> TestLanguages;
+KAI_BEGIN
+
 path ScriptRoot = "../../Source/Test/Scripts/";
+
+string LoadScriptText(const char *filename)
+{
+    return File::ReadAllText((ScriptRoot / path(filename)).generic_string().c_str());
+}
+
+KAI_END
 
 // single test that is used to run all scripts for all languages, configured
 // via global TestLanguages.

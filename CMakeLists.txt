@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.12)
 
 project(KAI)
 
-option(KAI_BUILD_RAKNET	"Build RakNet" ON)
+option(KAI_BUILD_TESTS "Build unit tests" ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
@@ -51,11 +51,12 @@ include(AddBoost)
 include(IncludeGtest)
 include(cotire)
 
-# Add RakNet
+# Add RakNet. Build only if required
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-# TODO: don't build it every time
+set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
+set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
 add_subdirectory(${RAKNET_ROOT})
-include_directories(${RAKNET_ROOT}/include)
+include_directories(${RAKNET_INCLUDE_PATH})
 
 # Add rang
 include_directories(${EXTERNAL}/rang/include)
@@ -105,7 +106,13 @@ macro(def_platform_library name)
 endmacro()
 
 # make all top-level components
-set(TopLevels Library App Test)
+set(TopLevels Library App)
+if (KAI_BUILD_TESTS)
+    list(APPEND TopLevels Test)
+else()
+    message(WARNING "Not building unit tests")
+endif()
+
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()

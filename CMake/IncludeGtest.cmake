@@ -1,9 +1,17 @@
 # Download and unpack googletest at configure time
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
-execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
+
+# TODO: Not put them in the root!
+
+if (NOT EXISTS "${CMAKE_BINARY_DIR}/googletest-src" )
+    message(WARNING "Downloading GoogleTest")
+    configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+    execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
+    execute_process(COMMAND "${CMAKE_COMMAND}" --build .
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
+else()
+    message(STATUS "Already downloaded GoogleTest")
+endif()
 
 # Prevent GoogleTest from overriding our compiler/linker options when building with Visual Studio
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)

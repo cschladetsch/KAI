@@ -1,5 +1,7 @@
 #include "TestCommon.h"
-#include <cstdarg>
+#include <KAI/Core/BuiltinTypes/All.h>
+#include <KAI/Core/Tree.h>
+#include "KAI/Core/Console.h"
 
 KAI_BEGIN
 
@@ -13,7 +15,7 @@ void TestCommon::SetUp()
     _reg->AddClass<int>();
     _reg->AddClass<float>();
     _reg->AddClass<String>();
-    _reg->AddClass<StringStream>();
+    //_reg->AddClass<StringStream>();
     _reg->AddClass<BinaryStream>();
 
     _root = _reg->New<void>();

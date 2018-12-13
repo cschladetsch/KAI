@@ -186,6 +186,7 @@ void RhoTranslator::TranslateBinaryOp(AstNodePtr node, Operation::Type op)
 //    AppendNew(Pathname(move(elements)));
 //}
 
+
 void RhoTranslator::TranslateNode(AstNodePtr node)
 {
     if (!node)

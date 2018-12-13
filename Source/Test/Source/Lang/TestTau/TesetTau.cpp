@@ -1,4 +1,5 @@
 #include "TestLangCommon.h"
+
 #include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Core/BuiltinTypes/Array.h>
 
@@ -7,14 +8,14 @@
 using namespace kai;
 using namespace std;
 
-// struct TestTau : TestLangCommon
-// {
-// };
+struct TestTau : TestLangCommon
+{
+};
 
-// TEST_F(TestTau, TestProxyGen)
-// {
-// }
+TEST_F(TestTau, TestProxyGen)
+{
+}
 
-// TEST_F(TestTau, TestAgentGen)
-// {
-// }
+TEST_F(TestTau, TestAgentGen)
+{
+}

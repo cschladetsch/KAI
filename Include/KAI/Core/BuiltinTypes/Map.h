@@ -4,7 +4,7 @@
 
 #include <KAI/Core/Config/Base.h>
 #include "KAI/Core/BuiltinTypes/MapBase.h"
-#include <KAI/Core/StringStream.h>
+#include "KAI/Core/StringStream.h"
 #include <KAI/Core/Type/TraitMacros.h>
 
 KAI_BEGIN
