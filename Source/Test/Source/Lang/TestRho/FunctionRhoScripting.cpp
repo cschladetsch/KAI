@@ -1,5 +1,6 @@
 #include "TestCommon.h"
 #include "MyTestStruct.h"
+#include "KAI/Core/Console.h"
 
 USING_NAMESPACE_KAI
 

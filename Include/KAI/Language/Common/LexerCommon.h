@@ -215,7 +215,7 @@ public:
         int n = 0;
         for (auto tok : tokens)
         {
-            str << tok << " ";
+            str << tok << ", ";
         }
         return str.str();
     }

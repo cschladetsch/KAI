@@ -13,7 +13,6 @@ Peer::Peer()
 	
 	_peer->SetTimeoutTime(3000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
 	_peer->DisableSecurity();
-
 }
 
 bool Peer::Start(int listenPort, PacketReceiveCallback r0, ReceiveCallback r1)

@@ -16,7 +16,7 @@ class RhoLang : Lang<RhoTranslator>
     Pointer<Continuation> Translate(const char *text, Structure st = Structure::Expression);
     Pointer<Continuation> TranslateFile(const char *name, Structure st = Structure::Program);
 
-    void Print();
+    void Print() const;
 
 protected:
     using Parent::reg;

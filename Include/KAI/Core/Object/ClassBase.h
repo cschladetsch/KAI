@@ -6,7 +6,7 @@
 #include <KAI/Core/Type/Properties.h>
 #include <KAI/Core/Type/Number.h>
 #include <KAI/Core/Exception/Extended.h>
-#include "KAI/Core/Base.h"
+#include <KAI/Core/Base.h>
 #include "KAI/Core/Exception/ExceptionMacros.h"
 
 #include "KAI/Core/Object/PropertyBase.h"

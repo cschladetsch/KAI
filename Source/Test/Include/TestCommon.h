@@ -1,18 +1,23 @@
 #pragma once
 
+#include <boost/filesystem.hpp>
 #include <gtest/gtest.h>
-
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Console.h"
 #include "KAI/Core/Executor.h"
 #include "KAI/Core/Object/GetStorageBase.h"
 #include "KAI/Core/StringStreamTraits.h"
 #include "KAI/Core/FunctionBase.h"
+#include "KAI/Core/FunctionBase.h"
 #include "KAI/Core/Object/Class.h"
 #include "KAI/Core/Detail/Function.h"
 #include "KAI/Language/Common/Language.h"
 
 KAI_BEGIN
+
+extern boost::filesystem::path ScriptRoot;
+
+std::string LoadScriptText(const char *filename);
 
 // TODO: Rename to BaseTestClass once refactoring works with VSCode again :P
 class TestCommon : public ::testing::Test

@@ -23,6 +23,7 @@ public:
     RhoParser(Registry &r) : Parent(r) { }
 
     virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
+    String Print() const;
 
 protected:
     void Process(Structure);

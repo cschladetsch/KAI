@@ -1,17 +1,58 @@
-#include <KAI/Core/Config/Base.h>
+#pragma once
+
+#include "KAI/Core/Config/Base.h"
+#include <boost/filesystem.hpp>
 #include <string>
 #include <vector>
 
 KAI_BEGIN
 
-typedef char byte;
+namespace File
+{
+    using Pathname = boost::filesystem::path;
+    using Extension = Pathname::string_type;
+    using Pathnames = std::vector<Pathname>;
 
-std::string ReadTextFile(const char *fileName);
-std::vector<byte> ReadBinaryFile(const char *fileName);
+    bool Exists(Pathname const &);
+    bool IsFile(Pathname const &);
+    bool IsFolder(Pathname const &);
 
-bool WriteTextFile(const char *contents, const char *fileName);
-bool WriteBinaryFile(const void *contents, const size_t len, const char *fileName);
-bool WriteBinaryFile(std::vector<byte> const &, const char *fileName);
+    // return a vector of all files that have the given extension, starting from root, recursively
+    Pathnames GetFilesWithExtensionRecursively(Pathname const &root, Extension const &ext);
+    Pathnames GetFilesRecursively(Pathname const &root);
+    Pathnames GetFiles(Pathname const &root);
+
+    // Read all text from given filename
+    std::string ReadAllText(Pathname const &);
+    std::wstring ReadAllWideText(Pathname const &);
+
+    // replace a file with the contents of a string
+    bool ReplaceWithText(std::string const &, Pathname const&);
+
+    // read all bytes in a file
+    template <class Byte = std::byte>
+    std::vector<Byte> ReadAllBinary(Pathname const &path)
+    {
+        using namespace std;
+        namespace fs = boost::filesystem;
+
+        fs::basic_ifstream<Byte> in(path, ios_base::binary | ios_base::in);
+        in.seekg(0, ios_base::end);
+        const auto len = in.tellg();
+        in.seekg(0, ios_base::beg);
+        vector<Byte> contents(len);
+        in.read(&contents[0], len);
+        return contents;
+    }
+
+    // replace a file with a sequence of bytes
+    bool ReplaceWithBinary(std::byte const *, size_t num_bytes, Pathname const &);
+
+    inline bool ReplaceWithBinary(std::vector<std::byte> const &bytes, Pathname const &pathname)
+    {
+        return ReplaceWithBinary(&*bytes.begin(), bytes.size(), pathname);
+    }
+}
 
 KAI_END
 

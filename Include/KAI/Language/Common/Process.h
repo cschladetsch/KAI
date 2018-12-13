@@ -5,8 +5,8 @@
 
 KAI_BEGIN
 
-/// Common to all language processes. A simple and humble class with faults
-/// but crucial to the overall system.
+// Common to all language processes. A simple and humble class with faults
+// but crucial to the overall system.
 struct Process
 {
     virtual ~Process() = default;
@@ -18,6 +18,12 @@ struct Process
 protected:
     bool Fail(const char *fmt, ...) const;
     bool Fail(const std::string &) const;
+
+    //Object FailObject(const std::string &text) const
+    //{
+    //    KAI_TRACE_ERROR_1(Fail(text));
+    //    return Object();
+    //}
 };
 
 KAI_END
