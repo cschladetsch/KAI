@@ -1,5 +1,7 @@
-#include <KAI/Language/Tau/Tau.h>
+#include <KAI/Language/Tau/TauParser.h>
 #include <KAI/Language/Tau/Generate/GenerateProxy.h>
+#include <KAI/Network/Proxy.h>
+#include <fstream>
 
 using namespace std;
 
@@ -12,140 +14,125 @@ namespace Generate
         GenerateProcess::Generate(input, output);
     }
 
+	bool GenerateProxy::Generate(TauParser const &p, string &output)
+	{
+		auto const &root = p.GetRoot();
+		if (root->GetType() != TauAstEnumType::Module)
+			return Fail("Expected a Module");
+
+		for (const auto &ch : root->GetChildren())
+		{
+			if (ch->GetType() != TauAstEnumType::Namespace)
+				return Fail("Namespace expected");
+
+			if (!Namespace(*ch))
+				return false;
+		}
+
+        stringstream str;
+        str << Prepend() << "\n" << _str.str() << ends;
+        return !Failed;
+	}
+
     string GenerateProxy::Prepend() const
     {
         return string("#include <KAI/Network/ProxyDecl.h>\n\n");
     }
 
-    struct GenerateProxy::ProxyDecl
-    {
-        string RootName;
-        string ProxyName;
+	bool GenerateProxy::Namespace(Node const &ns)
+	{
+		StartBlock(string("namespace ") + ns.GetToken().Text());
+		for (auto const &ch : ns.GetChildren())
+		{
+			switch (ch->GetType())
+			{
+			case TauAstEnumType::Namespace:
+				if (!Namespace(*ch))
+					return false;
 
-        ProxyDecl(string const &root)
-            : RootName(root)
-        {
-            ProxyName = root + "Proxy";
-        }
+			case TauAstEnumType::Class:
+				if (!Class(*ch))
+					return false;
 
-        string ToString() const
-        {
-            stringstream decl;
-            decl << "struct " << ProxyName << ": ProxyBase";
-            return move(decl.str());
-        }
-    };
+			default:
+				KAI_TRACE_ERROR_1("Parser failed to fail");
+				Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
+				break;
+			}
+		}
 
-    void GenerateProxy::AddProxyBoilerplate(ProxyDecl const &proxy)
-    {
-        _str << "using ProxyBase::StreamType;" << EndLine();
-        _str << proxy.ProxyName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
-        _str << EndLine();
-    }
+		EndBlock();
+		return true;
+	}
 
-    bool GenerateProxy::Namespace(Node const &cl)
-    {
-        return true;
-    }
+	bool GenerateProxy::Class(Node const &cl)
+	{
+		StartBlock(string("struct ") + cl.GetToken().Text());
 
-    bool GenerateProxy::Class(Node const &cl)
-    {
-        auto decl = ProxyDecl(cl.GetToken().Text());
+		for (const auto &member : cl.GetChildren())
+		{
+			switch (member->GetType())
+			{
+			case TauAstEnumType::Class:
+				return Class(*member);
 
-        StartBlock(decl.ToString());
-        AddProxyBoilerplate(decl);
+			case TauAstEnumType::Property:
+				if (!Property(*member))
+					return false;
 
-        GenerateProcess::Class(cl);
+			case TauAstEnumType::Method:
+				if (!Method(*member))
+					return false;
 
-        EndBlock();
-        return true;
-    }
+			default:
+				return Fail("Invalid class member: %s", TauAstEnumType::ToString(member->GetType()));
+			}
+		}
 
-    bool GenerateProxy::Property(Node const &prop)
-    {
-        auto type = prop.GetChild(0)->GetTokenText();
-        auto name = prop.GetChild(1)->GetTokenText();
-        _str << ReturnType(type);
-        _str << " " << name << "()";
-        StartBlock();
-        _str << "return Fetch<" << type << ">(\"" << name << "\");";
-        EndBlock();
-        _str << EndLine();
-        return true;
-    }
+		EndBlock();
+		return true;
+	}
 
-    bool GenerateProxy::Method(Node const &method)
-    {
-        auto const &returnType = method.GetChild(0)->GetTokenText();
-        auto const &args = method.GetChild(1)->GetChildren();
-        auto name = method.GetTokenText();
+	bool GenerateProxy::Property(Node const &prop)
+	{
+		_str
+			<< ReturnType(prop.GetTokenText())
+			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
+		return true;
+	}
 
-        MethodDecl(returnType, args, name);
-        MethodBody(returnType, args, name);
+	bool GenerateProxy::Method(Node const &method)
+	{
+		auto const &rt = method.GetChild(0);
+		auto const &args = method.GetChild(1);
+//		auto const &konst = method.GetChild(2);
 
-        _str << EndLine();
+		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
+		bool first = true;
+		for (auto const &a : args->GetChildren())
+		{
+			if (!first)
+				_str << ", ";
 
-        return true;
-    }
+			auto &ty = a->GetChild(0);
+			auto &id = a->GetChild(1);
+			_str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
 
-    void GenerateProxy::MethodDecl(const string &returnType, const Node::ChildrenType &args, const string &name)
-    {
-        _str << ReturnType(returnType) << " " << name << "(";
-        bool first = true;
-        for (auto const &a : args)
-        {
-            if (!first)
-                _str << ", ";
+			first = false;
+		}
 
-            auto &ty = a->GetChild(0);
-            auto &id = a->GetChild(1);
-            _str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
+		return (_str << ");" << EndLine()).good();
+	}
 
-            first = false;
-        }
-        _str << ")";
-    }
+	string GenerateProxy::ReturnType(string const &text) const
+	{
+		return string("IFuture<") + text + "> ";
+	}
 
-    string ReturnLead(string const &rt, string const &name)
-    {
-        stringstream str;
-        str << "return Exec<" << rt << ">(\"" << name << "\"";
-        return str.str();
-    }
-
-    void GenerateProxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
-    {
-        StartBlock();
-        const auto ret = ReturnLead(returnType, name);
-        if (!args.empty())
-        {
-            _str << "StreamType args;" << EndLine();
-            _str << "args";
-            for (auto const &a : args)
-            {
-                _str << " << " << a->GetChild(1)->GetTokenText();
-            }
-            _str << ";" << EndLine();
-            _str << ret << ", args);";
-        }
-        else
-        {
-            _str << ret << ");";
-        }
-
-        _str << EndLine();
-        EndBlock();
-    }
-
-    string GenerateProxy::ReturnType(string const &text) const
-    {
-        return string("Future<") + text + ">";
-    }
-
-    string GenerateProxy::ArgType(string const &text) const
-    {
-        return text;
-    }
+	string GenerateProxy::ArgType(string const &text) const
+	{
+		return text;
+	}
 }
 
 TAU_END

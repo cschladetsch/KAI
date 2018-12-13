@@ -13,7 +13,7 @@ namespace Generate
         GenerateProxy(const char *input, string &output);
 
     protected:
-        bool Namespace(Node const &cl) override;
+        bool Namespace(Node const &ns) override;
         bool Class(Node const &cl) override;
         bool Property(Node const &prop) override;
         bool Method(Node const &method) override;

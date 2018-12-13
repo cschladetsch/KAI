@@ -11,10 +11,8 @@ namespace Generate
 {
     bool GenerateProcess::Generate(const char *input, string &output)
     {
-        auto parser = Parse(input);
-        if (parser)
-            return Generate(*parser, output);
-        return false;
+        const auto parser = Parse(input);
+        return parser && Generate(*parser, output);
     }
 
     shared_ptr<TauParser> GenerateProcess::Parse(const char *input) const

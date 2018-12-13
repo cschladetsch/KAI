@@ -2,6 +2,7 @@
 #include "KAI/Language/Tau/TauParser.h"
 #include "KAI/Language/Tau/Generate/GenerateProcess.h"
 #include "KAI/Language/Tau/Generate/GenerateAgent.h"
+#include "KAI/Language/Tau/Generate/GenerateProxy.h"
 
 
 using namespace kai;
@@ -19,9 +20,12 @@ TEST_F(TestTau, TestProxyGen)
     Console console;
     Registry &reg = console.GetRegistry();
 
-    string out;
-    tau::Generate::GenerateAgent gen(tauScript.c_str(), out);
-    KAI_TRACE_1(out);
+    string agentText, proxyText;
+    tau::Generate::GenerateProxy proxy(tauScript.c_str(), proxyText);
+    tau::Generate::GenerateAgent agent(tauScript.c_str(), agentText);
+
+    KAI_TRACE_1(proxyText);
+    KAI_TRACE_1(agentText);
 }
 
 TEST_F(TestTau, TestAgentGen)
