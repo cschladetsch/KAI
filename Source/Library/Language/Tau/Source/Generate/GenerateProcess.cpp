@@ -25,6 +25,8 @@ namespace Generate
             return nullptr;
         }
 
+        KAI_TRACE_1(lex->Print());
+
         auto parser = make_shared<TauParser>(r);
         if (!parser->Process(lex, Structure::Module))
         {

@@ -69,16 +69,13 @@ protected:
         return !Failed;
     }
 
-    // TODO: this shouldn't add to this->tokens
     Token LexAlpha()
     {
         Token tok(Enum::Ident, *this, lineNumber, Gather(isalnum));
         auto kw = keyWords.find(tok.Text());
         auto keyword = kw != keyWords.end();
         if (keyword)
-        {
             tok.type = kw->second;
-        }
 
         return tok;
     }

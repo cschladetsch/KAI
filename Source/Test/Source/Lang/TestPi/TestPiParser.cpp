@@ -25,7 +25,7 @@ namespace
         ASSERT_FALSE(parse->Failed);
 
         auto root = parse->GetRoot();
-        ASSERT_EQ(root->GetChildren().size(), 3);
+        ASSERT_EQ(root->GetChildren().size(), 1);
         ASSERT_EQ(root->GetChild(0)->GetToken().type, PiTokens::Int);
         ASSERT_EQ(root->GetChild(1)->GetToken().type, PiTokens::NewLine);
     }
@@ -49,7 +49,7 @@ namespace
         if (trace) parser->PrintTree();
 
         auto root = parser->GetRoot();
-        ASSERT_EQ(root->GetChildren().size(), 3);
+        ASSERT_EQ(root->GetChildren().size(), 1);
 
         auto ch0 = root->GetChildren()[0];
         auto ch1 = ch0->GetChildren()[0];

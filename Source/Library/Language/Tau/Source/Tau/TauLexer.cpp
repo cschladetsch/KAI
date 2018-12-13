@@ -21,7 +21,7 @@ bool TauLexer::NextToken()
 
     if (isalpha(current))
     {
-        LexAlpha();
+        Add(LexAlpha());
         return true;     // parser will deal with keywords in wrong places
     }
 
