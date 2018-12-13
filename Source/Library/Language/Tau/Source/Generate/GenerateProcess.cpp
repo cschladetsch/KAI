@@ -1,24 +1,23 @@
-#include <KAI/Language/Tau/Generate/GenerateProcess.h>
 #include <fstream>
 
+#include <KAI/Core/File.h>
+#include <KAI/Language/Tau/Generate/GenerateProcess.h>
+
 using namespace std;
-
-KAI_BEGIN
-
-string ReadTextFile(const char *fileName);
-
-KAI_END
 
 TAU_BEGIN
 
 namespace Generate
 {
-    bool GenerateProcess::Generate(TauParser const &p, const char *fileName)
+    bool GenerateProcess::Generate(TauParser const &p, string &output)
     {
         if (!Module(p))
             return false;
 
-        return (ofstream(fileName) << CommonPrepend() << Prepend() << _str.str() << endl).good();
+        stringstream str;
+        str << CommonPrepend() << Prepend() << _str.str() << ends;
+        output = str.str();
+        return !Failed;
     }
 
     string GenerateProcess::CommonPrepend()
@@ -100,18 +99,18 @@ namespace Generate
         return true;
     }
 
-    bool GenerateProcess::Generate(const char *inputFile, const char *outputFile)
+    bool GenerateProcess::Generate(const char *input, string &output)
     {
-        auto parser = Parse(inputFile);
+        auto parser = Parse(input);
         if (parser)
-            return Generate(*parser, outputFile);
+            return Generate(*parser, output);
         return false;
     }
 
-    shared_ptr<TauParser> GenerateProcess::Parse(const char *fname) const
+    shared_ptr<TauParser> GenerateProcess::Parse(const char *input) const
     {
         Registry r;
-        auto lex = make_shared<TauLexer>(ReadTextFile(fname).c_str(), r);
+        auto lex = make_shared<TauLexer>(input, r);
         if (!lex->Process())
         {
             Fail(lex->Error);
@@ -139,8 +138,8 @@ namespace Generate
     string GenerateProcess::EndLine() const
     {
         stringstream s;
-        s << "\n" << move(string(_indentation, '\t'));
-        return move(s.str());
+        s << "\n" << string(_indentation, '\t');
+        return s.str();
     }
 
     void GenerateProcess::EndBlock()

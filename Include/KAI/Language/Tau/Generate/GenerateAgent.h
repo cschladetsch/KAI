@@ -10,9 +10,10 @@ namespace Generate
     {
         using GenerateProcess::Node;
 
-        GenerateAgent(const char *in, const char *out);
+        GenerateAgent(const char *input, string &output);
 
     protected:
+        bool Namespace(Node const &cl) override;
         bool Class(Node const &cl) override;
         bool Property(Node const &prop) override;
         bool Method(Node const &method) override;
@@ -21,6 +22,8 @@ namespace Generate
         string ArgType(string const &text) const override;
         string ReturnType(string const &text) const override;
 
+        bool Generate(TauParser const &p, string &output) override;
+
     private:
         struct Decl;
         void AddAgentBoilerplate(Decl const &agent);
@@ -28,4 +31,6 @@ namespace Generate
 }
 
 TAU_END
+
+//EOF
 

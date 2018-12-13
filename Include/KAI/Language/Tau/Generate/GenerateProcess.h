@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include <KAI/Language/Tau/TauParser.h>
 
 TAU_BEGIN
@@ -20,11 +21,11 @@ namespace Generate
     public:
         virtual ~GenerateProcess() = default;
 
-        shared_ptr<TauParser> Parse(const char *fileName) const;
-        bool Generate(const char *inputFile, const char *outputFile);
-        virtual bool Generate(TauParser const &p, const char *fileName) = 0;
+        bool Generate(const char *input, string &output);
 
     protected:
+        shared_ptr<TauParser> Parse(const char *input) const;
+        virtual bool Generate(TauParser const &p, string &output) = 0;
 
         virtual bool Module(TauParser const &);
         virtual bool Namespace(Node const &ns);
@@ -34,7 +35,7 @@ namespace Generate
         virtual string Prepend() const;
 
     protected:
-        string CommonPrepend();
+        static string CommonPrepend();
         stringstream &StartBlock(const string &text = "");
         string EndLine() const;
         void EndBlock();
@@ -49,4 +50,6 @@ namespace Generate
 }
 
 TAU_END
+
+//EOF
 

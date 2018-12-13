@@ -11,11 +11,11 @@ class TauParser : public ParserCommon<TauLexer, TauAstEnumType>
 {
 public:
     typedef ParserCommon<TauLexer, TauAstEnumType> Parent;
-    using typename Parent::TokenEnum;
-    using typename Parent::TokenNode;
-    using typename Parent::Lexer;
-    using typename Parent::AstNode;
-    using typename Parent::AstNodePtr;
+    using Parent::TokenEnum;
+    using Parent::TokenNode;
+    using Parent::Lexer;
+    using Parent::AstNode;
+    using Parent::AstNodePtr;
 
     typedef TauAstEnumType::Enum AstType;
     typedef TauAstEnumType NodeType;

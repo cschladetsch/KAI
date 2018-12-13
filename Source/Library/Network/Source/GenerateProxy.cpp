@@ -9,7 +9,7 @@ TAU_BEGIN
 
 namespace Generate
 {
-	bool GenerateProxy::Generate(TauParser const &p, const char *fname)
+	bool GenerateProxy::Generate(TauParser const &p, string &output)
 	{
 		auto const &root = p.GetRoot();
 		if (root->GetType() != TauAstEnumType::Module)
@@ -24,9 +24,9 @@ namespace Generate
 				return false;
 		}
 
-		fstream f(fname);
-		const string &s = Prepend() + "\n" + _str.str();
-		return f.write(s.c_str(), s.size()).good();
+        stringstream str;
+        str << Prepend() << "\n" << _str.str() << ends;
+        return !Failed;
 	}
 
 	bool GenerateProxy::Namespace(Node const &ns)

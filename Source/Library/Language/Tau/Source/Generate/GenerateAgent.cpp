@@ -4,14 +4,14 @@ TAU_BEGIN
 
 namespace Generate
 {
-    GenerateAgent::GenerateAgent(const char *in, const char *out)
+    GenerateAgent::GenerateAgent(const char *in, string &out)
     {
         GenerateProcess::Generate(in, out);
     }
 
     string GenerateAgent::Prepend() const
     {
-        return move(string("#include <KAI/Network/AgentDecl.h"));
+        return string("#include <KAI/Network/AgentDecl.h");
     }
 
     struct GenerateAgent::Decl
@@ -39,6 +39,11 @@ namespace Generate
         _str << EndLine();
     }
 
+    bool GenerateAgent::Namespace(Node const &cl)
+    {
+        return true;
+    }
+
     bool GenerateAgent::Class(TauParser::AstNode const &cl)
     {
         auto decl = Decl(cl.GetToken().Text());
@@ -64,12 +69,12 @@ namespace Generate
 
     std::string GenerateAgent::ArgType(std::string const &text) const
     {
-        return move(text);
+        return text;
     }
 
     std::string GenerateAgent::ReturnType(std::string const &text) const
     {
-        return move(text);
+        return text;
     }
 }
 

@@ -7,14 +7,14 @@ TAU_BEGIN
 
 namespace Generate
 {
-    GenerateProxy::GenerateProxy(const char *in, const char *out)
+    GenerateProxy::GenerateProxy(const char *input, string &output)
     {
-        GenerateProcess::Generate(in, out);
+        GenerateProcess::Generate(input, output);
     }
 
     string GenerateProxy::Prepend() const
     {
-        return move(string("#include <KAI/Network/ProxyDecl.h>\n\n"));
+        return string("#include <KAI/Network/ProxyDecl.h>\n\n");
     }
 
     struct GenerateProxy::ProxyDecl
@@ -41,6 +41,11 @@ namespace Generate
         _str << "using ProxyBase::StreamType;" << EndLine();
         _str << proxy.ProxyName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
         _str << EndLine();
+    }
+
+    bool GenerateProxy::Namespace(Node const &cl)
+    {
+        return true;
     }
 
     bool GenerateProxy::Class(Node const &cl)
@@ -105,14 +110,14 @@ namespace Generate
     {
         stringstream str;
         str << "return Exec<" << rt << ">(\"" << name << "\"";
-        return move(str.str());
+        return str.str();
     }
 
     void GenerateProxy::MethodBody(const string &returnType, const Node::ChildrenType &args, const string &name)
     {
         StartBlock();
-        auto ret = ReturnLead(returnType, name);
-        if (args.size() > 0)
+        const auto ret = ReturnLead(returnType, name);
+        if (!args.empty())
         {
             _str << "StreamType args;" << EndLine();
             _str << "args";
@@ -134,14 +139,16 @@ namespace Generate
 
     string GenerateProxy::ReturnType(string const &text) const
     {
-        return move(string("Future<") + text + ">");
+        return string("Future<") + text + ">";
     }
 
     string GenerateProxy::ArgType(string const &text) const
     {
-        return move(text);
+        return text;
     }
 }
 
 TAU_END
+
+//EOF
 
