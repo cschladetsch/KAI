@@ -12,6 +12,15 @@ struct TestTau : TestLangCommon
 {
 };
 
+KAI_BEGIN
+
+std::string LoadScriptText(const char *filename)
+{
+    return "";
+}
+
+KAI_END
+
 TEST_F(TestTau, TestProxyGen)
 {
     auto tauScript = LoadScriptText("Tau2.tau");

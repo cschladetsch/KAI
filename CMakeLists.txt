@@ -2,7 +2,16 @@ cmake_minimum_required(VERSION 3.12)
 
 project(KAI)
 
-option(KAI_BUILD_TESTS "Build unit tests" ON)
+option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
+option(KAI_BUILD_TEST_LANG "Build language tests" ON)
+option(KAI_BUILD_TEST_NETWORK "Build networking tests" ON)
+option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
+
+if (KAI_BUILD_TEST_ALL)
+    set(KAI_BUILD_CORE_TEST ON)
+    set(KAI_BUILD_TEST_LANG ON)
+    set(KAI_BUILD_TEST_NETWORK ON)
+endif()
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
@@ -32,11 +41,12 @@ set(KAI_HOME ${CMAKE_SOURCE_DIR})
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)
-set(TEST_HOME ${SOURCE_HOME}/Test)
+set(TEST_HOME ${KAI_HOME}/Test)
 set(BIN_HOME ${KAI_HOME}/Bin)
 set(INCLUDE_HOME ${KAI_HOME}/Include)
 set(EXTERNAL ${KAI_HOME}/Ext)
 set(dir ${KAI_HOME})
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
@@ -47,11 +57,13 @@ link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
 
 add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE)
+
+# Add external depdendancies
 include(AddBoost)
 include(IncludeGtest)
 include(cotire)
 
-# Add RakNet. Build only if required
+# Add RakNet. Build only if required. TODO: Move to Cmake/AddRaKNet.cmake
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
 set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
 set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
@@ -105,15 +117,9 @@ macro(def_platform_library name)
     cotire(platform-${name})
 endmacro()
 
-# make all top-level components
 set(TopLevels Library App)
-if (KAI_BUILD_TESTS)
-    list(APPEND TopLevels Test)
-else()
-    message(WARNING "Not building unit tests")
-endif()
-
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
+add_subdirectory(Test)
