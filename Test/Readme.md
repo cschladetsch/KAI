@@ -1,16 +1,24 @@
-# Test Languages
+# Test Systems
 
-These are test systems of the languages created by KAI.
+These are test systems based on GoogleTest of the core systems and languages created by KAI:
 
-Tests are currently built to `${KAI\_HOME}/Test/Bin`. 
+* Core
+* Language
+* Network
+
+These share a `Common` test library.
+
+Tests are currently built [here](Bin\Tests\Debug).
 
 ## Folders
 
+* **Common**. Common to all tests
 * **Include**. Common to all tests
 * **Language**. Tests for each language.
+* **Network**. Network tests.
 * **Source**. General KAI Tests,
 
-# Selecting Tests
+## Selecting Tests
 
 To focus only on some tests, make a debug configuration that uses:
 
