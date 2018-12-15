@@ -5,12 +5,13 @@ KAI provides a network distributed **Object Model** for C++ with full reflection
 1. **Windows 10** (VS 2017)
 1. **Linux** (Ubuntu)
 1. **macOS** (Sierra)
+1. **Unity3d" (Experimental)
 
 You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
-KAI comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant update loop times even with tens of thousands of objects, and with hundreds of objects being created each frame on a gaming console from 2012.
+KAI comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant update loop times even with tens of thousands of objects, and with hundreds of objects being created each frame on the compute power of a gaming console from 2012.
 
-The library also offers two scripting languages: ***Pi***, which is based on RPN notation, and ***Rho***, which uses infix notation. Rho is translated to Pi.
+The system also offers two scripting languages: ***Pi***, which is based on RPN notation, and ***Rho***, which uses infix notation. Rho is translated to Pi.
 
 There is also an Interface Definition Language (IDL) called ***Tau***, which is used to generate code for proxies and agents in the system.
 
@@ -22,9 +23,10 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 * *Ext*. External dependancies, primariues as git submodules.
 * *Include*. Root of the global include path.
 * *Lib*. Location for built static and dynamic library files.
-* *Source*. The root for the source code of the project, including tests. TODO: Move tests out of Source/ folder,
+* *Source*. The root for the source code of the project, 
+* *Test*. Unit tests.
 
-## Files
+## Interesting Files
 
 * CMakeLists.txt. Top-level Cmake file.
 * Readme,md. This file.
@@ -33,7 +35,9 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 ## Getting Started
 
-I will refer to the folder that you installed KAI into as **${KAI_HOME}**. See [Install.md](Install.md) for installation instructions. KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
+I will refer to the folder that you installed KAI into as **${KAI\_HOME}**. See [Install.md](Install.md) for installation instructions.
+
+KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
 
 I've used CMake so it should be relatively painless to make any changes to ports.
 
@@ -73,53 +77,6 @@ But it's all for a simple and single purpose: to allow for natural and fluid net
 
 A general-purpose stack-based virtual machine. Think of it like a JVM or Dalvik. The question then begs: why not use either of those. Well, I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system.
 
-## PI
-
-	{ 1 + } 'add # 2 add & print &
-
-This creates a function that is named 'add'. Then invokes it will an argument of 2 and prints the result.
-
-The syntax is obtuse because it is reverse-polish notation: the arguments are introduced then an operator is aplied.
-
-In this case, the first 'argument' is the function **{ 1 + }** which simply adds 1 to what ever is on the stack.
-
-The next sub-sequence **'add #** stores that function to a name called "add" in the current scope.
-
-Then we push 2 onto the stack, then the add function by name, then use the '&' operator to execute what is on the stack (the 'add' function').
-
-Then we push the **print** function onto the stack (which is built-in), then execute that too.
-
-The result is an empty stack with the console output of "3".
-
-## Rho
-
-	fun add(a)
-		return a+1
-	print(add(2))
-
-These two examples are functionally equivalent, and both return **3**. 
-
-The first is post-fix **Pi** and will not be too strange that those that have used Forth or HP48 calculators. It creates a coroutine __{ 1 + }__ which adds 1 to whatever is on the stack. It then stores this to an object called add with __'add #__. It then pushes 2 and the coro onto the stack, resumes the coro with __&__, pushes **print** onto the stack and resumes that. The result is **3**.
-
-The **Rho** example is more familiar. Define a function that takes one argument and return it plus 1. Then print the result of calling that function with the argument 2.
-
-In both cases, the data stack will be left empty and the console will have output of '3'. 
-
-Rho gets translated to Pi code on the fly, so when you 'compile' the Rho code above you will get something very similiar to the pi code above that.
-
-## Tau
-
-**Tau** is the language used to describe objects that are visible across a network. It all works, but I don't have documentation for it yet. Basically, Tau takes a foo.tau file, and generates foo.agent.cpp/h and foo.proxy.cpp/h. If you want to host a Foo, you implement what's required in the foo.agent.cpp file, else if you want to use a Foo from somewhere else, you just use kai::Proxy<Foo>.
-
-This is all clear as mud, I realise. But it does all work, and once I finish the libraries I will work on real documentation.
-
-### Continuations
-
-Also known as co-routines or fibres, are natively supported in both Pi and Rho languages.
-
-Continuations are important because they allow you to yield the current command sequence to another without having to actually use threads.
-
-Both Pi and Rho support continuations natively.
 
 ## Conclusion
 
