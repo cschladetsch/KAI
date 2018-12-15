@@ -16,13 +16,13 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 ## Folder Structure
 
-* Bin. Where to write executable output files.
-* CMake. Auxillary CMake modules, primarily for finding other projects and libraries like Boost and GoogleTest.
-* Doc. Generated documentation.
-* Ext. External dependancies, primariues as git submodules.
-* Include. Root of the global include path.
-* Lib. Location for built static and dynamic library files.
-* Source. The root for the source code of the project, including tests. TODO: Move tests out of Source/ folder,
+* *Bin*. Where to write executable output files.
+* *CMake*. Auxillary CMake modules, primarily for finding other projects and libraries like Boost and GoogleTest.
+* *Doc*. Generated documentation.
+* *Ext*. External dependancies, primariues as git submodules.
+* *Include*. Root of the global include path.
+* *Lib*. Location for built static and dynamic library files.
+* *Source*. The root for the source code of the project, including tests. TODO: Move tests out of Source/ folder,
 
 ## Files
 
