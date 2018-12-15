@@ -15,6 +15,8 @@ The system also offers two scripting languages: ***Pi***, which is based on RPN 
 
 There is also an Interface Definition Language (IDL) called ***Tau***, which is used to generate code for proxies and agents in the system.
 
+Refer to the [Language Systems](Include/KAI/Language) and [implementation](SOurce/Library/Source).
+
 ## Folder Structure
 
 * *Bin*. Where to write executable output files.
