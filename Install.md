@@ -49,7 +49,7 @@ Then, from the root of the KAI folder structure enter the following:
 
 From there, build the "ALL_BUILD" project, or select a specific Test or App to test.
 
-I suggest you include the [GoogleTest integration])(www.googe.com/?q=findit) extension for Visual Studio under windows.
+I suggest you include the [GoogleTest integration](www.googe.com/?q=findit) extension for Visual Studio under windows.
 
 ## Folders
 

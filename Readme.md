@@ -26,22 +26,21 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 * *Source*. The root for the source code of the project, 
 * *Test*. Unit tests.
 
-## Interesting Files
+## Interesting Files and lopcations
 
-* CMakeLists.txt. Top-level Cmake file.
-* Readme,md. This file.
-* Install.md. SOme information on how to install and build the system.
+* The toplevel [Include folder](KAI/Include/KAI) and [Source Folder](Source).
+* [Installation](Install.md). Some information on how to install and build the system.
+* [Tests](Test/Readme.md). Describes the GoogleTests,
+* The [top level CMake file](CMakeLists.txt).
 
 
 ## Getting Started
 
-I will refer to the folder that you installed KAI into as **${KAI\_HOME}**. See [Install.md](Install.md) for installation instructions.
+See [Install.md](Install.md) for installation instructions.
 
 KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
 
-I've used CMake so it should be relatively painless to make any changes to ports.
-
-If after reading that you still get a failed build, contact [me](matilto:christian.schladetsch@gmail.com) with the build log and platform details.
+Feel free to contact [me](matilto:christian.schladetsch@gmail.com) with any questions about building or use of the system.
 
 ## Networking
 
@@ -88,16 +87,11 @@ This means you can expose and script other classes as well, including those in a
 
 To be clear: you do not have to change the source code of a class in order to access and use it at runtime with KAI. Further, these exposed classes are directly accessable via the Network.
 
-A REPL console application is also supplied, as well as a Window application based on [Dear ImGui](https://github.com/ocornut/imgui).
-
-KAI and all of its libraries and applications are completely cross-platform and supports Linux, Windows, and OSX.
+A REPL [Console](Source/App/Console) is also supplied, as well as a [Windowed](Source/App/Window) application on all platforms 
 
 Currently the networking is supplied by RakNet, but no RakNet symbols are exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
 
 ## Examples
 
-It's hard to give examples of an engine without applications. This is an 'engine' that attempts to make C++ more dynamic and scriptable. It is also the basis for a new network model that uses *Proxies* and *Agents* to make networking as simple as async method calls.
+Start withe the [Unit Tests](Test) then have a look at the [Applications](Source/App).
 
-I've since learned that this isn't uncommon anymore. Well, it was when I started it in 2009.
-
-The best example is the REPL Window, provided in ${KAI_HOME}/Bin/Window. From there, you can see that you can change and interact with C++ objects on the fly: create them, change them, delete them. Both locally and remotely.
