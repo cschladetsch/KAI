@@ -1,3 +1,5 @@
+.vscode/
+
 /Doc/html
 /tmp/
 b/
@@ -193,4 +195,5 @@ Projects/Console.NET/
 Projects/Console/CLRDebug/
 Projects/Controls/ConsoleView/CLRDebug/
 Lib/
+
 *.o

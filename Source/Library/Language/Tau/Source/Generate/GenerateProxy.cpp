@@ -1,7 +1,6 @@
 #include <KAI/Language/Tau/TauParser.h>
 #include <KAI/Language/Tau/Generate/GenerateProxy.h>
 #include <KAI/Network/Proxy.h>
-#include <fstream>
 
 using namespace std;
 
@@ -55,9 +54,7 @@ namespace Generate
 					return false;
 
 			default:
-				KAI_TRACE_ERROR_1("Parser failed to fail");
-				Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
-				break;
+				return Fail("[Internal] Unexpected %s in namespace", TauAstEnumType::ToString(ch->GetType()));
 			}
 		}
 
@@ -67,7 +64,7 @@ namespace Generate
 
 	bool GenerateProxy::Class(Node const &cl)
 	{
-		StartBlock(string("struct ") + cl.GetToken().Text());
+		StartBlock(string("class ") + cl.GetToken().Text());
 
 		for (const auto &member : cl.GetChildren())
 		{
