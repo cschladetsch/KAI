@@ -1,6 +1,6 @@
 # Installing
 
-KAI is cross-platform across maxOS, Linux and Windows system with many internal and external components. It also has 3rd party dependencies. Don't worry too much: if the 3rd party systems can't be found to make things like a [Windowed gui](Source/App/Window) you will still get the [TestSuite](Source/App/Test) and colored text-base [Console](Source/App/Console).
+KAI is cross-platform across maxOS, Linux and Windows system with many internal and external components. It also has 3rd party dependencies. Don't worry too much: if the 3rd party systems can't be found to make things like a [Windowed gui](Source/App/Window) you will still get the [TestSuite](/Test) and colored text-base [Console](Source/App/Console).
 
 ## Downloading and updating
 
@@ -30,7 +30,9 @@ The same is true for Linux or macOS, just use `./` instead of `.\`
 ## Ubuntu
 
 ```
-# ./build-linux
+> mkdir -p build && cd build
+> cmake ..
+> make
 ```
 
 ## Windows
@@ -40,9 +42,14 @@ You will need [cmake](https://cmake.org/download/) and [boost](https://sourcefor
 Then, from the root of the KAI folder structure enter the following:
 
 ```
-> .\build-vs.bat
-> start build\KaiTest.sln
+> mkdir build
+> cmake ..
+> start *.sln
 ```
+
+From there, build the "ALL_BUILD" project, or select a specific Test or App to test.
+
+I suggest you include the [GoogleTest integration])(www.googe.com/?q=findit) extension for Visual Studio under windows.
 
 ## Folders
 

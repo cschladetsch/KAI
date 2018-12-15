@@ -5,7 +5,7 @@ KAI provides a network distributed **Object Model** for C++ with full reflection
 1. **Windows 10** (VS 2017)
 1. **Linux** (Ubuntu)
 1. **macOS** (Sierra)
-1. **Unity3d" (Experimental)
+1. **Unity3d** (Experimental)
 
 You can create and connect KAI nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
 
