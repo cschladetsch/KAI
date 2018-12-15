@@ -11,11 +11,11 @@ class TauParser : public ParserCommon<TauLexer, TauAstEnumType>
 {
 public:
     typedef ParserCommon<TauLexer, TauAstEnumType> Parent;
-    using typename Parent::TokenEnum;
-    using typename Parent::TokenNode;
-    using typename Parent::Lexer;
-    using typename Parent::AstNode;
-    using typename Parent::AstNodePtr;
+    using Parent::TokenEnum;
+    using Parent::TokenNode;
+    using Parent::Lexer;
+    using Parent::AstNode;
+    using Parent::AstNodePtr;
 
     typedef TauAstEnumType::Enum AstType;
     typedef TauAstEnumType NodeType;
@@ -23,19 +23,22 @@ public:
 
     TauParser(Registry &r) : Parent(r) { }
 
-    virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
+    void StripTokens();
+    bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
 
 protected:
-    bool Run(Structure);
+    bool Run(AstNodePtr, Structure);
+    bool Namespace(AstNodePtr root);
+    bool Module(AstNodePtr root);
+    bool Class(AstNodePtr root);
+    bool Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name);
+    bool Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
+    bool Event(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
 
-    void Namespace(AstNodePtr rent);
-    void Class(AstNodePtr rent);
-    void Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name);
-    void Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
-    //void Event(AstNodePtr klass, TokenNode const &ty, TokenNode const &id);
-
-    void AddArg(AstNodePtr parent);
-    void OptionalSemi();
+    void AddArg(AstNodePtr list);
+    //void OptionalSemi();
 };
 
 TAU_END
+
+//EOF

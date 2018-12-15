@@ -156,7 +156,7 @@ protected:
     {
         if (!Has())
         {
-            Fail("Expected something");
+            KAI_TRACE_ERROR_1(Fail("Expected something"));
             KAI_THROW_1(LogicError, "Expected something");
         }
 
@@ -180,12 +180,18 @@ protected:
 
     TokenNode const &Peek() const
     {
+        if (current + 1 >= tokens.size())
+        {
+            KAI_TRACE_ERROR() << "End of tokens stream looking for a %s", TokenEnumType::ToString(ty);
+            return false;
+        }
+
         return tokens[current + 1];
     }
 
     bool PeekConsume(TokenEnum ty)
     {
-        if (tokens[current + 1].type == ty)
+        if (Peek().type == ty)
         {
             Consume();
             return true;
@@ -217,6 +223,12 @@ protected:
 
     TokenNode const &Consume()
     {
+        if (current == tokens.size())
+        {
+            KAI_TRACE_ERROR_1(Fail("Unexpected end of file"));
+            KAI_THROW_1(LogicError, "Expected something");
+        }
+
         return tokens[current++];
     }
 

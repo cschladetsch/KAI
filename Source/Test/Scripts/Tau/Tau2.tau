@@ -4,6 +4,9 @@ namespace MLB
 {
 	class C0
 	{
+		int n0;
+		String s0;
+
 		void V0();
 		void V0(int a0);
 		void V0(int a0, int a1);

@@ -1,5 +1,6 @@
 #include "KAI/Language/Common/Process.h"
-#include <stdarg.h>
+
+#include <cstdarg>
 
 using namespace std;
 
@@ -8,7 +9,7 @@ KAI_BEGIN
 bool Process::Fail(const string &err) const
 {
     Failed = true;
-    Error = move(err);
+    Error = err;
 
     return false;
 }
@@ -24,7 +25,7 @@ bool Process::Fail(const char *fmt, ...) const
     vsprintf(buffer, fmt, ap);
     #endif
 
-    return Fail(move(string(buffer)));
+    return Fail(string(buffer));
 }
 
 KAI_END

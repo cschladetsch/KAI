@@ -4,14 +4,24 @@ TAU_BEGIN
 
 namespace Generate
 {
-    GenerateAgent::GenerateAgent(const char *in, const char *out)
+    GenerateAgent::GenerateAgent(const char *input, string &output)
     {
-        GenerateProcess::Generate(in, out);
+        GenerateProcess::Generate(input, output);
+    }
+
+    bool GenerateAgent::Generate(TauParser const &parser, string &output)
+    {
+        return GenerateProcess::Generate(parser, output);
     }
 
     string GenerateAgent::Prepend() const
     {
-        return move(string("#include <KAI/Network/AgentDecl.h"));
+        return string("#include <KAI/Network/AgentDecl.h");
+    }
+
+    bool GenerateAgent::Namespace(Node const &cl)
+    {
+        return true;
     }
 
     struct GenerateAgent::Decl
@@ -29,15 +39,9 @@ namespace Generate
         {
             stringstream decl;
             decl << "struct " << AgentName << ": AgentBase<" << RootName << ">";
-            return move(decl.str());
+            return decl.str();
         }
     };
-
-    void GenerateAgent::AddAgentBoilerplate(Decl const &agent)
-    {
-        _str << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
-        _str << EndLine();
-    }
 
     bool GenerateAgent::Class(TauParser::AstNode const &cl)
     {
@@ -64,13 +68,22 @@ namespace Generate
 
     std::string GenerateAgent::ArgType(std::string const &text) const
     {
-        return move(text);
+        return text;
     }
 
     std::string GenerateAgent::ReturnType(std::string const &text) const
     {
-        return move(text);
+        return text;
+    }
+
+    void GenerateAgent::AddAgentBoilerplate(Decl const &agent)
+    {
+        Output() << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
+        Output() << EndLine();
     }
 }
 
 TAU_END
+
+//EOF
+
