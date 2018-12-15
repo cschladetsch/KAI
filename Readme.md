@@ -14,6 +14,23 @@ The library also offers two scripting languages: ***Pi***, which is based on RPN
 
 There is also an Interface Definition Language (IDL) called ***Tau***, which is used to generate code for proxies and agents in the system.
 
+## Folder Structure
+
+* Bin. Where to write executable output files.
+* CMake. Auxillary CMake modules, primarily for finding other projects and libraries like Boost and GoogleTest.
+* Doc. Generated documentation.
+* Ext. External dependancies, primariues as git submodules.
+* Include. Root of the global include path.
+* Lib. Location for built static and dynamic library files.
+* Source. The root for the source code of the project, including tests. TODO: Move tests out of Source/ folder,
+
+## Files
+
+* CMakeLists.txt. Top-level Cmake file.
+* Readme,md. This file.
+* Install.md. SOme information on how to install and build the system.
+
+
 ## Getting Started
 
 I will refer to the folder that you installed KAI into as **${KAI_HOME}**. See [Install.md](Install.md) for installation instructions. KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
