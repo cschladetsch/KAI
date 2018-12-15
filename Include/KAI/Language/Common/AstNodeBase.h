@@ -70,6 +70,11 @@ public:
         return out << node.ToString();
     }
 
+    size_t NumChildren() const
+    {
+        return _children.size();
+    }
+
 protected:
     Enum _astType;
     Token _token;

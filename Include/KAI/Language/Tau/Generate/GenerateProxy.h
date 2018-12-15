@@ -13,16 +13,15 @@ namespace Generate
         GenerateProxy(const char *input, string &output);
 
     protected:
+        bool Generate(TauParser const &p, string &output) override;
+
+        string Prepend() const override;
         bool Namespace(Node const &ns) override;
         bool Class(Node const &cl) override;
         bool Property(Node const &prop) override;
         bool Method(Node const &method) override;
-        string Prepend() const override;
-
         string ArgType(string const &text) const override;
         string ReturnType(string const &text) const override;
-
-        bool Generate(TauParser const &p, string &output) override;
 
     private:
         struct ProxyDecl;
@@ -35,3 +34,4 @@ namespace Generate
 TAU_END
 
 //EOF
+

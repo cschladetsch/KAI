@@ -9,14 +9,14 @@ namespace Generate
         GenerateProcess::Generate(input, output);
     }
 
+    bool GenerateAgent::Generate(TauParser const &parser, string &output)
+    {
+        return GenerateProcess::Generate(parser, output);
+    }
+
     string GenerateAgent::Prepend() const
     {
         return string("#include <KAI/Network/AgentDecl.h");
-    }
-
-    bool GenerateAgent::Generate(TauParser const &p, string &output)
-    {
-        return false;
     }
 
     bool GenerateAgent::Namespace(Node const &cl)
@@ -78,8 +78,8 @@ namespace Generate
 
     void GenerateAgent::AddAgentBoilerplate(Decl const &agent)
     {
-        _str << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
-        _str << EndLine();
+        Output() << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
+        Output() << EndLine();
     }
 }
 

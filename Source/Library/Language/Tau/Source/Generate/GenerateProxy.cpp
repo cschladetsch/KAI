@@ -30,7 +30,7 @@ namespace Generate
 		}
 
         stringstream str;
-        str << Prepend() << "\n" << _str.str() << ends;
+        str << Prepend() << "\n" << Output().str() << ends;
         return !Failed;
 	}
 
@@ -95,7 +95,7 @@ namespace Generate
 
 	bool GenerateProxy::Property(Node const &prop)
 	{
-		_str
+		Output()
 			<< ReturnType(prop.GetTokenText())
 			<< prop.GetChild(1)->GetTokenText() << ';' << EndLine();
 		return true;
@@ -107,21 +107,21 @@ namespace Generate
 		auto const &args = method.GetChild(1);
 //		auto const &konst = method.GetChild(2);
 
-		_str << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
+		Output() << ReturnType(rt->GetTokenText()) << " " << method.GetTokenText() << "(";
 		bool first = true;
 		for (auto const &a : args->GetChildren())
 		{
 			if (!first)
-				_str << ", ";
+				Output() << ", ";
 
 			auto &ty = a->GetChild(0);
 			auto &id = a->GetChild(1);
-			_str << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
+			Output() << ArgType(ty->GetTokenText()) << " " << id->GetTokenText();
 
 			first = false;
 		}
 
-		return (_str << ");" << EndLine()).good();
+		return (Output() << ");" << EndLine()).good();
 	}
 
 	string GenerateProxy::ReturnType(string const &text) const
