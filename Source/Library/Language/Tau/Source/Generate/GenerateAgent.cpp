@@ -39,7 +39,7 @@ namespace Generate
         {
             stringstream decl;
             decl << "struct " << AgentName << ": AgentBase<" << RootName << ">";
-            return move(decl.str());
+            return decl.str();
         }
     };
 
@@ -81,7 +81,9 @@ namespace Generate
         _str << agent.AgentName << "(Node &node, NetHandle handle) : ProxyBase(node, handle) { }" << EndLine();
         _str << EndLine();
     }
-
 }
 
 TAU_END
+
+//EOF
+

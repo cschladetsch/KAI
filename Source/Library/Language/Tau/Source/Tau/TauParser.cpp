@@ -8,10 +8,6 @@ TAU_BEGIN
 
 bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 {
-    // Tau always starts at Module level (a series of namespaces)
-    assert(st == Structure::Module);
-    KAI_UNUSED_1(st);
-
     current = 0;
     indent = 0;
     lexer = lex;
@@ -19,7 +15,14 @@ bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
     if (lexer->Failed)
         return Fail("Lexer error: " + lexer->Error);
 
-    // strip whitespace and comments
+    StripTokens();
+
+    root = NewNode(AstEnum::None);
+    return Run(root, st);
+}
+
+void TauParser::StripTokens()
+{
     for (auto const &tok : lexer->GetTokens())
     {
         switch (tok.type)
@@ -33,33 +36,29 @@ bool TauParser::Process(shared_ptr<Lexer> lex, Structure st)
 
         tokens.push_back(tok);
     }
-
-    root = NewNode(AstEnum::Module);
-
-    return Run(Structure::Module);
 }
 
-bool TauParser::Run(Structure st)
+bool TauParser::Run(AstNodePtr root, Structure st)
 {
-    KAI_UNUSED_1(st);
-    if (Empty())
+    switch (st)
     {
-        KAI_TRACE_WARN_1("Nothing to parse");
-        return true;
+    case Structure::Module:
+        return Module(root);
+    case Structure::Namespace:
+        return Namespace(root);
+    case Structure::Class:
+        return Class(root);
+    default: 
+        return Fail("Cannot parse top-level structure");
     }
-
-    while (!Empty() && Current().type == TokenType::Namespace)
-    {
-        Consume();
-        Namespace(root);
-        if (Failed)
-            return false;
-    }
-
-    return true;
 }
 
-void TauParser::Namespace(AstNodePtr root)
+bool TauParser::Module(AstNodePtr root)
+{
+    KAI_NOT_IMPLEMENTED();
+}
+
+bool TauParser::Namespace(AstNodePtr root)
 {
     auto ns = NewNode(TauAstEnumType::Namespace, Consume());
     Expect(TokenEnum::OpenBrace);
@@ -70,13 +69,11 @@ void TauParser::Namespace(AstNodePtr root)
         {
             case TokenEnum::Class:
                 Consume();
-                Class(ns);
-                break;
+                return Class(ns);
 
             case TokenEnum::Namespace:
                 Consume();
-                Namespace(ns);
-                break;
+                return Namespace(ns);
 
             default:
             {
@@ -84,45 +81,51 @@ void TauParser::Namespace(AstNodePtr root)
                 Fail(Lexer::CreateErrorMessage(cur, "Unexpected token %s", TokenEnumType::ToString(cur.type)));
             }
         }
-
-        if (Failed)
-            return;
     }
 
     Expect(TokenEnumType::CloseBrace);
-    OptionalSemi();
+    if (Failed)
+        return false;
     root->Add(ns);
+    return true;
 }
 
-void TauParser::Class(AstNodePtr root)
+bool TauParser::Class(AstNodePtr root)
 {
-    auto klass = NewNode(TauAstEnumType::Class, Consume());
+    Next();
+    const auto klass = NewNode(TauAstEnumType::Class, Consume());
     Expect(TokenEnum::OpenBrace);
 
-    while (!Failed && !Empty() && !CurrentIs(TokenEnum::CloseBrace))
+    while (!Failed && !CurrentIs(TokenEnum::CloseBrace))
     {
-        // Expect a series of methods and properties.
-        // Either way, start with a type name and identifier.
         auto ty = Expect(TokenEnum::Ident)->GetToken();
         auto name = Expect(TokenEnum::Ident)->GetToken();
 
         if (CurrentIs(TokenType::OpenParan))
         {
             Consume();
-            Method(klass, ty, name);
+            if (!Method(klass, ty, name))
+                return false;
         }
         else
         {
-            Field(klass, ty, name);
+            if (!Field(klass, ty, name))
+                return false;
         }
+
+        if (Empty())
+            return Fail("Incomplete Class");
     }
 
+    if (Failed)
+        return false;
+
     Expect(TokenEnum::CloseBrace);
-    OptionalSemi();
     root->Add(klass);
+    return !Failed;
 }
 
-void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name)
+bool TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode const &name)
 {
     auto method = NewNode(AstEnum::Method, name);
     auto args = NewNode(AstEnum::Arglist);
@@ -140,24 +143,28 @@ void TauParser::Method(AstNodePtr klass, TokenNode const &returnType, TokenNode 
     }
 
     Expect(TokenType::CloseParan);
-    OptionalSemi();
+    Expect(TokenType::Semi);
+    if (Failed)
+        return false;
     klass->Add(method);
+    return !Failed;
 }
 
-void TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id)
+bool TauParser::Field(AstNodePtr klass, TokenNode const &ty, TokenNode const &id)
 {
     auto field = NewNode(AstEnum::Property);
     field->Add(ty);
     field->Add(id);
-    OptionalSemi();
+    Expect(TauTokenEnumType::Semi);
     klass->Add(field);
+    return !Failed;
 }
 
-void TauParser::OptionalSemi()
-{
-    if (CurrentIs(TokenType::Semi) || PeekIs(TokenType::Semi))
-        Consume();
-}
+//void TauParser::OptionalSemi()
+//{
+//    if (CurrentIs(TokenType::Semi) || PeekIs(TokenType::Semi))
+//        Consume();
+//}
 
 void TauParser::AddArg(AstNodePtr parent)
 {

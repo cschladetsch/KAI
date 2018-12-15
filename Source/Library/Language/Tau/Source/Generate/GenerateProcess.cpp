@@ -28,7 +28,7 @@ namespace Generate
         KAI_TRACE_1(lex->Print());
 
         auto parser = make_shared<TauParser>(r);
-        if (!parser->Process(lex, Structure::Module))
+        if (!parser->Process(lex, Structure::Class))
         {
             Fail(parser->Error);
             return nullptr;

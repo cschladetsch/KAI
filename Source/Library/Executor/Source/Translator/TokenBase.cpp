@@ -2,4 +2,8 @@
 
 KAI_BEGIN
 
+void DontWarnAboutEmptyFile()
+{
+}
+
 KAI_END

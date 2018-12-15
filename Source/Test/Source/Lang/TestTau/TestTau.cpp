@@ -17,17 +17,22 @@ TEST_F(TestTau, TestProxyGen)
     auto tauScript = LoadScriptText("Tau2.tau");
     ASSERT_FALSE(tauScript.empty());
 
-    Console console;
-    Registry &reg = console.GetRegistry();
+    string output;
+    tau::Generate::GenerateAgent agent(tauScript.c_str(), output);
 
-    string agentText, proxyText;
-    tau::Generate::GenerateProxy proxy(tauScript.c_str(), proxyText);
-    tau::Generate::GenerateAgent agent(tauScript.c_str(), agentText);
+    if (agent.Failed)
+        KAI_TRACE_ERROR_1(agent.Error);
 
-    KAI_TRACE_1(proxyText);
-    KAI_TRACE_1(agentText);
+    KAI_TRACE_1(output);
 }
 
 TEST_F(TestTau, TestAgentGen)
 {
+    auto tauScript = LoadScriptText("Tau2.tau");
+    ASSERT_FALSE(tauScript.empty());
+
+    string output;
+    tau::Generate::GenerateProxy proxy(tauScript.c_str(), output);
+
+    KAI_TRACE_1(output);
 }
