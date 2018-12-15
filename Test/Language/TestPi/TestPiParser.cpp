@@ -27,7 +27,6 @@ namespace
         auto root = parse->GetRoot();
         ASSERT_EQ(root->GetChildren().size(), 1);
         ASSERT_EQ(root->GetChild(0)->GetToken().type, PiTokens::Int);
-        ASSERT_EQ(root->GetChild(1)->GetToken().type, PiTokens::NewLine);
     }
 
     TEST(PiParser, TestCompoundWorks)

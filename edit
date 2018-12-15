@@ -1,5 +1,0 @@
-mkdir -p build
-cd build
-cmake ..
-start KaiTest.sln
-
