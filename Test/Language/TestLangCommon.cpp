@@ -45,10 +45,8 @@ void TestLangCommon::TearDown()
 
 void TestLangCommon::ExecScripts()
 {
-    fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
-    KAI_TRACE_1(scriptsRoot.generic_string().c_str());
-    const auto str = ToLower(wstring(KAI_STRINGISE_WIDE(KAI_LANG_NAME)));
-    const auto ext = File::Extension(str);
+    const fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
+    const auto ext = File::Extension(KAI_STRINGISE_WIDE(KAI_LANG_EXT));
     _console.SetLanguage(Language::KAI_LANG_NAME);
     for (auto const &scriptName : File::GetFilesWithExtensionRecursively(scriptsRoot, ext))
     {
