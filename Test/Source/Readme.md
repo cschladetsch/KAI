@@ -8,5 +8,4 @@ There are not enough tests, and even then not all of them pass.
 
 * **Common**. Common for all tests.
 * **TestContainers**. Tests for containers.
-* **Lang**. Tests for the custom languages.
 

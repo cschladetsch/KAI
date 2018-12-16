@@ -18,7 +18,8 @@ void SetPropertyValue(Object const &owner, Label const &name, Object value)
 Object GetPropertyValue(Object const &owner, Label const &name)
 {
     if (!owner.Exists())
-        return Object();
+        KAI_THROW_0(NullObject);
+        
     ClassBase const *klass = owner.GetClass();
     PropertyBase const &prop = klass->GetProperty(name);
     return prop.GetValue(owner);
@@ -27,7 +28,8 @@ Object GetPropertyValue(Object const &owner, Label const &name)
 void SetPropertyObject(Object const &owner, Label const &name, Object value)
 {
     if (!owner.Exists())
-        return;
+        KAI_THROW_0(NullObject);
+
     ClassBase const *klass = owner.GetClass();
     PropertyBase const &prop = klass->GetProperty(name);
     prop.SetObject(owner, value);
@@ -36,7 +38,7 @@ void SetPropertyObject(Object const &owner, Label const &name, Object value)
 Object GetPropertyObject(Object const &owner, Label const &name)
 {
     if (!owner.Exists())
-        return Object();
+        KAI_THROW_0(NullObject);
 
     ClassBase const *klass = owner.GetClass();
     PropertyBase const &prop = klass->GetProperty(name);
@@ -44,4 +46,6 @@ Object GetPropertyObject(Object const &owner, Label const &name)
 }
 
 KAI_END
+
+//EOF
 

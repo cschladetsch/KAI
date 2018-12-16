@@ -564,14 +564,6 @@ Object Absolute(Object const &A)
     return A.GetClass()->Absolute(A);
 }
 
-/*
-// I forget what this was supposed to do
-Object operator*(Object const &)
-{
-    KAI_NOT_IMPLEMENTED();
-}
-*/
-
 // an object is less-than another if it doesn't exist and the other does,
 // or if the first object's class compares them as less
 bool operator<(Object const &A, Object const &B)
