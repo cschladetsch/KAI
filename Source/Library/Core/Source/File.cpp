@@ -24,11 +24,11 @@ namespace File
         for (; iter != end; ++iter)
         {
             auto const &val = *iter;
-            auto regular_file = is_regular_file(val);
+            const auto regular_file = is_regular_file(val);
             auto extension = val.path().extension();
-            auto same_extenstion = extension == ext;
+            const auto same_extenstion = extension == ext;
             if (regular_file && same_extenstion)
-                result.push_back(val.path().filename());
+                result.push_back(val.path());
         }
 
         return result;

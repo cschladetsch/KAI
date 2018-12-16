@@ -50,7 +50,9 @@ void TestLangCommon::ExecScripts()
     _console.SetLanguage(Language::KAI_LANG_NAME);
     for (auto const &scriptName : File::GetFilesWithExtensionRecursively(scriptsRoot, ext))
     {
-        KAI_TRACE_1(scriptName.c_str());
+        KAI_TRACE_1(scriptName.generic_string().c_str()) << " will test";
+        auto contents = File::ReadAllText(scriptName);
+        KAI_TRACE_1(contents);
     }
 }
 
