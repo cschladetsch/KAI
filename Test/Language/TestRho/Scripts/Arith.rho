@@ -1,1 +1,4 @@
 assert(1)
+'a = 1+2
+assert(a == 3)
+

@@ -9,6 +9,11 @@ struct TestPi : TestLangCommon
 {
 };
 
+TEST_F(TestPi, RunScripts)
+{
+    ExecScripts();
+}
+
 TEST_F(TestPi, TestContinuations)
 {
     auto &exec = *_console.GetExecutor();
@@ -19,7 +24,7 @@ TEST_F(TestPi, TestContinuations)
 
     KAI_TRACE_1(exec);
 
-    _console.GetExecutor()->SetTraceLevel(999);
+    //_console.GetExecutor()->SetTraceLevel(999);
     _console.SetLanguage(Language::Pi);
 
     _console.Execute("{} &");
