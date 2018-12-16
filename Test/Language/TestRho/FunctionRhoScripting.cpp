@@ -1,8 +1,9 @@
-#include "TestCommon.h"
-#include "MyTestStruct.h"
 #include "KAI/Core/Console.h"
 
-USING_NAMESPACE_KAI
+#include "TestLangCommon.h"
+#include "MyTestStruct.h"
+
+KAI_BEGIN
 
 using namespace std;
 
@@ -33,39 +34,43 @@ Object Function_3(Object object)
     return object["num"];
 }
 
-TEST(TestFunctionScripting, Test)
+TEST_F(TestLangCommon, TestRhoReflection)
 {
-    Console console;
-    console.SetLanguage(Language::Rho);
-    Object root = console.GetRoot();
-    Registry &reg = console.GetRegistry();
+    Registry &reg = *_reg;
     MyStruct::Register(reg);
 
     Pointer<MyStruct> mystruct = reg.New<MyStruct>();
     mystruct->num = 345;
     mystruct->string = "hello world";
 
-    console.GetTree().AddSearchPath(root);//Pathname("/"));
+    _console.GetTree().AddSearchPath(_root);//Pathname("/"));
 
     // Process::trace = 10;
-    root["mystruct"] = mystruct;
-    AddFunction(root, Function_0, Label("Function0"));
-    AddFunction(root, Function_1, Label("Function1"));
-    AddFunction(root, Function_2, Label("Function2"));
-    AddFunction(root, Function_3, Label("Function3"));
+    _root["mystruct"] = mystruct;
+    AddFunction(_root, Function_0, Label("Function0"));
+    AddFunction(_root, Function_1, Label("Function1"));
+    AddFunction(_root, Function_2, Label("Function2"));
+    AddFunction(_root, Function_3, Label("Function3"));
 
     // these fail because of changes to CommonLexer
-    console.Execute("Function0()");
-    console.Execute("Function1(42)");
-    console.Execute("Function2(123, 3, \"bar\")");
-    console.Execute("Function3(mystruct)");
+    _console.Execute("Function0()");
+    _console.Execute("Function1(42)");
+    _console.Execute("Function2(123, 3, \"bar\")");
+    _console.Execute("Function3(mystruct)");
 
     for (int n = 0; n < 2; ++n)
         ASSERT_TRUE(funCalled[n]);
 
-    Value<Stack> stack = console.GetExecutor()->GetDataStack();
+    Value<Stack> stack = _console.GetExecutor()->GetDataStack();
     EXPECT_EQ(stack->Size(), 2);
     EXPECT_EQ(ConstDeref<int>(stack->Pop()), 345);
     EXPECT_EQ(ConstDeref<String>(stack->Pop()), "barfoo");
     EXPECT_EQ(stack->Size(), 0);
 }
+
+TEST_F(TestLangCommon, RunScripts)
+{
+    ExecScripts();
+}
+
+KAI_END

@@ -1,9 +1,11 @@
-#include "./TestCommon.h"
+#pragma once
 
 #include <gtest/gtest.h>
 
 #include <KAI/KAI.h>
 #include <KAI/Console/Console.h>
+
+#include "./TestCommon.h"
 
 KAI_BEGIN
 
@@ -16,9 +18,14 @@ KAI_BEGIN
 // context stacks for the Executor
 class TestLangCommon : public TestCommon
 {
+public:
+	TestLangCommon() = default;
+
 protected:
-	void SetUp();
-	void TearDown();
+	void SetUp() override;
+	void TearDown() override;
+
+    void ExecScripts();
 
 	// Get const ref to data at index on stack
 	template<class T>
@@ -27,14 +34,14 @@ protected:
 		return Deref<T>(_data->At(index));
 	}
 
-	// get the curent continuation context
-	Continuation const& GetContext()
+	// get the current continuation context
+	Continuation const& GetContext() const
 	{
 		return ConstDeref<Continuation>(_context->At(0));
 	}
 
 	template <class T>
-	void AsssertResult(const char *text, T const &val)
+	void AssertResult(const char *text, T const &val)
 	{
 		_data->Clear();
 		_console.Execute(text);

@@ -3,6 +3,12 @@
 #include <KAI/Core/Config/Options.h>
 #include <KAI/Core/Config/Platform.h>
 
+#define KAI_STRINGISE(A) KAI_STRINGISE2(A)
+#define KAI_STRINGISE2(A) #A
+
+#define KAI_STRINGISE_WIDE(A) KAI_STRINGISE_WIDE2(A)
+#define KAI_STRINGISE_WIDE2(A) L###A
+
 #ifdef KAI_OPTION_USE_NAMESPACES
 #	define KAI_BEGIN namespace KAI_NAMESPACE_NAME {
 #	define KAI_END }
