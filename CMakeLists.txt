@@ -4,11 +4,11 @@ project(KAI)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-option(KAI_BUILD_CORE_TEST "Build unit tests" OFF)
+option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
 option(KAI_BUILD_TEST_LANG "Build language tests" ON)
-option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
-option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
-option(KAI_BUILD_RAKNET "Build RakNet tests" OFF)
+option(KAI_BUILD_TEST_NETWORK "Build networking tests" ON)
+option(KAI_BUILD_TEST_ALL "Build all tests" ON)
+option(KAI_BUILD_RAKNET "Build RakNet tests" ON)
 
 if (KAI_BUILD_TEST_ALL)
     set(KAI_BUILD_CORE_TEST ON)
@@ -69,10 +69,10 @@ include(cotire)
 # Add RakNet. Build only if required. TODO: Move to Cmake/AddRaKNet.cmake
 set(RAKNET_ROOT ${EXTERNAL}/RakNet)
 set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
-if (KAI_BUILD_RAKNET)
+#if (KAI_BUILD_RAKNET)
     set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
     add_subdirectory(${RAKNET_ROOT})
-endif()
+#endif()
 include_directories(${RAKNET_INCLUDE_PATH})
 
 # Add rang
