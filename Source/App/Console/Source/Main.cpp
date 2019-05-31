@@ -1,9 +1,35 @@
 #include <iostream>
 
 #include "KAI/Console/Console.h"
+#include "KAI/Network/Peer.h"
 
 using namespace std;
 using namespace kai;
+
+struct Peer : kai::Peer
+{
+    bool Start()
+    {
+        return _peer.Start(ReceivePacket);
+    }
+
+    bool Connect(String host, int port)
+    {
+        return _peer.Connect(host.c_str(), port);
+    }
+
+    void Send(String text)
+    {
+        _peer.SendText(text.c_str());
+    }
+
+    void ReceivePacket(RakNet::Pac)
+    String Receive()
+    {
+    }
+
+    kai::Peer _peer;
+};
 
 Console console;
 
