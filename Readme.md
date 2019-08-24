@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-*Note that the Build Status is broken because this is a CMake-based project*.
+*Note that the Build Status is broken because this is a CMake-based project and I haven't bothered to get to work with appveyor yet*.
 
 Kai provides three scripting languages - Pi, Rho and Tau.
 
