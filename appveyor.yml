@@ -1,0 +1,7 @@
+version: 1.0.{build}
+before_build:
+  - nuget restore
+image: Visual Studio 2017
+build:
+  project: KAI.sln
+  verbosity: minimal
