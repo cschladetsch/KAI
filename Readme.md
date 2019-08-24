@@ -7,7 +7,7 @@
 
 **Note that the Build Status is broken because this is a CMake-based project and I haven't bothered to get to work with appveyor yet**.
 
-Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. Even before all that there was [Om](https://github.com/cschladetsch/Om), started ~2001.
+Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. Even before all that there was [Om](https://github.com/cschladetsch/Om), started ~2001 when I was teaching at QANTM in Brisbane.
 
 This entire project has taken almost two decades, on and off, in my own time.
 
