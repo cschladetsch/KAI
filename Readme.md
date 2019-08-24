@@ -7,7 +7,7 @@
 
 *Note that the Build Status is broken because this is a CMake-based project and I haven't bothered to get to work with appveyor yet*.
 
-Kai provides three scripting languages - Pi, Rho and Tau.
+Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementatio. This entire project has taken almost two decades, on and off, in my own time.
 
 Kai a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection. Currently supported platforms are:
 
