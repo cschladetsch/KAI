@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
-
+SET (CMAKE_C_COMPILER_WORKS 1)
+SET (CMAKE_CXX_COMPILER_WORKS 1)
+set(CMAKE_C_COMPILER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe")
 project(KAI)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
