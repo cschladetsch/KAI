@@ -39,7 +39,7 @@ Refer to the [Language Systems](Include/KAI/Language) and [implementation](Sourc
 * *Source*. The root for the source code of the project, 
 * *Test*. Unit tests.
 
-## Interesting Files and lopcations
+## Interesting Files and locations
 
 * The toplevel [Include folder](Include/KAI) and [Source Folder](Source).
 * [Installation](Install.md). Some information on how to install and build the system.
