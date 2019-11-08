@@ -60,6 +60,12 @@ Refer to the [Language Systems](Include/KAI/Language) and [implementation](Sourc
 
 See [Install.md](Install.md) for installation instructions.
 
+The project will build using _CMake_ via _Visual Studio 2019_. No more mucking around with various *nix shells on Windows.
+
+Your safest first bet is to build the *Console* app. This gives you a *Pi* Repl console.
+
+_RakNet_ is integrated but needs some work to get back to connecting to remote nodes etc., due to recent changes in Raknet.
+
 KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
 
 Feel free to contact [me](matilto:christian.schladetsch@gmail.com) with any questions about building or use of the system.
