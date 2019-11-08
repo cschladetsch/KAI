@@ -18,10 +18,10 @@ fun d(e)
 		g*2
 	f(e)
   
-assert(d(2) == 4)
-assert(exists a)
-assert(exists d)
-assert(!(exists f))
+assert d(2) == 4
+assert exists a
+assert exists d
+assert !(exists f)
 
 fun h(i,j,k)
 	a(i, d(j)*k)
