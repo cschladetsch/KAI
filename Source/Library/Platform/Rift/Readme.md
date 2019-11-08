@@ -1,3 +1,3 @@
 # Rift Support
 
-Support for Rift.
+No current support for Rift.

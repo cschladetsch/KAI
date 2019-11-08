@@ -1,12 +1,12 @@
+#include <iostream>
+#include <fstream>
+
 #include "KAI/Core/BuiltinTypes/Void.h"
 #include "KAI/Core/BuiltinTypes/Pair.h"
 #include "KAI/Core/BuiltinTypes/Vector4.h"
 #include "KAI/Core/Exception.h"
 #include "KAI/Core/Detail/Function.h"
 #include "KAI/Executor/Compiler.h"
-
-#include <iostream>
-#include <fstream>
 #include "KAI/UnfuckWin32.h"
 
 KAI_BEGIN
@@ -204,9 +204,6 @@ namespace Bin
         return text.ToString();
     }
 
-#define BIN_FIXED
-
-    #ifdef BIN_FIXED
     void AddFunctions(Object Q)
     {
         #define ADD_FUN(N, D) \
@@ -231,15 +228,11 @@ namespace Bin
         ADD_FUN(PrintXml, "Print's an Object to stdout in XML");
         ADD_FUN(WriteToFile, "Writes an Object to a text file");
         ADD_FUN(ReadFile, "Reads a text file");
-        //ADD_FUN(ScaleVector3, "Multiply a vector by a float");
+        // No Traits for Vector3:
+		//ADD_FUN(ScaleVector3, "Multiply a vector by a float");
         ADD_FUN(AddVector3, "Adds two Vector3s together.")
         ADD_FUN(Help, "LOL");
     }
-    #else
-    void AddFunctions(Object Q)
-    {
-    }
-    #endif
 }
 
 KAI_END
