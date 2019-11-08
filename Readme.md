@@ -70,6 +70,11 @@ KAI has various dependancies, but can be built with many sub-sets. Like, if you 
 
 Feel free to contact [me](matilto:christian.schladetsch@gmail.com) with any questions about building or use of the system.
 
+## Console
+The basic console supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
+
+![Image](Images/BasicConsole.png)
+
 ## Networking
 
 The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
