@@ -42,7 +42,7 @@ The basic console supports both Pi and Rho as a Repl shell. It works and colored
 ![Image](Images/BasicConsole.png)
 
 ## Examples
-Basic C++/runtime interaction. First, see [Sample use of POD structure](Test/Source/TestClassScripting.cs). Note that to be used by KAI, the target struct or class has no conceptual or practical requirements. Specifically, it doesn't have to derive from anything and there are no macros used to expose fields or methods:
+Basic C++/runtime interaction. First, see [Sample use of non-POD structure](Test/Source/TestClassScripting.cpp). Note that to be used by KAI, the target struct or class has no conceptual or practical requirements. Specifically, it doesn't have to derive from anything and there are no macros used to expose fields or methods:
 
 Part of the output is:
 
