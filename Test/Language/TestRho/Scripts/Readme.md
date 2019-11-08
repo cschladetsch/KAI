@@ -3,6 +3,8 @@ Rho is much like _Python_, but with an even less verbose syntax.
 
 The 'return value' for a Rho function is whatever is left on the stack(s).
 
+_Rho_ is internally translated to _Pi_ for use in a single _Executor_ that supports continuations natively.
+
 Example:
 
 ```
