@@ -7,7 +7,7 @@
 
 **Note that the Build Status is broken because this is a CMake-based project that also requires Boost and Raknet and so on, and I haven't bothered to get to work with appveyor yet**.
 
-Kai is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
+_Kai_ is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
 
 Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
 
