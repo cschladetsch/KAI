@@ -65,22 +65,24 @@ After building, you can run the the tests yourself in ```Bin/Test/KaiTest.exe```
 Start withe the [Unit Tests](Test) then have a look at the [Applications](Source/App).
 
 ## Networking
-The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
+The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a NetworkSystem.
 
 Read more about Kai [object and compuational distribution](Networking.md).
 
 ## Executor
-A general-purpose stack-based virtual machine. I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system.
+A general-purpose stack-based virtual machine. I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system - especially since you can readily swap between them. That is, you can move _context_ to the data-stack, do work, then push back onto the _context_ stack.
+
+This provides for some rich computational control. This can also result in confusion, so there is a debugger and extensive (optional) tracing available.
 
 ## Folder Structure
 * *Bin*. Where to write executable output files.
 * *CMake*. Auxillary CMake modules, primarily for finding other projects and libraries like Boost and GoogleTest.
 * *Doc*. Generated documentation.
-* *Ext*. External dependancies, primariues as git submodules.
-* *Include*. Root of the global include path.
-* *Lib*. Location for built static and dynamic library files.
-* *Source*. The root for the source code of the project, 
-* *Test*. Unit tests.
+* *Ext*. External dependancies, primarily as _git submodules_.
+* *Include*. Root of the global include path. Add this to your compiler's include path.
+* *Lib*. Location for built static and dynamic library files. Also add this this to your compilers library path.
+* *Source*. The root for the source code of the project.
+* *Test*. Unit tests. Output goes to *Bin/Tests*.
 
 ## Interesting Files and locations
 * The Test scripts for [Pi](Test/Language/TestPi/Scripts) shows the basics of pi.
@@ -90,16 +92,16 @@ A general-purpose stack-based virtual machine. I wanted two stacks (one for data
 * [Tests](Test/Readme.md). Describes the GoogleTests that indicate what doesn't currently work.
 * The [top level CMake file](CMakeLists.txt).
 
-## Getting Started
+## Installing and Running
 See [Install.md](Install.md) for installation instructions.
 
 The project will build using _CMake_ via _Visual Studio 2019_. No more mucking around with various *nix shells on Windows.
 
 Your safest first bet is to build the *Console* app. This gives you a *Pi* Repl console.
 
-_RakNet_ is integrated but needs some work to get back to connecting to remote nodes etc., due to recent changes in Raknet.
+_RakNet_ is integrated but needs some work to get back to connecting to remote nodes etc., due to recent changes in Raknet. This is a top priority.
 
-KAI has various dependancies, but can be built with many sub-sets. Like, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
+_KAI_ has various dependancies, but can be built with many sub-sets. That is, if you don't want to use [ImGui](https://github.com/ocornut/imgui) you can stick with text-based (colored) [Console](Source/App/Console).
 
 Feel free to contact [me](matilto:christian.schladetsch@gmail.com) with any questions about building or use of the system.
 
@@ -114,5 +116,5 @@ To be clear: you do not have to change the source code of a class in order to ac
 
 A REPL [Console](Source/App/Console) is also supplied, as well as a [Windowed](Source/App/Window) application on all platforms 
 
-Currently the networking is supplied by RakNet, but no RakNet symbols are exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
+Currently the networking is supplied by _RakNet_, but no RakNet symbols are directly exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
 
