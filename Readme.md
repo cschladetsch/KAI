@@ -36,8 +36,43 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 Refer to the [Language Systems](Include/KAI/Language) and [implementation](Source/Library).
 
-## Folder Structure
+## Console
+The basic console supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
 
+![Image](Images/BasicConsole.png)
+
+## Examples
+Basic C++/runtime interaction. First, see [Sample use of POD structure](Test/Source/TestClassScripting.cs). Note that to be used by KAI, the target struct or class has no conceptual or practical requirements. Specifically, it doesn't have to derive from anything and there are no macros used to expose fields or methods:
+
+Part of the output is:
+
+```
+[----------] 1 test from TestClassScripting
+[ RUN      ] TestClassScripting.Test
+Info: mystruct.ToXmlString()='
+<Object type='MyStruct' name=''> <!-- no name because structure is not in a dictionary -->
+  <Property name='num'>42>/Property>
+  <Property name='string'>Freddy</Property>
+</Object>
+'
+
+Info: stream.ToString()='Handle=55, type=MyStruct '
+Info: binary_stream='BinaryStream: size=32'
+```
+
+After building, you can run the the tests yourself in ```Bin/Test/KaiTest.exe```. (Or without the `.exe` on Linux of macOS of course).
+
+Start withe the [Unit Tests](Test) then have a look at the [Applications](Source/App).
+
+## Networking
+The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
+
+Read more about Kai [object and compuational distribution](Networking.md).
+
+## Executor
+A general-purpose stack-based virtual machine. I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system.
+
+## Folder Structure
 * *Bin*. Where to write executable output files.
 * *CMake*. Auxillary CMake modules, primarily for finding other projects and libraries like Boost and GoogleTest.
 * *Doc*. Generated documentation.
@@ -48,7 +83,6 @@ Refer to the [Language Systems](Include/KAI/Language) and [implementation](Sourc
 * *Test*. Unit tests.
 
 ## Interesting Files and locations
-
 * The Test scripts for [Pi](Test/Language/TestPi/Scripts) shows the basics of pi.
 * Similarly, the test scripts for [Rho](Test/Language/TestRho/Scripts) show that it's a minamalist Python-like system. Note That Rho translates to pi, and Pi transcribes very efficiently from either text or binary.
 * The toplevel [Include folder](Include/KAI) and [Source Folder](Source).
@@ -57,7 +91,6 @@ Refer to the [Language Systems](Include/KAI/Language) and [implementation](Sourc
 * The [top level CMake file](CMakeLists.txt).
 
 ## Getting Started
-
 See [Install.md](Install.md) for installation instructions.
 
 The project will build using _CMake_ via _Visual Studio 2019_. No more mucking around with various *nix shells on Windows.
@@ -70,23 +103,7 @@ KAI has various dependancies, but can be built with many sub-sets. Like, if you 
 
 Feel free to contact [me](matilto:christian.schladetsch@gmail.com) with any questions about building or use of the system.
 
-## Console
-The basic console supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
-
-![Image](Images/BasicConsole.png)
-
-## Networking
-
-The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a System.
-
-Read more about Kai [object and compuational distribution](Networking.md).
-
-## Executor
-
-A general-purpose stack-based virtual machine. I wanted two stacks (one for data, one for context). These two stacks (data and context) provide some abilities that are not avaialable on any other non-Forth based system.
-
 ## Conclusion
-
 This library will be useful to those that want to expose C++ types and instances to the runtime, and across the network.
 
 It allows you to script C++ in a very simple way. Adding a new 'builtin type' to the system requires no macros, but just defining the type-traits for your class. No modifications to any class is required. After that you can script with any type and instances as you wish.
@@ -98,8 +115,4 @@ To be clear: you do not have to change the source code of a class in order to ac
 A REPL [Console](Source/App/Console) is also supplied, as well as a [Windowed](Source/App/Window) application on all platforms 
 
 Currently the networking is supplied by RakNet, but no RakNet symbols are exposed in the KAI API. As such, any networking system could be employed later without changing any of the publically visible KAI framework.
-
-## Examples
-
-Start withe the [Unit Tests](Test) then have a look at the [Applications](Source/App).
 
