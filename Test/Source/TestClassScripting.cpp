@@ -29,8 +29,16 @@ TEST(TestClassScripting, Test)
 
     static bool trace = true;
     // Can produce an XML representation.
+	mystruct->num = 42;
+	mystruct->string = "Freddy";
     if (trace)
 		KAI_TRACE_1(mystruct.ToXmlString());
+	/* Output:
+	<Object type='MyStruct' name=''> <!-- no name since no in a parent dictionary -->
+		<Property name='num'>42</Property>
+		<Property name='string'>Freddy</Property>
+	</Object>
+	*/
 
     // Objects an be inserted into string streams.
     StringStream stream;
