@@ -1,4 +1,7 @@
 # Test Pi Scripts
+_Pi_ is a post-fix, stack-based language. That means that to call a function (or a built-in operation), you push the arguments then call the operation
+
+`1 2 +` => 3
 
 The general idea here is to exercise all the functionality of the Pi language via a set of scripts.
 
