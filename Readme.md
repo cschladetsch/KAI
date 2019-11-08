@@ -37,7 +37,7 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 Refer to the [Language Systems](Include/KAI/Language) and [implementation](Source/Library).
 
 ## Console
-The basic console supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
+The basic [Console](Source/App/Console) supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
 
 ![Image](Images/BasicConsole.png)
 
