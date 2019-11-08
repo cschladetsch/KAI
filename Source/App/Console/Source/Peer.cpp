@@ -8,6 +8,7 @@ using namespace std;
 KAI_BEGIN
 
 Peer::Peer()
+	: _nextPeerId(1)
 {
 	_peer = RakNet::RakPeerInterface::GetInstance();
 	
@@ -54,9 +55,6 @@ void Peer::Step()
 	for (RakNet::Packet *p = _peer->Receive(); p; _peer->DeallocatePacket(p), p = _peer->Receive())
 	{
 		PacketType type = GetPacketIdentifier(p);
-
-		//cout << "Type: " << (int)type << endl;
-
 		switch (type)
 		{
 			case ID_NEW_INCOMING_CONNECTION:
@@ -65,21 +63,21 @@ void Peer::Step()
 
 			case ID_DISCONNECTION_NOTIFICATION:
 				// Connection lost normally
-				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", AddressFromPacket(p));
+				cout << "ID_DISCONNECTION_NOTIFICATION from " << AddressFromPacket(p) << endl;
 				break;
 
 			case ID_INCOMPATIBLE_PROTOCOL_VERSION:
-				printf("ID_INCOMPATIBLE_PROTOCOL_VERSION\n");
+				cout << "ID_INCOMPATIBLE_PROTOCOL_VERSION\n";
 				break;
 
 			case ID_CONNECTED_PING:
 			case ID_UNCONNECTED_PING:
-				printf("Ping from %s\n", AddressFromPacket(p));
+				cout << "Ping from " << AddressFromPacket(p) << endl;
 				break;
 
 			case ID_CONNECTION_LOST:
 				// Couldn't deliver a reliable packet - i.e. the other system was abnormally terminated
-				printf("ID_CONNECTION_LOST from %s\n", AddressFromPacket(p));
+				cout << "ID_CONNECTION_LOST from " << AddressFromPacket(p) << endl;
 				break;			
 
 			case GetRemoteListenPort:
@@ -168,9 +166,7 @@ unsigned char Peer::GetPacketIdentifier(RakNet::Packet *p)
 	// skip over timestamp to payload
 	// TODO: not ignore timestamp?
 	if (static_cast<unsigned char>(p->data[0]) == ID_TIMESTAMP)
-	{
 		return static_cast<unsigned char>(p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)]);
-	}
 	else
 		return static_cast<unsigned char>(p->data[0]);
 }
