@@ -67,13 +67,13 @@ include(IncludeGtest)
 include(cotire)
 
 # Add RakNet. Build only if required. TODO: Move to Cmake/AddRaKNet.cmake
-set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
-#if (KAI_BUILD_RAKNET)
-    set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
-    add_subdirectory(${RAKNET_ROOT})
+#set(RAKNET_ROOT ${EXTERNAL}/RakNet)
+#set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
+##if (KAI_BUILD_RAKNET)
+    # set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
+    #add_subdirectory(${RAKNET_ROOT})
 #endif()
-include_directories(${RAKNET_INCLUDE_PATH})
+#include_directories(${RAKNET_INCLUDE_PATH})
 
 # Add rang
 include_directories(${EXTERNAL}/rang/include)
