@@ -214,7 +214,7 @@ String Console::WriteStack() const
     const Value<const Stack> data = executor->GetDataStack();
     auto A = data->Begin(), B = data->End();
     StringStream result;
-    for (int N = data->Size() - 1; A != B; ++A, --N)
+    for (int N = 0; A != B; ++A, N < data->Size())
     {
         result << "[" << N << "] ";
         const bool is_string = A->GetTypeNumber() == Type::Number::String;
