@@ -7,20 +7,28 @@
 
 **Note that the Build Status is broken because this is a CMake-based project and I haven't bothered to get to work with appveyor yet**.
 
-Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. Even before all that there was [Om](https://github.com/cschladetsch/Om), started ~2001 when I was teaching at QANTM in Brisbane.
+Kai is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
+
+Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
+
+Pi is heavily influenced by Forth. It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
+
+Rho is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
 
 This entire project has taken almost two decades, on and off, in my own time.
 
-Kai a network distributed **Object Model** for C++ with full reflection, persistence, and incremental garbage collection. Currently supported platforms are:
+The general idea has always been to move algorithms and functions around the network, as well as data. In this was, real load-balancing can be conducted.
 
-1. **Windows 10** (VS 2017)
+Currently supported platforms are:
+
+1. **Windows 10** (VS 2017-19)
 1. **Linux** (Ubuntu)
 1. **macOS** (Sierra)
-1. **Unity3d** (Experimental)
+1. **Unity3d** (2017+)
 
-You can create and connect Kai nodes on different machines, connect to them, swap and monitor workloads, and remote manage all nodes in the system.
+You can create and connect Kai nodes on different machines, swap and monitor workloads, and remote manage all nodes in the system.
 
-Kai comes with distributed garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant update loop times even with tens of thousands of objects, and with hundreds of objects being created each frame on the compute power of a gaming console from 2012.
+Kai comes with distributed tri-color garbage collection. It is incremental; there are no spikes in cost for the GC over time. It is smooth, and allows for a constant update loop times even with tens of thousands of objects, and with hundreds of objects being created each frame on the compute power of a gaming console from 2012.
 
 The system also offers two scripting languages: ***Pi***, which is based on RPN notation, and ***Rho***, which uses infix notation. Rho is translated to Pi.
 
@@ -39,13 +47,14 @@ Refer to the [Language Systems](Include/KAI/Language) and [implementation](Sourc
 * *Source*. The root for the source code of the project, 
 * *Test*. Unit tests.
 
-## Interesting Files and lopcations
+## Interesting Files and locations
 
+* The Test scripts for [Pi](Test/Language/TestPi/Scripts) shows the basics of pi.
+* Similarly, the test scripts for [Rho](Test/Language/TestRho/Scripts) show that it's a minamalist Python-like system. Note That Rho translates to pi, and Pi transcribes very efficiently from either text or binary.
 * The toplevel [Include folder](Include/KAI) and [Source Folder](Source).
 * [Installation](Install.md). Some information on how to install and build the system.
 * [Tests](Test/Readme.md). Describes the GoogleTests that indicate what doesn't currently work.
 * The [top level CMake file](CMakeLists.txt).
-
 
 ## Getting Started
 

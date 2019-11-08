@@ -10,7 +10,8 @@ struct Peer : kai::Peer
 {
     bool Start()
     {
-        return _peer.Start(ReceivePacket);
+        //return _peer.Start(ReceivePacket);
+		return false;
     }
 
     bool Connect(String host, int port)
@@ -23,10 +24,9 @@ struct Peer : kai::Peer
         _peer.SendText(text.c_str());
     }
 
-    void ReceivePacket(RakNet::Pac)
-    String Receive()
-    {
-    }
+    //void ReceivePacket(RakNet::Pac)
+    //{
+    //}
 
     kai::Peer _peer;
 };

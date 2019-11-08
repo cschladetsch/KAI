@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <RakNet/RakPeer.h>
 
 #include "KAI/Network/Node.h"
@@ -67,4 +66,3 @@ void Node::Connect(IpAddress const &ip, int port)
 KAI_NET_END
 
 //EOF
-
