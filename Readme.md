@@ -13,7 +13,7 @@ Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspir
 
 Pi is heavily influenced by Forth. It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
 
-Rho is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
+[Rho](Test/Language/TestRho/Scripts/Readme.md) is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
 
 This entire project has taken almost two decades, on and off, in my own time.
 
