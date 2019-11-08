@@ -5,7 +5,6 @@
 
 using namespace std;
 using namespace kai;
-using namespace Bin;
 
 struct Peer : kai::Peer
 {
