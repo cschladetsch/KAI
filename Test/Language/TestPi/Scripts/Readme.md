@@ -1,5 +1,5 @@
 # Test Pi Scripts
-_Pi_ is a post-fix, stack-bassed language. That means that to call a function (or a built-in operation), you push the arguments then call the operation
+_Pi_ is a post-fix, stack-based language. That means that to call a function (or a built-in operation), you push the arguments then call the operation
 
 `1 2 +` => 3
 
