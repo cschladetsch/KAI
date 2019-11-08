@@ -65,7 +65,7 @@ After building, you can run the the tests yourself in ```Bin/Test/KaiTest.exe```
 Start withe the [Unit Tests](Test) then have a look at the [Applications](Source/App).
 
 ## Networking
-The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Nodes in a Domain, and across a group of Domains in a NetworkSystem.
+The entire motivation for KAI was to allow for efficient, low-latency and correct networking of object state and command execution (which results in state changes!) across a group of Objects in a Registry, a group of Registries in a Domain, and across a group of Domains in a NetworkSystem.
 
 Read more about Kai [object and compuational distribution](Networking.md).
 
