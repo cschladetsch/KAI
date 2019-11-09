@@ -82,13 +82,15 @@ assert	# assert that top of stack equates to true
 drop	# drop top of data stack
 dup	# duplicate top of data stack
 ==	# apply equivalency operator to top two elements of data stack
-swap	# swap top to elements of data stack
-+	# add top to elements of data stack
--	# give difference of top to elements of data stack
+swap	# swap top two elements of data stack
++	# add top two elements of data stack
+-	# give difference of top two elements of data stack
 *	# multiply top two elements of data stack
 div	# divide top two elements of data stack
 >	# pop top two elements of data stack and push true if second is greater than first, else false
-M	# pop top two elements of data stack and push true if second is less than first, else false
+<	# pop top two elements of data stack and push true if second is less than first, else false
+>= # greator or equal
+<= # less or equal
 rot	# rotate the 3rd data stack element: A B C => B C A
 rotn	# rotate the nth data stack element
 over	# duplicate the second element of the data stack: A B => A B A
@@ -108,19 +110,18 @@ or	# perform inclusive or: 0 0 or => false
 if	# evaluate TOS. if true, execute 2nd element: "foo" true if => "foo"
 ifelse	# evaluate TOS. if true, execute 2nd element, else 3rd: "foo" "bar" false iflse => "bar"
 !=	# return true of top two elements are equivalent
-freeze	# convert an object into a binary packet
-thaw	# inverse of thaw
+freeze	# convert an arbirary compound object (even an Executor itself!) into a binary blob
+thaw	# inverse of freeze
 self	# push current top of context stack onto data stack
 contents	# push contents of object on top of stack, including all properties, methods and dict entries
 dropn	# drop N elemenets from data stack: 1 2 3 4 2 dropn => 1 2
->data   # move top of context stack to data stack
->context    # move top of data stack to context stack
+todata   # move top of context stack to data stack
+tocontext    # move top of data stack to context stack
 ```
 
 For more information you can read the [Executor](/Source/Library/Executor/Source/Executor.cpp) code, and the unit tests.
 
 ## Literals
-
 Integers are a sequence of numeric characters: `1`, `20`, `12313`.
 
 Floats are `243.1575` etc. Exponentials are not currently supported.
