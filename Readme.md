@@ -4,19 +4,19 @@
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-**Note that the Build Status is broken because this is a CMake-based project that also requires Boost and Raknet and so on, and I haven't bothered to get to work with appveyor yet**.
+**Note that the Build Status is broken because this is a CMake-based project that also requires Boost and Raknet and so on, and I haven't spent the time to get it to work with appveyor yet**.
 
 _Kai_ is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
 
 Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
 
-[Pi](Source/Library/Language/Pi) and [Tests](Test/Language/TestPi/Scripts) is heavily influenced by [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
+## Pi
+[Pi](Source/Library/Language/Pi) (see [Tests](Test/Language/TestPi) and [Tests Scripts](Test/Language/TestPi/Scripts)) is heavily influenced by [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
 
-[Rho](Test/Language/TestRho/Scripts/Readme.md) is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
+## Rho
+[Rho](Source/Library/Language/Rho) (see [Tests](Test/Language/TestRho) and [Tests Scripts](Test/Language/TestRho/Scripts)), is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
 
-This entire project has taken almost two decades, on and off, in my own time.
-
-The general idea has always been to move algorithms and functions around the network, as well as data. In this was, real load-balancing can be conducted.
+The general idea has always been to move algorithms around the network, as well as data. In this manner, *real* load-balancing can be conducted.
 
 Currently supported platforms are:
 
