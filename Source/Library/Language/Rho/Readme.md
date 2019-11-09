@@ -1,4 +1,4 @@
-# Rho
+# Rho ![Rho](/Images/rho.jpg)
 
 Rho is an in-fix language that translates to _Pi_.
 
