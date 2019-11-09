@@ -18,7 +18,7 @@ Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspir
 
 The general idea has always been to move algorithms around the network, as well as data. In this manner, *real* load-balancing can be conducted.
 
-# Platforms
+## Platforms
 Currently supported platforms are:
 
 1. **Windows 10** (VS 2017-19)
@@ -34,13 +34,13 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 Refer to the [Language Systems](Include/KAI/Language) and [implementation](Source/Library).
 
-## Console
+### Console
 The basic [Console](Source/App/Console) supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
 
 ![Image](Images/BasicConsole.png)
 
-## Window
-There is also a [Gui](/Source/Apps/Window) based on imgui.
+### Window
+There is also a [Gui](/Source/App/Window) based on imgui.
 
 ## Examples
 Basic C++/runtime interaction. First, see [Sample use of non-POD structure](Test/Source/TestClassScripting.cpp). Note that to be used by KAI, the target struct or class has no conceptual or practical requirements. Specifically, it doesn't have to derive from anything and there are no macros used to expose fields or methods:
