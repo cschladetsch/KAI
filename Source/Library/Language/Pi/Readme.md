@@ -4,6 +4,21 @@ Pi is a simple post-fix language. Meant to be fast for a machine to parse and ex
 
 Will be easier to use for those with backgrounds with HP48 calculators.
 
+## Hello, World
+
+`"Hello, world" print &`
+
+This first pushes the string literal `"Hello, world"` onto the data stack. It then pushes the (adress of) the `print` function onto the stack. The ampersand `&` means "continue execution using the top of the data stack".
+
+The result is that hello world is printed onto the stack:
+
+```
+> "Hello, world" print &
+Hello, world
+```
+
+The same for adding two numbers: `1 2 +` yields `3`, etc. See [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
+
 ## Stacks
 There are two stacks in _Pi_:
 
