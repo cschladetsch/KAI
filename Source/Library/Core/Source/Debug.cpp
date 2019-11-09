@@ -18,7 +18,7 @@ StringStream& operator<<(StringStream &s, const Structure & st)
     return s;
 }
 
-// this is just being used while I sort out the cross-platform console color issues
+// this is just being used while I (re)sort out the cross-platform console color issues
 ostream& operator<<(ostream &S, ConsoleColor::EType type)
 {
     return S;
@@ -67,8 +67,10 @@ namespace debug
         const auto filelocCol = rang::fg::gray;
         const auto textCol = rang::fg::yellow;
         const auto val = ToString();
+
         if (TraceFileLocation)
             cout << filelocCol << file_location.ToString().c_str();
+
         cout << TypeToString(type) << ": " << textCol << val.c_str() << endl;
     }
 }

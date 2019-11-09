@@ -87,13 +87,13 @@ bool LexerBase::LexString()
 {
     int start = offset;
     Next();
-    while (!Failed && Current() != '"') // "
+    while (!Failed && Current() != '"')
     {
         if (Current() == '\\')
         {
             switch (Next())
             {
-            case '"':    // "
+            case '"':
             case 'n':
             case 't':
                 break;

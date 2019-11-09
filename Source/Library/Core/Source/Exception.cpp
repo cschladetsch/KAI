@@ -103,6 +103,7 @@ namespace Exception
     {
         S << "what=" << text;
     }
+
     void BadIndex::WriteExtendedInformation(StringStream &S) const
     {
         S << "index=" << index;

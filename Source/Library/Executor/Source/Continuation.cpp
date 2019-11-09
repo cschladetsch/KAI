@@ -14,6 +14,9 @@
 
 KAI_BEGIN
 
+const static int MaxDepth = 3;
+const static int MaxLen = 80;
+
 void Continuation::Create()
 {
     args = New<Array>();
@@ -97,9 +100,6 @@ void Continuation::Reset()
     *index = 0;
 }
 
-const static int MaxDepth = 3;
-const static int MaxLen = 80;
-
 StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t index, int depth)
 {
     // too long
@@ -131,20 +131,6 @@ StringStream &InsertContinuation(StringStream &stream, const Array &code, size_t
 
     return stream;
 }
-
-//StringStream &Print(StringStream &S, const Continuation &C, int level)
-//{
-//    const std::string indent(level*4, ' ');
-//
-//    S << "\n" << indent << "Continuation " << C.Self->GetHandle() << "<\n";
-//    for (auto ch : *C.GetCode())
-//    {
-//        if (ch.IsType<Continuation>())
-//            Print(S, ConstDeref<Continuation>(ch), level + 1);
-//        S << indent << indent << ch << " " << "\n";
-//    }
-//    return S << indent << ">" << C.Self->GetHandle() << " @" << C.index << "/" << C.code->Size() << "\n";
-//}
 
 StringStream &operator<<(StringStream &str, const Continuation &cont)
 {

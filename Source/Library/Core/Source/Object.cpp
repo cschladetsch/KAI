@@ -40,14 +40,13 @@ Object &Object::operator=(Object const &Q)
     {
         StorageBase *base = GetRegistry()->GetStorageBase(handle);
         if (base)
-        {
             base->DetermineNewColor();
-        }
     }
 
     class_base = Q.class_base;
     registry = Q.registry;
     handle = Q.handle;
+
     return *this;
 }
 
@@ -80,6 +79,7 @@ bool Object::IsConst() const
 {
     if (!Exists())
         return true;
+
     return GetStorageBase().IsConst();
 }
 
@@ -482,9 +482,8 @@ BinaryStream &operator<<(BinaryStream &stream, const Object &object)
     const Dictionary &dict = base.GetDictionary();
     stream << (int)dict.size();
     for (auto const &child : dict)
-    {
         stream << child.first << child.second;
-    }
+    
     return stream;
 }
 
@@ -504,9 +503,7 @@ BinaryStream &operator>>(BinaryStream &stream, Object &extracted)
 
     ClassBase const *klass = registry.GetClass(Type::Number(type_number));
     if (klass == 0)
-    {
         KAI_THROW_1(UnknownClass<>, type_number);
-    }
 
     // extract the object value
     if (klass->HasOperation(Type::Properties::BinaryStreamExtract))
@@ -564,8 +561,11 @@ Object Absolute(Object const &A)
     return A.GetClass()->Absolute(A);
 }
 
-// an object is less-than another if it doesn't exist and the other does,
-// or if the first object's class compares them as less
+// This is a vitally important operation that affects everything about 
+// rationalising about general programming.
+//
+// An object is less-than another if it doesn't exist and the other does,
+// or if the first object's class compares them as less.
 bool operator<(Object const &A, Object const &B)
 {
     if (!A.Exists())
@@ -616,9 +616,9 @@ bool operator<(Object const &A, Object const &B)
     return false;
 }
 
-/// two objects are equivalent if they both do not exist, or if
+/// Two objects are equivalent if they both do not exist, or if
 /// the first object's class compares them as equivalent and all 
-/// sub-objects are equivalent
+/// sub-objects are equivalent.
 bool operator==(Object const &A, Object const &B)
 {
     if (!A.Exists())
@@ -659,6 +659,7 @@ bool operator==(Object const &A, Object const &B)
     return true;
 }
 
+// Uses Less-than and equivalence testing, iff no greater-than is defined.
 bool operator>(Object const &A, Object const &B)
 {
     if (!A.Exists())

@@ -4,10 +4,8 @@
 #include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Value.h"
 #include "KAI/Core/Object/Reflected.h"
-
 #include "KAI/Executor/Operation.h"
 #include "KAI/Executor/Continuation.h"
-
 #include <KAI/Core/BuiltinTypes/Dictionary.h>
 #include <KAI/Core/Object/PropertyBase.h>
 #include <KAI/Core/Object/ClassBase.h>
@@ -21,6 +19,7 @@ const char *ToLower(const char *text)
     size_t n;
     for (n = 0; n < strlen(text); ++n)
         out[n] = (char)tolower(text[n]);
+
     out[n] = 0;
     return out;
 }

@@ -27,6 +27,7 @@ namespace File
             const auto regular_file = is_regular_file(val);
             auto extension = val.path().extension();
             const auto same_extenstion = extension == ext;
+
             if (regular_file && same_extenstion)
                 result.push_back(val.path());
         }
@@ -63,6 +64,7 @@ namespace File
         fs::ofstream out(path, ios_base::out);
         if (!out)
             return false;
+
         std::copy(text.begin(), text.end(), ostream_iterator<char>(out));
         return out.good() && out.tellp() == text.size();
     }

@@ -16,7 +16,7 @@ void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Poin
 
         cont = C;
 
-        // add the formal params
+        // Add the formal params.
         Array::const_iterator A = args->Begin(), B = args->End();
         while (A != B)
         {
@@ -37,7 +37,6 @@ void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Poin
 void SignedContinuation::Enter(Stack &stack)
 {
     KAI_UNUSED_1(stack);
-
 }
 
 void SignedContinuation::Leave(Stack &)

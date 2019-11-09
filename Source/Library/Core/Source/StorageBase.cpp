@@ -26,7 +26,7 @@ void StorageBase::SetSwitch(int S, bool N)
         switches &= ~S;
 
     const ClassBase *klass = GetClass();
-    if (klass != 0 && S != Clean)
+    if (klass != nullptr && S != Clean)
         klass->SetSwitch(*this, S, N);
 }
 
@@ -52,10 +52,10 @@ void StorageBase::Set(const Label &name, Object const &child)
     if (child.GetHandle() == GetHandle())
         KAI_THROW_1(InternalError, "Recursion");
 
-    // mark the object as being altered
+    // Mark the object as being altered.
     SetDirty();
     
-    // set a property if it exists
+    // Set a property if it exists.
     ClassBase const *klass = GetClass();
     if (klass->HasProperty(name))
     {
@@ -69,9 +69,10 @@ void StorageBase::Set(const Label &name, Object const &child)
     // update the child object
     if (!child.Exists())
     {
-        Dictionary::iterator ch = dictionary.find(name);
+        const auto ch = dictionary.find(name);
         if (ch != dictionary.end())
             dictionary.erase(ch);
+
         return;
     }
 
@@ -82,7 +83,7 @@ void StorageBase::Set(const Label &name, Object const &child)
     bool clean = base.IsClean();
     bool konst = base.IsConst();
     bool managed = base.IsManaged();
-    base.switches = switches;                // inherit properties of parent...
+    base.switches = switches;                 // inherit properties of parent...
 
     if (clean)                                // ...but preserve cleanliness
         base.switches |= IObject::Clean;
@@ -92,23 +93,23 @@ void StorageBase::Set(const Label &name, Object const &child)
     if (konst)                                // ...and constness
         base.switches |= IObject::Const;
 
-    if (managed)                            // ...and managed
+    if (managed)                              // ...and managed
         base.switches |= IObject::Managed;
 
-    // add it to this dictionary, inform it of being added to a container
+    // Add it to this dictionary, inform it of being added to a container.
     dictionary[name] = child;
     base.AddedToContainer(*this);
 }
 
 bool StorageBase::Has(const Label &L) const
 {
-    Dictionary::const_iterator object = dictionary.find(L);
+    const auto object = dictionary.find(L);
     return object != dictionary.end() && object->second.Exists();
 }
 
 void StorageBase::Remove(const Label &label)
 {
-    Dictionary::iterator iter = dictionary.find(label);
+    const auto iter = dictionary.find(label);
     if (iter == dictionary.end())
         return;
 
@@ -164,10 +165,9 @@ bool StorageBase::SetColor(ObjectColor::Color color)
     this->color = color;
     if (color == ObjectColor::White)
     {
-        Containers::const_iterator container = containers.begin(), end = containers.end();
-        for (; container != end; ++container)
+        for (const auto& container : containers)
         {
-            StorageBase *cont = GetRegistry()->GetStorageBase(*container);
+            StorageBase *cont = GetRegistry()->GetStorageBase(container);
             if (cont && cont->IsBlack())
                 cont->SetColor(ObjectColor::Grey);
         }
@@ -178,10 +178,9 @@ bool StorageBase::SetColor(ObjectColor::Color color)
 
 void StorageBase::MakeReachableGrey()
 {
-    Dictionary::const_iterator child = dictionary.begin(), end = dictionary.end();
-    for (; child != end; ++child)
+    for (const auto& child : dictionary)
     {
-        StorageBase *sub = GetRegistry()->GetStorageBase(child->second.GetHandle());
+        StorageBase *sub = GetRegistry()->GetStorageBase(child.second.GetHandle());
         if (!sub)
             continue;
 
@@ -258,7 +257,7 @@ void StorageBase::DetermineNewColor()
 void StorageBase::AddedToContainer(Object const &container)
 {
     if (container.GetHandle() == GetHandle())
-        KAI_THROW_1(InternalError, "Can't add a container to itself");
+        KAI_THROW_1(InternalError, "Can't add a container to itself.");
 
     containers.push_back(container.GetHandle());
     if (IsWhite())
@@ -291,13 +290,13 @@ void StorageBase::DetachFromContainers()
 
 void StorageBase::Delete()
 {
-    // avoid double deletion
+    // Avoid double deletion.
     if (IsMarked())
         return;
 
     SetManaged(true);
 
-    // remove from all containers
+    // Remove from all containers.
     DetachFromContainers();
 
     // remove from parent
@@ -305,7 +304,7 @@ void StorageBase::Delete()
     if (parent != 0)
         parent->Remove(GetLabel());
 
-    // set this and all referent objects to be white, and mark it for deletion.
+    // Set this and all referent objects to be white, and mark it for deletion.
     SetColorRecursive(ObjectColor::White);
     SetMarked(true);
 }

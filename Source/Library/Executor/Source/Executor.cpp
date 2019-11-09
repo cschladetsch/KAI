@@ -13,7 +13,7 @@ using namespace std;
 
 KAI_BEGIN
 
-// the higher the trace number, the more verbose debug output.
+// The higher the trace number, the more verbose debug output.
 int Process::trace = 0;
 
 void Executor::Create()
@@ -32,6 +32,7 @@ bool Executor::Destroy()
 
 void Executor::Push(Object const &Q)
 {
+	// Push the referenced object if needed.
     if (Q.GetTypeNumber() == Type::Number::Object)
         Push(*_data, ConstDeref<Object>(Q));
     else
@@ -183,7 +184,7 @@ void Executor::Eval(Object const &Q)
 template <class Cont>
 void Executor::PushAll(const Cont &cont)
 {
-    for (const auto &A : cont)
+    for (const auto &A: cont)
         Push(A);
 
     Push(New(cont.Size()));
@@ -194,19 +195,18 @@ Value<Continuation> Executor::NewContinuation(Value<Continuation> orig)
     Value<Continuation> cont = New<Continuation>();
     cont->SetCode(orig->GetCode());
     cont->args = orig->args;
+
     return cont;
 }
 
 void Executor::MarkAndSweep()
 {
-    Object Q = _tree->GetRoot();
-    MarkAndSweep(Q);
+    MarkAndSweep(_tree->GetRoot());
 }
 
 void Executor::MarkAndSweep(Object &root)
 {
-    Registry &R = *root.GetRegistry();
-    R.GarbageCollect();
+    root.GetRegistry()->GarbageCollect();
 }
 
 void Executor::Expand()
@@ -288,8 +288,10 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
     case Operation::Suspend:
         _continuation->Next();
         _context->Push(_continuation);
+		// fallthrough
     case Operation::Replace:
         _context->Push(NewContinuation(Pop()));
+		// fallthrough
     case Operation::Resume:
         _break = true;
 	default:
@@ -300,7 +302,8 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
 
 void Executor::ContinueOnly(Value<Continuation> C)
 {
-    _context->Push(Object());    // add an empty context to break. this forces exection to stop after C is finished
+	// Add an empty context to break. this forces exection to stop after C is finished.
+    _context->Push(Object());    
     Continue(C);
 }
 
@@ -331,7 +334,7 @@ Object Executor::Top() const
 
 Object Executor::Resolve(Object Q, bool ignoreQuote) const
 {
-    // TODO: this double-handling of Labels and Pathnames is tedious and wrong
+    // TODO: this double-handling of Labels and Pathnames is tedious and wrong.
     if (Q.IsType<Label>())
     {
         const auto& l = ConstDeref<Label>(Q);
@@ -364,7 +367,7 @@ Object Executor::TryResolve(Object const &Q) const
 
 Object Executor::TryResolve(Label const &label) const
 {
-    // search in current scope
+    // Search in current scope.
     if (_continuation.Exists())
     {
         Object scope = _continuation->GetScope();
@@ -372,30 +375,30 @@ Object Executor::TryResolve(Label const &label) const
             return scope.Get(label);
     }
 
-    // search in parent scopes
+    // search in parent scopes...
     Stack const &scopes = *_context;
     for (int N = 0; N < scopes.Size(); ++N)
     {
         Pointer<Continuation> cont = scopes.At(N);
         if (!cont.Exists())
-            break;//continue;
+            break;
 
         Object scope = cont->GetScope();
         if (scope.Exists() && scope.HasChild(label))
             return scope.GetChild(label);
     }
 
-    // finally, search the tree
+    // Finally, search the tree.
     return _tree->Resolve(label);
 }
 
 Object Executor::TryResolve(Pathname const &path) const
 {
-    // if its not an absolute path, search up the continuation scopes
+    // If it's not an absolute path, search up the continuation scopes.
     if (path.Absolute())
         return _tree->Resolve(path);
 
-    // search in current scope
+    // Search in current scope.
     if (_continuation.Exists())
     {
         auto found = Get(_continuation->GetScope(), path);
@@ -403,7 +406,7 @@ Object Executor::TryResolve(Pathname const &path) const
             return found;
     }
 
-    // search in parent scopes
+    // Search in parent scopes.
     Stack const &scopes = *_context;
     for (int N = 0; N < scopes.Size(); ++N)
     {
@@ -623,12 +626,15 @@ void WriteHumanReadableString(std::ostream &out, const Object& obj)
     case Type::Number::Bool:
         out << rang::fg::cyan << str;
         break;
+
     case Type::Number::String:
         out << dim << '"' << bold << str << dim << '"';
         break;
+
     case Type::Number::Label:
         KAI_NOT_IMPLEMENTED();
         break;
+
     case Type::Number::Pathname:
         {
             const auto& label = ConstDeref<Pathname>(obj);
@@ -637,6 +643,7 @@ void WriteHumanReadableString(std::ostream &out, const Object& obj)
             out << rang::fg::cyan << str;
         }
         break;
+
     default:
         out << str;
         break;
@@ -916,8 +923,8 @@ void Executor::Perform(Operation::Type op)
 				SignedContinuation &signed_continuation = Deref<SignedContinuation>(where_to_go);
 				signed_continuation.Enter(*_data);
 				where_to_go = signed_continuation.GetContinuation();
+				break;
 			}
-			break;
 
 			case Type::Number::Continuation:
 				break;
@@ -944,6 +951,7 @@ void Executor::Perform(Operation::Type op)
         {
             if (*Deref<Continuation>(sc).scopeBreak)
                 break;
+
             ++n;
         }
 
@@ -969,9 +977,9 @@ void Executor::Perform(Operation::Type op)
         Pointer<Continuation> C = Pop();
         for (int N = 0; N < M; ++N)
         {
-            // push a null continuation to break the call chain
+            // Push a null continuation to break the call chain.
             _context->Push(Object());
-            // re-continue the functor
+            // Re-continue the functor.
             Continue(C);
         }
 
@@ -1047,7 +1055,7 @@ void Executor::Perform(Operation::Type op)
     {
         if (_data->Size() < 3)
         {
-            KAI_TRACE_ERROR() << "attempting IfElse, but stack of " << _data->Size() << " is too small";
+            KAI_TRACE_ERROR() << "Attempting IfElse, but stack of " << _data->Size() << " is too small.";
             KAI_NOT_IMPLEMENTED();
         }
 
@@ -1502,10 +1510,11 @@ void Executor::Perform(Operation::Type op)
 
         break;
     }
+
 	case Operation::ToList:
 	{
-        int n = ConstDeref<int>(Pop());
 		auto list = New<List>();
+		int n = ConstDeref<int>(Pop());
 		while (n-- > 0)
 		{
 			list->Append(Pop());

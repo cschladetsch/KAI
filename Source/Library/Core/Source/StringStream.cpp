@@ -78,9 +78,8 @@ void StringStream::Append(const Char *A, const Char *B)
 
 void StringStream::Append(const String &S)
 {
-    //Append(S.begin(), S.end());
     if (!S.empty())
-        Append(S.c_str());//[0], &S[S.size() - 1]);
+        Append(S.c_str());
 }
 
 bool StringStream::Extract(int, String &)
@@ -106,7 +105,6 @@ bool StringStream::Extract(Char &C)
 
 StringStream &operator<<(StringStream &S, void(*)(EndsArgument))
 {
-    //S.Append('\0');
     return S;
 }
 
@@ -137,15 +135,9 @@ StringStream &operator<<(StringStream &stream, const Object &object)
     else
     {
         if (klass->GetTypeNumber() == Type::Number::Operation)
-        {
-            //Operation op = ConstDeref<Operation>(object);
-            //stream << "Op: " << op.GetTypeNumber();
             stream << Operation::ToString(ConstDeref<Operation>(object).GetTypeNumber());
-        }
         else
-        {
             stream << "Handle=" << object.GetHandle().GetValue() << ", type=" << klass->GetName() << " ";
-        }
     }
 
     return stream;

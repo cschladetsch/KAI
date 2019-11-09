@@ -10,11 +10,12 @@ KAI_BEGIN
 
 bool Compiler::Destroy()
 {
-    // these are un-managed while the compiler is alive, to avoid them being part
+    // These are un-managed while the compiler is alive, to avoid them being part
     // of the GC process. probably an overkill for performance. in any case,
     // when the compiler goes out of scope, we want to ensure the operation objects
     // are returned to the pool for GC.
-    // again, all this work and text describing it is probably more cost than just
+	//
+    // Again, all this work and text describing it is probably more cost than just
     // letting op's be managed from the start.
     for (auto op : string_to_op)
         op.second.SetManaged(true);

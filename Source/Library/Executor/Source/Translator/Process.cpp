@@ -19,11 +19,11 @@ bool Process::Fail(const char *fmt, ...) const
     va_list ap;
     va_start(ap, fmt);
     char buffer[BUFSIZ];
-    #ifdef WIN32
+#ifdef WIN32
     vsprintf_s(buffer, fmt, ap);
-    #else
+#else
     vsprintf(buffer, fmt, ap);
-    #endif
+#endif
 
     return Fail(string(buffer));
 }

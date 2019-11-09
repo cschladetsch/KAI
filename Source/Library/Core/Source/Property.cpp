@@ -22,6 +22,7 @@ Object GetPropertyValue(Object const &owner, Label const &name)
         
     ClassBase const *klass = owner.GetClass();
     PropertyBase const &prop = klass->GetProperty(name);
+
     return prop.GetValue(owner);
 }
 
@@ -42,6 +43,7 @@ Object GetPropertyObject(Object const &owner, Label const &name)
 
     ClassBase const *klass = owner.GetClass();
     PropertyBase const &prop = klass->GetProperty(name);
+
     return prop.GetObject(owner);
 }
 

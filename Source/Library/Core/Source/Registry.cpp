@@ -1,3 +1,4 @@
+// Silly old Win32 API doing stupid things.
 #undef GetObject
 #undef GetObjectA
 
@@ -14,7 +15,7 @@
 #include <KAI/Core/BuiltinTypes/Signed32.h>
 #include <KAI/Core/Registry.h>
 
-// use tri-color generational gc.
+// Use tri-color generational gc. See https://en.wikipedia.org/wiki/Tracing_garbage_collection#Tri-color_marking
 #define KAI_USE_TRICOLOR
 
 KAI_BEGIN
@@ -33,10 +34,10 @@ Registry::Registry(std::shared_ptr<Memory::IAllocator> alloc)
 
 void Registry::Construct()
 {
-    classes.resize(2000, 0);
-    gc_trace_level = 0;
-    tree = 0;
-    std::fill(classes.begin(), classes.end(), (ClassBase const *)0);
+    classes.resize(2000, nullptr);
+    gc_trace_level = 1;
+    tree = nullptr;
+    std::fill(classes.begin(), classes.end(), (ClassBase const *)nullptr);
 }
 
 Registry::~Registry()
@@ -47,14 +48,13 @@ Registry::~Registry()
 void Registry::Clear()
 {
     ClearInstances();
-    // ForEach(classes,Deleter<ClassBase>());
 }
 
 void Registry::ClearInstances()
 {
-    // create a set of handles to destroy, then destroy them
+    // Create a set of handles to destroy, then destroy them
     // this can't be done in one pass, as otherwise we would be mutating the
-    // container as we traverse it
+    // container as we traverse it.
     std::vector<Handle> handles;
     for (auto const &instance : instances)
         handles.push_back(instance.first);
@@ -85,7 +85,7 @@ Object Registry::NewFromClassName(const char *classname_str)
 {
     Label classname(classname_str);
     const ClassBase *klass = GetClass(classname);
-    if (klass == 0)
+    if (klass == nullptr)
         KAI_THROW_1(UnknownClass<>, String(classname_str));
 
     return NewFromClass(klass);
@@ -103,7 +103,7 @@ const ClassBase *Registry::GetClass(const Label &name)
 
 void Registry::DestroyNominated()
 {
-    // copy the elements in deathrow because when we delete
+    // Copy the elements in deathrow because when we delete
     // objects, they may release other objects.
     std::vector<Handle> dr(deathrow.begin(), deathrow.end());
     deathrow.clear();
@@ -155,7 +155,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 #endif
 
 #ifdef KAI_USE_TRICOLOR
-        // when using tri-color GC, objects are always deleted when they are destroyed
+        // When using tri-color GC, objects are always deleted when they are destroyed.
         if (!base.GetClass()->Destroy(base) && !force)
         {
             base.SetColor(ObjectColor::Grey);
@@ -167,9 +167,7 @@ void Registry::DestroyObject(Handle handle, bool force)
 
         RetainedObjects::iterator retained = retained_objects.find(handle);
         if (retained != retained_objects.end())
-        {
             retained_objects.erase(retained);
-        }
 
         succeeded = true;
     }
@@ -190,7 +188,7 @@ void Registry::DestroyObject(Handle handle, bool force)
     if (!succeeded)
     {
         KAI_TRACE_WARN() << " coudldn't delete handle " << handle;
-        Instances::iterator iter = instances.find(handle);
+        auto const iter = instances.find(handle);
         if (iter != instances.end())
         {
             // this leaks and has other *TERRIBLE* consequences but it is the best we can do to keep afloat
@@ -214,17 +212,21 @@ void Registry::PruneRetained()
 
 const ClassBase *Registry::GetClass(Type::Number type_number)
 {
-    return classes[type_number.ToInt()];
+	auto tn = type_number.ToInt();
+	if (tn >= (int)classes.size())
+		KAI_THROW_1(LogicError, "Inalid type number");
+
+    return classes[tn];
 }
 
 StorageBase *Registry::GetStorageBase(Handle handle) const
 {
     if (handle == Handle(0))
-        return 0;
+        return nullptr;
 
     auto obj = instances.find(handle);
     if (obj == instances.end())
-        return 0;
+        return nullptr;
 
     return obj->second;
 }
@@ -236,7 +238,7 @@ bool Registry::OnDeathRow(Handle handle) const
 
 void Registry::AddClass(const ClassBase *klass)
 {
-    if (klass == 0)
+    if (klass == nullptr)
         KAI_THROW_0(NullObject);
 
     if (GetClass(klass->GetTypeNumber()))
@@ -285,7 +287,7 @@ void MarkAll(StorageBase &root, bool marked);
 
 void Registry::Mark(Object root)
 {
-    // now mark everything that is reachable from the given object root
+    // Mark everything that is reachable from the given object root.
     if (root.Exists())
         MarkAll(root.GetStorageBase(), true);
 }
@@ -397,16 +399,17 @@ void Registry::GarbageCollect()
 {
     if (!tree)
         return;
+
     GarbageCollect(tree->GetRoot());
 }
 
 Object Registry::NewFromClass(const ClassBase *klass)
 {
-    if (klass == 0)
+    if (klass == nullptr)
         KAI_THROW_1(UnknownClass<>, "NULL Class");
 
     Handle handle(next_handle.NextValue());
-    StorageBase *base = 0;
+    StorageBase *base = nullptr;
     base = klass->NewStorage(this, handle);
 
 #ifdef KAI_DEBUG_REGISTRY
@@ -474,19 +477,18 @@ void Registry::GarbageCollect(Object root)
 
 void Registry::TriColor()
 {
-    // this is a magic number. the higher it is, the more objects may be deleted in this call
+    // This is a magic number. the higher it is, the more objects may be deleted in this call
     // the cost has to be paid at some point, so this number really means "how much do I want
     // to spread out cost of GC over time versus memory use".
     //
     // if you have lots of memory, set max_cycles to 1. (or zero!). if not, set it higher
     // until you can fit memory usage into a sequence of frames.
     //
-    // see also https://github.com/cschladetsch/Monotonic 
+    // See also https://github.com/cschladetsch/Monotonic 
     const int max_cycles = 17;
+
     if (gc_trace_level >= 1)
-    {
         KAI_TRACE_3((int)instances.size(), (int)grey.size(), (int)white.size());
-    }
 
     int cycle = 0;
     for (; cycle < max_cycles; ++cycle)
@@ -506,7 +508,7 @@ void Registry::TriColor()
         Handle handle = *iter;
         grey.erase(iter);
         StorageBase *base = GetStorageBase(handle);
-        if (base == 0)
+        if (base == nullptr)
             continue;
 
         base->MakeReachableGrey();
@@ -514,22 +516,19 @@ void Registry::TriColor()
     }
 
     if (gc_trace_level >= 1)
-    {    
         KAI_TRACE() << "TriColor: " << cycle << " passes";
-        printf("Tricolor passes\n");
-    }
 }
 
 void Registry::ReleaseWhite()
 {
-    // make a copy of the white set to avoid mutation while iterating
+    // Make a copy of the white set to avoid mutation while iterating.
+	// Yes, this is expensive and is a good candidate to use Monotonic memory
+	// allocation.
     std::vector<Handle> to_delete(white.begin(), white.end());
     white.clear();
-    //foreach (Handle handle, to_delete)
+
     for (auto const &handle : to_delete)
-    {
         DestroyObject(handle);
-    }
 }
 
 void Registry::SetGCTraceLevel(int N)
@@ -546,16 +545,15 @@ static void RemoveFromSet(Registry::ColoredSet &handles, Handle handle)
 
 bool Registry::SetColor(StorageBase &base, ObjectColor::Color color)
 {
-    // when using TriColor, if an object is marked it means it has been forced deleted
+    // When using TriColor, if an object is marked it means it has been forced deleted.
     if (base.IsMarked() && color != ObjectColor::White)
         return false;
     
 #ifdef KAI_DEBUG_REGISTRY
     if (IsWatching(base) && gc_trace_level > 0)
-    {
         KAI_TRACE_3(base.GetHandle(), base.GetClass()->GetName(), color);
-    }
 #endif
+
     Handle handle = base.GetHandle();
     switch (color)
     {

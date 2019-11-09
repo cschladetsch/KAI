@@ -1,6 +1,17 @@
 #include <ctype.h>
 #include "KAI/Core/BuiltinTypes.h"
 
+// NOTE: This should all be moved to the Lexer/Parser logic, not
+// logic inherent in the Pathname class itself.
+//
+// Rather, the Lexer/Parser should generate Pathnames.
+//
+// The main point of contention is the ability to make Pathnames (and
+// for that matter, Labels), "On the fly" in code without a lexer or parser.
+//
+// Note that Pi and Rho share the exact same syntax and semantics for Pathnames
+// and Labels.
+
 KAI_BEGIN
 
 const String::Char Pathname::Literals::Parent = '^';
@@ -29,8 +40,10 @@ bool Pathname::Absolute() const
 {
     if (elements.empty())
         return false;
+
     if (Quoted())
         return elements.size() > 1 && elements[1].type == Element::Separator;
+
     return elements.front().type == Element::Separator;
 }
 
@@ -39,9 +52,9 @@ void Pathname::FromString2(String text)
     FromString(text);
 }
 
-// TODO: pathnames and id's have been giving me grief for years.
-// need to sort it out once and for all.
-// use a static PiParser method or something. Doing it badly
+// TODO: Pathnames and id's have been giving me grief for years.
+// Need to sort it out once and for all.
+// Need to use a static PiParser method or something. Doing it badly
 // in three different places and across 3 different languages is insane.
 void Pathname::FromString(const String &text)
 {

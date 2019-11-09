@@ -105,6 +105,7 @@ void Set(Object const &root, Object const &scope, Object const &ident, Object co
             GetStorageBase(scope).Set(label, Q);
             break;
         }
+
     case Type::Number::Pathname:
         {
             const Pathname &path = ConstDeref<Pathname>(ident);
@@ -114,6 +115,7 @@ void Set(Object const &root, Object const &scope, Object const &ident, Object co
                 Set(scope, path, Q);
             break;
         }
+
     default:
         KAI_THROW_1(InvalidIdentifier, Q);
     }
@@ -137,7 +139,6 @@ Object Get(Object scope, const Pathname &path)
 
     const Pathname::Elements &elements = path.GetElements();
     Pathname::Elements::const_iterator A = elements.begin(), B = elements.end();
-
     for (; A != B; ++A)
     {
         switch (A->type)
@@ -163,6 +164,7 @@ Object Get(Object scope, const Pathname &path)
             break;
         }
     }
+
     return scope;
 }
 
@@ -175,6 +177,7 @@ bool Exists(Object const &scope, const Pathname &path)
     catch (Exception::ObjectNotFound &)
     {
     }
+
     return false;
 }
 
@@ -187,6 +190,7 @@ bool Exists(Object const &root, Object const &scope, const Pathname &path)
     catch (Exception::ObjectNotFound &)
     {
     }
+
     return false;
 }
 
@@ -270,11 +274,6 @@ void Tree::SetScope(const Pathname &path)
 
     scope = Get(root, scope, path);
 }
-//
-//void Tree::SetSearchPath(const SearchPath &P)
-//{
-//    path = P;
-//}
 
 void Tree::AddSearchPath(const Object &P)
 {
@@ -317,7 +316,7 @@ Object Tree::Resolve(const Pathname &P) const
     if (P.Absolute())
         return Object();
 
-    // search in each object stored in path
+    // Search in each object stored in path.
     for (auto const &A : path)
     {
         Object found = Get(root, A, P);
