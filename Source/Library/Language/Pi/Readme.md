@@ -139,6 +139,6 @@ Continuations are surrounded by `{` and `}`.
 All compounds are recursive.
 
 ### Comments
-Comments start with a `#` and everything after that symbol on the same line is ignored. There are no multi-line 
+Comments start with a `//` and everything after that symbol on the same line is ignored. There are no multi-line 
 comments as Pi is basically a sequence of tokens with little structure.
 
