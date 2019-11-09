@@ -20,6 +20,30 @@ pi>
 
 The same for adding two numbers: `1 2 +` yields `3`, etc. See [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
 
+It's worth noting how simple it is to write functions in C++ that are addressable by _Pi_:
+
+```
+void Print(Object obj)
+{
+   std::cout << obj.ToString();
+}
+```
+
+## A brief example
+```
+pi> { 'a # a 3 * } 4 swap & 12 == assert
+pi>
+```
+
+This makes a contuation with contents `{ 'a # a 3 * }` and pushes it onto the stack. It then pushes the integer `4` onto the stack and swaps the top two elements, so the stack now looks like:
+
+```
+[0] 4
+[1] { 'a # a 3 * }
+```
+
+It then runs the continuation using the `&` operator. The continuation first stores the top the stack, `4`, into local variable `a` using the `#` operator. It then pushes `a` onto the stack (resulting in `4`), then the integer `3`, then muliplies them with the `*` operator. It then asserts that the top of the stack (TOS) is equivalent to `12`.
+
 ## Stacks
 There are two stacks in _Pi_:
 
@@ -97,19 +121,19 @@ For more information you can read the [Executor](/Source/Library/Executor/Source
 
 ## Literals
 
-Comments start with a # and everything after that symbol on the same line is ignored. There are no multi-line 
-comments as Pi is basically a sequence of tokens with little structure.
+Integers are a sequence of numeric characters: `1`, `20`, `12313`.
 
-Integers are a sequence of number characters: 1, 20, 12313.
+Floats are `243.1575` etc. Exponentials are not currently supported.
 
-Floats are 1.0 etc. Expoentials are not supported.
+Strings are surrounded by double quotes `"`. Escape internal quotes with a backslash `\"`
 
-Strings are surrounded by double quotes ".
+Lists are surrounded by `[` and `]`.
 
-Lists are surrounded by [ and ].
-
-Continuations are surrounded by { and }.
+Continuations are surrounded by `{` and `}`.
 
 All compounds are recursive.
 
+### Comments
+Comments start with a `#` and everything after that symbol on the same line is ignored. There are no multi-line 
+comments as Pi is basically a sequence of tokens with little structure.
 
