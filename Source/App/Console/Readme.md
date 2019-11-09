@@ -1,4 +1,4 @@
-# Console
+# Console ![Console](/Images/Console.png)
 
 A basic colored console interface to an [Executor](/Source/Library/Executor/Source).
 
