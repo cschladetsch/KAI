@@ -38,8 +38,8 @@ pi>
 This makes a contuation with contents `{ 'a # a 3 * }` and pushes it onto the stack. It then pushes the integer `4` onto the stack and swaps the top two elements, so the stack now looks like:
 
 ```
-[0] 4
-[1] { 'a # a 3 * }
+[1] 4
+[0] { 'a # a 3 * }
 ```
 
 It then runs the continuation using the `&` operator. The continuation first stores the top the stack, `4`, into local variable `a` using the `#` operator. It then pushes `a` onto the stack (resulting in `4`), then the integer `3`, then muliplies them with the `*` operator. It then asserts that the top of the stack (TOS) is equivalent to `12`.
