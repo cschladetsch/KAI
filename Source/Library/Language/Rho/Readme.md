@@ -4,9 +4,9 @@
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-Rho is an in-fix language that translates to [/Source/Library/Language/Pi/Readme.md](Pi).
+Rho is an in-fix language that translates to [Pi](/Source/Library/Language/Pi/Readme.md).
 
-Both Rho and Pi use the same [/Source/Library/Executor/Source/Executor.cpp](Executor).
+Both Rho and Pi use the same [Executor](/Source/Library/Executor/Source/Executor.cpp).
 
 Rho is much like _Python_, but with an even less verbose syntax.
 
