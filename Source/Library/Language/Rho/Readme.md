@@ -22,7 +22,7 @@ rho>
 ```
 
 ## Example Test Suite
-This is code taken directly from a [file](/Test/Language/TestRho/Scripts/Function.rho] in the test suite:
+This is code taken directly from a [file](/Test/Language/TestRho/Scripts/Function.rho) in the test suite:
 
 ```
 fun a(b, c)
