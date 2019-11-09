@@ -4,13 +4,13 @@
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-Rho is an in-fix language that translates to _Pi_.
+Rho is an in-fix language that translates to [/Source/Library/Language/Pi/Readme.md](Pi).
 
-Both Rho and Pi use the same _Executor_.
+Both Rho and Pi use the same [/Source/Library/Executor/Source/Executor.cpp](Executor).
 
 Rho is much like _Python_, but with an even less verbose syntax.
 
-The 'return value' for a Rho function is whatever is left on the stack(s).
+The 'return value' for a Rho function (continuation) is whatever is left on the stack(s) when the continuatin leaves.
 
 _Rho_ is internally translated to _Pi_ for use in a single _Executor_ that supports continuations natively.
 
