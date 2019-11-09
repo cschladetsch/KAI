@@ -8,13 +8,14 @@ Will be easier to use for those with backgrounds with HP48 calculators.
 
 `"Hello, world" print &`
 
-This first pushes the string literal `"Hello, world"` onto the data stack. It then pushes the (adress of) the `print` function onto the stack. The ampersand `&` means "continue execution using the top of the data stack".
+This first pushes the string literal `"Hello, world"` onto the data stack. It then pushes the the `print` function onto the stack. The ampersand `&` means "continue execution using the top of the data stack".
 
-The result is that hello world is printed onto the stack:
+The result is that hello world is printed to stdout:
 
 ```
-> "Hello, world" print &
+pi> "Hello, world" print &
 Hello, world
+pi>
 ```
 
 The same for adding two numbers: `1 2 +` yields `3`, etc. See [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation).
@@ -92,7 +93,7 @@ dropn	# drop N elemenets from data stack: 1 2 3 4 2 dropn => 1 2
 >context    # move top of data stack to context stack
 ```
 
-For more information you can read the [Source/Core/Executor.cpp](Executor) code, and the unit tests.
+For more information you can read the [Executor](/Source/Library/Executor/Source/Executor.cpp) code, and the unit tests.
 
 ## Literals
 
