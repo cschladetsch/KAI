@@ -1,12 +1,11 @@
-#include <KAI/Language/Pi/PiToken.h>
 #include <algorithm>
 #include <ctype.h>
+
+#include <KAI/Language/Pi/PiToken.h>
 
 using namespace std;
 
 KAI_BEGIN
-
-// #define TRACE_WS
 
 const char *PiTokenEnumType::ToString(Enum t)
 {
@@ -14,7 +13,6 @@ const char *PiTokenEnumType::ToString(Enum t)
     {
 #define CASE(N) case PiTokens::N : return #N;
 #define CASE_LOWER(N) CASE(N)
-// #define CASE_LOWER(N) case PiTokens::N : return ToLower(#N);
 #define CASE_REPLACE(N, M) case PiTokens::N : return M;
 
 #ifdef TRACE_WS

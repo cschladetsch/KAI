@@ -1,4 +1,5 @@
 #include <boost/lexical_cast.hpp>
+
 #include "KAI/Language/Pi/PiTranslator.h"
 
 using namespace boost;
@@ -18,9 +19,9 @@ void PiTranslator::TranslateNode(AstNodePtr node)
     {
         case PiAstNodeEnumType::Array:
         {
-            // although we are getting an array,
+            // Although we are getting an array,
             // pretend at first we are getting a Continuation
-            // then use it's code as the data for the array
+            // then use it's Code as the data for the array.
             PushNew();
             for (auto const &ch : node->GetChildren())
                 TranslateNode(ch);
@@ -276,8 +277,7 @@ void PiTranslator::AppendTokenised(const TokenNode& tok)
         return;
 
     default:
-        KAI_TRACE_1(tok.type) << " PiTranslator: token not implemented: " << tok.ToString();
-        // KAI_NOT_IMPLEMENTED_1(tok.ToString());
+        KAI_TRACE_1(tok.type) << ": PiTranslator: token not implemented: " << tok.ToString();
         break;
     }
 }

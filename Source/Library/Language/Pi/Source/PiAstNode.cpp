@@ -1,9 +1,9 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "KAI/Executor/Executor.h"
 #include "KAI/Language/Pi/PiToken.h"
 #include "KAI/Language/Pi/PiAstNode.h"
-
-#include <stdlib.h>
-#include <stdio.h>
 
 KAI_BEGIN
 
@@ -20,9 +20,8 @@ const char *PiAstNodeEnumType::ToString(Enum ty)
         CASE(Array)
         CASE(Continuation)
 
-        // special case to avoid noisey 'TokenType:' debug traces
+        // Special case to avoid noisey 'TokenType:' debug traces.
         case PiAstNodeEnumType::Enum::TokenType:
-            // return "Tok";
             return "";
 
         case PiAstNodeEnumType::Enum::None:

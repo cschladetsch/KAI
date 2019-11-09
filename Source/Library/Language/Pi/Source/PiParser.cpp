@@ -30,6 +30,7 @@ bool PiParser::Run(Structure st)
     root = NewNode(AstEnum::Continuation);
     while (!Failed && NextSingle(root))
         ;
+
     return !Failed;
 }
 
@@ -43,14 +44,19 @@ bool PiParser::NextSingle(AstNodePtr root)
     {
     case PiTokens::OpenSquareBracket:
         return ParseCompound(root, AstEnum::Array, TokenEnum::CloseSquareBracket);
+
     case PiTokens::OpenBrace:
         return ParseCompound(root, AstEnum::Continuation, TokenType::CloseBrace);
+
     case PiTokens::CloseSquareBracket:
+		// Fallthrough.
     case PiTokens::CloseBrace:
         Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
         return false;
+
     case PiTokens::None:
         return false;
+
     default:
         root->Add(Consume());
         return true;
