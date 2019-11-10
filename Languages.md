@@ -61,6 +61,6 @@ Continuations are important because they allow you to yield the current command 
 
 Since I started making this system in 2000, the idea of Continuations has become common place and alsp called different things. Basically, a continuation is a function that can be interrupted at a certain point, then later resumed from that point.
 
-What makes Pi and Rho interesting is that they use **two stacks** - one for context and one for data.
+What makes Pi and Rho interesting is that they expose **two stacks** - one for context and one for data. These stacks are there in other languages; but you rarely get to manipulate the context stack directly.
 
-I am not sure of any other language system othe than [Forth](https://en.wikipedia.org/wiki/Forth_\(programming_language\)) that does this,
+I am not sure of any other language system othe than [Forth](https://en.wikipedia.org/wiki/Forth_\(programming_language\)) that does this.

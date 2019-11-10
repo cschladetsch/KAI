@@ -31,8 +31,17 @@ So then I refactored all the language systems to use one generic language system
 But it's all for a simple and single purpose: to allow for natural and fluid networking without a client/server model. I make progress over time, and so it continues. Here's a dated overview of what I've got so far:
 
 ## Remote Object Creation
+Create a remote object, and set it's value:
+
+```
+'remote = new Peer("192.168.0.13", 6666)	# connect to remote machine
+'proxy = remote.NewProxy(Vector3)			# make a vector3 over there
+proxy.Set(new Vector3(1,2,3))					# set it's (remote) value
+```
 
 ## Remote Object Location
+
+
 
 ## Remote Object Procedure calls
 
