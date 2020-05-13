@@ -1,4 +1,4 @@
-set(Boost_DEBUG 1)
+#set(Boost_DEBUG 1)
 
 message(STATUS "Looking for boost")
 
