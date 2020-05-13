@@ -2,6 +2,12 @@
 
 .vscode/
 
+# WorkFolder things
+.enter
+.leave
+.curr
+
+
 CMake/CMakeFiles/
 CMake/CMakeCache.txt
 
