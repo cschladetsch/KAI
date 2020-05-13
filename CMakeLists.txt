@@ -16,7 +16,7 @@ endif()
 option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
 option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
-option(KAI_BUILD_RAKNET "Build RakNet " ON)
+option(KAI_BUILD_RAKNET "Build RakNet " OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 

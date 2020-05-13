@@ -18,6 +18,8 @@ Currently the list of external `git` repos are:
 
 ## Boost
 
+Install --latest Boost 1.73-- boost 1.72. CMake doesn't yet support 1.73.
+
 For windows:
 
 ```bash
