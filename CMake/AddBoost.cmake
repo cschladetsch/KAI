@@ -1,7 +1,15 @@
+set(Boost_DEBUG 1)
+
+message(STATUS "Looking for boost")
+
+#set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "C:/Boost/include")
+#set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "C:/Boost/lib")
+
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_DEBUG_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
+
 find_package(Boost REQUIRED COMPONENTS 
     program_options chrono filesystem system date_time)
 
