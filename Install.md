@@ -22,7 +22,7 @@ For windows:
 
 ```bash
 > .\bootstrap.bat
-> .\b2 install debug --build=complete --with-chrono --with-filesystem --with-system --with-program_options
+> .\b2 install debug --date-time --build=complete --with-chrono --with-filesystem --with-system --with-program_options
 ```
 
 The same is true for Linux or macOS, just use `./` instead of `.\`

@@ -1,4 +1,8 @@
 .vscode/
+
+CMake/CMakeFiles/
+CMake/CMakeCache.txt
+
 CMakeSettings.json
 
 /Doc/html
