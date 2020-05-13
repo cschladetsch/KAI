@@ -18,11 +18,13 @@ Currently the list of external `git` repos are:
 
 ## Boost
 
+Install --latest Boost 1.73-- boost 1.72. CMake doesn't yet support 1.73.
+
 For windows:
 
 ```bash
 > .\bootstrap.bat
-> .\b2 install debug --build=complete --with-chrono --with-filesystem --with-system --with-program_options
+> .\b2 install debug --date-time --build=complete --with-chrono --with-filesystem --with-system --with-program_options
 ```
 
 The same is true for Linux or macOS, just use `./` instead of `.\`
