@@ -36,7 +36,25 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 Refer to the [Language Systems](Include/KAI/Language) and [implementation](Source/Library).
 
+## Building
+
+Prerequisites:
+
+* A modern C++ compiler.
+* [Cmake](https://cmake.org/install/).
+
+* [Boost](https://www.boost.org/). The specific packages required are `filesystem`, `chrono` and `regex`.
+
+After this do the usual:
+
+```bash
+mkdir -p build && cd build && cmake ..
+```
+
+
+
 ## Console
+
 The basic [Console](Source/App/Console) supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
 
 ![Image](Images/BasicConsole.png)
