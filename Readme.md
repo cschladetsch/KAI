@@ -1,22 +1,37 @@
 # Kai ![Foo](Doc/swords.jpg)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/cschladetsch/kai?svg=true)](https://ci.appveyor.com/project/cschladetsch/kai)
 [![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/kai/badge)](https://www.codefactor.io/repository/github/cschladetsch/kai)
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-**Note that the Build Status is broken because this is a CMake-based project that also requires Boost and Raknet and so on, and I haven't spent the time to get it to work with appveyor yet**.
-
-_Kai_ is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
+_Kai_ is a network distributed **Object Model** for C++ with full run-time reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting run-time.
 
 Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
 
-## Pi
+Kai is intended to be a framework for distributed computing. In this case, that term means precisely what it implies: processes can be removed, or moved or copied between nodes in the system.
+
+This is accomplished via *Executor*s running *Continuations* within a *Domain*. The first things to understand about Kai are the languages used, then how they are used to create processes that interact directly with the C++ run-time across the network.
+
+This requires a solution for distributed object discovery, naming, and resolution.
+
+Note that the base computational unit in Kai, the Continuation, is itself serialisable and able to be sent over the wire. That is the key principal of the entire framework.
+
+## Object Model
+
+The Core of the system is a *Registry*. It contains types, and can make instances of those times given a type name or a statically defined type number.
+
+## Languages
+
+### Pi
+
 [Pi](Source/Library/Language/Pi) (see [Tests](Test/Language/TestPi) and [Tests Scripts](Test/Language/TestPi/Scripts)) is heavily influenced by [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
 
-## Rho
+### Rho
 [Rho](Source/Library/Language/Rho) (see [Tests](Test/Language/TestRho) and [Tests Scripts](Test/Language/TestRho/Scripts)), is an infix language much like Python, LUA or Ruby, but with native continuations and the ability to inject Pi code as any factor in an expression.
 
 The general idea has always been to move algorithms around the network, as well as data. In this manner, *real* load-balancing can be conducted.
+
+### Tau
+Tau is an IDL (interface description language), used to specify object fields and methods via enforced and versioned contracts over the wire.
 
 ## Platforms
 Currently supported platforms are:
@@ -24,7 +39,7 @@ Currently supported platforms are:
 1. **Windows 10** (VS 2017-19)
 1. **Linux** (Ubuntu)
 1. **macOS** (Sierra)
-1. **Unity3d** (2017+)
+1. **Unity3d** (2018+)
 
 You can create and connect Kai nodes on different machines, swap and monitor workloads, and remote manage all nodes in the system.
 
@@ -40,8 +55,14 @@ Prerequisites:
 
 * A modern C++ compiler.
 * [Cmake](https://cmake.org/install/).
-
-* [Boost](https://www.boost.org/). The specific packages required are `filesystem`, `chrono` and `regex`.
+* RakNet
+* *Boost*. The specific packages required are:
+  *  `filesystem`, 
+  * `program-options`,
+  *  `chrono` 
+  * `date-time`
+  *  `regex`
+  * use `./install-boost-libs.sh` to install them on Ubuntu.
 
 After this do the usual:
 
