@@ -39,9 +39,9 @@ struct TraitsBase
 	typedef Ref Reference;
 	typedef ConstRef ConstReference;
 
-	static const char *Name()
+	static std::string Name()
 	{
-		return boost::typeindex::type_id<T>().pretty_name().c_str();
+		return boost::typeindex::type_id<T>().pretty_name();
 	}
 
 	// used as a dummy template parameter to avoid nested explicit template instantiations.

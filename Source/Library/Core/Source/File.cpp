@@ -12,7 +12,6 @@ KAI_BEGIN
 namespace File
 {
     namespace fs = boost::filesystem;
-    using byte = std::byte;
 
     // return a vector of all files that have the given extension, starting from root, recursively
     Pathnames GetFilesWithExtensionRecursively(Pathname const &root, Extension const &ext)
@@ -70,7 +69,7 @@ namespace File
     }
 
     // replace a file with a sequence of bytes
-    bool ReplaceWithBinary(std::byte const *bytes, size_t num_bytes, Pathname const &path)
+    bool ReplaceWithBinary(byte const *bytes, size_t num_bytes, Pathname const &path)
     {
         KAI_NOT_IMPLEMENTED();
     }

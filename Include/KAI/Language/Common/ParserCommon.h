@@ -22,7 +22,7 @@ public:
     typedef AstNodeBase<TokenNode, AstEnumStruct> AstNode;
     typedef std::shared_ptr<AstNode> AstNodePtr;
 
-    ParserCommon(Registry& r) : ProcessCommon(r)
+    explicit ParserCommon(Registry& r) : ProcessCommon(r)
     { 
         current = 0;
         indent = 0;
@@ -182,7 +182,7 @@ protected:
     {
         if (current + 1 >= tokens.size())
         {
-            KAI_TRACE_ERROR() << "End of tokens stream looking for a %s", TokenEnumType::ToString(ty);
+            KAI_TRACE_ERROR() << "Unexpected end of tokens stream";
             return false;
         }
 
