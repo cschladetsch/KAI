@@ -19,7 +19,7 @@ KAI_BEGIN
 			using typename Tr::Store; \
 			using typename Tr::Reference; \
 			using typename Tr::ConstReference; \
-			static const char *Name() \
+			static std::string Name() \
 			{ \
 				typedef TraitsBase<T,N,Ops> Tr; \
 				return Tr::Name(); \

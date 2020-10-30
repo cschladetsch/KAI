@@ -201,7 +201,8 @@ Value<Continuation> Executor::NewContinuation(Value<Continuation> orig)
 
 void Executor::MarkAndSweep()
 {
-    MarkAndSweep(_tree->GetRoot());
+    KAI_NOT_IMPLEMENTED();
+    //MarkAndSweep(_tree->GetRoot());
 }
 
 void Executor::MarkAndSweep(Object &root)

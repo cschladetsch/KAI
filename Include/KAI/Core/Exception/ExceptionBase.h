@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <utility>
 #include <KAI/Core/Exception/FileLocation.h>
 #include <KAI/Core/Object/Handle.h>
 #include <KAI/Core/StringStream.h>
@@ -9,15 +10,14 @@ KAI_BEGIN
 
 namespace Exception
 {
-	struct Base : std::exception
+	struct Base : std::logic_error
 	{
 		FileLocation location;
 		std::string text;
 
-		Base() { }
-		Base(const char * const msg) : std::exception(msg), text(msg) { }
-		Base(const FileLocation &L, const char *T = "Exception")
-			: std::exception(T), location(L), text(T) { }
+		explicit Base(const char * const msg) : std::logic_error(msg), text(msg) { }
+		explicit Base(FileLocation L, const char *T = "Exception")
+			: std::logic_error(T), location(std::move(L)), text(T) { }
 
 		std::string ToString() const;
 		virtual void WriteExtendedInformation(StringStream &) const { }
@@ -32,33 +32,34 @@ namespace Exception
 	struct TypeMismatch : Base
 	{
 		int first, second;
-		TypeMismatch(const FileLocation &L , int A = 0, int B = 0 , const char *T = "Type Mismatch")
+		explicit TypeMismatch(const FileLocation &L , int A = 0, int B = 0 , const char *T = "Type Mismatch")
 			: Base(L, T), first(A), second(B) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct NullObject : Base
 	{
-		NullObject(const FileLocation &L, const char *T = "Null Object")
+		explicit NullObject(const FileLocation &L, const char *T = "Null Object")
 			: Base(L, T) { }
 	};
 
 	struct EmptyStack : Base
 	{
-		EmptyStack(const FileLocation &L, const char *T = "Empty Stack")
+		explicit EmptyStack(const FileLocation &L, const char *T = "Empty Stack")
 			: Base(L, T) { }
 	};
+
 	struct ConstError : Base
 	{
-		ConstError(const FileLocation &L, const char *T = "Const Error")
+		explicit ConstError(const FileLocation &L, const char *T = "Const Error")
 			: Base(L, T) { }
 	};
 	struct UnknownTypeNumber : Base
 	{
 		int type_number;
-		UnknownTypeNumber(const FileLocation &L, int N = 0, const char *T = "Unknown Type Number")
+		explicit UnknownTypeNumber(const FileLocation &L, int N = 0, const char *T = "Unknown Type Number")
 			: Base(L, T), type_number(N) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct UnknownObject : Base
@@ -66,20 +67,20 @@ namespace Exception
 		Handle handle;
 		UnknownObject(const FileLocation &L, Handle H)
 			: Base(L, "Unknown Object"), handle(H) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct ObjectNotFound : Base
 	{
 		String label;
-		ObjectNotFound(const FileLocation &L, const String &A = "")
+		explicit ObjectNotFound(const FileLocation &L, const String &A = "")
 			: Base(L, "ObjectNotFound"), label(A) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct Assertion : Base
 	{
-		Assertion(const FileLocation &L)
+		explicit Assertion(const FileLocation &L)
 			: Base(L, "AssertionFailed") { }
 	};
 
@@ -97,17 +98,17 @@ namespace Exception
 	struct PacketExtraction : Base
 	{
 		int type_number;
-		PacketExtraction(const FileLocation &L, int T = 0)
+		explicit PacketExtraction(const FileLocation &L, int T = 0)
 			: Base(L, "Cannot extract"), type_number(T) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct PacketInsertion : Base
 	{
 		int type_number;
-		PacketInsertion(const FileLocation &L, int T = 0)
+		explicit PacketInsertion(const FileLocation &L, int T = 0)
 			: Base(L, "Cannot insert"), type_number(T) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 
 	struct OutOfBounds : Base
@@ -117,7 +118,7 @@ namespace Exception
 
 		OutOfBounds(const FileLocation &L, int idx, int ty)
 			: Base(L, "Out of Bounds"), type_number(ty), index(idx) { }
-		void WriteExtendedInformation(StringStream &) const;
+		void WriteExtendedInformation(StringStream &) const override;
 	};
 }
 

@@ -12,6 +12,7 @@ namespace File
     using Pathname = boost::filesystem::path;
     using Extension = Pathname::string_type;
     using Pathnames = std::vector<Pathname>;
+    using byte = std::uint8_t;
 
     bool Exists(Pathname const &);
     bool IsFile(Pathname const &);
@@ -30,7 +31,7 @@ namespace File
     bool ReplaceWithText(std::string const &, Pathname const&);
 
     // read all bytes in a file
-    template <class Byte = std::byte>
+    template <class Byte = std::uint8_t>
     std::vector<Byte> ReadAllBinary(Pathname const &path)
     {
         using namespace std;
@@ -46,9 +47,9 @@ namespace File
     }
 
     // replace a file with a sequence of bytes
-    bool ReplaceWithBinary(std::byte const *, size_t num_bytes, Pathname const &);
+    bool ReplaceWithBinary(byte const *, size_t num_bytes, Pathname const &);
 
-    inline bool ReplaceWithBinary(std::vector<std::byte> const &bytes, Pathname const &pathname)
+    inline bool ReplaceWithBinary(std::vector<byte> const &bytes, Pathname const &pathname)
     {
         return ReplaceWithBinary(&*bytes.begin(), bytes.size(), pathname);
     }

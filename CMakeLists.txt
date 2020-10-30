@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
-SET (CMAKE_C_COMPILER_WORKS 1)
-SET (CMAKE_CXX_COMPILER_WORKS 1)
-set(CMAKE_C_COMPILER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe")
+
+#SET (CMAKE_C_COMPILER_WORKS 1)
+#SET (CMAKE_CXX_COMPILER_WORKS 1)
+#set(CMAKE_C_COMPILER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe")
+
 project(KAI)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -21,7 +23,7 @@ option(KAI_BUILD_RAKNET "Build RakNet " ON)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 # used tp generate compile options for YouCompleteMe
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
@@ -37,7 +39,7 @@ add_definitions(-DKAI_VERSION_PATCH=0)
 if (MSVC)
     set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
 else()
-    set(CMAKE_CXX_FLAGS "-std=c++1y -g -Wno-deprecated -Wno-switch")
+    set(CMAKE_CXX_FLAGS "-g -Wno-deprecated -Wno-switch")
 endif()
 
 # set common paths for all other projects to use
