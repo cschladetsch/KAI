@@ -5,7 +5,7 @@ USING_NAMESPACE_KAI
 class TestList : public TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddTestClasses() override
     {
         Reg().AddClass<List>();
     }

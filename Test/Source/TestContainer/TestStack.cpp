@@ -5,7 +5,7 @@ USING_NAMESPACE_KAI
 class TestStack : public TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddTestClasses() override
     {
         Reg().AddClass<Stack>();
     }

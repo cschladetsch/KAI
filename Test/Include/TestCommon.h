@@ -33,10 +33,10 @@ protected:
     Object Root() const;
 
 protected:
-    void SetUp();
-    void TearDown();
+    void SetUp() override;
+    void TearDown() override;
 
-    virtual void AddrequiredClasses();
+    virtual void AddTestClasses();
 };
 
 KAI_END
@@ -46,12 +46,12 @@ namespace testing
 {
  namespace internal
  {
-  //enum GTestColor {
-  //    COLOR_DEFAULT,
-  //    COLOR_RED,
-  //    COLOR_GREEN,
-  //    COLOR_YELLOW
-  //};
+  enum GTestColor {
+      COLOR_DEFAULT,
+      COLOR_RED,
+      COLOR_GREEN,
+      COLOR_YELLOW
+  };
 
   extern void ColoredPrintf(GTestColor color, const char* fmt, ...);
  }
@@ -64,8 +64,8 @@ class TestCout : public std::stringstream
 {
 public:
     bool _isError;
-    TestCout(bool e = false) : _isError(e) { }
-    ~TestCout()
+    explicit TestCout(bool e = false) : _isError(e) { }
+    ~TestCout() override
     {
         if (_isError)
             TEST_PRINTF(COLOR_RED, "%s\n",str().c_str());

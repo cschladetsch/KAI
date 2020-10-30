@@ -6,7 +6,7 @@ USING_NAMESPACE_KAI
 class TestSet : public TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddTestClasses() override
     {
         Reg().AddClass<ObjectSet>();
         Reg().AddClass<StringStream>();

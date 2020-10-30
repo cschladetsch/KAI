@@ -22,8 +22,8 @@ option(KAI_BUILD_RAKNET "Build RakNet " ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
-# used tp generate compile options for YouCompleteMe
-set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
+# used to generate compile options for YouCompleteMe
+#set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
@@ -75,6 +75,9 @@ set(RAKNET_ROOT ${EXTERNAL}/RakNet)
 set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
 if (KAI_BUILD_RAKNET)
     set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
+    set(RAKNET_ENABLE_STATIC ON)
+    set(RAKNET_ENABLE_DLL OFF)
+    set(RAKNET_ENABLE_DYNAMIC OFF)
     add_subdirectory(${RAKNET_ROOT})
     message(STATUS "**** RakNet: ${RAKNET_ROOT}")
 endif()
