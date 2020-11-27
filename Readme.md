@@ -5,7 +5,23 @@
 
 _Kai_ is a network distributed **Object Model** for C++ with full run-time reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting run-time.
 
-Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
+Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection.
+
+## Purpose
+The purpose of KAI is to allow communication between networkked nodes in as simple and direct way as possible.
+
+This is not limited to just data transfer - rather, *computation itself* can be shared between nodes, using a distributed **Execetutor** with a common heartbeat.
+
+If a node is over-loaded, it can push it's load out to other peers in the *Domain* that it shares.
+
+This is all done via distributed object model, and a few languages.
+
+### Languages
+At the heart of KAI are three things: A Registry, A Domain, and some Languages.
+
+* Pi. Is RPN and is the base language.
+* Rho. Is like Python but has native support for continuations in its syntax. It transposes to Pi.
+* Tau. Is the Interface Definition Language (IDL) than is shared between nodes. In theory, it could produce code for any language.
 
 Kai is intended to be a framework for distributed computing. In this case, that term means precisely what it implies: processes can be removed, or moved or copied between nodes in the system.
 
