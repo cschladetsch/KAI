@@ -21,7 +21,7 @@ This is all done via distributed object model, and a few languages.
 At the heart of KAI are three things: A Registry, A Domain, and some Languages.
 
 * Registry. A statically-typesafe over-the-wire object factory.
-* Domain. A Local Registry that is part of the larger Netork.
+* Domain. A Local Registry that is part of the larger Newtork. Objects in a Domain are in a Registry that is qualified by the Guid of that domain.
 * Languages:
   * Pi. Is RPN and is the base language.
   * Rho. Is like Python but has native support for continuations in its syntax. It transposes to Pi.
