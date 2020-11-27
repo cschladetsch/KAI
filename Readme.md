@@ -10,7 +10,7 @@ Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspir
 ## Purpose
 The purpose of KAI is to allow communication between networked nodes in as simple and direct way as possible. Current network implementation uses Raknet, but it is abstracted.
 
-This is not limited to just data transfer - rather, *computation itself* can be shared between nodes, using a distributed **Execetutor** with a common heartbeat.
+This is not limited to just data transfer - rather, *computation itself* can be shared between nodes, using a distributed **Executor** with a shared heartbeat.
 
 If a node is over-loaded, it can push it's load out to other peers in the *Domain* that it shares.
 
