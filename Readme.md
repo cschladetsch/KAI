@@ -8,7 +8,7 @@ _Kai_ is a network distributed **Object Model** for C++ with full runtime reflec
 
 Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection.
 
-## Purpose
+## Purpose :grey_question:
 The purpose of KAI is to allow communication between networked nodes in as simple and direct way as possible. Current network implementation uses Raknet, but it is abstracted.
 
 This is not limited to just data transfer - rather, *computation itself* can be shared between nodes, using a distributed **Executor** with a shared heartbeat.
@@ -51,7 +51,7 @@ There is also an Interface Definition Language (IDL) called ***Tau***, which is 
 
 Refer to the [Language Systems](Include/KAI/Language) and [implementation](Source/Library).
 
-## Building
+## Building :zap:
 
 Prerequisites:
 
