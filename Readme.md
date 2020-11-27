@@ -16,12 +16,15 @@ If a node is over-loaded, it can push it's load out to other peers in the *Domai
 
 This is all done via distributed object model, and a few languages.
 
-### Languages
+### Heart of the System
 At the heart of KAI are three things: A Registry, A Domain, and some Languages.
 
-* Pi. Is RPN and is the base language.
-* Rho. Is like Python but has native support for continuations in its syntax. It transposes to Pi.
-* Tau. Is the Interface Definition Language (IDL) than is shared between nodes. In theory, it could produce code for any language.
+* Registry. A statically-typesafe over-the-wire object factory.
+* Domain. A Local Registry that is part of the larger Netork.
+* Languages:
+  * Pi. Is RPN and is the base language.
+  * Rho. Is like Python but has native support for continuations in its syntax. It transposes to Pi.
+  * Tau. Is the Interface Definition Language (IDL) than is shared between nodes. In theory, it could produce code for any language.
 
 Kai is intended to be a framework for distributed computing. In this case, that term means precisely what it implies: processes can be removed, or moved or copied between nodes in the system.
 
