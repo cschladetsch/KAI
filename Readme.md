@@ -17,7 +17,7 @@ If a node is over-loaded, it can push it's load out to other peers in the *Domai
 
 This is all done via distributed object model, and a few languages.
 
-### Heart of the System
+### Heart of the System :heart:
 At the heart of KAI are three things: A Registry, A Domain, and some Languages.
 
 * Registry. A statically-typesafe over-the-wire object factory.
