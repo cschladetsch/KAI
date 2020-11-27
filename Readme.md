@@ -4,11 +4,25 @@
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-**Note that the Build Status is broken because this is a CMake-based project that also requires Boost and Raknet and so on, and I haven't spent the time to get it to work with appveyor yet**.
-
 _Kai_ is a network distributed **Object Model** for C++ with full runtime reflection, persistence, and incremental garbage collection. No Macros are needed to expose fields or methods to the scripting runtime.
 
-Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection. 
+Kai provides three scripting languages - Pi, Rho and Tau. It was also the inspiration for the C# [Pyro](https://github.com/cschladetsch/Pyro) implementation, which was much easier due to .Net's reflection.
+
+## Purpose
+The purpose of KAI is to allow communication between networkked nodes in as simple and direct way as possible.
+
+This is not limited to just data transfer - rather, *computation itself* can be shared between nodes, using a distributed **Execetutor** with a common heartbeat.
+
+If a node is over-loaded, it can push it's load out to other peers in the *Domain* that it shares.
+
+This is all done via distributed object model, and a few languages.
+
+### Languages
+At the heart of KAI are three things: A Registry, A Domain, and some Languages.
+
+* Pi. Is RPN and is the base language.
+* Rho. Is like Python but has native support for continuations in its syntax. It transposes to Pi.
+* Tau. Is the Interface Definition Language (IDL) than is shared between nodes. In theory, it could produce code for any language.
 
 ## Pi
 [Pi](Source/Library/Language/Pi) (see [Tests](Test/Language/TestPi) and [Tests Scripts](Test/Language/TestPi/Scripts)) is heavily influenced by [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)). It has two directly interactable stacks: one for data, and one for context. The data stack is used for operations (as is the context stack), but the context stack tells the machine `where to go next`. This is used to create the idea of a co-routine, which is then pushed up to Rho.
