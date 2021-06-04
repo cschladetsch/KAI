@@ -21,7 +21,6 @@ namespace detail
 		return forward<F>(f)(get<I>(forward<Tuple>(t))...);
 	}
 
-	// invoke a function with any arity given arguments in a tuple
 	template <typename F, typename Tuple>
 	decltype(auto) CallFun(F f, Tuple&& t)
 	{
