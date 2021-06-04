@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 
-#SET (CMAKE_C_COMPILER_WORKS 1)
-#SET (CMAKE_CXX_COMPILER_WORKS 1)
-#set(CMAKE_C_COMPILER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe")
-
 project(KAI)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
+
 if (KAI_BUILD_TEST_ALL)
     set(KAI_BUILD_CORE_TEST ON)
     set(KAI_BUILD_TEST_LANG ON)
@@ -34,7 +31,7 @@ add_definitions(-DKAI_DEBUG_TRACE)
 add_definitions(-DKAI_VERSION_MAJOR=0)
 add_definitions(-DKAI_VERSION_MINOR=3)
 add_definitions(-DKAI_VERSION_PATCH=0)
-#dd_definitions(-DKAI_DEBUG_REGISTRY)
+#add_definitions(-DKAI_DEBUG_REGISTRY)
 
 if (MSVC)
     set(CMAKE_CXX_FLAGS "/std:c++17 /EHsc /D_SILENCE_CXX17_STRSTREAM_DEPRECATION_WARNING")
@@ -59,14 +56,17 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${dir}/Lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${dir}/Bin")
 
 include_directories(${KAI_HOME}/Include)
+include_directories(${KAI_HOME}/Include)
+include_directories(${HOME}/local/repos/boost)
 
 link_directories(${HOME}/lib /usr/local/lib)
 link_directories(${KAI_HOME}/Lib/Debug)
+link_directories(${HOME}/local/repos/stage/lib)
 
 add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE)
 
 # Add external depdendancies
-include(AddBoost)
+#include(AddBoost)
 include(IncludeGtest)
 include(cotire)
 

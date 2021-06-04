@@ -2,8 +2,10 @@
 
 message(STATUS "Looking for boost")
 
-#set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "C:/Boost/boost_1_72_0/include")
-#set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "C:/Boost/boost_1_72_0/lib")
+set(BOOST_ROOT C:/lib/boost/boost_1_75_0)
+
+set(BOOST_INCLUDE_DIR ${BOOST_ROOT})
+set(BOOST_LIBRARYDIR ${BOOST_ROOT}/libs)
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_DEBUG_LIBS ON)
