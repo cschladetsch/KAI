@@ -1,4 +1,29 @@
 #!/bin/bash
 
-mkdir -p build && cd build && cmake .. && make && ../run_tests && ../Bin/Console
+mkdir -p build && cd build && cmake ..
+if [[ $? -ne 0 ]]; then
+	exit $?
+fi
+
+bin_path="/"
+
+if [[ $OS_TYPE -eq "msys" ]]; then
+	msbuild.exe *.sln
+	bin_path="/Debug"
+else
+	make
+fi
+
+cd ..
+
+./run_tests 
+
+RED='\033[0;35m'
+WHITE='\033[0;39m'
+
+echo 
+echo -e $RED ---- Running Kai Console ----
+echo -e $WHITE
+
+./Bin${bin_path}/Console
 

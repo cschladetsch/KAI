@@ -10,7 +10,7 @@ KAI_BEGIN
 namespace File
 {
     using Pathname = boost::filesystem::path;
-    using Extension = Pathname::string_type;
+    using Extension = std::string;// Pathname::string_type;
     using Pathnames = std::vector<Pathname>;
     using byte = std::uint8_t;
 
