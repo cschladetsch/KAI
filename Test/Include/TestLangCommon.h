@@ -34,7 +34,7 @@ protected:
         return Deref<T>(_data->At(index));
     }
 
-    // get the current continuation context
+    // get the _current continuation context
     Continuation const& GetContext() const
     {
         return ConstDeref<Continuation>(_context->At(0));

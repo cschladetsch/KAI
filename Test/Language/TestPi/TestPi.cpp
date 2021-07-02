@@ -173,14 +173,14 @@ TEST_F(TestPi, TestScope)
     Pathname p("'/b");
     EXPECT_TRUE(p.Validate());
 
-    // store to explicit root of tree
+    // store to explicit _root of _tree
     _console.Execute("42 '/b #");
     ASSERT_TRUE(_root.Has(b));
     ASSERT_EQ(42, ConstDeref<int>(_root.Get(b)));
 
-    // this is only storing to local scope - within the context
+    // this is only storing to local _scope - within the context
     // of the command-line in which it was executed - so it
-    // should not be preserved in the global tree
+    // should not be preserved in the global _tree
     _console.Execute("1 'c #");
     ASSERT_FALSE(_root.Has(c));
 }

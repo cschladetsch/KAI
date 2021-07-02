@@ -19,11 +19,6 @@ class Tree;
 template <class T>
 Pointer<ClassBase const *> NewClass(Registry &R, const Label &name);
 
-///
-/// Contains a set of classes and instances.
-///
-/// Instances are life-time managed via Tri-Color Garbage Collection system.
-///
 struct Registry
 {
 public:
@@ -35,52 +30,43 @@ public:
     typedef std::map<Handle, StorageBase *> Instances;
 #endif
     typedef std::vector<const ClassBase *> Classes;
-    typedef HandleSet Handles, Deathrow;
+    typedef HandleSet Handles, DeathRow;
     typedef HandleSet RetainedObjects;
     typedef std::vector<Handle> VectorHandles;
     typedef std::set<Handle> ColoredSet;
 
-    // pools of objects indexed by type number
+    // _pools of objects indexed by type number
     typedef std::vector<std::vector<StorageBase *> > Pools;
 
     /// A number in range [0..100)
     typedef int Percentage;
 
     typedef std::list<Object> Roots;
-    Roots roots;
+    Roots _roots;
 
 private:
     friend struct StorageBase;
-    ColoredSet white;    /// condemned set. may be referenced by objects in the white or grey sets
-    ColoredSet grey;    /// may or may not have refernces to objects in the white, black or grey sets
-    ColoredSet black;    /// has no references to objects in the white set
+    ColoredSet _white;    /// condemned set. may be referenced by objects in the _white or _grey sets
+    ColoredSet _grey;    /// may or may not have refernces to objects in the _white, _black or _grey sets
+    ColoredSet _black;    /// has no references to objects in the _white set
 
-    Classes classes;
-    Instances instances;
-    Handles retained;
-    Deathrow deathrow;
-    Handle next_handle;
-    Tree *tree{};
-    RetainedObjects retained_objects;
-    Pools pools;
-    std::shared_ptr<Memory::IAllocator> allocator;
-    bool owns_allocator{};
+    Classes _classes;
+    Instances _instances;
+    Handles _retained;
+    DeathRow _deathRow;
+    Handle _nextHandle{0};
+    Tree *_tree{nullptr};
+    RetainedObjects _retainedObjects;
+    Pools _pools;
+    std::shared_ptr<Memory::IAllocator> _allocator;
+    bool _ownsAllocator{false};
 
 public:
     Registry();
     Registry(std::shared_ptr<Memory::IAllocator>);
     ~Registry();
 
-    Memory::IAllocator &GetMemorySystem() const { return *allocator; }
-
-    /// destroys all instances and types
-    void Clear();
-
-    /// destroys all instances
-    void ClearInstances();
-
-    const Instances &GetInstances() const { return instances; }
-    const Classes &GetClasses() const { return classes; }
+    Memory::IAllocator &GetMemorySystem() const { return *_allocator; }
 
     template <class T>
     Pointer<ClassBase const *> AddClass()
@@ -94,9 +80,6 @@ public:
         return NewClass<T>(*this, N);
     }
 
-    Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
-
-    /// create a new instance of a given known type
     template <class T>
     Object New()
     {
@@ -106,48 +89,28 @@ public:
         return NewFromClass(klass);
     }
 
-    Percentage CalcMemoryUsage() const;
-    Percentage CalcMemoryFragmentationPercentage() const;
-
-    void DefragmentMemory();
-
-    Tree *GetTree() const { return tree; }
-    void SetTree(Tree &);
-
-    /// @group A pinned Object will not be moved in memory
-    bool Pin(Handle);
-    bool Unpin(Handle);
-    bool Pin(const Object &Q) { return Pin(Q.GetHandle()); }
-    bool Unpin(const Object &Q) { return Unpin(Q.GetHandle()); }
-
     template <class T>
-    Object New(const T &X)
+    Object New(const T &value)
     {
-        Pointer<T> P = New<T>();
-        *P = X;
-        return P;
+        Pointer<T> pointer = New<T>();
+        *pointer = value;
+        return pointer;
     }
 
-    Object New(const Object &Q)
+    static Object New(const Object &object)
     {
-        return Q;
+        return object;
     }
 
-    /// @group Retained process objects
     template <class T>
     Object NewRetained()
     {
         Object retained = New<T>();
         retained.SetManaged(false);
         retained.SetBlack();
-        retained_objects.insert(retained.GetHandle());
+        _retainedObjects.insert(retained.GetHandle());
         return retained;
     }
-    RetainedObjects const &GetRetainedObjects() const { return retained_objects; }
-    void PruneRetained();
-    void DeleteRetained();
-
-    void UpdateProcesses(float time_delta);
 
     template <class T>
     Storage<T> *NewStorage()
@@ -165,6 +128,8 @@ public:
         return GetClass(Type::Traits<T>::Number);
     }
 
+    RetainedObjects const &GetRetainedObjects() const { return _retainedObjects; }
+    void PruneRetained();
     const ClassBase *GetClass(Type::Number);
     const ClassBase *GetClass(const Label &);
     StorageBase *GetStorageBase(Handle) const;
@@ -183,20 +148,15 @@ public:
         return GetObject(handle);
     }
 
-    /// destroy an object given its handle
     void Delete(Handle);
     void Delete(Object const &);
 
     void AddClass(const ClassBase *K);
 
-    Object NewFromTypeNumber(Type::Number type_number);
-    Object NewFromClassName(const char *classname_str);
-    Object NewFromClass(const ClassBase *klass);
-
     template <class T>
     void FreeResources(T *p)
     {
-        allocator->DeAllocate(p);
+        _allocator->DeAllocate(p);
     }
 
     template <class T>
@@ -205,30 +165,46 @@ public:
         KAI_NOT_IMPLEMENTED();
     }
 
-    void AddRoot(Object const &root);
+    Pointer<ClassBase const *> AddClass(Type::Number, ClassBase const *);
+    void Clear();
+    void ClearInstances();
+    const Instances &GetInstances() const { return _instances; }
+    const Classes &GetClasses() const { return _classes; }
+    Percentage CalcMemoryUsage() const;
+    Percentage CalcMemoryFragmentationPercentage() const;
+    void DefragmentMemory();
+    Tree *GetTree() const { return _tree; }
+    void SetTree(Tree &);
+    bool Pin(Handle);
+    bool Unpin(Handle);
+    bool Pin(const Object &Q) { return Pin(Q.GetHandle()); }
+    bool Unpin(const Object &Q) { return Unpin(Q.GetHandle()); }
 
+    Object NewFromTypeNumber(Type::Number type_number);
+    Object NewFromClassName(const char *classname_str);
+    Object NewFromClass(const ClassBase *klass);
+
+    void AddRoot(Object const &root);
     void TriColor();
     void ReleaseWhite();
-
     void Mark(Object root);
     void Sweep();
     void MarkAndSweep(Object root);
     void MarkSweepAndDestroy(Object root);
     void GarbageCollect(Object root);
-    void MarkAll(StorageBase &root, bool marked);
-
+    void MarkAll(StorageBase &root, bool marked) const;
     void DestroyObject(Handle, bool force = false);
     void GarbageCollect();
-
     bool SetColor(StorageBase &, ObjectColor::Color);
-
     bool OnDeathRow(Handle) const;
 
-    /// @group debugging
     int gc_trace_level{};
     void SetGCTraceLevel(int);
 
 #ifdef KAI_DEBUG_REGISTRY
+    void DeleteRetained();
+    void UpdateProcesses(float time_delta);
+
     typedef std::set<Type::Number> ObservedTypes;
     typedef std::set<Handle> Observed;
     ObservedTypes observed_types;
@@ -267,7 +243,7 @@ private:
 
     void NominateAll();
     void DestroyNominated();
-    int GetDeathrowSize() const { return (int)deathrow.size(); }
+    int GetDeathrowSize() const { return (int)_deathRow.size(); }
 };
 
 template <class T>
@@ -297,7 +273,6 @@ void SetProperty(Object const &owner, Label const &name, T const &value)
 {
     SetPropertyValue(owner, name, owner.GetRegistry()->New(value));
 }
-
 
 KAI_END
 

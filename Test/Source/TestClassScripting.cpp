@@ -9,18 +9,18 @@ using namespace std;
 
 TEST(TestClassScripting, Test)
 {
-    // We can give the KAI runtime a custom allocator to use. we will just use
+    // We can give the KAI runtime a custom _allocator to use. we will just use
     // the standard one which uses malloc and free.
     Console console;
 
-    // A registry is a factory for classes and instances.
+    // A registry is a factory for _classes and _instances.
     Registry &reg = console.GetRegistry();
 
     // Tell the registry about our structure.
     MyStruct::Register(reg);
 
     // Make a new instance. Note that we use a registry to make a new instance.
-    // after that, we can use that instance to make other instances, which will just
+    // after that, we can use that instance to make other _instances, which will just
     // use the registry that created it.
     Pointer<MyStruct> mystruct = reg.New<MyStruct>();
 

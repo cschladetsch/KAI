@@ -8,7 +8,7 @@
 
 KAI_BEGIN
 
-// Generates GraphViz script showing the depedancy graph given an object root
+// Generates GraphViz script showing the depedancy graph given an object _root
 struct DotGraph : StringStream
 {
 private:

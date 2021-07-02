@@ -4,7 +4,7 @@
 
 // TODO: replace with variadic templates
 
-/// Hide implementation detail to avoid polluting global scope
+/// Hide implementation detail to avoid polluting global _scope
 
 namespace event_detail
 {

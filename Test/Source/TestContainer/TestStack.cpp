@@ -29,7 +29,7 @@ TEST_F(TestStack, TestInsertDelete)
     // test will always fail.
 
     // Pointer<Stack> stack = reg.New<Stack>();
-    // tree.GetRoot().Set("stack", stack);
+    // _tree.GetRoot().Set("stack", stack);
 
     // Object n = reg.New(42);
     // stack->Push(n);

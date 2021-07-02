@@ -368,7 +368,7 @@ Object Executor::TryResolve(Object const &Q) const
 
 Object Executor::TryResolve(Label const &label) const
 {
-    // Search in current scope.
+    // Search in _current _scope.
     if (_continuation.Exists())
     {
         Object scope = _continuation->GetScope();
@@ -389,17 +389,17 @@ Object Executor::TryResolve(Label const &label) const
             return scope.GetChild(label);
     }
 
-    // Finally, search the tree.
+    // Finally, search the _tree.
     return _tree->Resolve(label);
 }
 
 Object Executor::TryResolve(Pathname const &path) const
 {
-    // If it's not an absolute path, search up the continuation scopes.
+    // If it's not an absolute _path, search up the continuation scopes.
     if (path.Absolute())
         return _tree->Resolve(path);
 
-    // Search in current scope.
+    // Search in _current _scope.
     if (_continuation.Exists())
     {
         auto found = Get(_continuation->GetScope(), path);

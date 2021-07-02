@@ -18,7 +18,7 @@ namespace File
     bool IsFile(Pathname const &);
     bool IsFolder(Pathname const &);
 
-    // return a vector of all files that have the given extension, starting from root, recursively
+    // return a vector of all files that have the given extension, starting from _root, recursively
     Pathnames GetFilesWithExtensionRecursively(Pathname const &root, Extension const &ext);
     Pathnames GetFilesRecursively(Pathname const &root);
     Pathnames GetFiles(Pathname const &root);

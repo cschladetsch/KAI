@@ -10,7 +10,7 @@ KAI_BEGIN
 
 namespace Memory
 {
-    /// Standard allocator - use ::malloc and ::free
+    /// Standard _allocator - use ::malloc and ::free
     struct StandardAllocator : BaseAllocator
     {
         using BaseAllocator::alloc;

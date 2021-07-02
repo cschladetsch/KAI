@@ -221,12 +221,12 @@ void StorageBase::RemovedFromContainer(Object const &container)
             removed = true;
             if (parent_is_black)
             {
-                // if removed from container and parent is black early out
+                // if removed from container and parent is _black early out
                 break;
             }
             else
             {
-                // we need to check for other black parents to enforce the TriColor invariant
+                // we need to check for other _black parents to enforce the TriColor invariant
                 continue;
             }
         }
@@ -235,7 +235,7 @@ void StorageBase::RemovedFromContainer(Object const &container)
         {
             color = ObjectColor::Grey;
             parent_is_black = true;
-            // if any parent container is black, and we have already removed from the
+            // if any parent container is _black, and we have already removed from the
             // given container, we can early out
             if (removed)
                 break;
@@ -304,7 +304,7 @@ void StorageBase::Delete()
     if (parent != 0)
         parent->Remove(GetLabel());
 
-    // Set this and all referent objects to be white, and mark it for deletion.
+    // Set this and all referent objects to be _white, and mark it for deletion.
     SetColorRecursive(ObjectColor::White);
     SetMarked(true);
 }

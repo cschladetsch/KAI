@@ -11,7 +11,7 @@ KAI_BEGIN
 // This means that accessing the value is faster as there is no
 // lookup required. However, it is unsafe to use a Value over multiple
 // frames, as the storage could be deleted by the garbage collector.
-// So it is only really safe to use a ConstValue<> in local scope,
+// So it is only really safe to use a ConstValue<> in local _scope,
 // unless you can be sure that the corresponding Object will not
 // be collected.
 template <class T>
@@ -142,7 +142,7 @@ public:
 // This means that accessing the value is faster as there is no
 // lookup required. However, it is unsafe to use a Value over multiple
 // frames, as the storage could be deleted by the garbage collector.
-// So it is only really safe to use a Value<> in local scope,
+// So it is only really safe to use a Value<> in local _scope,
 // unless you can be sure that the corresponding Object will not
 // be collected.
 template <class T>

@@ -20,15 +20,11 @@ Pathname GetFullname(const Object &Q)
 Pathname GetFullname(const StorageBase &obj)
 {
     std::list<String> parentage;
-    auto const & label = obj.GetLabel();
-    if (!label.ToString().empty())
+    if (auto const & label = obj.GetLabel(); !label.ToString().empty())
         parentage.push_back(label.ToString());
 
-    auto parent = obj.GetParent();
-    for (; parent.Valid(); parent = parent.GetParent())
-    {
+    for (auto parent = obj.GetParent(); parent.Valid(); parent = parent.GetParent())
         parentage.push_front(GetStorageBase(parent).GetLabel().ToString());
-    }
 
     StringStream path;
     if (parentage.empty())
@@ -137,11 +133,9 @@ Object Get(Object scope, const Pathname &path)
     if (!scope.Exists())
         return Object();
 
-    const Pathname::Elements &elements = path.GetElements();
-    Pathname::Elements::const_iterator A = elements.begin(), B = elements.end();
-    for (; A != B; ++A)
+    for (const auto &element: path.GetElements())
     {
-        switch (A->type)
+        switch (element.type)
         {
         case Pathname::Element::None:
             break;
@@ -151,7 +145,7 @@ Object Get(Object scope, const Pathname &path)
 
         case Pathname::Element::Name:
             {
-                scope = scope.Get(A->name);
+                scope = scope.Get(element.name);
                 if (!scope.Exists())
                     return scope;
             }
@@ -203,7 +197,7 @@ void Remove(Object scope, const Pathname &path)
     if (elements.back().type != Pathname::Element::Name)
         KAI_THROW_0(Base);
 
-    Pathname::Elements::const_iterator A = elements.begin(), B = elements.end();
+    auto A = elements.begin(), B = elements.end();
     for (--B; A != B; ++A)
     {
         switch (A->type)
@@ -258,69 +252,64 @@ Label GetName(const Object &object)
     return object.GetLabel();
 }
 
-void Tree::SetScope(const Object &Q)
+void Tree::SetScope(const Object &object)
 {
-    Pathname path = GetFullname(Q);
-    if (!Exists(root, scope, path))
+    Pathname path = GetFullname(object);
+    if (!Exists(_root, _scope, path))
         KAI_THROW_1(Base, "ObjectNotInTree");
 
-    scope = Q;
+    _scope = object;
 }
 
 void Tree::SetScope(const Pathname &path)
 {
-    if (!Exists(root, scope, path))
+    if (!Exists(_root, _scope, path))
         KAI_THROW_0(ObjectNotFound);
 
-    scope = Get(root, scope, path);
+    _scope = Get(_root, _scope, path);
 }
 
-void Tree::AddSearchPath(const Object &P)
+void Tree::AddSearchPath(const Object &path)
 {
-    path.push_back(P);
+    _path.push_back(path);
 }
 
-void Tree::AddSearchPath(const Pathname &P)
+void Tree::AddSearchPath(const Pathname &path)
 {
-    path.push_back(Get(root, scope, P));
+    _path.push_back(Get(_root, _scope, path));
 }
 
 Object Tree::Resolve(const Label &label) const
 {
-    if (scope.Exists())
+    if (_scope.Exists())
     {
-        Object found = scope.Get(label);
-        if (found.Exists())
+        if (Object found = _scope.Get(label); found.Exists())
             return found;
     }
 
-    for (Object const &object : path)
+    for (Object const &object : _path)
     {
         if (!object.Exists())
             continue;
 
-        Object found = object.Get(label);
-        if (found.Exists())
+        if (Object found = object.Get(label); found.Exists())
             return found;
     }
 
     return Object();
 }
 
-Object Tree::Resolve(const Pathname &P) const
+Object Tree::Resolve(const Pathname &pathName) const
 {
-    Object found = Get(root, scope, P);
-    if (found.Exists())
+    if (Object found = Get(_root, _scope, pathName); found.Exists())
         return found;
 
-    if (P.Absolute())
+    if (pathName.Absolute())
         return Object();
 
-    // Search in each object stored in path.
-    for (auto const &A : path)
+    for (auto const &scope : _path)
     {
-        Object found = Get(root, A, P);
-        if (found.Exists())
+        if (Object found = Get(_root, scope, pathName); found.Exists())
             return found;
     }
 

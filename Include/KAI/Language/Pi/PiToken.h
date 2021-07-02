@@ -136,8 +136,8 @@ struct PiTokenEnumType
         Freeze,
         Thaw,
 
-        Self,   // current continuation 'self'
-        This,   // current scope '.'
+        Self,   // _current continuation 'self'
+        This,   // _current _scope '.'
     };
 
     struct Type : TokenBase<PiTokenEnumType>

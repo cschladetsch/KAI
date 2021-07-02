@@ -25,7 +25,7 @@ struct ObjectColor
         Grey,
 
         /// Take all Grey objects, find all references it has to White objects
-        /// and turn them Grey. Then we color that each root object Black.
+        /// and turn them Grey. Then we color that each _root object Black.
         Black
     };
 };

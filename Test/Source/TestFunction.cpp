@@ -61,11 +61,11 @@ namespace
     }
 }
 
-struct FunctionTest : public ::testing::Test
+struct FunctionTest : ::testing::Test
 {
 
 protected:
-    virtual void SetUp()
+    virtual void SetUp() override
     {
         _reg.AddClass<void>(Label("void"));
         _reg.AddClass<int>(Label("int"));
@@ -77,7 +77,7 @@ protected:
         std::fill(called, called + sizeof(called) / sizeof(called[0]), false);
     }
 
-    virtual void TearDown()
+    virtual void TearDown() override
     {
     }
 
