@@ -48,7 +48,7 @@ void TestLangCommon::TearDown()
 void TestLangCommon::ExecScripts()
 {
     const fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
-#ifdef BOOST_OS_WINDOWS
+#if 0//def BOOST_OS_WINDOWS
     const auto ext = File::Extension(KAI_STRINGISE_WIDE(".pi"));
 #else
     const auto ext = File::Extension(".pi");

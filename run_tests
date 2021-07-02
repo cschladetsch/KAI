@@ -3,7 +3,6 @@
 #find Bin/Test -executable -type f -exec {} \;
 tests=`find Bin/Test -executable -type f`
 
-
 for test in $tests
 do
 	echo "Running Test " $test
