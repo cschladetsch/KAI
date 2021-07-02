@@ -2,6 +2,7 @@
 
 #include <string>
 #include <utility>
+#include <exception>
 #include <KAI/Core/Exception/FileLocation.h>
 #include <KAI/Core/Object/Handle.h>
 #include <KAI/Core/StringStream.h>

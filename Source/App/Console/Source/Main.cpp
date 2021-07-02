@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "KAI/Console/Console.h"
-#include "KAI/Network/Peer.h"
-
 using namespace std;
 using namespace kai;
+
+#if 0
+#include "KAI/Network/Peer.h"
 
 struct Peer : kai::Peer
 {
@@ -30,10 +31,11 @@ struct Peer : kai::Peer
 
     kai::Peer _peer;
 };
+#endif
 
 Console console;
 
-string Kai_VersionString()
+std::string Kai_VersionString()
 {
     stringstream str;
     str << KAI_VERSION_MAJOR << '.' << KAI_VERSION_MINOR << '.' << KAI_VERSION_PATCH;

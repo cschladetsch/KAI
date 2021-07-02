@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 
 #include "KAI/Network/Peer.h"
@@ -192,3 +193,4 @@ StringStream &operator<<(StringStream &str, RakNet::Packet const &packet)
 	
 KAI_END
 
+#endif
