@@ -1,9 +1,6 @@
 [submodule "Ext/imgui"]
 	path = Ext/imgui
 	url = git@github.com:cschladetsch/imgui.git
-[submodule "Ext/RakNet"]
-	path = Ext/RakNet
-	url = git@github.com:facebookarchive/RakNet.git
 [submodule "Ext/rang"]
 	path = Ext/rang
 	url = git@github.com:cschladetsch/rang.git
