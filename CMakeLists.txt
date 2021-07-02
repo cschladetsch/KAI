@@ -5,16 +5,23 @@ project(KAI)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
-if (KAI_BUILD_TEST_ALL)
-    set(KAI_BUILD_CORE_TEST ON)
-    set(KAI_BUILD_TEST_LANG ON)
-	#set(KAI_BUILD_TEST_NETWORK ON)
-endif()
-
 option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
 option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
 option(KAI_BUILD_RAKNET "Build RakNet " OFF)
+
+if (KAI_BUILD_TEST_ALL)
+    set(KAI_BUILD_CORE_TEST ON)
+    set(KAI_BUILD_TEST_LANG ON)
+    #set(KAI_BUILD_TEST_NETWORK ON)
+endif()
+
+# some problems with colors and Gtest on Raspian
+if(!WIN32)
+	set(KAI_BUILD_TEST_ALL OFF)
+	set(KAI_BUILD_CORE_TEST OFF)
+	set(KAI_BUILD_TEST_LANG OFF)
+endif()
 
 set(KAI_BUILD_RAKNET OFF)
 
@@ -130,4 +137,7 @@ foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
-add_subdirectory(Test)
+if (KAI_BUILD_TEST_ALL)
+	add_subdirectory(Test)
+endif()
+
