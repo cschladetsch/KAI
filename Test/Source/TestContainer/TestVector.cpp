@@ -9,7 +9,7 @@ USING_NAMESPACE_KAI
 class TestArray : public TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddRequiredClasses() override
     {
         Reg().AddClass<Array>();
     }

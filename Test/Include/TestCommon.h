@@ -23,20 +23,18 @@ std::string LoadScriptText(const char *filename);
 class TestCommon : public ::testing::Test
 {
 protected:
-    Registry *_reg;
-    Tree *_tree;
+    Registry * _reg = nullptr;
+    Tree * _tree = nullptr;
     Object _root;
 
-protected:
     Registry &Reg();
     Tree &GetTree();
     Object Root() const;
 
-protected:
-    void SetUp();
-    void TearDown();
+    void SetUp() override;
+    void TearDown() override;
 
-    virtual void AddrequiredClasses();
+    virtual void AddRequiredClasses();
 };
 
 KAI_END

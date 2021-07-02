@@ -5,7 +5,7 @@ USING_NAMESPACE_KAI
 struct TestString : TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddRequiredClasses() override
     {
         Reg().AddClass<bool>();
         Reg().AddClass<int>();

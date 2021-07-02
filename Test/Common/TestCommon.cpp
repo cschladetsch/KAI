@@ -22,7 +22,7 @@ void TestCommon::SetUp()
     _tree->SetRoot(_root);
     _reg->SetTree(*_tree);
 
-    AddrequiredClasses();
+    AddRequiredClasses();
 }
 
 Registry &TestCommon::Reg()
@@ -40,7 +40,7 @@ Object TestCommon::Root() const
     return _root;
 }
 
-void TestCommon::AddrequiredClasses()
+void TestCommon::AddRequiredClasses()
 {
 }
 

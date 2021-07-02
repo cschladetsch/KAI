@@ -108,6 +108,7 @@ public:
     void Set(const char *N, const Object &Q) const { Set(Label(N), Q); }
     Object Get(const char *N) const { return Get(Label(N)); }
 
+    void Add(const Label &label, const Object &child) const { Set(label, child); }
     void Set(const Label &, const Object &) const;
     Object Get(const Label &) const;
 

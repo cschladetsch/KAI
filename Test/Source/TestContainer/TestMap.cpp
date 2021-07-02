@@ -6,7 +6,7 @@ USING_NAMESPACE_KAI
 class TestMap : public TestCommon
 {
 protected:
-    void AddrequiredClasses() override
+    void AddRequiredClasses() override
     {
         Reg().AddClass<Map>();
         Reg().AddClass<StringStream>();
