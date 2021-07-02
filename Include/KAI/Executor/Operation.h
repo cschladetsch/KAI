@@ -8,135 +8,135 @@ KAI_BEGIN
 // An Operation represents an action to be taken by and Executor
 struct Operation
 {
-	enum Type
-	{
-		Return,
-		SuspendNew,
-		None,
-		True, False,
-		Equiv, NotEquiv, Less, Greater, LessOrEquiv, GreaterOrEquiv,
-		Suspend, Replace, Resume,
-		CppFunctionCall,
-		CppMethodCall,
-		Plus, Minus, Multiply, Divide, Modulo,
-		TypeOf,
+    enum Type
+    {
+        Return,
+        SuspendNew,
+        None,
+        True, False,
+        Equiv, NotEquiv, Less, Greater, LessOrEquiv, GreaterOrEquiv,
+        Suspend, Replace, Resume,
+        CppFunctionCall,
+        CppMethodCall,
+        Plus, Minus, Multiply, Divide, Modulo,
+        TypeOf,
 
-		Store, Retreive, Remove,
+        Store, Retreive, Remove,
 
-		New,
-		Assign,
+        New,
+        Assign,
 
-		Freeze,
-		Thaw,
+        Freeze,
+        Thaw,
 
         GetScope,
-		ChangeScope,
+        ChangeScope,
 
-		GetChildren,
-		Contents,
-		Break,
-		Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
-		ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, Expand,
-		Name, Fullname,
+        GetChildren,
+        Contents,
+        Break,
+        Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
+        ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, Expand,
+        Name, Fullname,
 
-		LogicalNot, LogicalAnd, LogicalOr, LogicalXor, LogicalNand,
-		BitwiseNot, BitwiseAnd, BitwiseOr, BitwiseXor, BitwiseNand,
-		Lookup,
-		TraceAll,
-		Trace,
-		This,
-		Self,
-		Ref,
-		Detach,
-		Delete,
-		Exists,
-		Pin,
-		Unpin,
-		ContinuationBegin, ContinuationEnd,
-		MarkAndSweep,
-		ThisContext,
-		ThisContinuation,
+        LogicalNot, LogicalAnd, LogicalOr, LogicalXor, LogicalNand,
+        BitwiseNot, BitwiseAnd, BitwiseOr, BitwiseXor, BitwiseNand,
+        Lookup,
+        TraceAll,
+        Trace,
+        This,
+        Self,
+        Ref,
+        Detach,
+        Delete,
+        Exists,
+        Pin,
+        Unpin,
+        ContinuationBegin, ContinuationEnd,
+        MarkAndSweep,
+        ThisContext,
+        ThisContinuation,
 
-		If,
-		IfElse,
-		ForEachContained,
+        If,
+        IfElse,
+        ForEachContained,
 
-		IfThenSuspend,
-		IfThenReplace,
-		IfThenResume,
+        IfThenSuspend,
+        IfThenReplace,
+        IfThenResume,
 
-		IfThenSuspendElseSuspend,
-		IfThenReplaceElseSuspend,
-		IfThenResumeElseSuspend,
+        IfThenSuspendElseSuspend,
+        IfThenReplaceElseSuspend,
+        IfThenResumeElseSuspend,
 
-		IfThenSuspendElseReplace,
-		IfThenReplaceElseReplace,
-		IfThenResumeElseReplace,
+        IfThenSuspendElseReplace,
+        IfThenReplaceElseReplace,
+        IfThenResumeElseReplace,
 
-		IfThenSuspendElseResume,
-		IfThenReplaceElseResume,
-		IfThenResumeElseResume,
+        IfThenSuspendElseResume,
+        IfThenReplaceElseResume,
+        IfThenResumeElseResume,
 
-		Executor,
-		ExecFile,
+        Executor,
+        ExecFile,
 
-		Assert,
-		NTimes,
-		ForEach,
+        Assert,
+        NTimes,
+        ForEach,
 
-		GetProperty,
-		SetProperty,
+        GetProperty,
+        SetProperty,
 
-		Index,
-		PreInc,
-		PreDec,
-		PostInc,
-		PostDec,
+        Index,
+        PreInc,
+        PreDec,
+        PostInc,
+        PostDec,
 
-		WhileLoop,
-		ForLoop,
-		DoLoop,
+        WhileLoop,
+        ForLoop,
+        DoLoop,
 
-		LevelStack,
+        LevelStack,
 
-		SetChild,
-		GetChild,
-		RemoveChild,
+        SetChild,
+        GetChild,
+        RemoveChild,
 
-		SetManaged,
+        SetManaged,
 
-		PlusEquals,
-		MinusEquals,
-		MulEquals,
-		DivEquals,
-		ModEquals,
+        PlusEquals,
+        MinusEquals,
+        MulEquals,
+        DivEquals,
+        ModEquals,
 
-		Size,
+        Size,
 
-		ToPi,
-		ToRho,
-		StartPiSequence,
-		StartRhoSequence,
-		GarbageCollect,
-	};
+        ToPi,
+        ToRho,
+        StartPiSequence,
+        StartRhoSequence,
+        GarbageCollect,
+    };
 
 private:
-	Type value;
+    Type value;
 
 public:
-	Operation(int T = 0) : value(Type(T)) { }
+    Operation(int T = 0) : value(Type(T)) { }
 
-	void SetType(Type T) { value = T; }
-	Type GetTypeNumber() const { return value; }
+    void SetType(Type T) { value = T; }
+    Type GetTypeNumber() const { return value; }
 
-	static const char *ToString(int);
-	const char *ToString() const;
+    static const char *ToString(int);
+    const char *ToString() const;
 
-	friend bool operator<(const Operation &A, const Operation &B) { return A.value < B.value; }
-	friend bool operator==(const Operation &A, const Operation &B) { return A.value == B.value; }
-	friend bool operator!=(const Operation &A, const Operation &B) { return A.value != B.value; }
+    friend bool operator<(const Operation &A, const Operation &B) { return A.value < B.value; }
+    friend bool operator==(const Operation &A, const Operation &B) { return A.value == B.value; }
+    friend bool operator!=(const Operation &A, const Operation &B) { return A.value != B.value; }
 
-	static void Register(Registry &);
+    static void Register(Registry &);
 };
 
 KAI_TYPE_TRAITS(

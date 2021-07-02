@@ -6,7 +6,7 @@
 
 KAI_BEGIN
 
-	// TODO: use unordered map
+    // TODO: use unordered map
 typedef std::map<Label, Object> Dictionary;
 
 KAI_END

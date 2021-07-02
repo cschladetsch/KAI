@@ -181,7 +181,7 @@ namespace Bin
         return type_number.GetRegistry()->New(type_number.GetRegistry()->GetClass(*type_number));
     }
 
-    /// returns a pair containing the methods and properties of a class
+    /// returns a pair containing the _methods and _properties of a class
     /*Pointer<Pair>*/ Object Describe(Object Q)
     {
         Pointer<Pair> P = Q.GetRegistry()->New<Pair>();
@@ -212,7 +212,7 @@ namespace Bin
         ADD_FUN(GetMethods, "Returns an Array of all Methods for a given Object");
         ADD_FUN(GetProperties, "Returns an Array of all Properties for a given Object");
         ADD_FUN(Describe, "Returns Methods and Properties for a given Object");
-        ADD_FUN(info, "Prints the methods and properties");
+        ADD_FUN(info, "Prints the _methods and _properties");
         AddFunction(Q, ExitToOS, Label("Exit"), "Ends the Session");
         ADD_FUN(Assert, "Throws AssertionFailed if Object equates to False");
         ADD_FUN(Freeze, "Inserts Object into a BinaryStream");
@@ -229,7 +229,7 @@ namespace Bin
         ADD_FUN(WriteToFile, "Writes an Object to a text file");
         ADD_FUN(ReadFile, "Reads a text file");
         // No Traits for Vector3:
-		//ADD_FUN(ScaleVector3, "Multiply a vector by a float");
+        //ADD_FUN(ScaleVector3, "Multiply a vector by a float");
         ADD_FUN(AddVector3, "Adds two Vector3s together.")
         ADD_FUN(Help, "LOL");
     }

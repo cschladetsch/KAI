@@ -19,40 +19,40 @@ KAI_BEGIN
 class TestLangCommon : public TestCommon
 {
 public:
-	TestLangCommon() = default;
+    TestLangCommon() = default;
 
 protected:
-	void SetUp() override;
-	void TearDown() override;
+    void SetUp() override;
+    void TearDown() override;
 
     void ExecScripts();
 
-	// Get const ref to data at index on stack
-	template<class T>
-	const T &AtData(int index)
-	{
-		return Deref<T>(_data->At(index));
-	}
+    // Get const ref to data at index on stack
+    template<class T>
+    const T &AtData(int index)
+    {
+        return Deref<T>(_data->At(index));
+    }
 
-	// get the current continuation context
-	Continuation const& GetContext() const
-	{
-		return ConstDeref<Continuation>(_context->At(0));
-	}
+    // get the current continuation context
+    Continuation const& GetContext() const
+    {
+        return ConstDeref<Continuation>(_context->At(0));
+    }
 
-	template <class T>
-	void AssertResult(const char *text, T const &val)
-	{
-		_data->Clear();
-		_console.Execute(text);
-		ASSERT_EQ(AtData<T>(0), val);
-	}
+    template <class T>
+    void AssertResult(const char *text, T const &val)
+    {
+        _data->Clear();
+        _console.Execute(text);
+        ASSERT_EQ(AtData<T>(0), val);
+    }
 
 protected:
-	Console _console;
-	Stack *_data;
-	const Stack *_context;
-	Executor *_exec;
+    Console _console;
+    Stack *_data;
+    const Stack *_context;
+    Executor *_exec;
 };
 
 KAI_END

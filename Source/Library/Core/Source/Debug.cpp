@@ -33,7 +33,7 @@ namespace debug
     void MaxTrace()
     {
         Trace::TraceFileLocation = true;
-		Trace::StripPath = false;
+        Trace::StripPath = false;
         Trace::TraceFunction = true;
     }
 

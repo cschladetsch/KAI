@@ -11,26 +11,27 @@ void RegisterClass(Registry &reg, ClassBase const &klass, Object const &root, Pa
 
 ClassBase::~ClassBase()
 {
-    for (const auto& method : methods)
-        delete method.second;
+    for (const auto& [_, snd] : _methods)
+        delete snd;
 
-    for (auto const &prop : properties)
-        delete prop.second;
+    for (const auto & [_, snd] : _properties)
+        delete snd;
 }
 
 void ClassBase::SetReferencedObjectsColor(
         StorageBase &base, ObjectColor::Color color, HandleSet& handles) const
 {
-    if (properties.empty())
+    if (_properties.empty())
         return;
 
-    for (auto const &iter : properties)
+    for (const auto & [_, propertyBase] : _properties)
     {
-        PropertyBase const &prop = *(iter.second);
+        PropertyBase const &prop = *propertyBase;
         if (!prop.IsSystemType())
             continue;
 
-        Object property = prop.GetObject(base);
+        auto property = prop.GetObject(base);
+
         if (!property.Exists())
             continue;
 
@@ -40,48 +41,43 @@ void ClassBase::SetReferencedObjectsColor(
 
 void ClassBase::SetMarked(StorageBase &Q, bool M) const
 {
-    Properties::const_iterator A = properties.begin(), B = properties.end();
-    for (; A != B; ++A)
-        A->second->SetMarked(Q, M);
+    for (auto const &[_, property] : _properties)
+        property->SetMarked(Q, M);
     
     SetMarked2(Q, M);
 }
 
 void ClassBase::MakeReachableGrey(StorageBase &base) const
 {
-    if (properties.empty())
+    if (_properties.empty())
         return;
-    ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
-    for (; iter != end; ++iter)
+    for (auto const &[_, prop] : _properties)
     {
-        PropertyBase const &prop = *iter->second;
-        if (!prop.IsSystemType())
+        if (!prop->IsSystemType())
             continue;
 
-        Object property = prop.GetObject(base);
-        StorageBase *b = property.GetRegistry()->GetStorageBase(property.GetHandle());
+        auto property = prop->GetObject(base);
+        auto storageBase = property.GetRegistry()->GetStorageBase(property.GetHandle());
 
-        if (b == 0)
+        if (storageBase == nullptr)
             continue;
 
-        if (b->IsWhite())
-            b->SetColor(ObjectColor::Grey);
+        if (storageBase->IsWhite())
+            storageBase->SetColor(ObjectColor::Grey);
     }
 }
 
 void ClassBase::GetPropertyObjects(StorageBase &object, ObjectList &contained) const
 {
-    if (properties.empty())
+    if (_properties.empty())
         return;
 
-    ClassBase::Properties::const_iterator iter = properties.begin(), end = properties.end();
-    for (; iter != end; ++iter)
+    for (auto const &[_, prop] : _properties)
     {
-        PropertyBase const &prop = *iter->second;
-        if (!prop.IsSystemType())
+        if (!prop->IsSystemType())
             continue;
 
-        Object property = prop.GetObject(object);
+        Object property = prop->GetObject(object);
         StorageBase *base = property.GetRegistry()->GetStorageBase(property.GetHandle());
 
         if (base == 0)

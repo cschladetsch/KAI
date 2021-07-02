@@ -8,61 +8,61 @@
 
 KAI_BEGIN
 
-/// A Pathname represents a qualified name for an Object
+/// A Pathname represents a qualified _name for an Object
 class Pathname
 {
 public:
-	struct Literals
-	{
-		static const String::Char Parent;
-		static const String::Char This;
-		static const String::Char Separator;
-		static const String::Char Quote;
-		static const String::Char All[];
-		static const String::Char AllButQuote[];
-	};
+    struct Literals
+    {
+        static const String::Char Parent;
+        static const String::Char This;
+        static const String::Char Separator;
+        static const String::Char Quote;
+        static const String::Char All[];
+        static const String::Char AllButQuote[];
+    };
 
-	struct Element
-	{
-		enum Type { None, Quote, Separator, Parent, This, Name };
-		Type type;
-		Label name;
-		Element(Type T = None) : type(T) { }
-		Element(const Label &L) : type(Name), name(L) { }
-		friend bool operator<(const Element &A, const Element &B) { return A.type < B.type || (A.type == B.type && A.name < B.name); }
-		friend bool operator==(const Element &A, const Element &B) { return A.type == B.type && A.name == B.name; }
-	};
-	typedef std::vector<Element> Elements;
+    struct Element
+    {
+        enum Type { None, Quote, Separator, Parent, This, Name };
+        Type type;
+        Label name;
+        Element(Type T = None) : type(T) { }
+        Element(const Label &L) : type(Name), name(L) { }
+        friend bool operator<(const Element &A, const Element &B) { return A.type < B.type || (A.type == B.type && A.name < B.name); }
+        friend bool operator==(const Element &A, const Element &B) { return A.type == B.type && A.name == B.name; }
+    };
+    typedef std::vector<Element> Elements;
 
 private:
-	Elements elements;
+    Elements elements;
 
 public:
-	Pathname() { }
-	Pathname(const String &);
-	Pathname(const Elements &);
+    Pathname() { }
+    Pathname(const String &);
+    Pathname(const Elements &);
 
-	bool Quoted() const;
-	bool Absolute() const;
+    bool Quoted() const;
+    bool Absolute() const;
 
-	Elements GetElements() const { return elements; }
+    Elements GetElements() const { return elements; }
 
-	void FromString(const String &);
-	void FromString2(String);
-	String ToString() const;
+    void FromString(const String &);
+    void FromString2(String);
+    String ToString() const;
 
-	bool Empty() const;
+    bool Empty() const;
 
-	Elements::const_iterator begin() const { return elements.begin(); }
-	Elements::const_iterator end() const { return elements.end(); }
+    Elements::const_iterator begin() const { return elements.begin(); }
+    Elements::const_iterator end() const { return elements.end(); }
 
-	friend bool operator<(const Pathname &A, const Pathname &B);
-	friend bool operator==(const Pathname &A, const Pathname &B);
+    friend bool operator<(const Pathname &A, const Pathname &B);
+    friend bool operator==(const Pathname &A, const Pathname &B);
 
-	static void Register(Registry &);
+    static void Register(Registry &);
 
-	bool Validate() const;
-	void AddElement(StringStream &, Element::Type);
+    bool Validate() const;
+    void AddElement(StringStream &, Element::Type);
 };
 
 StringStream &operator<<(StringStream &, Pathname const &);
@@ -73,14 +73,14 @@ BinaryPacket &operator>>(BinaryPacket &, Pathname &);
 template <class T>
 bool operator>(T const &A, T const &B)
 {
-	return B < A;
+    return B < A;
 }
 
 KAI_TYPE_TRAITS(Pathname, 
-	Number::Pathname
-	, Properties::Streaming
-	| Properties::Relational
-	);
+    Number::Pathname
+    , Properties::Streaming
+    | Properties::Relational
+    );
 
 Pathname GetFullname(const StorageBase &);
 Pathname GetFullname(const Object &);

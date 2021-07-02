@@ -269,7 +269,7 @@ int Console::Run()
 void Console::RegisterTypes()
 {
     // built-ins
-    _reg->AddClass<const ClassBase *>(Label("Class"));        // TODO: add methods
+    _reg->AddClass<const ClassBase *>(Label("Class"));        // TODO: add _methods
     _reg->AddClass<void>(Label("Void"));
     _reg->AddClass<bool>(Label("Bool"));
     _reg->AddClass<int>(Label("Int"));

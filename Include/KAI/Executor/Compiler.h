@@ -14,51 +14,51 @@ KAI_BEGIN
 // <KAI/Language/Common/TranslatorBase.h>
 class Compiler : public Reflected
 {
-	typedef std::map<Operation, String> OperationToString;
-	typedef std::map<String, Pointer<Operation> > StringToOperation;
+    typedef std::map<Operation, String> OperationToString;
+    typedef std::map<String, Pointer<Operation> > StringToOperation;
 
 private:
-	OperationToString op_to_string;
-	StringToOperation string_to_op;
-	Language _language = Language::Pi;
-	int _traceLevel = 0;
+    OperationToString op_to_string;
+    StringToOperation string_to_op;
+    Language _language = Language::Pi;
+    int _traceLevel = 0;
 
 public:
-	bool Destroy();
+    bool Destroy();
 
-	void SetLanguage(int);
-	int GetLanguage() const;
-	void SetTraceLevel(int n) { _traceLevel = n; }
+    void SetLanguage(int);
+    int GetLanguage() const;
+    void SetTraceLevel(int n) { _traceLevel = n; }
 
-	template <class Trans>
-	Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
-	{
-		if (text.empty())
-			return Object();
+    template <class Trans>
+    Pointer<Continuation> Compile(const String &text, Structure st = Structure::Expression) const
+    {
+        if (text.empty())
+            return Object();
 
-		auto trans = std::make_shared<Trans>(Reg());
-		trans->trace = _traceLevel;
-		auto result = trans->Translate(text.c_str(), st);
-		if (trans->Failed)
-		{
-			KAI_TRACE_ERROR_1(trans->Error);//, st);
-			return Object();
-		}
+        auto trans = std::make_shared<Trans>(Reg());
+        trans->trace = _traceLevel;
+        auto result = trans->Translate(text.c_str(), st);
+        if (trans->Failed)
+        {
+            KAI_TRACE_ERROR_1(trans->Error);//, st);
+            return Object();
+        }
         return result;
-	}
+    }
 
-	Pointer<Continuation> Translate(const String &text, Structure st = Structure::Expression) const;
-	Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const;
+    Pointer<Continuation> Translate(const String &text, Structure st = Structure::Expression) const;
+    Pointer<Continuation> CompileFile(const String &fileName, Structure st = Structure::Program) const;
 
-	static void Register(Registry &, const char * = "Compiler");
+    static void Register(Registry &, const char * = "Compiler");
 
-	void AddOperation(int N, const String &S);
+    void AddOperation(int N, const String &S);
 };
 
 // you can interact with a Compiler at runtime
 KAI_TYPE_TRAITS(
-	Compiler, 
-	Number::Compiler, 
-	Properties::Reflected);
+    Compiler, 
+    Number::Compiler, 
+    Properties::Reflected);
 
 KAI_END

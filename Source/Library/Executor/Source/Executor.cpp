@@ -32,7 +32,7 @@ bool Executor::Destroy()
 
 void Executor::Push(Object const &Q)
 {
-	// Push the referenced object if needed.
+    // Push the referenced object if needed.
     if (Q.GetTypeNumber() == Type::Number::Object)
         Push(*_data, ConstDeref<Object>(Q));
     else
@@ -164,7 +164,7 @@ void Executor::Eval(Object const &Q)
             const auto op = Deref<Operation>(Q).GetTypeNumber();
             Perform(op);
 
-			break;
+            break;
         }
 
     case Type::Number::Pathname:
@@ -221,7 +221,7 @@ void Executor::Expand()
             Push(P.first);
             Push(P.second);
 
-			break;
+            break;
         }
 
     case Type::Number::List:
@@ -289,21 +289,21 @@ void Executor::ConditionalContextSwitch(Operation::Type op)
     case Operation::Suspend:
         _continuation->Next();
         _context->Push(_continuation);
-		// fallthrough
+        // fallthrough
     case Operation::Replace:
         _context->Push(NewContinuation(Pop()));
-		// fallthrough
+        // fallthrough
     case Operation::Resume:
         _break = true;
-	default:
-		KAI_NOT_IMPLEMENTED();
+    default:
+        KAI_NOT_IMPLEMENTED();
         break;
     }
 }
 
 void Executor::ContinueOnly(Value<Continuation> C)
 {
-	// Add an empty context to break. this forces exection to stop after C is finished.
+    // Add an empty context to break. this forces exection to stop after C is finished.
     _context->Push(Object());    
     Continue(C);
 }
@@ -688,11 +688,11 @@ const char *ToString(Language lang)
 {
     switch (lang)
     {
-		case Language::None: return "none";
-		case Language::Pi: return "pi";
-		case Language::Rho: return "rho";
-		case Language::Tau: return "tau";
-		case Language::Hlsl: return "hlsl";
+        case Language::None: return "none";
+        case Language::Pi: return "pi";
+        case Language::Rho: return "rho";
+        case Language::Tau: return "tau";
+        case Language::Hlsl: return "hlsl";
     }
 
     return "Unknown Language";
@@ -726,7 +726,7 @@ void Executor::Perform(Operation::Type op)
         auto object = Pop();
         object.SetManaged(ConstDeref<bool>(Pop()));
 
-		break;
+        break;
     }
 
     case Operation::SetChild:
@@ -734,7 +734,7 @@ void Executor::Perform(Operation::Type op)
         Pointer<Label> label = Pop();
         Pop().SetChild(*label, Pop());
 
-		break;
+        break;
     }
 
     case Operation::GetChild:
@@ -742,7 +742,7 @@ void Executor::Perform(Operation::Type op)
         Pointer<Label> label = Pop();
         Push(Pop().GetChild(*label));
 
-		break;
+        break;
     }
 
     case Operation::RemoveChild:
@@ -750,7 +750,7 @@ void Executor::Perform(Operation::Type op)
         Pointer<Label> label = Pop();
         Pop().RemoveChild(*label);
 
-		break;
+        break;
     }
 
     case Operation::Freeze:
@@ -770,7 +770,7 @@ void Executor::Perform(Operation::Type op)
         V->y = *y;
         Push(V);
 
-		break;
+        break;
     }
 
     case Operation::ToVector3:
@@ -784,7 +784,7 @@ void Executor::Perform(Operation::Type op)
         V->z = *z;
         Push(V);
 
-		break;
+        break;
     }
 
     case Operation::ToVector4:
@@ -800,7 +800,7 @@ void Executor::Perform(Operation::Type op)
         V->w = *w;
         Push(V);
 
-		break;
+        break;
     }
 
     case Operation::LevelStack:
@@ -815,7 +815,7 @@ void Executor::Perform(Operation::Type op)
         for (int N = 0; N < num_pops; ++N)
             _data->Pop();
 
-		break;
+        break;
     }
 
     case Operation::PostInc:
@@ -827,7 +827,7 @@ void Executor::Perform(Operation::Type op)
         ++ref;
         Push(M);
 
-		break;
+        break;
     }
 
     case Operation::PostDec:
@@ -839,7 +839,7 @@ void Executor::Perform(Operation::Type op)
         --ref;
         Push(M);
 
-		break;
+        break;
     }
 
     case Operation::PreInc:
@@ -875,7 +875,7 @@ void Executor::Perform(Operation::Type op)
 
         _context->Pop();
 
-		break;
+        break;
     }
 
     case Operation::ThisContinuation:
@@ -901,7 +901,7 @@ void Executor::Perform(Operation::Type op)
         Object Q = Pop();
         Q.GetClass()->GetProperty(L).SetValue(Q, Pop());
 
-		break;
+        break;
     }
 
     case Operation::Suspend:
@@ -915,20 +915,20 @@ void Executor::Perform(Operation::Type op)
         auto where_to_go = Resolve(Pop());
         switch (where_to_go.GetTypeNumber().GetValue())
         {
-			case Type::Number::Function:
-				ConstDeref<BasePointer<FunctionBase> >(where_to_go)->Invoke(*where_to_go.GetRegistry(), *_data);
-				return;
+            case Type::Number::Function:
+                ConstDeref<BasePointer<FunctionBase> >(where_to_go)->Invoke(*where_to_go.GetRegistry(), *_data);
+                return;
 
-			case Type::Number::SignedContinuation:
-			{
-				SignedContinuation &signed_continuation = Deref<SignedContinuation>(where_to_go);
-				signed_continuation.Enter(*_data);
-				where_to_go = signed_continuation.GetContinuation();
-				break;
-			}
+            case Type::Number::SignedContinuation:
+            {
+                SignedContinuation &signed_continuation = Deref<SignedContinuation>(where_to_go);
+                signed_continuation.Enter(*_data);
+                where_to_go = signed_continuation.GetContinuation();
+                break;
+            }
 
-			case Type::Number::Continuation:
-				break;
+            case Type::Number::Continuation:
+                break;
         }
 
         _context->Push(_continuation);
@@ -942,7 +942,7 @@ void Executor::Perform(Operation::Type op)
 
         _break = true;
 
-		break;
+        break;
     }
 
     case Operation::Return:
@@ -959,12 +959,12 @@ void Executor::Perform(Operation::Type op)
         for (; n > 0; --n)
             _context->Pop();
 
-		break;
+        break;
     }
 
     case Operation::Replace:
         _context->Push(NewContinuation(Pop()));
-		// fallthrough
+        // fallthrough
     case Operation::Resume:
         _break = true;
         break;
@@ -1041,7 +1041,7 @@ void Executor::Perform(Operation::Type op)
         }
 
         KAI_NOT_IMPLEMENTED();
-		break;
+        break;
     }
 
     case Operation::If:
@@ -1049,7 +1049,7 @@ void Executor::Perform(Operation::Type op)
         if (!PopBool())
             Pop();
 
-		break;
+        break;
     }
 
     case Operation::IfElse:
@@ -1069,7 +1069,7 @@ void Executor::Perform(Operation::Type op)
         else
             Push(falseClause);
 
-		break;
+        break;
     }
 
     case Operation::IfThenSuspend:
@@ -1114,7 +1114,7 @@ void Executor::Perform(Operation::Type op)
         Object rhs = Pop();
         lhs.GetClass()->Assign(lhs.GetStorageBase(), rhs.GetStorageBase());
 
-		break;
+        break;
     }
 
     case Operation::ThisContext:
@@ -1141,7 +1141,7 @@ void Executor::Perform(Operation::Type op)
         Push(A);
         Push(B);
 
-		break;
+        break;
     }
 
     case Operation::True:
@@ -1163,7 +1163,7 @@ void Executor::Perform(Operation::Type op)
     case Operation::Trace:
     {
         Trace(Pop());
-		break;
+        break;
     }
 
     case Operation::TraceAll:
@@ -1200,7 +1200,7 @@ void Executor::Perform(Operation::Type op)
             break;
         }
 
-		break;
+        break;
     }
 
     case Operation::Assert:
@@ -1211,7 +1211,7 @@ void Executor::Perform(Operation::Type op)
             KAI_THROW_0(Assertion);
         }
 
-		break;
+        break;
     }
 
     case Operation::Ref:
@@ -1229,7 +1229,7 @@ void Executor::Perform(Operation::Type op)
         Push(A);
         Push(B);
 
-		break;
+        break;
     }
 
     case Operation::Dup:
@@ -1238,7 +1238,7 @@ void Executor::Perform(Operation::Type op)
         Push(Q);
         Push(Q.Duplicate());
 
-		break;
+        break;
     }
 
     case Operation::Rot:
@@ -1250,7 +1250,7 @@ void Executor::Perform(Operation::Type op)
         Push(A);
         Push(C);
 
-		break;
+        break;
     }
 
     case Operation::Clear:
@@ -1267,7 +1267,7 @@ void Executor::Perform(Operation::Type op)
         auto A = Pop();
         Push(New(Pair(A, B)));
 
-		break;
+        break;
     }
 
     case Operation::ToArray:
@@ -1311,7 +1311,7 @@ void Executor::Perform(Operation::Type op)
         else
             _tree->SetScope(ConstDeref<Pathname>(id));
 
-		break;
+        break;
     }
 
     case Operation::PlusEquals:
@@ -1333,7 +1333,7 @@ void Executor::Perform(Operation::Type op)
 
         from.GetClass()->Assign(from, from.GetClass()->Plus(from, arg));
 
-		break;
+        break;
     }
 
     case Operation::MinusEquals:
@@ -1343,7 +1343,7 @@ void Executor::Perform(Operation::Type op)
         Object result = from.GetClass()->Minus(from, arg);
         from.GetClass()->Assign(from, result);
 
-		break;
+        break;
     }
 
     case Operation::MulEquals:
@@ -1353,7 +1353,7 @@ void Executor::Perform(Operation::Type op)
         Object result = from.GetClass()->Multiply(from, arg);
         from.GetClass()->Assign(from, result);
 
-		break;
+        break;
     }
 
     case Operation::DivEquals:
@@ -1363,7 +1363,7 @@ void Executor::Perform(Operation::Type op)
         Object result = from.GetClass()->Divide(from, arg);
         from.GetClass()->Assign(from, result);
 
-		break;
+        break;
     }
 
     case Operation::ModEquals:
@@ -1376,7 +1376,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(A.GetClass()->Plus(A, B));
 
-		break;
+        break;
     }
 
     case Operation::Minus:
@@ -1385,7 +1385,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(A.GetClass()->Minus(A, B));
 
-		break;
+        break;
     }
 
     case Operation::Multiply:
@@ -1394,7 +1394,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(A.GetClass()->Multiply(A, B));
 
-		break;
+        break;
     }
 
     case Operation::Divide:
@@ -1412,7 +1412,7 @@ void Executor::Perform(Operation::Type op)
         Object value = Pop();
         Set(_tree->GetRoot(), _continuation->GetScope(), ident, value);
 
-		break;
+        break;
     }
 
     case Operation::Retreive:
@@ -1429,7 +1429,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(New(A.GetClass()->Less2(A,B)));
 
-		break;
+        break;
     }
 
     case Operation::NotEquiv:
@@ -1438,7 +1438,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(New(!A.GetClass()->Equiv2(A,B)));
 
-		break;
+        break;
     }
 
     case Operation::Equiv:
@@ -1447,7 +1447,7 @@ void Executor::Perform(Operation::Type op)
         Object A = Pop();
         Push(New(A.GetClass()->Equiv2(A,B)));
 
-		break;
+        break;
     }
 
     case Operation::Greater:
@@ -1455,8 +1455,8 @@ void Executor::Perform(Operation::Type op)
         Object B = Pop();
         Object A = Pop();
         Push(New(A.GetClass()->Greater2(A,B)));
-		
-		break;
+        
+        break;
     }
 
     case Operation::CppMethodCall:
@@ -1473,35 +1473,35 @@ void Executor::Perform(Operation::Type op)
 
         method->Invoke(object, *_data);
 
-		break;
+        break;
     }
 
     case Operation::LogicalNot:
     {
         Push(New(!PopBool()));
 
-		break;
+        break;
     }
 
     case Operation::LogicalXor:
     {
         Push(New(PopBool() ^ PopBool()));
 
-		break;
+        break;
     }
 
     case Operation::LogicalAnd:
     {
         Push(New(PopBool() && PopBool()));
 
-		break;
+        break;
     }
 
     case Operation::LogicalOr:
     {
         Push(New(PopBool() || PopBool()));
 
-		break;
+        break;
     }
 
     case Operation::Pick:
@@ -1512,19 +1512,19 @@ void Executor::Perform(Operation::Type op)
         break;
     }
 
-	case Operation::ToList:
-	{
-		auto list = New<List>();
-		int n = ConstDeref<int>(Pop());
-		while (n-- > 0)
-		{
-			list->Append(Pop());
-		}
+    case Operation::ToList:
+    {
+        auto list = New<List>();
+        int n = ConstDeref<int>(Pop());
+        while (n-- > 0)
+        {
+            list->Append(Pop());
+        }
 
-		Push(list);
+        Push(list);
 
-		break;
-	}
+        break;
+    }
 
 #define OPERATION_NOT_IMPLEMENTED(Op) \
 case Operation::Op: \

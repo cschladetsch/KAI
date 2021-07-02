@@ -12,25 +12,25 @@
 // to the event:
 //
 // EXAMPLE
-//		void foo(int, string);
-//		struct Bar { void spam(int, string); };
+//        void foo(int, string);
+//        struct Bar { void spam(int, string); };
 //
-//		Bar bar;
-//		Event<int, string> event;				// create a new event which takes int and string args
-//		event += foo;							// add a callback to foo function
-//		event += pair(&bar, &Bar::spam);		// add a callback to a bound method
-//		event(42, "hello");						// invoke the event. foo and bar.spam will both be called
-//		event -= foo;							// remove foo function from delegate list
-//		event(12, ", world");					// now just bar.spam will be called
+//        Bar bar;
+//        Event<int, string> event;                // create a new event which takes int and string args
+//        event += foo;                            // add a callback to foo function
+//        event += pair(&bar, &Bar::spam);        // add a callback to a bound method
+//        event(42, "hello");                        // invoke the event. foo and bar.spam will both be called
+//        event -= foo;                            // remove foo function from delegate list
+//        event(12, ", world");                    // now just bar.spam will be called
 //
 // NOTES
 // Return types for event delegates must return void.
 // Currently supports events with up to three (3) arguments.
 //
 // REVISION
-//		November 2007		@author christian		created
-//		June 2008			@author christian		added SystemEvent
-//		Feb 2017			@author christian		removed SystemEvent. I forgot what it was for.
+//        November 2007        @author christian        created
+//        June 2008            @author christian        added SystemEvent
+//        Feb 2017            @author christian        removed SystemEvent. I forgot what it was for.
 
 KAI_BEGIN
 

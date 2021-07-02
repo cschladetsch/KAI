@@ -14,7 +14,7 @@ bool Compiler::Destroy()
     // of the GC process. probably an overkill for performance. in any case,
     // when the compiler goes out of scope, we want to ensure the operation objects
     // are returned to the pool for GC.
-	//
+    //
     // Again, all this work and text describing it is probably more cost than just
     // letting op's be managed from the start.
     for (auto op : string_to_op)

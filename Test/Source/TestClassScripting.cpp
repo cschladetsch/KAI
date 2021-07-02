@@ -29,31 +29,31 @@ TEST(TestClassScripting, Test)
 
     static bool trace = true;
     // Can produce an XML representation.
-	mystruct->num = 42;
-	mystruct->string = "Freddy";
+    mystruct->num = 42;
+    mystruct->string = "Freddy";
     if (trace)
-		KAI_TRACE_1(mystruct.ToXmlString());
-	/* Output:
-	<Object type='MyStruct' name=''> <!-- no name since no in a parent dictionary -->
-		<Property name='num'>42</Property>
-		<Property name='string'>Freddy</Property>
-	</Object>
-	*/
+        KAI_TRACE_1(mystruct.ToXmlString());
+    /* Output:
+    <Object type='MyStruct' _name=''> <!-- no _name since no in a parent dictionary -->
+        <Property _name='num'>42</Property>
+        <Property _name='string'>Freddy</Property>
+    </Object>
+    */
 
     // Objects an be inserted into string streams.
     StringStream stream;
     stream << mystruct;
     if (trace)
-		KAI_TRACE_1(stream.ToString());
+        KAI_TRACE_1(stream.ToString());
 
     // Objects can also be inserted and extracted to/from binary streams
     // this is useful for networking and persistence.
     BinaryStream binary_stream(reg);
     binary_stream << mystruct;
     if (trace)
-		KAI_TRACE_1(binary_stream);
+        KAI_TRACE_1(binary_stream);
 
-    // Accessing fields and methods uses pointer semantics:
+    // Accessing fields and _methods uses pointer semantics:
     mystruct->num = 345;
     mystruct->string = "hello world";
     mystruct->list = reg.New<List>();
@@ -63,11 +63,11 @@ TEST(TestClassScripting, Test)
 
     // See what it looks like.
     if (trace)
-		KAI_TRACE_1(mystruct.ToXmlString());
+        KAI_TRACE_1(mystruct.ToXmlString());
 
     // Clear the stream, then see what mystruct looks like as a string:
     stream.Clear();
     stream << mystruct;
     if (trace)
-		KAI_TRACE_1(stream.ToString());
+        KAI_TRACE_1(stream.ToString());
 }

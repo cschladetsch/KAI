@@ -170,7 +170,7 @@ void TauParser::AddArg(AstNodePtr parent)
 {
     auto arg = NewNode(AstEnum::Argument);
     arg->Add(Consume());    // type
-    arg->Add(Consume());    // name
+    arg->Add(Consume());    // _name
     parent->Add(arg);
 }
 

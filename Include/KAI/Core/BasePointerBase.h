@@ -6,12 +6,12 @@ KAI_BEGIN
 
 struct BasePointerBase
 {
-	virtual ~BasePointerBase() {}
+    virtual ~BasePointerBase() {}
 
-	void Create() {}
-	bool Destroy() { return true; }
+    void Create() {}
+    bool Destroy() { return true; }
 
-	static void Register(Registry &);
+    static void Register(Registry &);
 };
 
 StringStream &operator<<(StringStream &, const BasePointerBase &);

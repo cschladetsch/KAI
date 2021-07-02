@@ -14,66 +14,66 @@ struct Executor;
 class Continuation : public Reflected
 {
 public:
-	typedef Pointer</*const*/ Array> Code;
+    typedef Pointer</*const*/ Array> Code;
 
-	Object scope;
-	Pointer<Array> code;
-	Pointer<Array> args;
-	Pointer<String> source_code;
-	Pointer<int> index;
-	Pointer<bool> entered;
+    Object scope;
+    Pointer<Array> code;
+    Pointer<Array> args;
+    Pointer<String> source_code;
+    Pointer<int> index;
+    Pointer<bool> entered;
 
-	// if true, this is a 'top-level' continuation, so
-	// name resolution should stop here
-	//
-	// I hate this idea. needs to be re-thought through clearly.
-	Pointer<bool> scopeBreak;
+    // if true, this is a 'top-level' continuation, so
+    // _name resolution should stop here
+    //
+    // I hate this idea. needs to be re-thought through clearly.
+    Pointer<bool> scopeBreak;
 
 public:
-	void Create();
-	bool Destroy();
+    void Create();
+    bool Destroy();
 
-	template <class T>
-	Pointer<T> New() const
-	{
-		return Self->GetRegistry()->New<T>();
-	}
+    template <class T>
+    Pointer<T> New() const
+    {
+        return Self->GetRegistry()->New<T>();
+    }
 
-	template <class T>
-	Pointer<T> New(const T &val) const
-	{
-		return Self->GetRegistry()->New<T>(val);
-	}
+    template <class T>
+    Pointer<T> New(const T &val) const
+    {
+        return Self->GetRegistry()->New<T>(val);
+    }
 
-	void SetCode(Code);
-	void SetCode(Code, String const *source);
+    void SetCode(Code);
+    void SetCode(Code, String const *source);
 
-	Pointer<const Array> GetCode() const { return code; }
+    Pointer<const Array> GetCode() const { return code; }
 
-	void AddArg(Label const &arg) { args->Append(New(arg)); }
+    void AddArg(Label const &arg) { args->Append(New(arg)); }
 
-	Code &GetCode() { return code; }
+    Code &GetCode() { return code; }
 
-	Pointer<String> GetSourceCode() const { return source_code; }
-	void SetSourceCode(const char *C);
+    Pointer<String> GetSourceCode() const { return source_code; }
+    void SetSourceCode(const char *C);
 
-	void SetScope(Object const &Q) { scope = Q; }
-	Object GetScope() const { return scope; }
-	bool HasScope() const { return scope.Exists(); }
+    void SetScope(Object const &Q) { scope = Q; }
+    Object GetScope() const { return scope; }
+    bool HasScope() const { return scope.Exists(); }
 
-	bool HasCode() const { return code.Exists(); }
+    bool HasCode() const { return code.Exists(); }
 
-	int InitialStackDepth;
+    int InitialStackDepth;
 
-	void Enter(Executor *exec);
+    void Enter(Executor *exec);
     void Reset();
 
-	// get next object in the continuation
-	bool Next() const;
-	bool Next(Object &) const;
+    // get next object in the continuation
+    bool Next() const;
+    bool Next(Object &) const;
 
-	String Show() const;
-	static void Register(Registry &);
+    String Show() const;
+    static void Register(Registry &);
 };
 
 StringStream &operator<<(StringStream &, const Continuation &);
@@ -82,9 +82,9 @@ BinaryStream &operator<<(BinaryStream &, const Continuation &);
 BinaryStream &operator>>(BinaryStream &, Continuation &);
 
 KAI_TYPE_TRAITS(
-	Continuation, 
-	Number::Continuation, 
-	Properties::Streaming | Properties::Reflected
-	);
+    Continuation, 
+    Number::Continuation, 
+    Properties::Streaming | Properties::Reflected
+    );
 
 KAI_END

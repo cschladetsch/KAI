@@ -76,7 +76,7 @@ namespace Exception
 
     void UnknownMethod::WriteExtendedInformation(StringStream &S) const
     {
-        S << "name=" << name << ", class=" << class_name;
+        S << "_name=" << name << ", class=" << class_name;
     }
 
     void UnknownHandle::WriteExtendedInformation(StringStream &S) const

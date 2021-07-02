@@ -203,8 +203,8 @@ void Registry::PruneRetained()
 const ClassBase *Registry::GetClass(Type::Number type_number)
 {
     const auto tn = type_number.ToInt();
-	if (tn >= static_cast<int>(classes.size()))
-		KAI_THROW_1(LogicError, "Inalid type number");
+    if (tn >= static_cast<int>(classes.size()))
+        KAI_THROW_1(LogicError, "Inalid type number");
 
     return classes[tn];
 }
@@ -515,8 +515,8 @@ void Registry::TriColor()
 void Registry::ReleaseWhite()
 {
     // Make a copy of the white set to avoid mutation while iterating.
-	// Yes, this is expensive and is a good candidate to use Monotonic memory
-	// allocation.
+    // Yes, this is expensive and is a good candidate to use Monotonic memory
+    // allocation.
     std::vector<Handle> to_delete(white.begin(), white.end());
     white.clear();
 
@@ -651,9 +651,9 @@ void Registry::WatchType(Type::Number N, bool watch)
         observed_types.erase(A);
 }
 
-void Registry::TraceSet(Registry::ColoredSet const &set, const char *name) const
+void Registry::TraceSet(Registry::ColoredSet const &set, const char *_name) const
 {
-    KAI_TRACE() << name << "(" << (int)set.size() << "): ";
+    KAI_TRACE() << _name << "(" << (int)set.size() << "): ";
     if (gc_trace_level > 2)
     {
         for (auto handle : set)

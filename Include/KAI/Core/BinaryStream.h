@@ -13,30 +13,30 @@ KAI_BEGIN
 class BinaryStream : public BinaryPacket
 {
 public:
-	typedef char Byte;
-	typedef std::vector<Byte> Bytes;
+    typedef char Byte;
+    typedef std::vector<Byte> Bytes;
 
 private:
-	Bytes bytes;
+    Bytes bytes;
 
 public:
-	BinaryStream() { }
-	BinaryStream(Registry &R) : BinaryPacket(R) { }
-	BinaryStream(int start_size) : bytes(start_size) { }
+    BinaryStream() { }
+    BinaryStream(Registry &R) : BinaryPacket(R) { }
+    BinaryStream(int start_size) : bytes(start_size) { }
 
-	BinaryStream &Write(int len, const Byte *src);
-	void Clear();
+    BinaryStream &Write(int len, const Byte *src);
+    void Clear();
 
-	template <class POD>
-	BinaryStream &Write(const POD &pod)
-	{
-		return Write(sizeof(pod), reinterpret_cast<const Byte *>(&pod));
-	}
+    template <class POD>
+    BinaryStream &Write(const POD &pod)
+    {
+        return Write(sizeof(pod), reinterpret_cast<const Byte *>(&pod));
+    }
 
-	friend bool operator<(const BinaryPacket &A, const BinaryPacket &B);
-	friend bool operator==(const BinaryPacket &A, const BinaryPacket &B);
+    friend bool operator<(const BinaryPacket &A, const BinaryPacket &B);
+    friend bool operator==(const BinaryPacket &A, const BinaryPacket &B);
 
-	static void Register(Registry &);
+    static void Register(Registry &);
 };
 
 StringStream &operator<<(StringStream &, BinaryStream const &);
@@ -44,8 +44,8 @@ BinaryStream &operator<<(BinaryStream &, BinaryStream const &);
 BinaryPacket &operator>>(BinaryPacket &, BinaryStream &);
 
 KAI_TYPE_TRAITS(BinaryStream, Number::BinaryStream
-	, Properties::StringStreamInsert
-	| Properties::BinaryStreamExtract 
-	| Properties::BinaryStreamInsert)
+    , Properties::StringStreamInsert
+    | Properties::BinaryStreamExtract 
+    | Properties::BinaryStreamInsert)
 
 KAI_END

@@ -7,17 +7,17 @@ KAI_BEGIN
 
 class SystemType
 {
-	Type::Number type_number;
-	Label label;
+    Type::Number type_number;
+    Label label;
 
 public:
-	void Set(Type::Number N, const Label &L) { type_number = N; label = L; }
+    void Set(Type::Number N, const Label &L) { type_number = N; label = L; }
 
-	Type::Number GetTypeNumber() const { return type_number; }
-	const Label &GetLabel() const { return label; }
+    Type::Number GetTypeNumber() const { return type_number; }
+    const Label &GetLabel() const { return label; }
 
-	friend bool operator<(const SystemType &A, const SystemType &B) { return A.type_number < B.type_number; }
-	friend bool operator==(const SystemType &A, const SystemType &B) { return A.type_number == B.type_number; }
+    friend bool operator<(const SystemType &A, const SystemType &B) { return A.type_number < B.type_number; }
+    friend bool operator==(const SystemType &A, const SystemType &B) { return A.type_number == B.type_number; }
 };
 
 StringStream &operator<<(StringStream &, SystemType const &);

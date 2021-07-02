@@ -8,19 +8,19 @@ KAI_BEGIN
 /// Base class for all timer objects that receive an Update() call.
 class ProcessBase
 {
-	bool paused;
+    bool paused;
 
 public:
-	Event<Handle> OnUpdate;
+    Event<Handle> OnUpdate;
 
-	ProcessBase(bool P = true) : paused(P) { }
-	virtual ~ProcessBase() { }
+    ProcessBase(bool P = true) : paused(P) { }
+    virtual ~ProcessBase() { }
 
-	bool IsPaused() const { return paused; }
-	void Pause(bool P = true) { paused = P; }
-	void Unpause() { paused = false; }
+    bool IsPaused() const { return paused; }
+    void Pause(bool P = true) { paused = P; }
+    void Unpause() { paused = false; }
 
-	virtual void Update(float time_delta) { KAI_UNUSED(time_delta); }
+    virtual void Update(float time_delta) { KAI_UNUSED(time_delta); }
 };
 
 KAI_END

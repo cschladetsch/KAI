@@ -8,10 +8,10 @@ KAI_BEGIN
 template <class T>
 struct DerefType
 {
-	typedef T Value;
-	typedef typename Type::Traits<T> Tr;
-	typedef typename Tr::Reference Reference;
-	typedef typename Tr::ConstReference ConstReference;
+    typedef T Value;
+    typedef typename Type::Traits<T> Tr;
+    typedef typename Tr::Reference Reference;
+    typedef typename Tr::ConstReference ConstReference;
 };
 
 template <class T>

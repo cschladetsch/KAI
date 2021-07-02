@@ -49,7 +49,7 @@ bool PiParser::NextSingle(AstNodePtr root)
         return ParseCompound(root, AstEnum::Continuation, TokenType::CloseBrace);
 
     case PiTokens::CloseSquareBracket:
-		// Fallthrough.
+        // Fallthrough.
     case PiTokens::CloseBrace:
         Fail(Lexer::CreateErrorMessage(Current(), "%s", "Unopened compound"));
         return false;

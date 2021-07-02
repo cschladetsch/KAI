@@ -83,7 +83,7 @@ void StorageBase::Set(const Label &name, Object const &child)
     bool clean = base.IsClean();
     bool konst = base.IsConst();
     bool managed = base.IsManaged();
-    base.switches = switches;                 // inherit properties of parent...
+    base.switches = switches;                 // inherit _properties of parent...
 
     if (clean)                                // ...but preserve cleanliness
         base.switches |= IObject::Clean;

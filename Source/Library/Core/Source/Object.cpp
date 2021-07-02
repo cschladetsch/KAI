@@ -472,7 +472,7 @@ BinaryStream &operator<<(BinaryStream &stream, const Object &object)
     if (klass.HasOperation(Type::Properties::BinaryStreamInsert))
         klass.Insert(stream, base);
 
-    // insert any properties
+    // insert any _properties
     for (auto const &prop_iter : klass.GetProperties())
     {
         stream << prop_iter.second->GetValue(object);
@@ -511,7 +511,7 @@ BinaryStream &operator>>(BinaryStream &stream, Object &extracted)
     else
         extracted = registry.NewFromTypeNumber(type_number);
 
-    // extract any properties
+    // extract any _properties
     for (ClassBase::Properties::value_type const &prop_iter : klass->GetProperties())
     {
         Object prop_value;
@@ -586,7 +586,7 @@ bool operator<(Object const &A, Object const &B)
             return false;
     }
     
-    // test properties
+    // test _properties
     for (ClassBase::Properties::value_type const &prop : klass_a.GetProperties())
     {
         Object prop_a = prop.second->GetValue(A);
@@ -638,7 +638,7 @@ bool operator==(Object const &A, Object const &B)
     if (dict_a.size() != dict_b.size())
         return false;
 
-    // test properties
+    // test _properties
     for (auto const &prop : klass.GetProperties())
     {
         Object prop_a = prop.second->GetValue(A);
