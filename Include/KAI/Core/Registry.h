@@ -60,11 +60,11 @@ private:
 	Handles retained;
 	Deathrow deathrow;
 	Handle next_handle;
-	Tree *tree;
+	Tree *tree{};
 	RetainedObjects retained_objects;
 	Pools pools;
 	std::shared_ptr<Memory::IAllocator> allocator;
-	bool owns_allocator;
+	bool owns_allocator{};
 
 public:
 	Registry();
@@ -225,7 +225,7 @@ public:
 	bool OnDeathRow(Handle) const;
 
 	/// @group debugging
-	int gc_trace_level;
+	int gc_trace_level{};
 	void SetGCTraceLevel(int);
 
 #ifdef KAI_DEBUG_REGISTRY

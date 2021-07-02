@@ -1,19 +1,10 @@
-// Silly old Win32 API doing stupid things.
-#undef GetObject
-#undef GetObjectA
-
-#include <iostream>
-#include <fstream>
-#include <assert.h>
-
-#include "KAI/Core/TriColor.h"
-#include "KAI/Core/Tree.h"
-#include <KAI/Core/Memory/StandardAllocator.h>
-#include <KAI/Core/Object/IObject.h>
-#include <KAI/Core/Object/Class.h>
-#include <KAI/Core/FunctionBase.h>
-#include <KAI/Core/BuiltinTypes/Signed32.h>
 #include <KAI/Core/Registry.h>
+#include <KAI/Core/BuiltinTypes/Signed32.h>
+#include <KAI/Core/Memory/StandardAllocator.h>
+#include <KAI/Core/Object/Class.h>
+#include <KAI/Core/Object/IObject.h>
+#include "KAI/Core/Tree.h"
+#include "KAI/Core/TriColor.h"
 
 // Use tri-color generational gc. See https://en.wikipedia.org/wiki/Tracing_garbage_collection#Tri-color_marking
 #define KAI_USE_TRICOLOR
@@ -68,8 +59,8 @@ void Registry::ClearInstances()
 void Registry::NominateAll()
 {
     deathrow.clear();
-    for (auto const &ins : instances)
-        deathrow.insert(ins.first);
+    for (const auto & [handle, _] : instances)
+        deathrow.insert(handle);
 }
 
 Object Registry::NewFromTypeNumber(Type::Number type_number)
@@ -83,8 +74,8 @@ Object Registry::NewFromTypeNumber(Type::Number type_number)
 
 Object Registry::NewFromClassName(const char *classname_str)
 {
-    Label classname(classname_str);
-    const ClassBase *klass = GetClass(classname);
+    const Label className(classname_str);
+    const ClassBase *klass = GetClass(className);
     if (klass == nullptr)
         KAI_THROW_1(UnknownClass<>, String(classname_str));
 
@@ -93,19 +84,18 @@ Object Registry::NewFromClassName(const char *classname_str)
 
 const ClassBase *Registry::GetClass(const Label &name)
 {
-    //foreach (ClassBase const *klass, classes)
     for (auto const klass : classes)
         if (klass && klass->GetName() == name)
             return klass;
 
-    return 0;
+    return nullptr;
 }
 
 void Registry::DestroyNominated()
 {
-    // Copy the elements in deathrow because when we delete
+    // Copy the elements in deat row because when we delete
     // objects, they may release other objects.
-    std::vector<Handle> dr(deathrow.begin(), deathrow.end());
+    std::vector dr(deathrow.begin(), deathrow.end());
     deathrow.clear();
     for (auto const &ob : dr)
         DestroyObject(ob);
@@ -116,8 +106,8 @@ void Registry::DestroyObject(Handle handle, bool force)
     bool succeeded = false;
     KAI_TRY
     {
-        Instances::iterator iter = instances.find(handle);
-        if (iter == instances.end())
+        const auto found = instances.find(handle);
+        if (found == instances.end())
         {
 #ifdef KAI_DEBUG_REGISTRY
             if (IsWatching(handle))
@@ -128,7 +118,7 @@ void Registry::DestroyObject(Handle handle, bool force)
             return;
         }
 
-        StorageBase &base = *iter->second;
+        StorageBase &base = *found->second;
         assert(base.GetHandle() == handle);
         if (!base.IsManaged() && !force)
         {
@@ -163,7 +153,7 @@ void Registry::DestroyObject(Handle handle, bool force)
         }
 #endif
         base.GetClass()->Delete(base);
-        instances.erase(iter);
+        instances.erase(found);
 
         RetainedObjects::iterator retained = retained_objects.find(handle);
         if (retained != retained_objects.end())
@@ -199,11 +189,11 @@ void Registry::DestroyObject(Handle handle, bool force)
 
 void Registry::PruneRetained()
 {
-    RetainedObjects::iterator retained = retained_objects.begin(), end = retained_objects.end();
+    auto retained = retained_objects.begin();
+    const auto end = retained_objects.end();
     while (retained != end)
     {
-        Object object = GetObject(*retained);
-        if (!object.Exists())
+        if (Object object = GetObject(*retained); !object.Exists())
             retained = retained_objects.erase(retained);
         else
             ++retained;
@@ -212,8 +202,8 @@ void Registry::PruneRetained()
 
 const ClassBase *Registry::GetClass(Type::Number type_number)
 {
-	auto tn = type_number.ToInt();
-	if (tn >= (int)classes.size())
+    const auto tn = type_number.ToInt();
+	if (tn >= static_cast<int>(classes.size()))
 		KAI_THROW_1(LogicError, "Inalid type number");
 
     return classes[tn];
@@ -224,7 +214,7 @@ StorageBase *Registry::GetStorageBase(Handle handle) const
     if (handle == Handle(0))
         return nullptr;
 
-    auto obj = instances.find(handle);
+    const auto obj = instances.find(handle);
     if (obj == instances.end())
         return nullptr;
 
@@ -257,11 +247,11 @@ Object Registry::GetObject(Handle handle) const
     if (handle == Handle(0))
         return Object();
 
-    Instances::const_iterator A = instances.find(handle);
-    if (A == instances.end())
+    const auto found = instances.find(handle);
+    if (found == instances.end())
         return Object();
 
-    return *A->second;
+    return static_cast<Object>(*found->second);
 }
 
 void Registry::MarkSweepAndDestroy(Object root)
@@ -296,7 +286,7 @@ void Registry::MarkAll(StorageBase &root, bool marked)
 {
     MarkObject(root, marked);
     const Dictionary &dict = root.GetDictionary();
-    Dictionary::const_iterator C = dict.begin(), D = dict.end();
+    auto C = dict.begin(), D = dict.end();
     for (; C != D; ++C)
     {
         Object const &child = C->second;
@@ -319,9 +309,9 @@ void Registry::Sweep()
     if (instances.empty())
         return;
 
-    Instances::iterator A = instances.begin(), B = instances.end();
+    auto A = instances.begin(), B = instances.end();
     // the handle of the next object created
-    Handle last = Handle(next_handle.GetValue());
+    auto last = Handle(next_handle.GetValue());
     for (; A != B; ++A)
     {
         StorageBase *base = A->second;
@@ -457,7 +447,7 @@ void MarkObjectAndChildren(StorageBase &Q, bool M)
     Dictionary::const_iterator A = Q.GetDictionary().begin(), B = Q.GetDictionary().end();
     for (; A != B; ++A)
     {
-        Object &child = const_cast<Object &>(A->second);
+        auto& child = const_cast<Object &>(A->second);
         if (child.GetHandle() == Q.GetHandle())    // HACK to sorta/kinda avoid cycles :/
             continue;
 
@@ -481,17 +471,20 @@ void Registry::TriColor()
     // the cost has to be paid at some point, so this number really means "how much do I want
     // to spread out cost of GC over time versus memory use".
     //
+    // Ideally, self-monitoring in real-time will adjust this number to avoid any pauses in the
+    // realtime simulation
+    //
     // if you have lots of memory, set max_cycles to 1. (or zero!). if not, set it higher
     // until you can fit memory usage into a sequence of frames.
     //
     // See also https://github.com/cschladetsch/Monotonic 
-    const int max_cycles = 17;
+    const int MaxCycles = 17;
 
     if (gc_trace_level >= 1)
-        KAI_TRACE_3((int)instances.size(), (int)grey.size(), (int)white.size());
+        KAI_TRACE_3(static_cast<int>(instances.size()), static_cast<int>(grey.size()), static_cast<int>(white.size()));
 
     int cycle = 0;
-    for (; cycle < max_cycles; ++cycle)
+    for (; cycle < MaxCycles; ++cycle)
     {
 #ifdef KAI_DEBUG_REGISTRY
         if (gc_trace_level > 2) 
@@ -504,9 +497,9 @@ void Registry::TriColor()
             break;
         }
 
-        ColoredSet::iterator iter = grey.begin();
-        Handle handle = *iter;
-        grey.erase(iter);
+        auto iterator = grey.begin();
+        const Handle handle = *iterator;
+        grey.erase(iterator);
         StorageBase *base = GetStorageBase(handle);
         if (base == nullptr)
             continue;
