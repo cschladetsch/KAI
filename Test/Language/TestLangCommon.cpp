@@ -48,7 +48,11 @@ void TestLangCommon::TearDown()
 void TestLangCommon::ExecScripts()
 {
     const fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
+#ifdef BOOST_OS_WINDOWS
+    const auto ext = File::Extension(KAI_STRINGISE_WIDE(".pi"));
+#else
     const auto ext = File::Extension(".pi");
+#endif
     _console.SetLanguage(Language::KAI_LANG_NAME);
     for (auto const &scriptName : File::GetFilesWithExtensionRecursively(scriptsRoot, ext))
     {
