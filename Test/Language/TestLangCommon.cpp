@@ -48,7 +48,7 @@ void TestLangCommon::TearDown()
 void TestLangCommon::ExecScripts()
 {
     const fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
-    const auto ext = File::Extension(L".pi");
+    const auto ext = File::Extension(".pi");
     _console.SetLanguage(Language::KAI_LANG_NAME);
     for (auto const &scriptName : File::GetFilesWithExtensionRecursively(scriptsRoot, ext))
     {
