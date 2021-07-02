@@ -7,7 +7,7 @@ fi
 
 bin_path="/"
 
-if [[ $OS_TYPE -eq "msys" ]]; then
+if [[ "$OSTYPE" == "msys"* ]]; then
 	msbuild.exe *.sln
 	bin_path="/Debug"
 else
@@ -20,6 +20,8 @@ cd ..
 
 RED='\033[0;35m'
 WHITE='\033[0;39m'
+
+echo OSTYPE=$OSTYPE
 
 echo 
 echo -e $RED ---- Running Kai Console ----
