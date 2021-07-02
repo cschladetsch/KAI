@@ -9,13 +9,15 @@ option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
 if (KAI_BUILD_TEST_ALL)
     set(KAI_BUILD_CORE_TEST ON)
     set(KAI_BUILD_TEST_LANG ON)
-    set(KAI_BUILD_TEST_NETWORK ON)
+	#set(KAI_BUILD_TEST_NETWORK ON)
 endif()
 
 option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
 option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
-option(KAI_BUILD_RAKNET "Build RakNet " ON)
+option(KAI_BUILD_RAKNET "Build RakNet " OFF)
+
+set(KAI_BUILD_RAKNET OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
@@ -71,17 +73,17 @@ include(IncludeGtest)
 include(cotire)
 
 # Add RakNet. Build only if required. TODO: Move to Cmake/AddRaKNet.cmake
-set(RAKNET_ROOT ${EXTERNAL}/RakNet)
-set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
 if (KAI_BUILD_RAKNET)
+	set(RAKNET_ROOT ${EXTERNAL}/RakNet)
+	set(RAKNET_INCLUDE_PATH ${RAKNET_ROOT}/include)
     set(RAKNET_GENERATE_INCLUDE_ONLY_DIR ON)
     set(RAKNET_ENABLE_STATIC ON)
     set(RAKNET_ENABLE_DLL OFF)
     set(RAKNET_ENABLE_DYNAMIC OFF)
     add_subdirectory(${RAKNET_ROOT})
     message(STATUS "**** RakNet: ${RAKNET_ROOT}")
+    include_directories(${RAKNET_INCLUDE_PATH})
 endif()
-include_directories(${RAKNET_INCLUDE_PATH})
 
 # Add rang
 include_directories(${EXTERNAL}/rang/include)

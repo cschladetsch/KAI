@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 
 #include "KAI/Network/Peer.h"
@@ -37,3 +38,4 @@ KAI_BEGIN
 //
 KAI_END
 
+#endif
