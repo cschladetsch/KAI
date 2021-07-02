@@ -36,15 +36,16 @@ public:
         DefaultSwitches = Managed
     };
 
-    Object() : registry(0), class_base(0) { }
+    Object() = default;
     Object(Object const &);
-    Object(ObjectConstructParams const &P);
-
+    explicit Object(ObjectConstructParams const &P);
     Object &operator=(Object const &);
+
+    template <class T>
+    bool IsType() const { return Exists() && GetTypeNumber() == Type::Traits<T>::Number; }
 
     StorageBase &GetStorageBase() const;
     int GetSwitches() const;
-
     ObjectColor::Color GetColor() const;
     void SetColor(ObjectColor::Color C) const;
     void SetColorRecursive(ObjectColor::Color C) const;
@@ -56,64 +57,40 @@ public:
     void SetGrey() const { SetColor(ObjectColor::Grey); }
     void SetBlack() const { SetColor(ObjectColor::Black); }
     Object GetPropertyValue(Label const &L) const;
-
     Type::Number GetTypeNumber() const;
     const ClassBase *GetClass() const { return class_base; }
     Registry *GetRegistry() const { return registry; }
-
     Object Duplicate() const;
     Object Clone() const { return Duplicate(); }
-
-    bool IsTypeNumber(int typeNumber) const 
-    { 
-        if (!Exists())
-            return typeNumber == Type::Number::None;
-
-        return GetTypeNumber() == typeNumber;
-    }
-
     Handle GetParentHandle() const;
     void SetParentHandle(Handle);
     Handle GetHandle() const { return handle; }
     Object GetParent() const;
-
-    template <class T>
-    bool IsType() const { return Exists() && GetTypeNumber() == Type::Traits<T>::Number; }
-
     void Delete() const;
     bool Valid() const;
     bool Exists() const;
     bool OnDeathRow() const;
-
     bool IsConst() const;
     bool IsManaged() const;
     bool IsMarked() const;
     bool IsClean() const;
-
     void SetSwitch(int, bool) const;
     void SetSwitches(int) const;
-
     void SetMarked(bool = true) const;
     void SetConst() const;
     void SetManaged(bool = true) const;
     void SetClean(bool = true) const;
-
     bool IsMutable() const { return !IsConst(); }
     bool IsUnmanaged() const { return !IsManaged(); }
     bool IsUnmarked() const { return !IsMarked(); }
     bool IsDirty() const { return !IsClean(); }
-
-    // use these to get/set/remove a property or a child of a given _name
-    void Set(const char *N, const Object &Q) const { Set(Label(N), Q); }
-    Object Get(const char *N) const { return Get(Label(N)); }
-
+    void Set(const char *label, const Object &Q) const { Set(Label(label), Q); }
+    Object Get(const char *label) const { return Get(Label(label)); }
     void Add(const Label &label, const Object &child) const { Set(label, child); }
     void Set(const Label &, const Object &) const;
     Object Get(const Label &) const;
-
     bool Has(const Label &) const;
     void Remove(const Label &) const;
-
     void Detach(const Label &L) const { Remove(L); }
     void Detach(const Object &Q) const;
     Dictionary const &GetDictionary() const;
@@ -123,42 +100,34 @@ public:
     void DetachChild(const Label &L) const { Remove(L); }
     void DetachChild(const Object &Q) const { Detach(Q); }
     bool HasChild(const Label &L) const { return Has(L); }
-
     Label GetLabel() const;
-
     String ToString() const;
     String ToXmlString() const;
-
-    // deref's Registry so must be in source file
     Object NewFromTypeNumber(Type::Number N) const;
-
     void Assign(StorageBase &, StorageBase const &);
-
-    // return the storage of the given other object within the registry that made this object
     StorageBase *GetStorageBase(Handle other) const;
     void SetPropertyValue(Label const &, Object const &) const;
-
     void SetPropertyObject(Label const &, Object const &) const;
     Object GetPropertyObject(Label const &) const;
-
     bool HasProperty(Label const &name) const;
-
     static void Register(Registry &);
-
-    // detach from container
     void RemovedFromContainer(Object container) const;
-    
-    // attach to container
     void AddedToContainer(Object container) const;
-
     StorageBase *GetBasePtr() const;
     StorageBase *GetParentBasePtr() const;
-
-    typedef std::list<Object> ObjectList;
+    using ObjectList = std::list<Object>;
     void GetPropertyObjects(ObjectList &contained) const;
     void GetContainedObjects(ObjectList &contained) const;
     void GetChildObjects(ObjectList &contained) const;
     void GetAllReferencedObjects(ObjectList &contained) const;
+
+    bool IsTypeNumber(int typeNumber) const 
+    { 
+        if (!Exists())
+            return typeNumber == Type::Number::None;
+
+        return GetTypeNumber() == typeNumber;
+    }
 
     class ChildProxy
     {
@@ -170,12 +139,14 @@ public:
         ChildProxy(Object const &Q, const char *);
         ChildProxy(Object const &Q, Label const &L);
         Object GetObject() const;
+
     public:
         template <class T>
         ChildProxy &operator=(T const &value)
         {
-            GetObject().SetValue(label, value);
-            return *this;
+            //GetObject().Set(
+            throw;
+            //return *this;
         }
 
         template <class T>
@@ -212,7 +183,7 @@ BinaryStream &operator>>(BinaryStream &stream, Object &Q);
 bool operator<(Object const &A, Object const &B);
 bool operator==(Object const &A, Object const &B);
 inline bool operator!=(Object const &A, Object const &B) { return !(A == B); }
-bool operator>(Object const &A, Object const &B);
+bool operator>(const Object &A, Object const &B);
 
 Object operator+(Object const &A, Object const &B);
 // WTF Object operator-(Object const &Object Absolute(Object const &A);
@@ -226,10 +197,8 @@ HashValue GetHash(Object const  &);
 
 void MarkObject(Object const &, bool = true);
 void MarkObjectAndChildren(Object const &, bool = true);
-
 void MarkObject(StorageBase &, bool = true);
 void MarkObjectAndChildren(StorageBase &, bool = true);
-
 Object Duplicate(Object const &);
 
 KAI_END
@@ -241,3 +210,4 @@ namespace boost
         return H.GetHandle().GetValue();
     }
 }
+
