@@ -2,7 +2,6 @@
 
 #include <list>
 
-#include "KAI/Core/Base.h"
 #include "KAI/Core/ObjectColor.h"
 #include "KAI/Core/Object/Handle.h"
 #include "KAI/Core/Object/Constness.h"
@@ -14,16 +13,15 @@ KAI_BEGIN
 
 class Object
 {
-private:
-    const ClassBase *class_base;
-    Registry *registry;
+    const ClassBase *class_base{ nullptr };
+    Registry *registry{ nullptr };
     Handle handle;
 
 #ifdef KAI_CACHE_OBJECT_LOOKUPS
     // these fields are used to cache results for speed
-    int gcindex;
-    bool valid;
-    void *value;
+    int _gcIndex{ 0 };
+    bool _valid{ false };
+    void *value{ nullptr };
 #endif
 
 public:
@@ -57,6 +55,7 @@ public:
     void SetWhite() const { SetColor(ObjectColor::White); }
     void SetGrey() const { SetColor(ObjectColor::Grey); }
     void SetBlack() const { SetColor(ObjectColor::Black); }
+    Object GetPropertyValue(Label const &L) const;
 
     Type::Number GetTypeNumber() const;
     const ClassBase *GetClass() const { return class_base; }
@@ -65,12 +64,12 @@ public:
     Object Duplicate() const;
     Object Clone() const { return Duplicate(); }
 
-    bool IsTypeNumber(int N) const 
+    bool IsTypeNumber(int typeNumber) const 
     { 
         if (!Exists())
-            return N == Type::Number::None;
+            return typeNumber == Type::Number::None;
 
-        return GetTypeNumber() == N;
+        return GetTypeNumber() == typeNumber;
     }
 
     Handle GetParentHandle() const;
@@ -115,14 +114,6 @@ public:
     bool Has(const Label &) const;
     void Remove(const Label &) const;
 
-    template <class T>
-    void SetValue(const Label &L, const T &V) const;
-
-    template <class T>
-    T const &GetValue(const Label &L) const;
-
-    template <class T>
-    T &GetValue(const Label &L);
     void Detach(const Label &L) const { Remove(L); }
     void Detach(const Object &Q) const;
     Dictionary const &GetDictionary() const;
@@ -140,30 +131,24 @@ public:
 
     // deref's Registry so must be in source file
     Object NewFromTypeNumber(Type::Number N) const;
-    Object NewFromClassName(String const &type_name) const;
 
     void Assign(StorageBase &, StorageBase const &);
 
-    /// return the storage of the given other object within the registry that made this object
+    // return the storage of the given other object within the registry that made this object
     StorageBase *GetStorageBase(Handle other) const;
     void SetPropertyValue(Label const &, Object const &) const;
-    Object GetPropertyValue(Label const &) const;
 
     void SetPropertyObject(Label const &, Object const &) const;
     Object GetPropertyObject(Label const &) const;
 
     bool HasProperty(Label const &name) const;
 
-
-    /// detach from parent
-    void Detach();
-
     static void Register(Registry &);
 
-    /// detach from container
+    // detach from container
     void RemovedFromContainer(Object container) const;
     
-    /// attach to container
+    // attach to container
     void AddedToContainer(Object container) const;
 
     StorageBase *GetBasePtr() const;
@@ -210,13 +195,9 @@ public:
         }
     };
 
-    ChildProxy operator[](const char *L)
+    ChildProxy operator[](const char *label) const
     {
-        return ChildProxy(*this, L);
-    }
-    ChildProxy operator[](Label const &L)
-    {
-        return ChildProxy(*this, L);
+        return ChildProxy(*this, label);
     }
 
 protected:

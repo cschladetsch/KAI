@@ -5,14 +5,13 @@
 
 KAI_BEGIN
 
-void StorageBase::Detach(Object const &Q)
+void StorageBase::Detach(Object const &parent)
 {
-    Dictionary::const_iterator A = dictionary.begin(), B = dictionary.end();
-    for (; A != B; ++A)
+    for (auto const &[label, object] : dictionary)
     {
-        if (A->second.GetHandle() == Q.GetHandle())
+        if (object.GetHandle() == parent.GetHandle())
         {
-            Detach(A->first);
+            Detach(label);
             return;
         }
     }
@@ -109,13 +108,13 @@ bool StorageBase::Has(const Label &L) const
 
 void StorageBase::Remove(const Label &label)
 {
-    const auto iter = dictionary.find(label);
-    if (iter == dictionary.end())
+    const auto found = dictionary.find(label);
+    if (found == dictionary.end())
         return;
 
     SetDirty();
-    StorageBase *child = iter->second.GetBasePtr();
-    dictionary.erase(iter);
+    StorageBase *child = found->second.GetBasePtr();
+    dictionary.erase(found);
 
     if (child)
     {

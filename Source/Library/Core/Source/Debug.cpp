@@ -15,7 +15,6 @@ KAI_BEGIN
 StringStream& operator<<(StringStream &s, const Structure & st)
 {
     KAI_NOT_IMPLEMENTED();
-    return s;
 }
 
 // this is just being used while I (re)sort out the cross-platform console color issues
