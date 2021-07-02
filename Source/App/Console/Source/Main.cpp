@@ -35,7 +35,7 @@ struct Peer : kai::Peer
 
 Console console;
 
-std::string Kai_VersionString()
+std::string KaiVersionString()
 {
     stringstream str;
     str << KAI_VERSION_MAJOR << '.' << KAI_VERSION_MINOR << '.' << KAI_VERSION_PATCH;
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 {
     KAI_UNUSED_2(argc, argv);
 
-    cout << "KAI v" << Kai_VersionString() << endl << endl;
+    cout << "KAI v" << KaiVersionString() << endl << endl;
 
     console.SetLanguage(Language::Pi);
 
@@ -59,3 +59,4 @@ int main(int argc, char **argv)
     // start the REPL
     return console.Run();
 }
+

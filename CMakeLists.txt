@@ -4,7 +4,7 @@ project(KAI)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-option(KAI_BUILD_TEST_ALL "Build all tests" OFF)
+option(KAI_BUILD_TEST_ALL "Build all tests" ON)
 option(KAI_BUILD_CORE_TEST "Build unit tests" ON)
 option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
@@ -137,7 +137,9 @@ foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
+set(KAI_BUILD_TEST_ALL ON)
 if (KAI_BUILD_TEST_ALL)
+    message(STATUS "***** Adding tests")
 	add_subdirectory(Test)
 endif()
 
