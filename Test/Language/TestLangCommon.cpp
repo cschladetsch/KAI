@@ -4,6 +4,8 @@
 #include "TestCommon.h"
 #include "TestLangCommon.h"
 
+#include <boost/algorithm/string/predicate.hpp>
+
 #include "File.h"
 
 KAI_BEGIN
@@ -46,10 +48,16 @@ void TestLangCommon::TearDown()
 void TestLangCommon::ExecScripts()
 {
     const fs::path scriptsRoot(KAI_STRINGISE(KAI_SCRIPT_ROOT));
-    const auto ext = File::Extension(KAI_STRINGISE_WIDE(KAI_LANG_EXT));
+    //const auto ext = File::Extension(KAI_STRINGISE_WIDE(KAI_LANG_EXT));
+    const auto ext = File::Extension(L".pi");
     _console.SetLanguage(Language::KAI_LANG_NAME);
     for (auto const &scriptName : File::GetFilesWithExtensionRecursively(scriptsRoot, ext))
     {
+        if (boost::algorithm::contains(scriptName.c_str(), "WIP"))
+        {
+            KAI_TRACE() << "Skipping script: " << scriptName.generic_string().c_str();
+            continue;
+        }
         KAI_TRACE() << "Testing script: " << scriptName.generic_string().c_str();
         auto contents = File::ReadAllText(scriptName);
         _console.Execute(contents.c_str());

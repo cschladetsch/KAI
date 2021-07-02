@@ -11,7 +11,7 @@ TEST(TestPathname, TestBasic)
     ASSERT_EQ(p1.ToString(), "'/");
 
     Pathname p2("/Bin");
-    ASSERT_EQ(p0.ToString(), "/Bin");
+    ASSERT_EQ(p2.ToString(), "/Bin");
 }
 
 TEST(TestPathname, TestAdd)

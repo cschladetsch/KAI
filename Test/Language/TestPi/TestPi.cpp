@@ -184,3 +184,4 @@ TEST_F(TestPi, TestScope)
     _console.Execute("1 'c #");
     ASSERT_FALSE(_root.Has(c));
 }
+
