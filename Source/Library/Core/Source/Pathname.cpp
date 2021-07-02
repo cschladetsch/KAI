@@ -100,7 +100,7 @@ void Pathname::FromString(const String &text)
     name << Ends;
     String s = name.ToString();
     if (!s.Empty())
-        elements.push_back(Element(s));
+        elements.push_back(Element(Label(s)));
 
     if (elements.empty())
         return;
@@ -121,7 +121,7 @@ void Pathname::AddElement(StringStream &name, Element::Type type)
     if (!name.Empty())
     {
         name << Ends;
-        elements.push_back(Element(name.ToString()));
+        elements.push_back(Element(Label(name.ToString())));
     }
 
     elements.push_back(type);

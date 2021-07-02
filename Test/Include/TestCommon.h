@@ -27,14 +27,14 @@ protected:
     Tree * _tree = nullptr;
     Object _root;
 
-    Registry &Reg();
-    Tree &GetTree();
+    Registry &Reg() const;
+    Tree &GetTree() const;
     Object Root() const;
 
     void SetUp() override;
     void TearDown() override;
 
-    virtual void AddRequiredClasses();
+    virtual void AddRequiredClasses() { }
 };
 
 KAI_END

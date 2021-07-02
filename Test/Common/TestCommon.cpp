@@ -2,6 +2,7 @@
 #include <KAI/Core/BuiltinTypes/All.h>
 #include <KAI/Core/Tree.h>
 #include "KAI/Core/Console.h"
+#include "KAI/Core/StringStream.h"
 
 KAI_BEGIN
 
@@ -15,7 +16,7 @@ void TestCommon::SetUp()
     _reg->AddClass<int>();
     _reg->AddClass<float>();
     _reg->AddClass<String>();
-    //_reg->AddClass<StringStream>();
+    _reg->AddClass<StringStream>();
     _reg->AddClass<BinaryStream>();
 
     _root = _reg->New<void>();
@@ -25,12 +26,12 @@ void TestCommon::SetUp()
     AddRequiredClasses();
 }
 
-Registry &TestCommon::Reg()
+Registry &TestCommon::Reg() const
 {
     return *_reg;
 }
 
-Tree &TestCommon::GetTree()
+Tree &TestCommon::GetTree() const
 {
     return *_tree;
 }
@@ -38,10 +39,6 @@ Tree &TestCommon::GetTree()
 Object TestCommon::Root() const
 {
     return _root;
-}
-
-void TestCommon::AddRequiredClasses()
-{
 }
 
 void TestCommon::TearDown()

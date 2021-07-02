@@ -14,9 +14,9 @@ private:
     bool _quoted = false;
 
 public:
-    Label() { }
+    Label() = default;
     explicit Label(const String::Char *S) { FromString(S); }
-    Label(const Value &S) { FromString(S); }
+    explicit Label(const Value &S) { FromString(S); }
 
     bool Empty() const { return _value.empty(); }
     bool Quoted() const { return _quoted; }

@@ -5,7 +5,6 @@
 
 KAI_BEGIN
 
-/// A vector of Objects
 class Array : public Container<Array>
 {
 public:
