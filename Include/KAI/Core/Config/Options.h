@@ -4,11 +4,9 @@
 #define KAI_OPTION_USE_NAMESPACES
 
 // if KAI_OPTION_USE_NAMESPACES is defined, this is the namespace _name to use
-//#define KAI_NAMESPACE_NAME kai
-#ifndef KAI_NAMESPACE_NAME
-#warning please define KAI_NAMESPACE_NAME
+//#ifndef KAI_NAMESPACE_NAME
 #define KAI_NAMESPACE_NAME kai
-#endif
+//#endif
 
 //  use lots of extra info in trace mesages
 //#define KAI_TRACE_VERBOSE

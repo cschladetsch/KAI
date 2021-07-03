@@ -10,7 +10,6 @@ KAI_BEGIN
 #define KAI_FUNCTION_NAME \
     KAI_NAMESPACE(FileLocation)(
 
-#ifdef KAI_USE_EXCEPTIONS
 
 #    define KAI_RETHROW() \
         throw;
@@ -51,7 +50,6 @@ KAI_BEGIN
 
 #    define KAI_CATCH_ALL() \
         catch (...)
-#endif
 
 KAI_END
 

@@ -25,7 +25,7 @@ endif()
 
 set(KAI_BUILD_RAKNET OFF)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
@@ -49,7 +49,7 @@ endif()
 
 # set common paths for all other projects to use
 set(HOME $ENV{HOME})
-set(KAI_HOME ${CMAKE_SOURCE_DIR})
+set(KAI_HOME ${CMAKE_CURRENT_LIST_DIR})
 set(SOURCE_HOME ${KAI_HOME}/Source)
 set(APP_HOME ${SOURCE_HOME}/App)
 set(LIBRARY_HOME ${SOURCE_HOME}/Library)
@@ -71,9 +71,16 @@ link_directories(${KAI_HOME}/Lib/Debug)
 add_definitions(-DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE)
 
 # Add external depdendancies
-include(AddBoost)
-include(IncludeGtest)
+if (!${Boost_FOUND})
+	include(AddBoost)
+endif()
+if (KAI_BUILD_TEST_ALL)
+	include(IncludeGtest)
+endif()
+
 include(cotire)
+
+include_directories(${Boost_INCLUDE_DIRS})
 
 # Add RakNet. Build only if required. TODO: Move to Cmake/AddRaKNet.cmake
 if (KAI_BUILD_RAKNET)
@@ -133,13 +140,12 @@ macro(def_platform_library name)
 endmacro()
 
 set(TopLevels Library App)
+
 foreach(top ${TopLevels})
     include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
-set(KAI_BUILD_TEST_ALL ON)
 if (KAI_BUILD_TEST_ALL)
-    message(STATUS "***** Adding tests")
 	add_subdirectory(Test)
 endif()
 

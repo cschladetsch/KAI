@@ -1,7 +1,7 @@
 #pragma once
 
-#include <boost/preprocessor/cat.hpp>
-#    include "boost/preprocessor/stringize.hpp"
+//#include <boost/preprocessor/cat.hpp>
+//#include "boost/preprocessor/stringize.hpp"
 
 //#define KAI_PLATFORM_SOURCE_DIR(X) \
 //    BOOST_PP_CAT("Platform/", KAI_PP_STRINGISE(X))
