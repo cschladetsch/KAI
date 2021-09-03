@@ -308,8 +308,8 @@ void Executor::ContinueOnly(Value<Continuation> C)
     Continue(C);
 }
 
-template <class D>
-Value<Array> Executor::ForEach(D const &cont, Object const &fun)
+template <class Container>
+Value<Array> Executor::ForEach(Container const &cont, Object const &fun)
 {
     auto array = New<Array>();
     for (auto const &elem : cont)
@@ -441,14 +441,14 @@ Object Executor::Resolve(Pathname const &path) const
     return Q;
 }
 
-void Executor::Trace(const Label &, const StorageBase &Q, StringStream &S)
+void Executor::Trace(const Label &, const StorageBase &object, StringStream &stream)
 {
-    S
-        << "Handle=" << Q.GetHandle().GetValue() << ": "
-        << "Parent=" << Q.GetParentHandle().GetValue() << ": "
-        << "Fullname=" << GetFullname(Q) << ": "
-        << "Type=" << Q.GetClass()->GetName() << ": "
-        << "StrStrm='" << Q
+    stream
+        << "Handle=" << object.GetHandle().GetValue() << ": "
+        << "Parent=" << object.GetParentHandle().GetValue() << ": "
+        << "Fullname=" << GetFullname(object) << ": "
+        << "Type=" << object.GetClass()->GetName() << ": "
+        << "StrStrm='" << object
         << "'\n";
 }
 
