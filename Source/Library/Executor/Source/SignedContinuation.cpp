@@ -5,10 +5,8 @@
 
 KAI_BEGIN
 
-void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Pointer<Continuation> C, Pointer<Executor> exec)
+void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Pointer<Continuation> cont, Pointer<Executor> exec)
 {
-    cont = C;
-
     if (args.Exists())
     {
         if ((args->Size() & 1) != 0)
@@ -75,4 +73,4 @@ void SignedContinuation::Register(Registry &R)
 
 KAI_END
 
-//EOF
+
