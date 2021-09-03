@@ -12,8 +12,6 @@ void SignedContinuation::Create(Pointer<Array> args, Pointer<Array> rtypes, Poin
         if ((args->Size() & 1) != 0)
             KAI_THROW_1(Base, "SignedContinuation argument list must be a list of (type, label)");
 
-        cont = C;
-
         // Add the formal params.
         Array::const_iterator A = args->Begin(), B = args->End();
         while (A != B)
