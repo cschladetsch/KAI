@@ -58,7 +58,15 @@ Prerequisites:
 * A modern C++ compiler.
 * [Cmake](https://cmake.org/install/).
 
-* [Boost](https://www.boost.org/). The specific packages required are `filesystem`, `chrono` and `regex`.
+```bash
+$ sudo apt-get install cmake
+```
+
+* [Boost](https://www.boost.org/). The specific packages required are `filesystem`, `chrono`, `programoptions`, `date-time` and `regex`.
+
+```bash
+$ sudo apt-get install libboost-filesystem-dev libboost-chrono-dev libboost-regex-dev libboost-program-options-dev libboost-date-time-dev
+```
 
 After this do the usual:
 
