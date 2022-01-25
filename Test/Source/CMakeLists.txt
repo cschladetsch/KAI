@@ -12,8 +12,8 @@ file(GLOB_RECURSE headers ${header_path}/*.h)
 list(APPEND sources ${TEST_HOME}/Common/TestCommon.cpp)
 list(APPEND sources ${TEST_HOME}/Common/MyTestStruct.cpp)
 include_directories(${header_path})
-link_libraries(Executor Core PiLang RhoLang TauLang ${GTEST_BOTH_LIBRARIES} ${Boost_LIBRARIES})# HlslLang)
+link_libraries(Executor Core PiLang RhoLang TauLang ${GTEST_BOTH_LIBRARIES} ${Boost_LIBRARIES} gtest_main)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BIN_HOME}/Test")
-add_executable(${name} ${sources} ${headers})
-cotire(${name})
+#cotire(${name})
+
 
