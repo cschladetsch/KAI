@@ -1,4 +1,4 @@
-#include "KAI/Language/Rho/RhoToken.h"
+#include "KAI/Language/Lisp/LispToken.h"
 
 KAI_BEGIN
 
@@ -6,13 +6,13 @@ KAI_BEGIN
 #undef CASE_LOWER
 #undef CASE_REPLACE
 
-const char *RhoTokenEnumType::ToString(Enum val)
+const char *LispTokenEnumType::ToString(Enum val)
 {
     switch (val)
     {
-        #define CASE(N) case RhoTokens::N : return #N;
-        #define CASE_LOWER(N) case RhoTokens::N : return ToLower(#N);
-        #define CASE_REPLACE(N, M) case RhoTokens::N : return M;
+        #define CASE(N) case LispTokens::N : return #N;
+        #define CASE_LOWER(N) case LispTokens::N : return ToLower(#N);
+        #define CASE_REPLACE(N, M) case LispTokens::N : return M;
 
         CASE(None)
         CASE(Whitespace)
@@ -81,21 +81,21 @@ const char *RhoTokenEnumType::ToString(Enum val)
     }
 
     static char buff[BUFSIZ];
-    sprintf(buff, "Unnamed RhoToken %d", val);
+    sprintf(buff, "Unnamed LispToken %d", val);
     return buff;
 }
 
-std::ostream &operator<<(std::ostream &out, RhoToken const &node)
+std::ostream &operator<<(std::ostream &out, LispToken const &node)
 {
-    if (node.type == RhoTokenEnumType::None)
+    if (node.type == LispTokenEnumType::None)
         return out;
 
-    out << RhoTokenEnumType::ToString(node.type);
+    out << LispTokenEnumType::ToString(node.type);
     switch (node.type)
     {
-    case RhoTokenEnumType::Int:
-    case RhoTokenEnumType::String:
-    case RhoTokenEnumType::Ident:
+    case LispTokenEnumType::Int:
+    case LispTokenEnumType::String:
+    case LispTokenEnumType::Ident:
         out << "=" << node.Text();
     }
 

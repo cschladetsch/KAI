@@ -10,7 +10,6 @@ struct LispAstNodeEnumType
     enum Enum : int
     {
         None = 0,
-        Program = 1,
         Ident = 2,
         GetMember = 3,
         Function = 4,

@@ -1,9 +1,9 @@
 #include <KAI/Language/Common/ParserCommon.h>
-#include <KAI/Language/Rho/RhoParser.h>
+#include <KAI/Language/Lisp/LispParser.h>
 
 KAI_BEGIN
 
-bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
+bool LispParser::Process(std::shared_ptr<Lexer> lex, Structure st)
 {
     lexer = lex;
     if (lex->Failed)
@@ -25,7 +25,7 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
     return Run(st);
 }
 
-bool RhoParser::Run(Structure st)
+bool LispParser::Run(Structure st)
 {
     switch (st)
     {
@@ -60,7 +60,7 @@ bool RhoParser::Run(Structure st)
     return true;
 }
 
-bool RhoParser::Program()
+bool LispParser::Program()
 {
     while (!Try(TokenType::None) && !Failed)
     {
@@ -75,13 +75,13 @@ bool RhoParser::Program()
     return true;
 }
 
-void RhoParser::Function(AstNodePtr node)
+void LispParser::Function(AstNodePtr node)
 {
     ConsumeNewLines();
 
     Expect(TokenType::Fun);
     Expect(TokenType::Ident);
-    RhoToken name = Last();
+    LispToken name = Last();
     std::shared_ptr<AstNode> fun = NewNode(AstEnum::Function);
     fun->Add(name);
     Expect(TokenType::OpenParan);
@@ -105,7 +105,7 @@ void RhoParser::Function(AstNodePtr node)
     node->Add(fun);
 }
 
-void RhoParser::Block(AstNodePtr node)
+void LispParser::Block(AstNodePtr node)
 {
     ConsumeNewLines();
 
@@ -149,7 +149,7 @@ void RhoParser::Block(AstNodePtr node)
     }
 }
 
-bool RhoParser::Statement(AstNodePtr block)
+bool LispParser::Statement(AstNodePtr block)
 {
     switch (Current().type)
     {
@@ -223,7 +223,7 @@ finis:
     return true;
 }
 
-bool RhoParser::Expression()
+bool LispParser::Expression()
 {
 //    bool paran = Try(TokenType::OpenParan);
 //    if (paran)
@@ -263,7 +263,7 @@ bool RhoParser::Expression()
     return true;
 }
 
-bool RhoParser::Logical()
+bool LispParser::Logical()
 {
     if (!Relational())
         return false;
@@ -282,7 +282,7 @@ bool RhoParser::Logical()
     return true;
 }
 
-bool RhoParser::Relational()
+bool LispParser::Relational()
 {
     if (!Additive())
         return false;
@@ -302,7 +302,7 @@ bool RhoParser::Relational()
     return true;
 }
 
-bool RhoParser::Additive()
+bool LispParser::Additive()
 {
     // unary +/- operator
     if (Try(TokenType::Plus) || Try(TokenType::Minus))
@@ -345,7 +345,7 @@ bool RhoParser::Additive()
     return true;
 }
 
-bool RhoParser::Term()
+bool LispParser::Term()
 {
     if (!Factor())
         return false;
@@ -364,7 +364,7 @@ bool RhoParser::Term()
     return true;
 }
 
-bool RhoParser::Factor()
+bool LispParser::Factor()
 {
     if (Try(TokenType::OpenParan))
     {
@@ -420,7 +420,7 @@ bool RhoParser::Factor()
     return false;
 }
 
-bool RhoParser::ParseFactorIdent()
+bool LispParser::ParseFactorIdent()
 {
     PushConsume();
 
@@ -450,7 +450,7 @@ bool RhoParser::ParseFactorIdent()
     return true;
 }
 
-void RhoParser::ParseMethodCall()
+void LispParser::ParseMethodCall()
 {
     Consume();
     auto call = NewNode(NodeType::Call);
@@ -481,7 +481,7 @@ void RhoParser::ParseMethodCall()
         call->Add(Consume());
 }
 
-void RhoParser::ParseGetMember()
+void LispParser::ParseGetMember()
 {
     Consume();
     auto get = NewNode(NodeType::GetMember);
@@ -490,7 +490,7 @@ void RhoParser::ParseGetMember()
     Push(get);
 }
 
-void RhoParser::IfCondition(AstNodePtr block)
+void LispParser::IfCondition(AstNodePtr block)
 {
     if (!Try(TokenType::If))
         return;
@@ -526,7 +526,7 @@ void RhoParser::IfCondition(AstNodePtr block)
     block->Add(cond);
 }
 
-void RhoParser::ParseIndexOp()
+void LispParser::ParseIndexOp()
 {
     Consume();
     auto index = NewNode(NodeType::IndexOp);
@@ -542,14 +542,14 @@ void RhoParser::ParseIndexOp()
     Push(index);
 }
 
-void RhoParser::For(AstNodePtr block)
+void LispParser::For(AstNodePtr block)
 {
     if (!Try(TokenType::For))
         return;
 
     Consume();
 
-    auto f = NewNode(RhoAstNodeEnumType::For);
+    auto f = NewNode(LispAstNodeEnumType::For);
     if (!Expression())
     {
         CreateError("For what?");
@@ -597,7 +597,7 @@ void RhoParser::For(AstNodePtr block)
     block->Add(f);
 }
 
-void RhoParser::While(AstNodePtr block)
+void LispParser::While(AstNodePtr block)
 {
     auto w = NewNode(Consume());
     if (!Expression())
@@ -610,19 +610,19 @@ void RhoParser::While(AstNodePtr block)
     block->Add(w);
 }
 
-bool RhoParser::CreateError(const char *text)
+bool LispParser::CreateError(const char *text)
 {
     return Fail(Lexer::CreateErrorMessage(Current(), text));
 }
 
-void RhoParser::AddBlock(AstNodePtr fun)
+void LispParser::AddBlock(AstNodePtr fun)
 {
-    auto block = NewNode(RhoAstNodeEnumType::Block);
+    auto block = NewNode(LispAstNodeEnumType::Block);
     Block(block);
     fun->Add(block);
 }
 
-void RhoParser::ConsumeNewLines()
+void LispParser::ConsumeNewLines()
 {
     while (Try(TokenType::NewLine))
         Consume();

@@ -1,10 +1,10 @@
-#include <KAI/Language/Rho/RhoLexer.h>
+#include <KAI/Language/Lisp/LispLexer.h>
 
 using namespace std;
 
 KAI_BEGIN
 
-void RhoLexer::AddKeyWords() 
+void LispLexer::AddKeyWords() 
 {
     keyWords["if"] = Enum::If;
     keyWords["else"] = Enum::Else;
@@ -22,7 +22,7 @@ void RhoLexer::AddKeyWords()
     keyWords["pi{"] = Enum::PiSequence;
 }
 
-bool RhoLexer::NextToken()
+bool LispLexer::NextToken()
 {
     char current = Current();
     if (current == 0)
@@ -109,7 +109,7 @@ bool RhoLexer::NextToken()
 bool Contains(const char *allowed, char current);
 
 // TODO: this is the same as PiLexer::PathnameOrKeyword(!)
-bool RhoLexer::LexPathname()
+bool LispLexer::LexPathname()
 {
     int start = offset;
     bool quoted = Current() == '\'';
@@ -164,7 +164,7 @@ bool RhoLexer::LexPathname()
     return true;
 }
 
-void RhoLexer::Terminate()
+void LispLexer::Terminate()
 {
     Add(Enum::None, 0);
 }

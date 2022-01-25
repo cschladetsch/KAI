@@ -1,18 +1,18 @@
-# Rho ![Rho](/Images/DoPLOGO-01.png)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/cschladetsch/kai/Source/Library/Language/Rho/?svg=true)](https://ci.appveyor.com/project/cschladetsch/kai)
-[![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/kai/badge)](https://www.codefactor.io/repository/github/cschladetsch/kai/Source/Library/Language/Rho/)
+# Lisp ![Lisp](/Images/DoPLOGO-01.png)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/cschladetsch/kai/Source/Library/Language/Lisp/?svg=true)](https://ci.appveyor.com/project/cschladetsch/kai)
+[![CodeFactor](https://www.codefactor.io/repository/github/cschladetsch/kai/badge)](https://www.codefactor.io/repository/github/cschladetsch/kai/Source/Library/Language/Lisp/)
 [![License](https://img.shields.io/github/license/cschladetsch/flow.svg?label=License&maxAge=86400)](./LICENSE.txt)
 [![Release](https://img.shields.io/github/release/cschladetsch/flow.svg?label=Release&maxAge=60)](https://github.com/cschladetsch/kai/releases/latest)
 
-Rho is an in-fix language that translates to [Pi](/Source/Library/Language/Pi/Readme.md).
+Lisp is an in-fix language that translates to [Pi](/Source/Library/Language/Pi/Readme.md).
 
-Both Rho and Pi use the same [Executor](/Source/Library/Executor/Source/Executor.cpp).
+Both Lisp and Pi use the same [Executor](/Source/Library/Executor/Source/Executor.cpp).
 
-Rho is much like _Python_, but with an even less verbose syntax.
+Lisp is much like _Python_, but with an even less verbose syntax.
 
-The 'return value' for a Rho function (continuation) is whatever is left on the stack(s) when the continuatin leaves.
+The 'return value' for a Lisp function (continuation) is whatever is left on the stack(s) when the continuatin leaves.
 
-_Rho_ is internally translated to _Pi_ for use in a single _Executor_ that supports continuations natively.
+_Lisp_ is internally translated to _Pi_ for use in a single _Executor_ that supports continuations natively.
 
 ## Hello World
 ```
@@ -22,7 +22,7 @@ rho>
 ```
 
 ## Example Test Suite
-This is code taken directly from a [file](/Test/Language/TestRho/Scripts/Function.rho) in the test suite:
+This is code taken directly from a [file](/Test/Language/TestLisp/Scripts/Function.rho) in the test suite:
 
 ```
 fun a(b, c)
