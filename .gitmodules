@@ -4,3 +4,6 @@
 [submodule "Ext/rang"]
 	path = Ext/rang
 	url = git@github.com:cschladetsch/rang.git
+[submodule "Ext/cpp-httplib"]
+	path = Ext/cpp-httplib
+	url = git://github.com/yhirose/cpp-httplib.git
