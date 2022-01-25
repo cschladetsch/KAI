@@ -1,7 +1,6 @@
 # cmake_minimum_required(VERSION 3.6)
 
 set(name NetworkGenerate)
-project(${name})
 
 project(${name})
 set(SOURCE_ROOT ${SOURCE_HOME}/App/${name}/Source/*.cpp)

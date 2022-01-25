@@ -27,6 +27,7 @@ protected:
     Tree * _tree = nullptr;
     Object _root;
 
+    ~TestCommon() { }
     Registry &Reg() const;
     Tree &GetTree() const;
     Object Root() const;

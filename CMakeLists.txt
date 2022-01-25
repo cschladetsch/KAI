@@ -10,21 +10,6 @@ option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
 option(KAI_BUILD_RAKNET "Build RakNet " OFF)
 
-if (KAI_BUILD_TEST_ALL)
-	set(KAI_BUILD_CORE_TEST ON)
-	set(KAI_BUILD_TEST_LANG ON)
-	#set(KAI_BUILD_TEST_NETWORK ON)
-endif()
-
-# some problems with colors and Gtest on Raspian
-if(!WIN32)
-	set(KAI_BUILD_TEST_ALL OFF)
-	set(KAI_BUILD_CORE_TEST OFF)
-	set(KAI_BUILD_TEST_LANG OFF)
-endif()
-
-set(KAI_BUILD_RAKNET OFF)
-
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 # used tp generate compile options for YouCompleteMe
@@ -79,10 +64,9 @@ FetchContent_Declare(
 	URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 	)
 # For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+#set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-#include(IncludeGtest)
 #include(cotire)
 
 macro(enable_gtest name)
@@ -131,11 +115,6 @@ macro(def_lang_library name)
 	set(headers ${kai_includes}/*.h ${local_includes}/*.h)
 	file(GLOB_RECURSE src ${sources})
 	file(GLOB_RECURSE hdrs ${headers})
-	#message(STATUS "LANG: ${name} header root at ${headers}")
-	#message(STATUS "LANG: ${name} source root at ${sources}")
-	#message(STATUS "LANG: ${name} Sources at ${src}")
-	#message(STATUS "LANG: ${name} Headers at ${hdrs}")
-	#message(STATUS "LANG: ${name} Files are ${src} ${hdrs}")
 	add_library(${name}Lang ${src} ${hdrs})
 	#cotire(${name}Lang)
 endmacro()
@@ -154,9 +133,5 @@ foreach(top ${TopLevels})
 	include(${SOURCE_HOME}/${top}/CMakeLists.txt)
 endforeach()
 
-set(KAI_BUILD_TEST_ALL ON)
-if (KAI_BUILD_TEST_ALL)
-	message(STATUS "***** Adding tests")
-	add_subdirectory(Test)
-endif()
+add_subdirectory(Test) 
 
