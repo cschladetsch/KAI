@@ -8,7 +8,7 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st) {
     if (lex->Failed)
         return Fail(lex->Error);
 
-    for (auto tok : lexer->GetTokens()) /
+    for (auto tok : lexer->GetTokens()) {
         if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
             tokens.push_back(tok);
     }
