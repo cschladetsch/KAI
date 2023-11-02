@@ -8,11 +8,10 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st) {
     if (lex->Failed)
         return Fail(lex->Error);
 
-    // strip whitespace and comments
-    for (auto tok : lexer->GetTokens()) {
+    for (auto tok : lexer->GetTokens()) /
         if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
             tokens.push_back(tok);
-	}
+    }
 
     root = NewNode(AstEnum::Program);
 
@@ -498,7 +497,7 @@ void RhoParser::While(AstNodePtr block) {
 }
 
 bool RhoParser::CreateError(const char *text)
-	=> return Fail(Lexer::CreateErrorMessage(Current(), text));
+    => return Fail(Lexer::CreateErrorMessage(Current(), text));
 
 void RhoParser::AddBlock(AstNodePtr fun) {
     auto block = NewNode(RhoAstNodeEnumType::Block);
