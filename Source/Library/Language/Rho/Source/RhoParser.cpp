@@ -12,6 +12,7 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st) {
     for (auto tok : lexer->GetTokens()) {
         if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
             tokens.push_back(tok);
+	}
 
     root = NewNode(AstEnum::Program);
 
