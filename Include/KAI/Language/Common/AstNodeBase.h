@@ -50,19 +50,25 @@ public:
         return std::move(_token.Text());
     }
 
-    void Add(AstNodePtr node)
+    bool Add(AstNodePtr node)
     {
+        if (!node) {
+            return false;
+        }
         _children.push_back(node);
+        return true;
     }
 
-    void Add(Enum type, Object content)
+    bool Add(Enum type, Object content)
     {
         _children.push_back(std::make_shared<Self>(type, content));
+        return true;
     }
 
-    void Add(Token const &tok)
+    bool Add(Token const &tok)
     {
         Add(std::make_shared<Self>(tok));
+        return true;
     }
 
     friend std::ostream &operator<<(std::ostream &out, Self const &node)

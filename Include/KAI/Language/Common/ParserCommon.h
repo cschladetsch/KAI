@@ -106,15 +106,23 @@ protected:
         return current < tokens.size();
     }
 
-    void Push(AstNodePtr node)
+    bool Push(AstNodePtr node)
     {
-        if (node)
+        if (node) {
             stack.push_back(node);
+            return true;
+        }
+
+        return false;
     }
 
-    void Append(Object Q)
+    bool Append(Object Q)
     {
+        if (Empty()) {
+            return false;
+        }
         Top()->Children.push_back(std::make_shared<AstNode>(AstEnum::Object, Q));
+        return true;
     }
 
     AstNodePtr Pop()

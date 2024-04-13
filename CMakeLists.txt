@@ -15,6 +15,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 # used tp generate compile options for YouCompleteMe
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 
+set(CMAKE_CXX_STANDARD 17)
+
 add_definitions(-DKAI_USE_NAMESPACES)
 add_definitions(-DKAI_NAMESPACE_NAME=kai)
 add_definitions(-DKAI_USE_EXCEPTIONS)

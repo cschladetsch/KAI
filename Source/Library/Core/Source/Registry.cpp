@@ -1,12 +1,14 @@
+#include <utility>
+#include <cassert>
+
 #include <KAI/Core/Registry.h>
 #include <KAI/Core/BuiltinTypes/Signed32.h>
 #include <KAI/Core/Memory/StandardAllocator.h>
 #include <KAI/Core/Object/Class.h>
 #include <KAI/Core/Object/IObject.h>
 
-#include <utility>
-#include "KAI/Core/Tree.h"
-#include "KAI/Core/TriColor.h"
+#include <KAI/Core/Tree.h>
+#include <KAI/Core/TriColor.h>
 
 // Use tri-color generational gc. See https://en.wikipedia.org/wiki/Tracing_garbage_collection#Tri-color_marking
 #define KAI_USE_TRICOLOR
