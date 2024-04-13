@@ -53,6 +53,9 @@ public:
         {
             if (element.GetHandle() == Q.GetHandle())
                 return true;
+			if (Q.GetClass()->Equals(element)) {
+				return true;
+			}
         }
         return false;
     }
