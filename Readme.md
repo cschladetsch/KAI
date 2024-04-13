@@ -89,6 +89,12 @@ After this do the usual:
 mkdir -p build && cd build && cmake ..
 ```
 
+Finally, make sure to use the same compiler/linker for C and C++ and generate Ninja:
+
+```
+$ cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -G Ninja && ninja
+```
+
 ## Console
 
 The basic [Console](Source/App/Console) supports both Pi and Rho as a Repl shell. It works and colored on Windows, Linux, and macOs. The following is just a basic look at the shell.
