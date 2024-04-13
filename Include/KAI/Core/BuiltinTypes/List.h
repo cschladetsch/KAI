@@ -59,6 +59,25 @@ public:
 		}
 		return false;
 	}
+    void Append(Object const &Q);
+    void PushBack(Object const &Q) { Append(Q); }
+    Object Pop();
+    Object PopBack() { return Pop(); }
+    iterator Erase(iterator A);
+    iterator Erase(Object const &Q);
+    bool Contains(Object const &Q) const
+    {
+        for (auto const &element : objects)
+        {
+            if (element.GetHandle() == Q.GetHandle())
+                return true;
+			if (Q.GetClass()->Equals(element)) {
+				return true;
+			}
+        }
+        return false;
+    }
+>>>>>>> develop
 
 	void Erase2(Object Q) { Erase(Q); }
 	void Append2(Object Q) { Append(Q); }
