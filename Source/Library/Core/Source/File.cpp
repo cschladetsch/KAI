@@ -1,17 +1,20 @@
-#include <boost/filesystem.hpp>
+#include <string>
+#include <filesystem>
+#include <fstream>
+#include <iterator>
 
 #include "KAI/Core/File.h"
 #include "KAI/Core/Object.h"
 #include "KAI/Core/Exception.h"
 
-using namespace boost::filesystem;
 using namespace std;
+using namespace std::filesystem;
 
 KAI_BEGIN
 
 namespace File
 {
-    namespace fs = boost::filesystem;
+    namespace fs = std::filesystem;
 
     // return a vector of all files that have the given extension, starting from root, recursively
     Pathnames GetFilesWithExtensionRecursively(Pathname const &root, Extension const &ext)
@@ -47,20 +50,20 @@ namespace File
     // Read all text from given filename
     string ReadAllText(Pathname const &path)
     {
-        fs::ifstream f(path);
+        std::ifstream f(path);
         return string(istreambuf_iterator<char>(f), istreambuf_iterator<char>());
     }
 
     std::wstring ReadAllWideText(Pathname const &path)
     {
-        fs::ifstream f(path);
+        std::ifstream f(path);
         return wstring(istreambuf_iterator<char>(f), istreambuf_iterator<char>());
     }
 
     // replace a file with the contents of a string
     bool ReplaceWithText(std::string const &text, Pathname const &path)
     {
-        fs::ofstream out(path, ios_base::out);
+        std::ofstream out(path.string().c_str(), ios_base::out);
         if (!out)
             return false;
 

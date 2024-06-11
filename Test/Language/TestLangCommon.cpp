@@ -1,12 +1,13 @@
 #include <cwctype>
-#include <boost/filesystem.hpp>
+#include <filesystem>
+#include <boost/algorithm/string/predicate.hpp>
 
 #include "TestCommon.h"
 #include "TestLangCommon.h"
-
-#include <boost/algorithm/string/predicate.hpp>
-
 #include "File.h"
+
+using namespace std;
+namespace fs = std::filesystem;
 
 KAI_BEGIN
 
@@ -27,9 +28,6 @@ void ToLower(std::wstring &str)
 {
     std::transform(str.begin(), str.end(), str.begin(), std::towlower);
 }
-
-using namespace std;
-namespace fs = boost::filesystem;
 
 void TestLangCommon::SetUp()
 {

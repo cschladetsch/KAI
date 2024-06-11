@@ -21,7 +21,6 @@ Tests are currently built [here](Bin\Tests\Debug).
 ## Selecting Tests
 
 To focus only on some tests, make a debug configuration that uses:
-
 ```bash
 ./TestSuite --gtest_filter=TestFoo*
 ```

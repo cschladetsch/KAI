@@ -1,18 +1,21 @@
 #pragma once
 
 #include "KAI/Core/Config/Base.h"
-#include <boost/filesystem.hpp>
+#include <filesystem>
 #include <string>
+#include <fstream>
 #include <vector>
 
 KAI_BEGIN
 
 namespace File
 {
-    using Pathname = boost::filesystem::path;
+    using Pathname = std::filesystem::path;
     using Extension = std::string;// Pathname::string_type;
     using Pathnames = std::vector<Pathname>;
     using byte = std::uint8_t;
+
+	namespace fs = std::filesystem;
 
     bool Exists(Pathname const &);
     bool IsFile(Pathname const &);
@@ -30,21 +33,30 @@ namespace File
     // replace a file with the contents of a string
     bool ReplaceWithText(std::string const &, Pathname const&);
 
-    // read all bytes in a file
-    template <class Byte = std::uint8_t>
-    std::vector<Byte> ReadAllBinary(Pathname const &path)
-    {
-        using namespace std;
-        namespace fs = boost::filesystem;
+	template <class Byte = std::uint8_t>
+	std::vector<Byte> ReadAllBinary(const fs::path &path) {
+		// Open the file using low-level system calls
+		std::ifstream file(path, std::ios::binary | std::ios::ate);
+		if (!file.is_open())
+		{
+			throw std::runtime_error("Unable to open file");
+		}
 
-        fs::basic_ifstream<Byte> in(path, ios_base::binary | ios_base::in);
-        in.seekg(0, ios_base::end);
-        const auto len = in.tellg();
-        in.seekg(0, ios_base::beg);
-        vector<Byte> contents(len);
-        in.read(&contents[0], len);
-        return contents;
-    }
+		// Determine the file size
+		std::streamsize size = file.tellg();
+		file.seekg(0, std::ios::beg);
+
+		// Allocate a buffer to hold the file's content
+		std::vector<Byte> buffer(size);
+
+		// Read the file into the buffer
+		if (!file.read(reinterpret_cast<char*>(buffer.data()), size))
+		{
+			throw std::runtime_error("Error reading file");
+		}
+
+		return buffer;
+	}
 
     // replace a file with a sequence of bytes
     bool ReplaceWithBinary(byte const *, size_t num_bytes, Pathname const &);
