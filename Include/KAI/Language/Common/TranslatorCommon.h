@@ -1,24 +1,25 @@
 #pragma once
 
-#include <KAI/Language/Common/ProcessCommon.h>
-#include <KAI/Language/Common/Structure.h>
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Operation.h>
+#include <KAI/Language/Common/ProcessCommon.h>
+#include <KAI/Language/Common/Structure.h>
 
 KAI_BEGIN
 
 /// Common to all systems that translate from a text stream to a Continuation
-struct TranslatorCommon : ProcessCommon
-{
-public:
+struct TranslatorCommon : ProcessCommon {
+   public:
     TranslatorCommon(Registry &r);
 
-    virtual Pointer<Continuation> Translate(const char *text, Structure = Structure::Statement) = 0;
+    virtual Pointer<Continuation> Translate(
+        const char *text, Structure = Structure::Statement) = 0;
 
     std::string ToString() const;
 
     void PushNew();
-    Pointer<Continuation> Pop();     // fault in system: only continuations can be pushed/popped
+    Pointer<Continuation>
+    Pop();  // fault in system: only continuations can be pushed/popped
     Pointer<Continuation> Top();
     Pointer<const Continuation> Top() const;
     virtual Pointer<Continuation> Result() { return Top(); }
@@ -26,17 +27,16 @@ public:
     void Append(Object const &ob);
 
     template <class T>
-    void AppendNew(T val)
-    {
+    void AppendNew(T val) {
         Append(_reg->New<T>(val));
     }
 
     void AppendOp(Operation::Type op);
 
-    struct Exception { };
-    struct Unsupported : Exception { };
+    struct Exception {};
+    struct Unsupported : Exception {};
 
-protected:
+   protected:
     std::vector<Pointer<Continuation> > stack;
     using ProcessCommon::_reg;
 };

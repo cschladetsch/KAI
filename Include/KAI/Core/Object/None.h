@@ -4,8 +4,7 @@
 
 KAI_BEGIN
 
-struct None
-{
+struct None {
     typedef None Prev, Next, Value, Type;
 };
 

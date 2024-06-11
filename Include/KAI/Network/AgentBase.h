@@ -4,15 +4,12 @@
 
 KAI_NET_BEGIN
 
-struct AgentBase : Representative
-{
-	AgentBase(Node &node, NetObject servant)
-		: Representative(node, servant.GetNetHandle())
-	{ 
-	}
+struct AgentBase : Representative {
+    AgentBase(Node &node, NetObject servant)
+        : Representative(node, servant.GetNetHandle()) {}
 
-protected:
-//	using Representative::_object;
+   protected:
+    //	using Representative::_object;
 };
 
 KAI_NET_END

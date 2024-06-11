@@ -1,7 +1,8 @@
 #if 0
+#include "KAI/Network/Peer.h"
+
 #include <iostream>
 
-#include "KAI/Network/Peer.h"
 #include "KAI/ClassBuilder.h"
 
 using namespace std;

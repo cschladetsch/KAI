@@ -1,6 +1,6 @@
-#include <RakNet/RakPeer.h>
-
 #include "KAI/Network/Node.h"
+
+#include <RakNet/RakPeer.h>
 
 KAI_NET_BEGIN
 
@@ -28,15 +28,13 @@ using namespace std;
 // 	}
 // };
 
-Node::Node()
-{
-	_peer = RakPeerInterface::GetInstance();
-	// _peer->Startup(8,&sd1,1);
+Node::Node() {
+    _peer = RakPeerInterface::GetInstance();
+    // _peer->Startup(8,&sd1,1);
 }
 
-void Node::Listen(int port)
-{
-	_peer->AllowConnectionResponseIPMigration(false);
+void Node::Listen(int port) {
+    _peer->AllowConnectionResponseIPMigration(false);
 }
 
 // void Node::Connect(Node &other)
@@ -45,24 +43,23 @@ void Node::Listen(int port)
 // }
 
 // connect to another peer at given address and port
-void Node::Connect(IpAddress const &ip, int port)
-{
-	KAI_UNUSED_1(port);
-	KAI_NOT_IMPLEMENTED();
+void Node::Connect(IpAddress const &ip, int port) {
+    KAI_UNUSED_1(port);
+    KAI_NOT_IMPLEMENTED();
 }
 
-//Future Node::Send(NetHandle, Object)
+// Future Node::Send(NetHandle, Object)
 //{
 //	KAI_NOT_IMPLEMENTED();
 //	return Future();
-//}
+// }
 //
-//Future Node::Receive(NetHandle, Object)
+// Future Node::Receive(NetHandle, Object)
 //{
 //	KAI_NOT_IMPLEMENTED();
 //	return Future();
-//}
+// }
 
 KAI_NET_END
 
-//EOF
+// EOF

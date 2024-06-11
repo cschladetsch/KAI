@@ -5,10 +5,8 @@
 
 KAI_BEGIN
 
-struct LispAstNodeEnumType
-{
-    enum Enum : int
-    {
+struct LispAstNodeEnumType {
+    enum Enum : int {
         None = 0,
         Program = 1,
         Ident = 2,
@@ -36,23 +34,22 @@ struct LispAstNodeEnumType
         Less = 24,
         Equiv = 25,
         NotEquiv = 26,
-        Greater= 27,
+        Greater = 27,
         Object = 28,
         Continuation = 29,
         Pathname = 30,
         Home = 31,
     };
 
-    struct Node : AstNodeBase<LispToken, LispAstNodeEnumType>
-    {
+    struct Node : AstNodeBase<LispToken, LispAstNodeEnumType> {
         typedef AstNodeBase<LispToken, LispAstNodeEnumType> Parent;
         using typename Parent::Token;
         KAI_NAMESPACE(Object) object;
 
-        Node() : Parent(Enum::None) {  }
-        Node(Enum e) : Parent(e) { }
-        Node(Enum e, Token &tok) : Parent(e, tok) { }
-        Node(Parent::Token tok) : Parent(tok) { }
+        Node() : Parent(Enum::None) {}
+        Node(Enum e) : Parent(e) {}
+        Node(Enum e, Token &tok) : Parent(e, tok) {}
+        Node(Parent::Token tok) : Parent(tok) {}
     };
 
     static const char *ToString(Enum val);

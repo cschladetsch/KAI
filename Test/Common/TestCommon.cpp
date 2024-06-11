@@ -1,13 +1,14 @@
 #include "TestCommon.h"
+
 #include <KAI/Core/BuiltinTypes/All.h>
 #include <KAI/Core/Tree.h>
+
 #include "KAI/Core/Console.h"
 #include "KAI/Core/StringStream.h"
 
 KAI_BEGIN
 
-void TestCommon::SetUp()
-{
+void TestCommon::SetUp() {
     _reg = new Registry();
     _tree = new kai::Tree();
 
@@ -26,23 +27,13 @@ void TestCommon::SetUp()
     AddRequiredClasses();
 }
 
-Registry &TestCommon::Reg() const
-{
-    return *_reg;
-}
+Registry &TestCommon::Reg() const { return *_reg; }
 
-Tree &TestCommon::GetTree() const
-{
-    return *_tree;
-}
+Tree &TestCommon::GetTree() const { return *_tree; }
 
-Object TestCommon::Root() const
-{
-    return _root;
-}
+Object TestCommon::Root() const { return _root; }
 
-void TestCommon::TearDown()
-{
+void TestCommon::TearDown() {
     delete _reg;
     delete _tree;
 }

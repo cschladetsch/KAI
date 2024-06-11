@@ -1,7 +1,6 @@
 #include "KAI/Core/Console.h"
-
-#include "TestLangCommon.h"
 #include "MyTestStruct.h"
+#include "TestLangCommon.h"
 
 KAI_BEGIN
 
@@ -10,32 +9,23 @@ using namespace std;
 bool funCalled[5];
 
 // make some functions that we will also add to the runtime
-void Function_0()
-{
-    funCalled[0] = true;
-}
+void Function_0() { funCalled[0] = true; }
 
-void Function_1(int )
-{
-    funCalled[1] = true;
-}
+void Function_1(int) { funCalled[1] = true; }
 
-String Function_2(int n, int f, String p)
-{
+String Function_2(int n, int f, String p) {
     funCalled[2] = true;
     // KAI_TRACE_3(n, f, p);
     return p + String("foo");
 }
 
-Object Function_3(Object object)
-{
+Object Function_3(Object object) {
     funCalled[3] = true;
     KAI_TRACE_1(object);
     return object["num"];
 }
 
-TEST_F(TestLangCommon, TestRhoReflection)
-{
+TEST_F(TestLangCommon, TestRhoReflection) {
     Registry &reg = *_reg;
     MyStruct::Register(reg);
 
@@ -52,7 +42,7 @@ TEST_F(TestLangCommon, TestRhoReflection)
     AddFunction(_root, Function_2, Label("Function2"));
     AddFunction(_root, Function_3, Label("Function3"));
 
-    //CJS TODO these fail because of changes to CommonLexer
+    // CJS TODO these fail because of changes to CommonLexer
     std::cerr << "**** Skipping due to changes in Common Lexer" << std::endl;
     return;
 
@@ -61,8 +51,7 @@ TEST_F(TestLangCommon, TestRhoReflection)
     _console.Execute("Function2(123, 3, \"bar\")");
     _console.Execute("Function3(mystruct)");
 
-    for (int n = 0; n < 2; ++n)
-        ASSERT_TRUE(funCalled[n]);
+    for (int n = 0; n < 2; ++n) ASSERT_TRUE(funCalled[n]);
 
     Value<Stack> stack = _console.GetExecutor()->GetDataStack();
     EXPECT_EQ(stack->Size(), 2);
@@ -71,9 +60,6 @@ TEST_F(TestLangCommon, TestRhoReflection)
     EXPECT_EQ(stack->Size(), 0);
 }
 
-TEST_F(TestLangCommon, RunScripts)
-{
-    ExecScripts();
-}
+TEST_F(TestLangCommon, RunScripts) { ExecScripts(); }
 
 KAI_END

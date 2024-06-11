@@ -1,26 +1,24 @@
 #pragma once
 
+#include <KAI/Core/Object/Object.h>
+
 #include <list>
 
-#include <KAI/Core/Object/Object.h>
 #include "KAI/Core/BuiltinTypes/Container.h"
 
 KAI_BEGIN
 
 /// A list of Objects
-struct List : Container<List>
-{
+struct List : Container<List> {
     typedef std::list<Object> Objects;
     typedef Objects::const_iterator const_iterator;
     typedef Objects::iterator iterator;
 
-private:
+   private:
     Objects objects;
 
-public:
-
-    bool Destroy()
-    {
+   public:
+    bool Destroy() {
         Clear();
         return true;
     }
@@ -47,12 +45,9 @@ public:
     Object PopBack() { return Pop(); }
     iterator Erase(iterator A);
     iterator Erase(Object const &Q);
-    bool Contains(Object const &Q) const
-    {
-        for (auto const &element : objects)
-        {
-            if (element.GetHandle() == Q.GetHandle())
-                return true;
+    bool Contains(Object const &Q) const {
+        for (auto const &element : objects) {
+            if (element.GetHandle() == Q.GetHandle()) return true;
         }
         return false;
     }
@@ -61,13 +56,15 @@ public:
     void Append2(Object Q) { Append(Q); }
     bool Contains2(Object Q) const { return Contains(Q); }
 
-    friend bool operator==(const List &A, const List &B) { return A.objects == B.objects; }
-    friend bool operator<(const List &A, const List &B) { return A.objects < B.objects; }
+    friend bool operator==(const List &A, const List &B) {
+        return A.objects == B.objects;
+    }
+    friend bool operator<(const List &A, const List &B) {
+        return A.objects < B.objects;
+    }
 
-    void SetChildSwitch(int N, bool M)
-    {
-        for (auto &elem : objects)
-            elem.SetSwitch(N, M);
+    void SetChildSwitch(int N, bool M) {
+        for (auto &elem : objects) elem.SetSwitch(N, M);
     }
 
     static void Register(Registry &);
@@ -79,15 +76,11 @@ BinaryStream &operator>>(BinaryStream &, List &);
 
 HashValue GetHash(const List &A);
 
-KAI_TYPE_TRAITS(List, Number::List
-    , Properties::StringStreamInsert 
-    | Properties::BinaryStreaming
-    | Properties::Less 
-    | Properties::Equiv
-    | Properties::Assign
-    | Properties::Reflected
-    | Properties::Container);
+KAI_TYPE_TRAITS(List, Number::List,
+                Properties::StringStreamInsert | Properties::BinaryStreaming |
+                    Properties::Less | Properties::Equiv | Properties::Assign |
+                    Properties::Reflected | Properties::Container);
 
 KAI_END
 
-//EOF
+// EOF

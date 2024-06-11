@@ -1,22 +1,21 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
-#include <KAI/Core/Pathname.h>
 #include <KAI/Core/Object/Object.h>
+#include <KAI/Core/Pathname.h>
 
 KAI_BEGIN
 
-class Tree
-{
-public:
+class Tree {
+   public:
     typedef std::list<Object> SearchPath;
 
-private:
+   private:
     SearchPath _path;
     Object _root, _scope;
     Pathname _current;
 
-public:
+   public:
     void SetRoot(const Object &Q) { _root = Q; }
     void AddSearchPath(const Pathname &);
     void AddSearchPath(const Object &);
@@ -31,8 +30,8 @@ public:
     void SetScope(const Object &);
     void SetScope(const Pathname &);
 
-    //void SetSearchPath(const SearchPath &);
-    //void GetChildren() const;
+    // void SetSearchPath(const SearchPath &);
+    // void GetChildren() const;
 };
 
 KAI_END

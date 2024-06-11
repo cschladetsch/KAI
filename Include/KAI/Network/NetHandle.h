@@ -5,25 +5,22 @@
 
 KAI_NET_BEGIN
 
-struct NetHandle
-{
-	MacAddress LocalMacAddress;
-	Handle LocalHandle;
-	int TypeNumber;
+struct NetHandle {
+    MacAddress LocalMacAddress;
+    Handle LocalHandle;
+    int TypeNumber;
 
-	friend bool operator==(NetHandle const &A, NetHandle const & B)
-	{
-		return A.LocalMacAddress == B.LocalMacAddress && A.LocalHandle == B.LocalHandle && A.TypeNumber == B.TypeNumber;
-	}
+    friend bool operator==(NetHandle const &A, NetHandle const &B) {
+        return A.LocalMacAddress == B.LocalMacAddress &&
+               A.LocalHandle == B.LocalHandle && A.TypeNumber == B.TypeNumber;
+    }
 };
 
-struct HashNetHandle
-{
-	size_t operator()(NetHandle const &h) const
-	{
-		return h.LocalMacAddress.Hash() ^ h.LocalHandle.GetValue() ^ h.TypeNumber;
-	}
+struct HashNetHandle {
+    size_t operator()(NetHandle const &h) const {
+        return h.LocalMacAddress.Hash() ^ h.LocalHandle.GetValue() ^
+               h.TypeNumber;
+    }
 };
 
 KAI_NET_END
-

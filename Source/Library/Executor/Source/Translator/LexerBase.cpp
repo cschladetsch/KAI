@@ -2,64 +2,45 @@
 
 KAI_BEGIN
 
-int IsSpaceChar(int ch)
-{
-    return ch == ' ';
-}
+int IsSpaceChar(int ch) { return ch == ' '; }
 
 LexerBase::LexerBase(const char *in, Registry &r)
-    : ProcessCommon(r), input(in), offset(0), lineNumber(0)
-{
-}
+    : ProcessCommon(r), input(in), offset(0), lineNumber(0) {}
 
-void LexerBase::CreateLines()
-{
-    if (input.back() != '\n')
-        input.push_back('\n');
+void LexerBase::CreateLines() {
+    if (input.back() != '\n') input.push_back('\n');
 
     size_t lineStart = 0;
-    for (size_t n = 0; n < input.size(); ++n)
-    {
-        if (input[n] == '\n')
-        {
+    for (size_t n = 0; n < input.size(); ++n) {
+        if (input[n] == '\n') {
             lines.push_back(input.substr(lineStart, n - lineStart + 1));
             lineStart = n + 1;
         }
     }
 }
 
-char LexerBase::Current() const
-{
-    if (lineNumber == (int)lines.size())
-        return 0;
+char LexerBase::Current() const {
+    if (lineNumber == (int)lines.size()) return 0;
 
     return Line()[offset];
 }
 
-const std::string &LexerBase::Line() const
-{
-    return GetLine(lineNumber);
-}
+const std::string &LexerBase::Line() const { return GetLine(lineNumber); }
 
-bool LexerBase::EndOfLine() const
-{
+bool LexerBase::EndOfLine() const {
     auto len = (int)Line().size();
     return len == 0 || offset == (int)Line().size() - 1;
 }
 
-char LexerBase::Peek() const
-{
-    if (!Current())
-        return 0;
+char LexerBase::Peek() const {
+    if (!Current()) return 0;
 
-    if (EndOfLine())
-        return 0;
+    if (EndOfLine()) return 0;
 
     return Line()[offset + 1];
 }
 
-Slice LexerBase::Gather(int (*filt)(int)) 
-{
+Slice LexerBase::Gather(int (*filt)(int)) {
     int start = offset;
     while (filt(Next()))
         ;
@@ -67,45 +48,36 @@ Slice LexerBase::Gather(int (*filt)(int))
     return Slice(start, offset);
 }
 
-char LexerBase::Next()
-{
-    if (EndOfLine())
-    {
+char LexerBase::Next() {
+    if (EndOfLine()) {
         offset = 0;
         ++lineNumber;
-    }
-    else
+    } else
         ++offset;
 
-    if (lineNumber == (int)lines.size())
-        return 0;
+    if (lineNumber == (int)lines.size()) return 0;
 
     return Line()[offset];
 }
 
-bool LexerBase::LexString()
-{
+bool LexerBase::LexString() {
     int start = offset;
     Next();
-    while (!Failed && Current() != '"')
-    {
-        if (Current() == '\\')
-        {
-            switch (Next())
-            {
-            case '"':
-            case 'n':
-            case 't':
-                break;
+    while (!Failed && Current() != '"') {
+        if (Current() == '\\') {
+            switch (Next()) {
+                case '"':
+                case 'n':
+                case 't':
+                    break;
 
-            default:
-                LexErrorBase("Bad escape sequence %c");
-                return false;
+                default:
+                    LexErrorBase("Bad escape sequence %c");
+                    return false;
             }
         }
 
-        if (Peek() == 0)
-        {
+        if (Peek() == 0) {
             Fail("Bad string literal");
             return false;
         }
@@ -122,4 +94,3 @@ bool LexerBase::LexString()
 }
 
 KAI_END
-

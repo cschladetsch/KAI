@@ -4,8 +4,7 @@
 
 KAI_BEGIN
 
-struct BasePointerBase
-{
+struct BasePointerBase {
     virtual ~BasePointerBase() {}
 
     void Create() {}
@@ -20,4 +19,3 @@ BinaryStream &operator<<(BinaryStream &, const BasePointerBase &);
 BinaryStream &operator>>(BinaryStream &, BasePointerBase &);
 
 KAI_END
-

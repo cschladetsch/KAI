@@ -1,8 +1,9 @@
 #pragma once
 
-#include <KAI/Core/Object/ClassBuilder.h>
-#include <KAI/Core/Exception.h>
 #include <KAI/Core/BuiltinTypes/Signed32.h>
+#include <KAI/Core/Exception.h>
+#include <KAI/Core/Object/ClassBuilder.h>
+
 #include "Container.h"
 
 KAI_BEGIN
@@ -11,17 +12,15 @@ KAI_BEGIN
 /// it is possible to store mappings of any type to any type.
 /// This is the base class for all mappings.
 template <class Map>
-struct MapBase : Container<Map>
-{
+struct MapBase : Container<Map> {
     typedef typename Map::const_iterator const_iterator;
     typedef typename Map::iterator iterator;
     typedef MapBase<Map> This;
 
-private:
+   private:
     Map map;
 
-public:
-
+   public:
     iterator begin() { return map.begin(); }
     iterator end() { return map.end(); }
 
@@ -38,57 +37,51 @@ public:
     void Insert(Object const &key, Object const &value) { map[key] = value; }
     bool ContainsKey(Object const &k) const { return Find(k) != End(); }
     const_iterator Find(Object const &k) const { return map.find(k); }
-    
-    void Erase(Object const &key)
-    {
+
+    void Erase(Object const &key) {
         iterator A = map.find(key);
-        if (A == map.end())
-            KAI_THROW_1(UnknownKey, key);
+        if (A == map.end()) KAI_THROW_1(UnknownKey, key);
         A->first.SetColor(ObjectColor::White);
         A->second.SetColor(ObjectColor::White);
-        map.erase(A);    
+        map.erase(A);
     }
-    
-    Object GetValue(Object const &key) const
-    {
+
+    Object GetValue(Object const &key) const {
         const_iterator A = map.find(key);
-        if (A == map.end())
-            return Object();//KAI_THROW_1(UnknownKey, key);
+        if (A == map.end()) return Object();  // KAI_THROW_1(UnknownKey, key);
         return A->second;
     }
-    
-    void SetChildSwitch(int S, bool M)
-    {
-        for (auto const & X : map)
-        {
+
+    void SetChildSwitch(int S, bool M) {
+        for (auto const &X : map) {
             const_cast<Object &>(X.first).SetSwitch(S, M);
             X.second.SetSwitch(S, M);
         }
     }
 
-    //friend bool operator<(const This &A, const This &B) { return A.map < B.map; }
-    friend bool operator==(const This &A, const This &B) { return A.map == B.map; }
+    // friend bool operator<(const This &A, const This &B) { return A.map <
+    // B.map; }
+    friend bool operator==(const This &A, const This &B) {
+        return A.map == B.map;
+    }
 
-    static void Register(Registry &R, const char *N)
-    {
-//        ClassBuilder<This>(R, Label(N))
-//            .Methods
-//            ("Size", &This::Size)
-//            ("Empty", &This::Empty)
-//            ("Insert", &This::Insert)
-//            ("Erase", &This::Erase)
-//            ("Find", &This::Find)
-//            ;
+    static void Register(Registry &R, const char *N) {
+        //        ClassBuilder<This>(R, Label(N))
+        //            .Methods
+        //            ("Size", &This::Size)
+        //            ("Empty", &This::Empty)
+        //            ("Insert", &This::Insert)
+        //            ("Erase", &This::Erase)
+        //            ("Find", &This::Find)
+        //            ;
     }
 };
 
 template <class Map>
-StringStream &operator<<(StringStream &S, MapBase<Map> const &M)
-{
+StringStream &operator<<(StringStream &S, MapBase<Map> const &M) {
     S << "{ ";
     const char *sep = "";
-    for (auto const &A : M)
-    {
+    for (auto const &A : M) {
         S << sep << "[" << A.first << ", " << A.second << "]";
         sep = ", ";
     }
@@ -96,8 +89,7 @@ StringStream &operator<<(StringStream &S, MapBase<Map> const &M)
 }
 
 template <class Map>
-StringStream &operator>>(StringStream &S, MapBase<Map> const &M)
-{
+StringStream &operator>>(StringStream &S, MapBase<Map> const &M) {
     // S << "{ ";
     // const char *sep = "";
     // for (auto const &A : M)
@@ -105,30 +97,25 @@ StringStream &operator>>(StringStream &S, MapBase<Map> const &M)
     //     S << sep << "[" << A.first << ", " << A.second << "]";
     //     sep = ", ";
     // }
-    
 
     // this will need a parser....
     KAI_NOT_IMPLEMENTED();
 }
-    
+
 template <class Map>
-BinaryStream &operator<<(BinaryStream &S, MapBase<Map> const &M)
-{
+BinaryStream &operator<<(BinaryStream &S, MapBase<Map> const &M) {
     S << M.Size();
-    for (const auto &A : M)
-    {
+    for (const auto &A : M) {
         S << A.first << A.second;
     }
     return S;
 }
 
 template <class Map>
-BinaryStream &operator>>(BinaryStream &S, MapBase<Map> &M)
-{
+BinaryStream &operator>>(BinaryStream &S, MapBase<Map> &M) {
     int length = 0;
     S >> length;
-    for (int N = 0; N < length; ++N)
-    {
+    for (int N = 0; N < length; ++N) {
         Object key, value;
         S >> key >> value;
         M.Insert(key, value);
@@ -137,4 +124,3 @@ BinaryStream &operator>>(BinaryStream &S, MapBase<Map> &M)
 }
 
 KAI_END
-

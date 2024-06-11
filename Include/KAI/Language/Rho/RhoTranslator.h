@@ -5,9 +5,8 @@
 
 KAI_BEGIN
 
-class RhoTranslator : public TranslatorBase<RhoParser>
-{
-public:
+class RhoTranslator : public TranslatorBase<RhoParser> {
+   public:
     typedef TranslatorBase<RhoParser> Parent;
     typedef typename Parent::Parser Parser;
     typedef typename Parent::TokenNode TokenNode;
@@ -16,14 +15,14 @@ public:
     typedef typename Parent::AstEnum AstNodeEnum;
     typedef typename Parent::AstNodePtr AstNodePtr;
 
-    RhoTranslator(const RhoTranslator&) = delete;
-    RhoTranslator(Registry &r) : Parent(r) { }
+    RhoTranslator(const RhoTranslator &) = delete;
+    RhoTranslator(Registry &r) : Parent(r) {}
 
-protected:
+   protected:
     virtual void TranslateNode(AstNodePtr node) override;
     using Parent::_reg;
 
-private:
+   private:
     void TranslateToken(AstNodePtr node);
     void TranslateFunction(AstNodePtr node);
     void TranslateBlock(AstNodePtr node);

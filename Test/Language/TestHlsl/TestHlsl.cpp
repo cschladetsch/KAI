@@ -1,11 +1,11 @@
 //#include "TestCommon.h"
 //#include "KAI/Language/Hlsl/Hlsl.h"
 //
-//USING_NAMESPACE_KAI
+// USING_NAMESPACE_KAI
 //
-//using namespace std;
+// using namespace std;
 //
-//TEST(TestHlsl, Test)
+// TEST(TestHlsl, Test)
 //{
 //    Console console;
 //    Registry &reg = console.GetRegistry();

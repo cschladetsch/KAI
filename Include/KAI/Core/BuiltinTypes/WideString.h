@@ -1,49 +1,50 @@
 #pragma once
 
-#include <string>
 #include <KAI/Core/Config/Base.h>
+
+#include <string>
+
 #include "String.h"
 
 KAI_BEGIN
 
-/// I chose not to attempt to find commonality between String and WideString. 
-struct WideString
-{
+/// I chose not to attempt to find commonality between String and WideString.
+struct WideString {
     typedef wchar_t Char;
     typedef std::basic_string<Char> Storage;
     typedef Storage::const_iterator const_iterator;
     typedef Storage::iterator iterator;
 
-private:
+   private:
     Storage string;
 
-public:
-    WideString() { }
+   public:
+    WideString() {}
     template <class II>
-        WideString(II A, II B) : string(A, B) { }
+    WideString(II A, II B) : string(A, B) {}
     WideString(const Char *S) : string(S) {}
-    WideString(const Storage &S) : string(S) { }
-    WideString(const WideString&X) : string(X.string) { }
+    WideString(const Storage &S) : string(S) {}
+    WideString(const WideString &X) : string(X.string) {}
     WideString(const String &);
 
     WideString &operator+=(const String &A);
-    WideString &operator+=(const WideString &A)
-    {
+    WideString &operator+=(const WideString &A) {
         string += A.string;
         return *this;
     }
 
     WideString &operator+=(String::Char A);
-    WideString &operator+=(Char A)
-    {
+    WideString &operator+=(Char A) {
         string += A;
         return *this;
     }
 
-    friend WideString operator+(const WideString &A, const String&B);
-    friend WideString operator+(const WideString &A, const WideString&B) { return A.string + B.string; }
-    friend bool operator<(const WideString &A, const WideString&B);
-    friend bool operator==(const WideString&A, const WideString&B);
+    friend WideString operator+(const WideString &A, const String &B);
+    friend WideString operator+(const WideString &A, const WideString &B) {
+        return A.string + B.string;
+    }
+    friend bool operator<(const WideString &A, const WideString &B);
+    friend bool operator==(const WideString &A, const WideString &B);
 
     const_iterator begin() const { return string.begin(); }
     const_iterator end() const { return string.end(); }
@@ -70,4 +71,3 @@ BinaryStream &operator<<(BinaryStream &, const WideString &);
 BinaryPacket &operator>>(BinaryPacket &, WideString &);
 
 KAI_END
-

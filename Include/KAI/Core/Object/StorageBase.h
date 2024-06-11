@@ -1,22 +1,22 @@
 #pragma once
 
+#include <KAI/Core/ObjectColor.h>
+
 #include <list>
 
-#include <KAI/Core/ObjectColor.h>
-#include "KAI/Core/Object/Object.h"
 #include "KAI/Core/BuiltinTypes/Dictionary.h"
+#include "KAI/Core/Object/Object.h"
 
 KAI_BEGIN
 
 // Base for all object _instances. The value stored with an object is placed
 // contiguously in memory with the object.
-struct StorageBase : public Object
-{
-public:
+struct StorageBase : public Object {
+   public:
     typedef int Switches;
     typedef std::list<Handle> Containers;
 
-private:
+   private:
     Containers containers;
     Dictionary dictionary;
     Handle parent;
@@ -24,11 +24,11 @@ private:
     Label label;
     ObjectColor::Color color;
 
-public:
+   public:
     StorageBase(const ObjectConstructParams &P)
-        : Object(P), switches(DefaultSwitches) { }
+        : Object(P), switches(DefaultSwitches) {}
 
-    virtual ~StorageBase() { }
+    virtual ~StorageBase() {}
 
     void Delete();
 
@@ -74,7 +74,7 @@ public:
     Object &operator[](Label const &);
     Object const &operator[](Label const &) const;
 
-//private:
+    // private:
     void MakeReachableGrey();
     bool CanBlacken();
     void SetColorRecursive(ObjectColor::Color color);
@@ -84,14 +84,13 @@ public:
     void DetermineNewColor();
     void AddedToContainer(Object const &container);
     void DetachFromContainers();
-//protected:
+    // protected:
 
     StorageBase *GetParentPtr();
 
-    void SetColorRecursive(ObjectColor::Color color, HandleSet& handles);
+    void SetColorRecursive(ObjectColor::Color color, HandleSet &handles);
 };
 
 KAI_END
 
-//EOF
-
+// EOF

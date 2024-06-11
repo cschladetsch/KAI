@@ -6,13 +6,17 @@ KAI_BEGIN
 #undef CASE_LOWER
 #undef CASE_REPLACE
 
-const char *RhoAstNodes::ToString(Enum ty)
-{
-    switch (ty)
-    {
-        #define CASE(N) case RhoAstNodes::N : return #N;
-        #define CASE_LOWER(N) case RhoAstNodes::N : return ToLower(#N);
-        #define CASE_REPLACE(N, M) case RhoAstNodes::N : return M;
+const char *RhoAstNodes::ToString(Enum ty) {
+    switch (ty) {
+#define CASE(N)          \
+    case RhoAstNodes::N: \
+        return #N;
+#define CASE_LOWER(N)    \
+    case RhoAstNodes::N: \
+        return ToLower(#N);
+#define CASE_REPLACE(N, M) \
+    case RhoAstNodes::N:   \
+        return M;
         CASE(None)
         CASE(Program)
         CASE(Ident)

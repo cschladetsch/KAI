@@ -3,19 +3,16 @@
 
 KAI_BEGIN
 
-bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
-{
+bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st) {
     lexer = lex;
-    if (lex->Failed)
-    {
+    if (lex->Failed) {
         return Fail(lex->Error);
     }
 
     // strip whitespace and comments
-    for (auto tok : lexer->GetTokens())
-    {
-        if (tok.type != TokenEnum::Whitespace && tok.type != TokenEnum::Comment)
-        {
+    for (auto tok : lexer->GetTokens()) {
+        if (tok.type != TokenEnum::Whitespace &&
+            tok.type != TokenEnum::Comment) {
             tokens.push_back(tok);
         }
     }
@@ -25,32 +22,28 @@ bool RhoParser::Process(std::shared_ptr<Lexer> lex, Structure st)
     return Run(st);
 }
 
-bool RhoParser::Run(Structure st)
-{
-    switch (st)
-    {
-    case Structure::Statement:
-        if (!Statement(root))
-        {
-            return CreateError("Statement expected");
-        }
-        break;
+bool RhoParser::Run(Structure st) {
+    switch (st) {
+        case Structure::Statement:
+            if (!Statement(root)) {
+                return CreateError("Statement expected");
+            }
+            break;
 
-    case Structure::Expression:
-        if (!Expression())
-        {
-            return CreateError("Expression expected");
-        }
-        root->Add(Pop());
-        break;
+        case Structure::Expression:
+            if (!Expression()) {
+                return CreateError("Expression expected");
+            }
+            root->Add(Pop());
+            break;
 
-    case Structure::Function:
-        Function(root);
-        break;
+        case Structure::Function:
+            Function(root);
+            break;
 
-    case Structure::Program:
-        Program();
-        break;
+        case Structure::Program:
+            Program();
+            break;
     }
 
     ConsumeNewLines();
@@ -60,13 +53,10 @@ bool RhoParser::Run(Structure st)
     return true;
 }
 
-bool RhoParser::Program()
-{
-    while (!Try(TokenType::None) && !Failed)
-    {
+bool RhoParser::Program() {
+    while (!Try(TokenType::None) && !Failed) {
         ConsumeNewLines();
-        if (!Statement(root))
-        {
+        if (!Statement(root)) {
             Fail("Statement expected");
             return false;
         }
@@ -75,8 +65,7 @@ bool RhoParser::Program()
     return true;
 }
 
-void RhoParser::Function(AstNodePtr node)
-{
+void RhoParser::Function(AstNodePtr node) {
     ConsumeNewLines();
 
     Expect(TokenType::Fun);
@@ -88,11 +77,9 @@ void RhoParser::Function(AstNodePtr node)
     std::shared_ptr<AstNode> args = NewNode(AstEnum::None);
     fun->Add(args);
 
-    if (Try(TokenType::Ident))
-    {
+    if (Try(TokenType::Ident)) {
         args->Add(Consume());
-        while (Try(TokenType::Comma))
-        {
+        while (Try(TokenType::Comma)) {
             Consume();
             args->Add(Expect(TokenType::Ident));
         }
@@ -100,47 +87,40 @@ void RhoParser::Function(AstNodePtr node)
 
     Expect(TokenType::CloseParan);
     Expect(TokenType::NewLine);
-    
+
     AddBlock(fun);
     node->Add(fun);
 }
 
-void RhoParser::Block(AstNodePtr node)
-{
+void RhoParser::Block(AstNodePtr node) {
     ConsumeNewLines();
 
     ++indent;
-    while (!Failed)
-    {
+    while (!Failed) {
         int level = 0;
-        while (Try(TokenType::Tab))
-        {
+        while (Try(TokenType::Tab)) {
             ++level;
             Consume();
         }
 
-        if (Try(TokenType::NewLine))
-        {
+        if (Try(TokenType::NewLine)) {
             Consume();
             continue;
         }
 
         // close current block
-        if (level < indent)
-        {
+        if (level < indent) {
             --indent;
 
             // rewind to start of tab sequence to determine next block
             --current;
-            while (Try(TokenType::Tab))
-                --current;
+            while (Try(TokenType::Tab)) --current;
 
             ++current;
             return;
         }
 
-        if (level != indent)
-        {
+        if (level != indent) {
             Fail(Lexer::CreateErrorMessage(Current(), "Mismatch block indent"));
             return;
         }
@@ -149,16 +129,13 @@ void RhoParser::Block(AstNodePtr node)
     }
 }
 
-bool RhoParser::Statement(AstNodePtr block)
-{
-    switch (Current().type)
-    {
-        case TokenType::Assert:
-        {
+bool RhoParser::Statement(AstNodePtr block) {
+    switch (Current().type) {
+        case TokenType::Assert: {
             auto ass = NewNode(Consume());
-            if (!Expression())
-            {
-                Fail(Lexer::CreateErrorMessage(Current(), "Assert needs an expression to test"));
+            if (!Expression()) {
+                Fail(Lexer::CreateErrorMessage(
+                    Current(), "Assert needs an expression to test"));
                 return false;
             }
 
@@ -168,35 +145,29 @@ bool RhoParser::Statement(AstNodePtr block)
         }
 
         case TokenType::Return:
-        case TokenType::Yield:
-        {
+        case TokenType::Yield: {
             auto ret = NewNode(Consume());
-            if (Expression())
-                ret->Add(Pop());
+            if (Expression()) ret->Add(Pop());
             block->Add(ret);
             goto finis;
         }
-        
-        case TokenType::While:
-        {
+
+        case TokenType::While: {
             While(block);
             return true;
         }
 
-        case TokenType::For:
-        {
+        case TokenType::For: {
             For(block);
             return true;
         }
 
-        case TokenType::If:
-        {
+        case TokenType::If: {
             IfCondition(block);
             return true;
         }
-        
-        case TokenType::Fun:
-        {
+
+        case TokenType::Fun: {
             Function(block);
             return true;
         }
@@ -204,54 +175,49 @@ bool RhoParser::Statement(AstNodePtr block)
 
     ConsumeNewLines();
 
-    if (Try(TokenType::None))
-        return true;
+    if (Try(TokenType::None)) return true;
 
-    if (!Expression())
-        return false;
+    if (!Expression()) return false;
 
     block->Add(Pop());
 
 finis:
     // statements can end with an optional semi followed by a new line
-    if (Try(TokenType::Semi))
-        Consume();
+    if (Try(TokenType::Semi)) Consume();
 
-    if (!Try(TokenType::None))
-        Expect(TokenType::NewLine);
+    if (!Try(TokenType::None)) Expect(TokenType::NewLine);
 
     return true;
 }
 
-bool RhoParser::Expression()
-{
-//    bool paran = Try(TokenType::OpenParan);
-//    if (paran)
-//    {
-//        auto exp = NewNode(Consume());
-//        if (!Logical())
-//            return false;
-//
-//        Expect(TokenType::CloseParan);
-//        exp->Add(Pop());
-//        Push(exp);
-//
-////        while (Factor())
-////            ;
-////
-////        return true;
-//    }
+bool RhoParser::Expression() {
+    //    bool paran = Try(TokenType::OpenParan);
+    //    if (paran)
+    //    {
+    //        auto exp = NewNode(Consume());
+    //        if (!Logical())
+    //            return false;
+    //
+    //        Expect(TokenType::CloseParan);
+    //        exp->Add(Pop());
+    //        Push(exp);
+    //
+    ////        while (Factor())
+    ////            ;
+    ////
+    ////        return true;
+    //    }
 
-    if (!Logical())
-        return false;
+    if (!Logical()) return false;
 
-    if (Try(TokenType::Assign) || Try(TokenType::PlusAssign) || Try(TokenType::MinusAssign) || Try(TokenType::MulAssign) || Try(TokenType::DivAssign))
-    {
+    if (Try(TokenType::Assign) || Try(TokenType::PlusAssign) ||
+        Try(TokenType::MinusAssign) || Try(TokenType::MulAssign) ||
+        Try(TokenType::DivAssign)) {
         auto node = NewNode(Consume());
         auto ident = Pop();
-        if (!Logical())
-        {
-            Fail(Lexer::CreateErrorMessage(Current(), "Assignment requires an expression"));
+        if (!Logical()) {
+            Fail(Lexer::CreateErrorMessage(
+                Current(), "Assignment requires an expression"));
             return false;
         }
 
@@ -263,17 +229,13 @@ bool RhoParser::Expression()
     return true;
 }
 
-bool RhoParser::Logical()
-{
-    if (!Relational())
-        return false;
+bool RhoParser::Logical() {
+    if (!Relational()) return false;
 
-    while (Try(TokenType::And) || Try(TokenType::Or))
-    {
+    while (Try(TokenType::And) || Try(TokenType::Or)) {
         auto node = NewNode(Consume());
         node->Add(Pop());
-        if (!Relational())
-            return CreateError("Relational expected");
+        if (!Relational()) return CreateError("Relational expected");
 
         node->Add(Pop());
         Push(node);
@@ -282,18 +244,15 @@ bool RhoParser::Logical()
     return true;
 }
 
-bool RhoParser::Relational()
-{
-    if (!Additive())
-        return false;
+bool RhoParser::Relational() {
+    if (!Additive()) return false;
 
-    while (Try(TokenType::Less) || Try(TokenType::Greater) || Try(TokenType::Equiv) || Try(TokenType::NotEquiv)
-        || Try(TokenType::LessEquiv) || Try(TokenType::GreaterEquiv))
-    {
+    while (Try(TokenType::Less) || Try(TokenType::Greater) ||
+           Try(TokenType::Equiv) || Try(TokenType::NotEquiv) ||
+           Try(TokenType::LessEquiv) || Try(TokenType::GreaterEquiv)) {
         auto node = NewNode(Consume());
         node->Add(Pop());
-        if (!Additive())
-            return CreateError("Additive expected");
+        if (!Additive()) return CreateError("Additive expected");
 
         node->Add(Pop());
         Push(node);
@@ -302,41 +261,33 @@ bool RhoParser::Relational()
     return true;
 }
 
-bool RhoParser::Additive()
-{
+bool RhoParser::Additive() {
     // unary +/- operator
-    if (Try(TokenType::Plus) || Try(TokenType::Minus))
-    {
+    if (Try(TokenType::Plus) || Try(TokenType::Minus)) {
         auto uniSigned = NewNode(Consume());
-        if (!Term())
-            return CreateError("Term expected");
+        if (!Term()) return CreateError("Term expected");
 
         uniSigned->Add(Pop());
         Push(uniSigned);
         return true;
     }
 
-    if (Try(TokenType::Not))
-    {
+    if (Try(TokenType::Not)) {
         auto negate = NewNode(Consume());
-        if (!Additive())
-            return CreateError("Additive expected");
+        if (!Additive()) return CreateError("Additive expected");
 
         negate->Add(Pop());
         Push(negate);
         return true;
     }
 
-    if (!Term())
-        return false;
+    if (!Term()) return false;
 
-    while (Try(TokenType::Plus) || Try(TokenType::Minus))
-    {
+    while (Try(TokenType::Plus) || Try(TokenType::Minus)) {
         //[1]
         auto node = NewNode(Consume());
         node->Add(Pop());
-        if (!Term())
-            return CreateError("Term expected");
+        if (!Term()) return CreateError("Term expected");
 
         node->Add(Pop());
         Push(node);
@@ -345,17 +296,13 @@ bool RhoParser::Additive()
     return true;
 }
 
-bool RhoParser::Term()
-{
-    if (!Factor())
-        return false;
+bool RhoParser::Term() {
+    if (!Factor()) return false;
 
-    while (Try(TokenType::Mul) || Try(TokenType::Divide))
-    {
+    while (Try(TokenType::Mul) || Try(TokenType::Divide)) {
         auto node = NewNode(Consume());
         node->Add(Pop());
-        if (!Factor())
-            return CreateError("Factor expected with a term");
+        if (!Factor()) return CreateError("Factor expected with a term");
 
         node->Add(Pop());
         Push(node);
@@ -364,13 +311,12 @@ bool RhoParser::Term()
     return true;
 }
 
-bool RhoParser::Factor()
-{
-    if (Try(TokenType::OpenParan))
-    {
+bool RhoParser::Factor() {
+    if (Try(TokenType::OpenParan)) {
         auto exp = NewNode(Consume());
         if (!Expression())
-            return CreateError("Expected an expression for a factor in parenthesis");
+            return CreateError(
+                "Expected an expression for a factor in parenthesis");
 
         Expect(TokenType::CloseParan);
         exp->Add(Pop());
@@ -378,23 +324,18 @@ bool RhoParser::Factor()
         return true;
     }
 
-    if (Try(TokenType::OpenSquareBracket))
-    {
+    if (Try(TokenType::OpenSquareBracket)) {
         auto list = NewNode(NodeType::List);
-        do
-        {
+        do {
             Consume();
-            if (Try(TokenType::CloseSquareBracket))
-                break;
+            if (Try(TokenType::CloseSquareBracket)) break;
             if (Expression())
                 list->Add(Pop());
-            else
-            {
+            else {
                 Fail("Badly formed array");
                 return false;
             }
-        }
-        while (Try(TokenType::Comma));
+        } while (Try(TokenType::Comma));
 
         Expect(TokenType::CloseSquareBracket);
         Push(list);
@@ -402,44 +343,37 @@ bool RhoParser::Factor()
         return true;
     }
 
-    if (Try(TokenType::Int) || Try(TokenType::Float) || Try(TokenType::String) || Try(TokenType::True) || Try(TokenType::False))
+    if (Try(TokenType::Int) || Try(TokenType::Float) ||
+        Try(TokenType::String) || Try(TokenType::True) || Try(TokenType::False))
         return PushConsume();
 
-    if (Try(TokenType::Self))
-        return PushConsume();
+    if (Try(TokenType::Self)) return PushConsume();
 
-//    while (Try(TokenType::Lookup))
-//        return PushConsume();
+    //    while (Try(TokenType::Lookup))
+    //        return PushConsume();
 
-    if (Try(TokenType::Ident))
-        return ParseFactorIdent();
+    if (Try(TokenType::Ident)) return ParseFactorIdent();
 
-    if (Try(TokenType::Pathname))
-        return ParseFactorIdent();
+    if (Try(TokenType::Pathname)) return ParseFactorIdent();
 
     return false;
 }
 
-bool RhoParser::ParseFactorIdent()
-{
+bool RhoParser::ParseFactorIdent() {
     PushConsume();
 
-    while (!Failed)
-    {
-        if (Try(TokenType::Dot))
-        {
+    while (!Failed) {
+        if (Try(TokenType::Dot)) {
             ParseGetMember();
             continue;
         }
 
-        if (Try(TokenType::OpenParan))
-        {
+        if (Try(TokenType::OpenParan)) {
             ParseMethodCall();
             continue;
         }
 
-        if (Try(TokenType::OpenSquareBracket))
-        {
+        if (Try(TokenType::OpenSquareBracket)) {
             ParseIndexOp();
             continue;
         }
@@ -450,22 +384,18 @@ bool RhoParser::ParseFactorIdent()
     return true;
 }
 
-void RhoParser::ParseMethodCall()
-{
+void RhoParser::ParseMethodCall() {
     Consume();
     auto call = NewNode(NodeType::Call);
     call->Add(Pop());
     auto args = NewNode(NodeType::ArgList);
     call->Add(args);
 
-    if (Expression())
-    {
+    if (Expression()) {
         args->Add(Pop());
-        while (Try(TokenType::Comma))
-        {
+        while (Try(TokenType::Comma)) {
             Consume();
-            if (!Expression())
-            {
+            if (!Expression()) {
                 CreateError("What is the next argument?");
                 return;
             }
@@ -477,12 +407,10 @@ void RhoParser::ParseMethodCall()
     Push(call);
     Expect(TokenType::CloseParan);
 
-    if (Try(TokenType::Replace))
-        call->Add(Consume());
+    if (Try(TokenType::Replace)) call->Add(Consume());
 }
 
-void RhoParser::ParseGetMember()
-{
+void RhoParser::ParseGetMember() {
     Consume();
     auto get = NewNode(NodeType::GetMember);
     get->Add(Pop());
@@ -490,15 +418,12 @@ void RhoParser::ParseGetMember()
     Push(get);
 }
 
-void RhoParser::IfCondition(AstNodePtr block)
-{
-    if (!Try(TokenType::If))
-        return;
+void RhoParser::IfCondition(AstNodePtr block) {
+    if (!Try(TokenType::If)) return;
 
     Consume();
 
-    if (!Expression())
-    {
+    if (!Expression()) {
         CreateError("If what?");
         return;
     }
@@ -515,8 +440,7 @@ void RhoParser::IfCondition(AstNodePtr block)
     cond->Add(trueClause);
 
     // if there's an else, add it as well
-    if (Try(TokenType::Else))
-    {
+    if (Try(TokenType::Else)) {
         Consume();
         auto falseClause = NewNode(NodeType::Block);
         Block(falseClause);
@@ -526,13 +450,11 @@ void RhoParser::IfCondition(AstNodePtr block)
     block->Add(cond);
 }
 
-void RhoParser::ParseIndexOp()
-{
+void RhoParser::ParseIndexOp() {
     Consume();
     auto index = NewNode(NodeType::IndexOp);
     index->Add(Pop());
-    if (!Expression())
-    {
+    if (!Expression()) {
         CreateError("Index what?");
         return;
     }
@@ -542,40 +464,32 @@ void RhoParser::ParseIndexOp()
     Push(index);
 }
 
-void RhoParser::For(AstNodePtr block)
-{
-    if (!Try(TokenType::For))
-        return;
+void RhoParser::For(AstNodePtr block) {
+    if (!Try(TokenType::For)) return;
 
     Consume();
 
     auto f = NewNode(RhoAstNodeEnumType::For);
-    if (!Expression())
-    {
+    if (!Expression()) {
         CreateError("For what?");
         return;
     }
 
-    if (Try(TokenType::In))
-    {
+    if (Try(TokenType::In)) {
         Consume();
         f->Add(Pop());
 
-        if (!Expression())
-        {
+        if (!Expression()) {
             CreateError("For each in what?");
             return;
         }
 
         f->Add(Pop());
-    }
-    else
-    {
+    } else {
         Expect(TokenType::Semi);
         f->Add(Pop());
 
-        if (!Expression())
-        {
+        if (!Expression()) {
             CreateError("When does the for statement stop?");
             return;
         }
@@ -583,8 +497,7 @@ void RhoParser::For(AstNodePtr block)
         f->Add(Pop());
         Expect(TokenType::Semi);
 
-        if (!Expression())
-        {
+        if (!Expression()) {
             CreateError("What happens when a for statement ends?");
             return;
         }
@@ -597,11 +510,9 @@ void RhoParser::For(AstNodePtr block)
     block->Add(f);
 }
 
-void RhoParser::While(AstNodePtr block)
-{
+void RhoParser::While(AstNodePtr block) {
     auto w = NewNode(Consume());
-    if (!Expression())
-    {
+    if (!Expression()) {
         CreateError("While what?");
         return;
     }
@@ -610,22 +521,18 @@ void RhoParser::While(AstNodePtr block)
     block->Add(w);
 }
 
-bool RhoParser::CreateError(const char *text)
-{
+bool RhoParser::CreateError(const char *text) {
     return Fail(Lexer::CreateErrorMessage(Current(), text));
 }
 
-void RhoParser::AddBlock(AstNodePtr fun)
-{
+void RhoParser::AddBlock(AstNodePtr fun) {
     auto block = NewNode(RhoAstNodeEnumType::Block);
     Block(block);
     fun->Add(block);
 }
 
-void RhoParser::ConsumeNewLines()
-{
-    while (Try(TokenType::NewLine))
-        Consume();
+void RhoParser::ConsumeNewLines() {
+    while (Try(TokenType::NewLine)) Consume();
 }
 
 KAI_END

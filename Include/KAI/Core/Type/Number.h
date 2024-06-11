@@ -1,16 +1,14 @@
 #pragma once
 
-#include <type_traits>
-#include <string>
-
 #include <KAI/Core/Base.h>
+
+#include <string>
+#include <type_traits>
 
 KAI_TYPE_BEGIN
 
-struct Number
-{
-    enum Value
-    {
+struct Number {
+    enum Value {
         // $BEGIN_TYPE_NUMBER_VALUE_ENUMERATION$
         Undefined = 0,
         None = 1,
@@ -73,8 +71,8 @@ struct Number
 
     Value value;
 
-    Number() : value(None) { }
-    Number(int N) : value(Value(N)) { }
+    Number() : value(None) {}
+    Number(int N) : value(Value(N)) {}
     friend bool operator<(Number A, Number B) { return A.value < B.value; }
     friend bool operator==(Number A, Number B) { return A.value == B.value; }
     friend bool operator!=(Number A, Number B) { return A.value != B.value; }
@@ -94,18 +92,20 @@ KAI_BEGIN
 
 typedef int TypeNumber;
 
-//struct HashType
+// struct HashType
 //{
-//    enum { bucket_size = 4, min_buckets = 16 };
-//    std::size_t operator()(const Type::Number::Value &A) const
-//    {
-//        return static_cast<std::size_t>(std::underlying_type<Type::Number::Value>::type(A));
-//    }
+//     enum { bucket_size = 4, min_buckets = 16 };
+//     std::size_t operator()(const Type::Number::Value &A) const
+//     {
+//         return
+//         static_cast<std::size_t>(std::underlying_type<Type::Number::Value>::type(A));
+//     }
 //
-//    bool operator()(const Type::Number::Value &A, const Type::Number::Value &B) const
-//    {
-//        return A == B;
-//    }
-//};
+//     bool operator()(const Type::Number::Value &A, const Type::Number::Value
+//     &B) const
+//     {
+//         return A == B;
+//     }
+// };
 
 KAI_END

@@ -5,10 +5,8 @@
 KAI_BEGIN
 
 // A token in the Lisp language
-struct LispTokenEnumType
-{
-    enum Enum
-    {
+struct LispTokenEnumType {
+    enum Enum {
         None = 0,
         Whitespace = 1,
         Semi = 2,
@@ -30,7 +28,7 @@ struct LispTokenEnumType
         OpenParan = 18,
         CloseParan = 19,
         Plus = 20,
-        Minus  = 21,
+        Minus = 21,
         Mul = 22,
         Divide = 23,
         Assign = 24,
@@ -57,7 +55,7 @@ struct LispTokenEnumType
         NewLine = 45,
         Fun = 46,
         Comment = 47,
-        Yield  = 48,
+        Yield = 48,
         Suspend = 49,
         Replace = 50,
         Resume = 51,
@@ -75,12 +73,11 @@ struct LispTokenEnumType
         Sep = 71,
     };
 
-    struct Type : TokenBase<LispTokenEnumType>
-    {
-        Type() { }
+    struct Type : TokenBase<LispTokenEnumType> {
+        Type() {}
 
-        Type(Enum val, const LexerBase &lexer, int ln, Slice slice) 
-            : TokenBase<LispTokenEnumType>(val, lexer, ln, slice) { }
+        Type(Enum val, const LexerBase &lexer, int ln, Slice slice)
+            : TokenBase<LispTokenEnumType>(val, lexer, ln, slice) {}
     };
 
     static const char *ToString(Enum val);

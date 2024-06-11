@@ -1,9 +1,9 @@
 #pragma once
 
-#include <vector>
-
-#include <KAI/Core/Config/Base.h>
 #include <KAI/Core/BuiltinTypes/String.h>
+#include <KAI/Core/Config/Base.h>
+
+#include <vector>
 
 KAI_BEGIN
 
@@ -16,22 +16,23 @@ struct Trace;
 //
 // A StringStream is itself a registered object, so they can act recursively
 // and be addressed over a Network::Domain.
-class StringStream
-{
-public:
+class StringStream {
+   public:
     typedef String::Char Char;
     typedef std::vector<Char> Storage;
 
-private:
+   private:
     Storage stream;
     int read_offset;
     Registry *registry;
 
-public:
-    StringStream() : read_offset(0), registry(0) { }
-    explicit StringStream(String const &S) : read_offset(0), registry(0) { Append(S); }
+   public:
+    StringStream() : read_offset(0), registry(0) {}
+    explicit StringStream(String const &S) : read_offset(0), registry(0) {
+        Append(S);
+    }
 
-    const Storage& GetStorage() const { return stream; }
+    const Storage &GetStorage() const { return stream; }
     String ToString() const;
     bool Empty() const { return stream.empty(); }
     int Size() const { return (int)stream.size(); }
@@ -55,13 +56,15 @@ public:
     friend bool operator<(StringStream const &, StringStream const &);
 };
 
-struct EndsArgument { };
+struct EndsArgument {};
 void Ends(EndsArgument);
 
 StringStream &operator<<(StringStream &, void (*)(EndsArgument));
 StringStream &operator<<(StringStream &, const String::Char *);
 
-inline StringStream &operator<<(StringStream &S, const String &T) { return S << T.c_str(); }
+inline StringStream &operator<<(StringStream &S, const String &T) {
+    return S << T.c_str();
+}
 std::ostream &operator<<(std::ostream &S, const StringStream &T);
 std::istream &operator>>(std::istream &S, StringStream &T);
 

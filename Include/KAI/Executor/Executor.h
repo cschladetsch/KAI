@@ -1,22 +1,20 @@
 #pragma once
 
+#include <KAI/Core/BuiltinTypes/Stack.h>
+#include <KAI/Core/Object/Reflected.h>
+#include <KAI/Core/Pathname.h>
 #include <KAI/Core/Value.h>
 #include <KAI/Executor/Continuation.h>
 #include <KAI/Executor/Operation.h>
-#include <KAI/Core/BuiltinTypes/Stack.h>
-#include <KAI/Core/Object/Reflected.h>
-#include <KAI/Core/Value.h>
-#include <KAI/Core/Pathname.h>
 
 KAI_BEGIN
 
 class Tree;
 struct Executor;
 
-KAI_TYPE_TRAITS(Executor, Number::Executor , Properties::Reflected);
+KAI_TYPE_TRAITS(Executor, Number::Executor, Properties::Reflected);
 
-struct Executor : Reflected
-{
+struct Executor : Reflected {
     void Create();
     bool Destroy();
 
@@ -36,17 +34,15 @@ struct Executor : Reflected
     void Dump(Object const &Q);
 
     std::string PrintStack() const;
-    void PrintStack(std::ostream& out) const;
+    void PrintStack(std::ostream &out) const;
 
     template <class T>
-    Value<T> New()
-    {
+    Value<T> New() {
         return Reg().New<T>();
     }
 
     template <class T>
-    Value<T> New(T const & X)
-    {
+    Value<T> New(T const &X) {
         return Reg().New(X);
     }
 
@@ -57,17 +53,14 @@ struct Executor : Reflected
     int GetTraceLevel() const;
 
     template <class T>
-    void Push(const Value<T> &val)
-    {
+    void Push(const Value<T> &val) {
         Push(val.GetObject());
     }
 
     template <class Ident>
-    void EvalIdent(Object const &Q)
-    {
+    void EvalIdent(Object const &Q) {
         Ident const &ident = ConstDeref<Ident>(Q);
-        if (ident.Quoted())
-        {
+        if (ident.Quoted()) {
             Push(Q);
             return;
         }
@@ -85,18 +78,17 @@ struct Executor : Reflected
     Object Top() const;
 
     Value<Stack> GetDataStack();
-    Value<const Stack> GetDataStack() const
-    {
+    Value<const Stack> GetDataStack() const {
         return Value<const Stack>(_data.GetConstObject());
     }
 
-    // could be const, but more fun to mess with the context stack as needed elsewhere
+    // could be const, but more fun to mess with the context stack as needed
+    // elsewhere
     Value</*const*/ Stack> GetContextStack() const;
 
     // This resets the entire process, other than static state stored
     // in referenced objects
-    void ClearStacks()
-    {
+    void ClearStacks() {
         _data->Clear();
         _context->Clear();
     }
@@ -116,7 +108,7 @@ struct Executor : Reflected
     Object Resolve(const Label &) const;
     Object Resolve(const Pathname &) const;
 
-protected:
+   protected:
     bool PopBool();
 
     void Perform(Operation::Type op);
@@ -127,14 +119,14 @@ protected:
     void MarkAndSweep();
     void MarkAndSweep(Object &root);
 
-    void Push(Stack& L, Object const &Q);
+    void Push(Stack &L, Object const &Q);
     Object Pop(Stack &stack);
     void NextContinuation();
 
     void DumpStack(Stack const &);
     static void DumpContinuation(Continuation const &, int);
 
-private:
+   private:
     template <class C>
     Value<Array> ForEach(C const &, Object const &);
     template <class Cont>
@@ -142,8 +134,8 @@ private:
 
     void TraceAll();
     void Trace(const Object &);
-    void Trace(const Label &, const StorageBase&, StringStream &);
-    void Trace(const Object&, StringStream &);
+    void Trace(const Label &, const StorageBase &, StringStream &);
+    void Trace(const Object &, StringStream &);
     void ConditionalContextSwitch(Operation::Type);
     Value<Continuation> NewContinuation(Value<Continuation> P);
 
@@ -151,7 +143,7 @@ private:
     Object TryResolve(Label const &label) const;
     Object TryResolve(Pathname const &label) const;
 
-private:
+   private:
     Value<Continuation> _continuation;
     Value<Stack> _context;
     Value<Stack> _data;
@@ -167,4 +159,3 @@ BinaryStream &operator<<(BinaryStream &, Executor const &);
 BinaryPacket &operator>>(BinaryPacket &, Executor &);
 
 KAI_END
-

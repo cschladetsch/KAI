@@ -6,40 +6,44 @@ KAI_BEGIN
 #undef CASE_LOWER
 #undef CASE_REPLACE
 
-const char *RhoTokenEnumType::ToString(Enum val)
-{
-    switch (val)
-    {
-        #define CASE(N) case RhoTokens::N : return #N;
-        #define CASE_LOWER(N) case RhoTokens::N : return ToLower(#N);
-        #define CASE_REPLACE(N, M) case RhoTokens::N : return M;
+const char *RhoTokenEnumType::ToString(Enum val) {
+    switch (val) {
+#define CASE(N)        \
+    case RhoTokens::N: \
+        return #N;
+#define CASE_LOWER(N)  \
+    case RhoTokens::N: \
+        return ToLower(#N);
+#define CASE_REPLACE(N, M) \
+    case RhoTokens::N:     \
+        return M;
 
         CASE(None)
         CASE(Whitespace)
         CASE(Semi)
         CASE(Int)
-        CASE(Float )
-        CASE(String )
-        CASE(True )
+        CASE(Float)
+        CASE(String)
+        CASE(True)
         CASE(False)
         CASE(Return)
         CASE(Ident)
         CASE(Dot)
         CASE(Comma)
-        CASE(If )
+        CASE(If)
         CASE(Else)
-        CASE(For )
+        CASE(For)
         CASE(While)
-        CASE(OpenBrace )
+        CASE(OpenBrace)
         CASE(CloseBrace)
-        CASE(OpenParan )
+        CASE(OpenParan)
         CASE(CloseParan)
-        CASE(Plus )
+        CASE(Plus)
         CASE(Minus)
         CASE(Mul)
         CASE(Divide)
         CASE(Assign)
-        CASE(Less )
+        CASE(Less)
         CASE(Equiv)
         CASE(NotEquiv)
         CASE(Greater)
@@ -85,18 +89,15 @@ const char *RhoTokenEnumType::ToString(Enum val)
     return buff;
 }
 
-std::ostream &operator<<(std::ostream &out, RhoToken const &node)
-{
-    if (node.type == RhoTokenEnumType::None)
-        return out;
+std::ostream &operator<<(std::ostream &out, RhoToken const &node) {
+    if (node.type == RhoTokenEnumType::None) return out;
 
     out << RhoTokenEnumType::ToString(node.type);
-    switch (node.type)
-    {
-    case RhoTokenEnumType::Int:
-    case RhoTokenEnumType::String:
-    case RhoTokenEnumType::Ident:
-        out << "=" << node.Text();
+    switch (node.type) {
+        case RhoTokenEnumType::Int:
+        case RhoTokenEnumType::String:
+        case RhoTokenEnumType::Ident:
+            out << "=" << node.Text();
     }
 
     return out;

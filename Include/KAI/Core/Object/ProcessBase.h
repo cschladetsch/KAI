@@ -1,20 +1,20 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+
 #include "Event.h"
 
 KAI_BEGIN
 
 /// Base class for all timer objects that receive an Update() call.
-class ProcessBase
-{
+class ProcessBase {
     bool paused;
 
-public:
+   public:
     Event<Handle> OnUpdate;
 
-    ProcessBase(bool P = true) : paused(P) { }
-    virtual ~ProcessBase() { }
+    ProcessBase(bool P = true) : paused(P) {}
+    virtual ~ProcessBase() {}
 
     bool IsPaused() const { return paused; }
     void Pause(bool P = true) { paused = P; }
@@ -24,4 +24,3 @@ public:
 };
 
 KAI_END
-

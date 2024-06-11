@@ -1,21 +1,21 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+
 #include "Container.h"
 
 KAI_BEGIN
 
-class Array : public Container<Array>
-{
-public:
+class Array : public Container<Array> {
+   public:
     typedef std::vector<Object> Objects;
     typedef Objects::const_iterator const_iterator;
     typedef Objects::iterator iterator;
 
-private:
+   private:
     Objects objects;
 
-public:
+   public:
     iterator begin() { return objects.begin(); }
     iterator end() { return objects.end(); }
     const_iterator begin() const { return objects.begin(); }
@@ -28,7 +28,7 @@ public:
 
     void Resize(int n) { objects.resize(n); }
     Object At(int pos) const { return objects.at(pos); }
-    Object& RefAt(int pos) { return objects.at(pos); }
+    Object &RefAt(int pos) { return objects.at(pos); }
     int Size() const { return (int)objects.size(); }
     bool Empty() const { return objects.empty(); }
     Object Front() const { return objects.front(); }
@@ -47,13 +47,17 @@ public:
     void Erase2(Object Q) { Erase(Q); }
     void Append2(Object Q) { Append(Q); }
 
-    friend bool operator==(const Array &A, const Array &B) { return A.objects == B.objects; }
-    friend bool operator<(const Array &A, const Array &B) { return A.objects < B.objects; }
+    friend bool operator==(const Array &A, const Array &B) {
+        return A.objects == B.objects;
+    }
+    friend bool operator<(const Array &A, const Array &B) {
+        return A.objects < B.objects;
+    }
 
-    //void SetChildSwitch(int N, bool M)
+    // void SetChildSwitch(int N, bool M)
     //{
-    //    ForEach(objects, SetSwitch<Array>(N, M));
-    //}
+    //     ForEach(objects, SetSwitch<Array>(N, M));
+    // }
 
     static void Register(Registry &);
 };
@@ -64,14 +68,9 @@ BinaryStream &operator>>(BinaryStream &, Array &);
 
 HashValue GetHash(const Array &A);
 
-KAI_TYPE_TRAITS(Array, Number::Array
-    , Properties::StringStreamInsert 
-    | Properties::BinaryStreaming
-    | Properties::Less 
-    | Properties::Equiv
-    | Properties::Assign
-    | Properties::Reflected
-    | Properties::Container
-    );
+KAI_TYPE_TRAITS(Array, Number::Array,
+                Properties::StringStreamInsert | Properties::BinaryStreaming |
+                    Properties::Less | Properties::Equiv | Properties::Assign |
+                    Properties::Reflected | Properties::Container);
 
 KAI_END

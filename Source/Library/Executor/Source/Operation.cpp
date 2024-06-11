@@ -2,11 +2,11 @@
 
 KAI_BEGIN
 
-const char *Operation::ToString(int value)
-{
-    switch (value)
-    {
-        #define CASE(N) case N: return #N;
+const char *Operation::ToString(int value) {
+    switch (value) {
+#define CASE(N) \
+    case N:     \
+        return #N;
         CASE(Return)
         CASE(SuspendNew)
         CASE(None)
@@ -134,10 +134,6 @@ const char *Operation::ToString(int value)
     return "UnnnamedOp";
 }
 
-char const *Operation::ToString() const
-{
-    return Operation::ToString(value);
-}
+char const *Operation::ToString() const { return Operation::ToString(value); }
 
 KAI_END
-

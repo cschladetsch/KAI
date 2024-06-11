@@ -1,16 +1,15 @@
 #pragma once
 
 // TODO: Use kai::StringStringStream
-#include <ostream>
 #include <KAI/Language/Common/TokenBase.h>
+
+#include <ostream>
 
 KAI_BEGIN
 
 // A token in the Pi language
-struct PiTokenEnumType
-{
-    enum Enum
-    {
+struct PiTokenEnumType {
+    enum Enum {
         None = 0,
         Whitespace,
         Int,
@@ -136,15 +135,14 @@ struct PiTokenEnumType
         Freeze,
         Thaw,
 
-        Self,   // _current continuation 'self'
-        This,   // _current _scope '.'
+        Self,  // _current continuation 'self'
+        This,  // _current _scope '.'
     };
 
-    struct Type : TokenBase<PiTokenEnumType>
-    {
-        Type() { }
+    struct Type : TokenBase<PiTokenEnumType> {
+        Type() {}
         Type(Enum val, const LexerBase &lexer, int ln, Slice slice)
-            : TokenBase<PiTokenEnumType>(val, lexer, ln, slice) { }
+            : TokenBase<PiTokenEnumType>(val, lexer, ln, slice) {}
 
         friend std::ostream &operator<<(std::ostream &out, Type const &node);
     };
@@ -156,4 +154,3 @@ typedef PiTokenEnumType PiTokens;
 typedef PiTokenEnumType::Type PiToken;
 
 KAI_END
-

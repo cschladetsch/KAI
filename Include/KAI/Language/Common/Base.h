@@ -2,7 +2,7 @@
 
 // This is the basis for the language-agnostic execution system.
 //
-// There is one Translator<> type, that uses a combination of 
+// There is one Translator<> type, that uses a combination of
 // each of these other templates to transform a text string
 // into an executable stream for an Executor.
 //

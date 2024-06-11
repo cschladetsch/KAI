@@ -1,9 +1,9 @@
 #pragma once
 
 #include <KAI/Core/Config/Base.h>
+#include <KAI/Core/Object/GetStorageBase.h>
 #include <KAI/Core/Type/Number.h>
 #include <KAI/Core/Type/Traits.h>
-#include <KAI/Core/Object/GetStorageBase.h>
 
 KAI_BEGIN
 
@@ -15,9 +15,8 @@ KAI_BEGIN
 // unless you can be sure that the corresponding Object will not
 // be collected.
 template <class T>
-class ConstValue
-{
-protected:
+class ConstValue {
+   protected:
     typedef Type::Traits<T> Traits;
     typedef typename Traits::Store Store;
     typedef typename Traits::Reference Reference;
@@ -25,117 +24,71 @@ protected:
 
     Storage<Store> *storage;
 
-public:
+   public:
+    ConstValue() : storage(0) {}
 
-    ConstValue() : storage(0) { }
+    ConstValue(Object const &Q) : storage(0) { AssignFrom(Q); }
 
-    ConstValue(Object const &Q) : storage(0)
-    {
-        AssignFrom(Q);
-    }
-    
-    operator Object() const
-    {
-        return *storage;
-    }
+    operator Object() const { return *storage; }
 
-    ConstValue<T> &operator=(const ConstValue<T> &Q)
-    {
+    ConstValue<T> &operator=(const ConstValue<T> &Q) {
         AssignFrom(Q.GetObject());
         return *this;
     }
 
-    ConstValue<T> &operator=(Object const &Q)
-    {
+    ConstValue<T> &operator=(Object const &Q) {
         AssignFrom(Q);
         return *this;
     }
 
-    void AssignFrom(Object const &Q)
-    {
+    void AssignFrom(Object const &Q) {
         storage = 0;
-        if (!Q.Exists() || !Q.Valid())
-            return;
+        if (!Q.Exists() || !Q.Valid()) return;
         Type::Number type = Q.GetTypeNumber();
-        if (type == Type::Number::None)
-            return;
-        if (type != Type::Traits<T>::Number)
-            KAI_THROW_0(TypeMismatch);
+        if (type == Type::Number::None) return;
+        if (type != Type::Traits<T>::Number) KAI_THROW_0(TypeMismatch);
         storage = &GetStorage<T>(Q);
     }
 
-    ConstReference operator*() const
-    { 
-        if (storage == 0)
-            KAI_THROW_0(NullObject);
+    ConstReference operator*() const {
+        if (storage == 0) KAI_THROW_0(NullObject);
         return storage->GetConstReference();
     }
 
-    const T *operator->() const
-    { 
-        if (storage == 0)
-            KAI_THROW_0(NullObject);
+    const T *operator->() const {
+        if (storage == 0) KAI_THROW_0(NullObject);
         return &storage->GetConstReference();
     }
 
-    Handle GetHandle() const 
-    { 
+    Handle GetHandle() const {
         return Exists() ? GetObject().GetHandle() : Handle();
     }
 
-    Registry *GetRegistry() const
-    {
+    Registry *GetRegistry() const {
         return Exists() ? GetObject().GetRegistry() : 0;
     }
 
-    Type::Number GetTypeNumber() const
-    {
+    Type::Number GetTypeNumber() const {
         return Exists() ? GetObject().GetTypeNumber() : Type::Number::None;
     }
-    
-    void SetSwitch(int S, bool M)
-    {
-        if (storage)
-            storage->SetSwitch(S, M);
-    }
-    void SetMarked(bool M)
-    {
-        storage->SetMarked(M);
-    }
-    bool Valid() const
-    {
-        return Exists() ? GetObject().Valid() : false;
-    }
 
-    bool Exists() const
-    {
-        return storage && GetObject().Exists();
+    void SetSwitch(int S, bool M) {
+        if (storage) storage->SetSwitch(S, M);
     }
+    void SetMarked(bool M) { storage->SetMarked(M); }
+    bool Valid() const { return Exists() ? GetObject().Valid() : false; }
 
-    bool IsManaged() const
-    {
-        return Exists() && storage->IsManaged();
-    }
+    bool Exists() const { return storage && GetObject().Exists(); }
 
-    bool IsConst() const
-    {
-        return Exists() && GetObject().IsConst();
-    }
+    bool IsManaged() const { return Exists() && storage->IsManaged(); }
 
-    bool IsMutable() const
-    {
-        return Exists() && GetObject().IsMutable();
-    }
+    bool IsConst() const { return Exists() && GetObject().IsConst(); }
 
-    Object &GetObject() const
-    {
-        return *storage;
-    }
+    bool IsMutable() const { return Exists() && GetObject().IsMutable(); }
 
-    const Object &GetConstObject() const
-    {
-        return *storage;
-    }
+    Object &GetObject() const { return *storage; }
+
+    const Object &GetConstObject() const { return *storage; }
 };
 
 // A Value<> has direct access to the storage of an object.
@@ -146,8 +99,7 @@ public:
 // unless you can be sure that the corresponding Object will not
 // be collected.
 template <class T>
-struct Value : ConstValue<T>
-{
+struct Value : ConstValue<T> {
     using typename ConstValue<T>::Store;
     using typename ConstValue<T>::Reference;
     using typename ConstValue<T>::ConstReference;
@@ -155,76 +107,53 @@ struct Value : ConstValue<T>
     using ConstValue<T>::storage;
     using ConstValue<T>::AssignFrom;
 
-    Value() { }
+    Value() {}
 
-    Value(Object const &Q)
-    {
-        AssignFrom(Q);
-    }
+    Value(Object const &Q) { AssignFrom(Q); }
 
-    Value<T> &operator=(Value<T> const &Q)
-    {
+    Value<T> &operator=(Value<T> const &Q) {
         ConstValue<T>::operator=(Q);
         return *this;
     }
 
-    Value<T> &operator=(Object const &Q)
-    {
+    Value<T> &operator=(Object const &Q) {
         ConstValue<T>::operator=(Q);
         return *this;
     }
 
-    Reference operator*()
-    { 
-        if (storage == 0)
-            KAI_THROW_0(NullObject);
+    Reference operator*() {
+        if (storage == 0) KAI_THROW_0(NullObject);
         return storage->GetReference();
     }
 
-    T *operator->()
-    { 
-        if (storage == 0)
-            KAI_THROW_0(NullObject);
+    T *operator->() {
+        if (storage == 0) KAI_THROW_0(NullObject);
         return &storage->GetReference();
     }
 
-    ConstReference operator*() const
-    { 
-        return ConstValue<T>::operator*();
-    }
+    ConstReference operator*() const { return ConstValue<T>::operator*(); }
 
-    const T *operator->() const
-    { 
-        return ConstValue<T>::operator->();
-    }
+    const T *operator->() const { return ConstValue<T>::operator->(); }
 };
 
 template <class T>
-struct Value<const T> : ConstValue<T>
-{
+struct Value<const T> : ConstValue<T> {
     using typename ConstValue<T>::Store;
     using typename ConstValue<T>::Reference;
     using typename ConstValue<T>::ConstReference;
 
-    Value() { }
+    Value() {}
 
-    Value(Object const &Q) : ConstValue<T>(Q) { }
+    Value(Object const &Q) : ConstValue<T>(Q) {}
 
-    Value<T> &operator=(Object const &Q)
-    {
+    Value<T> &operator=(Object const &Q) {
         ConstValue<T>::operator=(Q);
         return *this;
     }
 
-    ConstReference operator*() const
-    { 
-        return ConstValue<T>::operator*();
-    }
+    ConstReference operator*() const { return ConstValue<T>::operator*(); }
 
-    const T *operator->() const
-    { 
-        return ConstValue<T>::operator->();
-    }
+    const T *operator->() const { return ConstValue<T>::operator->(); }
 };
 
 KAI_END

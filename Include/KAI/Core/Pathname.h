@@ -1,19 +1,18 @@
 #pragma once
 
-#include <list>
-
 #include <KAI/Core/BuiltinTypes/String.h>
 #include <KAI/Core/Type/Traits.h>
+
+#include <list>
+
 #include "KAI/Core/Object/Label.h"
 
 KAI_BEGIN
 
 /// A Pathname represents a qualified _name for an Object
-class Pathname
-{
-public:
-    struct Literals
-    {
+class Pathname {
+   public:
+    struct Literals {
         static const String::Char Parent;
         static const String::Char This;
         static const String::Char Separator;
@@ -22,23 +21,26 @@ public:
         static const String::Char AllButQuote[];
     };
 
-    struct Element
-    {
+    struct Element {
         enum Type { None, Quote, Separator, Parent, This, Name };
         Type type;
         Label name;
-        Element(Type T = None) : type(T) { }
-        Element(const Label &L) : type(Name), name(L) { }
-        friend bool operator<(const Element &A, const Element &B) { return A.type < B.type || (A.type == B.type && A.name < B.name); }
-        friend bool operator==(const Element &A, const Element &B) { return A.type == B.type && A.name == B.name; }
+        Element(Type T = None) : type(T) {}
+        Element(const Label &L) : type(Name), name(L) {}
+        friend bool operator<(const Element &A, const Element &B) {
+            return A.type < B.type || (A.type == B.type && A.name < B.name);
+        }
+        friend bool operator==(const Element &A, const Element &B) {
+            return A.type == B.type && A.name == B.name;
+        }
     };
     typedef std::vector<Element> Elements;
 
-private:
+   private:
     Elements elements;
 
-public:
-    Pathname() { }
+   public:
+    Pathname() {}
     Pathname(const String &);
     Pathname(const Elements &);
 
@@ -71,16 +73,12 @@ BinaryStream &operator<<(BinaryStream &, Pathname const &);
 BinaryPacket &operator>>(BinaryPacket &, Pathname &);
 
 template <class T>
-bool operator>(T const &A, T const &B)
-{
+bool operator>(T const &A, T const &B) {
     return B < A;
 }
 
-KAI_TYPE_TRAITS(Pathname, 
-    Number::Pathname
-    , Properties::Streaming
-    | Properties::Relational
-    );
+KAI_TYPE_TRAITS(Pathname, Number::Pathname,
+                Properties::Streaming | Properties::Relational);
 
 Pathname GetFullname(const StorageBase &);
 Pathname GetFullname(const Object &);
@@ -88,8 +86,10 @@ Label GetName(const Object &);
 
 void Set(Object scope, const Pathname &path, StorageBase *);
 void Set(Object scope, const Pathname &path, Object const &Q);
-void Set(Object const &root, Object const &scope, const Pathname &path, Object const &Q);
-void Set(Object const &root, Object const &scope, Object const &ident, Object const &Q);
+void Set(Object const &root, Object const &scope, const Pathname &path,
+         Object const &Q);
+void Set(Object const &root, Object const &scope, Object const &ident,
+         Object const &Q);
 
 Object Get(Object scope, const Pathname &path);
 Object Get(Object const &root, Object const &scope, const Pathname &path);
@@ -103,4 +103,3 @@ bool Exists(Object const &root, Object const &scope, const Pathname &path);
 bool Exists(Object const &scope, const Pathname &path);
 
 KAI_END
-

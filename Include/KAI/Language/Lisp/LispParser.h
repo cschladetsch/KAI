@@ -7,28 +7,27 @@
 KAI_BEGIN
 
 // parser specific to the in-fix Lisp language
-class LispParser : public ParserCommon<LispLexer, LispAstNodeEnumType>
-{
-public:
+class LispParser : public ParserCommon<LispLexer, LispAstNodeEnumType> {
+   public:
     typedef ParserCommon<LispLexer, LispAstNodeEnumType> Parent;
-    using typename Parent::TokenEnum;
-    using typename Parent::TokenNode;
-    using typename Parent::Lexer;
     using typename Parent::AstNode;
     using typename Parent::AstNodePtr;
+    using typename Parent::Lexer;
+    using typename Parent::TokenEnum;
+    using typename Parent::TokenNode;
 
-    typedef LispAstNodeEnumType NodeType; 
+    typedef LispAstNodeEnumType NodeType;
     typedef LispTokenEnumType TokenType;
 
-    LispParser(Registry &r) : Parent(r) { }
+    LispParser(Registry &r) : Parent(r) {}
 
     virtual bool Process(std::shared_ptr<Lexer> lex, Structure st) override;
     String Print() const;
 
-protected:
+   protected:
     void Process(Structure);
 
-private:
+   private:
     bool Run(Structure st);
     bool Program();
     bool Statement(AstNodePtr);

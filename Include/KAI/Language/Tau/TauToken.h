@@ -4,10 +4,8 @@
 
 TAU_BEGIN
 
-struct TauTokenEnumType
-{
-    enum Enum
-    {
+struct TauTokenEnumType {
+    enum Enum {
         None = 0,
         Ident = 1,
         OpenParan = 2,
@@ -31,20 +29,19 @@ struct TauTokenEnumType
         Sync = 31,
         Class = 32,
         Comma = 33,
-        Whitespace  = 34,
+        Whitespace = 34,
         Comment = 35,
         Async = 36,
         Tab = 37,
         String = 38,
     };
 
-    struct Type : TokenBase<TauTokenEnumType>
-    {
+    struct Type : TokenBase<TauTokenEnumType> {
         typedef TokenBase<TauTokenEnumType> Parent;
 
-        Type() { }
+        Type() {}
         Type(Enum val, const LexerBase &lexer, int ln, Slice slice)
-                : Parent(val, lexer, ln, slice) { }
+            : Parent(val, lexer, ln, slice) {}
     };
 
     static const char *ToString(Enum val);
@@ -54,4 +51,3 @@ typedef TauTokenEnumType::Type TauToken;
 typedef TauTokenEnumType::Enum TauTokenEnum;
 
 TAU_END
-

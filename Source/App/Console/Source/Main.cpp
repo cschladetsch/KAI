@@ -35,28 +35,28 @@ struct Peer : kai::Peer
 
 Console console;
 
-std::string KaiVersionString()
-{
+std::string KaiVersionString() {
     stringstream str;
-    str << KAI_VERSION_MAJOR << '.' << KAI_VERSION_MINOR << '.' << KAI_VERSION_PATCH;
+    str << KAI_VERSION_MAJOR << '.' << KAI_VERSION_MINOR << '.'
+        << KAI_VERSION_PATCH;
     return str.str();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     KAI_UNUSED_2(argc, argv);
 
     cout << "KAI v" << KaiVersionString() << endl << endl;
 
     console.SetLanguage(Language::Pi);
 
-    // the higher the number, the greater the verbosity of debug output for language systems
+    // the higher the number, the greater the verbosity of debug output for
+    // language systems
     Process::trace = 0;
 
-    // the higher the number, the greater the verbosity of debug output for the Executor
+    // the higher the number, the greater the verbosity of debug output for the
+    // Executor
     console.GetExecutor()->SetTraceLevel(0);
 
     // start the REPL
     return console.Run();
 }
-

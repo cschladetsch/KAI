@@ -1,36 +1,35 @@
 #pragma once
 
-#include <list>
-
-#include "KAI/Core/ObjectColor.h"
-#include "KAI/Core/Object/Handle.h"
-#include "KAI/Core/Object/Constness.h"
-#include "KAI/Core/Object/ObjectConstructParams.h"
 #include <KAI/Core/BuiltinTypes/Dictionary.h>
 #include <KAI/Core/Type.h>
 
+#include <list>
+
+#include "KAI/Core/Object/Constness.h"
+#include "KAI/Core/Object/Handle.h"
+#include "KAI/Core/Object/ObjectConstructParams.h"
+#include "KAI/Core/ObjectColor.h"
+
 KAI_BEGIN
 
-class Object
-{
-    const ClassBase *class_base{ nullptr };
-    Registry *registry{ nullptr };
+class Object {
+    const ClassBase *class_base{nullptr};
+    Registry *registry{nullptr};
     Handle handle;
 
 #ifdef KAI_CACHE_OBJECT_LOOKUPS
     // these fields are used to cache results for speed
-    int _gcIndex{ 0 };
-    bool _valid{ false };
-    void *value{ nullptr };
+    int _gcIndex{0};
+    bool _valid{false};
+    void *value{nullptr};
 #endif
 
-public:
-    enum Switch 
-    { 
-        Marked = 1, 
-        Managed = 2, 
-        Const = 4, 
-        Clean = 8, 
+   public:
+    enum Switch {
+        Marked = 1,
+        Managed = 2,
+        Const = 4,
+        Clean = 8,
         // if set, when marking, will not mark children
         NoRecurse = 16,
         DefaultSwitches = Managed
@@ -42,7 +41,9 @@ public:
     Object &operator=(Object const &);
 
     template <class T>
-    bool IsType() const { return Exists() && GetTypeNumber() == Type::Traits<T>::Number; }
+    bool IsType() const {
+        return Exists() && GetTypeNumber() == Type::Traits<T>::Number;
+    }
 
     StorageBase &GetStorageBase() const;
     int GetSwitches() const;
@@ -86,7 +87,9 @@ public:
     bool IsDirty() const { return !IsClean(); }
     void Set(const char *label, const Object &Q) const { Set(Label(label), Q); }
     Object Get(const char *label) const { return Get(Label(label)); }
-    void Add(const Label &label, const Object &child) const { Set(label, child); }
+    void Add(const Label &label, const Object &child) const {
+        Set(label, child);
+    }
     void Set(const Label &, const Object &) const;
     Object Get(const Label &) const;
     bool Has(const Label &) const;
@@ -121,16 +124,13 @@ public:
     void GetChildObjects(ObjectList &contained) const;
     void GetAllReferencedObjects(ObjectList &contained) const;
 
-    bool IsTypeNumber(int typeNumber) const 
-    { 
-        if (!Exists())
-            return typeNumber == Type::Number::None;
+    bool IsTypeNumber(int typeNumber) const {
+        if (!Exists()) return typeNumber == Type::Number::None;
 
         return GetTypeNumber() == typeNumber;
     }
 
-    class ChildProxy
-    {
+    class ChildProxy {
         friend class Object;
         Registry *registry;
         Handle handle;
@@ -140,38 +140,31 @@ public:
         ChildProxy(Object const &Q, Label const &L);
         Object GetObject() const;
 
-    public:
+       public:
         template <class T>
-        ChildProxy &operator=(T const &value)
-        {
-            //GetObject().Set(
+        ChildProxy &operator=(T const &value) {
+            // GetObject().Set(
             throw;
-            //return *this;
+            // return *this;
         }
 
         template <class T>
-        ChildProxy &operator=(Pointer<T> const &value)
-        {
+        ChildProxy &operator=(Pointer<T> const &value) {
             GetObject().Set(label, value);
             return *this;
         }
-        ChildProxy &operator=(Object const &child)
-        {
+        ChildProxy &operator=(Object const &child) {
             GetObject().Set(label, child);
             return *this;
         }
-        operator Object() const
-        {
-            return GetObject().Get(label);
-        }
+        operator Object() const { return GetObject().Get(label); }
     };
 
-    ChildProxy operator[](const char *label) const
-    {
+    ChildProxy operator[](const char *label) const {
         return ChildProxy(*this, label);
     }
 
-protected:
+   protected:
     Dictionary &GetDictionaryRef();
 };
 
@@ -188,12 +181,12 @@ bool operator>(const Object &A, Object const &B);
 Object operator+(Object const &A, Object const &B);
 // WTF Object operator-(Object const &Object Absolute(Object const &A);
 
-KAI_TYPE_TRAITS(Object, Number::Object
-    , Properties::StringStreamInsert
-    | Properties::BinaryStreamInsert
-    | Properties::BinaryStreamExtract);
+KAI_TYPE_TRAITS(Object, Number::Object,
+                Properties::StringStreamInsert |
+                    Properties::BinaryStreamInsert |
+                    Properties::BinaryStreamExtract);
 
-HashValue GetHash(Object const  &);
+HashValue GetHash(Object const &);
 
 void MarkObject(Object const &, bool = true);
 void MarkObjectAndChildren(Object const &, bool = true);
@@ -203,11 +196,8 @@ Object Duplicate(Object const &);
 
 KAI_END
 
-namespace boost
-{
-    inline size_t hash_value(KAI_NAMESPACE(Object) const &H)
-    {
-        return H.GetHandle().GetValue();
-    }
+namespace boost {
+inline size_t hash_value(KAI_NAMESPACE(Object) const &H) {
+    return H.GetHandle().GetValue();
 }
-
+}  // namespace boost

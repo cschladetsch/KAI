@@ -1,19 +1,18 @@
 #pragma once
 
-#include <KAI/Core/Type.h>
 #include <KAI/Core/BinaryStream.h>
 #include <KAI/Core/BuiltinTypes/Array.h>
 #include <KAI/Core/BuiltinTypes/String.h>
-#include <KAI/Core/Registry.h>
 #include <KAI/Core/Object/Reflected.h>
+#include <KAI/Core/Registry.h>
+#include <KAI/Core/Type.h>
 
 KAI_BEGIN
 
 struct Executor;
 
-class Continuation : public Reflected
-{
-public:
+class Continuation : public Reflected {
+   public:
     typedef Pointer</*const*/ Array> Code;
 
     Object scope;
@@ -29,19 +28,17 @@ public:
     // I hate this idea. needs to be re-thought through clearly.
     Pointer<bool> scopeBreak;
 
-public:
+   public:
     void Create();
     bool Destroy();
 
     template <class T>
-    Pointer<T> New() const
-    {
+    Pointer<T> New() const {
         return Self->GetRegistry()->New<T>();
     }
 
     template <class T>
-    Pointer<T> New(const T &val) const
-    {
+    Pointer<T> New(const T &val) const {
         return Self->GetRegistry()->New<T>(val);
     }
 
@@ -81,10 +78,7 @@ StringStream &operator>>(StringStream &, Continuation &);
 BinaryStream &operator<<(BinaryStream &, const Continuation &);
 BinaryStream &operator>>(BinaryStream &, Continuation &);
 
-KAI_TYPE_TRAITS(
-    Continuation, 
-    Number::Continuation, 
-    Properties::Streaming | Properties::Reflected
-    );
+KAI_TYPE_TRAITS(Continuation, Number::Continuation,
+                Properties::Streaming | Properties::Reflected);
 
 KAI_END

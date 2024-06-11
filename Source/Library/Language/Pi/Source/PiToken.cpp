@@ -1,19 +1,21 @@
-#include <algorithm>
+#include <KAI/Language/Pi/PiToken.h>
 #include <ctype.h>
 
-#include <KAI/Language/Pi/PiToken.h>
+#include <algorithm>
 
 using namespace std;
 
 KAI_BEGIN
 
-const char *PiTokenEnumType::ToString(Enum t)
-{
-    switch (t)
-    {
-#define CASE(N) case PiTokens::N : return #N;
+const char *PiTokenEnumType::ToString(Enum t) {
+    switch (t) {
+#define CASE(N)       \
+    case PiTokens::N: \
+        return #N;
 #define CASE_LOWER(N) CASE(N)
-#define CASE_REPLACE(N, M) case PiTokens::N : return M;
+#define CASE_REPLACE(N, M) \
+    case PiTokens::N:      \
+        return M;
 
 #ifdef TRACE_WS
         CASE_LOWER(Whitespace)
@@ -151,29 +153,31 @@ const char *PiTokenEnumType::ToString(Enum t)
     KAI_NOT_IMPLEMENTED();
 }
 
-std::ostream &operator<<(std::ostream &out, PiToken const &node)
-{
-    if (node.type == PiTokenEnumType::None)
-        return out << "<NONE>";
+std::ostream &operator<<(std::ostream &out, PiToken const &node) {
+    if (node.type == PiTokenEnumType::None) return out << "<NONE>";
 
-    switch (node.type)
-    {
-    case PiTokenEnumType::True: { out << "true"; return out; }
-    case PiTokenEnumType::False: { out << "false"; return out; }
+    switch (node.type) {
+        case PiTokenEnumType::True: {
+            out << "true";
+            return out;
+        }
+        case PiTokenEnumType::False: {
+            out << "false";
+            return out;
+        }
     }
 
     out << PiTokenEnumType::ToString(node.type);
 
-    switch (node.type)
-    {
-    case PiTokenEnumType::Int:
-    case PiTokenEnumType::Float:
-    case PiTokenEnumType::Pathname:
-    case PiTokenEnumType::String:
-    case PiTokenEnumType::Ident:
-    case PiTokenEnumType::QuotedIdent:
-        out << "='" << node.Text() << "'";
-        break;
+    switch (node.type) {
+        case PiTokenEnumType::Int:
+        case PiTokenEnumType::Float:
+        case PiTokenEnumType::Pathname:
+        case PiTokenEnumType::String:
+        case PiTokenEnumType::Ident:
+        case PiTokenEnumType::QuotedIdent:
+            out << "='" << node.Text() << "'";
+            break;
     }
 
     return out;

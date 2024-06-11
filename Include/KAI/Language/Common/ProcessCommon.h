@@ -1,29 +1,26 @@
 #pragma once
 
-#include <KAI/Core/Value.h>
 #include <KAI/Core/Registry.h>
+#include <KAI/Core/Value.h>
 #include <KAI/Language/Common/Process.h>
 
 KAI_BEGIN
 
-struct ProcessCommon : Process
-{
+struct ProcessCommon : Process {
     template <class T>
-    Value<T> New()
-    {
+    Value<T> New() {
         return _reg->New<T>();
     }
 
     template <class T>
-    Value<T> New(const T& val)
-    {
+    Value<T> New(const T &val) {
         return _reg->New<T>(val);
     }
 
-    ProcessCommon() { }
-    ProcessCommon(Registry &r) : _reg(&r) { }
+    ProcessCommon() {}
+    ProcessCommon(Registry &r) : _reg(&r) {}
 
-protected:
+   protected:
     Registry *_reg = 0;
 };
 

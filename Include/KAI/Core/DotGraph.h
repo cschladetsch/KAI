@@ -9,13 +9,12 @@
 KAI_BEGIN
 
 // Generates GraphViz script showing the depedancy graph given an object _root
-struct DotGraph : StringStream
-{
-private:
+struct DotGraph : StringStream {
+   private:
     std::set<Label> excluded_names;
     std::set<Type::Number> excluded_types;
 
-public:
+   public:
     DotGraph();
     DotGraph(Object, String const &filename);
 
@@ -23,8 +22,7 @@ public:
 
     void ExcludeLabel(Label const &);
     template <class T>
-    void ExcludeType()
-    {
+    void ExcludeType() {
         excluded_types.insert(Type::Traits<T>::Number);
     }
     void WriteHeader();
@@ -36,8 +34,8 @@ public:
 
     friend DotGraph &operator<<(DotGraph &graph, Object const &object);
 
-protected:
-    bool IsExcluded(Object const&) const;
+   protected:
+    bool IsExcluded(Object const &) const;
 };
 
 DotGraph &operator<<(DotGraph &graph, Object const &object);

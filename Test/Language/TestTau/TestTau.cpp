@@ -1,27 +1,27 @@
-#include "TestLangCommon.h"
-#include "KAI/Language/Tau/TauParser.h"
 #include "KAI/Language/Tau/Generate/GenerateProcess.h"
+#include "KAI/Language/Tau/TauParser.h"
+#include "TestLangCommon.h"
 //#include "KAI/Language/Tau/Generate/GenerateAgent.h"
 //#include "KAI/Language/Tau/Generate/GenerateProxy.h"
 //
 //
-//using namespace kai;
-//using namespace std;
+// using namespace kai;
+// using namespace std;
 //
-//struct TestTau : TestLangCommon
+// struct TestTau : TestLangCommon
 //{
 //};
 //
-//KAI_BEGIN
+// KAI_BEGIN
 //
-//std::string LoadScriptText(const char *filename)
+// std::string LoadScriptText(const char *filename)
 //{
 //    return "";
 //}
 //
-//KAI_END
+// KAI_END
 //
-//TEST_F(TestTau, TestProxyGen)
+// TEST_F(TestTau, TestProxyGen)
 //{
 //    auto tauScript = LoadScriptText("Tau2.tau");
 //    ASSERT_FALSE(tauScript.empty());
@@ -35,7 +35,7 @@
 //    KAI_TRACE_1(output);
 //}
 //
-//TEST_F(TestTau, TestAgentGen)
+// TEST_F(TestTau, TestAgentGen)
 //{
 //    auto tauScript = LoadScriptText("Tau2.tau");
 //    ASSERT_FALSE(tauScript.empty());

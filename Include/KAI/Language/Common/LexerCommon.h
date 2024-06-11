@@ -1,16 +1,17 @@
 #pragma once
 
-#include <KAI/Language/Common/Slice.h>
-#include <KAI/Language/Common/Process.h>
 #include <KAI/Language/Common/LexerBase.h>
+#include <KAI/Language/Common/Process.h>
+#include <KAI/Language/Common/Slice.h>
 
 // TODO: ugly to need these in a library header
-#include <sstream>
-#include <algorithm>
 #include <stdarg.h>
 
+#include <algorithm>
+#include <sstream>
+
 #ifdef KAI_USE_MONOTONIC_ALLOCATOR
-#    include <boost/monotonic/monotonic.hpp>
+#include <boost/monotonic/monotonic.hpp>
 #endif
 
 ////#undef min
@@ -20,9 +21,8 @@ KAI_BEGIN
 
 // Tokenise an input string for later parsing
 template <class EnumType>
-class LexerCommon : public LexerBase
-{
-public:
+class LexerCommon : public LexerBase {
+   public:
     typedef typename EnumType::Type Token;
     typedef typename EnumType::Enum Enum;
     typedef EnumType TokenEnumType;
@@ -36,10 +36,9 @@ public:
     typedef std::map<std::string, Enum> Keywords;
 #endif
 
-    LexerCommon(const char *input, Registry &r) : LexerBase(input, r) { }
+    LexerCommon(const char *input, Registry &r) : LexerBase(input, r) {}
 
-    bool Process()
-    {
+    bool Process() {
         AddKeyWords();
         CreateLines();
         return Run();
@@ -51,13 +50,12 @@ public:
 
     const Tokens &GetTokens() const { return tokens; }
 
-protected:
+   protected:
     Tokens tokens;
     Keywords keyWords;
     using LexerBase::_reg;
 
-    bool Run()
-    {
+    bool Run() {
         offset = 0;
         lineNumber = 0;
 
@@ -69,52 +67,40 @@ protected:
         return !Failed;
     }
 
-    Token LexAlpha()
-    {
+    Token LexAlpha() {
         Token tok(Enum::Ident, *this, lineNumber, Gather(isalnum));
         auto kw = keyWords.find(tok.Text());
         auto keyword = kw != keyWords.end();
-        if (keyword)
-            tok.type = kw->second;
+        if (keyword) tok.type = kw->second;
 
         return tok;
     }
 
-    void AddStringToken(int lineNumber, Slice slice) override
-    {
+    void AddStringToken(int lineNumber, Slice slice) override {
         tokens.push_back(Token(Enum::String, *this, lineNumber, slice));
     }
 
-    void LexErrorBase(const char *msg) override
-    {
-        LexError(msg);
-    }
+    void LexErrorBase(const char *msg) override { LexError(msg); }
 
-    bool Add(Token const &tok)
-    {
+    bool Add(Token const &tok) {
         tokens.push_back(tok);
         return true;
     }
 
-    bool Add(Enum type, Slice slice)
-    {
+    bool Add(Enum type, Slice slice) {
         tokens.push_back(Token(type, *this, lineNumber, slice));
         return true;
     }
 
-    bool Add(Enum type, int len = 1)
-    {
+    bool Add(Enum type, int len = 1) {
         Add(type, Slice(offset, offset + len));
-        while (len--)
-            Next();
+        while (len--) Next();
 
         return true;
     }
 
-    bool AddIfNext(char ch, Enum thentype, Enum elseType)
-    {
-        if (Peek() == ch)
-        {
+    bool AddIfNext(char ch, Enum thentype, Enum elseType) {
+        if (Peek() == ch) {
             Next();
             return Add(thentype, 2);
         }
@@ -122,16 +108,14 @@ protected:
         return Add(elseType, 1);
     }
 
-    bool AddTwoCharOp(Enum ty)
-    {
+    bool AddTwoCharOp(Enum ty) {
         Add(ty, 2);
         Next();
 
         return true;
     }
 
-    bool AddThreeCharOp(Enum ty)
-    {
+    bool AddThreeCharOp(Enum ty) {
         Add(ty, 3);
         Next();
         Next();
@@ -139,55 +123,51 @@ protected:
         return true;
     }
 
-    bool LexError(const char *text)
-    {
-        return Fail(CreateErrorMessage(Token(static_cast<Enum>(0), *this, lineNumber, Slice(offset, offset)), text, Current()));
+    bool LexError(const char *text) {
+        return Fail(CreateErrorMessage(Token(static_cast<Enum>(0), *this,
+                                             lineNumber, Slice(offset, offset)),
+                                       text, Current()));
     }
 
-public:
-    static std::string CreateErrorMessage(Token tok, const char *fmt, ...)
-    {
+   public:
+    static std::string CreateErrorMessage(Token tok, const char *fmt, ...) {
         char buff0[2000];
         va_list ap;
         va_start(ap, fmt);
-        #ifdef WIN32
+#ifdef WIN32
         vsprintf_s(buff0, fmt, ap);
-        #else
+#else
         vsprintf(buff0, fmt, ap);
-        #endif
+#endif
 
         const char *fmt1 = "%s(%d):[%d]: %s\n";
         char buff[2000];
-        #ifdef WIN32
+#ifdef WIN32
         sprintf_s(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
-        #else
+#else
         sprintf(buff, fmt1, "", tok.lineNumber, tok.slice.Start, buff0);
-        #endif
+#endif
         int beforeContext = 2;
         int afterContext = 2;
 
         const LexerBase &lex = *tok.lexer;
         int start = std::max(0, tok.lineNumber - beforeContext);
-        int end = std::min((int)lex.GetLines().size() - 1, tok.lineNumber + afterContext);
+        int end = std::min((int)lex.GetLines().size() - 1,
+                           tok.lineNumber + afterContext);
 
         std::stringstream err;
         err << buff << std::endl;
-        for (int n = start; n <= end; ++n)
-        {
-            for (auto ch : lex.GetLine(n))
-            {
+        for (int n = start; n <= end; ++n) {
+            for (auto ch : lex.GetLine(n)) {
                 if (ch == '\t')
                     err << "    ";
                 else
                     err << ch;
             }
 
-            if (n == tok.lineNumber)
-            {
-                for (int ch = 0; ch < (int)lex.GetLine(n).size(); ++ch)
-                {
-                    if (ch == tok.slice.Start)
-                    {
+            if (n == tok.lineNumber) {
+                for (int ch = 0; ch < (int)lex.GetLine(n).size(); ++ch) {
+                    if (ch == tok.slice.Start) {
                         err << '^';
                         break;
                     }
@@ -206,12 +186,10 @@ public:
         return err.str();
     }
 
-    std::string Print() const
-    {
+    std::string Print() const {
         std::stringstream str;
         int n = 0;
-        for (auto tok : tokens)
-        {
+        for (auto tok : tokens) {
             str << tok << ", ";
         }
         return str.str();

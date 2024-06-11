@@ -1,38 +1,31 @@
+#include "KAI/Console/Console.h"
+
 #include <iostream>
 
-#include "rang.hpp"
-
+#include "KAI/Core/BuiltinTypes.h"
 #include "KAI/Core/Memory/StandardAllocator.h"
 #include "KAI/Core/Object.h"
-#include "KAI/Core/BuiltinTypes.h"
-#include "KAI/Console/Console.h"
 #include "KAI/Executor/BinBase.h"
+#include "rang.hpp"
 
 using namespace std;
 
 KAI_BEGIN
 
-Console::Console()
-{
+Console::Console() {
     alloc = make_shared<Memory::StandardAllocator>();
     Create();
 }
 
-Console::Console(shared_ptr<Memory::IAllocator> alloc)
-{
+Console::Console(shared_ptr<Memory::IAllocator> alloc) {
     this->alloc = alloc;
     Create();
 }
 
-Console::~Console()
-{
-    alloc->DeAllocate(_reg);
-}
+Console::~Console() { alloc->DeAllocate(_reg); }
 
-void Console::Create()
-{
-    try
-    {
+void Console::Create() {
+    try {
         _reg = alloc->Allocate<Registry>(alloc);
 
         RegisterTypes();
@@ -47,47 +40,34 @@ void Console::Create()
 
         SetLanguage(Language::Pi);
     }
-    KAI_CATCH(exception, e)
-    {
+    KAI_CATCH(exception, e) {
         KAI_TRACE_1(e.what());
         std::cerr << "Console::Create::Exception '" << e.what() << "'" << ends;
     }
 }
 
-void Console::ExposeTypesToTree(Object types)
-{
-    for (int N = 0; N < Type::Number::Last; ++N)
-    {
+void Console::ExposeTypesToTree(Object types) {
+    for (int N = 0; N < Type::Number::Last; ++N) {
         const ClassBase *K = _reg->GetClass(N);
-        if (K == 0)
-            continue;
+        if (K == 0) continue;
         types.Set(K->GetName(), _reg->New(K));
     }
 }
 
-void Console::SetLanguage(Language lang)
-{
+void Console::SetLanguage(Language lang) {
     SetLanguage(static_cast<int>(lang));
 }
 
-void Console::SetLanguage(int lang)
-{
+void Console::SetLanguage(int lang) {
     language = static_cast<Language>(lang);
     compiler->SetLanguage(lang);
 }
 
-void Console::ControlC()
-{
-    executor->ClearContext();
-}
+void Console::ControlC() { executor->ClearContext(); }
 
-Language Console::GetLanguage() const
-{
-    return language;
-}
+Language Console::GetLanguage() const { return language; }
 
-void Console::CreateTree()
-{
+void Console::CreateTree() {
     Object root = _reg->New<void>();
     Object types = _reg->New<void>();
     Object sys = _reg->New<void>();
@@ -124,48 +104,31 @@ void Console::CreateTree()
     ExposeTypesToTree(types);
 }
 
-void Console::Execute(Pointer<Continuation> cont)
-{
-    KAI_TRY
-    {
-        if (!cont->HasScope())
-            cont->SetScope(tree.GetRoot());
+void Console::Execute(Pointer<Continuation> cont) {
+    KAI_TRY {
+        if (!cont->HasScope()) cont->SetScope(tree.GetRoot());
 
         executor->Continue(cont);
     }
-    KAI_CATCH(Exception::Base, E)
-    {
-        KAI_TRACE_ERROR_1(E);
-    }
-    KAI_CATCH(exception, E)
-    {
-        KAI_TRACE_ERROR_2("StdException: ", E.what());
-    }
-    KAI_CATCH_ALL()
-    {
-        KAI_TRACE_ERROR_1("UnknownException");
-    }
+    KAI_CATCH(Exception::Base, E) { KAI_TRACE_ERROR_1(E); }
+    KAI_CATCH(exception, E) { KAI_TRACE_ERROR_2("StdException: ", E.what()); }
+    KAI_CATCH_ALL() { KAI_TRACE_ERROR_1("UnknownException"); }
 }
 
-void Console::Execute(String const &text, Structure st)
-{
+void Console::Execute(String const &text, Structure st) {
     Pointer<Continuation> cont = compiler->Translate(text.c_str(), st);
-    if (!cont.Exists())
-        return;
+    if (!cont.Exists()) return;
 
     cont->SetScope(executor->GetTree()->GetScope());
     executor->Continue(cont);
 }
 
-String Console::Process(const String& text)
-{
+String Console::Process(const String &text) {
     StringStream result;
-    KAI_TRY
-    {
+    KAI_TRY {
         cout << rang::fg::red;
         auto cont = compiler->Translate(text.c_str());
-        if (cont.Exists())
-        {
+        if (cont.Exists()) {
             cont->SetScope(tree.GetScope());
             cout << rang::fg::gray;
             Execute(cont);
@@ -173,57 +136,47 @@ String Console::Process(const String& text)
 
         return "";
     }
-    KAI_CATCH(Exception::Base, E)
-    {
+    KAI_CATCH(Exception::Base, E) {
         result << "Exception: " << E.ToString() << "\n";
     }
-    KAI_CATCH(exception, E)
-    {
-        result << "StdException: " << E.what() << "\n";
-    }
-    KAI_CATCH_ALL()
-    {
-        result << "UnknownException: " << "\n";
+    KAI_CATCH(exception, E) { result << "StdException: " << E.what() << "\n"; }
+    KAI_CATCH_ALL() {
+        result << "UnknownException: "
+               << "\n";
     }
     return result.ToString();
 }
 
-void Console::WritePrompt(ostream &out) const
-{
+void Console::WritePrompt(ostream &out) const {
     const auto path = GetFullname(GetTree().GetScope());
     auto pathName = path.ToString();
-    out
-        << rang::fg::green << ToString(static_cast<Language>(compiler->GetLanguage())) << " "
-        << rang::fg::yellow << pathName.c_str()
-        << rang::fg::gray << "> ";
+    out << rang::fg::green
+        << ToString(static_cast<Language>(compiler->GetLanguage())) << " "
+        << rang::fg::yellow << pathName.c_str() << rang::fg::gray << "> ";
 }
 
-String Console::GetPrompt() const
-{
+String Console::GetPrompt() const {
     StringStream prompt;
-    prompt
-        << ConsoleColor::LanguageName << ToString(static_cast<Language>(compiler->GetLanguage()))
-        << ConsoleColor::Pathname << GetFullname(GetTree().GetScope()).ToString().c_str()
-        << ConsoleColor::Input << "> ";
+    prompt << ConsoleColor::LanguageName
+           << ToString(static_cast<Language>(compiler->GetLanguage()))
+           << ConsoleColor::Pathname
+           << GetFullname(GetTree().GetScope()).ToString().c_str()
+           << ConsoleColor::Input << "> ";
 
     return prompt.ToString();
 }
 
-String Console::WriteStack() const
-{
+String Console::WriteStack() const {
     const Value<const Stack> data = executor->GetDataStack();
     auto A = data->Begin(), B = data->End();
     StringStream result;
-    for (int N = 0; A != B; ++A)
-    {
+    for (int N = 0; A != B; ++A) {
         result << "[" << N << "] ";
         const bool is_string = A->GetTypeNumber() == Type::Number::String;
-        if (is_string)
-            result << "\"";
+        if (is_string) result << "\"";
 
         result << *A;
-        if (is_string)
-            result << "\"";
+        if (is_string) result << "\"";
 
         result << "\n";
     }
@@ -231,14 +184,10 @@ String Console::WriteStack() const
     return result.ToString();
 }
 
-int Console::Run()
-{
-    for (;;)
-    {
-        KAI_TRY
-        {
-            for (;;)
-            {
+int Console::Run() {
+    for (;;) {
+        KAI_TRY {
+            for (;;) {
                 WritePrompt(cout);
                 cout << rang::style::bold;
                 string text;
@@ -247,29 +196,18 @@ int Console::Run()
                 cout << rang::fg::reset << Process(text.c_str()).c_str();
                 executor->PrintStack(cout);
 
-                if (_end)
-                    return _endCode;
+                if (_end) return _endCode;
             }
         }
-        KAI_CATCH(Exception::Base, E)
-        {
-            KAI_TRACE_ERROR_1(E);
-        }
-        KAI_CATCH(exception, E)
-        {
-            KAI_TRACE_ERROR_1(E.what());
-        }
-        KAI_CATCH_ALL()
-        {
-            KAI_TRACE_ERROR() << " something went wrong";
-        }
+        KAI_CATCH(Exception::Base, E) { KAI_TRACE_ERROR_1(E); }
+        KAI_CATCH(exception, E) { KAI_TRACE_ERROR_1(E.what()); }
+        KAI_CATCH_ALL() { KAI_TRACE_ERROR() << " something went wrong"; }
     }
 }
 
-void Console::RegisterTypes()
-{
+void Console::RegisterTypes() {
     // built-ins
-    _reg->AddClass<const ClassBase *>(Label("Class"));        // TODO: add _methods
+    _reg->AddClass<const ClassBase *>(Label("Class"));  // TODO: add _methods
     _reg->AddClass<void>(Label("Void"));
     _reg->AddClass<bool>(Label("Bool"));
     _reg->AddClass<int>(Label("Int"));
@@ -278,7 +216,7 @@ void Console::RegisterTypes()
     _reg->AddClass<Vector4>(Label("Vector4"));
 
     // system types
-    //ObjectSet::Register(*registry);
+    // ObjectSet::Register(*registry);
     String::Register(*_reg);
     Object::Register(*_reg);
     Handle::Register(*_reg);
@@ -301,7 +239,7 @@ void Console::RegisterTypes()
     Map::Register(*_reg, "Map");
 
     // TODO: remove less-than comparable trait for hash maps:
-    //HashMap::Register(*registry, "HashMap");
+    // HashMap::Register(*registry, "HashMap");
 
 #ifdef KAI_UNIT_TESTS
     registry->AddClass<Test::IOutput *>("TestOutputBase");
@@ -312,20 +250,16 @@ void Console::RegisterTypes()
 #endif
 }
 
-Pointer<Continuation> Console::Compile(const char *text, Structure st)
-{
+Pointer<Continuation> Console::Compile(const char *text, Structure st) {
     return compiler->Translate(text, st);
 }
 
-void Console::Register(Registry &)
-{
-}
+void Console::Register(Registry &) {}
 
-bool Console::ExecuteFile(const char *fileName)
-{
-    Pointer<Continuation> c = compiler->CompileFile(fileName, Structure::Program);
-    if (c.Exists())
-    {
+bool Console::ExecuteFile(const char *fileName) {
+    Pointer<Continuation> c =
+        compiler->CompileFile(fileName, Structure::Program);
+    if (c.Exists()) {
         executor->Continue(c);
         return true;
     }
@@ -335,4 +269,4 @@ bool Console::ExecuteFile(const char *fileName)
 
 KAI_END
 
-//EOF
+// EOF

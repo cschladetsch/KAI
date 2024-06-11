@@ -5,9 +5,8 @@
 
 KAI_BEGIN
 
-class LispTranslator : public TranslatorBase<LispParser>
-{
-public:
+class LispTranslator : public TranslatorBase<LispParser> {
+   public:
     typedef TranslatorBase<LispParser> Parent;
     typedef typename Parent::Parser Parser;
     typedef typename Parent::TokenNode TokenNode;
@@ -16,14 +15,14 @@ public:
     typedef typename Parent::AstEnum AstNodeEnum;
     typedef typename Parent::AstNodePtr AstNodePtr;
 
-    LispTranslator(const LispTranslator&) = delete;
-    LispTranslator(Registry &r) : Parent(r) { }
+    LispTranslator(const LispTranslator &) = delete;
+    LispTranslator(Registry &r) : Parent(r) {}
 
-protected:
+   protected:
     virtual void TranslateNode(AstNodePtr node) override;
     using Parent::_reg;
 
-private:
+   private:
     void TranslateToken(AstNodePtr node);
     void TranslateFunction(AstNodePtr node);
     void TranslateBlock(AstNodePtr node);

@@ -1,21 +1,16 @@
-#include "TestLangCommon.h"
 #include <KAI/Core/BuiltinTypes.h>
 #include <KAI/Core/BuiltinTypes/Array.h>
+
+#include "TestLangCommon.h"
 
 using namespace kai;
 using namespace std;
 
-struct TestPi : TestLangCommon
-{
-};
+struct TestPi : TestLangCommon {};
 
-TEST_F(TestPi, RunScripts)
-{
-    ExecScripts();
-}
+TEST_F(TestPi, RunScripts) { ExecScripts(); }
 
-TEST_F(TestPi, TestContinuations)
-{
+TEST_F(TestPi, TestContinuations) {
     auto &exec = *_console.GetExecutor();
     auto &data = *exec.GetDataStack();
     auto &context = *exec.GetContextStack();
@@ -48,21 +43,20 @@ TEST_F(TestPi, TestContinuations)
 
     data.Clear();
     _console.Execute("{+ b !} 'a #");
-    ASSERT_TRUE( exec.GetTree()->Resolve(Label("a")).Exists());
+    ASSERT_TRUE(exec.GetTree()->Resolve(Label("a")).Exists());
 
     //_console.Execute("{+ b !} 'a # { 3 * 2 a !} 'b # 1 2 a &");
     //// a = {+ b!}
     //// b = {3 * 2 a!}
-    //// 1 2 a & 
+    //// 1 2 a &
     //// 1 1 + 3 * 2 +
     //// = 2*3+2 = 8
-    //ASSERT_EQ(data.Size(), 1);
-    //ASSERT_EQ(AtData<int>(0), 8);
-    //ASSERT_EQ(context.Size(), 0);
+    // ASSERT_EQ(data.Size(), 1);
+    // ASSERT_EQ(AtData<int>(0), 8);
+    // ASSERT_EQ(context.Size(), 0);
 }
 
-TEST_F(TestPi, TestComments)
-{
+TEST_F(TestPi, TestComments) {
     _console.SetLanguage(Language::Pi);
     _console.Execute("// text\n\n\n\n\n");
     ASSERT_EQ(_data->Size(), 0);
@@ -77,10 +71,9 @@ TEST_F(TestPi, TestComments)
     ASSERT_EQ(_data->Size(), 0);
 }
 
-// Create some stuff on the stack, freeze it to a binary packet, thaw it out to objects,
-// then ensure the end result is what went in.
-TEST_F(TestPi, TestFreezeThaw)
-{
+// Create some stuff on the stack, freeze it to a binary packet, thaw it out to
+// objects, then ensure the end result is what went in.
+TEST_F(TestPi, TestFreezeThaw) {
     _console.SetLanguage(Language::Pi);
     _console.Execute("42 \"hello\" [3 9 8] 3 toarray freeze");
     auto const &packet = ConstDeref<BinaryStream>(_data->Top());
@@ -110,8 +103,7 @@ TEST_F(TestPi, TestFreezeThaw)
     ASSERT_EQ(c1, 42);
 }
 
-TEST_F(TestPi, TestArithmetic)
-{
+TEST_F(TestPi, TestArithmetic) {
     _console.SetLanguage(Language::Pi);
     _data->Clear();
     _console.Execute("6 2 div");
@@ -134,8 +126,7 @@ TEST_F(TestPi, TestArithmetic)
     ASSERT_EQ(AtData<int>(0), 10);
 }
 
-TEST_F(TestPi, TestVectors)
-{
+TEST_F(TestPi, TestVectors) {
     _console.SetLanguage(Language::Pi);
 
     _data->Clear();
@@ -165,8 +156,7 @@ TEST_F(TestPi, TestVectors)
     ASSERT_EQ(AtData<int>(0), 3);
 }
 
-TEST_F(TestPi, TestScope)
-{
+TEST_F(TestPi, TestScope) {
     const Label b("b");
     const Label c("c");
 
@@ -184,4 +174,3 @@ TEST_F(TestPi, TestScope)
     _console.Execute("1 'c #");
     ASSERT_FALSE(_root.Has(c));
 }
-

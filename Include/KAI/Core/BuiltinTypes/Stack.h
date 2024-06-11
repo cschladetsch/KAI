@@ -1,30 +1,34 @@
 
 #pragma once
 
+#include <KAI/Core/BuiltinTypes/Container.h>
+#include <KAI/Core/Config/Base.h>
+
 #include <vector>
 
-#include <KAI/Core/Config/Base.h>
-#include <KAI/Core/BuiltinTypes/Container.h>
 #include "KAI/Core/Exception/ExceptionBase.h"
 #include "KAI/Core/Exception/ExceptionMacros.h"
 
 KAI_BEGIN
 
-class Stack : public Container<Stack>
-{
-public:
+class Stack : public Container<Stack> {
+   public:
     typedef std::vector<Object> Objects;
     typedef Objects::const_reverse_iterator const_reverse_iterator;
     typedef Objects::reverse_iterator reverse_iterator;
     typedef Objects::const_iterator const_iterator;
     typedef Objects::iterator iterator;
 
-private:
+   private:
     Objects stack;
-    
-public:
-    friend bool operator==(const Stack &A, const Stack &B) { return A.stack == B.stack; }
-    friend bool operator<(const Stack &A, const Stack &B) { return A.stack < B.stack; }
+
+   public:
+    friend bool operator==(const Stack &A, const Stack &B) {
+        return A.stack == B.stack;
+    }
+    friend bool operator<(const Stack &A, const Stack &B) {
+        return A.stack < B.stack;
+    }
 
     bool Destroy();
 
@@ -44,7 +48,7 @@ public:
     Object Top() const;
 
     static void Register(Registry &);
-    
+
     const Objects &GetStack() const { return stack; }
     iterator begin() { return stack.begin(); }
     iterator end() { return stack.end(); }
@@ -58,15 +62,9 @@ BinaryPacket &operator>>(BinaryPacket &, Stack &);
 
 HashValue GetHash(const Stack &);
 
-KAI_TYPE_TRAITS(Stack, Number::Stack
-    , Properties::StringStreamInsert 
-    | Properties::BinaryStreaming
-    | Properties::Less 
-    | Properties::Equiv
-    | Properties::Assign
-    | Properties::Reflected
-    | Properties::Container
-    );
+KAI_TYPE_TRAITS(Stack, Number::Stack,
+                Properties::StringStreamInsert | Properties::BinaryStreaming |
+                    Properties::Less | Properties::Equiv | Properties::Assign |
+                    Properties::Reflected | Properties::Container);
 
 KAI_END
-

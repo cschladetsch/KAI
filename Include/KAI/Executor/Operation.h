@@ -6,22 +6,34 @@
 KAI_BEGIN
 
 // An Operation represents an action to be taken by and Executor
-struct Operation
-{
-    enum Type
-    {
+struct Operation {
+    enum Type {
         Return,
         SuspendNew,
         None,
-        True, False,
-        Equiv, NotEquiv, Less, Greater, LessOrEquiv, GreaterOrEquiv,
-        Suspend, Replace, Resume,
+        True,
+        False,
+        Equiv,
+        NotEquiv,
+        Less,
+        Greater,
+        LessOrEquiv,
+        GreaterOrEquiv,
+        Suspend,
+        Replace,
+        Resume,
         CppFunctionCall,
         CppMethodCall,
-        Plus, Minus, Multiply, Divide, Modulo,
+        Plus,
+        Minus,
+        Multiply,
+        Divide,
+        Modulo,
         TypeOf,
 
-        Store, Retreive, Remove,
+        Store,
+        Retreive,
+        Remove,
 
         New,
         Assign,
@@ -35,12 +47,39 @@ struct Operation
         GetChildren,
         Contents,
         Break,
-        Drop, DropN, Swap, Dup, Rot, RotN, Pick, Clear, Depth, Over,
-        ToArray, ToList, ToMap, ToSet, ToHashMap, ToPair, ToVector2, ToVector3, ToVector4, Expand,
-        Name, Fullname,
+        Drop,
+        DropN,
+        Swap,
+        Dup,
+        Rot,
+        RotN,
+        Pick,
+        Clear,
+        Depth,
+        Over,
+        ToArray,
+        ToList,
+        ToMap,
+        ToSet,
+        ToHashMap,
+        ToPair,
+        ToVector2,
+        ToVector3,
+        ToVector4,
+        Expand,
+        Name,
+        Fullname,
 
-        LogicalNot, LogicalAnd, LogicalOr, LogicalXor, LogicalNand,
-        BitwiseNot, BitwiseAnd, BitwiseOr, BitwiseXor, BitwiseNand,
+        LogicalNot,
+        LogicalAnd,
+        LogicalOr,
+        LogicalXor,
+        LogicalNand,
+        BitwiseNot,
+        BitwiseAnd,
+        BitwiseOr,
+        BitwiseXor,
+        BitwiseNand,
         Lookup,
         TraceAll,
         Trace,
@@ -52,7 +91,8 @@ struct Operation
         Exists,
         Pin,
         Unpin,
-        ContinuationBegin, ContinuationEnd,
+        ContinuationBegin,
+        ContinuationEnd,
         MarkAndSweep,
         ThisContext,
         ThisContinuation,
@@ -120,11 +160,11 @@ struct Operation
         GarbageCollect,
     };
 
-private:
+   private:
     Type value;
 
-public:
-    Operation(int T = 0) : value(Type(T)) { }
+   public:
+    Operation(int T = 0) : value(Type(T)) {}
 
     void SetType(Type T) { value = T; }
     Type GetTypeNumber() const { return value; }
@@ -132,17 +172,20 @@ public:
     static const char *ToString(int);
     const char *ToString() const;
 
-    friend bool operator<(const Operation &A, const Operation &B) { return A.value < B.value; }
-    friend bool operator==(const Operation &A, const Operation &B) { return A.value == B.value; }
-    friend bool operator!=(const Operation &A, const Operation &B) { return A.value != B.value; }
+    friend bool operator<(const Operation &A, const Operation &B) {
+        return A.value < B.value;
+    }
+    friend bool operator==(const Operation &A, const Operation &B) {
+        return A.value == B.value;
+    }
+    friend bool operator!=(const Operation &A, const Operation &B) {
+        return A.value != B.value;
+    }
 
     static void Register(Registry &);
 };
 
-KAI_TYPE_TRAITS(
-    Operation,
-    Number::Operation,
-    Properties::Streaming | Properties::Assign);
+KAI_TYPE_TRAITS(Operation, Number::Operation,
+                Properties::Streaming | Properties::Assign);
 
 KAI_END
-

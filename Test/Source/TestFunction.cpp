@@ -3,70 +3,45 @@
 using namespace kai;
 using namespace std;
 
-namespace
-{
-    static bool called[8];
+namespace {
+static bool called[8];
 
-    void VF0()
-    {
-        called[0] = true;
-    }
+void VF0() { called[0] = true; }
 
-    void VF1(int)
-    {
-        called[1] = true;
-    }
+void VF1(int) { called[1] = true; }
 
-    void VF2(int, int)
-    {
-        called[2] = true;
-    }
+void VF2(int, int) { called[2] = true; }
 
-    void VF3(int, int, int)
-    {
-        called[3] = true;
-    }
+void VF3(int, int, int) { called[3] = true; }
 
-    int F0()
-    {
-        called[4] = true;
-        return 0;
-    }
-
-    int F1(int)
-    {
-        called[5] = true;
-        return 1;
-    }
-
-    int F2(int, int)
-    {
-        called[6] = true;
-        return 2;
-    }
-
-    int F3(int, int, int)
-    {
-        called[7] = true;
-        return 3;
-    }
-
-    void G0(Pointer<int>)
-    {
-    }
-
-    /*Pointer<String> */Object G1(Pointer<int>)
-    {
-        return Object();
-    }
+int F0() {
+    called[4] = true;
+    return 0;
 }
 
-struct FunctionTest : ::testing::Test
-{
+int F1(int) {
+    called[5] = true;
+    return 1;
+}
 
-protected:
-    virtual void SetUp() override
-    {
+int F2(int, int) {
+    called[6] = true;
+    return 2;
+}
+
+int F3(int, int, int) {
+    called[7] = true;
+    return 3;
+}
+
+void G0(Pointer<int>) {}
+
+/*Pointer<String> */ Object G1(Pointer<int>) { return Object(); }
+}  // namespace
+
+struct FunctionTest : ::testing::Test {
+   protected:
+    virtual void SetUp() override {
         _reg.AddClass<void>(Label("void"));
         _reg.AddClass<int>(Label("int"));
         _reg.AddClass<String>(Label("String"));
@@ -77,16 +52,13 @@ protected:
         std::fill(called, called + sizeof(called) / sizeof(called[0]), false);
     }
 
-    virtual void TearDown() override
-    {
-    }
+    virtual void TearDown() override {}
 
     Registry _reg;
     Value<Stack> _stack;
 };
 
-TEST_F(FunctionTest, TestConstruction)
-{
+TEST_F(FunctionTest, TestConstruction) {
     FunctionBase *vf0 = MakeFunction(VF0, Label("VF0"));
     FunctionBase *vf1 = MakeFunction(VF1);
     FunctionBase *vf2 = MakeFunction(VF2);
@@ -138,8 +110,8 @@ TEST_F(FunctionTest, TestConstruction)
     ASSERT_TRUE(called[3]);
 
     //??    f0->Invoke(_reg, *_stack);
-    //ASSERT_TRUE(called[4]);
-    //EXPECT_EQ(ConstDeref<int>(_stack->Pop()), 0);
+    // ASSERT_TRUE(called[4]);
+    // EXPECT_EQ(ConstDeref<int>(_stack->Pop()), 0);
 
     _stack->Push(_reg.New(42));
     f1->Invoke(_reg, *_stack);
@@ -160,15 +132,14 @@ TEST_F(FunctionTest, TestConstruction)
     EXPECT_EQ(ConstDeref<int>(_stack->Pop()), 3);
 
     _stack->Push(_reg.New(456));
-    //TODO g0->Invoke(_reg, *_stack);
+    // TODO g0->Invoke(_reg, *_stack);
 }
 
 // TODO: Test leaking of base pointers
 
-//void FunctionTest::TestExecutor()
+// void FunctionTest::TestExecutor()
 //{
-//    // TODO
-//    //registry.AddClass<Compiler>("Compiler");
-//    //Value<Compiler> compiler = registry.New<Compiler>();
-//}
-
+//     // TODO
+//     //registry.AddClass<Compiler>("Compiler");
+//     //Value<Compiler> compiler = registry.New<Compiler>();
+// }

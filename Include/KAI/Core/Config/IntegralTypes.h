@@ -1,7 +1,8 @@
 #pragma once
 
-#include <boost/integer.hpp>
 #include <KAI/Core/Config/Base.h>
+
+#include <boost/integer.hpp>
 
 KAI_BEGIN
 
@@ -16,4 +17,3 @@ typedef boost::uint_t<32> uint32;
 typedef boost::uint_t<64> uint64;
 
 KAI_END
-

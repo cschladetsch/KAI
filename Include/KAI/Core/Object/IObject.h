@@ -2,36 +2,32 @@
 
 #include <KAI/Core/Config/Base.h>
 #include <KAI/Core/Type/Number.h>
+
 #include "KAI/Core/Object/Label.h"
 
 KAI_BEGIN
 
-class IObject
-{
-public:
-    enum Switch 
-    {
-        Marked = 1, 
-        Managed = 2, 
-        Const = 4, 
-        Clean = 8, 
+class IObject {
+   public:
+    enum Switch {
+        Marked = 1,
+        Managed = 2,
+        Const = 4,
+        Clean = 8,
         NoRecurse = 16,
 
         DefaultSwitches = Managed
     };
 
-    enum Color
-    {
-        White, Grey, Black
-    };
+    enum Color { White, Grey, Black };
     virtual const StorageBase &GetStorageBase() const = 0;
     virtual StorageBase &GetStorageBase() = 0;
 
     virtual Type::Number GetTypeNumber() const = 0;
     virtual const ClassBase *GetClass() const = 0;
-    
+
     virtual Registry *GetRegistry() const = 0;
-    
+
     virtual Handle GetParentHandle() const = 0;
     virtual void SetParentHandle(Handle) = 0;
     virtual Handle GetHandle() const = 0;

@@ -31,19 +31,18 @@
 
 // if KAI_DEBUG is defined, extra debugging features may be exposed
 #if defined(_DEBUG) || defined(DEBUG)
-#    ifndef KAI_DEBUG
-#        define KAI_DEBUG
-#    endif
+#ifndef KAI_DEBUG
+#define KAI_DEBUG
+#endif
 #endif
 
 #ifdef KAI_DEBUG
-// if KAI_OBJECT_HAS_STORAGEBASE is defined, a pointer to the value of the 
-// stored inside it with the _name 'storage'. this is entirely for debugging 
+// if KAI_OBJECT_HAS_STORAGEBASE is defined, a pointer to the value of the
+// stored inside it with the _name 'storage'. this is entirely for debugging
 // purposes.
-#    define KAI_OBJECT_HAS_STORAGEBASE
-#    define KAI_POINTER_HAS_STORAGEBASE
+#define KAI_OBJECT_HAS_STORAGEBASE
+#define KAI_POINTER_HAS_STORAGEBASE
 
 // store pointer to referent on assign
-#    define    KAI_OPTION_DEBUG_SAVE_POINTER
+#define KAI_OPTION_DEBUG_SAVE_POINTER
 #endif
-
