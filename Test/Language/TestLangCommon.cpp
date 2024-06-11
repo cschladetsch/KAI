@@ -26,17 +26,17 @@ std::wstring ToLower(std::wstring const &str)
 
 void ToLower(std::wstring &str)
 {
-    std::transform(str.begin(), str.end(), str.begin(), std::towlower);
+	std::transform(str.begin(), str.end(), str.begin(), std::towlower);
 }
 
 void TestLangCommon::SetUp()
 {
-    _reg = &_console.GetRegistry();
-    _exec = &*_console.GetExecutor();
-    _data = &*_exec->GetDataStack();
-    _context = &*_exec->GetContextStack();
-    _tree = &_console.GetTree();
-    _root = _tree->GetRoot();
+	_reg = &_console.GetRegistry();
+	_exec = &*_console.GetExecutor();
+	_data = &*_exec->GetDataStack();
+	_context = &*_exec->GetContextStack();
+	_tree = &_console.GetTree();
+	_root = _tree->GetRoot();
 }
 
 void TestLangCommon::TearDown()
