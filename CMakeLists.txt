@@ -10,6 +10,7 @@ option(KAI_BUILD_TEST_LANG "Build language tests" ON)
 option(KAI_BUILD_TEST_NETWORK "Build networking tests" OFF)
 option(KAI_BUILD_RAKNET "Build RakNet " OFF)
 
+find_package(Boost)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
 
 # used tp generate compile options for YouCompleteMe
