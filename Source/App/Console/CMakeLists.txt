@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.6)
-
 set(name Console)
 project(${name})
 set(source_path ${APP_HOME}/${name}/Source)
@@ -7,6 +6,4 @@ set(header_path ${INCLUDE_HOME}/${name})
 file(GLOB_RECURSE sources ${source_path}/*.cpp)
 file(GLOB_RECURSE headers ${header_path}/*.h)
 add_executable(${name} ${sources} ${headers})
-#target_link_libraries(${name} Executor Core PiLang RhoLang RakNetLibStatic Network ${Boost_LIBRARIES})
 target_link_libraries(${name} Executor Core PiLang RhoLang ${Boost_LIBRARIES})
-#cotire(${name})
