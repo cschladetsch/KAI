@@ -53,7 +53,9 @@ project(TestNetwork)
     )
 
     # Set compile flags
+    if(NOT MSVC)
     set_target_properties(TestNetwork PROPERTIES COMPILE_FLAGS "-g -Wno-deprecated")
+endif()
 
     # Add the test to CTest
     add_test(NAME TestNetwork COMMAND TestNetwork)

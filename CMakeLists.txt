@@ -185,7 +185,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall")
     
     # Disable specific warnings that are too noisy in legacy code
+    if(NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -Wno-switch -Wno-comment -Wno-reorder")
+endif()
     
     # Disable pedantic warnings for now as the codebase has many legacy issues
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -Wno-missing-field-initializers")
@@ -411,39 +413,28 @@ endif()
 
 # Find or download Google Test if needed for tests
 if(NOT KAI_ANDROID AND (KAI_BUILD_TEST_ALL OR KAI_BUILD_CORE_TEST OR KAI_BUILD_TEST_LANG OR KAI_NETWORKING))
-  # First try to find the system's gtest
   find_package(GTest QUIET)
-  
   if(NOT GTEST_FOUND)
-    message(STATUS "GTest not found in system, downloading it...")
-    
-    # Download and unpack googletest at configure time
-    configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-    execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
-    execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
-
-    # Prevent overriding compiler/linker options 
+    message(STATUS "GTest not found - fetching via FetchContent...")
+    include(FetchContent)
+    FetchContent_Declare(
+      googletest
+      GIT_REPOSITORY https://github.com/google/googletest.git
+      GIT_TAG        v1.14.0
+    )
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-        
-    # Add googletest directly to our build
-    add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
-                     "${CMAKE_BINARY_DIR}/googletest-build"
-                     EXCLUDE_FROM_ALL)
-                     
-    # Define needed variables
-    set(GTEST_INCLUDE_DIRS "${CMAKE_BINARY_DIR}/googletest-src/googletest/include")
+    set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    set(GTEST_INCLUDE_DIRS "${googletest_SOURCE_DIR}/googletest/include")
     set(GTEST_BOTH_LIBRARIES gtest gtest_main)
     set(GTEST_LIBRARIES gtest)
     set(GTEST_MAIN_LIBRARIES gtest_main)
   else()
     message(STATUS "Using system GTest")
   endif()
-  
-  # Always add the include directories for tests
   include_directories(${GTEST_INCLUDE_DIRS})
 endif()
+  
 
 # Add tests only when explicitly requested or when networking tests are enabled.
 if(NOT KAI_ANDROID AND (KAI_BUILD_TEST_ALL OR KAI_BUILD_CORE_TEST OR KAI_BUILD_TEST_LANG OR KAI_NETWORKING))

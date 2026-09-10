@@ -43,7 +43,7 @@ See the full diagram: **[System Architecture Overview](resources/diagrams/system
 - **LLM Tooling**: `RepoIndex` builds a local repo knowledge base and `RhoDataset` exports incremental training corpus records from Rho, Pi, Tau, tests, scripts, `Logs/`, history files, README files, and `Scripts/Training`. The generated manifest is the training memory.
 - **Incremental Garbage Collection**: Smooth memory management without performance spikes
 - **Code Generation**: Tau IDL generates proxy/agent pairs for network communication
-- **Cross-platform Support**: Unified development experience across major operating systems
+- **Cross-platform Support**: Linux, WSL2, Windows (native), macOS
 - **RhoMog Model**: Live interactive demo of continuation mobility — agent migration, Pi-guided routing, load balancing, and snapshot-based recovery after host failure
 
 ## Demo Views
@@ -99,6 +99,7 @@ See the full diagram: **[System Architecture Overview](resources/diagrams/system
 
 ### **Quick Start**
 
+**Linux / WSL2 / macOS:**
 - Build from the repository root with `./b` (networking enabled by default)
 - Disable networking with `./b --no-network`
 - Run the full test suite with `./run_all_tests.sh`
@@ -107,7 +108,12 @@ See the full diagram: **[System Architecture Overview](resources/diagrams/system
 - Run `./Scripts/calc_test.sh` for a demonstration of network calculation
 - Run `./Scripts/network/run_continuation_migration_demo.sh` to prove continuation migration across two processes
 - Run `./Scripts/network/run_continuation_migration_tmux_demo.sh` for a tmux-recordable migration demo
-- Example scripts in `Test/Language/*/Scripts` directories
+
+**Windows (native):**
+- `py build.py` — configure and build
+- `py run.py console` — build and launch the Console
+- `py run.py tests` — build and run all tests
+- `py run.py --help` — full option list
 
 ## Key Features
 
@@ -117,7 +123,7 @@ See the full diagram: **[System Architecture Overview](resources/diagrams/system
 - **Multiple Languages**: Use Pi (stack-based), Rho (infix), or Tau (IDL) as needed
 - **Type Safety**: Full type checking across network boundaries
 - **Incremental GC**: Smooth, constant-time garbage collection with no spikes
-- **Cross-Platform**: Works on Windows, Linux, macOS, and Unity3D
+- **Cross-Platform**: Linux, WSL2, Windows (native, VS 2022/2026), macOS, Unity3D
 - **Network Transparency**: Access remote objects as if they were local
 - **Dynamic Load Balancing**: Automatically distribute workload across network nodes
 - **RhoMog Model**: Live interactive demo of continuation mobility with fantasy-themed visualisation
@@ -208,12 +214,12 @@ print(result)  // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 ### Prerequisites
 
-- Modern C++ compiler (C++23 compatible): Clang 16+ (default), GCC 13+, MSVC 2022+
-- CMake (3.28+)
-- Boost libraries (filesystem, system, program_options, date-time, regex)
-- Ninja (optional but recommended)
+- C++23 compiler: Clang 16+ (default on Linux/macOS), GCC 13+, or MSVC 19.5+ (VS 2022/2026)
+- CMake 3.28+
+- Python 3.10+ (Windows build scripts)
+- Ninja (optional, faster builds on Linux/macOS)
 
-### Building
+### Building on Linux / WSL2 / macOS
 
 ```bash
 git clone https://github.com/cschladetsch/CppKAI.git
@@ -226,6 +232,28 @@ git submodule init && git submodule update
 ./b --reconfigure      # Force CMake reconfiguration
 ./b --clean            # Clean and rebuild
 ./be                   # Build and run all tests
+```
+
+### Building on Windows (native)
+
+```powershell
+git clone https://github.com/cschladetsch/CppKAI.git
+cd CppKAI
+git submodule init
+git submodule update --recursive
+
+py build.py                     # Release build (auto-detects VS 2022/2026)
+py build.py --config Debug      # Debug build
+py build.py --ninja             # Use Ninja if available
+py build.py --no-network        # Disable networking
+py build.py --reconfigure       # Clean and reconfigure
+
+py run.py console               # Build + launch Console (Pi mode)
+py run.py rho                   # Build + launch Console in Rho mode
+py run.py tests                 # Build + run all tests
+py run.py test-pi               # Build + run TestPi only
+py run.py demo                  # Build + run ContinuationMobilityDemo
+py run.py console --no-build    # Just launch (skip build)
 ```
 
 ### Security Configuration
@@ -268,7 +296,7 @@ Switched to Rho language mode
 - Stack contents shown after every command, top-first with `[0]` at the bottom
 - Per-language persistent history saved to `~/.kai/pi.history` and `~/.kai/rho.history`
 - Context-sensitive help system
-- Shell integration (backtick expansion when enabled)
+- Shell integration (backtick expansion when enabled, Linux/macOS only)
 - Color-coded stack display; floating-point values use the neutral value color
 - Native KAI Logger initialization for Console lifecycle, inspection, debugger
   attachment/action, and failure records
@@ -318,11 +346,13 @@ IDL as part of a tool or build step.
 - **Include**: Global include path
 - **Source**: Project source code
 - **Test**: Unit tests
+- **build.py**: Windows build script (auto-detects VS generator, vcpkg)
+- **run.py**: Windows build-and-run script (console, tests, demo, etc.)
 
 ## Platforms
 
-- Windows 10/11 (VS 2017-22)
-- Linux (Ubuntu, Debian)
+- Windows 10/11 (VS 2022, VS 2026)
+- Linux (Ubuntu, Debian, WSL2)
 - macOS (Sierra and newer)
 - Unity3D (2017+)
 

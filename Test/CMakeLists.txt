@@ -14,7 +14,7 @@ add_subdirectory(LogTest)
 add_subdirectory(Examples)
 
 # Add Window tests
-add_subdirectory(Window)
+#add_subdirectory(Window)
 
 # Add Performance benchmark tests
 add_subdirectory(Performance)

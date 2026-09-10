@@ -45,7 +45,7 @@ target_include_directories(PerformanceTests PRIVATE
 
 # Set compile flags for optimal performance testing
 set_target_properties(PerformanceTests PROPERTIES 
-    COMPILE_FLAGS "-g -O2 -Wno-deprecated"
+    COMPILE_FLAGS "$<IF:$<CXX_COMPILER_ID:MSVC>,/O2,-g -O2 -Wno-deprecated>"
 )
 
 # Add the test to CTest
