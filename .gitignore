@@ -250,3 +250,5 @@ Lib/
 **/CMakeFiles/
 **/cmake_install.cmake
 !Ext/rang
+
+!Ext/ENet
