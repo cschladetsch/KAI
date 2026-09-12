@@ -43,13 +43,23 @@ target_include_directories(PerformanceTests PRIVATE
 )
 
 # Set compile flags for optimal performance testing
-# NOTE: COMPILE_FLAGS (unlike COMPILE_OPTIONS) does not evaluate generator
-# expressions - a $<IF:...> here would be written into the build file as
-# literal, unresolved text. Use a plain configure-time if/else instead.
+# NOTE: COMPILE_FLAGS (unlike COMPILE_OPTIONS/target_compile_options) does not
+# evaluate generator expressions - a $<IF:...> or $<CONFIG:...> there would be
+# written into the build file as literal, unresolved text.
+#
+# /O2 must NOT be forced in Debug on MSVC: MSVC's Debug configuration adds
+# /RTC1 (runtime checks) by default, and cl.exe rejects /O2 + /RTC1 together
+# with "error D8016: '/O2' and '/RTC1' command-line options are
+# incompatible", which fails the whole build (not just this target's
+# optimization). target_compile_options() does evaluate generator
+# expressions, so use it (instead of the COMPILE_FLAGS property above) to
+# apply /O2 only outside Debug/RelWithDebInfo-with-RTC configs.
 if(MSVC)
-    set_target_properties(PerformanceTests PROPERTIES COMPILE_FLAGS "/O2")
+    target_compile_options(PerformanceTests PRIVATE
+        $<$<NOT:$<CONFIG:Debug>>:/O2>
+    )
 else()
-    set_target_properties(PerformanceTests PROPERTIES COMPILE_FLAGS "-g -O2 -Wno-deprecated")
+    target_compile_options(PerformanceTests PRIVATE -g -O2 -Wno-deprecated)
 endif()
 
 # Add the test to CTest

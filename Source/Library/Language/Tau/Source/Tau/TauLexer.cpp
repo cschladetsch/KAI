@@ -196,7 +196,7 @@ bool TauLexer::NextToken() {
             return Add(Enum::Ident);
     }
 
-    return LexError("Unrecognised %c");
+    return LexError("Unrecognised {}");
 }
 
 void TauLexer::Terminate() { Add(Enum::None, 0); }

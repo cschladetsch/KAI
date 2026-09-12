@@ -77,6 +77,50 @@ endif()
 
 project(KAI)
 
+# Warn loudly if we didn't actually land on Clang, despite the "prefer Clang"
+# logic above (lines 28-54).
+#
+# That logic is a no-op in the exact situation it's meant to fix: CMake picks
+# its generator (from -G, or its own per-platform default when -G is
+# omitted - on Windows, the newest installed Visual Studio generator) before
+# this file is ever read, and the chosen generator is then locked in via
+# this build directory's CMakeCache.txt for as long as that directory
+# exists. So `if(NOT CMAKE_GENERATOR)` above is always false by the time it
+# runs - CMAKE_GENERATOR is already populated with whatever was picked - and
+# `set(CMAKE_GENERATOR "Ninja" ...)` has no effect even when it does run,
+# since a project cannot change its own generator mid-configure. On top of
+# that, a Visual Studio generator ignores CMAKE_CXX_COMPILER for toolset
+# selection (it always drives cl.exe/MSVC) unless the ClangCL toolset is
+# requested explicitly with `-T ClangCL`.
+#
+# The practical effect: on a fresh clone, a plain `cmake -S . -B build` on
+# Windows silently configures MSVC + a Visual Studio/MSBuild generator
+# (producing .vcxproj files) while this file's messages still claim
+# "Using Clang++ compiler by default". Anyone relying on that message
+# without checking the actual compiler can be surprised much later - e.g. by
+# MSVC-only flag conflicts such as `/O2` + `/RTC1` in a Debug config (see
+# Test/Performance/CMakeLists.txt's comment on that).
+if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND NOT DEFINED BUILD_GCC)
+    message(WARNING
+        "Configured with ${CMAKE_CXX_COMPILER_ID} (generator: ${CMAKE_GENERATOR}), "
+        "not Clang, even though Clang is this project's intended default "
+        "compiler. This almost always means either:\n"
+        "  (a) this build directory's CMakeCache.txt already locked in a "
+        "generator/compiler from an earlier configure - delete the build "
+        "directory and reconfigure, or\n"
+        "  (b) no -G was passed and CMake fell back to its own platform "
+        "default (the Visual Studio generator on Windows), which drives "
+        "cl.exe/MSVC regardless of CMAKE_CXX_COMPILER.\n"
+        "To actually build with Clang, reconfigure from a clean build "
+        "directory with the generator/compiler set explicitly, e.g.:\n"
+        "  cmake -S . -B build -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang\n"
+        "or, to keep MSBuild/.vcxproj output but use Clang's toolset:\n"
+        "  cmake -S . -B build -G \"Visual Studio 17 2022\" -T ClangCL\n"
+        "Pass -DBUILD_GCC=ON instead if GCC is what you actually want, which "
+        "silences this warning."
+    )
+endif()
+
 # Set the C++ standard to C++23 as default for all targets
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

@@ -153,7 +153,7 @@ bool TauParser::Namespace(AstNodePtr root) {
     // The next token should be the namespace name
     if (!CurrentIs(TokenEnum::Ident)) {
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected namespace name (identifier), got %s",
+            Current(), "Expected namespace name (identifier), got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
@@ -197,7 +197,7 @@ bool TauParser::Namespace(AstNodePtr root) {
             if (!CurrentIs(TokenEnum::Ident)) {
                 return Fail(Lexer::CreateErrorMessage(
                     Current(),
-                    "Expected nested namespace name after '::', got %s",
+                    "Expected nested namespace name after '::', got {}",
                     TokenEnumType::ToString(Current().type)));
             }
 
@@ -231,7 +231,7 @@ bool TauParser::Namespace(AstNodePtr root) {
         // If we're still here, we haven't found the opening brace - this is an
         // error
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected '{' after namespace name, got %s",
+            Current(), "Expected '{{' after namespace name, got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
@@ -340,7 +340,7 @@ bool TauParser::Class(AstNodePtr root) {
     // Next token should be the class name
     if (!CurrentIs(TokenEnum::Ident)) {
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected class name after 'class', got %s",
+            Current(), "Expected class name after 'class', got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
@@ -370,7 +370,7 @@ bool TauParser::Class(AstNodePtr root) {
     // Look for opening brace
     if (!CurrentIs(TokenEnum::OpenBrace)) {
         return Fail(
-            Lexer::CreateErrorMessage(Current(), "Expected OpenBrace, have %s",
+            Lexer::CreateErrorMessage(Current(), "Expected OpenBrace, have {}",
                                       TokenEnumType::ToString(Current().type)));
     }
 
@@ -683,7 +683,7 @@ bool TauParser::Interface(AstNodePtr root) {
     // Next token should be the interface name
     if (!CurrentIs(TokenEnum::Ident)) {
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected interface name (identifier), got %s",
+            Current(), "Expected interface name (identifier), got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
@@ -802,7 +802,7 @@ bool TauParser::Enum(AstNodePtr root) {
     // Next token should be the enum name
     if (!CurrentIs(TokenEnum::Ident)) {
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected enum name (identifier), got %s",
+            Current(), "Expected enum name (identifier), got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
@@ -891,7 +891,7 @@ bool TauParser::Struct(AstNodePtr root) {
     // Next token should be the struct name
     if (!CurrentIs(TokenEnum::Ident)) {
         return Fail(Lexer::CreateErrorMessage(
-            Current(), "Expected struct name (identifier), got %s",
+            Current(), "Expected struct name (identifier), got {}",
             TokenEnumType::ToString(Current().type)));
     }
 
