@@ -214,7 +214,7 @@ print(result)  // [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 ### Prerequisites
 
-- C++23 compiler: Clang 16+ (default on Linux/macOS), GCC 13+, or MSVC 19.5+ (VS 2022/2026)
+- C++23 compiler: Clang 16+ (default on Linux/macOS; also supported natively on Windows), GCC 13+, or MSVC 19.5+ (VS 2022/2026)
 - CMake 3.28+
 - Python 3.10+ (Windows build scripts)
 - Ninja (optional, faster builds on Linux/macOS)
@@ -255,6 +255,24 @@ py run.py test-pi               # Build + run TestPi only
 py run.py demo                  # Build + run ContinuationMobilityDemo
 py run.py console --no-build    # Just launch (skip build)
 ```
+
+### Building on Windows with Clang
+
+Two ways to point the Windows build at Clang instead of MSVC:
+
+```powershell
+# clang-cl (MSVC-compatible driver, uses the same VS toolchain/SDK)
+cmake -B build-clang -G "Visual Studio 17 2022" -A x64 -T ClangCL
+cmake --build build-clang --config Release
+
+# real clang/clang++ (GNU-style driver, needs Ninja instead of the VS generator)
+cmake -B build-clang -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+cmake --build build-clang --target Console
+```
+
+Run the Ninja variant from a Developer PowerShell for VS (or the
+`x64 Native Tools Command Prompt`) so Clang can find the MSVC headers/libs it
+still links against on Windows.
 
 ### Security Configuration
 
