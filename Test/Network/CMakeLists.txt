@@ -29,7 +29,6 @@ project(TestNetwork)
     )
 
     # Link libraries
-if(NOT WIN32)
     target_link_libraries(TestNetwork
         ConsoleLib
         Network
@@ -38,9 +37,7 @@ if(NOT WIN32)
         Core
         ${GTEST_BOTH_LIBRARIES}
         ${Boost_LIBRARIES}
-        
     )
-endif()
 
     # Add include directories
     target_include_directories(TestNetwork PRIVATE
@@ -67,14 +64,11 @@ endif()
     set_target_properties(ConsoleConnectionTest PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Bin"
     )
-if(NOT WIN32)
     target_link_libraries(ConsoleConnectionTest
         ConsoleLib Core Network Executor PiLang RhoLang CommonLang
         ${GTEST_BOTH_LIBRARIES}
         ${Boost_LIBRARIES}
-        
     )
-endif()
     target_include_directories(ConsoleConnectionTest PRIVATE
         ${KAI_HOME}/Include
         ${TEST_HOME}/Include
@@ -85,14 +79,11 @@ endif()
     set_target_properties(IntegratedConsoleTest PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Bin"
     )
-if(NOT WIN32)
     target_link_libraries(IntegratedConsoleTest
         ConsoleLib Core Network Executor PiLang RhoLang CommonLang
         ${GTEST_BOTH_LIBRARIES}
         ${Boost_LIBRARIES}
-        
     )
-endif()
     target_include_directories(IntegratedConsoleTest PRIVATE
         ${KAI_HOME}/Include
         ${TEST_HOME}/Include
@@ -103,14 +94,11 @@ endif()
     set_target_properties(CalculationTest PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Bin"
     )
-if(NOT WIN32)
-    target_link_libraries(CalculationTest 
+    target_link_libraries(CalculationTest
         ConsoleLib Core Network Executor PiLang RhoLang CommonLang
         ${GTEST_BOTH_LIBRARIES}
         ${Boost_LIBRARIES}
-        
     )
-endif()
     target_include_directories(CalculationTest PRIVATE
         ${KAI_HOME}/Include
         ${TEST_HOME}/Include

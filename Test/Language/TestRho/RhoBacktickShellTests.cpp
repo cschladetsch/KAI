@@ -4,6 +4,9 @@
 #include <sstream>
 #include <vector>
 
+// Only compile shell tests if shell syntax is enabled
+#ifdef ENABLE_SHELL_SYNTAX
+
 using namespace kai;
 using namespace std;
 
@@ -216,3 +219,5 @@ TEST_F(RhoBacktickShellTest, MixedStringAndNumber) {
     RunRhoScript(code);
     EXPECT_EQ(GetTop<String>(), "8_items");
 }
+
+#endif  // ENABLE_SHELL_SYNTAX

@@ -130,7 +130,17 @@ if(KAI_BUILD_WINDOW AND NOT KAI_BUILD_IMGUI)
 endif()
 
 # Security option: Enable shell syntax (backtick operations)
-# Default to ON so the shell/backtick test suites run instead of being skipped.
+#
+# The backtick feature shells out to a POSIX shell (sh/echo/printf/grep/wc/
+# cut/sed/tr/uname/date/expr, etc.) and captures its stdout. On Linux/macOS,
+# and on any build actually done *inside* WSL2, this works natively: popen()
+# already spawns a real /bin/sh there. On native Windows, Console.cpp routes
+# the same command text through `wsl.exe -e bash -lc "..."` (see
+# ToPlatformShellCommand in Console.cpp) instead of relying on cmd.exe, so
+# the exact same backtick expressions behave identically on all three -
+# the only extra requirement on native Windows is a working WSL2 distro
+# with bash/coreutils installed and `wsl` on PATH. Override with
+# -DENABLE_SHELL_SYNTAX=ON/OFF to force either behaviour on any platform.
 option(ENABLE_SHELL_SYNTAX "Enable shell command execution via backtick syntax" ON)
 
 # Boost has been fully removed from KAI. (CommonLang's optional arena allocator
@@ -261,9 +271,13 @@ add_definitions(-DKAI_VERSION_PATCH=0)
 # Add shell syntax define if enabled
 if(ENABLE_SHELL_SYNTAX)
     add_definitions(-DENABLE_SHELL_SYNTAX)
-    message(WARNING "Shell syntax (backtick operations) is ENABLED. This may pose security risks.")
+    if(WIN32)
+        message(WARNING "Shell syntax (backtick operations) is ENABLED. Commands are routed through wsl.exe - a WSL2 distro with bash/coreutils must be installed and `wsl` must be on PATH, or backtick expressions will fail at runtime. This may pose security risks.")
+    else()
+        message(WARNING "Shell syntax (backtick operations) is ENABLED. This may pose security risks.")
+    endif()
 else()
-    message(STATUS "Shell syntax (backtick operations) is DISABLED for security.")
+    message(STATUS "Shell syntax (backtick operations) is DISABLED for security. Pass -DENABLE_SHELL_SYNTAX=ON to enable.")
 endif()
 
 # Add rang external library
@@ -438,5 +452,13 @@ endif()
 
 # Add tests only when explicitly requested or when networking tests are enabled.
 if(NOT KAI_ANDROID AND (KAI_BUILD_TEST_ALL OR KAI_BUILD_CORE_TEST OR KAI_BUILD_TEST_LANG OR KAI_NETWORKING))
+    # enable_testing() must be called here (an ancestor of every Test/*
+    # subdirectory) rather than down in Test/Window/CMakeLists.txt where it
+    # used to live alone - CTestTestfile.cmake generation only threads
+    # subdirs() down from the directory where testing was enabled, so a
+    # leaf-only call left every other test directory invisible to `ctest`,
+    # which is why `ctest --test-dir build-clang` reported "No tests were
+    # found!!!" even though the test executables built and linked fine.
+    enable_testing()
     add_subdirectory(Test)
 endif()

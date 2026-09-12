@@ -188,10 +188,15 @@ TEST_F(TestLangCommon, TestMinimalDoWhileScript) {
     exec_->SetTraceLevel(5);
 
     try {
-        // Get file content
-        std::string scriptPath =
-            "Test/Language/TestRho/Scripts/MinimalDoWhileTest.rho";
-        std::cout << "Loading script from: " << scriptPath << std::endl;
+        // Get file content. KAI_SCRIPT_ROOT is injected by
+        // Test/Language/CMakeLists.txt as the absolute path to this
+        // language's Scripts/ directory - a hardcoded path relative to the
+        // repo root only resolved when ctest happened to be invoked from
+        // there.
+        const fs::path scriptPath =
+            fs::path(KAI_STRINGISE(KAI_SCRIPT_ROOT)) / "MinimalDoWhileTest.rho";
+        std::cout << "Loading script from: " << scriptPath.string()
+                  << std::endl;
         std::string scriptContent = File::ReadAllText(scriptPath);
         std::cout << "Script content:" << std::endl
                   << scriptContent << std::endl;

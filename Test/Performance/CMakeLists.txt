@@ -27,7 +27,6 @@ set(perf_libs
     Core
     ${GTEST_BOTH_LIBRARIES}
     ${Boost_LIBRARIES}
-    pthread
 )
 
 if(TARGET TauLang)

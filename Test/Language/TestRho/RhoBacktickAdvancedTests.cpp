@@ -4,6 +4,9 @@
 #include <sstream>
 #include <vector>
 
+// Only compile shell tests if shell syntax is enabled
+#ifdef ENABLE_SHELL_SYNTAX
+
 using namespace kai;
 using namespace std;
 
@@ -270,3 +273,5 @@ TEST_F(RhoBacktickAdvancedTest, MixedShellAndRho) {
     ASSERT_EQ(data_->Size(), 1);
     EXPECT_EQ(kai::ConstDeref<int>(data_->Top()), 55);  // 10 * 5 + 5
 }
+
+#endif  // ENABLE_SHELL_SYNTAX

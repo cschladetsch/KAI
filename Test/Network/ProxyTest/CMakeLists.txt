@@ -29,7 +29,6 @@ else()
 endif()
 
 # Link libraries - include only the libraries needed for proxy generation testing
-if(NOT WIN32)
 target_link_libraries(Test_ProxyGeneration
     Network
     TauLang
@@ -39,9 +38,7 @@ target_link_libraries(Test_ProxyGeneration
     ${GTEST_BOTH_LIBRARIES}
     ${Boost_LIBRARIES}
     gtest_main
-    
 )
-endif()
 
 # Set output directory
 set_target_properties(Test_ProxyGeneration PROPERTIES

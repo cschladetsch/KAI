@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 
 #include "KAI/Core/Console.h"
@@ -11,6 +12,7 @@
 
 using namespace kai;
 using namespace std;
+namespace fs = std::filesystem;
 
 // This test was previously disabled due to type mismatch issues that affected
 // Rho language functionality, including do-while loops.
@@ -42,35 +44,35 @@ TEST(RhoLanguage, TestDoWhileLoops) {
         exec->ClearStacks();
         exec->ClearContext();
 
-        // Load and run the simplest do-while test script
-        vector<string> possiblePaths = {
-            "./Test/Language/TestRho/Scripts/SimplestDoWhile.rho",
-            "Test/Language/TestRho/Scripts/SimplestDoWhile.rho"};
-        if (const char* kaiRootEnv = std::getenv("KAI_ROOT")) {
-            possiblePaths.push_back(
-                std::string(kaiRootEnv) +
-                "/Test/Language/TestRho/Scripts/SimplestDoWhile.rho");
-        }
+        // Load and run the simplest do-while test script.
+        //
+        // KAI_SCRIPT_ROOT is injected by Test/Language/CMakeLists.txt as the
+        // absolute path to this language's Scripts/ directory (see
+        // target_compile_definitions there), the same mechanism
+        // TestLangCommon::ExecScriptFile already uses. The old code here
+        // guessed a handful of paths relative to the *process's current
+        // working directory* ("./Test/Language/...", a bare relative path,
+        // or $KAI_ROOT/...), which only happens to work when ctest is
+        // invoked from the repo root - anywhere else (a different working
+        // directory, an IDE test runner, a build dir on another machine)
+        // File::ReadAllText silently returned an empty string instead of
+        // throwing, so `found` stayed true (the "Found script at:" line
+        // still printed) while scriptContent.empty() was actually what
+        // tripped the FAIL() below.
+        const fs::path scriptPath =
+            fs::path(KAI_STRINGISE(KAI_SCRIPT_ROOT)) / "SimplestDoWhile.rho";
 
         string scriptContent;
-        string scriptPath;
         bool found = false;
 
-        for (const auto& path : possiblePaths) {
-            try {
-                scriptContent = String(File::ReadAllText(path)).c_str();
-                scriptPath = path;
-                found = true;
-                cout << "Found script at: " << scriptPath << endl;
-                break;
-            } catch (const std::exception&) {
-                // Try next path
-                continue;
-            }
+        if (fs::exists(scriptPath)) {
+            scriptContent = String(File::ReadAllText(scriptPath)).c_str();
+            found = !scriptContent.empty();
+            cout << "Found script at: " << scriptPath.string() << endl;
         }
 
-        if (!found || scriptContent.empty()) {
-            FAIL() << "Could not read script file from any path";
+        if (!found) {
+            FAIL() << "Could not read script file from " << scriptPath.string();
         }
         cout << "Script content:" << endl << scriptContent << endl;
 

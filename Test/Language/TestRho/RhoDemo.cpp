@@ -1,8 +1,11 @@
 #include <gtest/gtest.h>
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+
+namespace fs = std::filesystem;
 
 #include "KAI/Console/Console.h"
 #include "KAI/Core/BuiltinTypes/Stack.h"
@@ -84,8 +87,13 @@ TEST_F(RhoDemo, RunDemo) {
     std::cout << "          RHO LANGUAGE DEMO           " << std::endl;
     std::cout << "=======================================" << std::endl;
 
-    bool success =
-        ExecuteRhoFile("Test/Language/TestRho/Scripts/Demo.rho", true);
+    // KAI_SCRIPT_ROOT is injected by Test/Language/CMakeLists.txt as the
+    // absolute path to this language's Scripts/ directory - a hardcoded
+    // cwd-relative path here only worked when ctest happened to be run from
+    // the repo root.
+    const fs::path scriptPath =
+        fs::path(KAI_STRINGISE(KAI_SCRIPT_ROOT)) / "Demo.rho";
+    bool success = ExecuteRhoFile(scriptPath.string().c_str(), true);
 
     std::cout << "=======================================" << std::endl;
 

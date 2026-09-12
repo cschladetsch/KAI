@@ -231,9 +231,10 @@ foreach (lang ${langs})
     endif()
     
     source_group("Scripts" FILES ${scripts} )
-    target_compile_definitions(${testName} PRIVATE 
-        KAI_SCRIPT_ROOT=${script_path} 
-        KAI_LANG_NAME=${lang} 
+    target_compile_definitions(${testName} PRIVATE
+        KAI_SCRIPT_ROOT=${script_path}
+        KAI_LANG_ROOT=${home}
+        KAI_LANG_NAME=${lang}
         KAI_LANG_EXT=.${ext}
     )
 endforeach()

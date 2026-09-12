@@ -1,5 +1,8 @@
 #include "TestLangCommon.h"
 
+// Only compile shell tests if shell syntax is enabled
+#ifdef ENABLE_SHELL_SYNTAX
+
 using namespace kai;
 using namespace std;
 
@@ -168,3 +171,5 @@ fib(`echo 10`)
     RunRhoScript(script);
     EXPECT_EQ(GetTop<int>(), 55);  // 10th Fibonacci number
 }
+
+#endif  // ENABLE_SHELL_SYNTAX
