@@ -44,9 +44,14 @@ target_include_directories(PerformanceTests PRIVATE
 )
 
 # Set compile flags for optimal performance testing
-set_target_properties(PerformanceTests PROPERTIES 
-    COMPILE_FLAGS "$<IF:$<CXX_COMPILER_ID:MSVC>,/O2,-g -O2 -Wno-deprecated>"
-)
+# NOTE: COMPILE_FLAGS (unlike COMPILE_OPTIONS) does not evaluate generator
+# expressions - a $<IF:...> here would be written into the build file as
+# literal, unresolved text. Use a plain configure-time if/else instead.
+if(MSVC)
+    set_target_properties(PerformanceTests PROPERTIES COMPILE_FLAGS "/O2")
+else()
+    set_target_properties(PerformanceTests PROPERTIES COMPILE_FLAGS "-g -O2 -Wno-deprecated")
+endif()
 
 # Add the test to CTest
 add_test(NAME PerformanceTests COMMAND PerformanceTests)

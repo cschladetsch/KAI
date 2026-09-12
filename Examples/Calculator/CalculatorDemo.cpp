@@ -43,7 +43,7 @@ public:
         auto future = promise->get_future();
 
         // Simulate async calculation
-        std::thread([promise, a, b]() {
+        std::jthread([promise, a, b]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             promise->set_value(a + b);
         }).detach();
@@ -55,7 +55,7 @@ public:
         auto promise = std::make_shared<std::promise<int>>();
         auto future = promise->get_future();
 
-        std::thread([promise, a, b]() {
+        std::jthread([promise, a, b]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             promise->set_value(a - b);
         }).detach();
@@ -67,7 +67,7 @@ public:
         auto promise = std::make_shared<std::promise<int>>();
         auto future = promise->get_future();
 
-        std::thread([promise, a, b]() {
+        std::jthread([promise, a, b]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             promise->set_value(a * b);
         }).detach();
@@ -79,7 +79,7 @@ public:
         auto promise = std::make_shared<std::promise<int>>();
         auto future = promise->get_future();
 
-        std::thread([promise, a, b]() {
+        std::jthread([promise, a, b]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(10));
             if (b == 0) {
                 promise->set_exception(std::make_exception_ptr(

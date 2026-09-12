@@ -31,13 +31,15 @@ include_directories(${CMAKE_SOURCE_DIR}/..)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 # Link libraries
+if(NOT WIN32)
 target_link_libraries(TauNetworkTest 
     ${CMAKE_SOURCE_DIR}/../build/Bin/libTauLang.a
     ${CMAKE_SOURCE_DIR}/../build/Bin/libCore.a
     ${CMAKE_SOURCE_DIR}/../build/Bin/libCommonLang.a
     ${GTEST_LIBRARIES}
-    pthread
+    
 )
+endif()
 
 # Enable testing
 enable_testing()

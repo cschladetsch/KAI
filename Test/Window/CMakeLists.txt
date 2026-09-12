@@ -29,12 +29,14 @@ add_executable(TestSimpleMock
 set_target_properties(TestSimpleMock PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
+if(NOT WIN32)
 
 target_link_libraries(TestSimpleMock
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
-    pthread
+    
 )
+endif()
 
 # Window test executable
 add_executable(TestWindow

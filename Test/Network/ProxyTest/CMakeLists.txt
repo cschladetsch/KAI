@@ -19,9 +19,17 @@ target_include_directories(Test_ProxyGeneration PRIVATE
 )
 
 # Set compile flags
-set_target_properties(Test_ProxyGeneration PROPERTIES COMPILE_FLAGS "-g -Wno-deprecated")
+# NOTE: COMPILE_FLAGS (unlike COMPILE_OPTIONS) does not evaluate generator
+# expressions - a $<...> here would be written into the build file as
+# literal, unresolved text. Use a plain configure-time if/else instead.
+if(MSVC)
+    set_target_properties(Test_ProxyGeneration PROPERTIES COMPILE_FLAGS "-g")
+else()
+    set_target_properties(Test_ProxyGeneration PROPERTIES COMPILE_FLAGS "-g -Wno-deprecated")
+endif()
 
 # Link libraries - include only the libraries needed for proxy generation testing
+if(NOT WIN32)
 target_link_libraries(Test_ProxyGeneration
     Network
     TauLang
@@ -31,8 +39,9 @@ target_link_libraries(Test_ProxyGeneration
     ${GTEST_BOTH_LIBRARIES}
     ${Boost_LIBRARIES}
     gtest_main
-    pthread
+    
 )
+endif()
 
 # Set output directory
 set_target_properties(Test_ProxyGeneration PROPERTIES

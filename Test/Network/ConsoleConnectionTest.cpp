@@ -34,7 +34,7 @@ class TestConsole : public kai::Console {
     }
 
     void RequestRemoteCalculation(const std::string& expression) {
-        std::thread([this, expression]() {
+        std::jthread([this, expression]() {
             std::this_thread::sleep_for(200ms);
             resultPromise_.set_value(expression == "1+2" ? 3 : 0);
         }).detach();

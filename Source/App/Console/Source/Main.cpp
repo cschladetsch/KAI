@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "KAI/Console/Console.h"
 #include "KAI/Core/Logger.h"
 #include "KAI/Language/Common/TranslatorFactory.h"
@@ -127,6 +131,13 @@ std::shared_ptr<TranslatorCommon> CreateTranslatorForLanguage(Registry& reg, Lan
 }
 
 int main(int argc, char** argv) {
+#ifdef _WIN32
+    // The Windows console defaults to a legacy codepage (not UTF-8), so
+    // UTF-8 literals in source - like the Greek pi prompt symbol - render as
+    // mojibake unless we explicitly switch both output and input to UTF-8.
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
     try {
         Logger::Init();
         Logger::Info("KAI Console starting");
