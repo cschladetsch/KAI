@@ -44,5 +44,16 @@ find_package(OpenGL REQUIRED)
 # Link libraries
 target_link_libraries(${name} PiLang RhoLang Executor ConsoleLib CommonLang Core ImGuiLib glfw OpenGL::GL)
 
-# Use the local GL headers directly instead of depending on GLEW.
-target_compile_definitions(${name} PRIVATE IMGUI_IMPL_OPENGL_LOADER_CUSTOM GL_GLEXT_PROTOTYPES)
+if(WIN32)
+    # The Windows SDK only ships OpenGL 1.1 headers (no GL/glext.h with
+    # modern GL prototypes, unlike Linux's Mesa headers), so the
+    # "no loader, just declare the prototypes yourself" approach used below
+    # for other platforms doesn't work here. Use GLEW as a real loader
+    # instead (available via vcpkg: `vcpkg install glew`).
+    find_package(GLEW REQUIRED)
+    target_link_libraries(${name} GLEW::GLEW)
+    target_compile_definitions(${name} PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLEW)
+else()
+    # Use the local GL headers directly instead of depending on GLEW.
+    target_compile_definitions(${name} PRIVATE IMGUI_IMPL_OPENGL_LOADER_CUSTOM GL_GLEXT_PROTOTYPES)
+endif()
