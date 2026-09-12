@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <KAI/Console/Console.h>
 #include <imgui.h>
@@ -211,6 +212,21 @@ static GLFWwindow* SetupGui() {
         glfwTerminate();
         return nullptr;
     }
+
+    glfwMakeContextCurrent(window);
+	glfwSwapInterval(1);
+
+	// Initialize GLEW extension loader to prevent null function pointer crashes
+	glewExperimental = GL_TRUE;
+	if (glewInit() != GLEW_OK) {
+	    glfwDestroyWindow(window);
+	    glfwTerminate();
+	    return nullptr;
+	}
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+
 
     return window;
 }
