@@ -242,9 +242,9 @@ cd CppKAI
 git submodule init
 git submodule update --recursive
 
-py build.py                     # Release build (auto-detects VS 2022/2026)
+py build.py                     # Release build (Clang + Ninja by default, shell syntax ON)
 py build.py --config Debug      # Debug build
-py build.py --ninja             # Use Ninja if available
+py build.py --msvc              # Use MSVC + Visual Studio generator + vcpkg instead
 py build.py --no-network        # Disable networking
 py build.py --reconfigure       # Clean and reconfigure
 
@@ -258,7 +258,9 @@ py run.py console --no-build    # Just launch (skip build)
 
 ### Building on Windows with Clang
 
-Two ways to point the Windows build at Clang instead of MSVC:
+`py build.py` already does this by default (Ninja + auto-detected
+`clang++`/`clang`, erroring out with instructions if either is missing).
+Two ways to do it manually instead, e.g. for a separate build directory:
 
 ```powershell
 # clang-cl (MSVC-compatible driver, uses the same VS toolchain/SDK)
@@ -274,14 +276,21 @@ Run the Ninja variant from a Developer PowerShell for VS (or the
 `x64 Native Tools Command Prompt`) so Clang can find the MSVC headers/libs it
 still links against on Windows.
 
+To use MSVC + Visual Studio instead, pass `--msvc` to `build.py` (or use
+`py build.py --msvc --clean` if switching an existing Ninja-configured
+`build/` directory — CMake refuses to change generator in place).
+
 ### Security Configuration
 
-Shell operations (backtick syntax) are disabled by default:
+Shell operations (backtick syntax, e.g. `` `pwd` `` in Rho/Pi) are **enabled
+by default** (`ENABLE_SHELL_SYNTAX=ON`). On native Windows this routes
+commands through WSL2's bash (`wsl.exe`), so a WSL2 distro with bash/coreutils
+installed and `wsl` on PATH is required for backtick expressions to work
+there; on Linux/macOS/WSL2 it uses the system shell directly. To disable it:
 ```bash
-cmake .. -DENABLE_SHELL_SYNTAX=ON
-# or
-./b --enable-shell
+cmake .. -DENABLE_SHELL_SYNTAX=OFF
 ```
+On Windows, `py build.py --disable-shell` does the same.
 
 ## Applications
 
@@ -314,7 +323,7 @@ Switched to Rho language mode
 - Stack contents shown after every command, top-first with `[0]` at the bottom
 - Per-language persistent history saved to `~/.kai/pi.history` and `~/.kai/rho.history`
 - Context-sensitive help system
-- Shell integration (backtick expansion when enabled, Linux/macOS only)
+- Shell integration (backtick expansion, enabled by default; native Windows routes commands through WSL2's bash)
 - Color-coded stack display; floating-point values use the neutral value color
 - Native KAI Logger initialization for Console lifecycle, inspection, debugger
   attachment/action, and failure records
@@ -364,7 +373,7 @@ IDL as part of a tool or build step.
 - **Include**: Global include path
 - **Source**: Project source code
 - **Test**: Unit tests
-- **build.py**: Windows build script (auto-detects VS generator, vcpkg)
+- **build.py**: Windows build script (Clang + Ninja by default; `--msvc` for Visual Studio + vcpkg)
 - **run.py**: Windows build-and-run script (console, tests, demo, etc.)
 
 ## Platforms

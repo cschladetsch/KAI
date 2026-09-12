@@ -93,7 +93,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug   # Default
 cmake .. -DCMAKE_BUILD_TYPE=Release
 
 # Security options
-cmake .. -DENABLE_SHELL_SYNTAX=ON         # Enable shell command integration (default: OFF)
+cmake .. -DENABLE_SHELL_SYNTAX=OFF        # Disable shell command integration (default: ON)
 
 # Control which components to build on `develop`
 cmake .. -DKAI_BUILD_TEST_ALL=ON          # Build test targets (default: ON)
@@ -111,14 +111,17 @@ When LLM support is enabled, models are stored in `~/.cache/deepseek/models` by 
 
 #### Security Configuration
 
-**Shell Command Integration**: By default, shell commands are disabled for security reasons. To enable shell integration in the Console:
+**Shell Command Integration**: Shell commands are **enabled by default**
+(`ENABLE_SHELL_SYNTAX=ON`). On native Windows, backtick/shell commands are
+routed through WSL2's bash (`wsl.exe`), so a WSL2 distro with bash/coreutils
+installed and `wsl` on PATH is required there; Linux/macOS/WSL2 use the
+system shell directly. To disable shell integration in the Console:
 
 ```bash
-# Enable shell syntax (allows $ commands and backtick expansion)
-cmake .. -DENABLE_SHELL_SYNTAX=ON
+cmake .. -DENABLE_SHELL_SYNTAX=OFF
 
-# Or use the helper script
-./Scripts/b --enable-shell
+# Or on Windows
+py build.py --disable-shell
 ```
 
 **Important**: Only enable shell syntax in trusted environments. When enabled:
