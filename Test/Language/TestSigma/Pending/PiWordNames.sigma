@@ -1,0 +1,14 @@
+// Pi words (size, type, print, mod, at) used as ordinary names. The translator
+// renames them in the generated Rho, so these must all work.
+
+fun at(size: int, type: int) -> int
+    print = size + type
+    return print * 2
+
+mod = at(3, 4)
+items = [1, 2, 3]
+count = 0
+for depth in items
+    count += depth
+
+mod == 14 && count == 6 && items.size() == 3

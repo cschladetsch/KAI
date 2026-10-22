@@ -276,7 +276,7 @@ TEST_F(SigmaTests, UnsupportedSyntax) {
     ExpectError("fun f()\n    fun g()\n        print(1)\n", "nested functions are not supported");
     ExpectError("f = fun(x: int)\n    return x\n", "anonymous functions are not supported");
     ExpectError("x = [1, 2][0]", "must follow a name");
-    ExpectError("dup = 1", "'dup' is a Pi word");
+    ExpectError("dup__pi = 1", "reserved for renaming Pi words");
     ExpectError("x: int? = 1", "nullable types");
     ExpectError("x: Nope = 1", "unknown type 'Nope'");
     ExpectError("x: int", "a declaration needs an initial value");

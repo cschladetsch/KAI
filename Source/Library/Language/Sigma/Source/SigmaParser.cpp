@@ -20,7 +20,18 @@ bool IsPiKeyword(const std::string &name) {
         "freeze", "thaw",  "at"});
     return std::find(words.begin(), words.end(), name) != words.end();
 }
+
+// A Sigma binding whose name is a Pi word is emitted under another name
+// (`size` becomes `size__pi`), because Rho cannot bind Pi words. Names that
+// already end in the suffix are rejected, so the renaming cannot collide.
+constexpr std::string_view kPiWordSuffix = "__pi";
 }  // namespace
+
+// The name a Sigma binding has in the generated Rho. The translator uses this
+// too, so the two always agree. (Declare it in SigmaParser.h.)
+std::string SigmaRhoName(const std::string &name) {
+    return IsPiKeyword(name) ? name + std::string(kPiWordSuffix) : name;
+}
 
 const char *SigmaAstNodeEnumType::ToString(Enum val) {
     switch (val) {
@@ -81,8 +92,12 @@ SigmaParser::AstNodePtr SigmaParser::Error(const char *message) {
 }
 
 bool SigmaParser::CheckName(TokenNode const &tok, const char *what) {
-    if (!IsPiKeyword(tok.Text())) return true;
-    Error(tok, std::format("'{}' is a Pi word and cannot be used as a {} name", tok.Text(), what));
+    // Pi words are fine as names: the translator renames them (SigmaRhoName).
+    // Only the suffix used for the renaming is reserved.
+    const std::string text = tok.Text();
+    if (!text.ends_with(kPiWordSuffix)) return true;
+    Error(tok, std::format("'{}' ends in '{}', which is reserved for renaming Pi words, so it cannot be a {} name",
+                           text, kPiWordSuffix, what));
     return false;
 }
 
