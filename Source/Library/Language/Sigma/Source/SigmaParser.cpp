@@ -7,32 +7,6 @@
 
 KAI_BEGIN
 
-namespace {
-// Sigma compiles to Rho, which compiles to Pi; these names are Pi words and
-// cannot be bound by Rho code (see RhoParser).
-bool IsPiKeyword(const std::string &name) {
-    constexpr auto words = std::to_array<std::string_view>({
-        "if",    "ife",    "for",    "foreach", "break", "continue", "true",  "false", "self",  "while",
-        "assert", "div",   "rho",    "rho{",    "to_str", "not",     "and",   "or",    "xor",   "exists",
-        "drop",  "dup",    "dup2",   "drop2",   "pick",  "over",     "swap",  "rot",   "rotn",  "roll",
-        "toarray", "gc",   "clear",  "expand",  "cd",    "pwd",      "type",  "size",  "depth", "new",
-        "print", "dropn",  "tolist", "tomap",   "toset", "mul",      "mod",   "noteq", "lls",   "ls",
-        "freeze", "thaw",  "at"});
-    return std::find(words.begin(), words.end(), name) != words.end();
-}
-
-// A Sigma binding whose name is a Pi word is emitted under another name
-// (`size` becomes `size__pi`), because Rho cannot bind Pi words. Names that
-// already end in the suffix are rejected, so the renaming cannot collide.
-constexpr std::string_view kPiWordSuffix = "__pi";
-}  // namespace
-
-// The name a Sigma binding has in the generated Rho. The translator uses this
-// too, so the two always agree. (Declare it in SigmaParser.h.)
-std::string SigmaRhoName(const std::string &name) {
-    return IsPiKeyword(name) ? name + std::string(kPiWordSuffix) : name;
-}
-
 const char *SigmaAstNodeEnumType::ToString(Enum val) {
     switch (val) {
 #define CASE(N) \
@@ -89,16 +63,6 @@ SigmaParser::AstNodePtr SigmaParser::Error(const char *message) {
         default: found = "'" + at.Text() + "'"; break;
     }
     return Error(at, std::format("{} (found {})", message, found));
-}
-
-bool SigmaParser::CheckName(TokenNode const &tok, const char *what) {
-    // Pi words are fine as names: the translator renames them (SigmaRhoName).
-    // Only the suffix used for the renaming is reserved.
-    const std::string text = tok.Text();
-    if (!text.ends_with(kPiWordSuffix)) return true;
-    Error(tok, std::format("'{}' ends in '{}', which is reserved for renaming Pi words, so it cannot be a {} name",
-                           text, kPiWordSuffix, what));
-    return false;
 }
 
 bool SigmaParser::Process(std::shared_ptr<Lexer> lex, Structure) {
@@ -191,7 +155,6 @@ SigmaParser::AstNodePtr SigmaParser::FunctionDefinition() {
     if (functionDepth_ > 0) return Error("nested functions are not supported in Sigma yet");
     Take();  // fun
     const auto name = Take();
-    if (!CheckName(name, "function")) return nullptr;
     auto fun = NewNode(Ast::Function, name);
 
     // Template parameters: `fun max[T](a: T, b: T) -> T`. The type arguments
@@ -206,7 +169,6 @@ SigmaParser::AstNodePtr SigmaParser::FunctionDefinition() {
             pack = Accept(Tok::Ellipsis);
             if (!Is(Tok::Name)) return Error(pack ? "expected a name after '...'" : "expected a type parameter name");
             const auto t = Take();
-            if (!CheckName(t, "type parameter")) return nullptr;
             typeParams->Add(pack ? NewNode(Ast::Expand, t) : NewNode(t));
         } while (Accept(Tok::Comma));
         if (!Require(Tok::CloseSquare, "']' after the type parameters")) return nullptr;
@@ -218,7 +180,6 @@ SigmaParser::AstNodePtr SigmaParser::FunctionDefinition() {
         do {
             if (!Is(Tok::Name)) return Error("expected a parameter name");
             const auto p = Take();
-            if (!CheckName(p, "parameter")) return nullptr;
             if (!Is(Tok::Colon)) return Error(p, std::format("parameter '{}' needs a type, e.g. '{}: int'", p.Text(), p.Text()));
             Take();
             auto type = Type();
@@ -294,7 +255,6 @@ SigmaParser::AstNodePtr SigmaParser::ForStatement() {
 
     if (Is(Tok::Name) && Peek(1).type == Tok::In) {
         const auto var = Take();
-        if (!CheckName(var, "loop variable")) return nullptr;
         Take();  // in
         auto iterable = Expression();
         if (!iterable) return nullptr;
@@ -336,7 +296,6 @@ SigmaParser::AstNodePtr SigmaParser::SimpleStatement() {
     // name: Type = value
     if (Is(Tok::Name) && Peek(1).type == Tok::Colon) {
         const auto name = Take();
-        if (!CheckName(name, "variable")) return nullptr;
         Take();  // :
         auto type = Type();
         if (!type) return nullptr;
@@ -364,7 +323,6 @@ SigmaParser::AstNodePtr SigmaParser::SimpleStatement() {
             const bool isName = expr->GetType() == Ast::TokenType && expr->GetToken().type == Tok::Name;
             if (!isName && expr->GetType() != Ast::Index && expr->GetType() != Ast::Member)
                 return Error(op, "the left side of an assignment must be a name, an index or a member");
-            if (isName && !CheckName(expr->GetToken(), "variable")) return nullptr;
             if (!isName && op.type != Tok::Assign)
                 return Error(op, std::format("'{}' needs a plain name on the left", op.Text()));
             auto value = Expression();

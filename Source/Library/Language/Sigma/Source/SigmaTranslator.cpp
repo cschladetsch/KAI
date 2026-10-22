@@ -7,9 +7,6 @@
 
 KAI_BEGIN
 
-// Defined in SigmaParser.cpp: the name a Sigma binding has in the generated Rho.
-std::string SigmaRhoName(const std::string &name);
-
 namespace {
 
 using Ast = SigmaAstNodeEnumType;
@@ -34,11 +31,6 @@ class RhoEmitter {
 
     std::string Program(const NodePtr &root) {
         std::string out;
-        // Names bound by this input, by earlier inputs of the session, and by
-        // the templates instantiated from earlier inputs.
-        for (auto const &[name, global] : checker_.GetGlobals()) bound_.insert(name);
-        for (auto const &inst : checker_.GetVariadicInstances()) Collect(inst.fun);
-        Collect(root);
         // Instances of variadic templates defined by earlier session inputs.
         for (auto const &inst : checker_.GetVariadicInstances()) {
             const auto &top = root->GetChildren();
@@ -53,34 +45,10 @@ class RhoEmitter {
     const std::unordered_set<const SigmaAstNode *> *widened_;
     std::unordered_map<std::string, int> variadics_;  // name -> parameters before the pack
     std::unordered_map<std::string, int> packs_;      // pack parameter -> its length, in an instance
-    std::unordered_set<std::string> bound_;           // names the program binds (see Collect)
 
     bool Widened(const NodePtr &node) const { return widened_->contains(node.get()); }
 
-    // Collects the names the program binds: functions, parameters, declared
-    // and assigned variables, and loop variables. Only these are renamed when
-    // they are Pi words. Any other name, such as the built-in `print`, must
-    // reach Rho unchanged.
-    void Collect(const NodePtr &node) {
-        if (!node) return;
-        const auto &ch = node->GetChildren();
-        switch (node->GetType()) {
-            case Ast::Function:
-                bound_.insert(node->Text());
-                for (auto const &p : ch[0]->GetChildren()) bound_.insert(p->Text());
-                break;
-            case Ast::Declaration:
-            case Ast::ForEach: bound_.insert(node->Text()); break;
-            case Ast::Assignment:
-                if (ch[0]->GetType() == Ast::TokenType && ch[0]->GetToken().type == Tok::Name)
-                    bound_.insert(ch[0]->Text());
-                break;
-            default: break;
-        }
-        for (auto const &c : ch) Collect(c);
-    }
-
-    static std::string Mangle(const std::string &name, int arity) { return SigmaRhoName(name) + "__" + std::to_string(arity); }
+    static std::string Mangle(const std::string &name, int arity) { return name + "__" + std::to_string(arity); }
 
     static bool IsVariadic(const NodePtr &fun) {
         const auto &ch = fun->GetChildren();
@@ -96,7 +64,7 @@ class RhoEmitter {
                 for (int e = 0; e < inst.arity; ++e) params += (params.empty() ? "" : ", ") + Mangle(ps[n]->Text(), e);
                 packs_[ps[n]->Text()] = inst.arity;
             } else {
-                params += (params.empty() ? "" : ", ") + SigmaRhoName(ps[n]->Text());
+                params += (params.empty() ? "" : ", ") + ps[n]->Text();
             }
         }
         auto outer = std::exchange(widened_, &inst.widened);
@@ -193,8 +161,8 @@ class RhoEmitter {
                     return;
                 }
                 std::string params;
-                for (auto const &p : ch[0]->GetChildren()) params += (params.empty() ? "" : ", ") + SigmaRhoName(p->Text());
-                out += Indent(depth) + "fun " + SigmaRhoName(node->Text()) + "(" + params + ")\n";
+                for (auto const &p : ch[0]->GetChildren()) params += (params.empty() ? "" : ", ") + p->Text();
+                out += Indent(depth) + "fun " + node->Text() + "(" + params + ")\n";
                 Block(out, ch[2], depth + 1);
                 return;
             }
@@ -223,7 +191,7 @@ class RhoEmitter {
                 Block(out, ch[3], depth + 1);
                 return;
             case Ast::ForEach:
-                out += Indent(depth) + "for " + SigmaRhoName(node->Text()) + " in " + Expr(ch[0]) + "\n";
+                out += Indent(depth) + "for " + node->Text() + " in " + Expr(ch[0]) + "\n";
                 Block(out, ch[1], depth + 1);
                 return;
             case Ast::Block: Block(out, node, depth); return;
@@ -238,7 +206,7 @@ class RhoEmitter {
         const auto &ch = node->GetChildren();
         switch (node->GetType()) {
             case Ast::None: return "";
-            case Ast::Declaration: return SigmaRhoName(node->Text()) + " = " + Expr(ch[1]);
+            case Ast::Declaration: return node->Text() + " = " + Expr(ch[1]);
             case Ast::Assignment: {
                 const auto op = node->GetToken().type;
                 const std::string target = Raw(ch[0]);
@@ -289,9 +257,7 @@ class RhoEmitter {
         switch (node->GetType()) {
             case Ast::TokenType:
                 if (node->GetToken().type == Tok::String) return StringLiteral(node);
-                return node->GetToken().type == Tok::Name && bound_.contains(node->Text())
-                           ? SigmaRhoName(node->Text())
-                           : node->Text();
+                return node->Text();
             case Ast::PiBlock: return node->Text();
             case Ast::Binary: {
                 std::string left = Expr(ch[0]);
@@ -315,7 +281,6 @@ class RhoEmitter {
                 int count = 0;
                 const std::string args = Items(ch[1]->GetChildren(), &count);
                 std::string callee = Raw(ch[0]);
-                // variadics_ is keyed by the Sigma name; Mangle applies SigmaRhoName.
                 if (ch[0]->GetType() == Ast::TokenType)
                     if (auto v = variadics_.find(ch[0]->Text()); v != variadics_.end())
                         callee = Mangle(ch[0]->Text(), count - v->second);
